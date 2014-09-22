@@ -9,1532 +9,2295 @@
 #ifndef GL_HPP_API_VERSION
 #define GL_HPP_API_VERSION 150
 #endif
-#undef GL_FALSE
-static const GLenum GL_FALSE=0
-#undef GL_NO_ERROR
-static const GLenum GL_NO_ERROR=0
-#undef GL_NONE
-static const GLenum GL_NONE=0
-#undef GL_ZERO
-static const GLenum GL_ZERO=0
-#undef GL_POINTS
-static const GLenum GL_POINTS=0x0000
-#undef GL_CLIENT_PIXEL_STORE_BIT
-static const GLenum GL_CLIENT_PIXEL_STORE_BIT=0x00000001
-#undef GL_CURRENT_BIT
-static const GLenum GL_CURRENT_BIT=0x00000001
-#undef GL_CLIENT_VERTEX_ARRAY_BIT
-static const GLenum GL_CLIENT_VERTEX_ARRAY_BIT=0x00000002
-#undef GL_POINT_BIT
-static const GLenum GL_POINT_BIT=0x00000002
-#undef GL_LINE_BIT
-static const GLenum GL_LINE_BIT=0x00000004
-#undef GL_POLYGON_BIT
-static const GLenum GL_POLYGON_BIT=0x00000008
-#undef GL_POLYGON_STIPPLE_BIT
-static const GLenum GL_POLYGON_STIPPLE_BIT=0x00000010
-#undef GL_PIXEL_MODE_BIT
-static const GLenum GL_PIXEL_MODE_BIT=0x00000020
-#undef GL_LIGHTING_BIT
-static const GLenum GL_LIGHTING_BIT=0x00000040
-#undef GL_FOG_BIT
-static const GLenum GL_FOG_BIT=0x00000080
-#undef GL_DEPTH_BUFFER_BIT
-static const GLenum GL_DEPTH_BUFFER_BIT=0x00000100
-#undef GL_ACCUM_BUFFER_BIT
-static const GLenum GL_ACCUM_BUFFER_BIT=0x00000200
-#undef GL_STENCIL_BUFFER_BIT
-static const GLenum GL_STENCIL_BUFFER_BIT=0x00000400
-#undef GL_VIEWPORT_BIT
-static const GLenum GL_VIEWPORT_BIT=0x00000800
-#undef GL_TRANSFORM_BIT
-static const GLenum GL_TRANSFORM_BIT=0x00001000
-#undef GL_ENABLE_BIT
-static const GLenum GL_ENABLE_BIT=0x00002000
-#undef GL_COLOR_BUFFER_BIT
-static const GLenum GL_COLOR_BUFFER_BIT=0x00004000
-#undef GL_HINT_BIT
-static const GLenum GL_HINT_BIT=0x00008000
-#undef GL_LINES
-static const GLenum GL_LINES=0x0001
-#undef GL_EVAL_BIT
-static const GLenum GL_EVAL_BIT=0x00010000
-#undef GL_LINE_LOOP
-static const GLenum GL_LINE_LOOP=0x0002
-#undef GL_LIST_BIT
-static const GLenum GL_LIST_BIT=0x00020000
-#undef GL_LINE_STRIP
-static const GLenum GL_LINE_STRIP=0x0003
-#undef GL_TRIANGLES
-static const GLenum GL_TRIANGLES=0x0004
-#undef GL_TEXTURE_BIT
-static const GLenum GL_TEXTURE_BIT=0x00040000
-#undef GL_TRIANGLE_STRIP
-static const GLenum GL_TRIANGLE_STRIP=0x0005
-#undef GL_TRIANGLE_FAN
-static const GLenum GL_TRIANGLE_FAN=0x0006
-#undef GL_QUADS
-static const GLenum GL_QUADS=0x0007
-#undef GL_QUAD_STRIP
-static const GLenum GL_QUAD_STRIP=0x0008
-#undef GL_SCISSOR_BIT
-static const GLenum GL_SCISSOR_BIT=0x00080000
-#undef GL_POLYGON
-static const GLenum GL_POLYGON=0x0009
-#undef GL_ACCUM
-static const GLenum GL_ACCUM=0x0100
-#undef GL_LOAD
-static const GLenum GL_LOAD=0x0101
-#undef GL_RETURN
-static const GLenum GL_RETURN=0x0102
-#undef GL_MULT
-static const GLenum GL_MULT=0x0103
-#undef GL_ADD
-static const GLenum GL_ADD=0x0104
-#undef GL_NEVER
-static const GLenum GL_NEVER=0x0200
-#undef GL_LESS
-static const GLenum GL_LESS=0x0201
-#undef GL_EQUAL
-static const GLenum GL_EQUAL=0x0202
-#undef GL_LEQUAL
-static const GLenum GL_LEQUAL=0x0203
-#undef GL_GREATER
-static const GLenum GL_GREATER=0x0204
-#undef GL_NOTEQUAL
-static const GLenum GL_NOTEQUAL=0x0205
-#undef GL_GEQUAL
-static const GLenum GL_GEQUAL=0x0206
-#undef GL_ALWAYS
-static const GLenum GL_ALWAYS=0x0207
-#undef GL_SRC_COLOR
-static const GLenum GL_SRC_COLOR=0x0300
-#undef GL_ONE_MINUS_SRC_COLOR
-static const GLenum GL_ONE_MINUS_SRC_COLOR=0x0301
-#undef GL_SRC_ALPHA
-static const GLenum GL_SRC_ALPHA=0x0302
-#undef GL_ONE_MINUS_SRC_ALPHA
-static const GLenum GL_ONE_MINUS_SRC_ALPHA=0x0303
-#undef GL_DST_ALPHA
-static const GLenum GL_DST_ALPHA=0x0304
-#undef GL_ONE_MINUS_DST_ALPHA
-static const GLenum GL_ONE_MINUS_DST_ALPHA=0x0305
-#undef GL_DST_COLOR
-static const GLenum GL_DST_COLOR=0x0306
-#undef GL_ONE_MINUS_DST_COLOR
-static const GLenum GL_ONE_MINUS_DST_COLOR=0x0307
-#undef GL_SRC_ALPHA_SATURATE
-static const GLenum GL_SRC_ALPHA_SATURATE=0x0308
-#undef GL_FRONT_LEFT
-static const GLenum GL_FRONT_LEFT=0x0400
-#undef GL_FRONT_RIGHT
-static const GLenum GL_FRONT_RIGHT=0x0401
-#undef GL_BACK_LEFT
-static const GLenum GL_BACK_LEFT=0x0402
-#undef GL_BACK_RIGHT
-static const GLenum GL_BACK_RIGHT=0x0403
-#undef GL_FRONT
-static const GLenum GL_FRONT=0x0404
-#undef GL_BACK
-static const GLenum GL_BACK=0x0405
-#undef GL_LEFT
-static const GLenum GL_LEFT=0x0406
-#undef GL_RIGHT
-static const GLenum GL_RIGHT=0x0407
-#undef GL_FRONT_AND_BACK
-static const GLenum GL_FRONT_AND_BACK=0x0408
-#undef GL_AUX0
-static const GLenum GL_AUX0=0x0409
-#undef GL_AUX1
-static const GLenum GL_AUX1=0x040A
-#undef GL_AUX2
-static const GLenum GL_AUX2=0x040B
-#undef GL_AUX3
-static const GLenum GL_AUX3=0x040C
-#undef GL_INVALID_ENUM
-static const GLenum GL_INVALID_ENUM=0x0500
-#undef GL_INVALID_VALUE
-static const GLenum GL_INVALID_VALUE=0x0501
-#undef GL_INVALID_OPERATION
-static const GLenum GL_INVALID_OPERATION=0x0502
-#undef GL_STACK_OVERFLOW
-static const GLenum GL_STACK_OVERFLOW=0x0503
-#undef GL_STACK_UNDERFLOW
-static const GLenum GL_STACK_UNDERFLOW=0x0504
-#undef GL_OUT_OF_MEMORY
-static const GLenum GL_OUT_OF_MEMORY=0x0505
-#undef GL_2D
-static const GLenum GL_2D=0x0600
-#undef GL_3D
-static const GLenum GL_3D=0x0601
-#undef GL_3D_COLOR
-static const GLenum GL_3D_COLOR=0x0602
-#undef GL_3D_COLOR_TEXTURE
-static const GLenum GL_3D_COLOR_TEXTURE=0x0603
-#undef GL_4D_COLOR_TEXTURE
-static const GLenum GL_4D_COLOR_TEXTURE=0x0604
-#undef GL_PASS_THROUGH_TOKEN
-static const GLenum GL_PASS_THROUGH_TOKEN=0x0700
-#undef GL_POINT_TOKEN
-static const GLenum GL_POINT_TOKEN=0x0701
-#undef GL_LINE_TOKEN
-static const GLenum GL_LINE_TOKEN=0x0702
-#undef GL_POLYGON_TOKEN
-static const GLenum GL_POLYGON_TOKEN=0x0703
-#undef GL_BITMAP_TOKEN
-static const GLenum GL_BITMAP_TOKEN=0x0704
-#undef GL_DRAW_PIXEL_TOKEN
-static const GLenum GL_DRAW_PIXEL_TOKEN=0x0705
-#undef GL_COPY_PIXEL_TOKEN
-static const GLenum GL_COPY_PIXEL_TOKEN=0x0706
-#undef GL_LINE_RESET_TOKEN
-static const GLenum GL_LINE_RESET_TOKEN=0x0707
-#undef GL_EXP
-static const GLenum GL_EXP=0x0800
-#undef GL_EXP2
-static const GLenum GL_EXP2=0x0801
-#undef GL_CW
-static const GLenum GL_CW=0x0900
-#undef GL_CCW
-static const GLenum GL_CCW=0x0901
-#undef GL_COEFF
-static const GLenum GL_COEFF=0x0A00
-#undef GL_ORDER
-static const GLenum GL_ORDER=0x0A01
-#undef GL_DOMAIN
-static const GLenum GL_DOMAIN=0x0A02
-#undef GL_CURRENT_COLOR
-static const GLenum GL_CURRENT_COLOR=0x0B00
-#undef GL_CURRENT_INDEX
-static const GLenum GL_CURRENT_INDEX=0x0B01
-#undef GL_CURRENT_NORMAL
-static const GLenum GL_CURRENT_NORMAL=0x0B02
-#undef GL_CURRENT_TEXTURE_COORDS
-static const GLenum GL_CURRENT_TEXTURE_COORDS=0x0B03
-#undef GL_CURRENT_RASTER_COLOR
-static const GLenum GL_CURRENT_RASTER_COLOR=0x0B04
-#undef GL_CURRENT_RASTER_INDEX
-static const GLenum GL_CURRENT_RASTER_INDEX=0x0B05
-#undef GL_CURRENT_RASTER_TEXTURE_COORDS
-static const GLenum GL_CURRENT_RASTER_TEXTURE_COORDS=0x0B06
-#undef GL_CURRENT_RASTER_POSITION
-static const GLenum GL_CURRENT_RASTER_POSITION=0x0B07
-#undef GL_CURRENT_RASTER_POSITION_VALID
-static const GLenum GL_CURRENT_RASTER_POSITION_VALID=0x0B08
-#undef GL_CURRENT_RASTER_DISTANCE
-static const GLenum GL_CURRENT_RASTER_DISTANCE=0x0B09
-#undef GL_POINT_SMOOTH
-static const GLenum GL_POINT_SMOOTH=0x0B10
-#undef GL_POINT_SIZE
-static const GLenum GL_POINT_SIZE=0x0B11
-#undef GL_SMOOTH_POINT_SIZE_RANGE
-static const GLenum GL_SMOOTH_POINT_SIZE_RANGE=0x0B12
-#undef GL_POINT_SIZE_RANGE
-static const GLenum GL_POINT_SIZE_RANGE=0x0B12
-#undef GL_SMOOTH_POINT_SIZE_GRANULARITY
-static const GLenum GL_SMOOTH_POINT_SIZE_GRANULARITY=0x0B13
-#undef GL_POINT_SIZE_GRANULARITY
-static const GLenum GL_POINT_SIZE_GRANULARITY=0x0B13
-#undef GL_LINE_SMOOTH
-static const GLenum GL_LINE_SMOOTH=0x0B20
-#undef GL_LINE_WIDTH
-static const GLenum GL_LINE_WIDTH=0x0B21
-#undef GL_SMOOTH_LINE_WIDTH_RANGE
-static const GLenum GL_SMOOTH_LINE_WIDTH_RANGE=0x0B22
-#undef GL_LINE_WIDTH_RANGE
-static const GLenum GL_LINE_WIDTH_RANGE=0x0B22
-#undef GL_LINE_WIDTH_GRANULARITY
-static const GLenum GL_LINE_WIDTH_GRANULARITY=0x0B23
-#undef GL_SMOOTH_LINE_WIDTH_GRANULARITY
-static const GLenum GL_SMOOTH_LINE_WIDTH_GRANULARITY=0x0B23
-#undef GL_LINE_STIPPLE
-static const GLenum GL_LINE_STIPPLE=0x0B24
-#undef GL_LINE_STIPPLE_PATTERN
-static const GLenum GL_LINE_STIPPLE_PATTERN=0x0B25
-#undef GL_LINE_STIPPLE_REPEAT
-static const GLenum GL_LINE_STIPPLE_REPEAT=0x0B26
-#undef GL_LIST_MODE
-static const GLenum GL_LIST_MODE=0x0B30
-#undef GL_MAX_LIST_NESTING
-static const GLenum GL_MAX_LIST_NESTING=0x0B31
-#undef GL_LIST_BASE
-static const GLenum GL_LIST_BASE=0x0B32
-#undef GL_LIST_INDEX
-static const GLenum GL_LIST_INDEX=0x0B33
-#undef GL_POLYGON_MODE
-static const GLenum GL_POLYGON_MODE=0x0B40
-#undef GL_POLYGON_SMOOTH
-static const GLenum GL_POLYGON_SMOOTH=0x0B41
-#undef GL_POLYGON_STIPPLE
-static const GLenum GL_POLYGON_STIPPLE=0x0B42
-#undef GL_EDGE_FLAG
-static const GLenum GL_EDGE_FLAG=0x0B43
-#undef GL_CULL_FACE
-static const GLenum GL_CULL_FACE=0x0B44
-#undef GL_CULL_FACE_MODE
-static const GLenum GL_CULL_FACE_MODE=0x0B45
-#undef GL_FRONT_FACE
-static const GLenum GL_FRONT_FACE=0x0B46
-#undef GL_LIGHTING
-static const GLenum GL_LIGHTING=0x0B50
-#undef GL_LIGHT_MODEL_LOCAL_VIEWER
-static const GLenum GL_LIGHT_MODEL_LOCAL_VIEWER=0x0B51
-#undef GL_LIGHT_MODEL_TWO_SIDE
-static const GLenum GL_LIGHT_MODEL_TWO_SIDE=0x0B52
-#undef GL_LIGHT_MODEL_AMBIENT
-static const GLenum GL_LIGHT_MODEL_AMBIENT=0x0B53
-#undef GL_SHADE_MODEL
-static const GLenum GL_SHADE_MODEL=0x0B54
-#undef GL_COLOR_MATERIAL_FACE
-static const GLenum GL_COLOR_MATERIAL_FACE=0x0B55
-#undef GL_COLOR_MATERIAL_PARAMETER
-static const GLenum GL_COLOR_MATERIAL_PARAMETER=0x0B56
-#undef GL_COLOR_MATERIAL
-static const GLenum GL_COLOR_MATERIAL=0x0B57
-#undef GL_FOG
-static const GLenum GL_FOG=0x0B60
-#undef GL_FOG_INDEX
-static const GLenum GL_FOG_INDEX=0x0B61
-#undef GL_FOG_DENSITY
-static const GLenum GL_FOG_DENSITY=0x0B62
-#undef GL_FOG_START
-static const GLenum GL_FOG_START=0x0B63
-#undef GL_FOG_END
-static const GLenum GL_FOG_END=0x0B64
-#undef GL_FOG_MODE
-static const GLenum GL_FOG_MODE=0x0B65
-#undef GL_FOG_COLOR
-static const GLenum GL_FOG_COLOR=0x0B66
-#undef GL_DEPTH_RANGE
-static const GLenum GL_DEPTH_RANGE=0x0B70
-#undef GL_DEPTH_TEST
-static const GLenum GL_DEPTH_TEST=0x0B71
-#undef GL_DEPTH_WRITEMASK
-static const GLenum GL_DEPTH_WRITEMASK=0x0B72
-#undef GL_DEPTH_CLEAR_VALUE
-static const GLenum GL_DEPTH_CLEAR_VALUE=0x0B73
-#undef GL_DEPTH_FUNC
-static const GLenum GL_DEPTH_FUNC=0x0B74
-#undef GL_ACCUM_CLEAR_VALUE
-static const GLenum GL_ACCUM_CLEAR_VALUE=0x0B80
-#undef GL_STENCIL_TEST
-static const GLenum GL_STENCIL_TEST=0x0B90
-#undef GL_STENCIL_CLEAR_VALUE
-static const GLenum GL_STENCIL_CLEAR_VALUE=0x0B91
-#undef GL_STENCIL_FUNC
-static const GLenum GL_STENCIL_FUNC=0x0B92
-#undef GL_STENCIL_VALUE_MASK
-static const GLenum GL_STENCIL_VALUE_MASK=0x0B93
-#undef GL_STENCIL_FAIL
-static const GLenum GL_STENCIL_FAIL=0x0B94
-#undef GL_STENCIL_PASS_DEPTH_FAIL
-static const GLenum GL_STENCIL_PASS_DEPTH_FAIL=0x0B95
-#undef GL_STENCIL_PASS_DEPTH_PASS
-static const GLenum GL_STENCIL_PASS_DEPTH_PASS=0x0B96
-#undef GL_STENCIL_REF
-static const GLenum GL_STENCIL_REF=0x0B97
-#undef GL_STENCIL_WRITEMASK
-static const GLenum GL_STENCIL_WRITEMASK=0x0B98
-#undef GL_MATRIX_MODE
-static const GLenum GL_MATRIX_MODE=0x0BA0
-#undef GL_NORMALIZE
-static const GLenum GL_NORMALIZE=0x0BA1
-#undef GL_VIEWPORT
-static const GLenum GL_VIEWPORT=0x0BA2
-#undef GL_MODELVIEW_STACK_DEPTH
-static const GLenum GL_MODELVIEW_STACK_DEPTH=0x0BA3
-#undef GL_PROJECTION_STACK_DEPTH
-static const GLenum GL_PROJECTION_STACK_DEPTH=0x0BA4
-#undef GL_TEXTURE_STACK_DEPTH
-static const GLenum GL_TEXTURE_STACK_DEPTH=0x0BA5
-#undef GL_MODELVIEW_MATRIX
-static const GLenum GL_MODELVIEW_MATRIX=0x0BA6
-#undef GL_PROJECTION_MATRIX
-static const GLenum GL_PROJECTION_MATRIX=0x0BA7
-#undef GL_TEXTURE_MATRIX
-static const GLenum GL_TEXTURE_MATRIX=0x0BA8
-#undef GL_ATTRIB_STACK_DEPTH
-static const GLenum GL_ATTRIB_STACK_DEPTH=0x0BB0
-#undef GL_CLIENT_ATTRIB_STACK_DEPTH
-static const GLenum GL_CLIENT_ATTRIB_STACK_DEPTH=0x0BB1
-#undef GL_ALPHA_TEST
-static const GLenum GL_ALPHA_TEST=0x0BC0
-#undef GL_ALPHA_TEST_FUNC
-static const GLenum GL_ALPHA_TEST_FUNC=0x0BC1
-#undef GL_ALPHA_TEST_REF
-static const GLenum GL_ALPHA_TEST_REF=0x0BC2
-#undef GL_DITHER
-static const GLenum GL_DITHER=0x0BD0
-#undef GL_BLEND_DST
-static const GLenum GL_BLEND_DST=0x0BE0
-#undef GL_BLEND_SRC
-static const GLenum GL_BLEND_SRC=0x0BE1
-#undef GL_BLEND
-static const GLenum GL_BLEND=0x0BE2
-#undef GL_LOGIC_OP_MODE
-static const GLenum GL_LOGIC_OP_MODE=0x0BF0
-#undef GL_INDEX_LOGIC_OP
-static const GLenum GL_INDEX_LOGIC_OP=0x0BF1
-#undef GL_LOGIC_OP
-static const GLenum GL_LOGIC_OP=0x0BF1
-#undef GL_COLOR_LOGIC_OP
-static const GLenum GL_COLOR_LOGIC_OP=0x0BF2
-#undef GL_AUX_BUFFERS
-static const GLenum GL_AUX_BUFFERS=0x0C00
-#undef GL_DRAW_BUFFER
-static const GLenum GL_DRAW_BUFFER=0x0C01
-#undef GL_READ_BUFFER
-static const GLenum GL_READ_BUFFER=0x0C02
-#undef GL_SCISSOR_BOX
-static const GLenum GL_SCISSOR_BOX=0x0C10
-#undef GL_SCISSOR_TEST
-static const GLenum GL_SCISSOR_TEST=0x0C11
-#undef GL_INDEX_CLEAR_VALUE
-static const GLenum GL_INDEX_CLEAR_VALUE=0x0C20
-#undef GL_INDEX_WRITEMASK
-static const GLenum GL_INDEX_WRITEMASK=0x0C21
-#undef GL_COLOR_CLEAR_VALUE
-static const GLenum GL_COLOR_CLEAR_VALUE=0x0C22
-#undef GL_COLOR_WRITEMASK
-static const GLenum GL_COLOR_WRITEMASK=0x0C23
-#undef GL_INDEX_MODE
-static const GLenum GL_INDEX_MODE=0x0C30
-#undef GL_RGBA_MODE
-static const GLenum GL_RGBA_MODE=0x0C31
-#undef GL_DOUBLEBUFFER
-static const GLenum GL_DOUBLEBUFFER=0x0C32
-#undef GL_STEREO
-static const GLenum GL_STEREO=0x0C33
-#undef GL_RENDER_MODE
-static const GLenum GL_RENDER_MODE=0x0C40
-#undef GL_PERSPECTIVE_CORRECTION_HINT
-static const GLenum GL_PERSPECTIVE_CORRECTION_HINT=0x0C50
-#undef GL_POINT_SMOOTH_HINT
-static const GLenum GL_POINT_SMOOTH_HINT=0x0C51
-#undef GL_LINE_SMOOTH_HINT
-static const GLenum GL_LINE_SMOOTH_HINT=0x0C52
-#undef GL_POLYGON_SMOOTH_HINT
-static const GLenum GL_POLYGON_SMOOTH_HINT=0x0C53
-#undef GL_FOG_HINT
-static const GLenum GL_FOG_HINT=0x0C54
-#undef GL_TEXTURE_GEN_S
-static const GLenum GL_TEXTURE_GEN_S=0x0C60
-#undef GL_TEXTURE_GEN_T
-static const GLenum GL_TEXTURE_GEN_T=0x0C61
-#undef GL_TEXTURE_GEN_R
-static const GLenum GL_TEXTURE_GEN_R=0x0C62
-#undef GL_TEXTURE_GEN_Q
-static const GLenum GL_TEXTURE_GEN_Q=0x0C63
-#undef GL_PIXEL_MAP_I_TO_I
-static const GLenum GL_PIXEL_MAP_I_TO_I=0x0C70
-#undef GL_PIXEL_MAP_S_TO_S
-static const GLenum GL_PIXEL_MAP_S_TO_S=0x0C71
-#undef GL_PIXEL_MAP_I_TO_R
-static const GLenum GL_PIXEL_MAP_I_TO_R=0x0C72
-#undef GL_PIXEL_MAP_I_TO_G
-static const GLenum GL_PIXEL_MAP_I_TO_G=0x0C73
-#undef GL_PIXEL_MAP_I_TO_B
-static const GLenum GL_PIXEL_MAP_I_TO_B=0x0C74
-#undef GL_PIXEL_MAP_I_TO_A
-static const GLenum GL_PIXEL_MAP_I_TO_A=0x0C75
-#undef GL_PIXEL_MAP_R_TO_R
-static const GLenum GL_PIXEL_MAP_R_TO_R=0x0C76
-#undef GL_PIXEL_MAP_G_TO_G
-static const GLenum GL_PIXEL_MAP_G_TO_G=0x0C77
-#undef GL_PIXEL_MAP_B_TO_B
-static const GLenum GL_PIXEL_MAP_B_TO_B=0x0C78
-#undef GL_PIXEL_MAP_A_TO_A
-static const GLenum GL_PIXEL_MAP_A_TO_A=0x0C79
-#undef GL_PIXEL_MAP_I_TO_I_SIZE
-static const GLenum GL_PIXEL_MAP_I_TO_I_SIZE=0x0CB0
-#undef GL_PIXEL_MAP_S_TO_S_SIZE
-static const GLenum GL_PIXEL_MAP_S_TO_S_SIZE=0x0CB1
-#undef GL_PIXEL_MAP_I_TO_R_SIZE
-static const GLenum GL_PIXEL_MAP_I_TO_R_SIZE=0x0CB2
-#undef GL_PIXEL_MAP_I_TO_G_SIZE
-static const GLenum GL_PIXEL_MAP_I_TO_G_SIZE=0x0CB3
-#undef GL_PIXEL_MAP_I_TO_B_SIZE
-static const GLenum GL_PIXEL_MAP_I_TO_B_SIZE=0x0CB4
-#undef GL_PIXEL_MAP_I_TO_A_SIZE
-static const GLenum GL_PIXEL_MAP_I_TO_A_SIZE=0x0CB5
-#undef GL_PIXEL_MAP_R_TO_R_SIZE
-static const GLenum GL_PIXEL_MAP_R_TO_R_SIZE=0x0CB6
-#undef GL_PIXEL_MAP_G_TO_G_SIZE
-static const GLenum GL_PIXEL_MAP_G_TO_G_SIZE=0x0CB7
-#undef GL_PIXEL_MAP_B_TO_B_SIZE
-static const GLenum GL_PIXEL_MAP_B_TO_B_SIZE=0x0CB8
-#undef GL_PIXEL_MAP_A_TO_A_SIZE
-static const GLenum GL_PIXEL_MAP_A_TO_A_SIZE=0x0CB9
-#undef GL_UNPACK_SWAP_BYTES
-static const GLenum GL_UNPACK_SWAP_BYTES=0x0CF0
-#undef GL_UNPACK_LSB_FIRST
-static const GLenum GL_UNPACK_LSB_FIRST=0x0CF1
-#undef GL_UNPACK_ROW_LENGTH
-static const GLenum GL_UNPACK_ROW_LENGTH=0x0CF2
-#undef GL_UNPACK_SKIP_ROWS
-static const GLenum GL_UNPACK_SKIP_ROWS=0x0CF3
-#undef GL_UNPACK_SKIP_PIXELS
-static const GLenum GL_UNPACK_SKIP_PIXELS=0x0CF4
-#undef GL_UNPACK_ALIGNMENT
-static const GLenum GL_UNPACK_ALIGNMENT=0x0CF5
-#undef GL_PACK_SWAP_BYTES
-static const GLenum GL_PACK_SWAP_BYTES=0x0D00
-#undef GL_PACK_LSB_FIRST
-static const GLenum GL_PACK_LSB_FIRST=0x0D01
-#undef GL_PACK_ROW_LENGTH
-static const GLenum GL_PACK_ROW_LENGTH=0x0D02
-#undef GL_PACK_SKIP_ROWS
-static const GLenum GL_PACK_SKIP_ROWS=0x0D03
-#undef GL_PACK_SKIP_PIXELS
-static const GLenum GL_PACK_SKIP_PIXELS=0x0D04
-#undef GL_PACK_ALIGNMENT
-static const GLenum GL_PACK_ALIGNMENT=0x0D05
-#undef GL_MAP_COLOR
-static const GLenum GL_MAP_COLOR=0x0D10
-#undef GL_MAP_STENCIL
-static const GLenum GL_MAP_STENCIL=0x0D11
-#undef GL_INDEX_SHIFT
-static const GLenum GL_INDEX_SHIFT=0x0D12
-#undef GL_INDEX_OFFSET
-static const GLenum GL_INDEX_OFFSET=0x0D13
-#undef GL_RED_SCALE
-static const GLenum GL_RED_SCALE=0x0D14
-#undef GL_RED_BIAS
-static const GLenum GL_RED_BIAS=0x0D15
-#undef GL_ZOOM_X
-static const GLenum GL_ZOOM_X=0x0D16
-#undef GL_ZOOM_Y
-static const GLenum GL_ZOOM_Y=0x0D17
-#undef GL_GREEN_SCALE
-static const GLenum GL_GREEN_SCALE=0x0D18
-#undef GL_GREEN_BIAS
-static const GLenum GL_GREEN_BIAS=0x0D19
-#undef GL_BLUE_SCALE
-static const GLenum GL_BLUE_SCALE=0x0D1A
-#undef GL_BLUE_BIAS
-static const GLenum GL_BLUE_BIAS=0x0D1B
-#undef GL_ALPHA_SCALE
-static const GLenum GL_ALPHA_SCALE=0x0D1C
-#undef GL_ALPHA_BIAS
-static const GLenum GL_ALPHA_BIAS=0x0D1D
-#undef GL_DEPTH_SCALE
-static const GLenum GL_DEPTH_SCALE=0x0D1E
-#undef GL_DEPTH_BIAS
-static const GLenum GL_DEPTH_BIAS=0x0D1F
-#undef GL_MAX_EVAL_ORDER
-static const GLenum GL_MAX_EVAL_ORDER=0x0D30
-#undef GL_MAX_LIGHTS
-static const GLenum GL_MAX_LIGHTS=0x0D31
-#undef GL_MAX_CLIP_PLANES
-static const GLenum GL_MAX_CLIP_PLANES=0x0D32
-#undef GL_MAX_TEXTURE_SIZE
-static const GLenum GL_MAX_TEXTURE_SIZE=0x0D33
-#undef GL_MAX_PIXEL_MAP_TABLE
-static const GLenum GL_MAX_PIXEL_MAP_TABLE=0x0D34
-#undef GL_MAX_ATTRIB_STACK_DEPTH
-static const GLenum GL_MAX_ATTRIB_STACK_DEPTH=0x0D35
-#undef GL_MAX_MODELVIEW_STACK_DEPTH
-static const GLenum GL_MAX_MODELVIEW_STACK_DEPTH=0x0D36
-#undef GL_MAX_NAME_STACK_DEPTH
-static const GLenum GL_MAX_NAME_STACK_DEPTH=0x0D37
-#undef GL_MAX_PROJECTION_STACK_DEPTH
-static const GLenum GL_MAX_PROJECTION_STACK_DEPTH=0x0D38
-#undef GL_MAX_TEXTURE_STACK_DEPTH
-static const GLenum GL_MAX_TEXTURE_STACK_DEPTH=0x0D39
-#undef GL_MAX_VIEWPORT_DIMS
-static const GLenum GL_MAX_VIEWPORT_DIMS=0x0D3A
-#undef GL_MAX_CLIENT_ATTRIB_STACK_DEPTH
-static const GLenum GL_MAX_CLIENT_ATTRIB_STACK_DEPTH=0x0D3B
-#undef GL_SUBPIXEL_BITS
-static const GLenum GL_SUBPIXEL_BITS=0x0D50
-#undef GL_INDEX_BITS
-static const GLenum GL_INDEX_BITS=0x0D51
-#undef GL_RED_BITS
-static const GLenum GL_RED_BITS=0x0D52
-#undef GL_GREEN_BITS
-static const GLenum GL_GREEN_BITS=0x0D53
-#undef GL_BLUE_BITS
-static const GLenum GL_BLUE_BITS=0x0D54
-#undef GL_ALPHA_BITS
-static const GLenum GL_ALPHA_BITS=0x0D55
-#undef GL_DEPTH_BITS
-static const GLenum GL_DEPTH_BITS=0x0D56
-#undef GL_STENCIL_BITS
-static const GLenum GL_STENCIL_BITS=0x0D57
-#undef GL_ACCUM_RED_BITS
-static const GLenum GL_ACCUM_RED_BITS=0x0D58
-#undef GL_ACCUM_GREEN_BITS
-static const GLenum GL_ACCUM_GREEN_BITS=0x0D59
-#undef GL_ACCUM_BLUE_BITS
-static const GLenum GL_ACCUM_BLUE_BITS=0x0D5A
-#undef GL_ACCUM_ALPHA_BITS
-static const GLenum GL_ACCUM_ALPHA_BITS=0x0D5B
-#undef GL_NAME_STACK_DEPTH
-static const GLenum GL_NAME_STACK_DEPTH=0x0D70
-#undef GL_AUTO_NORMAL
-static const GLenum GL_AUTO_NORMAL=0x0D80
-#undef GL_MAP1_COLOR_4
-static const GLenum GL_MAP1_COLOR_4=0x0D90
-#undef GL_MAP1_INDEX
-static const GLenum GL_MAP1_INDEX=0x0D91
-#undef GL_MAP1_NORMAL
-static const GLenum GL_MAP1_NORMAL=0x0D92
-#undef GL_MAP1_TEXTURE_COORD_1
-static const GLenum GL_MAP1_TEXTURE_COORD_1=0x0D93
-#undef GL_MAP1_TEXTURE_COORD_2
-static const GLenum GL_MAP1_TEXTURE_COORD_2=0x0D94
-#undef GL_MAP1_TEXTURE_COORD_3
-static const GLenum GL_MAP1_TEXTURE_COORD_3=0x0D95
-#undef GL_MAP1_TEXTURE_COORD_4
-static const GLenum GL_MAP1_TEXTURE_COORD_4=0x0D96
-#undef GL_MAP1_VERTEX_3
-static const GLenum GL_MAP1_VERTEX_3=0x0D97
-#undef GL_MAP1_VERTEX_4
-static const GLenum GL_MAP1_VERTEX_4=0x0D98
-#undef GL_MAP2_COLOR_4
-static const GLenum GL_MAP2_COLOR_4=0x0DB0
-#undef GL_MAP2_INDEX
-static const GLenum GL_MAP2_INDEX=0x0DB1
-#undef GL_MAP2_NORMAL
-static const GLenum GL_MAP2_NORMAL=0x0DB2
-#undef GL_MAP2_TEXTURE_COORD_1
-static const GLenum GL_MAP2_TEXTURE_COORD_1=0x0DB3
-#undef GL_MAP2_TEXTURE_COORD_2
-static const GLenum GL_MAP2_TEXTURE_COORD_2=0x0DB4
-#undef GL_MAP2_TEXTURE_COORD_3
-static const GLenum GL_MAP2_TEXTURE_COORD_3=0x0DB5
-#undef GL_MAP2_TEXTURE_COORD_4
-static const GLenum GL_MAP2_TEXTURE_COORD_4=0x0DB6
-#undef GL_MAP2_VERTEX_3
-static const GLenum GL_MAP2_VERTEX_3=0x0DB7
-#undef GL_MAP2_VERTEX_4
-static const GLenum GL_MAP2_VERTEX_4=0x0DB8
-#undef GL_MAP1_GRID_DOMAIN
-static const GLenum GL_MAP1_GRID_DOMAIN=0x0DD0
-#undef GL_MAP1_GRID_SEGMENTS
-static const GLenum GL_MAP1_GRID_SEGMENTS=0x0DD1
-#undef GL_MAP2_GRID_DOMAIN
-static const GLenum GL_MAP2_GRID_DOMAIN=0x0DD2
-#undef GL_MAP2_GRID_SEGMENTS
-static const GLenum GL_MAP2_GRID_SEGMENTS=0x0DD3
-#undef GL_TEXTURE_1D
-static const GLenum GL_TEXTURE_1D=0x0DE0
-#undef GL_TEXTURE_2D
-static const GLenum GL_TEXTURE_2D=0x0DE1
-#undef GL_FEEDBACK_BUFFER_POINTER
-static const GLenum GL_FEEDBACK_BUFFER_POINTER=0x0DF0
-#undef GL_FEEDBACK_BUFFER_SIZE
-static const GLenum GL_FEEDBACK_BUFFER_SIZE=0x0DF1
-#undef GL_FEEDBACK_BUFFER_TYPE
-static const GLenum GL_FEEDBACK_BUFFER_TYPE=0x0DF2
-#undef GL_SELECTION_BUFFER_POINTER
-static const GLenum GL_SELECTION_BUFFER_POINTER=0x0DF3
-#undef GL_SELECTION_BUFFER_SIZE
-static const GLenum GL_SELECTION_BUFFER_SIZE=0x0DF4
-#undef GL_TEXTURE_WIDTH
-static const GLenum GL_TEXTURE_WIDTH=0x1000
-#undef GL_TEXTURE_HEIGHT
-static const GLenum GL_TEXTURE_HEIGHT=0x1001
-#undef GL_TEXTURE_COMPONENTS
-static const GLenum GL_TEXTURE_COMPONENTS=0x1003
-#undef GL_TEXTURE_INTERNAL_FORMAT
-static const GLenum GL_TEXTURE_INTERNAL_FORMAT=0x1003
-#undef GL_TEXTURE_BORDER_COLOR
-static const GLenum GL_TEXTURE_BORDER_COLOR=0x1004
-#undef GL_TEXTURE_BORDER
-static const GLenum GL_TEXTURE_BORDER=0x1005
-#undef GL_DONT_CARE
-static const GLenum GL_DONT_CARE=0x1100
-#undef GL_FASTEST
-static const GLenum GL_FASTEST=0x1101
-#undef GL_NICEST
-static const GLenum GL_NICEST=0x1102
-#undef GL_AMBIENT
-static const GLenum GL_AMBIENT=0x1200
-#undef GL_DIFFUSE
-static const GLenum GL_DIFFUSE=0x1201
-#undef GL_SPECULAR
-static const GLenum GL_SPECULAR=0x1202
-#undef GL_POSITION
-static const GLenum GL_POSITION=0x1203
-#undef GL_SPOT_DIRECTION
-static const GLenum GL_SPOT_DIRECTION=0x1204
-#undef GL_SPOT_EXPONENT
-static const GLenum GL_SPOT_EXPONENT=0x1205
-#undef GL_SPOT_CUTOFF
-static const GLenum GL_SPOT_CUTOFF=0x1206
-#undef GL_CONSTANT_ATTENUATION
-static const GLenum GL_CONSTANT_ATTENUATION=0x1207
-#undef GL_LINEAR_ATTENUATION
-static const GLenum GL_LINEAR_ATTENUATION=0x1208
-#undef GL_QUADRATIC_ATTENUATION
-static const GLenum GL_QUADRATIC_ATTENUATION=0x1209
-#undef GL_COMPILE
-static const GLenum GL_COMPILE=0x1300
-#undef GL_COMPILE_AND_EXECUTE
-static const GLenum GL_COMPILE_AND_EXECUTE=0x1301
-#undef GL_BYTE
-static const GLenum GL_BYTE=0x1400
-#undef GL_UNSIGNED_BYTE
-static const GLenum GL_UNSIGNED_BYTE=0x1401
-#undef GL_SHORT
-static const GLenum GL_SHORT=0x1402
-#undef GL_UNSIGNED_SHORT
-static const GLenum GL_UNSIGNED_SHORT=0x1403
-#undef GL_INT
-static const GLenum GL_INT=0x1404
-#undef GL_UNSIGNED_INT
-static const GLenum GL_UNSIGNED_INT=0x1405
-#undef GL_FLOAT
-static const GLenum GL_FLOAT=0x1406
-#undef GL_2_BYTES
-static const GLenum GL_2_BYTES=0x1407
-#undef GL_3_BYTES
-static const GLenum GL_3_BYTES=0x1408
-#undef GL_4_BYTES
-static const GLenum GL_4_BYTES=0x1409
-#undef GL_DOUBLE
-static const GLenum GL_DOUBLE=0x140A
-#undef GL_CLEAR
-static const GLenum GL_CLEAR=0x1500
-#undef GL_AND
-static const GLenum GL_AND=0x1501
-#undef GL_AND_REVERSE
-static const GLenum GL_AND_REVERSE=0x1502
-#undef GL_COPY
-static const GLenum GL_COPY=0x1503
-#undef GL_AND_INVERTED
-static const GLenum GL_AND_INVERTED=0x1504
-#undef GL_NOOP
-static const GLenum GL_NOOP=0x1505
-#undef GL_XOR
-static const GLenum GL_XOR=0x1506
-#undef GL_OR
-static const GLenum GL_OR=0x1507
-#undef GL_NOR
-static const GLenum GL_NOR=0x1508
-#undef GL_EQUIV
-static const GLenum GL_EQUIV=0x1509
-#undef GL_INVERT
-static const GLenum GL_INVERT=0x150A
-#undef GL_OR_REVERSE
-static const GLenum GL_OR_REVERSE=0x150B
-#undef GL_COPY_INVERTED
-static const GLenum GL_COPY_INVERTED=0x150C
-#undef GL_OR_INVERTED
-static const GLenum GL_OR_INVERTED=0x150D
-#undef GL_NAND
-static const GLenum GL_NAND=0x150E
-#undef GL_SET
-static const GLenum GL_SET=0x150F
-#undef GL_EMISSION
-static const GLenum GL_EMISSION=0x1600
-#undef GL_SHININESS
-static const GLenum GL_SHININESS=0x1601
-#undef GL_AMBIENT_AND_DIFFUSE
-static const GLenum GL_AMBIENT_AND_DIFFUSE=0x1602
-#undef GL_COLOR_INDEXES
-static const GLenum GL_COLOR_INDEXES=0x1603
-#undef GL_MODELVIEW
-static const GLenum GL_MODELVIEW=0x1700
-#undef GL_PROJECTION
-static const GLenum GL_PROJECTION=0x1701
-#undef GL_TEXTURE
-static const GLenum GL_TEXTURE=0x1702
-#undef GL_COLOR
-static const GLenum GL_COLOR=0x1800
-#undef GL_DEPTH
-static const GLenum GL_DEPTH=0x1801
-#undef GL_STENCIL
-static const GLenum GL_STENCIL=0x1802
-#undef GL_COLOR_INDEX
-static const GLenum GL_COLOR_INDEX=0x1900
-#undef GL_STENCIL_INDEX
-static const GLenum GL_STENCIL_INDEX=0x1901
-#undef GL_DEPTH_COMPONENT
-static const GLenum GL_DEPTH_COMPONENT=0x1902
-#undef GL_RED
-static const GLenum GL_RED=0x1903
-#undef GL_GREEN
-static const GLenum GL_GREEN=0x1904
-#undef GL_BLUE
-static const GLenum GL_BLUE=0x1905
-#undef GL_ALPHA
-static const GLenum GL_ALPHA=0x1906
-#undef GL_RGB
-static const GLenum GL_RGB=0x1907
-#undef GL_RGBA
-static const GLenum GL_RGBA=0x1908
-#undef GL_LUMINANCE
-static const GLenum GL_LUMINANCE=0x1909
-#undef GL_LUMINANCE_ALPHA
-static const GLenum GL_LUMINANCE_ALPHA=0x190A
-#undef GL_BITMAP
-static const GLenum GL_BITMAP=0x1A00
-#undef GL_POINT
-static const GLenum GL_POINT=0x1B00
-#undef GL_LINE
-static const GLenum GL_LINE=0x1B01
-#undef GL_FILL
-static const GLenum GL_FILL=0x1B02
-#undef GL_RENDER
-static const GLenum GL_RENDER=0x1C00
-#undef GL_FEEDBACK
-static const GLenum GL_FEEDBACK=0x1C01
-#undef GL_SELECT
-static const GLenum GL_SELECT=0x1C02
-#undef GL_FLAT
-static const GLenum GL_FLAT=0x1D00
-#undef GL_SMOOTH
-static const GLenum GL_SMOOTH=0x1D01
-#undef GL_KEEP
-static const GLenum GL_KEEP=0x1E00
-#undef GL_REPLACE
-static const GLenum GL_REPLACE=0x1E01
-#undef GL_INCR
-static const GLenum GL_INCR=0x1E02
-#undef GL_DECR
-static const GLenum GL_DECR=0x1E03
-#undef GL_VENDOR
-static const GLenum GL_VENDOR=0x1F00
-#undef GL_RENDERER
-static const GLenum GL_RENDERER=0x1F01
-#undef GL_VERSION
-static const GLenum GL_VERSION=0x1F02
-#undef GL_EXTENSIONS
-static const GLenum GL_EXTENSIONS=0x1F03
-#undef GL_S
-static const GLenum GL_S=0x2000
-#undef GL_MULTISAMPLE_BIT
-static const GLenum GL_MULTISAMPLE_BIT=0x20000000
-#undef GL_T
-static const GLenum GL_T=0x2001
-#undef GL_R
-static const GLenum GL_R=0x2002
-#undef GL_Q
-static const GLenum GL_Q=0x2003
-#undef GL_MODULATE
-static const GLenum GL_MODULATE=0x2100
-#undef GL_DECAL
-static const GLenum GL_DECAL=0x2101
-#undef GL_TEXTURE_ENV_MODE
-static const GLenum GL_TEXTURE_ENV_MODE=0x2200
-#undef GL_TEXTURE_ENV_COLOR
-static const GLenum GL_TEXTURE_ENV_COLOR=0x2201
-#undef GL_TEXTURE_ENV
-static const GLenum GL_TEXTURE_ENV=0x2300
-#undef GL_EYE_LINEAR
-static const GLenum GL_EYE_LINEAR=0x2400
-#undef GL_OBJECT_LINEAR
-static const GLenum GL_OBJECT_LINEAR=0x2401
-#undef GL_SPHERE_MAP
-static const GLenum GL_SPHERE_MAP=0x2402
-#undef GL_TEXTURE_GEN_MODE
-static const GLenum GL_TEXTURE_GEN_MODE=0x2500
-#undef GL_OBJECT_PLANE
-static const GLenum GL_OBJECT_PLANE=0x2501
-#undef GL_EYE_PLANE
-static const GLenum GL_EYE_PLANE=0x2502
-#undef GL_NEAREST
-static const GLenum GL_NEAREST=0x2600
-#undef GL_LINEAR
-static const GLenum GL_LINEAR=0x2601
-#undef GL_NEAREST_MIPMAP_NEAREST
-static const GLenum GL_NEAREST_MIPMAP_NEAREST=0x2700
-#undef GL_LINEAR_MIPMAP_NEAREST
-static const GLenum GL_LINEAR_MIPMAP_NEAREST=0x2701
-#undef GL_NEAREST_MIPMAP_LINEAR
-static const GLenum GL_NEAREST_MIPMAP_LINEAR=0x2702
-#undef GL_LINEAR_MIPMAP_LINEAR
-static const GLenum GL_LINEAR_MIPMAP_LINEAR=0x2703
-#undef GL_TEXTURE_MAG_FILTER
-static const GLenum GL_TEXTURE_MAG_FILTER=0x2800
-#undef GL_TEXTURE_MIN_FILTER
-static const GLenum GL_TEXTURE_MIN_FILTER=0x2801
-#undef GL_TEXTURE_WRAP_S
-static const GLenum GL_TEXTURE_WRAP_S=0x2802
-#undef GL_TEXTURE_WRAP_T
-static const GLenum GL_TEXTURE_WRAP_T=0x2803
-#undef GL_CLAMP
-static const GLenum GL_CLAMP=0x2900
-#undef GL_REPEAT
-static const GLenum GL_REPEAT=0x2901
-#undef GL_POLYGON_OFFSET_UNITS
-static const GLenum GL_POLYGON_OFFSET_UNITS=0x2A00
-#undef GL_POLYGON_OFFSET_POINT
-static const GLenum GL_POLYGON_OFFSET_POINT=0x2A01
-#undef GL_POLYGON_OFFSET_LINE
-static const GLenum GL_POLYGON_OFFSET_LINE=0x2A02
-#undef GL_R3_G3_B2
-static const GLenum GL_R3_G3_B2=0x2A10
-#undef GL_V2F
-static const GLenum GL_V2F=0x2A20
-#undef GL_V3F
-static const GLenum GL_V3F=0x2A21
-#undef GL_C4UB_V2F
-static const GLenum GL_C4UB_V2F=0x2A22
-#undef GL_C4UB_V3F
-static const GLenum GL_C4UB_V3F=0x2A23
-#undef GL_C3F_V3F
-static const GLenum GL_C3F_V3F=0x2A24
-#undef GL_N3F_V3F
-static const GLenum GL_N3F_V3F=0x2A25
-#undef GL_C4F_N3F_V3F
-static const GLenum GL_C4F_N3F_V3F=0x2A26
-#undef GL_T2F_V3F
-static const GLenum GL_T2F_V3F=0x2A27
-#undef GL_T4F_V4F
-static const GLenum GL_T4F_V4F=0x2A28
-#undef GL_T2F_C4UB_V3F
-static const GLenum GL_T2F_C4UB_V3F=0x2A29
-#undef GL_T2F_C3F_V3F
-static const GLenum GL_T2F_C3F_V3F=0x2A2A
-#undef GL_T2F_N3F_V3F
-static const GLenum GL_T2F_N3F_V3F=0x2A2B
-#undef GL_T2F_C4F_N3F_V3F
-static const GLenum GL_T2F_C4F_N3F_V3F=0x2A2C
-#undef GL_T4F_C4F_N3F_V4F
-static const GLenum GL_T4F_C4F_N3F_V4F=0x2A2D
-#undef GL_CLIP_PLANE0
-static const GLenum GL_CLIP_PLANE0=0x3000
-#undef GL_CLIP_PLANE1
-static const GLenum GL_CLIP_PLANE1=0x3001
-#undef GL_CLIP_PLANE2
-static const GLenum GL_CLIP_PLANE2=0x3002
-#undef GL_CLIP_PLANE3
-static const GLenum GL_CLIP_PLANE3=0x3003
-#undef GL_CLIP_PLANE4
-static const GLenum GL_CLIP_PLANE4=0x3004
-#undef GL_CLIP_PLANE5
-static const GLenum GL_CLIP_PLANE5=0x3005
-#undef GL_LIGHT0
-static const GLenum GL_LIGHT0=0x4000
-#undef GL_LIGHT1
-static const GLenum GL_LIGHT1=0x4001
-#undef GL_LIGHT2
-static const GLenum GL_LIGHT2=0x4002
-#undef GL_LIGHT3
-static const GLenum GL_LIGHT3=0x4003
-#undef GL_LIGHT4
-static const GLenum GL_LIGHT4=0x4004
-#undef GL_LIGHT5
-static const GLenum GL_LIGHT5=0x4005
-#undef GL_LIGHT6
-static const GLenum GL_LIGHT6=0x4006
-#undef GL_LIGHT7
-static const GLenum GL_LIGHT7=0x4007
-#undef GL_CONSTANT_COLOR
-static const GLenum GL_CONSTANT_COLOR=0x8001
-#undef GL_ONE_MINUS_CONSTANT_COLOR
-static const GLenum GL_ONE_MINUS_CONSTANT_COLOR=0x8002
-#undef GL_CONSTANT_ALPHA
-static const GLenum GL_CONSTANT_ALPHA=0x8003
-#undef GL_ONE_MINUS_CONSTANT_ALPHA
-static const GLenum GL_ONE_MINUS_CONSTANT_ALPHA=0x8004
-#undef GL_FUNC_ADD
-static const GLenum GL_FUNC_ADD=0x8006
-#undef GL_MIN
-static const GLenum GL_MIN=0x8007
-#undef GL_MAX
-static const GLenum GL_MAX=0x8008
-#undef GL_FUNC_SUBTRACT
-static const GLenum GL_FUNC_SUBTRACT=0x800A
-#undef GL_FUNC_REVERSE_SUBTRACT
-static const GLenum GL_FUNC_REVERSE_SUBTRACT=0x800B
-#undef GL_UNSIGNED_BYTE_3_3_2
-static const GLenum GL_UNSIGNED_BYTE_3_3_2=0x8032
-#undef GL_UNSIGNED_SHORT_4_4_4_4
-static const GLenum GL_UNSIGNED_SHORT_4_4_4_4=0x8033
-#undef GL_UNSIGNED_SHORT_5_5_5_1
-static const GLenum GL_UNSIGNED_SHORT_5_5_5_1=0x8034
-#undef GL_UNSIGNED_INT_8_8_8_8
-static const GLenum GL_UNSIGNED_INT_8_8_8_8=0x8035
-#undef GL_UNSIGNED_INT_10_10_10_2
-static const GLenum GL_UNSIGNED_INT_10_10_10_2=0x8036
-#undef GL_POLYGON_OFFSET_FILL
-static const GLenum GL_POLYGON_OFFSET_FILL=0x8037
-#undef GL_POLYGON_OFFSET_FACTOR
-static const GLenum GL_POLYGON_OFFSET_FACTOR=0x8038
-#undef GL_RESCALE_NORMAL
-static const GLenum GL_RESCALE_NORMAL=0x803A
-#undef GL_ALPHA4
-static const GLenum GL_ALPHA4=0x803B
-#undef GL_ALPHA8
-static const GLenum GL_ALPHA8=0x803C
-#undef GL_ALPHA12
-static const GLenum GL_ALPHA12=0x803D
-#undef GL_ALPHA16
-static const GLenum GL_ALPHA16=0x803E
-#undef GL_LUMINANCE4
-static const GLenum GL_LUMINANCE4=0x803F
-#undef GL_LUMINANCE8
-static const GLenum GL_LUMINANCE8=0x8040
-#undef GL_LUMINANCE12
-static const GLenum GL_LUMINANCE12=0x8041
-#undef GL_LUMINANCE16
-static const GLenum GL_LUMINANCE16=0x8042
-#undef GL_LUMINANCE4_ALPHA4
-static const GLenum GL_LUMINANCE4_ALPHA4=0x8043
-#undef GL_LUMINANCE6_ALPHA2
-static const GLenum GL_LUMINANCE6_ALPHA2=0x8044
-#undef GL_LUMINANCE8_ALPHA8
-static const GLenum GL_LUMINANCE8_ALPHA8=0x8045
-#undef GL_LUMINANCE12_ALPHA4
-static const GLenum GL_LUMINANCE12_ALPHA4=0x8046
-#undef GL_LUMINANCE12_ALPHA12
-static const GLenum GL_LUMINANCE12_ALPHA12=0x8047
-#undef GL_LUMINANCE16_ALPHA16
-static const GLenum GL_LUMINANCE16_ALPHA16=0x8048
-#undef GL_INTENSITY
-static const GLenum GL_INTENSITY=0x8049
-#undef GL_INTENSITY4
-static const GLenum GL_INTENSITY4=0x804A
-#undef GL_INTENSITY8
-static const GLenum GL_INTENSITY8=0x804B
-#undef GL_INTENSITY12
-static const GLenum GL_INTENSITY12=0x804C
-#undef GL_INTENSITY16
-static const GLenum GL_INTENSITY16=0x804D
-#undef GL_RGB4
-static const GLenum GL_RGB4=0x804F
-#undef GL_RGB5
-static const GLenum GL_RGB5=0x8050
-#undef GL_RGB8
-static const GLenum GL_RGB8=0x8051
-#undef GL_RGB10
-static const GLenum GL_RGB10=0x8052
-#undef GL_RGB12
-static const GLenum GL_RGB12=0x8053
-#undef GL_RGB16
-static const GLenum GL_RGB16=0x8054
-#undef GL_RGBA2
-static const GLenum GL_RGBA2=0x8055
-#undef GL_RGBA4
-static const GLenum GL_RGBA4=0x8056
-#undef GL_RGB5_A1
-static const GLenum GL_RGB5_A1=0x8057
-#undef GL_RGBA8
-static const GLenum GL_RGBA8=0x8058
-#undef GL_RGB10_A2
-static const GLenum GL_RGB10_A2=0x8059
-#undef GL_RGBA12
-static const GLenum GL_RGBA12=0x805A
-#undef GL_RGBA16
-static const GLenum GL_RGBA16=0x805B
-#undef GL_TEXTURE_RED_SIZE
-static const GLenum GL_TEXTURE_RED_SIZE=0x805C
-#undef GL_TEXTURE_GREEN_SIZE
-static const GLenum GL_TEXTURE_GREEN_SIZE=0x805D
-#undef GL_TEXTURE_BLUE_SIZE
-static const GLenum GL_TEXTURE_BLUE_SIZE=0x805E
-#undef GL_TEXTURE_ALPHA_SIZE
-static const GLenum GL_TEXTURE_ALPHA_SIZE=0x805F
-#undef GL_TEXTURE_LUMINANCE_SIZE
-static const GLenum GL_TEXTURE_LUMINANCE_SIZE=0x8060
-#undef GL_TEXTURE_INTENSITY_SIZE
-static const GLenum GL_TEXTURE_INTENSITY_SIZE=0x8061
-#undef GL_PROXY_TEXTURE_1D
-static const GLenum GL_PROXY_TEXTURE_1D=0x8063
-#undef GL_PROXY_TEXTURE_2D
-static const GLenum GL_PROXY_TEXTURE_2D=0x8064
-#undef GL_TEXTURE_PRIORITY
-static const GLenum GL_TEXTURE_PRIORITY=0x8066
-#undef GL_TEXTURE_RESIDENT
-static const GLenum GL_TEXTURE_RESIDENT=0x8067
-#undef GL_TEXTURE_BINDING_1D
-static const GLenum GL_TEXTURE_BINDING_1D=0x8068
-#undef GL_TEXTURE_BINDING_2D
-static const GLenum GL_TEXTURE_BINDING_2D=0x8069
-#undef GL_TEXTURE_BINDING_3D
-static const GLenum GL_TEXTURE_BINDING_3D=0x806A
-#undef GL_PACK_SKIP_IMAGES
-static const GLenum GL_PACK_SKIP_IMAGES=0x806B
-#undef GL_PACK_IMAGE_HEIGHT
-static const GLenum GL_PACK_IMAGE_HEIGHT=0x806C
-#undef GL_UNPACK_SKIP_IMAGES
-static const GLenum GL_UNPACK_SKIP_IMAGES=0x806D
-#undef GL_UNPACK_IMAGE_HEIGHT
-static const GLenum GL_UNPACK_IMAGE_HEIGHT=0x806E
-#undef GL_TEXTURE_3D
-static const GLenum GL_TEXTURE_3D=0x806F
-#undef GL_PROXY_TEXTURE_3D
-static const GLenum GL_PROXY_TEXTURE_3D=0x8070
-#undef GL_TEXTURE_DEPTH
-static const GLenum GL_TEXTURE_DEPTH=0x8071
-#undef GL_TEXTURE_WRAP_R
-static const GLenum GL_TEXTURE_WRAP_R=0x8072
-#undef GL_MAX_3D_TEXTURE_SIZE
-static const GLenum GL_MAX_3D_TEXTURE_SIZE=0x8073
-#undef GL_VERTEX_ARRAY
-static const GLenum GL_VERTEX_ARRAY=0x8074
-#undef GL_NORMAL_ARRAY
-static const GLenum GL_NORMAL_ARRAY=0x8075
-#undef GL_COLOR_ARRAY
-static const GLenum GL_COLOR_ARRAY=0x8076
-#undef GL_INDEX_ARRAY
-static const GLenum GL_INDEX_ARRAY=0x8077
-#undef GL_TEXTURE_COORD_ARRAY
-static const GLenum GL_TEXTURE_COORD_ARRAY=0x8078
-#undef GL_EDGE_FLAG_ARRAY
-static const GLenum GL_EDGE_FLAG_ARRAY=0x8079
-#undef GL_VERTEX_ARRAY_SIZE
-static const GLenum GL_VERTEX_ARRAY_SIZE=0x807A
-#undef GL_VERTEX_ARRAY_TYPE
-static const GLenum GL_VERTEX_ARRAY_TYPE=0x807B
-#undef GL_VERTEX_ARRAY_STRIDE
-static const GLenum GL_VERTEX_ARRAY_STRIDE=0x807C
-#undef GL_NORMAL_ARRAY_TYPE
-static const GLenum GL_NORMAL_ARRAY_TYPE=0x807E
-#undef GL_NORMAL_ARRAY_STRIDE
-static const GLenum GL_NORMAL_ARRAY_STRIDE=0x807F
-#undef GL_COLOR_ARRAY_SIZE
-static const GLenum GL_COLOR_ARRAY_SIZE=0x8081
-#undef GL_COLOR_ARRAY_TYPE
-static const GLenum GL_COLOR_ARRAY_TYPE=0x8082
-#undef GL_COLOR_ARRAY_STRIDE
-static const GLenum GL_COLOR_ARRAY_STRIDE=0x8083
-#undef GL_INDEX_ARRAY_TYPE
-static const GLenum GL_INDEX_ARRAY_TYPE=0x8085
-#undef GL_INDEX_ARRAY_STRIDE
-static const GLenum GL_INDEX_ARRAY_STRIDE=0x8086
-#undef GL_TEXTURE_COORD_ARRAY_SIZE
-static const GLenum GL_TEXTURE_COORD_ARRAY_SIZE=0x8088
-#undef GL_TEXTURE_COORD_ARRAY_TYPE
-static const GLenum GL_TEXTURE_COORD_ARRAY_TYPE=0x8089
-#undef GL_TEXTURE_COORD_ARRAY_STRIDE
-static const GLenum GL_TEXTURE_COORD_ARRAY_STRIDE=0x808A
-#undef GL_EDGE_FLAG_ARRAY_STRIDE
-static const GLenum GL_EDGE_FLAG_ARRAY_STRIDE=0x808C
-#undef GL_VERTEX_ARRAY_POINTER
-static const GLenum GL_VERTEX_ARRAY_POINTER=0x808E
-#undef GL_NORMAL_ARRAY_POINTER
-static const GLenum GL_NORMAL_ARRAY_POINTER=0x808F
-#undef GL_COLOR_ARRAY_POINTER
-static const GLenum GL_COLOR_ARRAY_POINTER=0x8090
-#undef GL_INDEX_ARRAY_POINTER
-static const GLenum GL_INDEX_ARRAY_POINTER=0x8091
-#undef GL_TEXTURE_COORD_ARRAY_POINTER
-static const GLenum GL_TEXTURE_COORD_ARRAY_POINTER=0x8092
-#undef GL_EDGE_FLAG_ARRAY_POINTER
-static const GLenum GL_EDGE_FLAG_ARRAY_POINTER=0x8093
-#undef GL_MULTISAMPLE
-static const GLenum GL_MULTISAMPLE=0x809D
-#undef GL_SAMPLE_ALPHA_TO_COVERAGE
-static const GLenum GL_SAMPLE_ALPHA_TO_COVERAGE=0x809E
-#undef GL_SAMPLE_ALPHA_TO_ONE
-static const GLenum GL_SAMPLE_ALPHA_TO_ONE=0x809F
-#undef GL_SAMPLE_COVERAGE
-static const GLenum GL_SAMPLE_COVERAGE=0x80A0
-#undef GL_SAMPLE_BUFFERS
-static const GLenum GL_SAMPLE_BUFFERS=0x80A8
-#undef GL_SAMPLES
-static const GLenum GL_SAMPLES=0x80A9
-#undef GL_SAMPLE_COVERAGE_VALUE
-static const GLenum GL_SAMPLE_COVERAGE_VALUE=0x80AA
-#undef GL_SAMPLE_COVERAGE_INVERT
-static const GLenum GL_SAMPLE_COVERAGE_INVERT=0x80AB
-#undef GL_BLEND_DST_RGB
-static const GLenum GL_BLEND_DST_RGB=0x80C8
-#undef GL_BLEND_SRC_RGB
-static const GLenum GL_BLEND_SRC_RGB=0x80C9
-#undef GL_BLEND_DST_ALPHA
-static const GLenum GL_BLEND_DST_ALPHA=0x80CA
-#undef GL_BLEND_SRC_ALPHA
-static const GLenum GL_BLEND_SRC_ALPHA=0x80CB
-#undef GL_BGR
-static const GLenum GL_BGR=0x80E0
-#undef GL_BGRA
-static const GLenum GL_BGRA=0x80E1
-#undef GL_MAX_ELEMENTS_VERTICES
-static const GLenum GL_MAX_ELEMENTS_VERTICES=0x80E8
-#undef GL_MAX_ELEMENTS_INDICES
-static const GLenum GL_MAX_ELEMENTS_INDICES=0x80E9
-#undef GL_POINT_SIZE_MIN
-static const GLenum GL_POINT_SIZE_MIN=0x8126
-#undef GL_POINT_SIZE_MAX
-static const GLenum GL_POINT_SIZE_MAX=0x8127
-#undef GL_POINT_FADE_THRESHOLD_SIZE
-static const GLenum GL_POINT_FADE_THRESHOLD_SIZE=0x8128
-#undef GL_POINT_DISTANCE_ATTENUATION
-static const GLenum GL_POINT_DISTANCE_ATTENUATION=0x8129
-#undef GL_CLAMP_TO_BORDER
-static const GLenum GL_CLAMP_TO_BORDER=0x812D
-#undef GL_CLAMP_TO_EDGE
-static const GLenum GL_CLAMP_TO_EDGE=0x812F
-#undef GL_TEXTURE_MIN_LOD
-static const GLenum GL_TEXTURE_MIN_LOD=0x813A
-#undef GL_TEXTURE_MAX_LOD
-static const GLenum GL_TEXTURE_MAX_LOD=0x813B
-#undef GL_TEXTURE_BASE_LEVEL
-static const GLenum GL_TEXTURE_BASE_LEVEL=0x813C
-#undef GL_TEXTURE_MAX_LEVEL
-static const GLenum GL_TEXTURE_MAX_LEVEL=0x813D
-#undef GL_GENERATE_MIPMAP
-static const GLenum GL_GENERATE_MIPMAP=0x8191
-#undef GL_GENERATE_MIPMAP_HINT
-static const GLenum GL_GENERATE_MIPMAP_HINT=0x8192
-#undef GL_DEPTH_COMPONENT16
-static const GLenum GL_DEPTH_COMPONENT16=0x81A5
-#undef GL_DEPTH_COMPONENT24
-static const GLenum GL_DEPTH_COMPONENT24=0x81A6
-#undef GL_DEPTH_COMPONENT32
-static const GLenum GL_DEPTH_COMPONENT32=0x81A7
-#undef GL_LIGHT_MODEL_COLOR_CONTROL
-static const GLenum GL_LIGHT_MODEL_COLOR_CONTROL=0x81F8
-#undef GL_SINGLE_COLOR
-static const GLenum GL_SINGLE_COLOR=0x81F9
-#undef GL_SEPARATE_SPECULAR_COLOR
-static const GLenum GL_SEPARATE_SPECULAR_COLOR=0x81FA
-#undef GL_UNSIGNED_BYTE_2_3_3_REV
-static const GLenum GL_UNSIGNED_BYTE_2_3_3_REV=0x8362
-#undef GL_UNSIGNED_SHORT_5_6_5
-static const GLenum GL_UNSIGNED_SHORT_5_6_5=0x8363
-#undef GL_UNSIGNED_SHORT_5_6_5_REV
-static const GLenum GL_UNSIGNED_SHORT_5_6_5_REV=0x8364
-#undef GL_UNSIGNED_SHORT_4_4_4_4_REV
-static const GLenum GL_UNSIGNED_SHORT_4_4_4_4_REV=0x8365
-#undef GL_UNSIGNED_SHORT_1_5_5_5_REV
-static const GLenum GL_UNSIGNED_SHORT_1_5_5_5_REV=0x8366
-#undef GL_UNSIGNED_INT_8_8_8_8_REV
-static const GLenum GL_UNSIGNED_INT_8_8_8_8_REV=0x8367
-#undef GL_UNSIGNED_INT_2_10_10_10_REV
-static const GLenum GL_UNSIGNED_INT_2_10_10_10_REV=0x8368
-#undef GL_MIRRORED_REPEAT
-static const GLenum GL_MIRRORED_REPEAT=0x8370
-#undef GL_FOG_COORDINATE_SOURCE
-static const GLenum GL_FOG_COORDINATE_SOURCE=0x8450
-#undef GL_FOG_COORD_SRC
-static const GLenum GL_FOG_COORD_SRC=0x8450
-#undef GL_FOG_COORD
-static const GLenum GL_FOG_COORD=0x8451
-#undef GL_FOG_COORDINATE
-static const GLenum GL_FOG_COORDINATE=0x8451
-#undef GL_FRAGMENT_DEPTH
-static const GLenum GL_FRAGMENT_DEPTH=0x8452
-#undef GL_CURRENT_FOG_COORDINATE
-static const GLenum GL_CURRENT_FOG_COORDINATE=0x8453
-#undef GL_CURRENT_FOG_COORD
-static const GLenum GL_CURRENT_FOG_COORD=0x8453
-#undef GL_FOG_COORDINATE_ARRAY_TYPE
-static const GLenum GL_FOG_COORDINATE_ARRAY_TYPE=0x8454
-#undef GL_FOG_COORD_ARRAY_TYPE
-static const GLenum GL_FOG_COORD_ARRAY_TYPE=0x8454
-#undef GL_FOG_COORD_ARRAY_STRIDE
-static const GLenum GL_FOG_COORD_ARRAY_STRIDE=0x8455
-#undef GL_FOG_COORDINATE_ARRAY_STRIDE
-static const GLenum GL_FOG_COORDINATE_ARRAY_STRIDE=0x8455
-#undef GL_FOG_COORD_ARRAY_POINTER
-static const GLenum GL_FOG_COORD_ARRAY_POINTER=0x8456
-#undef GL_FOG_COORDINATE_ARRAY_POINTER
-static const GLenum GL_FOG_COORDINATE_ARRAY_POINTER=0x8456
-#undef GL_FOG_COORDINATE_ARRAY
-static const GLenum GL_FOG_COORDINATE_ARRAY=0x8457
-#undef GL_FOG_COORD_ARRAY
-static const GLenum GL_FOG_COORD_ARRAY=0x8457
-#undef GL_COLOR_SUM
-static const GLenum GL_COLOR_SUM=0x8458
-#undef GL_CURRENT_SECONDARY_COLOR
-static const GLenum GL_CURRENT_SECONDARY_COLOR=0x8459
-#undef GL_SECONDARY_COLOR_ARRAY_SIZE
-static const GLenum GL_SECONDARY_COLOR_ARRAY_SIZE=0x845A
-#undef GL_SECONDARY_COLOR_ARRAY_TYPE
-static const GLenum GL_SECONDARY_COLOR_ARRAY_TYPE=0x845B
-#undef GL_SECONDARY_COLOR_ARRAY_STRIDE
-static const GLenum GL_SECONDARY_COLOR_ARRAY_STRIDE=0x845C
-#undef GL_SECONDARY_COLOR_ARRAY_POINTER
-static const GLenum GL_SECONDARY_COLOR_ARRAY_POINTER=0x845D
-#undef GL_SECONDARY_COLOR_ARRAY
-static const GLenum GL_SECONDARY_COLOR_ARRAY=0x845E
-#undef GL_ALIASED_POINT_SIZE_RANGE
-static const GLenum GL_ALIASED_POINT_SIZE_RANGE=0x846D
-#undef GL_ALIASED_LINE_WIDTH_RANGE
-static const GLenum GL_ALIASED_LINE_WIDTH_RANGE=0x846E
-#undef GL_TEXTURE0
-static const GLenum GL_TEXTURE0=0x84C0
-#undef GL_TEXTURE1
-static const GLenum GL_TEXTURE1=0x84C1
-#undef GL_TEXTURE2
-static const GLenum GL_TEXTURE2=0x84C2
-#undef GL_TEXTURE3
-static const GLenum GL_TEXTURE3=0x84C3
-#undef GL_TEXTURE4
-static const GLenum GL_TEXTURE4=0x84C4
-#undef GL_TEXTURE5
-static const GLenum GL_TEXTURE5=0x84C5
-#undef GL_TEXTURE6
-static const GLenum GL_TEXTURE6=0x84C6
-#undef GL_TEXTURE7
-static const GLenum GL_TEXTURE7=0x84C7
-#undef GL_TEXTURE8
-static const GLenum GL_TEXTURE8=0x84C8
-#undef GL_TEXTURE9
-static const GLenum GL_TEXTURE9=0x84C9
-#undef GL_TEXTURE10
-static const GLenum GL_TEXTURE10=0x84CA
-#undef GL_TEXTURE11
-static const GLenum GL_TEXTURE11=0x84CB
-#undef GL_TEXTURE12
-static const GLenum GL_TEXTURE12=0x84CC
-#undef GL_TEXTURE13
-static const GLenum GL_TEXTURE13=0x84CD
-#undef GL_TEXTURE14
-static const GLenum GL_TEXTURE14=0x84CE
-#undef GL_TEXTURE15
-static const GLenum GL_TEXTURE15=0x84CF
-#undef GL_TEXTURE16
-static const GLenum GL_TEXTURE16=0x84D0
-#undef GL_TEXTURE17
-static const GLenum GL_TEXTURE17=0x84D1
-#undef GL_TEXTURE18
-static const GLenum GL_TEXTURE18=0x84D2
-#undef GL_TEXTURE19
-static const GLenum GL_TEXTURE19=0x84D3
-#undef GL_TEXTURE20
-static const GLenum GL_TEXTURE20=0x84D4
-#undef GL_TEXTURE21
-static const GLenum GL_TEXTURE21=0x84D5
-#undef GL_TEXTURE22
-static const GLenum GL_TEXTURE22=0x84D6
-#undef GL_TEXTURE23
-static const GLenum GL_TEXTURE23=0x84D7
-#undef GL_TEXTURE24
-static const GLenum GL_TEXTURE24=0x84D8
-#undef GL_TEXTURE25
-static const GLenum GL_TEXTURE25=0x84D9
-#undef GL_TEXTURE26
-static const GLenum GL_TEXTURE26=0x84DA
-#undef GL_TEXTURE27
-static const GLenum GL_TEXTURE27=0x84DB
-#undef GL_TEXTURE28
-static const GLenum GL_TEXTURE28=0x84DC
-#undef GL_TEXTURE29
-static const GLenum GL_TEXTURE29=0x84DD
-#undef GL_TEXTURE30
-static const GLenum GL_TEXTURE30=0x84DE
-#undef GL_TEXTURE31
-static const GLenum GL_TEXTURE31=0x84DF
-#undef GL_ACTIVE_TEXTURE
-static const GLenum GL_ACTIVE_TEXTURE=0x84E0
-#undef GL_CLIENT_ACTIVE_TEXTURE
-static const GLenum GL_CLIENT_ACTIVE_TEXTURE=0x84E1
-#undef GL_MAX_TEXTURE_UNITS
-static const GLenum GL_MAX_TEXTURE_UNITS=0x84E2
-#undef GL_TRANSPOSE_MODELVIEW_MATRIX
-static const GLenum GL_TRANSPOSE_MODELVIEW_MATRIX=0x84E3
-#undef GL_TRANSPOSE_PROJECTION_MATRIX
-static const GLenum GL_TRANSPOSE_PROJECTION_MATRIX=0x84E4
-#undef GL_TRANSPOSE_TEXTURE_MATRIX
-static const GLenum GL_TRANSPOSE_TEXTURE_MATRIX=0x84E5
-#undef GL_TRANSPOSE_COLOR_MATRIX
-static const GLenum GL_TRANSPOSE_COLOR_MATRIX=0x84E6
-#undef GL_SUBTRACT
-static const GLenum GL_SUBTRACT=0x84E7
-#undef GL_COMPRESSED_ALPHA
-static const GLenum GL_COMPRESSED_ALPHA=0x84E9
-#undef GL_COMPRESSED_LUMINANCE
-static const GLenum GL_COMPRESSED_LUMINANCE=0x84EA
-#undef GL_COMPRESSED_LUMINANCE_ALPHA
-static const GLenum GL_COMPRESSED_LUMINANCE_ALPHA=0x84EB
-#undef GL_COMPRESSED_INTENSITY
-static const GLenum GL_COMPRESSED_INTENSITY=0x84EC
-#undef GL_COMPRESSED_RGB
-static const GLenum GL_COMPRESSED_RGB=0x84ED
-#undef GL_COMPRESSED_RGBA
-static const GLenum GL_COMPRESSED_RGBA=0x84EE
-#undef GL_TEXTURE_COMPRESSION_HINT
-static const GLenum GL_TEXTURE_COMPRESSION_HINT=0x84EF
-#undef GL_MAX_TEXTURE_LOD_BIAS
-static const GLenum GL_MAX_TEXTURE_LOD_BIAS=0x84FD
-#undef GL_TEXTURE_FILTER_CONTROL
-static const GLenum GL_TEXTURE_FILTER_CONTROL=0x8500
-#undef GL_TEXTURE_LOD_BIAS
-static const GLenum GL_TEXTURE_LOD_BIAS=0x8501
-#undef GL_INCR_WRAP
-static const GLenum GL_INCR_WRAP=0x8507
-#undef GL_DECR_WRAP
-static const GLenum GL_DECR_WRAP=0x8508
-#undef GL_NORMAL_MAP
-static const GLenum GL_NORMAL_MAP=0x8511
-#undef GL_REFLECTION_MAP
-static const GLenum GL_REFLECTION_MAP=0x8512
-#undef GL_TEXTURE_CUBE_MAP
-static const GLenum GL_TEXTURE_CUBE_MAP=0x8513
-#undef GL_TEXTURE_BINDING_CUBE_MAP
-static const GLenum GL_TEXTURE_BINDING_CUBE_MAP=0x8514
-#undef GL_TEXTURE_CUBE_MAP_POSITIVE_X
-static const GLenum GL_TEXTURE_CUBE_MAP_POSITIVE_X=0x8515
-#undef GL_TEXTURE_CUBE_MAP_NEGATIVE_X
-static const GLenum GL_TEXTURE_CUBE_MAP_NEGATIVE_X=0x8516
-#undef GL_TEXTURE_CUBE_MAP_POSITIVE_Y
-static const GLenum GL_TEXTURE_CUBE_MAP_POSITIVE_Y=0x8517
-#undef GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
-static const GLenum GL_TEXTURE_CUBE_MAP_NEGATIVE_Y=0x8518
-#undef GL_TEXTURE_CUBE_MAP_POSITIVE_Z
-static const GLenum GL_TEXTURE_CUBE_MAP_POSITIVE_Z=0x8519
-#undef GL_TEXTURE_CUBE_MAP_NEGATIVE_Z
-static const GLenum GL_TEXTURE_CUBE_MAP_NEGATIVE_Z=0x851A
-#undef GL_PROXY_TEXTURE_CUBE_MAP
-static const GLenum GL_PROXY_TEXTURE_CUBE_MAP=0x851B
-#undef GL_MAX_CUBE_MAP_TEXTURE_SIZE
-static const GLenum GL_MAX_CUBE_MAP_TEXTURE_SIZE=0x851C
-#undef GL_COMBINE
-static const GLenum GL_COMBINE=0x8570
-#undef GL_COMBINE_RGB
-static const GLenum GL_COMBINE_RGB=0x8571
-#undef GL_COMBINE_ALPHA
-static const GLenum GL_COMBINE_ALPHA=0x8572
-#undef GL_RGB_SCALE
-static const GLenum GL_RGB_SCALE=0x8573
-#undef GL_ADD_SIGNED
-static const GLenum GL_ADD_SIGNED=0x8574
-#undef GL_INTERPOLATE
-static const GLenum GL_INTERPOLATE=0x8575
-#undef GL_CONSTANT
-static const GLenum GL_CONSTANT=0x8576
-#undef GL_PRIMARY_COLOR
-static const GLenum GL_PRIMARY_COLOR=0x8577
-#undef GL_PREVIOUS
-static const GLenum GL_PREVIOUS=0x8578
-#undef GL_SOURCE0_RGB
-static const GLenum GL_SOURCE0_RGB=0x8580
-#undef GL_SRC0_RGB
-static const GLenum GL_SRC0_RGB=0x8580
-#undef GL_SRC1_RGB
-static const GLenum GL_SRC1_RGB=0x8581
-#undef GL_SOURCE1_RGB
-static const GLenum GL_SOURCE1_RGB=0x8581
-#undef GL_SOURCE2_RGB
-static const GLenum GL_SOURCE2_RGB=0x8582
-#undef GL_SRC2_RGB
-static const GLenum GL_SRC2_RGB=0x8582
-#undef GL_SRC0_ALPHA
-static const GLenum GL_SRC0_ALPHA=0x8588
-#undef GL_SOURCE0_ALPHA
-static const GLenum GL_SOURCE0_ALPHA=0x8588
-#undef GL_SRC1_ALPHA
-static const GLenum GL_SRC1_ALPHA=0x8589
-#undef GL_SOURCE1_ALPHA
-static const GLenum GL_SOURCE1_ALPHA=0x8589
-#undef GL_SOURCE2_ALPHA
-static const GLenum GL_SOURCE2_ALPHA=0x858A
-#undef GL_SRC2_ALPHA
-static const GLenum GL_SRC2_ALPHA=0x858A
-#undef GL_OPERAND0_RGB
-static const GLenum GL_OPERAND0_RGB=0x8590
-#undef GL_OPERAND1_RGB
-static const GLenum GL_OPERAND1_RGB=0x8591
-#undef GL_OPERAND2_RGB
-static const GLenum GL_OPERAND2_RGB=0x8592
-#undef GL_OPERAND0_ALPHA
-static const GLenum GL_OPERAND0_ALPHA=0x8598
-#undef GL_OPERAND1_ALPHA
-static const GLenum GL_OPERAND1_ALPHA=0x8599
-#undef GL_OPERAND2_ALPHA
-static const GLenum GL_OPERAND2_ALPHA=0x859A
-#undef GL_TEXTURE_COMPRESSED_IMAGE_SIZE
-static const GLenum GL_TEXTURE_COMPRESSED_IMAGE_SIZE=0x86A0
-#undef GL_TEXTURE_COMPRESSED
-static const GLenum GL_TEXTURE_COMPRESSED=0x86A1
-#undef GL_NUM_COMPRESSED_TEXTURE_FORMATS
-static const GLenum GL_NUM_COMPRESSED_TEXTURE_FORMATS=0x86A2
-#undef GL_COMPRESSED_TEXTURE_FORMATS
-static const GLenum GL_COMPRESSED_TEXTURE_FORMATS=0x86A3
-#undef GL_DOT3_RGB
-static const GLenum GL_DOT3_RGB=0x86AE
-#undef GL_DOT3_RGBA
-static const GLenum GL_DOT3_RGBA=0x86AF
-#undef GL_BUFFER_SIZE
-static const GLenum GL_BUFFER_SIZE=0x8764
-#undef GL_BUFFER_USAGE
-static const GLenum GL_BUFFER_USAGE=0x8765
-#undef GL_TEXTURE_DEPTH_SIZE
-static const GLenum GL_TEXTURE_DEPTH_SIZE=0x884A
-#undef GL_DEPTH_TEXTURE_MODE
-static const GLenum GL_DEPTH_TEXTURE_MODE=0x884B
-#undef GL_TEXTURE_COMPARE_MODE
-static const GLenum GL_TEXTURE_COMPARE_MODE=0x884C
-#undef GL_TEXTURE_COMPARE_FUNC
-static const GLenum GL_TEXTURE_COMPARE_FUNC=0x884D
-#undef GL_COMPARE_R_TO_TEXTURE
-static const GLenum GL_COMPARE_R_TO_TEXTURE=0x884E
-#undef GL_QUERY_COUNTER_BITS
-static const GLenum GL_QUERY_COUNTER_BITS=0x8864
-#undef GL_CURRENT_QUERY
-static const GLenum GL_CURRENT_QUERY=0x8865
-#undef GL_QUERY_RESULT
-static const GLenum GL_QUERY_RESULT=0x8866
-#undef GL_QUERY_RESULT_AVAILABLE
-static const GLenum GL_QUERY_RESULT_AVAILABLE=0x8867
-#undef GL_ARRAY_BUFFER
-static const GLenum GL_ARRAY_BUFFER=0x8892
-#undef GL_ELEMENT_ARRAY_BUFFER
-static const GLenum GL_ELEMENT_ARRAY_BUFFER=0x8893
-#undef GL_ARRAY_BUFFER_BINDING
-static const GLenum GL_ARRAY_BUFFER_BINDING=0x8894
-#undef GL_ELEMENT_ARRAY_BUFFER_BINDING
-static const GLenum GL_ELEMENT_ARRAY_BUFFER_BINDING=0x8895
-#undef GL_VERTEX_ARRAY_BUFFER_BINDING
-static const GLenum GL_VERTEX_ARRAY_BUFFER_BINDING=0x8896
-#undef GL_NORMAL_ARRAY_BUFFER_BINDING
-static const GLenum GL_NORMAL_ARRAY_BUFFER_BINDING=0x8897
-#undef GL_COLOR_ARRAY_BUFFER_BINDING
-static const GLenum GL_COLOR_ARRAY_BUFFER_BINDING=0x8898
-#undef GL_INDEX_ARRAY_BUFFER_BINDING
-static const GLenum GL_INDEX_ARRAY_BUFFER_BINDING=0x8899
-#undef GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING
-static const GLenum GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING=0x889A
-#undef GL_EDGE_FLAG_ARRAY_BUFFER_BINDING
-static const GLenum GL_EDGE_FLAG_ARRAY_BUFFER_BINDING=0x889B
-#undef GL_SECONDARY_COLOR_ARRAY_BUFFER_BINDING
-static const GLenum GL_SECONDARY_COLOR_ARRAY_BUFFER_BINDING=0x889C
-#undef GL_FOG_COORD_ARRAY_BUFFER_BINDING
-static const GLenum GL_FOG_COORD_ARRAY_BUFFER_BINDING=0x889D
-#undef GL_FOG_COORDINATE_ARRAY_BUFFER_BINDING
-static const GLenum GL_FOG_COORDINATE_ARRAY_BUFFER_BINDING=0x889D
-#undef GL_WEIGHT_ARRAY_BUFFER_BINDING
-static const GLenum GL_WEIGHT_ARRAY_BUFFER_BINDING=0x889E
-#undef GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING
-static const GLenum GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING=0x889F
-#undef GL_READ_ONLY
-static const GLenum GL_READ_ONLY=0x88B8
-#undef GL_WRITE_ONLY
-static const GLenum GL_WRITE_ONLY=0x88B9
-#undef GL_READ_WRITE
-static const GLenum GL_READ_WRITE=0x88BA
-#undef GL_BUFFER_ACCESS
-static const GLenum GL_BUFFER_ACCESS=0x88BB
-#undef GL_BUFFER_MAPPED
-static const GLenum GL_BUFFER_MAPPED=0x88BC
-#undef GL_BUFFER_MAP_POINTER
-static const GLenum GL_BUFFER_MAP_POINTER=0x88BD
-#undef GL_STREAM_DRAW
-static const GLenum GL_STREAM_DRAW=0x88E0
-#undef GL_STREAM_READ
-static const GLenum GL_STREAM_READ=0x88E1
-#undef GL_STREAM_COPY
-static const GLenum GL_STREAM_COPY=0x88E2
-#undef GL_STATIC_DRAW
-static const GLenum GL_STATIC_DRAW=0x88E4
-#undef GL_STATIC_READ
-static const GLenum GL_STATIC_READ=0x88E5
-#undef GL_STATIC_COPY
-static const GLenum GL_STATIC_COPY=0x88E6
-#undef GL_DYNAMIC_DRAW
-static const GLenum GL_DYNAMIC_DRAW=0x88E8
-#undef GL_DYNAMIC_READ
-static const GLenum GL_DYNAMIC_READ=0x88E9
-#undef GL_DYNAMIC_COPY
-static const GLenum GL_DYNAMIC_COPY=0x88EA
-#undef GL_SAMPLES_PASSED
-static const GLenum GL_SAMPLES_PASSED=0x8914
-#undef GL_ALL_ATTRIB_BITS
-static const GLenum GL_ALL_ATTRIB_BITS=0xFFFFFFFF
-#undef GL_CLIENT_ALL_ATTRIB_BITS
-static const GLenum GL_CLIENT_ALL_ATTRIB_BITS=0xFFFFFFFF
-#undef GL_ONE
-static const GLenum GL_ONE=1
-#undef GL_TRUE
-static const GLenum GL_TRUE=1
+#ifndef GL_NO_ERROR
+#define GL_NO_ERROR 0
+#endif //GL_NO_ERROR
+#ifndef GL_NONE
+#define GL_NONE 0
+#endif //GL_NONE
+#ifndef GL_FALSE
+#define GL_FALSE 0
+#endif //GL_FALSE
+#ifndef GL_ZERO
+#define GL_ZERO 0
+#endif //GL_ZERO
+#ifndef GL_POINTS
+#define GL_POINTS 0x0000
+#endif //GL_POINTS
+#ifndef GL_CLIENT_PIXEL_STORE_BIT
+#define GL_CLIENT_PIXEL_STORE_BIT 0x00000001
+#endif //GL_CLIENT_PIXEL_STORE_BIT
+#ifndef GL_CURRENT_BIT
+#define GL_CURRENT_BIT 0x00000001
+#endif //GL_CURRENT_BIT
+#ifndef GL_CLIENT_VERTEX_ARRAY_BIT
+#define GL_CLIENT_VERTEX_ARRAY_BIT 0x00000002
+#endif //GL_CLIENT_VERTEX_ARRAY_BIT
+#ifndef GL_POINT_BIT
+#define GL_POINT_BIT 0x00000002
+#endif //GL_POINT_BIT
+#ifndef GL_LINE_BIT
+#define GL_LINE_BIT 0x00000004
+#endif //GL_LINE_BIT
+#ifndef GL_POLYGON_BIT
+#define GL_POLYGON_BIT 0x00000008
+#endif //GL_POLYGON_BIT
+#ifndef GL_POLYGON_STIPPLE_BIT
+#define GL_POLYGON_STIPPLE_BIT 0x00000010
+#endif //GL_POLYGON_STIPPLE_BIT
+#ifndef GL_PIXEL_MODE_BIT
+#define GL_PIXEL_MODE_BIT 0x00000020
+#endif //GL_PIXEL_MODE_BIT
+#ifndef GL_LIGHTING_BIT
+#define GL_LIGHTING_BIT 0x00000040
+#endif //GL_LIGHTING_BIT
+#ifndef GL_FOG_BIT
+#define GL_FOG_BIT 0x00000080
+#endif //GL_FOG_BIT
+#ifndef GL_DEPTH_BUFFER_BIT
+#define GL_DEPTH_BUFFER_BIT 0x00000100
+#endif //GL_DEPTH_BUFFER_BIT
+#ifndef GL_ACCUM_BUFFER_BIT
+#define GL_ACCUM_BUFFER_BIT 0x00000200
+#endif //GL_ACCUM_BUFFER_BIT
+#ifndef GL_STENCIL_BUFFER_BIT
+#define GL_STENCIL_BUFFER_BIT 0x00000400
+#endif //GL_STENCIL_BUFFER_BIT
+#ifndef GL_VIEWPORT_BIT
+#define GL_VIEWPORT_BIT 0x00000800
+#endif //GL_VIEWPORT_BIT
+#ifndef GL_TRANSFORM_BIT
+#define GL_TRANSFORM_BIT 0x00001000
+#endif //GL_TRANSFORM_BIT
+#ifndef GL_ENABLE_BIT
+#define GL_ENABLE_BIT 0x00002000
+#endif //GL_ENABLE_BIT
+#ifndef GL_COLOR_BUFFER_BIT
+#define GL_COLOR_BUFFER_BIT 0x00004000
+#endif //GL_COLOR_BUFFER_BIT
+#ifndef GL_HINT_BIT
+#define GL_HINT_BIT 0x00008000
+#endif //GL_HINT_BIT
+#ifndef GL_LINES
+#define GL_LINES 0x0001
+#endif //GL_LINES
+#ifndef GL_EVAL_BIT
+#define GL_EVAL_BIT 0x00010000
+#endif //GL_EVAL_BIT
+#ifndef GL_LINE_LOOP
+#define GL_LINE_LOOP 0x0002
+#endif //GL_LINE_LOOP
+#ifndef GL_LIST_BIT
+#define GL_LIST_BIT 0x00020000
+#endif //GL_LIST_BIT
+#ifndef GL_LINE_STRIP
+#define GL_LINE_STRIP 0x0003
+#endif //GL_LINE_STRIP
+#ifndef GL_TRIANGLES
+#define GL_TRIANGLES 0x0004
+#endif //GL_TRIANGLES
+#ifndef GL_TEXTURE_BIT
+#define GL_TEXTURE_BIT 0x00040000
+#endif //GL_TEXTURE_BIT
+#ifndef GL_TRIANGLE_STRIP
+#define GL_TRIANGLE_STRIP 0x0005
+#endif //GL_TRIANGLE_STRIP
+#ifndef GL_TRIANGLE_FAN
+#define GL_TRIANGLE_FAN 0x0006
+#endif //GL_TRIANGLE_FAN
+#ifndef GL_QUADS
+#define GL_QUADS 0x0007
+#endif //GL_QUADS
+#ifndef GL_QUAD_STRIP
+#define GL_QUAD_STRIP 0x0008
+#endif //GL_QUAD_STRIP
+#ifndef GL_SCISSOR_BIT
+#define GL_SCISSOR_BIT 0x00080000
+#endif //GL_SCISSOR_BIT
+#ifndef GL_POLYGON
+#define GL_POLYGON 0x0009
+#endif //GL_POLYGON
+#ifndef GL_ACCUM
+#define GL_ACCUM 0x0100
+#endif //GL_ACCUM
+#ifndef GL_LOAD
+#define GL_LOAD 0x0101
+#endif //GL_LOAD
+#ifndef GL_RETURN
+#define GL_RETURN 0x0102
+#endif //GL_RETURN
+#ifndef GL_MULT
+#define GL_MULT 0x0103
+#endif //GL_MULT
+#ifndef GL_ADD
+#define GL_ADD 0x0104
+#endif //GL_ADD
+#ifndef GL_NEVER
+#define GL_NEVER 0x0200
+#endif //GL_NEVER
+#ifndef GL_LESS
+#define GL_LESS 0x0201
+#endif //GL_LESS
+#ifndef GL_EQUAL
+#define GL_EQUAL 0x0202
+#endif //GL_EQUAL
+#ifndef GL_LEQUAL
+#define GL_LEQUAL 0x0203
+#endif //GL_LEQUAL
+#ifndef GL_GREATER
+#define GL_GREATER 0x0204
+#endif //GL_GREATER
+#ifndef GL_NOTEQUAL
+#define GL_NOTEQUAL 0x0205
+#endif //GL_NOTEQUAL
+#ifndef GL_GEQUAL
+#define GL_GEQUAL 0x0206
+#endif //GL_GEQUAL
+#ifndef GL_ALWAYS
+#define GL_ALWAYS 0x0207
+#endif //GL_ALWAYS
+#ifndef GL_SRC_COLOR
+#define GL_SRC_COLOR 0x0300
+#endif //GL_SRC_COLOR
+#ifndef GL_ONE_MINUS_SRC_COLOR
+#define GL_ONE_MINUS_SRC_COLOR 0x0301
+#endif //GL_ONE_MINUS_SRC_COLOR
+#ifndef GL_SRC_ALPHA
+#define GL_SRC_ALPHA 0x0302
+#endif //GL_SRC_ALPHA
+#ifndef GL_ONE_MINUS_SRC_ALPHA
+#define GL_ONE_MINUS_SRC_ALPHA 0x0303
+#endif //GL_ONE_MINUS_SRC_ALPHA
+#ifndef GL_DST_ALPHA
+#define GL_DST_ALPHA 0x0304
+#endif //GL_DST_ALPHA
+#ifndef GL_ONE_MINUS_DST_ALPHA
+#define GL_ONE_MINUS_DST_ALPHA 0x0305
+#endif //GL_ONE_MINUS_DST_ALPHA
+#ifndef GL_DST_COLOR
+#define GL_DST_COLOR 0x0306
+#endif //GL_DST_COLOR
+#ifndef GL_ONE_MINUS_DST_COLOR
+#define GL_ONE_MINUS_DST_COLOR 0x0307
+#endif //GL_ONE_MINUS_DST_COLOR
+#ifndef GL_SRC_ALPHA_SATURATE
+#define GL_SRC_ALPHA_SATURATE 0x0308
+#endif //GL_SRC_ALPHA_SATURATE
+#ifndef GL_FRONT_LEFT
+#define GL_FRONT_LEFT 0x0400
+#endif //GL_FRONT_LEFT
+#ifndef GL_FRONT_RIGHT
+#define GL_FRONT_RIGHT 0x0401
+#endif //GL_FRONT_RIGHT
+#ifndef GL_BACK_LEFT
+#define GL_BACK_LEFT 0x0402
+#endif //GL_BACK_LEFT
+#ifndef GL_BACK_RIGHT
+#define GL_BACK_RIGHT 0x0403
+#endif //GL_BACK_RIGHT
+#ifndef GL_FRONT
+#define GL_FRONT 0x0404
+#endif //GL_FRONT
+#ifndef GL_BACK
+#define GL_BACK 0x0405
+#endif //GL_BACK
+#ifndef GL_LEFT
+#define GL_LEFT 0x0406
+#endif //GL_LEFT
+#ifndef GL_RIGHT
+#define GL_RIGHT 0x0407
+#endif //GL_RIGHT
+#ifndef GL_FRONT_AND_BACK
+#define GL_FRONT_AND_BACK 0x0408
+#endif //GL_FRONT_AND_BACK
+#ifndef GL_AUX0
+#define GL_AUX0 0x0409
+#endif //GL_AUX0
+#ifndef GL_AUX1
+#define GL_AUX1 0x040A
+#endif //GL_AUX1
+#ifndef GL_AUX2
+#define GL_AUX2 0x040B
+#endif //GL_AUX2
+#ifndef GL_AUX3
+#define GL_AUX3 0x040C
+#endif //GL_AUX3
+#ifndef GL_INVALID_ENUM
+#define GL_INVALID_ENUM 0x0500
+#endif //GL_INVALID_ENUM
+#ifndef GL_INVALID_VALUE
+#define GL_INVALID_VALUE 0x0501
+#endif //GL_INVALID_VALUE
+#ifndef GL_INVALID_OPERATION
+#define GL_INVALID_OPERATION 0x0502
+#endif //GL_INVALID_OPERATION
+#ifndef GL_STACK_OVERFLOW
+#define GL_STACK_OVERFLOW 0x0503
+#endif //GL_STACK_OVERFLOW
+#ifndef GL_STACK_UNDERFLOW
+#define GL_STACK_UNDERFLOW 0x0504
+#endif //GL_STACK_UNDERFLOW
+#ifndef GL_OUT_OF_MEMORY
+#define GL_OUT_OF_MEMORY 0x0505
+#endif //GL_OUT_OF_MEMORY
+#ifndef GL_2D
+#define GL_2D 0x0600
+#endif //GL_2D
+#ifndef GL_3D
+#define GL_3D 0x0601
+#endif //GL_3D
+#ifndef GL_3D_COLOR
+#define GL_3D_COLOR 0x0602
+#endif //GL_3D_COLOR
+#ifndef GL_3D_COLOR_TEXTURE
+#define GL_3D_COLOR_TEXTURE 0x0603
+#endif //GL_3D_COLOR_TEXTURE
+#ifndef GL_4D_COLOR_TEXTURE
+#define GL_4D_COLOR_TEXTURE 0x0604
+#endif //GL_4D_COLOR_TEXTURE
+#ifndef GL_PASS_THROUGH_TOKEN
+#define GL_PASS_THROUGH_TOKEN 0x0700
+#endif //GL_PASS_THROUGH_TOKEN
+#ifndef GL_POINT_TOKEN
+#define GL_POINT_TOKEN 0x0701
+#endif //GL_POINT_TOKEN
+#ifndef GL_LINE_TOKEN
+#define GL_LINE_TOKEN 0x0702
+#endif //GL_LINE_TOKEN
+#ifndef GL_POLYGON_TOKEN
+#define GL_POLYGON_TOKEN 0x0703
+#endif //GL_POLYGON_TOKEN
+#ifndef GL_BITMAP_TOKEN
+#define GL_BITMAP_TOKEN 0x0704
+#endif //GL_BITMAP_TOKEN
+#ifndef GL_DRAW_PIXEL_TOKEN
+#define GL_DRAW_PIXEL_TOKEN 0x0705
+#endif //GL_DRAW_PIXEL_TOKEN
+#ifndef GL_COPY_PIXEL_TOKEN
+#define GL_COPY_PIXEL_TOKEN 0x0706
+#endif //GL_COPY_PIXEL_TOKEN
+#ifndef GL_LINE_RESET_TOKEN
+#define GL_LINE_RESET_TOKEN 0x0707
+#endif //GL_LINE_RESET_TOKEN
+#ifndef GL_EXP
+#define GL_EXP 0x0800
+#endif //GL_EXP
+#ifndef GL_EXP2
+#define GL_EXP2 0x0801
+#endif //GL_EXP2
+#ifndef GL_CW
+#define GL_CW 0x0900
+#endif //GL_CW
+#ifndef GL_CCW
+#define GL_CCW 0x0901
+#endif //GL_CCW
+#ifndef GL_COEFF
+#define GL_COEFF 0x0A00
+#endif //GL_COEFF
+#ifndef GL_ORDER
+#define GL_ORDER 0x0A01
+#endif //GL_ORDER
+#ifndef GL_DOMAIN
+#define GL_DOMAIN 0x0A02
+#endif //GL_DOMAIN
+#ifndef GL_CURRENT_COLOR
+#define GL_CURRENT_COLOR 0x0B00
+#endif //GL_CURRENT_COLOR
+#ifndef GL_CURRENT_INDEX
+#define GL_CURRENT_INDEX 0x0B01
+#endif //GL_CURRENT_INDEX
+#ifndef GL_CURRENT_NORMAL
+#define GL_CURRENT_NORMAL 0x0B02
+#endif //GL_CURRENT_NORMAL
+#ifndef GL_CURRENT_TEXTURE_COORDS
+#define GL_CURRENT_TEXTURE_COORDS 0x0B03
+#endif //GL_CURRENT_TEXTURE_COORDS
+#ifndef GL_CURRENT_RASTER_COLOR
+#define GL_CURRENT_RASTER_COLOR 0x0B04
+#endif //GL_CURRENT_RASTER_COLOR
+#ifndef GL_CURRENT_RASTER_INDEX
+#define GL_CURRENT_RASTER_INDEX 0x0B05
+#endif //GL_CURRENT_RASTER_INDEX
+#ifndef GL_CURRENT_RASTER_TEXTURE_COORDS
+#define GL_CURRENT_RASTER_TEXTURE_COORDS 0x0B06
+#endif //GL_CURRENT_RASTER_TEXTURE_COORDS
+#ifndef GL_CURRENT_RASTER_POSITION
+#define GL_CURRENT_RASTER_POSITION 0x0B07
+#endif //GL_CURRENT_RASTER_POSITION
+#ifndef GL_CURRENT_RASTER_POSITION_VALID
+#define GL_CURRENT_RASTER_POSITION_VALID 0x0B08
+#endif //GL_CURRENT_RASTER_POSITION_VALID
+#ifndef GL_CURRENT_RASTER_DISTANCE
+#define GL_CURRENT_RASTER_DISTANCE 0x0B09
+#endif //GL_CURRENT_RASTER_DISTANCE
+#ifndef GL_POINT_SMOOTH
+#define GL_POINT_SMOOTH 0x0B10
+#endif //GL_POINT_SMOOTH
+#ifndef GL_POINT_SIZE
+#define GL_POINT_SIZE 0x0B11
+#endif //GL_POINT_SIZE
+#ifndef GL_POINT_SIZE_RANGE
+#define GL_POINT_SIZE_RANGE 0x0B12
+#endif //GL_POINT_SIZE_RANGE
+#ifndef GL_SMOOTH_POINT_SIZE_RANGE
+#define GL_SMOOTH_POINT_SIZE_RANGE 0x0B12
+#endif //GL_SMOOTH_POINT_SIZE_RANGE
+#ifndef GL_POINT_SIZE_GRANULARITY
+#define GL_POINT_SIZE_GRANULARITY 0x0B13
+#endif //GL_POINT_SIZE_GRANULARITY
+#ifndef GL_SMOOTH_POINT_SIZE_GRANULARITY
+#define GL_SMOOTH_POINT_SIZE_GRANULARITY 0x0B13
+#endif //GL_SMOOTH_POINT_SIZE_GRANULARITY
+#ifndef GL_LINE_SMOOTH
+#define GL_LINE_SMOOTH 0x0B20
+#endif //GL_LINE_SMOOTH
+#ifndef GL_LINE_WIDTH
+#define GL_LINE_WIDTH 0x0B21
+#endif //GL_LINE_WIDTH
+#ifndef GL_LINE_WIDTH_RANGE
+#define GL_LINE_WIDTH_RANGE 0x0B22
+#endif //GL_LINE_WIDTH_RANGE
+#ifndef GL_SMOOTH_LINE_WIDTH_RANGE
+#define GL_SMOOTH_LINE_WIDTH_RANGE 0x0B22
+#endif //GL_SMOOTH_LINE_WIDTH_RANGE
+#ifndef GL_SMOOTH_LINE_WIDTH_GRANULARITY
+#define GL_SMOOTH_LINE_WIDTH_GRANULARITY 0x0B23
+#endif //GL_SMOOTH_LINE_WIDTH_GRANULARITY
+#ifndef GL_LINE_WIDTH_GRANULARITY
+#define GL_LINE_WIDTH_GRANULARITY 0x0B23
+#endif //GL_LINE_WIDTH_GRANULARITY
+#ifndef GL_LINE_STIPPLE
+#define GL_LINE_STIPPLE 0x0B24
+#endif //GL_LINE_STIPPLE
+#ifndef GL_LINE_STIPPLE_PATTERN
+#define GL_LINE_STIPPLE_PATTERN 0x0B25
+#endif //GL_LINE_STIPPLE_PATTERN
+#ifndef GL_LINE_STIPPLE_REPEAT
+#define GL_LINE_STIPPLE_REPEAT 0x0B26
+#endif //GL_LINE_STIPPLE_REPEAT
+#ifndef GL_LIST_MODE
+#define GL_LIST_MODE 0x0B30
+#endif //GL_LIST_MODE
+#ifndef GL_MAX_LIST_NESTING
+#define GL_MAX_LIST_NESTING 0x0B31
+#endif //GL_MAX_LIST_NESTING
+#ifndef GL_LIST_BASE
+#define GL_LIST_BASE 0x0B32
+#endif //GL_LIST_BASE
+#ifndef GL_LIST_INDEX
+#define GL_LIST_INDEX 0x0B33
+#endif //GL_LIST_INDEX
+#ifndef GL_POLYGON_MODE
+#define GL_POLYGON_MODE 0x0B40
+#endif //GL_POLYGON_MODE
+#ifndef GL_POLYGON_SMOOTH
+#define GL_POLYGON_SMOOTH 0x0B41
+#endif //GL_POLYGON_SMOOTH
+#ifndef GL_POLYGON_STIPPLE
+#define GL_POLYGON_STIPPLE 0x0B42
+#endif //GL_POLYGON_STIPPLE
+#ifndef GL_EDGE_FLAG
+#define GL_EDGE_FLAG 0x0B43
+#endif //GL_EDGE_FLAG
+#ifndef GL_CULL_FACE
+#define GL_CULL_FACE 0x0B44
+#endif //GL_CULL_FACE
+#ifndef GL_CULL_FACE_MODE
+#define GL_CULL_FACE_MODE 0x0B45
+#endif //GL_CULL_FACE_MODE
+#ifndef GL_FRONT_FACE
+#define GL_FRONT_FACE 0x0B46
+#endif //GL_FRONT_FACE
+#ifndef GL_LIGHTING
+#define GL_LIGHTING 0x0B50
+#endif //GL_LIGHTING
+#ifndef GL_LIGHT_MODEL_LOCAL_VIEWER
+#define GL_LIGHT_MODEL_LOCAL_VIEWER 0x0B51
+#endif //GL_LIGHT_MODEL_LOCAL_VIEWER
+#ifndef GL_LIGHT_MODEL_TWO_SIDE
+#define GL_LIGHT_MODEL_TWO_SIDE 0x0B52
+#endif //GL_LIGHT_MODEL_TWO_SIDE
+#ifndef GL_LIGHT_MODEL_AMBIENT
+#define GL_LIGHT_MODEL_AMBIENT 0x0B53
+#endif //GL_LIGHT_MODEL_AMBIENT
+#ifndef GL_SHADE_MODEL
+#define GL_SHADE_MODEL 0x0B54
+#endif //GL_SHADE_MODEL
+#ifndef GL_COLOR_MATERIAL_FACE
+#define GL_COLOR_MATERIAL_FACE 0x0B55
+#endif //GL_COLOR_MATERIAL_FACE
+#ifndef GL_COLOR_MATERIAL_PARAMETER
+#define GL_COLOR_MATERIAL_PARAMETER 0x0B56
+#endif //GL_COLOR_MATERIAL_PARAMETER
+#ifndef GL_COLOR_MATERIAL
+#define GL_COLOR_MATERIAL 0x0B57
+#endif //GL_COLOR_MATERIAL
+#ifndef GL_FOG
+#define GL_FOG 0x0B60
+#endif //GL_FOG
+#ifndef GL_FOG_INDEX
+#define GL_FOG_INDEX 0x0B61
+#endif //GL_FOG_INDEX
+#ifndef GL_FOG_DENSITY
+#define GL_FOG_DENSITY 0x0B62
+#endif //GL_FOG_DENSITY
+#ifndef GL_FOG_START
+#define GL_FOG_START 0x0B63
+#endif //GL_FOG_START
+#ifndef GL_FOG_END
+#define GL_FOG_END 0x0B64
+#endif //GL_FOG_END
+#ifndef GL_FOG_MODE
+#define GL_FOG_MODE 0x0B65
+#endif //GL_FOG_MODE
+#ifndef GL_FOG_COLOR
+#define GL_FOG_COLOR 0x0B66
+#endif //GL_FOG_COLOR
+#ifndef GL_DEPTH_RANGE
+#define GL_DEPTH_RANGE 0x0B70
+#endif //GL_DEPTH_RANGE
+#ifndef GL_DEPTH_TEST
+#define GL_DEPTH_TEST 0x0B71
+#endif //GL_DEPTH_TEST
+#ifndef GL_DEPTH_WRITEMASK
+#define GL_DEPTH_WRITEMASK 0x0B72
+#endif //GL_DEPTH_WRITEMASK
+#ifndef GL_DEPTH_CLEAR_VALUE
+#define GL_DEPTH_CLEAR_VALUE 0x0B73
+#endif //GL_DEPTH_CLEAR_VALUE
+#ifndef GL_DEPTH_FUNC
+#define GL_DEPTH_FUNC 0x0B74
+#endif //GL_DEPTH_FUNC
+#ifndef GL_ACCUM_CLEAR_VALUE
+#define GL_ACCUM_CLEAR_VALUE 0x0B80
+#endif //GL_ACCUM_CLEAR_VALUE
+#ifndef GL_STENCIL_TEST
+#define GL_STENCIL_TEST 0x0B90
+#endif //GL_STENCIL_TEST
+#ifndef GL_STENCIL_CLEAR_VALUE
+#define GL_STENCIL_CLEAR_VALUE 0x0B91
+#endif //GL_STENCIL_CLEAR_VALUE
+#ifndef GL_STENCIL_FUNC
+#define GL_STENCIL_FUNC 0x0B92
+#endif //GL_STENCIL_FUNC
+#ifndef GL_STENCIL_VALUE_MASK
+#define GL_STENCIL_VALUE_MASK 0x0B93
+#endif //GL_STENCIL_VALUE_MASK
+#ifndef GL_STENCIL_FAIL
+#define GL_STENCIL_FAIL 0x0B94
+#endif //GL_STENCIL_FAIL
+#ifndef GL_STENCIL_PASS_DEPTH_FAIL
+#define GL_STENCIL_PASS_DEPTH_FAIL 0x0B95
+#endif //GL_STENCIL_PASS_DEPTH_FAIL
+#ifndef GL_STENCIL_PASS_DEPTH_PASS
+#define GL_STENCIL_PASS_DEPTH_PASS 0x0B96
+#endif //GL_STENCIL_PASS_DEPTH_PASS
+#ifndef GL_STENCIL_REF
+#define GL_STENCIL_REF 0x0B97
+#endif //GL_STENCIL_REF
+#ifndef GL_STENCIL_WRITEMASK
+#define GL_STENCIL_WRITEMASK 0x0B98
+#endif //GL_STENCIL_WRITEMASK
+#ifndef GL_MATRIX_MODE
+#define GL_MATRIX_MODE 0x0BA0
+#endif //GL_MATRIX_MODE
+#ifndef GL_NORMALIZE
+#define GL_NORMALIZE 0x0BA1
+#endif //GL_NORMALIZE
+#ifndef GL_VIEWPORT
+#define GL_VIEWPORT 0x0BA2
+#endif //GL_VIEWPORT
+#ifndef GL_MODELVIEW_STACK_DEPTH
+#define GL_MODELVIEW_STACK_DEPTH 0x0BA3
+#endif //GL_MODELVIEW_STACK_DEPTH
+#ifndef GL_PROJECTION_STACK_DEPTH
+#define GL_PROJECTION_STACK_DEPTH 0x0BA4
+#endif //GL_PROJECTION_STACK_DEPTH
+#ifndef GL_TEXTURE_STACK_DEPTH
+#define GL_TEXTURE_STACK_DEPTH 0x0BA5
+#endif //GL_TEXTURE_STACK_DEPTH
+#ifndef GL_MODELVIEW_MATRIX
+#define GL_MODELVIEW_MATRIX 0x0BA6
+#endif //GL_MODELVIEW_MATRIX
+#ifndef GL_PROJECTION_MATRIX
+#define GL_PROJECTION_MATRIX 0x0BA7
+#endif //GL_PROJECTION_MATRIX
+#ifndef GL_TEXTURE_MATRIX
+#define GL_TEXTURE_MATRIX 0x0BA8
+#endif //GL_TEXTURE_MATRIX
+#ifndef GL_ATTRIB_STACK_DEPTH
+#define GL_ATTRIB_STACK_DEPTH 0x0BB0
+#endif //GL_ATTRIB_STACK_DEPTH
+#ifndef GL_CLIENT_ATTRIB_STACK_DEPTH
+#define GL_CLIENT_ATTRIB_STACK_DEPTH 0x0BB1
+#endif //GL_CLIENT_ATTRIB_STACK_DEPTH
+#ifndef GL_ALPHA_TEST
+#define GL_ALPHA_TEST 0x0BC0
+#endif //GL_ALPHA_TEST
+#ifndef GL_ALPHA_TEST_FUNC
+#define GL_ALPHA_TEST_FUNC 0x0BC1
+#endif //GL_ALPHA_TEST_FUNC
+#ifndef GL_ALPHA_TEST_REF
+#define GL_ALPHA_TEST_REF 0x0BC2
+#endif //GL_ALPHA_TEST_REF
+#ifndef GL_DITHER
+#define GL_DITHER 0x0BD0
+#endif //GL_DITHER
+#ifndef GL_BLEND_DST
+#define GL_BLEND_DST 0x0BE0
+#endif //GL_BLEND_DST
+#ifndef GL_BLEND_SRC
+#define GL_BLEND_SRC 0x0BE1
+#endif //GL_BLEND_SRC
+#ifndef GL_BLEND
+#define GL_BLEND 0x0BE2
+#endif //GL_BLEND
+#ifndef GL_LOGIC_OP_MODE
+#define GL_LOGIC_OP_MODE 0x0BF0
+#endif //GL_LOGIC_OP_MODE
+#ifndef GL_LOGIC_OP
+#define GL_LOGIC_OP 0x0BF1
+#endif //GL_LOGIC_OP
+#ifndef GL_INDEX_LOGIC_OP
+#define GL_INDEX_LOGIC_OP 0x0BF1
+#endif //GL_INDEX_LOGIC_OP
+#ifndef GL_COLOR_LOGIC_OP
+#define GL_COLOR_LOGIC_OP 0x0BF2
+#endif //GL_COLOR_LOGIC_OP
+#ifndef GL_AUX_BUFFERS
+#define GL_AUX_BUFFERS 0x0C00
+#endif //GL_AUX_BUFFERS
+#ifndef GL_DRAW_BUFFER
+#define GL_DRAW_BUFFER 0x0C01
+#endif //GL_DRAW_BUFFER
+#ifndef GL_READ_BUFFER
+#define GL_READ_BUFFER 0x0C02
+#endif //GL_READ_BUFFER
+#ifndef GL_SCISSOR_BOX
+#define GL_SCISSOR_BOX 0x0C10
+#endif //GL_SCISSOR_BOX
+#ifndef GL_SCISSOR_TEST
+#define GL_SCISSOR_TEST 0x0C11
+#endif //GL_SCISSOR_TEST
+#ifndef GL_INDEX_CLEAR_VALUE
+#define GL_INDEX_CLEAR_VALUE 0x0C20
+#endif //GL_INDEX_CLEAR_VALUE
+#ifndef GL_INDEX_WRITEMASK
+#define GL_INDEX_WRITEMASK 0x0C21
+#endif //GL_INDEX_WRITEMASK
+#ifndef GL_COLOR_CLEAR_VALUE
+#define GL_COLOR_CLEAR_VALUE 0x0C22
+#endif //GL_COLOR_CLEAR_VALUE
+#ifndef GL_COLOR_WRITEMASK
+#define GL_COLOR_WRITEMASK 0x0C23
+#endif //GL_COLOR_WRITEMASK
+#ifndef GL_INDEX_MODE
+#define GL_INDEX_MODE 0x0C30
+#endif //GL_INDEX_MODE
+#ifndef GL_RGBA_MODE
+#define GL_RGBA_MODE 0x0C31
+#endif //GL_RGBA_MODE
+#ifndef GL_DOUBLEBUFFER
+#define GL_DOUBLEBUFFER 0x0C32
+#endif //GL_DOUBLEBUFFER
+#ifndef GL_STEREO
+#define GL_STEREO 0x0C33
+#endif //GL_STEREO
+#ifndef GL_RENDER_MODE
+#define GL_RENDER_MODE 0x0C40
+#endif //GL_RENDER_MODE
+#ifndef GL_PERSPECTIVE_CORRECTION_HINT
+#define GL_PERSPECTIVE_CORRECTION_HINT 0x0C50
+#endif //GL_PERSPECTIVE_CORRECTION_HINT
+#ifndef GL_POINT_SMOOTH_HINT
+#define GL_POINT_SMOOTH_HINT 0x0C51
+#endif //GL_POINT_SMOOTH_HINT
+#ifndef GL_LINE_SMOOTH_HINT
+#define GL_LINE_SMOOTH_HINT 0x0C52
+#endif //GL_LINE_SMOOTH_HINT
+#ifndef GL_POLYGON_SMOOTH_HINT
+#define GL_POLYGON_SMOOTH_HINT 0x0C53
+#endif //GL_POLYGON_SMOOTH_HINT
+#ifndef GL_FOG_HINT
+#define GL_FOG_HINT 0x0C54
+#endif //GL_FOG_HINT
+#ifndef GL_TEXTURE_GEN_S
+#define GL_TEXTURE_GEN_S 0x0C60
+#endif //GL_TEXTURE_GEN_S
+#ifndef GL_TEXTURE_GEN_T
+#define GL_TEXTURE_GEN_T 0x0C61
+#endif //GL_TEXTURE_GEN_T
+#ifndef GL_TEXTURE_GEN_R
+#define GL_TEXTURE_GEN_R 0x0C62
+#endif //GL_TEXTURE_GEN_R
+#ifndef GL_TEXTURE_GEN_Q
+#define GL_TEXTURE_GEN_Q 0x0C63
+#endif //GL_TEXTURE_GEN_Q
+#ifndef GL_PIXEL_MAP_I_TO_I
+#define GL_PIXEL_MAP_I_TO_I 0x0C70
+#endif //GL_PIXEL_MAP_I_TO_I
+#ifndef GL_PIXEL_MAP_S_TO_S
+#define GL_PIXEL_MAP_S_TO_S 0x0C71
+#endif //GL_PIXEL_MAP_S_TO_S
+#ifndef GL_PIXEL_MAP_I_TO_R
+#define GL_PIXEL_MAP_I_TO_R 0x0C72
+#endif //GL_PIXEL_MAP_I_TO_R
+#ifndef GL_PIXEL_MAP_I_TO_G
+#define GL_PIXEL_MAP_I_TO_G 0x0C73
+#endif //GL_PIXEL_MAP_I_TO_G
+#ifndef GL_PIXEL_MAP_I_TO_B
+#define GL_PIXEL_MAP_I_TO_B 0x0C74
+#endif //GL_PIXEL_MAP_I_TO_B
+#ifndef GL_PIXEL_MAP_I_TO_A
+#define GL_PIXEL_MAP_I_TO_A 0x0C75
+#endif //GL_PIXEL_MAP_I_TO_A
+#ifndef GL_PIXEL_MAP_R_TO_R
+#define GL_PIXEL_MAP_R_TO_R 0x0C76
+#endif //GL_PIXEL_MAP_R_TO_R
+#ifndef GL_PIXEL_MAP_G_TO_G
+#define GL_PIXEL_MAP_G_TO_G 0x0C77
+#endif //GL_PIXEL_MAP_G_TO_G
+#ifndef GL_PIXEL_MAP_B_TO_B
+#define GL_PIXEL_MAP_B_TO_B 0x0C78
+#endif //GL_PIXEL_MAP_B_TO_B
+#ifndef GL_PIXEL_MAP_A_TO_A
+#define GL_PIXEL_MAP_A_TO_A 0x0C79
+#endif //GL_PIXEL_MAP_A_TO_A
+#ifndef GL_PIXEL_MAP_I_TO_I_SIZE
+#define GL_PIXEL_MAP_I_TO_I_SIZE 0x0CB0
+#endif //GL_PIXEL_MAP_I_TO_I_SIZE
+#ifndef GL_PIXEL_MAP_S_TO_S_SIZE
+#define GL_PIXEL_MAP_S_TO_S_SIZE 0x0CB1
+#endif //GL_PIXEL_MAP_S_TO_S_SIZE
+#ifndef GL_PIXEL_MAP_I_TO_R_SIZE
+#define GL_PIXEL_MAP_I_TO_R_SIZE 0x0CB2
+#endif //GL_PIXEL_MAP_I_TO_R_SIZE
+#ifndef GL_PIXEL_MAP_I_TO_G_SIZE
+#define GL_PIXEL_MAP_I_TO_G_SIZE 0x0CB3
+#endif //GL_PIXEL_MAP_I_TO_G_SIZE
+#ifndef GL_PIXEL_MAP_I_TO_B_SIZE
+#define GL_PIXEL_MAP_I_TO_B_SIZE 0x0CB4
+#endif //GL_PIXEL_MAP_I_TO_B_SIZE
+#ifndef GL_PIXEL_MAP_I_TO_A_SIZE
+#define GL_PIXEL_MAP_I_TO_A_SIZE 0x0CB5
+#endif //GL_PIXEL_MAP_I_TO_A_SIZE
+#ifndef GL_PIXEL_MAP_R_TO_R_SIZE
+#define GL_PIXEL_MAP_R_TO_R_SIZE 0x0CB6
+#endif //GL_PIXEL_MAP_R_TO_R_SIZE
+#ifndef GL_PIXEL_MAP_G_TO_G_SIZE
+#define GL_PIXEL_MAP_G_TO_G_SIZE 0x0CB7
+#endif //GL_PIXEL_MAP_G_TO_G_SIZE
+#ifndef GL_PIXEL_MAP_B_TO_B_SIZE
+#define GL_PIXEL_MAP_B_TO_B_SIZE 0x0CB8
+#endif //GL_PIXEL_MAP_B_TO_B_SIZE
+#ifndef GL_PIXEL_MAP_A_TO_A_SIZE
+#define GL_PIXEL_MAP_A_TO_A_SIZE 0x0CB9
+#endif //GL_PIXEL_MAP_A_TO_A_SIZE
+#ifndef GL_UNPACK_SWAP_BYTES
+#define GL_UNPACK_SWAP_BYTES 0x0CF0
+#endif //GL_UNPACK_SWAP_BYTES
+#ifndef GL_UNPACK_LSB_FIRST
+#define GL_UNPACK_LSB_FIRST 0x0CF1
+#endif //GL_UNPACK_LSB_FIRST
+#ifndef GL_UNPACK_ROW_LENGTH
+#define GL_UNPACK_ROW_LENGTH 0x0CF2
+#endif //GL_UNPACK_ROW_LENGTH
+#ifndef GL_UNPACK_SKIP_ROWS
+#define GL_UNPACK_SKIP_ROWS 0x0CF3
+#endif //GL_UNPACK_SKIP_ROWS
+#ifndef GL_UNPACK_SKIP_PIXELS
+#define GL_UNPACK_SKIP_PIXELS 0x0CF4
+#endif //GL_UNPACK_SKIP_PIXELS
+#ifndef GL_UNPACK_ALIGNMENT
+#define GL_UNPACK_ALIGNMENT 0x0CF5
+#endif //GL_UNPACK_ALIGNMENT
+#ifndef GL_PACK_SWAP_BYTES
+#define GL_PACK_SWAP_BYTES 0x0D00
+#endif //GL_PACK_SWAP_BYTES
+#ifndef GL_PACK_LSB_FIRST
+#define GL_PACK_LSB_FIRST 0x0D01
+#endif //GL_PACK_LSB_FIRST
+#ifndef GL_PACK_ROW_LENGTH
+#define GL_PACK_ROW_LENGTH 0x0D02
+#endif //GL_PACK_ROW_LENGTH
+#ifndef GL_PACK_SKIP_ROWS
+#define GL_PACK_SKIP_ROWS 0x0D03
+#endif //GL_PACK_SKIP_ROWS
+#ifndef GL_PACK_SKIP_PIXELS
+#define GL_PACK_SKIP_PIXELS 0x0D04
+#endif //GL_PACK_SKIP_PIXELS
+#ifndef GL_PACK_ALIGNMENT
+#define GL_PACK_ALIGNMENT 0x0D05
+#endif //GL_PACK_ALIGNMENT
+#ifndef GL_MAP_COLOR
+#define GL_MAP_COLOR 0x0D10
+#endif //GL_MAP_COLOR
+#ifndef GL_MAP_STENCIL
+#define GL_MAP_STENCIL 0x0D11
+#endif //GL_MAP_STENCIL
+#ifndef GL_INDEX_SHIFT
+#define GL_INDEX_SHIFT 0x0D12
+#endif //GL_INDEX_SHIFT
+#ifndef GL_INDEX_OFFSET
+#define GL_INDEX_OFFSET 0x0D13
+#endif //GL_INDEX_OFFSET
+#ifndef GL_RED_SCALE
+#define GL_RED_SCALE 0x0D14
+#endif //GL_RED_SCALE
+#ifndef GL_RED_BIAS
+#define GL_RED_BIAS 0x0D15
+#endif //GL_RED_BIAS
+#ifndef GL_ZOOM_X
+#define GL_ZOOM_X 0x0D16
+#endif //GL_ZOOM_X
+#ifndef GL_ZOOM_Y
+#define GL_ZOOM_Y 0x0D17
+#endif //GL_ZOOM_Y
+#ifndef GL_GREEN_SCALE
+#define GL_GREEN_SCALE 0x0D18
+#endif //GL_GREEN_SCALE
+#ifndef GL_GREEN_BIAS
+#define GL_GREEN_BIAS 0x0D19
+#endif //GL_GREEN_BIAS
+#ifndef GL_BLUE_SCALE
+#define GL_BLUE_SCALE 0x0D1A
+#endif //GL_BLUE_SCALE
+#ifndef GL_BLUE_BIAS
+#define GL_BLUE_BIAS 0x0D1B
+#endif //GL_BLUE_BIAS
+#ifndef GL_ALPHA_SCALE
+#define GL_ALPHA_SCALE 0x0D1C
+#endif //GL_ALPHA_SCALE
+#ifndef GL_ALPHA_BIAS
+#define GL_ALPHA_BIAS 0x0D1D
+#endif //GL_ALPHA_BIAS
+#ifndef GL_DEPTH_SCALE
+#define GL_DEPTH_SCALE 0x0D1E
+#endif //GL_DEPTH_SCALE
+#ifndef GL_DEPTH_BIAS
+#define GL_DEPTH_BIAS 0x0D1F
+#endif //GL_DEPTH_BIAS
+#ifndef GL_MAX_EVAL_ORDER
+#define GL_MAX_EVAL_ORDER 0x0D30
+#endif //GL_MAX_EVAL_ORDER
+#ifndef GL_MAX_LIGHTS
+#define GL_MAX_LIGHTS 0x0D31
+#endif //GL_MAX_LIGHTS
+#ifndef GL_MAX_CLIP_PLANES
+#define GL_MAX_CLIP_PLANES 0x0D32
+#endif //GL_MAX_CLIP_PLANES
+#ifndef GL_MAX_TEXTURE_SIZE
+#define GL_MAX_TEXTURE_SIZE 0x0D33
+#endif //GL_MAX_TEXTURE_SIZE
+#ifndef GL_MAX_PIXEL_MAP_TABLE
+#define GL_MAX_PIXEL_MAP_TABLE 0x0D34
+#endif //GL_MAX_PIXEL_MAP_TABLE
+#ifndef GL_MAX_ATTRIB_STACK_DEPTH
+#define GL_MAX_ATTRIB_STACK_DEPTH 0x0D35
+#endif //GL_MAX_ATTRIB_STACK_DEPTH
+#ifndef GL_MAX_MODELVIEW_STACK_DEPTH
+#define GL_MAX_MODELVIEW_STACK_DEPTH 0x0D36
+#endif //GL_MAX_MODELVIEW_STACK_DEPTH
+#ifndef GL_MAX_NAME_STACK_DEPTH
+#define GL_MAX_NAME_STACK_DEPTH 0x0D37
+#endif //GL_MAX_NAME_STACK_DEPTH
+#ifndef GL_MAX_PROJECTION_STACK_DEPTH
+#define GL_MAX_PROJECTION_STACK_DEPTH 0x0D38
+#endif //GL_MAX_PROJECTION_STACK_DEPTH
+#ifndef GL_MAX_TEXTURE_STACK_DEPTH
+#define GL_MAX_TEXTURE_STACK_DEPTH 0x0D39
+#endif //GL_MAX_TEXTURE_STACK_DEPTH
+#ifndef GL_MAX_VIEWPORT_DIMS
+#define GL_MAX_VIEWPORT_DIMS 0x0D3A
+#endif //GL_MAX_VIEWPORT_DIMS
+#ifndef GL_MAX_CLIENT_ATTRIB_STACK_DEPTH
+#define GL_MAX_CLIENT_ATTRIB_STACK_DEPTH 0x0D3B
+#endif //GL_MAX_CLIENT_ATTRIB_STACK_DEPTH
+#ifndef GL_SUBPIXEL_BITS
+#define GL_SUBPIXEL_BITS 0x0D50
+#endif //GL_SUBPIXEL_BITS
+#ifndef GL_INDEX_BITS
+#define GL_INDEX_BITS 0x0D51
+#endif //GL_INDEX_BITS
+#ifndef GL_RED_BITS
+#define GL_RED_BITS 0x0D52
+#endif //GL_RED_BITS
+#ifndef GL_GREEN_BITS
+#define GL_GREEN_BITS 0x0D53
+#endif //GL_GREEN_BITS
+#ifndef GL_BLUE_BITS
+#define GL_BLUE_BITS 0x0D54
+#endif //GL_BLUE_BITS
+#ifndef GL_ALPHA_BITS
+#define GL_ALPHA_BITS 0x0D55
+#endif //GL_ALPHA_BITS
+#ifndef GL_DEPTH_BITS
+#define GL_DEPTH_BITS 0x0D56
+#endif //GL_DEPTH_BITS
+#ifndef GL_STENCIL_BITS
+#define GL_STENCIL_BITS 0x0D57
+#endif //GL_STENCIL_BITS
+#ifndef GL_ACCUM_RED_BITS
+#define GL_ACCUM_RED_BITS 0x0D58
+#endif //GL_ACCUM_RED_BITS
+#ifndef GL_ACCUM_GREEN_BITS
+#define GL_ACCUM_GREEN_BITS 0x0D59
+#endif //GL_ACCUM_GREEN_BITS
+#ifndef GL_ACCUM_BLUE_BITS
+#define GL_ACCUM_BLUE_BITS 0x0D5A
+#endif //GL_ACCUM_BLUE_BITS
+#ifndef GL_ACCUM_ALPHA_BITS
+#define GL_ACCUM_ALPHA_BITS 0x0D5B
+#endif //GL_ACCUM_ALPHA_BITS
+#ifndef GL_NAME_STACK_DEPTH
+#define GL_NAME_STACK_DEPTH 0x0D70
+#endif //GL_NAME_STACK_DEPTH
+#ifndef GL_AUTO_NORMAL
+#define GL_AUTO_NORMAL 0x0D80
+#endif //GL_AUTO_NORMAL
+#ifndef GL_MAP1_COLOR_4
+#define GL_MAP1_COLOR_4 0x0D90
+#endif //GL_MAP1_COLOR_4
+#ifndef GL_MAP1_INDEX
+#define GL_MAP1_INDEX 0x0D91
+#endif //GL_MAP1_INDEX
+#ifndef GL_MAP1_NORMAL
+#define GL_MAP1_NORMAL 0x0D92
+#endif //GL_MAP1_NORMAL
+#ifndef GL_MAP1_TEXTURE_COORD_1
+#define GL_MAP1_TEXTURE_COORD_1 0x0D93
+#endif //GL_MAP1_TEXTURE_COORD_1
+#ifndef GL_MAP1_TEXTURE_COORD_2
+#define GL_MAP1_TEXTURE_COORD_2 0x0D94
+#endif //GL_MAP1_TEXTURE_COORD_2
+#ifndef GL_MAP1_TEXTURE_COORD_3
+#define GL_MAP1_TEXTURE_COORD_3 0x0D95
+#endif //GL_MAP1_TEXTURE_COORD_3
+#ifndef GL_MAP1_TEXTURE_COORD_4
+#define GL_MAP1_TEXTURE_COORD_4 0x0D96
+#endif //GL_MAP1_TEXTURE_COORD_4
+#ifndef GL_MAP1_VERTEX_3
+#define GL_MAP1_VERTEX_3 0x0D97
+#endif //GL_MAP1_VERTEX_3
+#ifndef GL_MAP1_VERTEX_4
+#define GL_MAP1_VERTEX_4 0x0D98
+#endif //GL_MAP1_VERTEX_4
+#ifndef GL_MAP2_COLOR_4
+#define GL_MAP2_COLOR_4 0x0DB0
+#endif //GL_MAP2_COLOR_4
+#ifndef GL_MAP2_INDEX
+#define GL_MAP2_INDEX 0x0DB1
+#endif //GL_MAP2_INDEX
+#ifndef GL_MAP2_NORMAL
+#define GL_MAP2_NORMAL 0x0DB2
+#endif //GL_MAP2_NORMAL
+#ifndef GL_MAP2_TEXTURE_COORD_1
+#define GL_MAP2_TEXTURE_COORD_1 0x0DB3
+#endif //GL_MAP2_TEXTURE_COORD_1
+#ifndef GL_MAP2_TEXTURE_COORD_2
+#define GL_MAP2_TEXTURE_COORD_2 0x0DB4
+#endif //GL_MAP2_TEXTURE_COORD_2
+#ifndef GL_MAP2_TEXTURE_COORD_3
+#define GL_MAP2_TEXTURE_COORD_3 0x0DB5
+#endif //GL_MAP2_TEXTURE_COORD_3
+#ifndef GL_MAP2_TEXTURE_COORD_4
+#define GL_MAP2_TEXTURE_COORD_4 0x0DB6
+#endif //GL_MAP2_TEXTURE_COORD_4
+#ifndef GL_MAP2_VERTEX_3
+#define GL_MAP2_VERTEX_3 0x0DB7
+#endif //GL_MAP2_VERTEX_3
+#ifndef GL_MAP2_VERTEX_4
+#define GL_MAP2_VERTEX_4 0x0DB8
+#endif //GL_MAP2_VERTEX_4
+#ifndef GL_MAP1_GRID_DOMAIN
+#define GL_MAP1_GRID_DOMAIN 0x0DD0
+#endif //GL_MAP1_GRID_DOMAIN
+#ifndef GL_MAP1_GRID_SEGMENTS
+#define GL_MAP1_GRID_SEGMENTS 0x0DD1
+#endif //GL_MAP1_GRID_SEGMENTS
+#ifndef GL_MAP2_GRID_DOMAIN
+#define GL_MAP2_GRID_DOMAIN 0x0DD2
+#endif //GL_MAP2_GRID_DOMAIN
+#ifndef GL_MAP2_GRID_SEGMENTS
+#define GL_MAP2_GRID_SEGMENTS 0x0DD3
+#endif //GL_MAP2_GRID_SEGMENTS
+#ifndef GL_TEXTURE_1D
+#define GL_TEXTURE_1D 0x0DE0
+#endif //GL_TEXTURE_1D
+#ifndef GL_TEXTURE_2D
+#define GL_TEXTURE_2D 0x0DE1
+#endif //GL_TEXTURE_2D
+#ifndef GL_FEEDBACK_BUFFER_POINTER
+#define GL_FEEDBACK_BUFFER_POINTER 0x0DF0
+#endif //GL_FEEDBACK_BUFFER_POINTER
+#ifndef GL_FEEDBACK_BUFFER_SIZE
+#define GL_FEEDBACK_BUFFER_SIZE 0x0DF1
+#endif //GL_FEEDBACK_BUFFER_SIZE
+#ifndef GL_FEEDBACK_BUFFER_TYPE
+#define GL_FEEDBACK_BUFFER_TYPE 0x0DF2
+#endif //GL_FEEDBACK_BUFFER_TYPE
+#ifndef GL_SELECTION_BUFFER_POINTER
+#define GL_SELECTION_BUFFER_POINTER 0x0DF3
+#endif //GL_SELECTION_BUFFER_POINTER
+#ifndef GL_SELECTION_BUFFER_SIZE
+#define GL_SELECTION_BUFFER_SIZE 0x0DF4
+#endif //GL_SELECTION_BUFFER_SIZE
+#ifndef GL_TEXTURE_WIDTH
+#define GL_TEXTURE_WIDTH 0x1000
+#endif //GL_TEXTURE_WIDTH
+#ifndef GL_TEXTURE_HEIGHT
+#define GL_TEXTURE_HEIGHT 0x1001
+#endif //GL_TEXTURE_HEIGHT
+#ifndef GL_TEXTURE_INTERNAL_FORMAT
+#define GL_TEXTURE_INTERNAL_FORMAT 0x1003
+#endif //GL_TEXTURE_INTERNAL_FORMAT
+#ifndef GL_TEXTURE_COMPONENTS
+#define GL_TEXTURE_COMPONENTS 0x1003
+#endif //GL_TEXTURE_COMPONENTS
+#ifndef GL_TEXTURE_BORDER_COLOR
+#define GL_TEXTURE_BORDER_COLOR 0x1004
+#endif //GL_TEXTURE_BORDER_COLOR
+#ifndef GL_TEXTURE_BORDER
+#define GL_TEXTURE_BORDER 0x1005
+#endif //GL_TEXTURE_BORDER
+#ifndef GL_DONT_CARE
+#define GL_DONT_CARE 0x1100
+#endif //GL_DONT_CARE
+#ifndef GL_FASTEST
+#define GL_FASTEST 0x1101
+#endif //GL_FASTEST
+#ifndef GL_NICEST
+#define GL_NICEST 0x1102
+#endif //GL_NICEST
+#ifndef GL_AMBIENT
+#define GL_AMBIENT 0x1200
+#endif //GL_AMBIENT
+#ifndef GL_DIFFUSE
+#define GL_DIFFUSE 0x1201
+#endif //GL_DIFFUSE
+#ifndef GL_SPECULAR
+#define GL_SPECULAR 0x1202
+#endif //GL_SPECULAR
+#ifndef GL_POSITION
+#define GL_POSITION 0x1203
+#endif //GL_POSITION
+#ifndef GL_SPOT_DIRECTION
+#define GL_SPOT_DIRECTION 0x1204
+#endif //GL_SPOT_DIRECTION
+#ifndef GL_SPOT_EXPONENT
+#define GL_SPOT_EXPONENT 0x1205
+#endif //GL_SPOT_EXPONENT
+#ifndef GL_SPOT_CUTOFF
+#define GL_SPOT_CUTOFF 0x1206
+#endif //GL_SPOT_CUTOFF
+#ifndef GL_CONSTANT_ATTENUATION
+#define GL_CONSTANT_ATTENUATION 0x1207
+#endif //GL_CONSTANT_ATTENUATION
+#ifndef GL_LINEAR_ATTENUATION
+#define GL_LINEAR_ATTENUATION 0x1208
+#endif //GL_LINEAR_ATTENUATION
+#ifndef GL_QUADRATIC_ATTENUATION
+#define GL_QUADRATIC_ATTENUATION 0x1209
+#endif //GL_QUADRATIC_ATTENUATION
+#ifndef GL_COMPILE
+#define GL_COMPILE 0x1300
+#endif //GL_COMPILE
+#ifndef GL_COMPILE_AND_EXECUTE
+#define GL_COMPILE_AND_EXECUTE 0x1301
+#endif //GL_COMPILE_AND_EXECUTE
+#ifndef GL_BYTE
+#define GL_BYTE 0x1400
+#endif //GL_BYTE
+#ifndef GL_UNSIGNED_BYTE
+#define GL_UNSIGNED_BYTE 0x1401
+#endif //GL_UNSIGNED_BYTE
+#ifndef GL_SHORT
+#define GL_SHORT 0x1402
+#endif //GL_SHORT
+#ifndef GL_UNSIGNED_SHORT
+#define GL_UNSIGNED_SHORT 0x1403
+#endif //GL_UNSIGNED_SHORT
+#ifndef GL_INT
+#define GL_INT 0x1404
+#endif //GL_INT
+#ifndef GL_UNSIGNED_INT
+#define GL_UNSIGNED_INT 0x1405
+#endif //GL_UNSIGNED_INT
+#ifndef GL_FLOAT
+#define GL_FLOAT 0x1406
+#endif //GL_FLOAT
+#ifndef GL_2_BYTES
+#define GL_2_BYTES 0x1407
+#endif //GL_2_BYTES
+#ifndef GL_3_BYTES
+#define GL_3_BYTES 0x1408
+#endif //GL_3_BYTES
+#ifndef GL_4_BYTES
+#define GL_4_BYTES 0x1409
+#endif //GL_4_BYTES
+#ifndef GL_DOUBLE
+#define GL_DOUBLE 0x140A
+#endif //GL_DOUBLE
+#ifndef GL_CLEAR
+#define GL_CLEAR 0x1500
+#endif //GL_CLEAR
+#ifndef GL_AND
+#define GL_AND 0x1501
+#endif //GL_AND
+#ifndef GL_AND_REVERSE
+#define GL_AND_REVERSE 0x1502
+#endif //GL_AND_REVERSE
+#ifndef GL_COPY
+#define GL_COPY 0x1503
+#endif //GL_COPY
+#ifndef GL_AND_INVERTED
+#define GL_AND_INVERTED 0x1504
+#endif //GL_AND_INVERTED
+#ifndef GL_NOOP
+#define GL_NOOP 0x1505
+#endif //GL_NOOP
+#ifndef GL_XOR
+#define GL_XOR 0x1506
+#endif //GL_XOR
+#ifndef GL_OR
+#define GL_OR 0x1507
+#endif //GL_OR
+#ifndef GL_NOR
+#define GL_NOR 0x1508
+#endif //GL_NOR
+#ifndef GL_EQUIV
+#define GL_EQUIV 0x1509
+#endif //GL_EQUIV
+#ifndef GL_INVERT
+#define GL_INVERT 0x150A
+#endif //GL_INVERT
+#ifndef GL_OR_REVERSE
+#define GL_OR_REVERSE 0x150B
+#endif //GL_OR_REVERSE
+#ifndef GL_COPY_INVERTED
+#define GL_COPY_INVERTED 0x150C
+#endif //GL_COPY_INVERTED
+#ifndef GL_OR_INVERTED
+#define GL_OR_INVERTED 0x150D
+#endif //GL_OR_INVERTED
+#ifndef GL_NAND
+#define GL_NAND 0x150E
+#endif //GL_NAND
+#ifndef GL_SET
+#define GL_SET 0x150F
+#endif //GL_SET
+#ifndef GL_EMISSION
+#define GL_EMISSION 0x1600
+#endif //GL_EMISSION
+#ifndef GL_SHININESS
+#define GL_SHININESS 0x1601
+#endif //GL_SHININESS
+#ifndef GL_AMBIENT_AND_DIFFUSE
+#define GL_AMBIENT_AND_DIFFUSE 0x1602
+#endif //GL_AMBIENT_AND_DIFFUSE
+#ifndef GL_COLOR_INDEXES
+#define GL_COLOR_INDEXES 0x1603
+#endif //GL_COLOR_INDEXES
+#ifndef GL_MODELVIEW
+#define GL_MODELVIEW 0x1700
+#endif //GL_MODELVIEW
+#ifndef GL_PROJECTION
+#define GL_PROJECTION 0x1701
+#endif //GL_PROJECTION
+#ifndef GL_TEXTURE
+#define GL_TEXTURE 0x1702
+#endif //GL_TEXTURE
+#ifndef GL_COLOR
+#define GL_COLOR 0x1800
+#endif //GL_COLOR
+#ifndef GL_DEPTH
+#define GL_DEPTH 0x1801
+#endif //GL_DEPTH
+#ifndef GL_STENCIL
+#define GL_STENCIL 0x1802
+#endif //GL_STENCIL
+#ifndef GL_COLOR_INDEX
+#define GL_COLOR_INDEX 0x1900
+#endif //GL_COLOR_INDEX
+#ifndef GL_STENCIL_INDEX
+#define GL_STENCIL_INDEX 0x1901
+#endif //GL_STENCIL_INDEX
+#ifndef GL_DEPTH_COMPONENT
+#define GL_DEPTH_COMPONENT 0x1902
+#endif //GL_DEPTH_COMPONENT
+#ifndef GL_RED
+#define GL_RED 0x1903
+#endif //GL_RED
+#ifndef GL_GREEN
+#define GL_GREEN 0x1904
+#endif //GL_GREEN
+#ifndef GL_BLUE
+#define GL_BLUE 0x1905
+#endif //GL_BLUE
+#ifndef GL_ALPHA
+#define GL_ALPHA 0x1906
+#endif //GL_ALPHA
+#ifndef GL_RGB
+#define GL_RGB 0x1907
+#endif //GL_RGB
+#ifndef GL_RGBA
+#define GL_RGBA 0x1908
+#endif //GL_RGBA
+#ifndef GL_LUMINANCE
+#define GL_LUMINANCE 0x1909
+#endif //GL_LUMINANCE
+#ifndef GL_LUMINANCE_ALPHA
+#define GL_LUMINANCE_ALPHA 0x190A
+#endif //GL_LUMINANCE_ALPHA
+#ifndef GL_BITMAP
+#define GL_BITMAP 0x1A00
+#endif //GL_BITMAP
+#ifndef GL_POINT
+#define GL_POINT 0x1B00
+#endif //GL_POINT
+#ifndef GL_LINE
+#define GL_LINE 0x1B01
+#endif //GL_LINE
+#ifndef GL_FILL
+#define GL_FILL 0x1B02
+#endif //GL_FILL
+#ifndef GL_RENDER
+#define GL_RENDER 0x1C00
+#endif //GL_RENDER
+#ifndef GL_FEEDBACK
+#define GL_FEEDBACK 0x1C01
+#endif //GL_FEEDBACK
+#ifndef GL_SELECT
+#define GL_SELECT 0x1C02
+#endif //GL_SELECT
+#ifndef GL_FLAT
+#define GL_FLAT 0x1D00
+#endif //GL_FLAT
+#ifndef GL_SMOOTH
+#define GL_SMOOTH 0x1D01
+#endif //GL_SMOOTH
+#ifndef GL_KEEP
+#define GL_KEEP 0x1E00
+#endif //GL_KEEP
+#ifndef GL_REPLACE
+#define GL_REPLACE 0x1E01
+#endif //GL_REPLACE
+#ifndef GL_INCR
+#define GL_INCR 0x1E02
+#endif //GL_INCR
+#ifndef GL_DECR
+#define GL_DECR 0x1E03
+#endif //GL_DECR
+#ifndef GL_VENDOR
+#define GL_VENDOR 0x1F00
+#endif //GL_VENDOR
+#ifndef GL_RENDERER
+#define GL_RENDERER 0x1F01
+#endif //GL_RENDERER
+#ifndef GL_VERSION
+#define GL_VERSION 0x1F02
+#endif //GL_VERSION
+#ifndef GL_EXTENSIONS
+#define GL_EXTENSIONS 0x1F03
+#endif //GL_EXTENSIONS
+#ifndef GL_S
+#define GL_S 0x2000
+#endif //GL_S
+#ifndef GL_MULTISAMPLE_BIT
+#define GL_MULTISAMPLE_BIT 0x20000000
+#endif //GL_MULTISAMPLE_BIT
+#ifndef GL_T
+#define GL_T 0x2001
+#endif //GL_T
+#ifndef GL_R
+#define GL_R 0x2002
+#endif //GL_R
+#ifndef GL_Q
+#define GL_Q 0x2003
+#endif //GL_Q
+#ifndef GL_MODULATE
+#define GL_MODULATE 0x2100
+#endif //GL_MODULATE
+#ifndef GL_DECAL
+#define GL_DECAL 0x2101
+#endif //GL_DECAL
+#ifndef GL_TEXTURE_ENV_MODE
+#define GL_TEXTURE_ENV_MODE 0x2200
+#endif //GL_TEXTURE_ENV_MODE
+#ifndef GL_TEXTURE_ENV_COLOR
+#define GL_TEXTURE_ENV_COLOR 0x2201
+#endif //GL_TEXTURE_ENV_COLOR
+#ifndef GL_TEXTURE_ENV
+#define GL_TEXTURE_ENV 0x2300
+#endif //GL_TEXTURE_ENV
+#ifndef GL_EYE_LINEAR
+#define GL_EYE_LINEAR 0x2400
+#endif //GL_EYE_LINEAR
+#ifndef GL_OBJECT_LINEAR
+#define GL_OBJECT_LINEAR 0x2401
+#endif //GL_OBJECT_LINEAR
+#ifndef GL_SPHERE_MAP
+#define GL_SPHERE_MAP 0x2402
+#endif //GL_SPHERE_MAP
+#ifndef GL_TEXTURE_GEN_MODE
+#define GL_TEXTURE_GEN_MODE 0x2500
+#endif //GL_TEXTURE_GEN_MODE
+#ifndef GL_OBJECT_PLANE
+#define GL_OBJECT_PLANE 0x2501
+#endif //GL_OBJECT_PLANE
+#ifndef GL_EYE_PLANE
+#define GL_EYE_PLANE 0x2502
+#endif //GL_EYE_PLANE
+#ifndef GL_NEAREST
+#define GL_NEAREST 0x2600
+#endif //GL_NEAREST
+#ifndef GL_LINEAR
+#define GL_LINEAR 0x2601
+#endif //GL_LINEAR
+#ifndef GL_NEAREST_MIPMAP_NEAREST
+#define GL_NEAREST_MIPMAP_NEAREST 0x2700
+#endif //GL_NEAREST_MIPMAP_NEAREST
+#ifndef GL_LINEAR_MIPMAP_NEAREST
+#define GL_LINEAR_MIPMAP_NEAREST 0x2701
+#endif //GL_LINEAR_MIPMAP_NEAREST
+#ifndef GL_NEAREST_MIPMAP_LINEAR
+#define GL_NEAREST_MIPMAP_LINEAR 0x2702
+#endif //GL_NEAREST_MIPMAP_LINEAR
+#ifndef GL_LINEAR_MIPMAP_LINEAR
+#define GL_LINEAR_MIPMAP_LINEAR 0x2703
+#endif //GL_LINEAR_MIPMAP_LINEAR
+#ifndef GL_TEXTURE_MAG_FILTER
+#define GL_TEXTURE_MAG_FILTER 0x2800
+#endif //GL_TEXTURE_MAG_FILTER
+#ifndef GL_TEXTURE_MIN_FILTER
+#define GL_TEXTURE_MIN_FILTER 0x2801
+#endif //GL_TEXTURE_MIN_FILTER
+#ifndef GL_TEXTURE_WRAP_S
+#define GL_TEXTURE_WRAP_S 0x2802
+#endif //GL_TEXTURE_WRAP_S
+#ifndef GL_TEXTURE_WRAP_T
+#define GL_TEXTURE_WRAP_T 0x2803
+#endif //GL_TEXTURE_WRAP_T
+#ifndef GL_CLAMP
+#define GL_CLAMP 0x2900
+#endif //GL_CLAMP
+#ifndef GL_REPEAT
+#define GL_REPEAT 0x2901
+#endif //GL_REPEAT
+#ifndef GL_POLYGON_OFFSET_UNITS
+#define GL_POLYGON_OFFSET_UNITS 0x2A00
+#endif //GL_POLYGON_OFFSET_UNITS
+#ifndef GL_POLYGON_OFFSET_POINT
+#define GL_POLYGON_OFFSET_POINT 0x2A01
+#endif //GL_POLYGON_OFFSET_POINT
+#ifndef GL_POLYGON_OFFSET_LINE
+#define GL_POLYGON_OFFSET_LINE 0x2A02
+#endif //GL_POLYGON_OFFSET_LINE
+#ifndef GL_R3_G3_B2
+#define GL_R3_G3_B2 0x2A10
+#endif //GL_R3_G3_B2
+#ifndef GL_V2F
+#define GL_V2F 0x2A20
+#endif //GL_V2F
+#ifndef GL_V3F
+#define GL_V3F 0x2A21
+#endif //GL_V3F
+#ifndef GL_C4UB_V2F
+#define GL_C4UB_V2F 0x2A22
+#endif //GL_C4UB_V2F
+#ifndef GL_C4UB_V3F
+#define GL_C4UB_V3F 0x2A23
+#endif //GL_C4UB_V3F
+#ifndef GL_C3F_V3F
+#define GL_C3F_V3F 0x2A24
+#endif //GL_C3F_V3F
+#ifndef GL_N3F_V3F
+#define GL_N3F_V3F 0x2A25
+#endif //GL_N3F_V3F
+#ifndef GL_C4F_N3F_V3F
+#define GL_C4F_N3F_V3F 0x2A26
+#endif //GL_C4F_N3F_V3F
+#ifndef GL_T2F_V3F
+#define GL_T2F_V3F 0x2A27
+#endif //GL_T2F_V3F
+#ifndef GL_T4F_V4F
+#define GL_T4F_V4F 0x2A28
+#endif //GL_T4F_V4F
+#ifndef GL_T2F_C4UB_V3F
+#define GL_T2F_C4UB_V3F 0x2A29
+#endif //GL_T2F_C4UB_V3F
+#ifndef GL_T2F_C3F_V3F
+#define GL_T2F_C3F_V3F 0x2A2A
+#endif //GL_T2F_C3F_V3F
+#ifndef GL_T2F_N3F_V3F
+#define GL_T2F_N3F_V3F 0x2A2B
+#endif //GL_T2F_N3F_V3F
+#ifndef GL_T2F_C4F_N3F_V3F
+#define GL_T2F_C4F_N3F_V3F 0x2A2C
+#endif //GL_T2F_C4F_N3F_V3F
+#ifndef GL_T4F_C4F_N3F_V4F
+#define GL_T4F_C4F_N3F_V4F 0x2A2D
+#endif //GL_T4F_C4F_N3F_V4F
+#ifndef GL_CLIP_PLANE0
+#define GL_CLIP_PLANE0 0x3000
+#endif //GL_CLIP_PLANE0
+#ifndef GL_CLIP_PLANE1
+#define GL_CLIP_PLANE1 0x3001
+#endif //GL_CLIP_PLANE1
+#ifndef GL_CLIP_PLANE2
+#define GL_CLIP_PLANE2 0x3002
+#endif //GL_CLIP_PLANE2
+#ifndef GL_CLIP_PLANE3
+#define GL_CLIP_PLANE3 0x3003
+#endif //GL_CLIP_PLANE3
+#ifndef GL_CLIP_PLANE4
+#define GL_CLIP_PLANE4 0x3004
+#endif //GL_CLIP_PLANE4
+#ifndef GL_CLIP_PLANE5
+#define GL_CLIP_PLANE5 0x3005
+#endif //GL_CLIP_PLANE5
+#ifndef GL_LIGHT0
+#define GL_LIGHT0 0x4000
+#endif //GL_LIGHT0
+#ifndef GL_LIGHT1
+#define GL_LIGHT1 0x4001
+#endif //GL_LIGHT1
+#ifndef GL_LIGHT2
+#define GL_LIGHT2 0x4002
+#endif //GL_LIGHT2
+#ifndef GL_LIGHT3
+#define GL_LIGHT3 0x4003
+#endif //GL_LIGHT3
+#ifndef GL_LIGHT4
+#define GL_LIGHT4 0x4004
+#endif //GL_LIGHT4
+#ifndef GL_LIGHT5
+#define GL_LIGHT5 0x4005
+#endif //GL_LIGHT5
+#ifndef GL_LIGHT6
+#define GL_LIGHT6 0x4006
+#endif //GL_LIGHT6
+#ifndef GL_LIGHT7
+#define GL_LIGHT7 0x4007
+#endif //GL_LIGHT7
+#ifndef GL_CONSTANT_COLOR
+#define GL_CONSTANT_COLOR 0x8001
+#endif //GL_CONSTANT_COLOR
+#ifndef GL_ONE_MINUS_CONSTANT_COLOR
+#define GL_ONE_MINUS_CONSTANT_COLOR 0x8002
+#endif //GL_ONE_MINUS_CONSTANT_COLOR
+#ifndef GL_CONSTANT_ALPHA
+#define GL_CONSTANT_ALPHA 0x8003
+#endif //GL_CONSTANT_ALPHA
+#ifndef GL_ONE_MINUS_CONSTANT_ALPHA
+#define GL_ONE_MINUS_CONSTANT_ALPHA 0x8004
+#endif //GL_ONE_MINUS_CONSTANT_ALPHA
+#ifndef GL_FUNC_ADD
+#define GL_FUNC_ADD 0x8006
+#endif //GL_FUNC_ADD
+#ifndef GL_MIN
+#define GL_MIN 0x8007
+#endif //GL_MIN
+#ifndef GL_MAX
+#define GL_MAX 0x8008
+#endif //GL_MAX
+#ifndef GL_FUNC_SUBTRACT
+#define GL_FUNC_SUBTRACT 0x800A
+#endif //GL_FUNC_SUBTRACT
+#ifndef GL_FUNC_REVERSE_SUBTRACT
+#define GL_FUNC_REVERSE_SUBTRACT 0x800B
+#endif //GL_FUNC_REVERSE_SUBTRACT
+#ifndef GL_UNSIGNED_BYTE_3_3_2
+#define GL_UNSIGNED_BYTE_3_3_2 0x8032
+#endif //GL_UNSIGNED_BYTE_3_3_2
+#ifndef GL_UNSIGNED_SHORT_4_4_4_4
+#define GL_UNSIGNED_SHORT_4_4_4_4 0x8033
+#endif //GL_UNSIGNED_SHORT_4_4_4_4
+#ifndef GL_UNSIGNED_SHORT_5_5_5_1
+#define GL_UNSIGNED_SHORT_5_5_5_1 0x8034
+#endif //GL_UNSIGNED_SHORT_5_5_5_1
+#ifndef GL_UNSIGNED_INT_8_8_8_8
+#define GL_UNSIGNED_INT_8_8_8_8 0x8035
+#endif //GL_UNSIGNED_INT_8_8_8_8
+#ifndef GL_UNSIGNED_INT_10_10_10_2
+#define GL_UNSIGNED_INT_10_10_10_2 0x8036
+#endif //GL_UNSIGNED_INT_10_10_10_2
+#ifndef GL_POLYGON_OFFSET_FILL
+#define GL_POLYGON_OFFSET_FILL 0x8037
+#endif //GL_POLYGON_OFFSET_FILL
+#ifndef GL_POLYGON_OFFSET_FACTOR
+#define GL_POLYGON_OFFSET_FACTOR 0x8038
+#endif //GL_POLYGON_OFFSET_FACTOR
+#ifndef GL_RESCALE_NORMAL
+#define GL_RESCALE_NORMAL 0x803A
+#endif //GL_RESCALE_NORMAL
+#ifndef GL_ALPHA4
+#define GL_ALPHA4 0x803B
+#endif //GL_ALPHA4
+#ifndef GL_ALPHA8
+#define GL_ALPHA8 0x803C
+#endif //GL_ALPHA8
+#ifndef GL_ALPHA12
+#define GL_ALPHA12 0x803D
+#endif //GL_ALPHA12
+#ifndef GL_ALPHA16
+#define GL_ALPHA16 0x803E
+#endif //GL_ALPHA16
+#ifndef GL_LUMINANCE4
+#define GL_LUMINANCE4 0x803F
+#endif //GL_LUMINANCE4
+#ifndef GL_LUMINANCE8
+#define GL_LUMINANCE8 0x8040
+#endif //GL_LUMINANCE8
+#ifndef GL_LUMINANCE12
+#define GL_LUMINANCE12 0x8041
+#endif //GL_LUMINANCE12
+#ifndef GL_LUMINANCE16
+#define GL_LUMINANCE16 0x8042
+#endif //GL_LUMINANCE16
+#ifndef GL_LUMINANCE4_ALPHA4
+#define GL_LUMINANCE4_ALPHA4 0x8043
+#endif //GL_LUMINANCE4_ALPHA4
+#ifndef GL_LUMINANCE6_ALPHA2
+#define GL_LUMINANCE6_ALPHA2 0x8044
+#endif //GL_LUMINANCE6_ALPHA2
+#ifndef GL_LUMINANCE8_ALPHA8
+#define GL_LUMINANCE8_ALPHA8 0x8045
+#endif //GL_LUMINANCE8_ALPHA8
+#ifndef GL_LUMINANCE12_ALPHA4
+#define GL_LUMINANCE12_ALPHA4 0x8046
+#endif //GL_LUMINANCE12_ALPHA4
+#ifndef GL_LUMINANCE12_ALPHA12
+#define GL_LUMINANCE12_ALPHA12 0x8047
+#endif //GL_LUMINANCE12_ALPHA12
+#ifndef GL_LUMINANCE16_ALPHA16
+#define GL_LUMINANCE16_ALPHA16 0x8048
+#endif //GL_LUMINANCE16_ALPHA16
+#ifndef GL_INTENSITY
+#define GL_INTENSITY 0x8049
+#endif //GL_INTENSITY
+#ifndef GL_INTENSITY4
+#define GL_INTENSITY4 0x804A
+#endif //GL_INTENSITY4
+#ifndef GL_INTENSITY8
+#define GL_INTENSITY8 0x804B
+#endif //GL_INTENSITY8
+#ifndef GL_INTENSITY12
+#define GL_INTENSITY12 0x804C
+#endif //GL_INTENSITY12
+#ifndef GL_INTENSITY16
+#define GL_INTENSITY16 0x804D
+#endif //GL_INTENSITY16
+#ifndef GL_RGB4
+#define GL_RGB4 0x804F
+#endif //GL_RGB4
+#ifndef GL_RGB5
+#define GL_RGB5 0x8050
+#endif //GL_RGB5
+#ifndef GL_RGB8
+#define GL_RGB8 0x8051
+#endif //GL_RGB8
+#ifndef GL_RGB10
+#define GL_RGB10 0x8052
+#endif //GL_RGB10
+#ifndef GL_RGB12
+#define GL_RGB12 0x8053
+#endif //GL_RGB12
+#ifndef GL_RGB16
+#define GL_RGB16 0x8054
+#endif //GL_RGB16
+#ifndef GL_RGBA2
+#define GL_RGBA2 0x8055
+#endif //GL_RGBA2
+#ifndef GL_RGBA4
+#define GL_RGBA4 0x8056
+#endif //GL_RGBA4
+#ifndef GL_RGB5_A1
+#define GL_RGB5_A1 0x8057
+#endif //GL_RGB5_A1
+#ifndef GL_RGBA8
+#define GL_RGBA8 0x8058
+#endif //GL_RGBA8
+#ifndef GL_RGB10_A2
+#define GL_RGB10_A2 0x8059
+#endif //GL_RGB10_A2
+#ifndef GL_RGBA12
+#define GL_RGBA12 0x805A
+#endif //GL_RGBA12
+#ifndef GL_RGBA16
+#define GL_RGBA16 0x805B
+#endif //GL_RGBA16
+#ifndef GL_TEXTURE_RED_SIZE
+#define GL_TEXTURE_RED_SIZE 0x805C
+#endif //GL_TEXTURE_RED_SIZE
+#ifndef GL_TEXTURE_GREEN_SIZE
+#define GL_TEXTURE_GREEN_SIZE 0x805D
+#endif //GL_TEXTURE_GREEN_SIZE
+#ifndef GL_TEXTURE_BLUE_SIZE
+#define GL_TEXTURE_BLUE_SIZE 0x805E
+#endif //GL_TEXTURE_BLUE_SIZE
+#ifndef GL_TEXTURE_ALPHA_SIZE
+#define GL_TEXTURE_ALPHA_SIZE 0x805F
+#endif //GL_TEXTURE_ALPHA_SIZE
+#ifndef GL_TEXTURE_LUMINANCE_SIZE
+#define GL_TEXTURE_LUMINANCE_SIZE 0x8060
+#endif //GL_TEXTURE_LUMINANCE_SIZE
+#ifndef GL_TEXTURE_INTENSITY_SIZE
+#define GL_TEXTURE_INTENSITY_SIZE 0x8061
+#endif //GL_TEXTURE_INTENSITY_SIZE
+#ifndef GL_PROXY_TEXTURE_1D
+#define GL_PROXY_TEXTURE_1D 0x8063
+#endif //GL_PROXY_TEXTURE_1D
+#ifndef GL_PROXY_TEXTURE_2D
+#define GL_PROXY_TEXTURE_2D 0x8064
+#endif //GL_PROXY_TEXTURE_2D
+#ifndef GL_TEXTURE_PRIORITY
+#define GL_TEXTURE_PRIORITY 0x8066
+#endif //GL_TEXTURE_PRIORITY
+#ifndef GL_TEXTURE_RESIDENT
+#define GL_TEXTURE_RESIDENT 0x8067
+#endif //GL_TEXTURE_RESIDENT
+#ifndef GL_TEXTURE_BINDING_1D
+#define GL_TEXTURE_BINDING_1D 0x8068
+#endif //GL_TEXTURE_BINDING_1D
+#ifndef GL_TEXTURE_BINDING_2D
+#define GL_TEXTURE_BINDING_2D 0x8069
+#endif //GL_TEXTURE_BINDING_2D
+#ifndef GL_TEXTURE_BINDING_3D
+#define GL_TEXTURE_BINDING_3D 0x806A
+#endif //GL_TEXTURE_BINDING_3D
+#ifndef GL_PACK_SKIP_IMAGES
+#define GL_PACK_SKIP_IMAGES 0x806B
+#endif //GL_PACK_SKIP_IMAGES
+#ifndef GL_PACK_IMAGE_HEIGHT
+#define GL_PACK_IMAGE_HEIGHT 0x806C
+#endif //GL_PACK_IMAGE_HEIGHT
+#ifndef GL_UNPACK_SKIP_IMAGES
+#define GL_UNPACK_SKIP_IMAGES 0x806D
+#endif //GL_UNPACK_SKIP_IMAGES
+#ifndef GL_UNPACK_IMAGE_HEIGHT
+#define GL_UNPACK_IMAGE_HEIGHT 0x806E
+#endif //GL_UNPACK_IMAGE_HEIGHT
+#ifndef GL_TEXTURE_3D
+#define GL_TEXTURE_3D 0x806F
+#endif //GL_TEXTURE_3D
+#ifndef GL_PROXY_TEXTURE_3D
+#define GL_PROXY_TEXTURE_3D 0x8070
+#endif //GL_PROXY_TEXTURE_3D
+#ifndef GL_TEXTURE_DEPTH
+#define GL_TEXTURE_DEPTH 0x8071
+#endif //GL_TEXTURE_DEPTH
+#ifndef GL_TEXTURE_WRAP_R
+#define GL_TEXTURE_WRAP_R 0x8072
+#endif //GL_TEXTURE_WRAP_R
+#ifndef GL_MAX_3D_TEXTURE_SIZE
+#define GL_MAX_3D_TEXTURE_SIZE 0x8073
+#endif //GL_MAX_3D_TEXTURE_SIZE
+#ifndef GL_VERTEX_ARRAY
+#define GL_VERTEX_ARRAY 0x8074
+#endif //GL_VERTEX_ARRAY
+#ifndef GL_NORMAL_ARRAY
+#define GL_NORMAL_ARRAY 0x8075
+#endif //GL_NORMAL_ARRAY
+#ifndef GL_COLOR_ARRAY
+#define GL_COLOR_ARRAY 0x8076
+#endif //GL_COLOR_ARRAY
+#ifndef GL_INDEX_ARRAY
+#define GL_INDEX_ARRAY 0x8077
+#endif //GL_INDEX_ARRAY
+#ifndef GL_TEXTURE_COORD_ARRAY
+#define GL_TEXTURE_COORD_ARRAY 0x8078
+#endif //GL_TEXTURE_COORD_ARRAY
+#ifndef GL_EDGE_FLAG_ARRAY
+#define GL_EDGE_FLAG_ARRAY 0x8079
+#endif //GL_EDGE_FLAG_ARRAY
+#ifndef GL_VERTEX_ARRAY_SIZE
+#define GL_VERTEX_ARRAY_SIZE 0x807A
+#endif //GL_VERTEX_ARRAY_SIZE
+#ifndef GL_VERTEX_ARRAY_TYPE
+#define GL_VERTEX_ARRAY_TYPE 0x807B
+#endif //GL_VERTEX_ARRAY_TYPE
+#ifndef GL_VERTEX_ARRAY_STRIDE
+#define GL_VERTEX_ARRAY_STRIDE 0x807C
+#endif //GL_VERTEX_ARRAY_STRIDE
+#ifndef GL_NORMAL_ARRAY_TYPE
+#define GL_NORMAL_ARRAY_TYPE 0x807E
+#endif //GL_NORMAL_ARRAY_TYPE
+#ifndef GL_NORMAL_ARRAY_STRIDE
+#define GL_NORMAL_ARRAY_STRIDE 0x807F
+#endif //GL_NORMAL_ARRAY_STRIDE
+#ifndef GL_COLOR_ARRAY_SIZE
+#define GL_COLOR_ARRAY_SIZE 0x8081
+#endif //GL_COLOR_ARRAY_SIZE
+#ifndef GL_COLOR_ARRAY_TYPE
+#define GL_COLOR_ARRAY_TYPE 0x8082
+#endif //GL_COLOR_ARRAY_TYPE
+#ifndef GL_COLOR_ARRAY_STRIDE
+#define GL_COLOR_ARRAY_STRIDE 0x8083
+#endif //GL_COLOR_ARRAY_STRIDE
+#ifndef GL_INDEX_ARRAY_TYPE
+#define GL_INDEX_ARRAY_TYPE 0x8085
+#endif //GL_INDEX_ARRAY_TYPE
+#ifndef GL_INDEX_ARRAY_STRIDE
+#define GL_INDEX_ARRAY_STRIDE 0x8086
+#endif //GL_INDEX_ARRAY_STRIDE
+#ifndef GL_TEXTURE_COORD_ARRAY_SIZE
+#define GL_TEXTURE_COORD_ARRAY_SIZE 0x8088
+#endif //GL_TEXTURE_COORD_ARRAY_SIZE
+#ifndef GL_TEXTURE_COORD_ARRAY_TYPE
+#define GL_TEXTURE_COORD_ARRAY_TYPE 0x8089
+#endif //GL_TEXTURE_COORD_ARRAY_TYPE
+#ifndef GL_TEXTURE_COORD_ARRAY_STRIDE
+#define GL_TEXTURE_COORD_ARRAY_STRIDE 0x808A
+#endif //GL_TEXTURE_COORD_ARRAY_STRIDE
+#ifndef GL_EDGE_FLAG_ARRAY_STRIDE
+#define GL_EDGE_FLAG_ARRAY_STRIDE 0x808C
+#endif //GL_EDGE_FLAG_ARRAY_STRIDE
+#ifndef GL_VERTEX_ARRAY_POINTER
+#define GL_VERTEX_ARRAY_POINTER 0x808E
+#endif //GL_VERTEX_ARRAY_POINTER
+#ifndef GL_NORMAL_ARRAY_POINTER
+#define GL_NORMAL_ARRAY_POINTER 0x808F
+#endif //GL_NORMAL_ARRAY_POINTER
+#ifndef GL_COLOR_ARRAY_POINTER
+#define GL_COLOR_ARRAY_POINTER 0x8090
+#endif //GL_COLOR_ARRAY_POINTER
+#ifndef GL_INDEX_ARRAY_POINTER
+#define GL_INDEX_ARRAY_POINTER 0x8091
+#endif //GL_INDEX_ARRAY_POINTER
+#ifndef GL_TEXTURE_COORD_ARRAY_POINTER
+#define GL_TEXTURE_COORD_ARRAY_POINTER 0x8092
+#endif //GL_TEXTURE_COORD_ARRAY_POINTER
+#ifndef GL_EDGE_FLAG_ARRAY_POINTER
+#define GL_EDGE_FLAG_ARRAY_POINTER 0x8093
+#endif //GL_EDGE_FLAG_ARRAY_POINTER
+#ifndef GL_MULTISAMPLE
+#define GL_MULTISAMPLE 0x809D
+#endif //GL_MULTISAMPLE
+#ifndef GL_SAMPLE_ALPHA_TO_COVERAGE
+#define GL_SAMPLE_ALPHA_TO_COVERAGE 0x809E
+#endif //GL_SAMPLE_ALPHA_TO_COVERAGE
+#ifndef GL_SAMPLE_ALPHA_TO_ONE
+#define GL_SAMPLE_ALPHA_TO_ONE 0x809F
+#endif //GL_SAMPLE_ALPHA_TO_ONE
+#ifndef GL_SAMPLE_COVERAGE
+#define GL_SAMPLE_COVERAGE 0x80A0
+#endif //GL_SAMPLE_COVERAGE
+#ifndef GL_SAMPLE_BUFFERS
+#define GL_SAMPLE_BUFFERS 0x80A8
+#endif //GL_SAMPLE_BUFFERS
+#ifndef GL_SAMPLES
+#define GL_SAMPLES 0x80A9
+#endif //GL_SAMPLES
+#ifndef GL_SAMPLE_COVERAGE_VALUE
+#define GL_SAMPLE_COVERAGE_VALUE 0x80AA
+#endif //GL_SAMPLE_COVERAGE_VALUE
+#ifndef GL_SAMPLE_COVERAGE_INVERT
+#define GL_SAMPLE_COVERAGE_INVERT 0x80AB
+#endif //GL_SAMPLE_COVERAGE_INVERT
+#ifndef GL_BLEND_DST_RGB
+#define GL_BLEND_DST_RGB 0x80C8
+#endif //GL_BLEND_DST_RGB
+#ifndef GL_BLEND_SRC_RGB
+#define GL_BLEND_SRC_RGB 0x80C9
+#endif //GL_BLEND_SRC_RGB
+#ifndef GL_BLEND_DST_ALPHA
+#define GL_BLEND_DST_ALPHA 0x80CA
+#endif //GL_BLEND_DST_ALPHA
+#ifndef GL_BLEND_SRC_ALPHA
+#define GL_BLEND_SRC_ALPHA 0x80CB
+#endif //GL_BLEND_SRC_ALPHA
+#ifndef GL_BGR
+#define GL_BGR 0x80E0
+#endif //GL_BGR
+#ifndef GL_BGRA
+#define GL_BGRA 0x80E1
+#endif //GL_BGRA
+#ifndef GL_MAX_ELEMENTS_VERTICES
+#define GL_MAX_ELEMENTS_VERTICES 0x80E8
+#endif //GL_MAX_ELEMENTS_VERTICES
+#ifndef GL_MAX_ELEMENTS_INDICES
+#define GL_MAX_ELEMENTS_INDICES 0x80E9
+#endif //GL_MAX_ELEMENTS_INDICES
+#ifndef GL_POINT_SIZE_MIN
+#define GL_POINT_SIZE_MIN 0x8126
+#endif //GL_POINT_SIZE_MIN
+#ifndef GL_POINT_SIZE_MAX
+#define GL_POINT_SIZE_MAX 0x8127
+#endif //GL_POINT_SIZE_MAX
+#ifndef GL_POINT_FADE_THRESHOLD_SIZE
+#define GL_POINT_FADE_THRESHOLD_SIZE 0x8128
+#endif //GL_POINT_FADE_THRESHOLD_SIZE
+#ifndef GL_POINT_DISTANCE_ATTENUATION
+#define GL_POINT_DISTANCE_ATTENUATION 0x8129
+#endif //GL_POINT_DISTANCE_ATTENUATION
+#ifndef GL_CLAMP_TO_BORDER
+#define GL_CLAMP_TO_BORDER 0x812D
+#endif //GL_CLAMP_TO_BORDER
+#ifndef GL_CLAMP_TO_EDGE
+#define GL_CLAMP_TO_EDGE 0x812F
+#endif //GL_CLAMP_TO_EDGE
+#ifndef GL_TEXTURE_MIN_LOD
+#define GL_TEXTURE_MIN_LOD 0x813A
+#endif //GL_TEXTURE_MIN_LOD
+#ifndef GL_TEXTURE_MAX_LOD
+#define GL_TEXTURE_MAX_LOD 0x813B
+#endif //GL_TEXTURE_MAX_LOD
+#ifndef GL_TEXTURE_BASE_LEVEL
+#define GL_TEXTURE_BASE_LEVEL 0x813C
+#endif //GL_TEXTURE_BASE_LEVEL
+#ifndef GL_TEXTURE_MAX_LEVEL
+#define GL_TEXTURE_MAX_LEVEL 0x813D
+#endif //GL_TEXTURE_MAX_LEVEL
+#ifndef GL_GENERATE_MIPMAP
+#define GL_GENERATE_MIPMAP 0x8191
+#endif //GL_GENERATE_MIPMAP
+#ifndef GL_GENERATE_MIPMAP_HINT
+#define GL_GENERATE_MIPMAP_HINT 0x8192
+#endif //GL_GENERATE_MIPMAP_HINT
+#ifndef GL_DEPTH_COMPONENT16
+#define GL_DEPTH_COMPONENT16 0x81A5
+#endif //GL_DEPTH_COMPONENT16
+#ifndef GL_DEPTH_COMPONENT24
+#define GL_DEPTH_COMPONENT24 0x81A6
+#endif //GL_DEPTH_COMPONENT24
+#ifndef GL_DEPTH_COMPONENT32
+#define GL_DEPTH_COMPONENT32 0x81A7
+#endif //GL_DEPTH_COMPONENT32
+#ifndef GL_LIGHT_MODEL_COLOR_CONTROL
+#define GL_LIGHT_MODEL_COLOR_CONTROL 0x81F8
+#endif //GL_LIGHT_MODEL_COLOR_CONTROL
+#ifndef GL_SINGLE_COLOR
+#define GL_SINGLE_COLOR 0x81F9
+#endif //GL_SINGLE_COLOR
+#ifndef GL_SEPARATE_SPECULAR_COLOR
+#define GL_SEPARATE_SPECULAR_COLOR 0x81FA
+#endif //GL_SEPARATE_SPECULAR_COLOR
+#ifndef GL_UNSIGNED_BYTE_2_3_3_REV
+#define GL_UNSIGNED_BYTE_2_3_3_REV 0x8362
+#endif //GL_UNSIGNED_BYTE_2_3_3_REV
+#ifndef GL_UNSIGNED_SHORT_5_6_5
+#define GL_UNSIGNED_SHORT_5_6_5 0x8363
+#endif //GL_UNSIGNED_SHORT_5_6_5
+#ifndef GL_UNSIGNED_SHORT_5_6_5_REV
+#define GL_UNSIGNED_SHORT_5_6_5_REV 0x8364
+#endif //GL_UNSIGNED_SHORT_5_6_5_REV
+#ifndef GL_UNSIGNED_SHORT_4_4_4_4_REV
+#define GL_UNSIGNED_SHORT_4_4_4_4_REV 0x8365
+#endif //GL_UNSIGNED_SHORT_4_4_4_4_REV
+#ifndef GL_UNSIGNED_SHORT_1_5_5_5_REV
+#define GL_UNSIGNED_SHORT_1_5_5_5_REV 0x8366
+#endif //GL_UNSIGNED_SHORT_1_5_5_5_REV
+#ifndef GL_UNSIGNED_INT_8_8_8_8_REV
+#define GL_UNSIGNED_INT_8_8_8_8_REV 0x8367
+#endif //GL_UNSIGNED_INT_8_8_8_8_REV
+#ifndef GL_UNSIGNED_INT_2_10_10_10_REV
+#define GL_UNSIGNED_INT_2_10_10_10_REV 0x8368
+#endif //GL_UNSIGNED_INT_2_10_10_10_REV
+#ifndef GL_MIRRORED_REPEAT
+#define GL_MIRRORED_REPEAT 0x8370
+#endif //GL_MIRRORED_REPEAT
+#ifndef GL_FOG_COORD_SRC
+#define GL_FOG_COORD_SRC 0x8450
+#endif //GL_FOG_COORD_SRC
+#ifndef GL_FOG_COORDINATE_SOURCE
+#define GL_FOG_COORDINATE_SOURCE 0x8450
+#endif //GL_FOG_COORDINATE_SOURCE
+#ifndef GL_FOG_COORDINATE
+#define GL_FOG_COORDINATE 0x8451
+#endif //GL_FOG_COORDINATE
+#ifndef GL_FOG_COORD
+#define GL_FOG_COORD 0x8451
+#endif //GL_FOG_COORD
+#ifndef GL_FRAGMENT_DEPTH
+#define GL_FRAGMENT_DEPTH 0x8452
+#endif //GL_FRAGMENT_DEPTH
+#ifndef GL_CURRENT_FOG_COORDINATE
+#define GL_CURRENT_FOG_COORDINATE 0x8453
+#endif //GL_CURRENT_FOG_COORDINATE
+#ifndef GL_CURRENT_FOG_COORD
+#define GL_CURRENT_FOG_COORD 0x8453
+#endif //GL_CURRENT_FOG_COORD
+#ifndef GL_FOG_COORD_ARRAY_TYPE
+#define GL_FOG_COORD_ARRAY_TYPE 0x8454
+#endif //GL_FOG_COORD_ARRAY_TYPE
+#ifndef GL_FOG_COORDINATE_ARRAY_TYPE
+#define GL_FOG_COORDINATE_ARRAY_TYPE 0x8454
+#endif //GL_FOG_COORDINATE_ARRAY_TYPE
+#ifndef GL_FOG_COORDINATE_ARRAY_STRIDE
+#define GL_FOG_COORDINATE_ARRAY_STRIDE 0x8455
+#endif //GL_FOG_COORDINATE_ARRAY_STRIDE
+#ifndef GL_FOG_COORD_ARRAY_STRIDE
+#define GL_FOG_COORD_ARRAY_STRIDE 0x8455
+#endif //GL_FOG_COORD_ARRAY_STRIDE
+#ifndef GL_FOG_COORD_ARRAY_POINTER
+#define GL_FOG_COORD_ARRAY_POINTER 0x8456
+#endif //GL_FOG_COORD_ARRAY_POINTER
+#ifndef GL_FOG_COORDINATE_ARRAY_POINTER
+#define GL_FOG_COORDINATE_ARRAY_POINTER 0x8456
+#endif //GL_FOG_COORDINATE_ARRAY_POINTER
+#ifndef GL_FOG_COORDINATE_ARRAY
+#define GL_FOG_COORDINATE_ARRAY 0x8457
+#endif //GL_FOG_COORDINATE_ARRAY
+#ifndef GL_FOG_COORD_ARRAY
+#define GL_FOG_COORD_ARRAY 0x8457
+#endif //GL_FOG_COORD_ARRAY
+#ifndef GL_COLOR_SUM
+#define GL_COLOR_SUM 0x8458
+#endif //GL_COLOR_SUM
+#ifndef GL_CURRENT_SECONDARY_COLOR
+#define GL_CURRENT_SECONDARY_COLOR 0x8459
+#endif //GL_CURRENT_SECONDARY_COLOR
+#ifndef GL_SECONDARY_COLOR_ARRAY_SIZE
+#define GL_SECONDARY_COLOR_ARRAY_SIZE 0x845A
+#endif //GL_SECONDARY_COLOR_ARRAY_SIZE
+#ifndef GL_SECONDARY_COLOR_ARRAY_TYPE
+#define GL_SECONDARY_COLOR_ARRAY_TYPE 0x845B
+#endif //GL_SECONDARY_COLOR_ARRAY_TYPE
+#ifndef GL_SECONDARY_COLOR_ARRAY_STRIDE
+#define GL_SECONDARY_COLOR_ARRAY_STRIDE 0x845C
+#endif //GL_SECONDARY_COLOR_ARRAY_STRIDE
+#ifndef GL_SECONDARY_COLOR_ARRAY_POINTER
+#define GL_SECONDARY_COLOR_ARRAY_POINTER 0x845D
+#endif //GL_SECONDARY_COLOR_ARRAY_POINTER
+#ifndef GL_SECONDARY_COLOR_ARRAY
+#define GL_SECONDARY_COLOR_ARRAY 0x845E
+#endif //GL_SECONDARY_COLOR_ARRAY
+#ifndef GL_ALIASED_POINT_SIZE_RANGE
+#define GL_ALIASED_POINT_SIZE_RANGE 0x846D
+#endif //GL_ALIASED_POINT_SIZE_RANGE
+#ifndef GL_ALIASED_LINE_WIDTH_RANGE
+#define GL_ALIASED_LINE_WIDTH_RANGE 0x846E
+#endif //GL_ALIASED_LINE_WIDTH_RANGE
+#ifndef GL_TEXTURE0
+#define GL_TEXTURE0 0x84C0
+#endif //GL_TEXTURE0
+#ifndef GL_TEXTURE1
+#define GL_TEXTURE1 0x84C1
+#endif //GL_TEXTURE1
+#ifndef GL_TEXTURE2
+#define GL_TEXTURE2 0x84C2
+#endif //GL_TEXTURE2
+#ifndef GL_TEXTURE3
+#define GL_TEXTURE3 0x84C3
+#endif //GL_TEXTURE3
+#ifndef GL_TEXTURE4
+#define GL_TEXTURE4 0x84C4
+#endif //GL_TEXTURE4
+#ifndef GL_TEXTURE5
+#define GL_TEXTURE5 0x84C5
+#endif //GL_TEXTURE5
+#ifndef GL_TEXTURE6
+#define GL_TEXTURE6 0x84C6
+#endif //GL_TEXTURE6
+#ifndef GL_TEXTURE7
+#define GL_TEXTURE7 0x84C7
+#endif //GL_TEXTURE7
+#ifndef GL_TEXTURE8
+#define GL_TEXTURE8 0x84C8
+#endif //GL_TEXTURE8
+#ifndef GL_TEXTURE9
+#define GL_TEXTURE9 0x84C9
+#endif //GL_TEXTURE9
+#ifndef GL_TEXTURE10
+#define GL_TEXTURE10 0x84CA
+#endif //GL_TEXTURE10
+#ifndef GL_TEXTURE11
+#define GL_TEXTURE11 0x84CB
+#endif //GL_TEXTURE11
+#ifndef GL_TEXTURE12
+#define GL_TEXTURE12 0x84CC
+#endif //GL_TEXTURE12
+#ifndef GL_TEXTURE13
+#define GL_TEXTURE13 0x84CD
+#endif //GL_TEXTURE13
+#ifndef GL_TEXTURE14
+#define GL_TEXTURE14 0x84CE
+#endif //GL_TEXTURE14
+#ifndef GL_TEXTURE15
+#define GL_TEXTURE15 0x84CF
+#endif //GL_TEXTURE15
+#ifndef GL_TEXTURE16
+#define GL_TEXTURE16 0x84D0
+#endif //GL_TEXTURE16
+#ifndef GL_TEXTURE17
+#define GL_TEXTURE17 0x84D1
+#endif //GL_TEXTURE17
+#ifndef GL_TEXTURE18
+#define GL_TEXTURE18 0x84D2
+#endif //GL_TEXTURE18
+#ifndef GL_TEXTURE19
+#define GL_TEXTURE19 0x84D3
+#endif //GL_TEXTURE19
+#ifndef GL_TEXTURE20
+#define GL_TEXTURE20 0x84D4
+#endif //GL_TEXTURE20
+#ifndef GL_TEXTURE21
+#define GL_TEXTURE21 0x84D5
+#endif //GL_TEXTURE21
+#ifndef GL_TEXTURE22
+#define GL_TEXTURE22 0x84D6
+#endif //GL_TEXTURE22
+#ifndef GL_TEXTURE23
+#define GL_TEXTURE23 0x84D7
+#endif //GL_TEXTURE23
+#ifndef GL_TEXTURE24
+#define GL_TEXTURE24 0x84D8
+#endif //GL_TEXTURE24
+#ifndef GL_TEXTURE25
+#define GL_TEXTURE25 0x84D9
+#endif //GL_TEXTURE25
+#ifndef GL_TEXTURE26
+#define GL_TEXTURE26 0x84DA
+#endif //GL_TEXTURE26
+#ifndef GL_TEXTURE27
+#define GL_TEXTURE27 0x84DB
+#endif //GL_TEXTURE27
+#ifndef GL_TEXTURE28
+#define GL_TEXTURE28 0x84DC
+#endif //GL_TEXTURE28
+#ifndef GL_TEXTURE29
+#define GL_TEXTURE29 0x84DD
+#endif //GL_TEXTURE29
+#ifndef GL_TEXTURE30
+#define GL_TEXTURE30 0x84DE
+#endif //GL_TEXTURE30
+#ifndef GL_TEXTURE31
+#define GL_TEXTURE31 0x84DF
+#endif //GL_TEXTURE31
+#ifndef GL_ACTIVE_TEXTURE
+#define GL_ACTIVE_TEXTURE 0x84E0
+#endif //GL_ACTIVE_TEXTURE
+#ifndef GL_CLIENT_ACTIVE_TEXTURE
+#define GL_CLIENT_ACTIVE_TEXTURE 0x84E1
+#endif //GL_CLIENT_ACTIVE_TEXTURE
+#ifndef GL_MAX_TEXTURE_UNITS
+#define GL_MAX_TEXTURE_UNITS 0x84E2
+#endif //GL_MAX_TEXTURE_UNITS
+#ifndef GL_TRANSPOSE_MODELVIEW_MATRIX
+#define GL_TRANSPOSE_MODELVIEW_MATRIX 0x84E3
+#endif //GL_TRANSPOSE_MODELVIEW_MATRIX
+#ifndef GL_TRANSPOSE_PROJECTION_MATRIX
+#define GL_TRANSPOSE_PROJECTION_MATRIX 0x84E4
+#endif //GL_TRANSPOSE_PROJECTION_MATRIX
+#ifndef GL_TRANSPOSE_TEXTURE_MATRIX
+#define GL_TRANSPOSE_TEXTURE_MATRIX 0x84E5
+#endif //GL_TRANSPOSE_TEXTURE_MATRIX
+#ifndef GL_TRANSPOSE_COLOR_MATRIX
+#define GL_TRANSPOSE_COLOR_MATRIX 0x84E6
+#endif //GL_TRANSPOSE_COLOR_MATRIX
+#ifndef GL_SUBTRACT
+#define GL_SUBTRACT 0x84E7
+#endif //GL_SUBTRACT
+#ifndef GL_COMPRESSED_ALPHA
+#define GL_COMPRESSED_ALPHA 0x84E9
+#endif //GL_COMPRESSED_ALPHA
+#ifndef GL_COMPRESSED_LUMINANCE
+#define GL_COMPRESSED_LUMINANCE 0x84EA
+#endif //GL_COMPRESSED_LUMINANCE
+#ifndef GL_COMPRESSED_LUMINANCE_ALPHA
+#define GL_COMPRESSED_LUMINANCE_ALPHA 0x84EB
+#endif //GL_COMPRESSED_LUMINANCE_ALPHA
+#ifndef GL_COMPRESSED_INTENSITY
+#define GL_COMPRESSED_INTENSITY 0x84EC
+#endif //GL_COMPRESSED_INTENSITY
+#ifndef GL_COMPRESSED_RGB
+#define GL_COMPRESSED_RGB 0x84ED
+#endif //GL_COMPRESSED_RGB
+#ifndef GL_COMPRESSED_RGBA
+#define GL_COMPRESSED_RGBA 0x84EE
+#endif //GL_COMPRESSED_RGBA
+#ifndef GL_TEXTURE_COMPRESSION_HINT
+#define GL_TEXTURE_COMPRESSION_HINT 0x84EF
+#endif //GL_TEXTURE_COMPRESSION_HINT
+#ifndef GL_MAX_TEXTURE_LOD_BIAS
+#define GL_MAX_TEXTURE_LOD_BIAS 0x84FD
+#endif //GL_MAX_TEXTURE_LOD_BIAS
+#ifndef GL_TEXTURE_FILTER_CONTROL
+#define GL_TEXTURE_FILTER_CONTROL 0x8500
+#endif //GL_TEXTURE_FILTER_CONTROL
+#ifndef GL_TEXTURE_LOD_BIAS
+#define GL_TEXTURE_LOD_BIAS 0x8501
+#endif //GL_TEXTURE_LOD_BIAS
+#ifndef GL_INCR_WRAP
+#define GL_INCR_WRAP 0x8507
+#endif //GL_INCR_WRAP
+#ifndef GL_DECR_WRAP
+#define GL_DECR_WRAP 0x8508
+#endif //GL_DECR_WRAP
+#ifndef GL_NORMAL_MAP
+#define GL_NORMAL_MAP 0x8511
+#endif //GL_NORMAL_MAP
+#ifndef GL_REFLECTION_MAP
+#define GL_REFLECTION_MAP 0x8512
+#endif //GL_REFLECTION_MAP
+#ifndef GL_TEXTURE_CUBE_MAP
+#define GL_TEXTURE_CUBE_MAP 0x8513
+#endif //GL_TEXTURE_CUBE_MAP
+#ifndef GL_TEXTURE_BINDING_CUBE_MAP
+#define GL_TEXTURE_BINDING_CUBE_MAP 0x8514
+#endif //GL_TEXTURE_BINDING_CUBE_MAP
+#ifndef GL_TEXTURE_CUBE_MAP_POSITIVE_X
+#define GL_TEXTURE_CUBE_MAP_POSITIVE_X 0x8515
+#endif //GL_TEXTURE_CUBE_MAP_POSITIVE_X
+#ifndef GL_TEXTURE_CUBE_MAP_NEGATIVE_X
+#define GL_TEXTURE_CUBE_MAP_NEGATIVE_X 0x8516
+#endif //GL_TEXTURE_CUBE_MAP_NEGATIVE_X
+#ifndef GL_TEXTURE_CUBE_MAP_POSITIVE_Y
+#define GL_TEXTURE_CUBE_MAP_POSITIVE_Y 0x8517
+#endif //GL_TEXTURE_CUBE_MAP_POSITIVE_Y
+#ifndef GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
+#define GL_TEXTURE_CUBE_MAP_NEGATIVE_Y 0x8518
+#endif //GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
+#ifndef GL_TEXTURE_CUBE_MAP_POSITIVE_Z
+#define GL_TEXTURE_CUBE_MAP_POSITIVE_Z 0x8519
+#endif //GL_TEXTURE_CUBE_MAP_POSITIVE_Z
+#ifndef GL_TEXTURE_CUBE_MAP_NEGATIVE_Z
+#define GL_TEXTURE_CUBE_MAP_NEGATIVE_Z 0x851A
+#endif //GL_TEXTURE_CUBE_MAP_NEGATIVE_Z
+#ifndef GL_PROXY_TEXTURE_CUBE_MAP
+#define GL_PROXY_TEXTURE_CUBE_MAP 0x851B
+#endif //GL_PROXY_TEXTURE_CUBE_MAP
+#ifndef GL_MAX_CUBE_MAP_TEXTURE_SIZE
+#define GL_MAX_CUBE_MAP_TEXTURE_SIZE 0x851C
+#endif //GL_MAX_CUBE_MAP_TEXTURE_SIZE
+#ifndef GL_COMBINE
+#define GL_COMBINE 0x8570
+#endif //GL_COMBINE
+#ifndef GL_COMBINE_RGB
+#define GL_COMBINE_RGB 0x8571
+#endif //GL_COMBINE_RGB
+#ifndef GL_COMBINE_ALPHA
+#define GL_COMBINE_ALPHA 0x8572
+#endif //GL_COMBINE_ALPHA
+#ifndef GL_RGB_SCALE
+#define GL_RGB_SCALE 0x8573
+#endif //GL_RGB_SCALE
+#ifndef GL_ADD_SIGNED
+#define GL_ADD_SIGNED 0x8574
+#endif //GL_ADD_SIGNED
+#ifndef GL_INTERPOLATE
+#define GL_INTERPOLATE 0x8575
+#endif //GL_INTERPOLATE
+#ifndef GL_CONSTANT
+#define GL_CONSTANT 0x8576
+#endif //GL_CONSTANT
+#ifndef GL_PRIMARY_COLOR
+#define GL_PRIMARY_COLOR 0x8577
+#endif //GL_PRIMARY_COLOR
+#ifndef GL_PREVIOUS
+#define GL_PREVIOUS 0x8578
+#endif //GL_PREVIOUS
+#ifndef GL_SOURCE0_RGB
+#define GL_SOURCE0_RGB 0x8580
+#endif //GL_SOURCE0_RGB
+#ifndef GL_SRC0_RGB
+#define GL_SRC0_RGB 0x8580
+#endif //GL_SRC0_RGB
+#ifndef GL_SOURCE1_RGB
+#define GL_SOURCE1_RGB 0x8581
+#endif //GL_SOURCE1_RGB
+#ifndef GL_SRC1_RGB
+#define GL_SRC1_RGB 0x8581
+#endif //GL_SRC1_RGB
+#ifndef GL_SRC2_RGB
+#define GL_SRC2_RGB 0x8582
+#endif //GL_SRC2_RGB
+#ifndef GL_SOURCE2_RGB
+#define GL_SOURCE2_RGB 0x8582
+#endif //GL_SOURCE2_RGB
+#ifndef GL_SRC0_ALPHA
+#define GL_SRC0_ALPHA 0x8588
+#endif //GL_SRC0_ALPHA
+#ifndef GL_SOURCE0_ALPHA
+#define GL_SOURCE0_ALPHA 0x8588
+#endif //GL_SOURCE0_ALPHA
+#ifndef GL_SOURCE1_ALPHA
+#define GL_SOURCE1_ALPHA 0x8589
+#endif //GL_SOURCE1_ALPHA
+#ifndef GL_SRC1_ALPHA
+#define GL_SRC1_ALPHA 0x8589
+#endif //GL_SRC1_ALPHA
+#ifndef GL_SRC2_ALPHA
+#define GL_SRC2_ALPHA 0x858A
+#endif //GL_SRC2_ALPHA
+#ifndef GL_SOURCE2_ALPHA
+#define GL_SOURCE2_ALPHA 0x858A
+#endif //GL_SOURCE2_ALPHA
+#ifndef GL_OPERAND0_RGB
+#define GL_OPERAND0_RGB 0x8590
+#endif //GL_OPERAND0_RGB
+#ifndef GL_OPERAND1_RGB
+#define GL_OPERAND1_RGB 0x8591
+#endif //GL_OPERAND1_RGB
+#ifndef GL_OPERAND2_RGB
+#define GL_OPERAND2_RGB 0x8592
+#endif //GL_OPERAND2_RGB
+#ifndef GL_OPERAND0_ALPHA
+#define GL_OPERAND0_ALPHA 0x8598
+#endif //GL_OPERAND0_ALPHA
+#ifndef GL_OPERAND1_ALPHA
+#define GL_OPERAND1_ALPHA 0x8599
+#endif //GL_OPERAND1_ALPHA
+#ifndef GL_OPERAND2_ALPHA
+#define GL_OPERAND2_ALPHA 0x859A
+#endif //GL_OPERAND2_ALPHA
+#ifndef GL_TEXTURE_COMPRESSED_IMAGE_SIZE
+#define GL_TEXTURE_COMPRESSED_IMAGE_SIZE 0x86A0
+#endif //GL_TEXTURE_COMPRESSED_IMAGE_SIZE
+#ifndef GL_TEXTURE_COMPRESSED
+#define GL_TEXTURE_COMPRESSED 0x86A1
+#endif //GL_TEXTURE_COMPRESSED
+#ifndef GL_NUM_COMPRESSED_TEXTURE_FORMATS
+#define GL_NUM_COMPRESSED_TEXTURE_FORMATS 0x86A2
+#endif //GL_NUM_COMPRESSED_TEXTURE_FORMATS
+#ifndef GL_COMPRESSED_TEXTURE_FORMATS
+#define GL_COMPRESSED_TEXTURE_FORMATS 0x86A3
+#endif //GL_COMPRESSED_TEXTURE_FORMATS
+#ifndef GL_DOT3_RGB
+#define GL_DOT3_RGB 0x86AE
+#endif //GL_DOT3_RGB
+#ifndef GL_DOT3_RGBA
+#define GL_DOT3_RGBA 0x86AF
+#endif //GL_DOT3_RGBA
+#ifndef GL_BUFFER_SIZE
+#define GL_BUFFER_SIZE 0x8764
+#endif //GL_BUFFER_SIZE
+#ifndef GL_BUFFER_USAGE
+#define GL_BUFFER_USAGE 0x8765
+#endif //GL_BUFFER_USAGE
+#ifndef GL_TEXTURE_DEPTH_SIZE
+#define GL_TEXTURE_DEPTH_SIZE 0x884A
+#endif //GL_TEXTURE_DEPTH_SIZE
+#ifndef GL_DEPTH_TEXTURE_MODE
+#define GL_DEPTH_TEXTURE_MODE 0x884B
+#endif //GL_DEPTH_TEXTURE_MODE
+#ifndef GL_TEXTURE_COMPARE_MODE
+#define GL_TEXTURE_COMPARE_MODE 0x884C
+#endif //GL_TEXTURE_COMPARE_MODE
+#ifndef GL_TEXTURE_COMPARE_FUNC
+#define GL_TEXTURE_COMPARE_FUNC 0x884D
+#endif //GL_TEXTURE_COMPARE_FUNC
+#ifndef GL_COMPARE_R_TO_TEXTURE
+#define GL_COMPARE_R_TO_TEXTURE 0x884E
+#endif //GL_COMPARE_R_TO_TEXTURE
+#ifndef GL_QUERY_COUNTER_BITS
+#define GL_QUERY_COUNTER_BITS 0x8864
+#endif //GL_QUERY_COUNTER_BITS
+#ifndef GL_CURRENT_QUERY
+#define GL_CURRENT_QUERY 0x8865
+#endif //GL_CURRENT_QUERY
+#ifndef GL_QUERY_RESULT
+#define GL_QUERY_RESULT 0x8866
+#endif //GL_QUERY_RESULT
+#ifndef GL_QUERY_RESULT_AVAILABLE
+#define GL_QUERY_RESULT_AVAILABLE 0x8867
+#endif //GL_QUERY_RESULT_AVAILABLE
+#ifndef GL_ARRAY_BUFFER
+#define GL_ARRAY_BUFFER 0x8892
+#endif //GL_ARRAY_BUFFER
+#ifndef GL_ELEMENT_ARRAY_BUFFER
+#define GL_ELEMENT_ARRAY_BUFFER 0x8893
+#endif //GL_ELEMENT_ARRAY_BUFFER
+#ifndef GL_ARRAY_BUFFER_BINDING
+#define GL_ARRAY_BUFFER_BINDING 0x8894
+#endif //GL_ARRAY_BUFFER_BINDING
+#ifndef GL_ELEMENT_ARRAY_BUFFER_BINDING
+#define GL_ELEMENT_ARRAY_BUFFER_BINDING 0x8895
+#endif //GL_ELEMENT_ARRAY_BUFFER_BINDING
+#ifndef GL_VERTEX_ARRAY_BUFFER_BINDING
+#define GL_VERTEX_ARRAY_BUFFER_BINDING 0x8896
+#endif //GL_VERTEX_ARRAY_BUFFER_BINDING
+#ifndef GL_NORMAL_ARRAY_BUFFER_BINDING
+#define GL_NORMAL_ARRAY_BUFFER_BINDING 0x8897
+#endif //GL_NORMAL_ARRAY_BUFFER_BINDING
+#ifndef GL_COLOR_ARRAY_BUFFER_BINDING
+#define GL_COLOR_ARRAY_BUFFER_BINDING 0x8898
+#endif //GL_COLOR_ARRAY_BUFFER_BINDING
+#ifndef GL_INDEX_ARRAY_BUFFER_BINDING
+#define GL_INDEX_ARRAY_BUFFER_BINDING 0x8899
+#endif //GL_INDEX_ARRAY_BUFFER_BINDING
+#ifndef GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING
+#define GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING 0x889A
+#endif //GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING
+#ifndef GL_EDGE_FLAG_ARRAY_BUFFER_BINDING
+#define GL_EDGE_FLAG_ARRAY_BUFFER_BINDING 0x889B
+#endif //GL_EDGE_FLAG_ARRAY_BUFFER_BINDING
+#ifndef GL_SECONDARY_COLOR_ARRAY_BUFFER_BINDING
+#define GL_SECONDARY_COLOR_ARRAY_BUFFER_BINDING 0x889C
+#endif //GL_SECONDARY_COLOR_ARRAY_BUFFER_BINDING
+#ifndef GL_FOG_COORDINATE_ARRAY_BUFFER_BINDING
+#define GL_FOG_COORDINATE_ARRAY_BUFFER_BINDING 0x889D
+#endif //GL_FOG_COORDINATE_ARRAY_BUFFER_BINDING
+#ifndef GL_FOG_COORD_ARRAY_BUFFER_BINDING
+#define GL_FOG_COORD_ARRAY_BUFFER_BINDING 0x889D
+#endif //GL_FOG_COORD_ARRAY_BUFFER_BINDING
+#ifndef GL_WEIGHT_ARRAY_BUFFER_BINDING
+#define GL_WEIGHT_ARRAY_BUFFER_BINDING 0x889E
+#endif //GL_WEIGHT_ARRAY_BUFFER_BINDING
+#ifndef GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING
+#define GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING 0x889F
+#endif //GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING
+#ifndef GL_READ_ONLY
+#define GL_READ_ONLY 0x88B8
+#endif //GL_READ_ONLY
+#ifndef GL_WRITE_ONLY
+#define GL_WRITE_ONLY 0x88B9
+#endif //GL_WRITE_ONLY
+#ifndef GL_READ_WRITE
+#define GL_READ_WRITE 0x88BA
+#endif //GL_READ_WRITE
+#ifndef GL_BUFFER_ACCESS
+#define GL_BUFFER_ACCESS 0x88BB
+#endif //GL_BUFFER_ACCESS
+#ifndef GL_BUFFER_MAPPED
+#define GL_BUFFER_MAPPED 0x88BC
+#endif //GL_BUFFER_MAPPED
+#ifndef GL_BUFFER_MAP_POINTER
+#define GL_BUFFER_MAP_POINTER 0x88BD
+#endif //GL_BUFFER_MAP_POINTER
+#ifndef GL_STREAM_DRAW
+#define GL_STREAM_DRAW 0x88E0
+#endif //GL_STREAM_DRAW
+#ifndef GL_STREAM_READ
+#define GL_STREAM_READ 0x88E1
+#endif //GL_STREAM_READ
+#ifndef GL_STREAM_COPY
+#define GL_STREAM_COPY 0x88E2
+#endif //GL_STREAM_COPY
+#ifndef GL_STATIC_DRAW
+#define GL_STATIC_DRAW 0x88E4
+#endif //GL_STATIC_DRAW
+#ifndef GL_STATIC_READ
+#define GL_STATIC_READ 0x88E5
+#endif //GL_STATIC_READ
+#ifndef GL_STATIC_COPY
+#define GL_STATIC_COPY 0x88E6
+#endif //GL_STATIC_COPY
+#ifndef GL_DYNAMIC_DRAW
+#define GL_DYNAMIC_DRAW 0x88E8
+#endif //GL_DYNAMIC_DRAW
+#ifndef GL_DYNAMIC_READ
+#define GL_DYNAMIC_READ 0x88E9
+#endif //GL_DYNAMIC_READ
+#ifndef GL_DYNAMIC_COPY
+#define GL_DYNAMIC_COPY 0x88EA
+#endif //GL_DYNAMIC_COPY
+#ifndef GL_SAMPLES_PASSED
+#define GL_SAMPLES_PASSED 0x8914
+#endif //GL_SAMPLES_PASSED
+#ifndef GL_CLIENT_ALL_ATTRIB_BITS
+#define GL_CLIENT_ALL_ATTRIB_BITS 0xFFFFFFFF
+#endif //GL_CLIENT_ALL_ATTRIB_BITS
+#ifndef GL_ALL_ATTRIB_BITS
+#define GL_ALL_ATTRIB_BITS 0xFFFFFFFF
+#endif //GL_ALL_ATTRIB_BITS
+#ifndef GL_TRUE
+#define GL_TRUE 1
+#endif //GL_TRUE
+#ifndef GL_ONE
+#define GL_ONE 1
+#endif //GL_ONE
 extern "C" {
 extern void glAccum(GLenum,GLfloat);
 extern void glAlphaFunc(GLenum,GLfloat);
@@ -1875,2044 +2638,3852 @@ extern void glViewport(GLint,GLint,GLsizei,GLsizei);
 }
 namespace gl{
 
+#ifndef	GL_HPP_FUNDEF_Accum
+#define GL_HPP_FUNDEF_Accum
 static inline void Accum(GLenum op1,GLfloat value1)
 {
 	 glAccum(op1,value1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_ActiveTexture
+#define GL_HPP_FUNDEF_ActiveTexture
 typedef void (*PFNGLACTIVETEXTUREPROC_HPP)(GLenum);
 static inline void ActiveTexture(GLenum texture1)
 {
 	static PFNGLACTIVETEXTUREPROC_HPP fn=reinterpret_cast<PFNGLACTIVETEXTUREPROC_HPP>(_impl::_get_proc_address("glActiveTexture",1,5));
 	 fn(texture1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_AlphaFunc
+#define GL_HPP_FUNDEF_AlphaFunc
 static inline void AlphaFunc(GLenum func1,GLfloat ref1)
 {
 	 glAlphaFunc(func1,ref1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_AreTexturesResident
+#define GL_HPP_FUNDEF_AreTexturesResident
 static inline GLboolean AreTexturesResident(GLsizei n1,const GLuint * textures1,GLboolean * residences1)
 {
 	return glAreTexturesResident(n1,textures1,residences1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_ArrayElement
+#define GL_HPP_FUNDEF_ArrayElement
 static inline void ArrayElement(GLint i1)
 {
 	 glArrayElement(i1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Begin
+#define GL_HPP_FUNDEF_Begin
 static inline void Begin(GLenum mode1)
 {
 	 glBegin(mode1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_BeginQuery
+#define GL_HPP_FUNDEF_BeginQuery
 typedef void (*PFNGLBEGINQUERYPROC_HPP)(GLenum,GLuint);
 static inline void BeginQuery(GLenum target1,GLuint id1)
 {
 	static PFNGLBEGINQUERYPROC_HPP fn=reinterpret_cast<PFNGLBEGINQUERYPROC_HPP>(_impl::_get_proc_address("glBeginQuery",1,5));
 	 fn(target1,id1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_BindBuffer
+#define GL_HPP_FUNDEF_BindBuffer
 typedef void (*PFNGLBINDBUFFERPROC_HPP)(GLenum,GLuint);
 static inline void BindBuffer(GLenum target1,GLuint buffer1)
 {
 	static PFNGLBINDBUFFERPROC_HPP fn=reinterpret_cast<PFNGLBINDBUFFERPROC_HPP>(_impl::_get_proc_address("glBindBuffer",1,5));
 	 fn(target1,buffer1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_BindTexture
+#define GL_HPP_FUNDEF_BindTexture
 static inline void BindTexture(GLenum target1,GLuint texture1)
 {
 	 glBindTexture(target1,texture1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Bitmap
+#define GL_HPP_FUNDEF_Bitmap
 static inline void Bitmap(GLsizei width1,GLsizei height1,GLfloat xorig1,GLfloat yorig1,GLfloat xmove1,GLfloat ymove1,const GLubyte * bitmap1)
 {
 	 glBitmap(width1,height1,xorig1,yorig1,xmove1,ymove1,bitmap1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_BlendColor
+#define GL_HPP_FUNDEF_BlendColor
 typedef void (*PFNGLBLENDCOLORPROC_HPP)(GLfloat,GLfloat,GLfloat,GLfloat);
 static inline void BlendColor(GLfloat red1,GLfloat green1,GLfloat blue1,GLfloat alpha1)
 {
 	static PFNGLBLENDCOLORPROC_HPP fn=reinterpret_cast<PFNGLBLENDCOLORPROC_HPP>(_impl::_get_proc_address("glBlendColor",1,5));
 	 fn(red1,green1,blue1,alpha1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_BlendEquation
+#define GL_HPP_FUNDEF_BlendEquation
 typedef void (*PFNGLBLENDEQUATIONPROC_HPP)(GLenum);
 static inline void BlendEquation(GLenum mode1)
 {
 	static PFNGLBLENDEQUATIONPROC_HPP fn=reinterpret_cast<PFNGLBLENDEQUATIONPROC_HPP>(_impl::_get_proc_address("glBlendEquation",1,5));
 	 fn(mode1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_BlendFunc
+#define GL_HPP_FUNDEF_BlendFunc
 static inline void BlendFunc(GLenum sfactor1,GLenum dfactor1)
 {
 	 glBlendFunc(sfactor1,dfactor1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_BlendFuncSeparate
+#define GL_HPP_FUNDEF_BlendFuncSeparate
 typedef void (*PFNGLBLENDFUNCSEPARATEPROC_HPP)(GLenum,GLenum,GLenum,GLenum);
 static inline void BlendFuncSeparate(GLenum sfactorRGB1,GLenum dfactorRGB1,GLenum sfactorAlpha1,GLenum dfactorAlpha1)
 {
 	static PFNGLBLENDFUNCSEPARATEPROC_HPP fn=reinterpret_cast<PFNGLBLENDFUNCSEPARATEPROC_HPP>(_impl::_get_proc_address("glBlendFuncSeparate",1,5));
 	 fn(sfactorRGB1,dfactorRGB1,sfactorAlpha1,dfactorAlpha1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_BufferData
+#define GL_HPP_FUNDEF_BufferData
 typedef void (*PFNGLBUFFERDATAPROC_HPP)(GLenum,GLsizeiptr,const void *,GLenum);
 static inline void BufferData(GLenum target1,GLsizeiptr size1,const void * data1,GLenum usage1)
 {
 	static PFNGLBUFFERDATAPROC_HPP fn=reinterpret_cast<PFNGLBUFFERDATAPROC_HPP>(_impl::_get_proc_address("glBufferData",1,5));
 	 fn(target1,size1,data1,usage1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_BufferSubData
+#define GL_HPP_FUNDEF_BufferSubData
 typedef void (*PFNGLBUFFERSUBDATAPROC_HPP)(GLenum,GLintptr,GLsizeiptr,const void *);
 static inline void BufferSubData(GLenum target1,GLintptr offset1,GLsizeiptr size1,const void * data1)
 {
 	static PFNGLBUFFERSUBDATAPROC_HPP fn=reinterpret_cast<PFNGLBUFFERSUBDATAPROC_HPP>(_impl::_get_proc_address("glBufferSubData",1,5));
 	 fn(target1,offset1,size1,data1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_CallList
+#define GL_HPP_FUNDEF_CallList
 static inline void CallList(GLuint list1)
 {
 	 glCallList(list1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_CallLists
+#define GL_HPP_FUNDEF_CallLists
 static inline void CallLists(GLsizei n1,GLenum type1,const void * lists1)
 {
 	 glCallLists(n1,type1,lists1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Clear
+#define GL_HPP_FUNDEF_Clear
 static inline void Clear(GLbitfield mask1)
 {
 	 glClear(mask1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_ClearAccum
+#define GL_HPP_FUNDEF_ClearAccum
 static inline void ClearAccum(GLfloat red1,GLfloat green1,GLfloat blue1,GLfloat alpha1)
 {
 	 glClearAccum(red1,green1,blue1,alpha1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_ClearColor
+#define GL_HPP_FUNDEF_ClearColor
 static inline void ClearColor(GLfloat red1,GLfloat green1,GLfloat blue1,GLfloat alpha1)
 {
 	 glClearColor(red1,green1,blue1,alpha1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_ClearDepth
+#define GL_HPP_FUNDEF_ClearDepth
 static inline void ClearDepth(GLdouble depth1)
 {
 	 glClearDepth(depth1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_ClearIndex
+#define GL_HPP_FUNDEF_ClearIndex
 static inline void ClearIndex(GLfloat c1)
 {
 	 glClearIndex(c1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_ClearStencil
+#define GL_HPP_FUNDEF_ClearStencil
 static inline void ClearStencil(GLint s1)
 {
 	 glClearStencil(s1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_ClientActiveTexture
+#define GL_HPP_FUNDEF_ClientActiveTexture
 typedef void (*PFNGLCLIENTACTIVETEXTUREPROC_HPP)(GLenum);
 static inline void ClientActiveTexture(GLenum texture1)
 {
 	static PFNGLCLIENTACTIVETEXTUREPROC_HPP fn=reinterpret_cast<PFNGLCLIENTACTIVETEXTUREPROC_HPP>(_impl::_get_proc_address("glClientActiveTexture",1,5));
 	 fn(texture1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_ClipPlane
+#define GL_HPP_FUNDEF_ClipPlane
 static inline void ClipPlane(GLenum plane1,const GLdouble * equation1)
 {
 	 glClipPlane(plane1,equation1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color3b
+#define GL_HPP_FUNDEF_Color3b
 static inline void Color3b(GLbyte red1,GLbyte green1,GLbyte blue1)
 {
 	 glColor3b(red1,green1,blue1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color3bv
+#define GL_HPP_FUNDEF_Color3bv
 static inline void Color3bv(const GLbyte * v1)
 {
 	 glColor3bv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color3d
+#define GL_HPP_FUNDEF_Color3d
 static inline void Color3d(GLdouble red1,GLdouble green1,GLdouble blue1)
 {
 	 glColor3d(red1,green1,blue1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color3dv
+#define GL_HPP_FUNDEF_Color3dv
 static inline void Color3dv(const GLdouble * v1)
 {
 	 glColor3dv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color3f
+#define GL_HPP_FUNDEF_Color3f
 static inline void Color3f(GLfloat red1,GLfloat green1,GLfloat blue1)
 {
 	 glColor3f(red1,green1,blue1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color3fv
+#define GL_HPP_FUNDEF_Color3fv
 static inline void Color3fv(const GLfloat * v1)
 {
 	 glColor3fv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color3i
+#define GL_HPP_FUNDEF_Color3i
 static inline void Color3i(GLint red1,GLint green1,GLint blue1)
 {
 	 glColor3i(red1,green1,blue1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color3iv
+#define GL_HPP_FUNDEF_Color3iv
 static inline void Color3iv(const GLint * v1)
 {
 	 glColor3iv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color3s
+#define GL_HPP_FUNDEF_Color3s
 static inline void Color3s(GLshort red1,GLshort green1,GLshort blue1)
 {
 	 glColor3s(red1,green1,blue1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color3sv
+#define GL_HPP_FUNDEF_Color3sv
 static inline void Color3sv(const GLshort * v1)
 {
 	 glColor3sv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color3ub
+#define GL_HPP_FUNDEF_Color3ub
 static inline void Color3ub(GLubyte red1,GLubyte green1,GLubyte blue1)
 {
 	 glColor3ub(red1,green1,blue1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color3ubv
+#define GL_HPP_FUNDEF_Color3ubv
 static inline void Color3ubv(const GLubyte * v1)
 {
 	 glColor3ubv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color3ui
+#define GL_HPP_FUNDEF_Color3ui
 static inline void Color3ui(GLuint red1,GLuint green1,GLuint blue1)
 {
 	 glColor3ui(red1,green1,blue1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color3uiv
+#define GL_HPP_FUNDEF_Color3uiv
 static inline void Color3uiv(const GLuint * v1)
 {
 	 glColor3uiv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color3us
+#define GL_HPP_FUNDEF_Color3us
 static inline void Color3us(GLushort red1,GLushort green1,GLushort blue1)
 {
 	 glColor3us(red1,green1,blue1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color3usv
+#define GL_HPP_FUNDEF_Color3usv
 static inline void Color3usv(const GLushort * v1)
 {
 	 glColor3usv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color4b
+#define GL_HPP_FUNDEF_Color4b
 static inline void Color4b(GLbyte red1,GLbyte green1,GLbyte blue1,GLbyte alpha1)
 {
 	 glColor4b(red1,green1,blue1,alpha1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color4bv
+#define GL_HPP_FUNDEF_Color4bv
 static inline void Color4bv(const GLbyte * v1)
 {
 	 glColor4bv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color4d
+#define GL_HPP_FUNDEF_Color4d
 static inline void Color4d(GLdouble red1,GLdouble green1,GLdouble blue1,GLdouble alpha1)
 {
 	 glColor4d(red1,green1,blue1,alpha1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color4dv
+#define GL_HPP_FUNDEF_Color4dv
 static inline void Color4dv(const GLdouble * v1)
 {
 	 glColor4dv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color4f
+#define GL_HPP_FUNDEF_Color4f
 static inline void Color4f(GLfloat red1,GLfloat green1,GLfloat blue1,GLfloat alpha1)
 {
 	 glColor4f(red1,green1,blue1,alpha1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color4fv
+#define GL_HPP_FUNDEF_Color4fv
 static inline void Color4fv(const GLfloat * v1)
 {
 	 glColor4fv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color4i
+#define GL_HPP_FUNDEF_Color4i
 static inline void Color4i(GLint red1,GLint green1,GLint blue1,GLint alpha1)
 {
 	 glColor4i(red1,green1,blue1,alpha1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color4iv
+#define GL_HPP_FUNDEF_Color4iv
 static inline void Color4iv(const GLint * v1)
 {
 	 glColor4iv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color4s
+#define GL_HPP_FUNDEF_Color4s
 static inline void Color4s(GLshort red1,GLshort green1,GLshort blue1,GLshort alpha1)
 {
 	 glColor4s(red1,green1,blue1,alpha1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color4sv
+#define GL_HPP_FUNDEF_Color4sv
 static inline void Color4sv(const GLshort * v1)
 {
 	 glColor4sv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color4ub
+#define GL_HPP_FUNDEF_Color4ub
 static inline void Color4ub(GLubyte red1,GLubyte green1,GLubyte blue1,GLubyte alpha1)
 {
 	 glColor4ub(red1,green1,blue1,alpha1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color4ubv
+#define GL_HPP_FUNDEF_Color4ubv
 static inline void Color4ubv(const GLubyte * v1)
 {
 	 glColor4ubv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color4ui
+#define GL_HPP_FUNDEF_Color4ui
 static inline void Color4ui(GLuint red1,GLuint green1,GLuint blue1,GLuint alpha1)
 {
 	 glColor4ui(red1,green1,blue1,alpha1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color4uiv
+#define GL_HPP_FUNDEF_Color4uiv
 static inline void Color4uiv(const GLuint * v1)
 {
 	 glColor4uiv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color4us
+#define GL_HPP_FUNDEF_Color4us
 static inline void Color4us(GLushort red1,GLushort green1,GLushort blue1,GLushort alpha1)
 {
 	 glColor4us(red1,green1,blue1,alpha1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Color4usv
+#define GL_HPP_FUNDEF_Color4usv
 static inline void Color4usv(const GLushort * v1)
 {
 	 glColor4usv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_ColorMask
+#define GL_HPP_FUNDEF_ColorMask
 static inline void ColorMask(GLboolean red1,GLboolean green1,GLboolean blue1,GLboolean alpha1)
 {
 	 glColorMask(red1,green1,blue1,alpha1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_ColorMaterial
+#define GL_HPP_FUNDEF_ColorMaterial
 static inline void ColorMaterial(GLenum face1,GLenum mode1)
 {
 	 glColorMaterial(face1,mode1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_ColorPointer
+#define GL_HPP_FUNDEF_ColorPointer
 static inline void ColorPointer(GLint size1,GLenum type1,GLsizei stride1,const void * pointer1)
 {
 	 glColorPointer(size1,type1,stride1,pointer1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_CompressedTexImage1D
+#define GL_HPP_FUNDEF_CompressedTexImage1D
 typedef void (*PFNGLCOMPRESSEDTEXIMAGE1DPROC_HPP)(GLenum,GLint,GLenum,GLsizei,GLint,GLsizei,const void *);
 static inline void CompressedTexImage1D(GLenum target1,GLint level1,GLenum internalformat1,GLsizei width1,GLint border1,GLsizei imageSize1,const void * data1)
 {
 	static PFNGLCOMPRESSEDTEXIMAGE1DPROC_HPP fn=reinterpret_cast<PFNGLCOMPRESSEDTEXIMAGE1DPROC_HPP>(_impl::_get_proc_address("glCompressedTexImage1D",1,5));
 	 fn(target1,level1,internalformat1,width1,border1,imageSize1,data1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_CompressedTexImage2D
+#define GL_HPP_FUNDEF_CompressedTexImage2D
 typedef void (*PFNGLCOMPRESSEDTEXIMAGE2DPROC_HPP)(GLenum,GLint,GLenum,GLsizei,GLsizei,GLint,GLsizei,const void *);
 static inline void CompressedTexImage2D(GLenum target1,GLint level1,GLenum internalformat1,GLsizei width1,GLsizei height1,GLint border1,GLsizei imageSize1,const void * data1)
 {
 	static PFNGLCOMPRESSEDTEXIMAGE2DPROC_HPP fn=reinterpret_cast<PFNGLCOMPRESSEDTEXIMAGE2DPROC_HPP>(_impl::_get_proc_address("glCompressedTexImage2D",1,5));
 	 fn(target1,level1,internalformat1,width1,height1,border1,imageSize1,data1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_CompressedTexImage3D
+#define GL_HPP_FUNDEF_CompressedTexImage3D
 typedef void (*PFNGLCOMPRESSEDTEXIMAGE3DPROC_HPP)(GLenum,GLint,GLenum,GLsizei,GLsizei,GLsizei,GLint,GLsizei,const void *);
 static inline void CompressedTexImage3D(GLenum target1,GLint level1,GLenum internalformat1,GLsizei width1,GLsizei height1,GLsizei depth1,GLint border1,GLsizei imageSize1,const void * data1)
 {
 	static PFNGLCOMPRESSEDTEXIMAGE3DPROC_HPP fn=reinterpret_cast<PFNGLCOMPRESSEDTEXIMAGE3DPROC_HPP>(_impl::_get_proc_address("glCompressedTexImage3D",1,5));
 	 fn(target1,level1,internalformat1,width1,height1,depth1,border1,imageSize1,data1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_CompressedTexSubImage1D
+#define GL_HPP_FUNDEF_CompressedTexSubImage1D
 typedef void (*PFNGLCOMPRESSEDTEXSUBIMAGE1DPROC_HPP)(GLenum,GLint,GLint,GLsizei,GLenum,GLsizei,const void *);
 static inline void CompressedTexSubImage1D(GLenum target1,GLint level1,GLint xoffset1,GLsizei width1,GLenum format1,GLsizei imageSize1,const void * data1)
 {
 	static PFNGLCOMPRESSEDTEXSUBIMAGE1DPROC_HPP fn=reinterpret_cast<PFNGLCOMPRESSEDTEXSUBIMAGE1DPROC_HPP>(_impl::_get_proc_address("glCompressedTexSubImage1D",1,5));
 	 fn(target1,level1,xoffset1,width1,format1,imageSize1,data1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_CompressedTexSubImage2D
+#define GL_HPP_FUNDEF_CompressedTexSubImage2D
 typedef void (*PFNGLCOMPRESSEDTEXSUBIMAGE2DPROC_HPP)(GLenum,GLint,GLint,GLint,GLsizei,GLsizei,GLenum,GLsizei,const void *);
 static inline void CompressedTexSubImage2D(GLenum target1,GLint level1,GLint xoffset1,GLint yoffset1,GLsizei width1,GLsizei height1,GLenum format1,GLsizei imageSize1,const void * data1)
 {
 	static PFNGLCOMPRESSEDTEXSUBIMAGE2DPROC_HPP fn=reinterpret_cast<PFNGLCOMPRESSEDTEXSUBIMAGE2DPROC_HPP>(_impl::_get_proc_address("glCompressedTexSubImage2D",1,5));
 	 fn(target1,level1,xoffset1,yoffset1,width1,height1,format1,imageSize1,data1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_CompressedTexSubImage3D
+#define GL_HPP_FUNDEF_CompressedTexSubImage3D
 typedef void (*PFNGLCOMPRESSEDTEXSUBIMAGE3DPROC_HPP)(GLenum,GLint,GLint,GLint,GLint,GLsizei,GLsizei,GLsizei,GLenum,GLsizei,const void *);
 static inline void CompressedTexSubImage3D(GLenum target1,GLint level1,GLint xoffset1,GLint yoffset1,GLint zoffset1,GLsizei width1,GLsizei height1,GLsizei depth1,GLenum format1,GLsizei imageSize1,const void * data1)
 {
 	static PFNGLCOMPRESSEDTEXSUBIMAGE3DPROC_HPP fn=reinterpret_cast<PFNGLCOMPRESSEDTEXSUBIMAGE3DPROC_HPP>(_impl::_get_proc_address("glCompressedTexSubImage3D",1,5));
 	 fn(target1,level1,xoffset1,yoffset1,zoffset1,width1,height1,depth1,format1,imageSize1,data1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_CopyPixels
+#define GL_HPP_FUNDEF_CopyPixels
 static inline void CopyPixels(GLint x1,GLint y1,GLsizei width1,GLsizei height1,GLenum type1)
 {
 	 glCopyPixels(x1,y1,width1,height1,type1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_CopyTexImage1D
+#define GL_HPP_FUNDEF_CopyTexImage1D
 static inline void CopyTexImage1D(GLenum target1,GLint level1,GLenum internalformat1,GLint x1,GLint y1,GLsizei width1,GLint border1)
 {
 	 glCopyTexImage1D(target1,level1,internalformat1,x1,y1,width1,border1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_CopyTexImage2D
+#define GL_HPP_FUNDEF_CopyTexImage2D
 static inline void CopyTexImage2D(GLenum target1,GLint level1,GLenum internalformat1,GLint x1,GLint y1,GLsizei width1,GLsizei height1,GLint border1)
 {
 	 glCopyTexImage2D(target1,level1,internalformat1,x1,y1,width1,height1,border1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_CopyTexSubImage1D
+#define GL_HPP_FUNDEF_CopyTexSubImage1D
 static inline void CopyTexSubImage1D(GLenum target1,GLint level1,GLint xoffset1,GLint x1,GLint y1,GLsizei width1)
 {
 	 glCopyTexSubImage1D(target1,level1,xoffset1,x1,y1,width1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_CopyTexSubImage2D
+#define GL_HPP_FUNDEF_CopyTexSubImage2D
 static inline void CopyTexSubImage2D(GLenum target1,GLint level1,GLint xoffset1,GLint yoffset1,GLint x1,GLint y1,GLsizei width1,GLsizei height1)
 {
 	 glCopyTexSubImage2D(target1,level1,xoffset1,yoffset1,x1,y1,width1,height1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_CopyTexSubImage3D
+#define GL_HPP_FUNDEF_CopyTexSubImage3D
 typedef void (*PFNGLCOPYTEXSUBIMAGE3DPROC_HPP)(GLenum,GLint,GLint,GLint,GLint,GLint,GLint,GLsizei,GLsizei);
 static inline void CopyTexSubImage3D(GLenum target1,GLint level1,GLint xoffset1,GLint yoffset1,GLint zoffset1,GLint x1,GLint y1,GLsizei width1,GLsizei height1)
 {
 	static PFNGLCOPYTEXSUBIMAGE3DPROC_HPP fn=reinterpret_cast<PFNGLCOPYTEXSUBIMAGE3DPROC_HPP>(_impl::_get_proc_address("glCopyTexSubImage3D",1,5));
 	 fn(target1,level1,xoffset1,yoffset1,zoffset1,x1,y1,width1,height1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_CullFace
+#define GL_HPP_FUNDEF_CullFace
 static inline void CullFace(GLenum mode1)
 {
 	 glCullFace(mode1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_DeleteBuffers
+#define GL_HPP_FUNDEF_DeleteBuffers
 typedef void (*PFNGLDELETEBUFFERSPROC_HPP)(GLsizei,const GLuint *);
 static inline void DeleteBuffers(GLsizei n1,const GLuint * buffers1)
 {
 	static PFNGLDELETEBUFFERSPROC_HPP fn=reinterpret_cast<PFNGLDELETEBUFFERSPROC_HPP>(_impl::_get_proc_address("glDeleteBuffers",1,5));
 	 fn(n1,buffers1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_DeleteLists
+#define GL_HPP_FUNDEF_DeleteLists
 static inline void DeleteLists(GLuint list1,GLsizei range1)
 {
 	 glDeleteLists(list1,range1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_DeleteQueries
+#define GL_HPP_FUNDEF_DeleteQueries
 typedef void (*PFNGLDELETEQUERIESPROC_HPP)(GLsizei,const GLuint *);
 static inline void DeleteQueries(GLsizei n1,const GLuint * ids1)
 {
 	static PFNGLDELETEQUERIESPROC_HPP fn=reinterpret_cast<PFNGLDELETEQUERIESPROC_HPP>(_impl::_get_proc_address("glDeleteQueries",1,5));
 	 fn(n1,ids1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_DeleteTextures
+#define GL_HPP_FUNDEF_DeleteTextures
 static inline void DeleteTextures(GLsizei n1,const GLuint * textures1)
 {
 	 glDeleteTextures(n1,textures1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_DepthFunc
+#define GL_HPP_FUNDEF_DepthFunc
 static inline void DepthFunc(GLenum func1)
 {
 	 glDepthFunc(func1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_DepthMask
+#define GL_HPP_FUNDEF_DepthMask
 static inline void DepthMask(GLboolean flag1)
 {
 	 glDepthMask(flag1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_DepthRange
+#define GL_HPP_FUNDEF_DepthRange
 static inline void DepthRange(GLdouble near1,GLdouble far1)
 {
 	 glDepthRange(near1,far1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Disable
+#define GL_HPP_FUNDEF_Disable
 static inline void Disable(GLenum cap1)
 {
 	 glDisable(cap1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_DisableClientState
+#define GL_HPP_FUNDEF_DisableClientState
 static inline void DisableClientState(GLenum array1)
 {
 	 glDisableClientState(array1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_DrawArrays
+#define GL_HPP_FUNDEF_DrawArrays
 static inline void DrawArrays(GLenum mode1,GLint first1,GLsizei count1)
 {
 	 glDrawArrays(mode1,first1,count1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_DrawBuffer
+#define GL_HPP_FUNDEF_DrawBuffer
 static inline void DrawBuffer(GLenum buf1)
 {
 	 glDrawBuffer(buf1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_DrawElements
+#define GL_HPP_FUNDEF_DrawElements
 static inline void DrawElements(GLenum mode1,GLsizei count1,GLenum type1,const void * indices1)
 {
 	 glDrawElements(mode1,count1,type1,indices1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_DrawPixels
+#define GL_HPP_FUNDEF_DrawPixels
 static inline void DrawPixels(GLsizei width1,GLsizei height1,GLenum format1,GLenum type1,const void * pixels1)
 {
 	 glDrawPixels(width1,height1,format1,type1,pixels1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_DrawRangeElements
+#define GL_HPP_FUNDEF_DrawRangeElements
 typedef void (*PFNGLDRAWRANGEELEMENTSPROC_HPP)(GLenum,GLuint,GLuint,GLsizei,GLenum,const void *);
 static inline void DrawRangeElements(GLenum mode1,GLuint start1,GLuint end1,GLsizei count1,GLenum type1,const void * indices1)
 {
 	static PFNGLDRAWRANGEELEMENTSPROC_HPP fn=reinterpret_cast<PFNGLDRAWRANGEELEMENTSPROC_HPP>(_impl::_get_proc_address("glDrawRangeElements",1,5));
 	 fn(mode1,start1,end1,count1,type1,indices1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_EdgeFlag
+#define GL_HPP_FUNDEF_EdgeFlag
 static inline void EdgeFlag(GLboolean flag1)
 {
 	 glEdgeFlag(flag1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_EdgeFlagPointer
+#define GL_HPP_FUNDEF_EdgeFlagPointer
 static inline void EdgeFlagPointer(GLsizei stride1,const void * pointer1)
 {
 	 glEdgeFlagPointer(stride1,pointer1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_EdgeFlagv
+#define GL_HPP_FUNDEF_EdgeFlagv
 static inline void EdgeFlagv(const GLboolean * flag1)
 {
 	 glEdgeFlagv(flag1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Enable
+#define GL_HPP_FUNDEF_Enable
 static inline void Enable(GLenum cap1)
 {
 	 glEnable(cap1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_EnableClientState
+#define GL_HPP_FUNDEF_EnableClientState
 static inline void EnableClientState(GLenum array1)
 {
 	 glEnableClientState(array1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_End
+#define GL_HPP_FUNDEF_End
 static inline void End()
 {
 	 glEnd();
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_EndList
+#define GL_HPP_FUNDEF_EndList
 static inline void EndList()
 {
 	 glEndList();
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_EndQuery
+#define GL_HPP_FUNDEF_EndQuery
 typedef void (*PFNGLENDQUERYPROC_HPP)(GLenum);
 static inline void EndQuery(GLenum target1)
 {
 	static PFNGLENDQUERYPROC_HPP fn=reinterpret_cast<PFNGLENDQUERYPROC_HPP>(_impl::_get_proc_address("glEndQuery",1,5));
 	 fn(target1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_EvalCoord1d
+#define GL_HPP_FUNDEF_EvalCoord1d
 static inline void EvalCoord1d(GLdouble u1)
 {
 	 glEvalCoord1d(u1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_EvalCoord1dv
+#define GL_HPP_FUNDEF_EvalCoord1dv
 static inline void EvalCoord1dv(const GLdouble * u1)
 {
 	 glEvalCoord1dv(u1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_EvalCoord1f
+#define GL_HPP_FUNDEF_EvalCoord1f
 static inline void EvalCoord1f(GLfloat u1)
 {
 	 glEvalCoord1f(u1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_EvalCoord1fv
+#define GL_HPP_FUNDEF_EvalCoord1fv
 static inline void EvalCoord1fv(const GLfloat * u1)
 {
 	 glEvalCoord1fv(u1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_EvalCoord2d
+#define GL_HPP_FUNDEF_EvalCoord2d
 static inline void EvalCoord2d(GLdouble u1,GLdouble v1)
 {
 	 glEvalCoord2d(u1,v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_EvalCoord2dv
+#define GL_HPP_FUNDEF_EvalCoord2dv
 static inline void EvalCoord2dv(const GLdouble * u1)
 {
 	 glEvalCoord2dv(u1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_EvalCoord2f
+#define GL_HPP_FUNDEF_EvalCoord2f
 static inline void EvalCoord2f(GLfloat u1,GLfloat v1)
 {
 	 glEvalCoord2f(u1,v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_EvalCoord2fv
+#define GL_HPP_FUNDEF_EvalCoord2fv
 static inline void EvalCoord2fv(const GLfloat * u1)
 {
 	 glEvalCoord2fv(u1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_EvalMesh1
+#define GL_HPP_FUNDEF_EvalMesh1
 static inline void EvalMesh1(GLenum mode1,GLint i11,GLint i21)
 {
 	 glEvalMesh1(mode1,i11,i21);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_EvalMesh2
+#define GL_HPP_FUNDEF_EvalMesh2
 static inline void EvalMesh2(GLenum mode1,GLint i11,GLint i21,GLint j11,GLint j21)
 {
 	 glEvalMesh2(mode1,i11,i21,j11,j21);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_EvalPoint1
+#define GL_HPP_FUNDEF_EvalPoint1
 static inline void EvalPoint1(GLint i1)
 {
 	 glEvalPoint1(i1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_EvalPoint2
+#define GL_HPP_FUNDEF_EvalPoint2
 static inline void EvalPoint2(GLint i1,GLint j1)
 {
 	 glEvalPoint2(i1,j1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_FeedbackBuffer
+#define GL_HPP_FUNDEF_FeedbackBuffer
 static inline void FeedbackBuffer(GLsizei size1,GLenum type1,GLfloat * buffer1)
 {
 	 glFeedbackBuffer(size1,type1,buffer1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Finish
+#define GL_HPP_FUNDEF_Finish
 static inline void Finish()
 {
 	 glFinish();
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Flush
+#define GL_HPP_FUNDEF_Flush
 static inline void Flush()
 {
 	 glFlush();
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_FogCoordPointer
+#define GL_HPP_FUNDEF_FogCoordPointer
 typedef void (*PFNGLFOGCOORDPOINTERPROC_HPP)(GLenum,GLsizei,const void *);
 static inline void FogCoordPointer(GLenum type1,GLsizei stride1,const void * pointer1)
 {
 	static PFNGLFOGCOORDPOINTERPROC_HPP fn=reinterpret_cast<PFNGLFOGCOORDPOINTERPROC_HPP>(_impl::_get_proc_address("glFogCoordPointer",1,5));
 	 fn(type1,stride1,pointer1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_FogCoordd
+#define GL_HPP_FUNDEF_FogCoordd
 typedef void (*PFNGLFOGCOORDDPROC_HPP)(GLdouble);
 static inline void FogCoordd(GLdouble coord1)
 {
 	static PFNGLFOGCOORDDPROC_HPP fn=reinterpret_cast<PFNGLFOGCOORDDPROC_HPP>(_impl::_get_proc_address("glFogCoordd",1,5));
 	 fn(coord1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_FogCoorddv
+#define GL_HPP_FUNDEF_FogCoorddv
 typedef void (*PFNGLFOGCOORDDVPROC_HPP)(const GLdouble *);
 static inline void FogCoorddv(const GLdouble * coord1)
 {
 	static PFNGLFOGCOORDDVPROC_HPP fn=reinterpret_cast<PFNGLFOGCOORDDVPROC_HPP>(_impl::_get_proc_address("glFogCoorddv",1,5));
 	 fn(coord1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_FogCoordf
+#define GL_HPP_FUNDEF_FogCoordf
 typedef void (*PFNGLFOGCOORDFPROC_HPP)(GLfloat);
 static inline void FogCoordf(GLfloat coord1)
 {
 	static PFNGLFOGCOORDFPROC_HPP fn=reinterpret_cast<PFNGLFOGCOORDFPROC_HPP>(_impl::_get_proc_address("glFogCoordf",1,5));
 	 fn(coord1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_FogCoordfv
+#define GL_HPP_FUNDEF_FogCoordfv
 typedef void (*PFNGLFOGCOORDFVPROC_HPP)(const GLfloat *);
 static inline void FogCoordfv(const GLfloat * coord1)
 {
 	static PFNGLFOGCOORDFVPROC_HPP fn=reinterpret_cast<PFNGLFOGCOORDFVPROC_HPP>(_impl::_get_proc_address("glFogCoordfv",1,5));
 	 fn(coord1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Fogf
+#define GL_HPP_FUNDEF_Fogf
 static inline void Fogf(GLenum pname1,GLfloat param1)
 {
 	 glFogf(pname1,param1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Fogfv
+#define GL_HPP_FUNDEF_Fogfv
 static inline void Fogfv(GLenum pname1,const GLfloat * params1)
 {
 	 glFogfv(pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Fogi
+#define GL_HPP_FUNDEF_Fogi
 static inline void Fogi(GLenum pname1,GLint param1)
 {
 	 glFogi(pname1,param1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Fogiv
+#define GL_HPP_FUNDEF_Fogiv
 static inline void Fogiv(GLenum pname1,const GLint * params1)
 {
 	 glFogiv(pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_FrontFace
+#define GL_HPP_FUNDEF_FrontFace
 static inline void FrontFace(GLenum mode1)
 {
 	 glFrontFace(mode1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Frustum
+#define GL_HPP_FUNDEF_Frustum
 static inline void Frustum(GLdouble left1,GLdouble right1,GLdouble bottom1,GLdouble top1,GLdouble zNear1,GLdouble zFar1)
 {
 	 glFrustum(left1,right1,bottom1,top1,zNear1,zFar1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GenBuffers
+#define GL_HPP_FUNDEF_GenBuffers
 typedef void (*PFNGLGENBUFFERSPROC_HPP)(GLsizei,GLuint *);
 static inline void GenBuffers(GLsizei n1,GLuint * buffers1)
 {
 	static PFNGLGENBUFFERSPROC_HPP fn=reinterpret_cast<PFNGLGENBUFFERSPROC_HPP>(_impl::_get_proc_address("glGenBuffers",1,5));
 	 fn(n1,buffers1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GenLists
+#define GL_HPP_FUNDEF_GenLists
 static inline GLuint GenLists(GLsizei range1)
 {
 	return glGenLists(range1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GenQueries
+#define GL_HPP_FUNDEF_GenQueries
 typedef void (*PFNGLGENQUERIESPROC_HPP)(GLsizei,GLuint *);
 static inline void GenQueries(GLsizei n1,GLuint * ids1)
 {
 	static PFNGLGENQUERIESPROC_HPP fn=reinterpret_cast<PFNGLGENQUERIESPROC_HPP>(_impl::_get_proc_address("glGenQueries",1,5));
 	 fn(n1,ids1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GenTextures
+#define GL_HPP_FUNDEF_GenTextures
 static inline void GenTextures(GLsizei n1,GLuint * textures1)
 {
 	 glGenTextures(n1,textures1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetBooleanv
+#define GL_HPP_FUNDEF_GetBooleanv
 static inline void GetBooleanv(GLenum pname1,GLboolean * data1)
 {
 	 glGetBooleanv(pname1,data1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetBufferParameteriv
+#define GL_HPP_FUNDEF_GetBufferParameteriv
 typedef void (*PFNGLGETBUFFERPARAMETERIVPROC_HPP)(GLenum,GLenum,GLint *);
 static inline void GetBufferParameteriv(GLenum target1,GLenum pname1,GLint * params1)
 {
 	static PFNGLGETBUFFERPARAMETERIVPROC_HPP fn=reinterpret_cast<PFNGLGETBUFFERPARAMETERIVPROC_HPP>(_impl::_get_proc_address("glGetBufferParameteriv",1,5));
 	 fn(target1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetBufferPointerv
+#define GL_HPP_FUNDEF_GetBufferPointerv
 typedef void (*PFNGLGETBUFFERPOINTERVPROC_HPP)(GLenum,GLenum,void **);
 static inline void GetBufferPointerv(GLenum target1,GLenum pname1,void ** params1)
 {
 	static PFNGLGETBUFFERPOINTERVPROC_HPP fn=reinterpret_cast<PFNGLGETBUFFERPOINTERVPROC_HPP>(_impl::_get_proc_address("glGetBufferPointerv",1,5));
 	 fn(target1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetBufferSubData
+#define GL_HPP_FUNDEF_GetBufferSubData
 typedef void (*PFNGLGETBUFFERSUBDATAPROC_HPP)(GLenum,GLintptr,GLsizeiptr,void *);
 static inline void GetBufferSubData(GLenum target1,GLintptr offset1,GLsizeiptr size1,void * data1)
 {
 	static PFNGLGETBUFFERSUBDATAPROC_HPP fn=reinterpret_cast<PFNGLGETBUFFERSUBDATAPROC_HPP>(_impl::_get_proc_address("glGetBufferSubData",1,5));
 	 fn(target1,offset1,size1,data1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetClipPlane
+#define GL_HPP_FUNDEF_GetClipPlane
 static inline void GetClipPlane(GLenum plane1,GLdouble * equation1)
 {
 	 glGetClipPlane(plane1,equation1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetCompressedTexImage
+#define GL_HPP_FUNDEF_GetCompressedTexImage
 typedef void (*PFNGLGETCOMPRESSEDTEXIMAGEPROC_HPP)(GLenum,GLint,void *);
 static inline void GetCompressedTexImage(GLenum target1,GLint level1,void * img1)
 {
 	static PFNGLGETCOMPRESSEDTEXIMAGEPROC_HPP fn=reinterpret_cast<PFNGLGETCOMPRESSEDTEXIMAGEPROC_HPP>(_impl::_get_proc_address("glGetCompressedTexImage",1,5));
 	 fn(target1,level1,img1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetDoublev
+#define GL_HPP_FUNDEF_GetDoublev
 static inline void GetDoublev(GLenum pname1,GLdouble * data1)
 {
 	 glGetDoublev(pname1,data1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetError
+#define GL_HPP_FUNDEF_GetError
 static inline GLenum GetError()
 {
 	return glGetError();
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetFloatv
+#define GL_HPP_FUNDEF_GetFloatv
 static inline void GetFloatv(GLenum pname1,GLfloat * data1)
 {
 	 glGetFloatv(pname1,data1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetIntegerv
+#define GL_HPP_FUNDEF_GetIntegerv
 static inline void GetIntegerv(GLenum pname1,GLint * data1)
 {
 	 glGetIntegerv(pname1,data1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetLightfv
+#define GL_HPP_FUNDEF_GetLightfv
 static inline void GetLightfv(GLenum light1,GLenum pname1,GLfloat * params1)
 {
 	 glGetLightfv(light1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetLightiv
+#define GL_HPP_FUNDEF_GetLightiv
 static inline void GetLightiv(GLenum light1,GLenum pname1,GLint * params1)
 {
 	 glGetLightiv(light1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetMapdv
+#define GL_HPP_FUNDEF_GetMapdv
 static inline void GetMapdv(GLenum target1,GLenum query1,GLdouble * v1)
 {
 	 glGetMapdv(target1,query1,v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetMapfv
+#define GL_HPP_FUNDEF_GetMapfv
 static inline void GetMapfv(GLenum target1,GLenum query1,GLfloat * v1)
 {
 	 glGetMapfv(target1,query1,v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetMapiv
+#define GL_HPP_FUNDEF_GetMapiv
 static inline void GetMapiv(GLenum target1,GLenum query1,GLint * v1)
 {
 	 glGetMapiv(target1,query1,v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetMaterialfv
+#define GL_HPP_FUNDEF_GetMaterialfv
 static inline void GetMaterialfv(GLenum face1,GLenum pname1,GLfloat * params1)
 {
 	 glGetMaterialfv(face1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetMaterialiv
+#define GL_HPP_FUNDEF_GetMaterialiv
 static inline void GetMaterialiv(GLenum face1,GLenum pname1,GLint * params1)
 {
 	 glGetMaterialiv(face1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetPixelMapfv
+#define GL_HPP_FUNDEF_GetPixelMapfv
 static inline void GetPixelMapfv(GLenum map1,GLfloat * values1)
 {
 	 glGetPixelMapfv(map1,values1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetPixelMapuiv
+#define GL_HPP_FUNDEF_GetPixelMapuiv
 static inline void GetPixelMapuiv(GLenum map1,GLuint * values1)
 {
 	 glGetPixelMapuiv(map1,values1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetPixelMapusv
+#define GL_HPP_FUNDEF_GetPixelMapusv
 static inline void GetPixelMapusv(GLenum map1,GLushort * values1)
 {
 	 glGetPixelMapusv(map1,values1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetPointerv
+#define GL_HPP_FUNDEF_GetPointerv
 static inline void GetPointerv(GLenum pname1,void ** params1)
 {
 	 glGetPointerv(pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetPolygonStipple
+#define GL_HPP_FUNDEF_GetPolygonStipple
 static inline void GetPolygonStipple(GLubyte * mask1)
 {
 	 glGetPolygonStipple(mask1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetQueryObjectiv
+#define GL_HPP_FUNDEF_GetQueryObjectiv
 typedef void (*PFNGLGETQUERYOBJECTIVPROC_HPP)(GLuint,GLenum,GLint *);
 static inline void GetQueryObjectiv(GLuint id1,GLenum pname1,GLint * params1)
 {
 	static PFNGLGETQUERYOBJECTIVPROC_HPP fn=reinterpret_cast<PFNGLGETQUERYOBJECTIVPROC_HPP>(_impl::_get_proc_address("glGetQueryObjectiv",1,5));
 	 fn(id1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetQueryObjectuiv
+#define GL_HPP_FUNDEF_GetQueryObjectuiv
 typedef void (*PFNGLGETQUERYOBJECTUIVPROC_HPP)(GLuint,GLenum,GLuint *);
 static inline void GetQueryObjectuiv(GLuint id1,GLenum pname1,GLuint * params1)
 {
 	static PFNGLGETQUERYOBJECTUIVPROC_HPP fn=reinterpret_cast<PFNGLGETQUERYOBJECTUIVPROC_HPP>(_impl::_get_proc_address("glGetQueryObjectuiv",1,5));
 	 fn(id1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetQueryiv
+#define GL_HPP_FUNDEF_GetQueryiv
 typedef void (*PFNGLGETQUERYIVPROC_HPP)(GLenum,GLenum,GLint *);
 static inline void GetQueryiv(GLenum target1,GLenum pname1,GLint * params1)
 {
 	static PFNGLGETQUERYIVPROC_HPP fn=reinterpret_cast<PFNGLGETQUERYIVPROC_HPP>(_impl::_get_proc_address("glGetQueryiv",1,5));
 	 fn(target1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetString
+#define GL_HPP_FUNDEF_GetString
 static inline const GLubyte * GetString(GLenum name1)
 {
 	return glGetString(name1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetTexEnvfv
+#define GL_HPP_FUNDEF_GetTexEnvfv
 static inline void GetTexEnvfv(GLenum target1,GLenum pname1,GLfloat * params1)
 {
 	 glGetTexEnvfv(target1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetTexEnviv
+#define GL_HPP_FUNDEF_GetTexEnviv
 static inline void GetTexEnviv(GLenum target1,GLenum pname1,GLint * params1)
 {
 	 glGetTexEnviv(target1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetTexGendv
+#define GL_HPP_FUNDEF_GetTexGendv
 static inline void GetTexGendv(GLenum coord1,GLenum pname1,GLdouble * params1)
 {
 	 glGetTexGendv(coord1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetTexGenfv
+#define GL_HPP_FUNDEF_GetTexGenfv
 static inline void GetTexGenfv(GLenum coord1,GLenum pname1,GLfloat * params1)
 {
 	 glGetTexGenfv(coord1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetTexGeniv
+#define GL_HPP_FUNDEF_GetTexGeniv
 static inline void GetTexGeniv(GLenum coord1,GLenum pname1,GLint * params1)
 {
 	 glGetTexGeniv(coord1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetTexImage
+#define GL_HPP_FUNDEF_GetTexImage
 static inline void GetTexImage(GLenum target1,GLint level1,GLenum format1,GLenum type1,void * pixels1)
 {
 	 glGetTexImage(target1,level1,format1,type1,pixels1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetTexLevelParameterfv
+#define GL_HPP_FUNDEF_GetTexLevelParameterfv
 static inline void GetTexLevelParameterfv(GLenum target1,GLint level1,GLenum pname1,GLfloat * params1)
 {
 	 glGetTexLevelParameterfv(target1,level1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetTexLevelParameteriv
+#define GL_HPP_FUNDEF_GetTexLevelParameteriv
 static inline void GetTexLevelParameteriv(GLenum target1,GLint level1,GLenum pname1,GLint * params1)
 {
 	 glGetTexLevelParameteriv(target1,level1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetTexParameterfv
+#define GL_HPP_FUNDEF_GetTexParameterfv
 static inline void GetTexParameterfv(GLenum target1,GLenum pname1,GLfloat * params1)
 {
 	 glGetTexParameterfv(target1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_GetTexParameteriv
+#define GL_HPP_FUNDEF_GetTexParameteriv
 static inline void GetTexParameteriv(GLenum target1,GLenum pname1,GLint * params1)
 {
 	 glGetTexParameteriv(target1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Hint
+#define GL_HPP_FUNDEF_Hint
 static inline void Hint(GLenum target1,GLenum mode1)
 {
 	 glHint(target1,mode1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_IndexMask
+#define GL_HPP_FUNDEF_IndexMask
 static inline void IndexMask(GLuint mask1)
 {
 	 glIndexMask(mask1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_IndexPointer
+#define GL_HPP_FUNDEF_IndexPointer
 static inline void IndexPointer(GLenum type1,GLsizei stride1,const void * pointer1)
 {
 	 glIndexPointer(type1,stride1,pointer1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Indexd
+#define GL_HPP_FUNDEF_Indexd
 static inline void Indexd(GLdouble c1)
 {
 	 glIndexd(c1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Indexdv
+#define GL_HPP_FUNDEF_Indexdv
 static inline void Indexdv(const GLdouble * c1)
 {
 	 glIndexdv(c1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Indexf
+#define GL_HPP_FUNDEF_Indexf
 static inline void Indexf(GLfloat c1)
 {
 	 glIndexf(c1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Indexfv
+#define GL_HPP_FUNDEF_Indexfv
 static inline void Indexfv(const GLfloat * c1)
 {
 	 glIndexfv(c1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Indexi
+#define GL_HPP_FUNDEF_Indexi
 static inline void Indexi(GLint c1)
 {
 	 glIndexi(c1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Indexiv
+#define GL_HPP_FUNDEF_Indexiv
 static inline void Indexiv(const GLint * c1)
 {
 	 glIndexiv(c1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Indexs
+#define GL_HPP_FUNDEF_Indexs
 static inline void Indexs(GLshort c1)
 {
 	 glIndexs(c1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Indexsv
+#define GL_HPP_FUNDEF_Indexsv
 static inline void Indexsv(const GLshort * c1)
 {
 	 glIndexsv(c1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Indexub
+#define GL_HPP_FUNDEF_Indexub
 static inline void Indexub(GLubyte c1)
 {
 	 glIndexub(c1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Indexubv
+#define GL_HPP_FUNDEF_Indexubv
 static inline void Indexubv(const GLubyte * c1)
 {
 	 glIndexubv(c1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_InitNames
+#define GL_HPP_FUNDEF_InitNames
 static inline void InitNames()
 {
 	 glInitNames();
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_InterleavedArrays
+#define GL_HPP_FUNDEF_InterleavedArrays
 static inline void InterleavedArrays(GLenum format1,GLsizei stride1,const void * pointer1)
 {
 	 glInterleavedArrays(format1,stride1,pointer1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_IsBuffer
+#define GL_HPP_FUNDEF_IsBuffer
 typedef GLboolean (*PFNGLISBUFFERPROC_HPP)(GLuint);
 static inline GLboolean IsBuffer(GLuint buffer1)
 {
 	static PFNGLISBUFFERPROC_HPP fn=reinterpret_cast<PFNGLISBUFFERPROC_HPP>(_impl::_get_proc_address("glIsBuffer",1,5));
 	return fn(buffer1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_IsEnabled
+#define GL_HPP_FUNDEF_IsEnabled
 static inline GLboolean IsEnabled(GLenum cap1)
 {
 	return glIsEnabled(cap1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_IsList
+#define GL_HPP_FUNDEF_IsList
 static inline GLboolean IsList(GLuint list1)
 {
 	return glIsList(list1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_IsQuery
+#define GL_HPP_FUNDEF_IsQuery
 typedef GLboolean (*PFNGLISQUERYPROC_HPP)(GLuint);
 static inline GLboolean IsQuery(GLuint id1)
 {
 	static PFNGLISQUERYPROC_HPP fn=reinterpret_cast<PFNGLISQUERYPROC_HPP>(_impl::_get_proc_address("glIsQuery",1,5));
 	return fn(id1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_IsTexture
+#define GL_HPP_FUNDEF_IsTexture
 static inline GLboolean IsTexture(GLuint texture1)
 {
 	return glIsTexture(texture1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_LightModelf
+#define GL_HPP_FUNDEF_LightModelf
 static inline void LightModelf(GLenum pname1,GLfloat param1)
 {
 	 glLightModelf(pname1,param1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_LightModelfv
+#define GL_HPP_FUNDEF_LightModelfv
 static inline void LightModelfv(GLenum pname1,const GLfloat * params1)
 {
 	 glLightModelfv(pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_LightModeli
+#define GL_HPP_FUNDEF_LightModeli
 static inline void LightModeli(GLenum pname1,GLint param1)
 {
 	 glLightModeli(pname1,param1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_LightModeliv
+#define GL_HPP_FUNDEF_LightModeliv
 static inline void LightModeliv(GLenum pname1,const GLint * params1)
 {
 	 glLightModeliv(pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Lightf
+#define GL_HPP_FUNDEF_Lightf
 static inline void Lightf(GLenum light1,GLenum pname1,GLfloat param1)
 {
 	 glLightf(light1,pname1,param1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Lightfv
+#define GL_HPP_FUNDEF_Lightfv
 static inline void Lightfv(GLenum light1,GLenum pname1,const GLfloat * params1)
 {
 	 glLightfv(light1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Lighti
+#define GL_HPP_FUNDEF_Lighti
 static inline void Lighti(GLenum light1,GLenum pname1,GLint param1)
 {
 	 glLighti(light1,pname1,param1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Lightiv
+#define GL_HPP_FUNDEF_Lightiv
 static inline void Lightiv(GLenum light1,GLenum pname1,const GLint * params1)
 {
 	 glLightiv(light1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_LineStipple
+#define GL_HPP_FUNDEF_LineStipple
 static inline void LineStipple(GLint factor1,GLushort pattern1)
 {
 	 glLineStipple(factor1,pattern1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_LineWidth
+#define GL_HPP_FUNDEF_LineWidth
 static inline void LineWidth(GLfloat width1)
 {
 	 glLineWidth(width1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_ListBase
+#define GL_HPP_FUNDEF_ListBase
 static inline void ListBase(GLuint base1)
 {
 	 glListBase(base1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_LoadIdentity
+#define GL_HPP_FUNDEF_LoadIdentity
 static inline void LoadIdentity()
 {
 	 glLoadIdentity();
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_LoadMatrixd
+#define GL_HPP_FUNDEF_LoadMatrixd
 static inline void LoadMatrixd(const GLdouble * m1)
 {
 	 glLoadMatrixd(m1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_LoadMatrixf
+#define GL_HPP_FUNDEF_LoadMatrixf
 static inline void LoadMatrixf(const GLfloat * m1)
 {
 	 glLoadMatrixf(m1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_LoadName
+#define GL_HPP_FUNDEF_LoadName
 static inline void LoadName(GLuint name1)
 {
 	 glLoadName(name1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_LoadTransposeMatrixd
+#define GL_HPP_FUNDEF_LoadTransposeMatrixd
 typedef void (*PFNGLLOADTRANSPOSEMATRIXDPROC_HPP)(const GLdouble *);
 static inline void LoadTransposeMatrixd(const GLdouble * m1)
 {
 	static PFNGLLOADTRANSPOSEMATRIXDPROC_HPP fn=reinterpret_cast<PFNGLLOADTRANSPOSEMATRIXDPROC_HPP>(_impl::_get_proc_address("glLoadTransposeMatrixd",1,5));
 	 fn(m1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_LoadTransposeMatrixf
+#define GL_HPP_FUNDEF_LoadTransposeMatrixf
 typedef void (*PFNGLLOADTRANSPOSEMATRIXFPROC_HPP)(const GLfloat *);
 static inline void LoadTransposeMatrixf(const GLfloat * m1)
 {
 	static PFNGLLOADTRANSPOSEMATRIXFPROC_HPP fn=reinterpret_cast<PFNGLLOADTRANSPOSEMATRIXFPROC_HPP>(_impl::_get_proc_address("glLoadTransposeMatrixf",1,5));
 	 fn(m1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_LogicOp
+#define GL_HPP_FUNDEF_LogicOp
 static inline void LogicOp(GLenum opcode1)
 {
 	 glLogicOp(opcode1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Map1d
+#define GL_HPP_FUNDEF_Map1d
 static inline void Map1d(GLenum target1,GLdouble u11,GLdouble u21,GLint stride1,GLint order1,const GLdouble * points1)
 {
 	 glMap1d(target1,u11,u21,stride1,order1,points1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Map1f
+#define GL_HPP_FUNDEF_Map1f
 static inline void Map1f(GLenum target1,GLfloat u11,GLfloat u21,GLint stride1,GLint order1,const GLfloat * points1)
 {
 	 glMap1f(target1,u11,u21,stride1,order1,points1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Map2d
+#define GL_HPP_FUNDEF_Map2d
 static inline void Map2d(GLenum target1,GLdouble u11,GLdouble u21,GLint ustride1,GLint uorder1,GLdouble v11,GLdouble v21,GLint vstride1,GLint vorder1,const GLdouble * points1)
 {
 	 glMap2d(target1,u11,u21,ustride1,uorder1,v11,v21,vstride1,vorder1,points1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Map2f
+#define GL_HPP_FUNDEF_Map2f
 static inline void Map2f(GLenum target1,GLfloat u11,GLfloat u21,GLint ustride1,GLint uorder1,GLfloat v11,GLfloat v21,GLint vstride1,GLint vorder1,const GLfloat * points1)
 {
 	 glMap2f(target1,u11,u21,ustride1,uorder1,v11,v21,vstride1,vorder1,points1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MapBuffer
+#define GL_HPP_FUNDEF_MapBuffer
 typedef void * (*PFNGLMAPBUFFERPROC_HPP)(GLenum,GLenum);
 static inline void * MapBuffer(GLenum target1,GLenum access1)
 {
 	static PFNGLMAPBUFFERPROC_HPP fn=reinterpret_cast<PFNGLMAPBUFFERPROC_HPP>(_impl::_get_proc_address("glMapBuffer",1,5));
 	return fn(target1,access1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MapGrid1d
+#define GL_HPP_FUNDEF_MapGrid1d
 static inline void MapGrid1d(GLint un1,GLdouble u11,GLdouble u21)
 {
 	 glMapGrid1d(un1,u11,u21);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MapGrid1f
+#define GL_HPP_FUNDEF_MapGrid1f
 static inline void MapGrid1f(GLint un1,GLfloat u11,GLfloat u21)
 {
 	 glMapGrid1f(un1,u11,u21);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MapGrid2d
+#define GL_HPP_FUNDEF_MapGrid2d
 static inline void MapGrid2d(GLint un1,GLdouble u11,GLdouble u21,GLint vn1,GLdouble v11,GLdouble v21)
 {
 	 glMapGrid2d(un1,u11,u21,vn1,v11,v21);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MapGrid2f
+#define GL_HPP_FUNDEF_MapGrid2f
 static inline void MapGrid2f(GLint un1,GLfloat u11,GLfloat u21,GLint vn1,GLfloat v11,GLfloat v21)
 {
 	 glMapGrid2f(un1,u11,u21,vn1,v11,v21);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Materialf
+#define GL_HPP_FUNDEF_Materialf
 static inline void Materialf(GLenum face1,GLenum pname1,GLfloat param1)
 {
 	 glMaterialf(face1,pname1,param1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Materialfv
+#define GL_HPP_FUNDEF_Materialfv
 static inline void Materialfv(GLenum face1,GLenum pname1,const GLfloat * params1)
 {
 	 glMaterialfv(face1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Materiali
+#define GL_HPP_FUNDEF_Materiali
 static inline void Materiali(GLenum face1,GLenum pname1,GLint param1)
 {
 	 glMateriali(face1,pname1,param1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Materialiv
+#define GL_HPP_FUNDEF_Materialiv
 static inline void Materialiv(GLenum face1,GLenum pname1,const GLint * params1)
 {
 	 glMaterialiv(face1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MatrixMode
+#define GL_HPP_FUNDEF_MatrixMode
 static inline void MatrixMode(GLenum mode1)
 {
 	 glMatrixMode(mode1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultMatrixd
+#define GL_HPP_FUNDEF_MultMatrixd
 static inline void MultMatrixd(const GLdouble * m1)
 {
 	 glMultMatrixd(m1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultMatrixf
+#define GL_HPP_FUNDEF_MultMatrixf
 static inline void MultMatrixf(const GLfloat * m1)
 {
 	 glMultMatrixf(m1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultTransposeMatrixd
+#define GL_HPP_FUNDEF_MultTransposeMatrixd
 typedef void (*PFNGLMULTTRANSPOSEMATRIXDPROC_HPP)(const GLdouble *);
 static inline void MultTransposeMatrixd(const GLdouble * m1)
 {
 	static PFNGLMULTTRANSPOSEMATRIXDPROC_HPP fn=reinterpret_cast<PFNGLMULTTRANSPOSEMATRIXDPROC_HPP>(_impl::_get_proc_address("glMultTransposeMatrixd",1,5));
 	 fn(m1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultTransposeMatrixf
+#define GL_HPP_FUNDEF_MultTransposeMatrixf
 typedef void (*PFNGLMULTTRANSPOSEMATRIXFPROC_HPP)(const GLfloat *);
 static inline void MultTransposeMatrixf(const GLfloat * m1)
 {
 	static PFNGLMULTTRANSPOSEMATRIXFPROC_HPP fn=reinterpret_cast<PFNGLMULTTRANSPOSEMATRIXFPROC_HPP>(_impl::_get_proc_address("glMultTransposeMatrixf",1,5));
 	 fn(m1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiDrawArrays
+#define GL_HPP_FUNDEF_MultiDrawArrays
 typedef void (*PFNGLMULTIDRAWARRAYSPROC_HPP)(GLenum,const GLint *,const GLsizei *,GLsizei);
 static inline void MultiDrawArrays(GLenum mode1,const GLint * first1,const GLsizei * count1,GLsizei drawcount1)
 {
 	static PFNGLMULTIDRAWARRAYSPROC_HPP fn=reinterpret_cast<PFNGLMULTIDRAWARRAYSPROC_HPP>(_impl::_get_proc_address("glMultiDrawArrays",1,5));
 	 fn(mode1,first1,count1,drawcount1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiDrawElements
+#define GL_HPP_FUNDEF_MultiDrawElements
 typedef void (*PFNGLMULTIDRAWELEMENTSPROC_HPP)(GLenum,const GLsizei *,GLenum,const void *const*,GLsizei);
 static inline void MultiDrawElements(GLenum mode1,const GLsizei * count1,GLenum type1,const void *const* indices1,GLsizei drawcount1)
 {
 	static PFNGLMULTIDRAWELEMENTSPROC_HPP fn=reinterpret_cast<PFNGLMULTIDRAWELEMENTSPROC_HPP>(_impl::_get_proc_address("glMultiDrawElements",1,5));
 	 fn(mode1,count1,type1,indices1,drawcount1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord1d
+#define GL_HPP_FUNDEF_MultiTexCoord1d
 typedef void (*PFNGLMULTITEXCOORD1DPROC_HPP)(GLenum,GLdouble);
 static inline void MultiTexCoord1d(GLenum target1,GLdouble s1)
 {
 	static PFNGLMULTITEXCOORD1DPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD1DPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord1d",1,5));
 	 fn(target1,s1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord1dv
+#define GL_HPP_FUNDEF_MultiTexCoord1dv
 typedef void (*PFNGLMULTITEXCOORD1DVPROC_HPP)(GLenum,const GLdouble *);
 static inline void MultiTexCoord1dv(GLenum target1,const GLdouble * v1)
 {
 	static PFNGLMULTITEXCOORD1DVPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD1DVPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord1dv",1,5));
 	 fn(target1,v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord1f
+#define GL_HPP_FUNDEF_MultiTexCoord1f
 typedef void (*PFNGLMULTITEXCOORD1FPROC_HPP)(GLenum,GLfloat);
 static inline void MultiTexCoord1f(GLenum target1,GLfloat s1)
 {
 	static PFNGLMULTITEXCOORD1FPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD1FPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord1f",1,5));
 	 fn(target1,s1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord1fv
+#define GL_HPP_FUNDEF_MultiTexCoord1fv
 typedef void (*PFNGLMULTITEXCOORD1FVPROC_HPP)(GLenum,const GLfloat *);
 static inline void MultiTexCoord1fv(GLenum target1,const GLfloat * v1)
 {
 	static PFNGLMULTITEXCOORD1FVPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD1FVPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord1fv",1,5));
 	 fn(target1,v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord1i
+#define GL_HPP_FUNDEF_MultiTexCoord1i
 typedef void (*PFNGLMULTITEXCOORD1IPROC_HPP)(GLenum,GLint);
 static inline void MultiTexCoord1i(GLenum target1,GLint s1)
 {
 	static PFNGLMULTITEXCOORD1IPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD1IPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord1i",1,5));
 	 fn(target1,s1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord1iv
+#define GL_HPP_FUNDEF_MultiTexCoord1iv
 typedef void (*PFNGLMULTITEXCOORD1IVPROC_HPP)(GLenum,const GLint *);
 static inline void MultiTexCoord1iv(GLenum target1,const GLint * v1)
 {
 	static PFNGLMULTITEXCOORD1IVPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD1IVPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord1iv",1,5));
 	 fn(target1,v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord1s
+#define GL_HPP_FUNDEF_MultiTexCoord1s
 typedef void (*PFNGLMULTITEXCOORD1SPROC_HPP)(GLenum,GLshort);
 static inline void MultiTexCoord1s(GLenum target1,GLshort s1)
 {
 	static PFNGLMULTITEXCOORD1SPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD1SPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord1s",1,5));
 	 fn(target1,s1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord1sv
+#define GL_HPP_FUNDEF_MultiTexCoord1sv
 typedef void (*PFNGLMULTITEXCOORD1SVPROC_HPP)(GLenum,const GLshort *);
 static inline void MultiTexCoord1sv(GLenum target1,const GLshort * v1)
 {
 	static PFNGLMULTITEXCOORD1SVPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD1SVPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord1sv",1,5));
 	 fn(target1,v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord2d
+#define GL_HPP_FUNDEF_MultiTexCoord2d
 typedef void (*PFNGLMULTITEXCOORD2DPROC_HPP)(GLenum,GLdouble,GLdouble);
 static inline void MultiTexCoord2d(GLenum target1,GLdouble s1,GLdouble t1)
 {
 	static PFNGLMULTITEXCOORD2DPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD2DPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord2d",1,5));
 	 fn(target1,s1,t1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord2dv
+#define GL_HPP_FUNDEF_MultiTexCoord2dv
 typedef void (*PFNGLMULTITEXCOORD2DVPROC_HPP)(GLenum,const GLdouble *);
 static inline void MultiTexCoord2dv(GLenum target1,const GLdouble * v1)
 {
 	static PFNGLMULTITEXCOORD2DVPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD2DVPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord2dv",1,5));
 	 fn(target1,v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord2f
+#define GL_HPP_FUNDEF_MultiTexCoord2f
 typedef void (*PFNGLMULTITEXCOORD2FPROC_HPP)(GLenum,GLfloat,GLfloat);
 static inline void MultiTexCoord2f(GLenum target1,GLfloat s1,GLfloat t1)
 {
 	static PFNGLMULTITEXCOORD2FPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD2FPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord2f",1,5));
 	 fn(target1,s1,t1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord2fv
+#define GL_HPP_FUNDEF_MultiTexCoord2fv
 typedef void (*PFNGLMULTITEXCOORD2FVPROC_HPP)(GLenum,const GLfloat *);
 static inline void MultiTexCoord2fv(GLenum target1,const GLfloat * v1)
 {
 	static PFNGLMULTITEXCOORD2FVPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD2FVPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord2fv",1,5));
 	 fn(target1,v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord2i
+#define GL_HPP_FUNDEF_MultiTexCoord2i
 typedef void (*PFNGLMULTITEXCOORD2IPROC_HPP)(GLenum,GLint,GLint);
 static inline void MultiTexCoord2i(GLenum target1,GLint s1,GLint t1)
 {
 	static PFNGLMULTITEXCOORD2IPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD2IPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord2i",1,5));
 	 fn(target1,s1,t1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord2iv
+#define GL_HPP_FUNDEF_MultiTexCoord2iv
 typedef void (*PFNGLMULTITEXCOORD2IVPROC_HPP)(GLenum,const GLint *);
 static inline void MultiTexCoord2iv(GLenum target1,const GLint * v1)
 {
 	static PFNGLMULTITEXCOORD2IVPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD2IVPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord2iv",1,5));
 	 fn(target1,v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord2s
+#define GL_HPP_FUNDEF_MultiTexCoord2s
 typedef void (*PFNGLMULTITEXCOORD2SPROC_HPP)(GLenum,GLshort,GLshort);
 static inline void MultiTexCoord2s(GLenum target1,GLshort s1,GLshort t1)
 {
 	static PFNGLMULTITEXCOORD2SPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD2SPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord2s",1,5));
 	 fn(target1,s1,t1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord2sv
+#define GL_HPP_FUNDEF_MultiTexCoord2sv
 typedef void (*PFNGLMULTITEXCOORD2SVPROC_HPP)(GLenum,const GLshort *);
 static inline void MultiTexCoord2sv(GLenum target1,const GLshort * v1)
 {
 	static PFNGLMULTITEXCOORD2SVPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD2SVPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord2sv",1,5));
 	 fn(target1,v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord3d
+#define GL_HPP_FUNDEF_MultiTexCoord3d
 typedef void (*PFNGLMULTITEXCOORD3DPROC_HPP)(GLenum,GLdouble,GLdouble,GLdouble);
 static inline void MultiTexCoord3d(GLenum target1,GLdouble s1,GLdouble t1,GLdouble r1)
 {
 	static PFNGLMULTITEXCOORD3DPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD3DPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord3d",1,5));
 	 fn(target1,s1,t1,r1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord3dv
+#define GL_HPP_FUNDEF_MultiTexCoord3dv
 typedef void (*PFNGLMULTITEXCOORD3DVPROC_HPP)(GLenum,const GLdouble *);
 static inline void MultiTexCoord3dv(GLenum target1,const GLdouble * v1)
 {
 	static PFNGLMULTITEXCOORD3DVPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD3DVPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord3dv",1,5));
 	 fn(target1,v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord3f
+#define GL_HPP_FUNDEF_MultiTexCoord3f
 typedef void (*PFNGLMULTITEXCOORD3FPROC_HPP)(GLenum,GLfloat,GLfloat,GLfloat);
 static inline void MultiTexCoord3f(GLenum target1,GLfloat s1,GLfloat t1,GLfloat r1)
 {
 	static PFNGLMULTITEXCOORD3FPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD3FPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord3f",1,5));
 	 fn(target1,s1,t1,r1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord3fv
+#define GL_HPP_FUNDEF_MultiTexCoord3fv
 typedef void (*PFNGLMULTITEXCOORD3FVPROC_HPP)(GLenum,const GLfloat *);
 static inline void MultiTexCoord3fv(GLenum target1,const GLfloat * v1)
 {
 	static PFNGLMULTITEXCOORD3FVPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD3FVPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord3fv",1,5));
 	 fn(target1,v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord3i
+#define GL_HPP_FUNDEF_MultiTexCoord3i
 typedef void (*PFNGLMULTITEXCOORD3IPROC_HPP)(GLenum,GLint,GLint,GLint);
 static inline void MultiTexCoord3i(GLenum target1,GLint s1,GLint t1,GLint r1)
 {
 	static PFNGLMULTITEXCOORD3IPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD3IPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord3i",1,5));
 	 fn(target1,s1,t1,r1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord3iv
+#define GL_HPP_FUNDEF_MultiTexCoord3iv
 typedef void (*PFNGLMULTITEXCOORD3IVPROC_HPP)(GLenum,const GLint *);
 static inline void MultiTexCoord3iv(GLenum target1,const GLint * v1)
 {
 	static PFNGLMULTITEXCOORD3IVPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD3IVPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord3iv",1,5));
 	 fn(target1,v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord3s
+#define GL_HPP_FUNDEF_MultiTexCoord3s
 typedef void (*PFNGLMULTITEXCOORD3SPROC_HPP)(GLenum,GLshort,GLshort,GLshort);
 static inline void MultiTexCoord3s(GLenum target1,GLshort s1,GLshort t1,GLshort r1)
 {
 	static PFNGLMULTITEXCOORD3SPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD3SPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord3s",1,5));
 	 fn(target1,s1,t1,r1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord3sv
+#define GL_HPP_FUNDEF_MultiTexCoord3sv
 typedef void (*PFNGLMULTITEXCOORD3SVPROC_HPP)(GLenum,const GLshort *);
 static inline void MultiTexCoord3sv(GLenum target1,const GLshort * v1)
 {
 	static PFNGLMULTITEXCOORD3SVPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD3SVPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord3sv",1,5));
 	 fn(target1,v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord4d
+#define GL_HPP_FUNDEF_MultiTexCoord4d
 typedef void (*PFNGLMULTITEXCOORD4DPROC_HPP)(GLenum,GLdouble,GLdouble,GLdouble,GLdouble);
 static inline void MultiTexCoord4d(GLenum target1,GLdouble s1,GLdouble t1,GLdouble r1,GLdouble q1)
 {
 	static PFNGLMULTITEXCOORD4DPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD4DPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord4d",1,5));
 	 fn(target1,s1,t1,r1,q1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord4dv
+#define GL_HPP_FUNDEF_MultiTexCoord4dv
 typedef void (*PFNGLMULTITEXCOORD4DVPROC_HPP)(GLenum,const GLdouble *);
 static inline void MultiTexCoord4dv(GLenum target1,const GLdouble * v1)
 {
 	static PFNGLMULTITEXCOORD4DVPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD4DVPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord4dv",1,5));
 	 fn(target1,v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord4f
+#define GL_HPP_FUNDEF_MultiTexCoord4f
 typedef void (*PFNGLMULTITEXCOORD4FPROC_HPP)(GLenum,GLfloat,GLfloat,GLfloat,GLfloat);
 static inline void MultiTexCoord4f(GLenum target1,GLfloat s1,GLfloat t1,GLfloat r1,GLfloat q1)
 {
 	static PFNGLMULTITEXCOORD4FPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD4FPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord4f",1,5));
 	 fn(target1,s1,t1,r1,q1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord4fv
+#define GL_HPP_FUNDEF_MultiTexCoord4fv
 typedef void (*PFNGLMULTITEXCOORD4FVPROC_HPP)(GLenum,const GLfloat *);
 static inline void MultiTexCoord4fv(GLenum target1,const GLfloat * v1)
 {
 	static PFNGLMULTITEXCOORD4FVPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD4FVPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord4fv",1,5));
 	 fn(target1,v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord4i
+#define GL_HPP_FUNDEF_MultiTexCoord4i
 typedef void (*PFNGLMULTITEXCOORD4IPROC_HPP)(GLenum,GLint,GLint,GLint,GLint);
 static inline void MultiTexCoord4i(GLenum target1,GLint s1,GLint t1,GLint r1,GLint q1)
 {
 	static PFNGLMULTITEXCOORD4IPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD4IPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord4i",1,5));
 	 fn(target1,s1,t1,r1,q1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord4iv
+#define GL_HPP_FUNDEF_MultiTexCoord4iv
 typedef void (*PFNGLMULTITEXCOORD4IVPROC_HPP)(GLenum,const GLint *);
 static inline void MultiTexCoord4iv(GLenum target1,const GLint * v1)
 {
 	static PFNGLMULTITEXCOORD4IVPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD4IVPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord4iv",1,5));
 	 fn(target1,v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord4s
+#define GL_HPP_FUNDEF_MultiTexCoord4s
 typedef void (*PFNGLMULTITEXCOORD4SPROC_HPP)(GLenum,GLshort,GLshort,GLshort,GLshort);
 static inline void MultiTexCoord4s(GLenum target1,GLshort s1,GLshort t1,GLshort r1,GLshort q1)
 {
 	static PFNGLMULTITEXCOORD4SPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD4SPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord4s",1,5));
 	 fn(target1,s1,t1,r1,q1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_MultiTexCoord4sv
+#define GL_HPP_FUNDEF_MultiTexCoord4sv
 typedef void (*PFNGLMULTITEXCOORD4SVPROC_HPP)(GLenum,const GLshort *);
 static inline void MultiTexCoord4sv(GLenum target1,const GLshort * v1)
 {
 	static PFNGLMULTITEXCOORD4SVPROC_HPP fn=reinterpret_cast<PFNGLMULTITEXCOORD4SVPROC_HPP>(_impl::_get_proc_address("glMultiTexCoord4sv",1,5));
 	 fn(target1,v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_NewList
+#define GL_HPP_FUNDEF_NewList
 static inline void NewList(GLuint list1,GLenum mode1)
 {
 	 glNewList(list1,mode1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Normal3b
+#define GL_HPP_FUNDEF_Normal3b
 static inline void Normal3b(GLbyte nx1,GLbyte ny1,GLbyte nz1)
 {
 	 glNormal3b(nx1,ny1,nz1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Normal3bv
+#define GL_HPP_FUNDEF_Normal3bv
 static inline void Normal3bv(const GLbyte * v1)
 {
 	 glNormal3bv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Normal3d
+#define GL_HPP_FUNDEF_Normal3d
 static inline void Normal3d(GLdouble nx1,GLdouble ny1,GLdouble nz1)
 {
 	 glNormal3d(nx1,ny1,nz1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Normal3dv
+#define GL_HPP_FUNDEF_Normal3dv
 static inline void Normal3dv(const GLdouble * v1)
 {
 	 glNormal3dv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Normal3f
+#define GL_HPP_FUNDEF_Normal3f
 static inline void Normal3f(GLfloat nx1,GLfloat ny1,GLfloat nz1)
 {
 	 glNormal3f(nx1,ny1,nz1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Normal3fv
+#define GL_HPP_FUNDEF_Normal3fv
 static inline void Normal3fv(const GLfloat * v1)
 {
 	 glNormal3fv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Normal3i
+#define GL_HPP_FUNDEF_Normal3i
 static inline void Normal3i(GLint nx1,GLint ny1,GLint nz1)
 {
 	 glNormal3i(nx1,ny1,nz1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Normal3iv
+#define GL_HPP_FUNDEF_Normal3iv
 static inline void Normal3iv(const GLint * v1)
 {
 	 glNormal3iv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Normal3s
+#define GL_HPP_FUNDEF_Normal3s
 static inline void Normal3s(GLshort nx1,GLshort ny1,GLshort nz1)
 {
 	 glNormal3s(nx1,ny1,nz1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Normal3sv
+#define GL_HPP_FUNDEF_Normal3sv
 static inline void Normal3sv(const GLshort * v1)
 {
 	 glNormal3sv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_NormalPointer
+#define GL_HPP_FUNDEF_NormalPointer
 static inline void NormalPointer(GLenum type1,GLsizei stride1,const void * pointer1)
 {
 	 glNormalPointer(type1,stride1,pointer1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Ortho
+#define GL_HPP_FUNDEF_Ortho
 static inline void Ortho(GLdouble left1,GLdouble right1,GLdouble bottom1,GLdouble top1,GLdouble zNear1,GLdouble zFar1)
 {
 	 glOrtho(left1,right1,bottom1,top1,zNear1,zFar1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PassThrough
+#define GL_HPP_FUNDEF_PassThrough
 static inline void PassThrough(GLfloat token1)
 {
 	 glPassThrough(token1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PixelMapfv
+#define GL_HPP_FUNDEF_PixelMapfv
 static inline void PixelMapfv(GLenum map1,GLsizei mapsize1,const GLfloat * values1)
 {
 	 glPixelMapfv(map1,mapsize1,values1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PixelMapuiv
+#define GL_HPP_FUNDEF_PixelMapuiv
 static inline void PixelMapuiv(GLenum map1,GLsizei mapsize1,const GLuint * values1)
 {
 	 glPixelMapuiv(map1,mapsize1,values1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PixelMapusv
+#define GL_HPP_FUNDEF_PixelMapusv
 static inline void PixelMapusv(GLenum map1,GLsizei mapsize1,const GLushort * values1)
 {
 	 glPixelMapusv(map1,mapsize1,values1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PixelStoref
+#define GL_HPP_FUNDEF_PixelStoref
 static inline void PixelStoref(GLenum pname1,GLfloat param1)
 {
 	 glPixelStoref(pname1,param1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PixelStorei
+#define GL_HPP_FUNDEF_PixelStorei
 static inline void PixelStorei(GLenum pname1,GLint param1)
 {
 	 glPixelStorei(pname1,param1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PixelTransferf
+#define GL_HPP_FUNDEF_PixelTransferf
 static inline void PixelTransferf(GLenum pname1,GLfloat param1)
 {
 	 glPixelTransferf(pname1,param1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PixelTransferi
+#define GL_HPP_FUNDEF_PixelTransferi
 static inline void PixelTransferi(GLenum pname1,GLint param1)
 {
 	 glPixelTransferi(pname1,param1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PixelZoom
+#define GL_HPP_FUNDEF_PixelZoom
 static inline void PixelZoom(GLfloat xfactor1,GLfloat yfactor1)
 {
 	 glPixelZoom(xfactor1,yfactor1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PointParameterf
+#define GL_HPP_FUNDEF_PointParameterf
 typedef void (*PFNGLPOINTPARAMETERFPROC_HPP)(GLenum,GLfloat);
 static inline void PointParameterf(GLenum pname1,GLfloat param1)
 {
 	static PFNGLPOINTPARAMETERFPROC_HPP fn=reinterpret_cast<PFNGLPOINTPARAMETERFPROC_HPP>(_impl::_get_proc_address("glPointParameterf",1,5));
 	 fn(pname1,param1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PointParameterfv
+#define GL_HPP_FUNDEF_PointParameterfv
 typedef void (*PFNGLPOINTPARAMETERFVPROC_HPP)(GLenum,const GLfloat *);
 static inline void PointParameterfv(GLenum pname1,const GLfloat * params1)
 {
 	static PFNGLPOINTPARAMETERFVPROC_HPP fn=reinterpret_cast<PFNGLPOINTPARAMETERFVPROC_HPP>(_impl::_get_proc_address("glPointParameterfv",1,5));
 	 fn(pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PointParameteri
+#define GL_HPP_FUNDEF_PointParameteri
 typedef void (*PFNGLPOINTPARAMETERIPROC_HPP)(GLenum,GLint);
 static inline void PointParameteri(GLenum pname1,GLint param1)
 {
 	static PFNGLPOINTPARAMETERIPROC_HPP fn=reinterpret_cast<PFNGLPOINTPARAMETERIPROC_HPP>(_impl::_get_proc_address("glPointParameteri",1,5));
 	 fn(pname1,param1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PointParameteriv
+#define GL_HPP_FUNDEF_PointParameteriv
 typedef void (*PFNGLPOINTPARAMETERIVPROC_HPP)(GLenum,const GLint *);
 static inline void PointParameteriv(GLenum pname1,const GLint * params1)
 {
 	static PFNGLPOINTPARAMETERIVPROC_HPP fn=reinterpret_cast<PFNGLPOINTPARAMETERIVPROC_HPP>(_impl::_get_proc_address("glPointParameteriv",1,5));
 	 fn(pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PointSize
+#define GL_HPP_FUNDEF_PointSize
 static inline void PointSize(GLfloat size1)
 {
 	 glPointSize(size1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PolygonMode
+#define GL_HPP_FUNDEF_PolygonMode
 static inline void PolygonMode(GLenum face1,GLenum mode1)
 {
 	 glPolygonMode(face1,mode1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PolygonOffset
+#define GL_HPP_FUNDEF_PolygonOffset
 static inline void PolygonOffset(GLfloat factor1,GLfloat units1)
 {
 	 glPolygonOffset(factor1,units1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PolygonStipple
+#define GL_HPP_FUNDEF_PolygonStipple
 static inline void PolygonStipple(const GLubyte * mask1)
 {
 	 glPolygonStipple(mask1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PopAttrib
+#define GL_HPP_FUNDEF_PopAttrib
 static inline void PopAttrib()
 {
 	 glPopAttrib();
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PopClientAttrib
+#define GL_HPP_FUNDEF_PopClientAttrib
 static inline void PopClientAttrib()
 {
 	 glPopClientAttrib();
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PopMatrix
+#define GL_HPP_FUNDEF_PopMatrix
 static inline void PopMatrix()
 {
 	 glPopMatrix();
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PopName
+#define GL_HPP_FUNDEF_PopName
 static inline void PopName()
 {
 	 glPopName();
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PrioritizeTextures
+#define GL_HPP_FUNDEF_PrioritizeTextures
 static inline void PrioritizeTextures(GLsizei n1,const GLuint * textures1,const GLfloat * priorities1)
 {
 	 glPrioritizeTextures(n1,textures1,priorities1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PushAttrib
+#define GL_HPP_FUNDEF_PushAttrib
 static inline void PushAttrib(GLbitfield mask1)
 {
 	 glPushAttrib(mask1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PushClientAttrib
+#define GL_HPP_FUNDEF_PushClientAttrib
 static inline void PushClientAttrib(GLbitfield mask1)
 {
 	 glPushClientAttrib(mask1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PushMatrix
+#define GL_HPP_FUNDEF_PushMatrix
 static inline void PushMatrix()
 {
 	 glPushMatrix();
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_PushName
+#define GL_HPP_FUNDEF_PushName
 static inline void PushName(GLuint name1)
 {
 	 glPushName(name1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos2d
+#define GL_HPP_FUNDEF_RasterPos2d
 static inline void RasterPos2d(GLdouble x1,GLdouble y1)
 {
 	 glRasterPos2d(x1,y1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos2dv
+#define GL_HPP_FUNDEF_RasterPos2dv
 static inline void RasterPos2dv(const GLdouble * v1)
 {
 	 glRasterPos2dv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos2f
+#define GL_HPP_FUNDEF_RasterPos2f
 static inline void RasterPos2f(GLfloat x1,GLfloat y1)
 {
 	 glRasterPos2f(x1,y1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos2fv
+#define GL_HPP_FUNDEF_RasterPos2fv
 static inline void RasterPos2fv(const GLfloat * v1)
 {
 	 glRasterPos2fv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos2i
+#define GL_HPP_FUNDEF_RasterPos2i
 static inline void RasterPos2i(GLint x1,GLint y1)
 {
 	 glRasterPos2i(x1,y1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos2iv
+#define GL_HPP_FUNDEF_RasterPos2iv
 static inline void RasterPos2iv(const GLint * v1)
 {
 	 glRasterPos2iv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos2s
+#define GL_HPP_FUNDEF_RasterPos2s
 static inline void RasterPos2s(GLshort x1,GLshort y1)
 {
 	 glRasterPos2s(x1,y1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos2sv
+#define GL_HPP_FUNDEF_RasterPos2sv
 static inline void RasterPos2sv(const GLshort * v1)
 {
 	 glRasterPos2sv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos3d
+#define GL_HPP_FUNDEF_RasterPos3d
 static inline void RasterPos3d(GLdouble x1,GLdouble y1,GLdouble z1)
 {
 	 glRasterPos3d(x1,y1,z1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos3dv
+#define GL_HPP_FUNDEF_RasterPos3dv
 static inline void RasterPos3dv(const GLdouble * v1)
 {
 	 glRasterPos3dv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos3f
+#define GL_HPP_FUNDEF_RasterPos3f
 static inline void RasterPos3f(GLfloat x1,GLfloat y1,GLfloat z1)
 {
 	 glRasterPos3f(x1,y1,z1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos3fv
+#define GL_HPP_FUNDEF_RasterPos3fv
 static inline void RasterPos3fv(const GLfloat * v1)
 {
 	 glRasterPos3fv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos3i
+#define GL_HPP_FUNDEF_RasterPos3i
 static inline void RasterPos3i(GLint x1,GLint y1,GLint z1)
 {
 	 glRasterPos3i(x1,y1,z1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos3iv
+#define GL_HPP_FUNDEF_RasterPos3iv
 static inline void RasterPos3iv(const GLint * v1)
 {
 	 glRasterPos3iv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos3s
+#define GL_HPP_FUNDEF_RasterPos3s
 static inline void RasterPos3s(GLshort x1,GLshort y1,GLshort z1)
 {
 	 glRasterPos3s(x1,y1,z1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos3sv
+#define GL_HPP_FUNDEF_RasterPos3sv
 static inline void RasterPos3sv(const GLshort * v1)
 {
 	 glRasterPos3sv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos4d
+#define GL_HPP_FUNDEF_RasterPos4d
 static inline void RasterPos4d(GLdouble x1,GLdouble y1,GLdouble z1,GLdouble w1)
 {
 	 glRasterPos4d(x1,y1,z1,w1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos4dv
+#define GL_HPP_FUNDEF_RasterPos4dv
 static inline void RasterPos4dv(const GLdouble * v1)
 {
 	 glRasterPos4dv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos4f
+#define GL_HPP_FUNDEF_RasterPos4f
 static inline void RasterPos4f(GLfloat x1,GLfloat y1,GLfloat z1,GLfloat w1)
 {
 	 glRasterPos4f(x1,y1,z1,w1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos4fv
+#define GL_HPP_FUNDEF_RasterPos4fv
 static inline void RasterPos4fv(const GLfloat * v1)
 {
 	 glRasterPos4fv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos4i
+#define GL_HPP_FUNDEF_RasterPos4i
 static inline void RasterPos4i(GLint x1,GLint y1,GLint z1,GLint w1)
 {
 	 glRasterPos4i(x1,y1,z1,w1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos4iv
+#define GL_HPP_FUNDEF_RasterPos4iv
 static inline void RasterPos4iv(const GLint * v1)
 {
 	 glRasterPos4iv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos4s
+#define GL_HPP_FUNDEF_RasterPos4s
 static inline void RasterPos4s(GLshort x1,GLshort y1,GLshort z1,GLshort w1)
 {
 	 glRasterPos4s(x1,y1,z1,w1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RasterPos4sv
+#define GL_HPP_FUNDEF_RasterPos4sv
 static inline void RasterPos4sv(const GLshort * v1)
 {
 	 glRasterPos4sv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_ReadBuffer
+#define GL_HPP_FUNDEF_ReadBuffer
 static inline void ReadBuffer(GLenum src1)
 {
 	 glReadBuffer(src1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_ReadPixels
+#define GL_HPP_FUNDEF_ReadPixels
 static inline void ReadPixels(GLint x1,GLint y1,GLsizei width1,GLsizei height1,GLenum format1,GLenum type1,void * pixels1)
 {
 	 glReadPixels(x1,y1,width1,height1,format1,type1,pixels1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Rectd
+#define GL_HPP_FUNDEF_Rectd
 static inline void Rectd(GLdouble x11,GLdouble y11,GLdouble x21,GLdouble y21)
 {
 	 glRectd(x11,y11,x21,y21);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Rectdv
+#define GL_HPP_FUNDEF_Rectdv
 static inline void Rectdv(const GLdouble * v11,const GLdouble * v21)
 {
 	 glRectdv(v11,v21);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Rectf
+#define GL_HPP_FUNDEF_Rectf
 static inline void Rectf(GLfloat x11,GLfloat y11,GLfloat x21,GLfloat y21)
 {
 	 glRectf(x11,y11,x21,y21);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Rectfv
+#define GL_HPP_FUNDEF_Rectfv
 static inline void Rectfv(const GLfloat * v11,const GLfloat * v21)
 {
 	 glRectfv(v11,v21);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Recti
+#define GL_HPP_FUNDEF_Recti
 static inline void Recti(GLint x11,GLint y11,GLint x21,GLint y21)
 {
 	 glRecti(x11,y11,x21,y21);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Rectiv
+#define GL_HPP_FUNDEF_Rectiv
 static inline void Rectiv(const GLint * v11,const GLint * v21)
 {
 	 glRectiv(v11,v21);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Rects
+#define GL_HPP_FUNDEF_Rects
 static inline void Rects(GLshort x11,GLshort y11,GLshort x21,GLshort y21)
 {
 	 glRects(x11,y11,x21,y21);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Rectsv
+#define GL_HPP_FUNDEF_Rectsv
 static inline void Rectsv(const GLshort * v11,const GLshort * v21)
 {
 	 glRectsv(v11,v21);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_RenderMode
+#define GL_HPP_FUNDEF_RenderMode
 static inline GLint RenderMode(GLenum mode1)
 {
 	return glRenderMode(mode1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Rotated
+#define GL_HPP_FUNDEF_Rotated
 static inline void Rotated(GLdouble angle1,GLdouble x1,GLdouble y1,GLdouble z1)
 {
 	 glRotated(angle1,x1,y1,z1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Rotatef
+#define GL_HPP_FUNDEF_Rotatef
 static inline void Rotatef(GLfloat angle1,GLfloat x1,GLfloat y1,GLfloat z1)
 {
 	 glRotatef(angle1,x1,y1,z1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_SampleCoverage
+#define GL_HPP_FUNDEF_SampleCoverage
 typedef void (*PFNGLSAMPLECOVERAGEPROC_HPP)(GLfloat,GLboolean);
 static inline void SampleCoverage(GLfloat value1,GLboolean invert1)
 {
 	static PFNGLSAMPLECOVERAGEPROC_HPP fn=reinterpret_cast<PFNGLSAMPLECOVERAGEPROC_HPP>(_impl::_get_proc_address("glSampleCoverage",1,5));
 	 fn(value1,invert1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Scaled
+#define GL_HPP_FUNDEF_Scaled
 static inline void Scaled(GLdouble x1,GLdouble y1,GLdouble z1)
 {
 	 glScaled(x1,y1,z1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Scalef
+#define GL_HPP_FUNDEF_Scalef
 static inline void Scalef(GLfloat x1,GLfloat y1,GLfloat z1)
 {
 	 glScalef(x1,y1,z1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Scissor
+#define GL_HPP_FUNDEF_Scissor
 static inline void Scissor(GLint x1,GLint y1,GLsizei width1,GLsizei height1)
 {
 	 glScissor(x1,y1,width1,height1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3b
+#define GL_HPP_FUNDEF_SecondaryColor3b
 typedef void (*PFNGLSECONDARYCOLOR3BPROC_HPP)(GLbyte,GLbyte,GLbyte);
 static inline void SecondaryColor3b(GLbyte red1,GLbyte green1,GLbyte blue1)
 {
 	static PFNGLSECONDARYCOLOR3BPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLOR3BPROC_HPP>(_impl::_get_proc_address("glSecondaryColor3b",1,5));
 	 fn(red1,green1,blue1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3bv
+#define GL_HPP_FUNDEF_SecondaryColor3bv
 typedef void (*PFNGLSECONDARYCOLOR3BVPROC_HPP)(const GLbyte *);
 static inline void SecondaryColor3bv(const GLbyte * v1)
 {
 	static PFNGLSECONDARYCOLOR3BVPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLOR3BVPROC_HPP>(_impl::_get_proc_address("glSecondaryColor3bv",1,5));
 	 fn(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3d
+#define GL_HPP_FUNDEF_SecondaryColor3d
 typedef void (*PFNGLSECONDARYCOLOR3DPROC_HPP)(GLdouble,GLdouble,GLdouble);
 static inline void SecondaryColor3d(GLdouble red1,GLdouble green1,GLdouble blue1)
 {
 	static PFNGLSECONDARYCOLOR3DPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLOR3DPROC_HPP>(_impl::_get_proc_address("glSecondaryColor3d",1,5));
 	 fn(red1,green1,blue1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3dv
+#define GL_HPP_FUNDEF_SecondaryColor3dv
 typedef void (*PFNGLSECONDARYCOLOR3DVPROC_HPP)(const GLdouble *);
 static inline void SecondaryColor3dv(const GLdouble * v1)
 {
 	static PFNGLSECONDARYCOLOR3DVPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLOR3DVPROC_HPP>(_impl::_get_proc_address("glSecondaryColor3dv",1,5));
 	 fn(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3f
+#define GL_HPP_FUNDEF_SecondaryColor3f
 typedef void (*PFNGLSECONDARYCOLOR3FPROC_HPP)(GLfloat,GLfloat,GLfloat);
 static inline void SecondaryColor3f(GLfloat red1,GLfloat green1,GLfloat blue1)
 {
 	static PFNGLSECONDARYCOLOR3FPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLOR3FPROC_HPP>(_impl::_get_proc_address("glSecondaryColor3f",1,5));
 	 fn(red1,green1,blue1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3fv
+#define GL_HPP_FUNDEF_SecondaryColor3fv
 typedef void (*PFNGLSECONDARYCOLOR3FVPROC_HPP)(const GLfloat *);
 static inline void SecondaryColor3fv(const GLfloat * v1)
 {
 	static PFNGLSECONDARYCOLOR3FVPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLOR3FVPROC_HPP>(_impl::_get_proc_address("glSecondaryColor3fv",1,5));
 	 fn(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3i
+#define GL_HPP_FUNDEF_SecondaryColor3i
 typedef void (*PFNGLSECONDARYCOLOR3IPROC_HPP)(GLint,GLint,GLint);
 static inline void SecondaryColor3i(GLint red1,GLint green1,GLint blue1)
 {
 	static PFNGLSECONDARYCOLOR3IPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLOR3IPROC_HPP>(_impl::_get_proc_address("glSecondaryColor3i",1,5));
 	 fn(red1,green1,blue1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3iv
+#define GL_HPP_FUNDEF_SecondaryColor3iv
 typedef void (*PFNGLSECONDARYCOLOR3IVPROC_HPP)(const GLint *);
 static inline void SecondaryColor3iv(const GLint * v1)
 {
 	static PFNGLSECONDARYCOLOR3IVPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLOR3IVPROC_HPP>(_impl::_get_proc_address("glSecondaryColor3iv",1,5));
 	 fn(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3s
+#define GL_HPP_FUNDEF_SecondaryColor3s
 typedef void (*PFNGLSECONDARYCOLOR3SPROC_HPP)(GLshort,GLshort,GLshort);
 static inline void SecondaryColor3s(GLshort red1,GLshort green1,GLshort blue1)
 {
 	static PFNGLSECONDARYCOLOR3SPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLOR3SPROC_HPP>(_impl::_get_proc_address("glSecondaryColor3s",1,5));
 	 fn(red1,green1,blue1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3sv
+#define GL_HPP_FUNDEF_SecondaryColor3sv
 typedef void (*PFNGLSECONDARYCOLOR3SVPROC_HPP)(const GLshort *);
 static inline void SecondaryColor3sv(const GLshort * v1)
 {
 	static PFNGLSECONDARYCOLOR3SVPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLOR3SVPROC_HPP>(_impl::_get_proc_address("glSecondaryColor3sv",1,5));
 	 fn(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3ub
+#define GL_HPP_FUNDEF_SecondaryColor3ub
 typedef void (*PFNGLSECONDARYCOLOR3UBPROC_HPP)(GLubyte,GLubyte,GLubyte);
 static inline void SecondaryColor3ub(GLubyte red1,GLubyte green1,GLubyte blue1)
 {
 	static PFNGLSECONDARYCOLOR3UBPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLOR3UBPROC_HPP>(_impl::_get_proc_address("glSecondaryColor3ub",1,5));
 	 fn(red1,green1,blue1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3ubv
+#define GL_HPP_FUNDEF_SecondaryColor3ubv
 typedef void (*PFNGLSECONDARYCOLOR3UBVPROC_HPP)(const GLubyte *);
 static inline void SecondaryColor3ubv(const GLubyte * v1)
 {
 	static PFNGLSECONDARYCOLOR3UBVPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLOR3UBVPROC_HPP>(_impl::_get_proc_address("glSecondaryColor3ubv",1,5));
 	 fn(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3ui
+#define GL_HPP_FUNDEF_SecondaryColor3ui
 typedef void (*PFNGLSECONDARYCOLOR3UIPROC_HPP)(GLuint,GLuint,GLuint);
 static inline void SecondaryColor3ui(GLuint red1,GLuint green1,GLuint blue1)
 {
 	static PFNGLSECONDARYCOLOR3UIPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLOR3UIPROC_HPP>(_impl::_get_proc_address("glSecondaryColor3ui",1,5));
 	 fn(red1,green1,blue1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3uiv
+#define GL_HPP_FUNDEF_SecondaryColor3uiv
 typedef void (*PFNGLSECONDARYCOLOR3UIVPROC_HPP)(const GLuint *);
 static inline void SecondaryColor3uiv(const GLuint * v1)
 {
 	static PFNGLSECONDARYCOLOR3UIVPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLOR3UIVPROC_HPP>(_impl::_get_proc_address("glSecondaryColor3uiv",1,5));
 	 fn(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3us
+#define GL_HPP_FUNDEF_SecondaryColor3us
 typedef void (*PFNGLSECONDARYCOLOR3USPROC_HPP)(GLushort,GLushort,GLushort);
 static inline void SecondaryColor3us(GLushort red1,GLushort green1,GLushort blue1)
 {
 	static PFNGLSECONDARYCOLOR3USPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLOR3USPROC_HPP>(_impl::_get_proc_address("glSecondaryColor3us",1,5));
 	 fn(red1,green1,blue1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3usv
+#define GL_HPP_FUNDEF_SecondaryColor3usv
 typedef void (*PFNGLSECONDARYCOLOR3USVPROC_HPP)(const GLushort *);
 static inline void SecondaryColor3usv(const GLushort * v1)
 {
 	static PFNGLSECONDARYCOLOR3USVPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLOR3USVPROC_HPP>(_impl::_get_proc_address("glSecondaryColor3usv",1,5));
 	 fn(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColorPointer
+#define GL_HPP_FUNDEF_SecondaryColorPointer
 typedef void (*PFNGLSECONDARYCOLORPOINTERPROC_HPP)(GLint,GLenum,GLsizei,const void *);
 static inline void SecondaryColorPointer(GLint size1,GLenum type1,GLsizei stride1,const void * pointer1)
 {
 	static PFNGLSECONDARYCOLORPOINTERPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLORPOINTERPROC_HPP>(_impl::_get_proc_address("glSecondaryColorPointer",1,5));
 	 fn(size1,type1,stride1,pointer1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_SelectBuffer
+#define GL_HPP_FUNDEF_SelectBuffer
 static inline void SelectBuffer(GLsizei size1,GLuint * buffer1)
 {
 	 glSelectBuffer(size1,buffer1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_ShadeModel
+#define GL_HPP_FUNDEF_ShadeModel
 static inline void ShadeModel(GLenum mode1)
 {
 	 glShadeModel(mode1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_StencilFunc
+#define GL_HPP_FUNDEF_StencilFunc
 static inline void StencilFunc(GLenum func1,GLint ref1,GLuint mask1)
 {
 	 glStencilFunc(func1,ref1,mask1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_StencilMask
+#define GL_HPP_FUNDEF_StencilMask
 static inline void StencilMask(GLuint mask1)
 {
 	 glStencilMask(mask1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_StencilOp
+#define GL_HPP_FUNDEF_StencilOp
 static inline void StencilOp(GLenum fail1,GLenum zfail1,GLenum zpass1)
 {
 	 glStencilOp(fail1,zfail1,zpass1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord1d
+#define GL_HPP_FUNDEF_TexCoord1d
 static inline void TexCoord1d(GLdouble s1)
 {
 	 glTexCoord1d(s1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord1dv
+#define GL_HPP_FUNDEF_TexCoord1dv
 static inline void TexCoord1dv(const GLdouble * v1)
 {
 	 glTexCoord1dv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord1f
+#define GL_HPP_FUNDEF_TexCoord1f
 static inline void TexCoord1f(GLfloat s1)
 {
 	 glTexCoord1f(s1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord1fv
+#define GL_HPP_FUNDEF_TexCoord1fv
 static inline void TexCoord1fv(const GLfloat * v1)
 {
 	 glTexCoord1fv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord1i
+#define GL_HPP_FUNDEF_TexCoord1i
 static inline void TexCoord1i(GLint s1)
 {
 	 glTexCoord1i(s1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord1iv
+#define GL_HPP_FUNDEF_TexCoord1iv
 static inline void TexCoord1iv(const GLint * v1)
 {
 	 glTexCoord1iv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord1s
+#define GL_HPP_FUNDEF_TexCoord1s
 static inline void TexCoord1s(GLshort s1)
 {
 	 glTexCoord1s(s1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord1sv
+#define GL_HPP_FUNDEF_TexCoord1sv
 static inline void TexCoord1sv(const GLshort * v1)
 {
 	 glTexCoord1sv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord2d
+#define GL_HPP_FUNDEF_TexCoord2d
 static inline void TexCoord2d(GLdouble s1,GLdouble t1)
 {
 	 glTexCoord2d(s1,t1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord2dv
+#define GL_HPP_FUNDEF_TexCoord2dv
 static inline void TexCoord2dv(const GLdouble * v1)
 {
 	 glTexCoord2dv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord2f
+#define GL_HPP_FUNDEF_TexCoord2f
 static inline void TexCoord2f(GLfloat s1,GLfloat t1)
 {
 	 glTexCoord2f(s1,t1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord2fv
+#define GL_HPP_FUNDEF_TexCoord2fv
 static inline void TexCoord2fv(const GLfloat * v1)
 {
 	 glTexCoord2fv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord2i
+#define GL_HPP_FUNDEF_TexCoord2i
 static inline void TexCoord2i(GLint s1,GLint t1)
 {
 	 glTexCoord2i(s1,t1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord2iv
+#define GL_HPP_FUNDEF_TexCoord2iv
 static inline void TexCoord2iv(const GLint * v1)
 {
 	 glTexCoord2iv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord2s
+#define GL_HPP_FUNDEF_TexCoord2s
 static inline void TexCoord2s(GLshort s1,GLshort t1)
 {
 	 glTexCoord2s(s1,t1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord2sv
+#define GL_HPP_FUNDEF_TexCoord2sv
 static inline void TexCoord2sv(const GLshort * v1)
 {
 	 glTexCoord2sv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord3d
+#define GL_HPP_FUNDEF_TexCoord3d
 static inline void TexCoord3d(GLdouble s1,GLdouble t1,GLdouble r1)
 {
 	 glTexCoord3d(s1,t1,r1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord3dv
+#define GL_HPP_FUNDEF_TexCoord3dv
 static inline void TexCoord3dv(const GLdouble * v1)
 {
 	 glTexCoord3dv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord3f
+#define GL_HPP_FUNDEF_TexCoord3f
 static inline void TexCoord3f(GLfloat s1,GLfloat t1,GLfloat r1)
 {
 	 glTexCoord3f(s1,t1,r1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord3fv
+#define GL_HPP_FUNDEF_TexCoord3fv
 static inline void TexCoord3fv(const GLfloat * v1)
 {
 	 glTexCoord3fv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord3i
+#define GL_HPP_FUNDEF_TexCoord3i
 static inline void TexCoord3i(GLint s1,GLint t1,GLint r1)
 {
 	 glTexCoord3i(s1,t1,r1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord3iv
+#define GL_HPP_FUNDEF_TexCoord3iv
 static inline void TexCoord3iv(const GLint * v1)
 {
 	 glTexCoord3iv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord3s
+#define GL_HPP_FUNDEF_TexCoord3s
 static inline void TexCoord3s(GLshort s1,GLshort t1,GLshort r1)
 {
 	 glTexCoord3s(s1,t1,r1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord3sv
+#define GL_HPP_FUNDEF_TexCoord3sv
 static inline void TexCoord3sv(const GLshort * v1)
 {
 	 glTexCoord3sv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord4d
+#define GL_HPP_FUNDEF_TexCoord4d
 static inline void TexCoord4d(GLdouble s1,GLdouble t1,GLdouble r1,GLdouble q1)
 {
 	 glTexCoord4d(s1,t1,r1,q1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord4dv
+#define GL_HPP_FUNDEF_TexCoord4dv
 static inline void TexCoord4dv(const GLdouble * v1)
 {
 	 glTexCoord4dv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord4f
+#define GL_HPP_FUNDEF_TexCoord4f
 static inline void TexCoord4f(GLfloat s1,GLfloat t1,GLfloat r1,GLfloat q1)
 {
 	 glTexCoord4f(s1,t1,r1,q1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord4fv
+#define GL_HPP_FUNDEF_TexCoord4fv
 static inline void TexCoord4fv(const GLfloat * v1)
 {
 	 glTexCoord4fv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord4i
+#define GL_HPP_FUNDEF_TexCoord4i
 static inline void TexCoord4i(GLint s1,GLint t1,GLint r1,GLint q1)
 {
 	 glTexCoord4i(s1,t1,r1,q1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord4iv
+#define GL_HPP_FUNDEF_TexCoord4iv
 static inline void TexCoord4iv(const GLint * v1)
 {
 	 glTexCoord4iv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord4s
+#define GL_HPP_FUNDEF_TexCoord4s
 static inline void TexCoord4s(GLshort s1,GLshort t1,GLshort r1,GLshort q1)
 {
 	 glTexCoord4s(s1,t1,r1,q1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoord4sv
+#define GL_HPP_FUNDEF_TexCoord4sv
 static inline void TexCoord4sv(const GLshort * v1)
 {
 	 glTexCoord4sv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexCoordPointer
+#define GL_HPP_FUNDEF_TexCoordPointer
 static inline void TexCoordPointer(GLint size1,GLenum type1,GLsizei stride1,const void * pointer1)
 {
 	 glTexCoordPointer(size1,type1,stride1,pointer1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexEnvf
+#define GL_HPP_FUNDEF_TexEnvf
 static inline void TexEnvf(GLenum target1,GLenum pname1,GLfloat param1)
 {
 	 glTexEnvf(target1,pname1,param1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexEnvfv
+#define GL_HPP_FUNDEF_TexEnvfv
 static inline void TexEnvfv(GLenum target1,GLenum pname1,const GLfloat * params1)
 {
 	 glTexEnvfv(target1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexEnvi
+#define GL_HPP_FUNDEF_TexEnvi
 static inline void TexEnvi(GLenum target1,GLenum pname1,GLint param1)
 {
 	 glTexEnvi(target1,pname1,param1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexEnviv
+#define GL_HPP_FUNDEF_TexEnviv
 static inline void TexEnviv(GLenum target1,GLenum pname1,const GLint * params1)
 {
 	 glTexEnviv(target1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexGend
+#define GL_HPP_FUNDEF_TexGend
 static inline void TexGend(GLenum coord1,GLenum pname1,GLdouble param1)
 {
 	 glTexGend(coord1,pname1,param1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexGendv
+#define GL_HPP_FUNDEF_TexGendv
 static inline void TexGendv(GLenum coord1,GLenum pname1,const GLdouble * params1)
 {
 	 glTexGendv(coord1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexGenf
+#define GL_HPP_FUNDEF_TexGenf
 static inline void TexGenf(GLenum coord1,GLenum pname1,GLfloat param1)
 {
 	 glTexGenf(coord1,pname1,param1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexGenfv
+#define GL_HPP_FUNDEF_TexGenfv
 static inline void TexGenfv(GLenum coord1,GLenum pname1,const GLfloat * params1)
 {
 	 glTexGenfv(coord1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexGeni
+#define GL_HPP_FUNDEF_TexGeni
 static inline void TexGeni(GLenum coord1,GLenum pname1,GLint param1)
 {
 	 glTexGeni(coord1,pname1,param1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexGeniv
+#define GL_HPP_FUNDEF_TexGeniv
 static inline void TexGeniv(GLenum coord1,GLenum pname1,const GLint * params1)
 {
 	 glTexGeniv(coord1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexImage1D
+#define GL_HPP_FUNDEF_TexImage1D
 static inline void TexImage1D(GLenum target1,GLint level1,GLint internalformat1,GLsizei width1,GLint border1,GLenum format1,GLenum type1,const void * pixels1)
 {
 	 glTexImage1D(target1,level1,internalformat1,width1,border1,format1,type1,pixels1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexImage2D
+#define GL_HPP_FUNDEF_TexImage2D
 static inline void TexImage2D(GLenum target1,GLint level1,GLint internalformat1,GLsizei width1,GLsizei height1,GLint border1,GLenum format1,GLenum type1,const void * pixels1)
 {
 	 glTexImage2D(target1,level1,internalformat1,width1,height1,border1,format1,type1,pixels1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexImage3D
+#define GL_HPP_FUNDEF_TexImage3D
 typedef void (*PFNGLTEXIMAGE3DPROC_HPP)(GLenum,GLint,GLint,GLsizei,GLsizei,GLsizei,GLint,GLenum,GLenum,const void *);
 static inline void TexImage3D(GLenum target1,GLint level1,GLint internalformat1,GLsizei width1,GLsizei height1,GLsizei depth1,GLint border1,GLenum format1,GLenum type1,const void * pixels1)
 {
 	static PFNGLTEXIMAGE3DPROC_HPP fn=reinterpret_cast<PFNGLTEXIMAGE3DPROC_HPP>(_impl::_get_proc_address("glTexImage3D",1,5));
 	 fn(target1,level1,internalformat1,width1,height1,depth1,border1,format1,type1,pixels1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexParameterf
+#define GL_HPP_FUNDEF_TexParameterf
 static inline void TexParameterf(GLenum target1,GLenum pname1,GLfloat param1)
 {
 	 glTexParameterf(target1,pname1,param1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexParameterfv
+#define GL_HPP_FUNDEF_TexParameterfv
 static inline void TexParameterfv(GLenum target1,GLenum pname1,const GLfloat * params1)
 {
 	 glTexParameterfv(target1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexParameteri
+#define GL_HPP_FUNDEF_TexParameteri
 static inline void TexParameteri(GLenum target1,GLenum pname1,GLint param1)
 {
 	 glTexParameteri(target1,pname1,param1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexParameteriv
+#define GL_HPP_FUNDEF_TexParameteriv
 static inline void TexParameteriv(GLenum target1,GLenum pname1,const GLint * params1)
 {
 	 glTexParameteriv(target1,pname1,params1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexSubImage1D
+#define GL_HPP_FUNDEF_TexSubImage1D
 static inline void TexSubImage1D(GLenum target1,GLint level1,GLint xoffset1,GLsizei width1,GLenum format1,GLenum type1,const void * pixels1)
 {
 	 glTexSubImage1D(target1,level1,xoffset1,width1,format1,type1,pixels1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexSubImage2D
+#define GL_HPP_FUNDEF_TexSubImage2D
 static inline void TexSubImage2D(GLenum target1,GLint level1,GLint xoffset1,GLint yoffset1,GLsizei width1,GLsizei height1,GLenum format1,GLenum type1,const void * pixels1)
 {
 	 glTexSubImage2D(target1,level1,xoffset1,yoffset1,width1,height1,format1,type1,pixels1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_TexSubImage3D
+#define GL_HPP_FUNDEF_TexSubImage3D
 typedef void (*PFNGLTEXSUBIMAGE3DPROC_HPP)(GLenum,GLint,GLint,GLint,GLint,GLsizei,GLsizei,GLsizei,GLenum,GLenum,const void *);
 static inline void TexSubImage3D(GLenum target1,GLint level1,GLint xoffset1,GLint yoffset1,GLint zoffset1,GLsizei width1,GLsizei height1,GLsizei depth1,GLenum format1,GLenum type1,const void * pixels1)
 {
 	static PFNGLTEXSUBIMAGE3DPROC_HPP fn=reinterpret_cast<PFNGLTEXSUBIMAGE3DPROC_HPP>(_impl::_get_proc_address("glTexSubImage3D",1,5));
 	 fn(target1,level1,xoffset1,yoffset1,zoffset1,width1,height1,depth1,format1,type1,pixels1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Translated
+#define GL_HPP_FUNDEF_Translated
 static inline void Translated(GLdouble x1,GLdouble y1,GLdouble z1)
 {
 	 glTranslated(x1,y1,z1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Translatef
+#define GL_HPP_FUNDEF_Translatef
 static inline void Translatef(GLfloat x1,GLfloat y1,GLfloat z1)
 {
 	 glTranslatef(x1,y1,z1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_UnmapBuffer
+#define GL_HPP_FUNDEF_UnmapBuffer
 typedef GLboolean (*PFNGLUNMAPBUFFERPROC_HPP)(GLenum);
 static inline GLboolean UnmapBuffer(GLenum target1)
 {
 	static PFNGLUNMAPBUFFERPROC_HPP fn=reinterpret_cast<PFNGLUNMAPBUFFERPROC_HPP>(_impl::_get_proc_address("glUnmapBuffer",1,5));
 	return fn(target1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex2d
+#define GL_HPP_FUNDEF_Vertex2d
 static inline void Vertex2d(GLdouble x1,GLdouble y1)
 {
 	 glVertex2d(x1,y1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex2dv
+#define GL_HPP_FUNDEF_Vertex2dv
 static inline void Vertex2dv(const GLdouble * v1)
 {
 	 glVertex2dv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex2f
+#define GL_HPP_FUNDEF_Vertex2f
 static inline void Vertex2f(GLfloat x1,GLfloat y1)
 {
 	 glVertex2f(x1,y1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex2fv
+#define GL_HPP_FUNDEF_Vertex2fv
 static inline void Vertex2fv(const GLfloat * v1)
 {
 	 glVertex2fv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex2i
+#define GL_HPP_FUNDEF_Vertex2i
 static inline void Vertex2i(GLint x1,GLint y1)
 {
 	 glVertex2i(x1,y1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex2iv
+#define GL_HPP_FUNDEF_Vertex2iv
 static inline void Vertex2iv(const GLint * v1)
 {
 	 glVertex2iv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex2s
+#define GL_HPP_FUNDEF_Vertex2s
 static inline void Vertex2s(GLshort x1,GLshort y1)
 {
 	 glVertex2s(x1,y1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex2sv
+#define GL_HPP_FUNDEF_Vertex2sv
 static inline void Vertex2sv(const GLshort * v1)
 {
 	 glVertex2sv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex3d
+#define GL_HPP_FUNDEF_Vertex3d
 static inline void Vertex3d(GLdouble x1,GLdouble y1,GLdouble z1)
 {
 	 glVertex3d(x1,y1,z1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex3dv
+#define GL_HPP_FUNDEF_Vertex3dv
 static inline void Vertex3dv(const GLdouble * v1)
 {
 	 glVertex3dv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex3f
+#define GL_HPP_FUNDEF_Vertex3f
 static inline void Vertex3f(GLfloat x1,GLfloat y1,GLfloat z1)
 {
 	 glVertex3f(x1,y1,z1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex3fv
+#define GL_HPP_FUNDEF_Vertex3fv
 static inline void Vertex3fv(const GLfloat * v1)
 {
 	 glVertex3fv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex3i
+#define GL_HPP_FUNDEF_Vertex3i
 static inline void Vertex3i(GLint x1,GLint y1,GLint z1)
 {
 	 glVertex3i(x1,y1,z1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex3iv
+#define GL_HPP_FUNDEF_Vertex3iv
 static inline void Vertex3iv(const GLint * v1)
 {
 	 glVertex3iv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex3s
+#define GL_HPP_FUNDEF_Vertex3s
 static inline void Vertex3s(GLshort x1,GLshort y1,GLshort z1)
 {
 	 glVertex3s(x1,y1,z1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex3sv
+#define GL_HPP_FUNDEF_Vertex3sv
 static inline void Vertex3sv(const GLshort * v1)
 {
 	 glVertex3sv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex4d
+#define GL_HPP_FUNDEF_Vertex4d
 static inline void Vertex4d(GLdouble x1,GLdouble y1,GLdouble z1,GLdouble w1)
 {
 	 glVertex4d(x1,y1,z1,w1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex4dv
+#define GL_HPP_FUNDEF_Vertex4dv
 static inline void Vertex4dv(const GLdouble * v1)
 {
 	 glVertex4dv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex4f
+#define GL_HPP_FUNDEF_Vertex4f
 static inline void Vertex4f(GLfloat x1,GLfloat y1,GLfloat z1,GLfloat w1)
 {
 	 glVertex4f(x1,y1,z1,w1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex4fv
+#define GL_HPP_FUNDEF_Vertex4fv
 static inline void Vertex4fv(const GLfloat * v1)
 {
 	 glVertex4fv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex4i
+#define GL_HPP_FUNDEF_Vertex4i
 static inline void Vertex4i(GLint x1,GLint y1,GLint z1,GLint w1)
 {
 	 glVertex4i(x1,y1,z1,w1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex4iv
+#define GL_HPP_FUNDEF_Vertex4iv
 static inline void Vertex4iv(const GLint * v1)
 {
 	 glVertex4iv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex4s
+#define GL_HPP_FUNDEF_Vertex4s
 static inline void Vertex4s(GLshort x1,GLshort y1,GLshort z1,GLshort w1)
 {
 	 glVertex4s(x1,y1,z1,w1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Vertex4sv
+#define GL_HPP_FUNDEF_Vertex4sv
 static inline void Vertex4sv(const GLshort * v1)
 {
 	 glVertex4sv(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_VertexPointer
+#define GL_HPP_FUNDEF_VertexPointer
 static inline void VertexPointer(GLint size1,GLenum type1,GLsizei stride1,const void * pointer1)
 {
 	 glVertexPointer(size1,type1,stride1,pointer1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_Viewport
+#define GL_HPP_FUNDEF_Viewport
 static inline void Viewport(GLint x1,GLint y1,GLsizei width1,GLsizei height1)
 {
 	 glViewport(x1,y1,width1,height1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_WindowPos2d
+#define GL_HPP_FUNDEF_WindowPos2d
 typedef void (*PFNGLWINDOWPOS2DPROC_HPP)(GLdouble,GLdouble);
 static inline void WindowPos2d(GLdouble x1,GLdouble y1)
 {
 	static PFNGLWINDOWPOS2DPROC_HPP fn=reinterpret_cast<PFNGLWINDOWPOS2DPROC_HPP>(_impl::_get_proc_address("glWindowPos2d",1,5));
 	 fn(x1,y1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_WindowPos2dv
+#define GL_HPP_FUNDEF_WindowPos2dv
 typedef void (*PFNGLWINDOWPOS2DVPROC_HPP)(const GLdouble *);
 static inline void WindowPos2dv(const GLdouble * v1)
 {
 	static PFNGLWINDOWPOS2DVPROC_HPP fn=reinterpret_cast<PFNGLWINDOWPOS2DVPROC_HPP>(_impl::_get_proc_address("glWindowPos2dv",1,5));
 	 fn(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_WindowPos2f
+#define GL_HPP_FUNDEF_WindowPos2f
 typedef void (*PFNGLWINDOWPOS2FPROC_HPP)(GLfloat,GLfloat);
 static inline void WindowPos2f(GLfloat x1,GLfloat y1)
 {
 	static PFNGLWINDOWPOS2FPROC_HPP fn=reinterpret_cast<PFNGLWINDOWPOS2FPROC_HPP>(_impl::_get_proc_address("glWindowPos2f",1,5));
 	 fn(x1,y1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_WindowPos2fv
+#define GL_HPP_FUNDEF_WindowPos2fv
 typedef void (*PFNGLWINDOWPOS2FVPROC_HPP)(const GLfloat *);
 static inline void WindowPos2fv(const GLfloat * v1)
 {
 	static PFNGLWINDOWPOS2FVPROC_HPP fn=reinterpret_cast<PFNGLWINDOWPOS2FVPROC_HPP>(_impl::_get_proc_address("glWindowPos2fv",1,5));
 	 fn(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_WindowPos2i
+#define GL_HPP_FUNDEF_WindowPos2i
 typedef void (*PFNGLWINDOWPOS2IPROC_HPP)(GLint,GLint);
 static inline void WindowPos2i(GLint x1,GLint y1)
 {
 	static PFNGLWINDOWPOS2IPROC_HPP fn=reinterpret_cast<PFNGLWINDOWPOS2IPROC_HPP>(_impl::_get_proc_address("glWindowPos2i",1,5));
 	 fn(x1,y1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_WindowPos2iv
+#define GL_HPP_FUNDEF_WindowPos2iv
 typedef void (*PFNGLWINDOWPOS2IVPROC_HPP)(const GLint *);
 static inline void WindowPos2iv(const GLint * v1)
 {
 	static PFNGLWINDOWPOS2IVPROC_HPP fn=reinterpret_cast<PFNGLWINDOWPOS2IVPROC_HPP>(_impl::_get_proc_address("glWindowPos2iv",1,5));
 	 fn(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_WindowPos2s
+#define GL_HPP_FUNDEF_WindowPos2s
 typedef void (*PFNGLWINDOWPOS2SPROC_HPP)(GLshort,GLshort);
 static inline void WindowPos2s(GLshort x1,GLshort y1)
 {
 	static PFNGLWINDOWPOS2SPROC_HPP fn=reinterpret_cast<PFNGLWINDOWPOS2SPROC_HPP>(_impl::_get_proc_address("glWindowPos2s",1,5));
 	 fn(x1,y1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_WindowPos2sv
+#define GL_HPP_FUNDEF_WindowPos2sv
 typedef void (*PFNGLWINDOWPOS2SVPROC_HPP)(const GLshort *);
 static inline void WindowPos2sv(const GLshort * v1)
 {
 	static PFNGLWINDOWPOS2SVPROC_HPP fn=reinterpret_cast<PFNGLWINDOWPOS2SVPROC_HPP>(_impl::_get_proc_address("glWindowPos2sv",1,5));
 	 fn(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_WindowPos3d
+#define GL_HPP_FUNDEF_WindowPos3d
 typedef void (*PFNGLWINDOWPOS3DPROC_HPP)(GLdouble,GLdouble,GLdouble);
 static inline void WindowPos3d(GLdouble x1,GLdouble y1,GLdouble z1)
 {
 	static PFNGLWINDOWPOS3DPROC_HPP fn=reinterpret_cast<PFNGLWINDOWPOS3DPROC_HPP>(_impl::_get_proc_address("glWindowPos3d",1,5));
 	 fn(x1,y1,z1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_WindowPos3dv
+#define GL_HPP_FUNDEF_WindowPos3dv
 typedef void (*PFNGLWINDOWPOS3DVPROC_HPP)(const GLdouble *);
 static inline void WindowPos3dv(const GLdouble * v1)
 {
 	static PFNGLWINDOWPOS3DVPROC_HPP fn=reinterpret_cast<PFNGLWINDOWPOS3DVPROC_HPP>(_impl::_get_proc_address("glWindowPos3dv",1,5));
 	 fn(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_WindowPos3f
+#define GL_HPP_FUNDEF_WindowPos3f
 typedef void (*PFNGLWINDOWPOS3FPROC_HPP)(GLfloat,GLfloat,GLfloat);
 static inline void WindowPos3f(GLfloat x1,GLfloat y1,GLfloat z1)
 {
 	static PFNGLWINDOWPOS3FPROC_HPP fn=reinterpret_cast<PFNGLWINDOWPOS3FPROC_HPP>(_impl::_get_proc_address("glWindowPos3f",1,5));
 	 fn(x1,y1,z1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_WindowPos3fv
+#define GL_HPP_FUNDEF_WindowPos3fv
 typedef void (*PFNGLWINDOWPOS3FVPROC_HPP)(const GLfloat *);
 static inline void WindowPos3fv(const GLfloat * v1)
 {
 	static PFNGLWINDOWPOS3FVPROC_HPP fn=reinterpret_cast<PFNGLWINDOWPOS3FVPROC_HPP>(_impl::_get_proc_address("glWindowPos3fv",1,5));
 	 fn(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_WindowPos3i
+#define GL_HPP_FUNDEF_WindowPos3i
 typedef void (*PFNGLWINDOWPOS3IPROC_HPP)(GLint,GLint,GLint);
 static inline void WindowPos3i(GLint x1,GLint y1,GLint z1)
 {
 	static PFNGLWINDOWPOS3IPROC_HPP fn=reinterpret_cast<PFNGLWINDOWPOS3IPROC_HPP>(_impl::_get_proc_address("glWindowPos3i",1,5));
 	 fn(x1,y1,z1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_WindowPos3iv
+#define GL_HPP_FUNDEF_WindowPos3iv
 typedef void (*PFNGLWINDOWPOS3IVPROC_HPP)(const GLint *);
 static inline void WindowPos3iv(const GLint * v1)
 {
 	static PFNGLWINDOWPOS3IVPROC_HPP fn=reinterpret_cast<PFNGLWINDOWPOS3IVPROC_HPP>(_impl::_get_proc_address("glWindowPos3iv",1,5));
 	 fn(v1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_WindowPos3s
+#define GL_HPP_FUNDEF_WindowPos3s
 typedef void (*PFNGLWINDOWPOS3SPROC_HPP)(GLshort,GLshort,GLshort);
 static inline void WindowPos3s(GLshort x1,GLshort y1,GLshort z1)
 {
 	static PFNGLWINDOWPOS3SPROC_HPP fn=reinterpret_cast<PFNGLWINDOWPOS3SPROC_HPP>(_impl::_get_proc_address("glWindowPos3s",1,5));
 	 fn(x1,y1,z1);
 }
+#endif
+
+#ifndef	GL_HPP_FUNDEF_WindowPos3sv
+#define GL_HPP_FUNDEF_WindowPos3sv
 typedef void (*PFNGLWINDOWPOS3SVPROC_HPP)(const GLshort *);
 static inline void WindowPos3sv(const GLshort * v1)
 {
 	static PFNGLWINDOWPOS3SVPROC_HPP fn=reinterpret_cast<PFNGLWINDOWPOS3SVPROC_HPP>(_impl::_get_proc_address("glWindowPos3sv",1,5));
 	 fn(v1);
-}}
+}
+#endif
+}
 #endif

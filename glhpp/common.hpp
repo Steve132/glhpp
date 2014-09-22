@@ -136,11 +136,11 @@ typedef unsigned short GLhalfNV;
 typedef GLintptr GLvdpauSurfaceNV;
 
 
-#ifndef GL_HPP_GLES_API
-#define GL_HPP_GLES_API 0xf168
-#endif
 #ifndef GL_HPP_GL_API
 #define GL_HPP_GL_API 0xcce4
+#endif
+#ifndef GL_HPP_GLES_API
+#define GL_HPP_GLES_API 0xf168
 #endif
 
 

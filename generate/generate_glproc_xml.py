@@ -21,8 +21,8 @@ class CommandSpec(object):
 			p=CommandSpec.Parameter(nexttype(pel),pel.find('name').text+'1',pel.get('group'))
 			self.params.append(p)
 			
-	def pointer_type(self):
-		return "PFN"+self.name.upper()+"PROC_HPP"
+	#def pointer_type(self):
+	#	return "PFN"+self.name.upper()+"PROC_HPP"
 	def argtypes(self):
 		return ','.join([p.typ for p in self.params])
 	def argnames(self):
@@ -32,17 +32,25 @@ class CommandSpec(object):
 		
 	def print_definition_function(self,featurename,function_included=False):
 		ptrfuntemplate="""
-typedef %(rettype)s (*%(psignature)s)(%(justtypes)s);
+#ifndef	GL_HPP_FUNDEF_%(signature)s
+#define GL_HPP_FUNDEF_%(signature)s
+typedef %(rettype)s (*PFN%(usignature)sPROC_HPP)(%(justtypes)s);
 static inline %(rettype)s %(signature)s(%(argstring)s)
 {
-	static %(psignature)s fn=reinterpret_cast<%(psignature)s>(_impl::_get_proc_address(\"gl%(signature)s\",%(extension)s));
+	static PFN%(usignature)sPROC_HPP fn=reinterpret_cast<PFN%(usignature)sPROC_HPP>(_impl::_get_proc_address(\"gl%(signature)s\",%(extension)s));
 	%(rv)s fn(%(justargs)s);
-}"""
+}
+#endif
+"""
 		stdfuntemplate="""
+#ifndef	GL_HPP_FUNDEF_%(signature)s
+#define GL_HPP_FUNDEF_%(signature)s
 static inline %(rettype)s %(signature)s(%(argstring)s)
 {
 	%(rv)s gl%(signature)s(%(justargs)s);
-}"""
+}
+#endif
+"""
 
 		if(self.return_type=='void'):
 			rv=''
@@ -59,7 +67,7 @@ static inline %(rettype)s %(signature)s(%(argstring)s)
 			
 		if(function_included):
 			funtemplate=stdfuntemplate
-		return funtemplate % {"rettype": self.return_type,"signature":self.name[2:],"argstring":self.arglist(),"psignature":self.pointer_type(),"extension":ext,"justargs":self.argnames(),"rv":rv,"justtypes":self.argtypes()}
+		return funtemplate % {"rettype": self.return_type,"signature":self.name[2:],"argstring":self.arglist(),"usignature":self.name.upper(),"extension":ext,"justargs":self.argnames(),"rv":rv,"justtypes":self.argtypes()}
 	def print_static_link_declaration(self,featurename):
 		ptrdeclarationtemplate='extern %(rettype)s gl%(signature)s(%(justtypes)s);\n'
 		return ptrdeclarationtemplate % {"rettype": self.return_type,"signature":self.name[2:],"justtypes":self.argtypes()}
@@ -206,12 +214,12 @@ class SpecificationsXML(object):
 			return False
 			
 	def print_enums(self,enumlist,fileobj):
-		#constdefin="#ifndef %(k)s\n#define %(k)s %(v)s\n#endif //%(k)s\n"
-		constdefin="#undef %(k)s\nstatic const GLenum %(k)s=%(v)s;\n"
+		constdefin="#ifndef %(k)s\n#define %(k)s %(v)s\n#endif //%(k)s\n"
+		#constdefin="#undef %(k)s\nstatic const %(TENUM)s %(k)s=%(v)s;\n"
 		
 		senums=[(e,self.enum_values[e]) for e in sorted(enumlist,key=lambda x: self.enum_values[x])]
 		for k,v in senums:
-			fileobj.write(constdefin % {'k':k,'v':v})
+			fileobj.write(constdefin % {'k':k,'v':v,'TENUM':('GLenum' if len(v) <=10 else 'GLuint64')})
 			
 	def print_static_link_declarations(self,cmdlist,featurename,fileobj):
 		fileobj.write('extern "C" {\n')
