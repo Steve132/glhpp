@@ -295,6 +295,16 @@ static inline void BlendEquationEXT(GLenum mode1)
 	 fn(mode1);
 }
 #endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_BlendEquation
+#define GL_HPP_FUNDEF_BlendEquation
+static inline void BlendEquation(GLenum mode1)
+{
+	 BlendEquationEXT(mode1);
+}
+#endif
 }
 #endif
 
@@ -359,6 +369,16 @@ static inline void FlushMappedBufferRangeEXT(GLenum target1,GLintptr offset1,GLs
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_FlushMappedBufferRange
+#define GL_HPP_FUNDEF_FlushMappedBufferRange
+static inline void FlushMappedBufferRange(GLenum target1,GLintptr offset1,GLsizeiptr length1)
+{
+	 FlushMappedBufferRangeEXT(target1,offset1,length1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_MapBufferRangeEXT
 #define GL_HPP_FUNDEF_MapBufferRangeEXT
 typedef void * (*PFNGLMAPBUFFERRANGEEXTPROC_HPP)(GLenum,GLintptr,GLsizeiptr,GLbitfield);
@@ -366,6 +386,16 @@ static inline void * MapBufferRangeEXT(GLenum target1,GLintptr offset1,GLsizeipt
 {
 	static PFNGLMAPBUFFERRANGEEXTPROC_HPP fn=reinterpret_cast<PFNGLMAPBUFFERRANGEEXTPROC_HPP>(_impl::_get_proc_address("glMapBufferRangeEXT","GL_EXT_map_buffer_range"));
 	return fn(target1,offset1,length1,access1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_MapBufferRange
+#define GL_HPP_FUNDEF_MapBufferRange
+static inline void * MapBufferRange(GLenum target1,GLintptr offset1,GLsizeiptr length1,GLbitfield access1)
+{
+	return MapBufferRangeEXT(target1,offset1,length1,access1);
 }
 #endif
 }
@@ -387,6 +417,16 @@ static inline void MultiDrawArraysEXT(GLenum mode1,const GLint * first1,const GL
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_MultiDrawArrays
+#define GL_HPP_FUNDEF_MultiDrawArrays
+static inline void MultiDrawArrays(GLenum mode1,const GLint * first1,const GLsizei * count1,GLsizei primcount1)
+{
+	 MultiDrawArraysEXT(mode1,first1,count1,primcount1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_MultiDrawElementsEXT
 #define GL_HPP_FUNDEF_MultiDrawElementsEXT
 typedef void (*PFNGLMULTIDRAWELEMENTSEXTPROC_HPP)(GLenum,const GLsizei *,GLenum,const void *const*,GLsizei);
@@ -394,6 +434,16 @@ static inline void MultiDrawElementsEXT(GLenum mode1,const GLsizei * count1,GLen
 {
 	static PFNGLMULTIDRAWELEMENTSEXTPROC_HPP fn=reinterpret_cast<PFNGLMULTIDRAWELEMENTSEXTPROC_HPP>(_impl::_get_proc_address("glMultiDrawElementsEXT","GL_EXT_multi_draw_arrays"));
 	 fn(mode1,count1,type1,indices1,primcount1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_MultiDrawElements
+#define GL_HPP_FUNDEF_MultiDrawElements
+static inline void MultiDrawElements(GLenum mode1,const GLsizei * count1,GLenum type1,const void *const* indices1,GLsizei primcount1)
+{
+	 MultiDrawElementsEXT(mode1,count1,type1,indices1,primcount1);
 }
 #endif
 }
@@ -434,6 +484,16 @@ static inline void RenderbufferStorageMultisampleEXT(GLenum target1,GLsizei samp
 {
 	static PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC_HPP fn=reinterpret_cast<PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC_HPP>(_impl::_get_proc_address("glRenderbufferStorageMultisampleEXT","GL_EXT_multisampled_render_to_texture"));
 	 fn(target1,samples1,internalformat1,width1,height1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_RenderbufferStorageMultisample
+#define GL_HPP_FUNDEF_RenderbufferStorageMultisample
+static inline void RenderbufferStorageMultisample(GLenum target1,GLsizei samples1,GLenum internalformat1,GLsizei width1,GLsizei height1)
+{
+	 RenderbufferStorageMultisampleEXT(target1,samples1,internalformat1,width1,height1);
 }
 #endif
 }
@@ -523,6 +583,16 @@ static inline void ReadnPixelsEXT(GLint x1,GLint y1,GLsizei width1,GLsizei heigh
 {
 	static PFNGLREADNPIXELSEXTPROC_HPP fn=reinterpret_cast<PFNGLREADNPIXELSEXTPROC_HPP>(_impl::_get_proc_address("glReadnPixelsEXT","GL_EXT_robustness"));
 	 fn(x1,y1,width1,height1,format1,type1,bufSize1,data1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ReadnPixels
+#define GL_HPP_FUNDEF_ReadnPixels
+static inline void ReadnPixels(GLint x1,GLint y1,GLsizei width1,GLsizei height1,GLenum format1,GLenum type1,GLsizei bufSize1,void * data1)
+{
+	 ReadnPixelsEXT(x1,y1,width1,height1,format1,type1,bufSize1,data1);
 }
 #endif
 }
@@ -689,6 +759,16 @@ static inline void TexStorage1DEXT(GLenum target1,GLsizei levels1,GLenum interna
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_TexStorage1D
+#define GL_HPP_FUNDEF_TexStorage1D
+static inline void TexStorage1D(GLenum target1,GLsizei levels1,GLenum internalformat1,GLsizei width1)
+{
+	 TexStorage1DEXT(target1,levels1,internalformat1,width1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_TexStorage2DEXT
 #define GL_HPP_FUNDEF_TexStorage2DEXT
 typedef void (*PFNGLTEXSTORAGE2DEXTPROC_HPP)(GLenum,GLsizei,GLenum,GLsizei,GLsizei);
@@ -699,6 +779,16 @@ static inline void TexStorage2DEXT(GLenum target1,GLsizei levels1,GLenum interna
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_TexStorage2D
+#define GL_HPP_FUNDEF_TexStorage2D
+static inline void TexStorage2D(GLenum target1,GLsizei levels1,GLenum internalformat1,GLsizei width1,GLsizei height1)
+{
+	 TexStorage2DEXT(target1,levels1,internalformat1,width1,height1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_TexStorage3DEXT
 #define GL_HPP_FUNDEF_TexStorage3DEXT
 typedef void (*PFNGLTEXSTORAGE3DEXTPROC_HPP)(GLenum,GLsizei,GLenum,GLsizei,GLsizei,GLsizei);
@@ -706,6 +796,16 @@ static inline void TexStorage3DEXT(GLenum target1,GLsizei levels1,GLenum interna
 {
 	static PFNGLTEXSTORAGE3DEXTPROC_HPP fn=reinterpret_cast<PFNGLTEXSTORAGE3DEXTPROC_HPP>(_impl::_get_proc_address("glTexStorage3DEXT","GL_EXT_texture_storage"));
 	 fn(target1,levels1,internalformat1,width1,height1,depth1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_TexStorage3D
+#define GL_HPP_FUNDEF_TexStorage3D
+static inline void TexStorage3D(GLenum target1,GLsizei levels1,GLenum internalformat1,GLsizei width1,GLsizei height1,GLsizei depth1)
+{
+	 TexStorage3DEXT(target1,levels1,internalformat1,width1,height1,depth1);
 }
 #endif
 

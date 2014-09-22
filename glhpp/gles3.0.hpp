@@ -36,12 +36,12 @@
 #ifndef GL_COLOR_BUFFER_BIT
 #define GL_COLOR_BUFFER_BIT 0x00004000
 #endif //GL_COLOR_BUFFER_BIT
-#ifndef GL_MAP_READ_BIT
-#define GL_MAP_READ_BIT 0x0001
-#endif //GL_MAP_READ_BIT
 #ifndef GL_LINES
 #define GL_LINES 0x0001
 #endif //GL_LINES
+#ifndef GL_MAP_READ_BIT
+#define GL_MAP_READ_BIT 0x0001
+#endif //GL_MAP_READ_BIT
 #ifndef GL_MAP_WRITE_BIT
 #define GL_MAP_WRITE_BIT 0x0002
 #endif //GL_MAP_WRITE_BIT
@@ -51,12 +51,12 @@
 #ifndef GL_LINE_STRIP
 #define GL_LINE_STRIP 0x0003
 #endif //GL_LINE_STRIP
-#ifndef GL_TRIANGLES
-#define GL_TRIANGLES 0x0004
-#endif //GL_TRIANGLES
 #ifndef GL_MAP_INVALIDATE_RANGE_BIT
 #define GL_MAP_INVALIDATE_RANGE_BIT 0x0004
 #endif //GL_MAP_INVALIDATE_RANGE_BIT
+#ifndef GL_TRIANGLES
+#define GL_TRIANGLES 0x0004
+#endif //GL_TRIANGLES
 #ifndef GL_TRIANGLE_STRIP
 #define GL_TRIANGLE_STRIP 0x0005
 #endif //GL_TRIANGLE_STRIP
@@ -447,12 +447,12 @@
 #ifndef GL_MAX
 #define GL_MAX 0x8008
 #endif //GL_MAX
-#ifndef GL_BLEND_EQUATION_RGB
-#define GL_BLEND_EQUATION_RGB 0x8009
-#endif //GL_BLEND_EQUATION_RGB
 #ifndef GL_BLEND_EQUATION
 #define GL_BLEND_EQUATION 0x8009
 #endif //GL_BLEND_EQUATION
+#ifndef GL_BLEND_EQUATION_RGB
+#define GL_BLEND_EQUATION_RGB 0x8009
+#endif //GL_BLEND_EQUATION_RGB
 #ifndef GL_FUNC_SUBTRACT
 #define GL_FUNC_SUBTRACT 0x800A
 #endif //GL_FUNC_SUBTRACT
@@ -1374,12 +1374,12 @@
 #ifndef GL_STENCIL_BACK_WRITEMASK
 #define GL_STENCIL_BACK_WRITEMASK 0x8CA5
 #endif //GL_STENCIL_BACK_WRITEMASK
-#ifndef GL_DRAW_FRAMEBUFFER_BINDING
-#define GL_DRAW_FRAMEBUFFER_BINDING 0x8CA6
-#endif //GL_DRAW_FRAMEBUFFER_BINDING
 #ifndef GL_FRAMEBUFFER_BINDING
 #define GL_FRAMEBUFFER_BINDING 0x8CA6
 #endif //GL_FRAMEBUFFER_BINDING
+#ifndef GL_DRAW_FRAMEBUFFER_BINDING
+#define GL_DRAW_FRAMEBUFFER_BINDING 0x8CA6
+#endif //GL_DRAW_FRAMEBUFFER_BINDING
 #ifndef GL_RENDERBUFFER_BINDING
 #define GL_RENDERBUFFER_BINDING 0x8CA7
 #endif //GL_RENDERBUFFER_BINDING
@@ -2079,1969 +2079,2461 @@ namespace gl{
 
 #ifndef	GL_HPP_FUNDEF_ActiveTexture
 #define GL_HPP_FUNDEF_ActiveTexture
+typedef void (*PFNGLACTIVETEXTUREPROC_HPP)(GLenum);
 static inline void ActiveTexture(GLenum texture1)
 {
-	 glActiveTexture(texture1);
+	static PFNGLACTIVETEXTUREPROC_HPP fn=reinterpret_cast<PFNGLACTIVETEXTUREPROC_HPP>(_impl::_get_proc_address("glActiveTexture",3,0));
+	 fn(texture1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_AttachShader
 #define GL_HPP_FUNDEF_AttachShader
+typedef void (*PFNGLATTACHSHADERPROC_HPP)(GLuint,GLuint);
 static inline void AttachShader(GLuint program1,GLuint shader1)
 {
-	 glAttachShader(program1,shader1);
+	static PFNGLATTACHSHADERPROC_HPP fn=reinterpret_cast<PFNGLATTACHSHADERPROC_HPP>(_impl::_get_proc_address("glAttachShader",3,0));
+	 fn(program1,shader1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_BeginQuery
 #define GL_HPP_FUNDEF_BeginQuery
+typedef void (*PFNGLBEGINQUERYPROC_HPP)(GLenum,GLuint);
 static inline void BeginQuery(GLenum target1,GLuint id1)
 {
-	 glBeginQuery(target1,id1);
+	static PFNGLBEGINQUERYPROC_HPP fn=reinterpret_cast<PFNGLBEGINQUERYPROC_HPP>(_impl::_get_proc_address("glBeginQuery",3,0));
+	 fn(target1,id1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_BeginTransformFeedback
 #define GL_HPP_FUNDEF_BeginTransformFeedback
+typedef void (*PFNGLBEGINTRANSFORMFEEDBACKPROC_HPP)(GLenum);
 static inline void BeginTransformFeedback(GLenum primitiveMode1)
 {
-	 glBeginTransformFeedback(primitiveMode1);
+	static PFNGLBEGINTRANSFORMFEEDBACKPROC_HPP fn=reinterpret_cast<PFNGLBEGINTRANSFORMFEEDBACKPROC_HPP>(_impl::_get_proc_address("glBeginTransformFeedback",3,0));
+	 fn(primitiveMode1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_BindAttribLocation
 #define GL_HPP_FUNDEF_BindAttribLocation
+typedef void (*PFNGLBINDATTRIBLOCATIONPROC_HPP)(GLuint,GLuint,const GLchar *);
 static inline void BindAttribLocation(GLuint program1,GLuint index1,const GLchar * name1)
 {
-	 glBindAttribLocation(program1,index1,name1);
+	static PFNGLBINDATTRIBLOCATIONPROC_HPP fn=reinterpret_cast<PFNGLBINDATTRIBLOCATIONPROC_HPP>(_impl::_get_proc_address("glBindAttribLocation",3,0));
+	 fn(program1,index1,name1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_BindBuffer
 #define GL_HPP_FUNDEF_BindBuffer
+typedef void (*PFNGLBINDBUFFERPROC_HPP)(GLenum,GLuint);
 static inline void BindBuffer(GLenum target1,GLuint buffer1)
 {
-	 glBindBuffer(target1,buffer1);
+	static PFNGLBINDBUFFERPROC_HPP fn=reinterpret_cast<PFNGLBINDBUFFERPROC_HPP>(_impl::_get_proc_address("glBindBuffer",3,0));
+	 fn(target1,buffer1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_BindBufferBase
 #define GL_HPP_FUNDEF_BindBufferBase
+typedef void (*PFNGLBINDBUFFERBASEPROC_HPP)(GLenum,GLuint,GLuint);
 static inline void BindBufferBase(GLenum target1,GLuint index1,GLuint buffer1)
 {
-	 glBindBufferBase(target1,index1,buffer1);
+	static PFNGLBINDBUFFERBASEPROC_HPP fn=reinterpret_cast<PFNGLBINDBUFFERBASEPROC_HPP>(_impl::_get_proc_address("glBindBufferBase",3,0));
+	 fn(target1,index1,buffer1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_BindBufferRange
 #define GL_HPP_FUNDEF_BindBufferRange
+typedef void (*PFNGLBINDBUFFERRANGEPROC_HPP)(GLenum,GLuint,GLuint,GLintptr,GLsizeiptr);
 static inline void BindBufferRange(GLenum target1,GLuint index1,GLuint buffer1,GLintptr offset1,GLsizeiptr size1)
 {
-	 glBindBufferRange(target1,index1,buffer1,offset1,size1);
+	static PFNGLBINDBUFFERRANGEPROC_HPP fn=reinterpret_cast<PFNGLBINDBUFFERRANGEPROC_HPP>(_impl::_get_proc_address("glBindBufferRange",3,0));
+	 fn(target1,index1,buffer1,offset1,size1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_BindFramebuffer
 #define GL_HPP_FUNDEF_BindFramebuffer
+typedef void (*PFNGLBINDFRAMEBUFFERPROC_HPP)(GLenum,GLuint);
 static inline void BindFramebuffer(GLenum target1,GLuint framebuffer1)
 {
-	 glBindFramebuffer(target1,framebuffer1);
+	static PFNGLBINDFRAMEBUFFERPROC_HPP fn=reinterpret_cast<PFNGLBINDFRAMEBUFFERPROC_HPP>(_impl::_get_proc_address("glBindFramebuffer",3,0));
+	 fn(target1,framebuffer1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_BindRenderbuffer
 #define GL_HPP_FUNDEF_BindRenderbuffer
+typedef void (*PFNGLBINDRENDERBUFFERPROC_HPP)(GLenum,GLuint);
 static inline void BindRenderbuffer(GLenum target1,GLuint renderbuffer1)
 {
-	 glBindRenderbuffer(target1,renderbuffer1);
+	static PFNGLBINDRENDERBUFFERPROC_HPP fn=reinterpret_cast<PFNGLBINDRENDERBUFFERPROC_HPP>(_impl::_get_proc_address("glBindRenderbuffer",3,0));
+	 fn(target1,renderbuffer1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_BindSampler
 #define GL_HPP_FUNDEF_BindSampler
+typedef void (*PFNGLBINDSAMPLERPROC_HPP)(GLuint,GLuint);
 static inline void BindSampler(GLuint unit1,GLuint sampler1)
 {
-	 glBindSampler(unit1,sampler1);
+	static PFNGLBINDSAMPLERPROC_HPP fn=reinterpret_cast<PFNGLBINDSAMPLERPROC_HPP>(_impl::_get_proc_address("glBindSampler",3,0));
+	 fn(unit1,sampler1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_BindTexture
 #define GL_HPP_FUNDEF_BindTexture
+typedef void (*PFNGLBINDTEXTUREPROC_HPP)(GLenum,GLuint);
 static inline void BindTexture(GLenum target1,GLuint texture1)
 {
-	 glBindTexture(target1,texture1);
+	static PFNGLBINDTEXTUREPROC_HPP fn=reinterpret_cast<PFNGLBINDTEXTUREPROC_HPP>(_impl::_get_proc_address("glBindTexture",3,0));
+	 fn(target1,texture1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_BindTransformFeedback
 #define GL_HPP_FUNDEF_BindTransformFeedback
+typedef void (*PFNGLBINDTRANSFORMFEEDBACKPROC_HPP)(GLenum,GLuint);
 static inline void BindTransformFeedback(GLenum target1,GLuint id1)
 {
-	 glBindTransformFeedback(target1,id1);
+	static PFNGLBINDTRANSFORMFEEDBACKPROC_HPP fn=reinterpret_cast<PFNGLBINDTRANSFORMFEEDBACKPROC_HPP>(_impl::_get_proc_address("glBindTransformFeedback",3,0));
+	 fn(target1,id1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_BindVertexArray
 #define GL_HPP_FUNDEF_BindVertexArray
+typedef void (*PFNGLBINDVERTEXARRAYPROC_HPP)(GLuint);
 static inline void BindVertexArray(GLuint array1)
 {
-	 glBindVertexArray(array1);
+	static PFNGLBINDVERTEXARRAYPROC_HPP fn=reinterpret_cast<PFNGLBINDVERTEXARRAYPROC_HPP>(_impl::_get_proc_address("glBindVertexArray",3,0));
+	 fn(array1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_BlendColor
 #define GL_HPP_FUNDEF_BlendColor
+typedef void (*PFNGLBLENDCOLORPROC_HPP)(GLfloat,GLfloat,GLfloat,GLfloat);
 static inline void BlendColor(GLfloat red1,GLfloat green1,GLfloat blue1,GLfloat alpha1)
 {
-	 glBlendColor(red1,green1,blue1,alpha1);
+	static PFNGLBLENDCOLORPROC_HPP fn=reinterpret_cast<PFNGLBLENDCOLORPROC_HPP>(_impl::_get_proc_address("glBlendColor",3,0));
+	 fn(red1,green1,blue1,alpha1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_BlendEquation
 #define GL_HPP_FUNDEF_BlendEquation
+typedef void (*PFNGLBLENDEQUATIONPROC_HPP)(GLenum);
 static inline void BlendEquation(GLenum mode1)
 {
-	 glBlendEquation(mode1);
+	static PFNGLBLENDEQUATIONPROC_HPP fn=reinterpret_cast<PFNGLBLENDEQUATIONPROC_HPP>(_impl::_get_proc_address("glBlendEquation",3,0));
+	 fn(mode1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_BlendEquationSeparate
 #define GL_HPP_FUNDEF_BlendEquationSeparate
+typedef void (*PFNGLBLENDEQUATIONSEPARATEPROC_HPP)(GLenum,GLenum);
 static inline void BlendEquationSeparate(GLenum modeRGB1,GLenum modeAlpha1)
 {
-	 glBlendEquationSeparate(modeRGB1,modeAlpha1);
+	static PFNGLBLENDEQUATIONSEPARATEPROC_HPP fn=reinterpret_cast<PFNGLBLENDEQUATIONSEPARATEPROC_HPP>(_impl::_get_proc_address("glBlendEquationSeparate",3,0));
+	 fn(modeRGB1,modeAlpha1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_BlendFunc
 #define GL_HPP_FUNDEF_BlendFunc
+typedef void (*PFNGLBLENDFUNCPROC_HPP)(GLenum,GLenum);
 static inline void BlendFunc(GLenum sfactor1,GLenum dfactor1)
 {
-	 glBlendFunc(sfactor1,dfactor1);
+	static PFNGLBLENDFUNCPROC_HPP fn=reinterpret_cast<PFNGLBLENDFUNCPROC_HPP>(_impl::_get_proc_address("glBlendFunc",3,0));
+	 fn(sfactor1,dfactor1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_BlendFuncSeparate
 #define GL_HPP_FUNDEF_BlendFuncSeparate
+typedef void (*PFNGLBLENDFUNCSEPARATEPROC_HPP)(GLenum,GLenum,GLenum,GLenum);
 static inline void BlendFuncSeparate(GLenum sfactorRGB1,GLenum dfactorRGB1,GLenum sfactorAlpha1,GLenum dfactorAlpha1)
 {
-	 glBlendFuncSeparate(sfactorRGB1,dfactorRGB1,sfactorAlpha1,dfactorAlpha1);
+	static PFNGLBLENDFUNCSEPARATEPROC_HPP fn=reinterpret_cast<PFNGLBLENDFUNCSEPARATEPROC_HPP>(_impl::_get_proc_address("glBlendFuncSeparate",3,0));
+	 fn(sfactorRGB1,dfactorRGB1,sfactorAlpha1,dfactorAlpha1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_BlitFramebuffer
 #define GL_HPP_FUNDEF_BlitFramebuffer
+typedef void (*PFNGLBLITFRAMEBUFFERPROC_HPP)(GLint,GLint,GLint,GLint,GLint,GLint,GLint,GLint,GLbitfield,GLenum);
 static inline void BlitFramebuffer(GLint srcX01,GLint srcY01,GLint srcX11,GLint srcY11,GLint dstX01,GLint dstY01,GLint dstX11,GLint dstY11,GLbitfield mask1,GLenum filter1)
 {
-	 glBlitFramebuffer(srcX01,srcY01,srcX11,srcY11,dstX01,dstY01,dstX11,dstY11,mask1,filter1);
+	static PFNGLBLITFRAMEBUFFERPROC_HPP fn=reinterpret_cast<PFNGLBLITFRAMEBUFFERPROC_HPP>(_impl::_get_proc_address("glBlitFramebuffer",3,0));
+	 fn(srcX01,srcY01,srcX11,srcY11,dstX01,dstY01,dstX11,dstY11,mask1,filter1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_BufferData
 #define GL_HPP_FUNDEF_BufferData
+typedef void (*PFNGLBUFFERDATAPROC_HPP)(GLenum,GLsizeiptr,const void *,GLenum);
 static inline void BufferData(GLenum target1,GLsizeiptr size1,const void * data1,GLenum usage1)
 {
-	 glBufferData(target1,size1,data1,usage1);
+	static PFNGLBUFFERDATAPROC_HPP fn=reinterpret_cast<PFNGLBUFFERDATAPROC_HPP>(_impl::_get_proc_address("glBufferData",3,0));
+	 fn(target1,size1,data1,usage1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_BufferSubData
 #define GL_HPP_FUNDEF_BufferSubData
+typedef void (*PFNGLBUFFERSUBDATAPROC_HPP)(GLenum,GLintptr,GLsizeiptr,const void *);
 static inline void BufferSubData(GLenum target1,GLintptr offset1,GLsizeiptr size1,const void * data1)
 {
-	 glBufferSubData(target1,offset1,size1,data1);
+	static PFNGLBUFFERSUBDATAPROC_HPP fn=reinterpret_cast<PFNGLBUFFERSUBDATAPROC_HPP>(_impl::_get_proc_address("glBufferSubData",3,0));
+	 fn(target1,offset1,size1,data1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_CheckFramebufferStatus
 #define GL_HPP_FUNDEF_CheckFramebufferStatus
+typedef GLenum (*PFNGLCHECKFRAMEBUFFERSTATUSPROC_HPP)(GLenum);
 static inline GLenum CheckFramebufferStatus(GLenum target1)
 {
-	return glCheckFramebufferStatus(target1);
+	static PFNGLCHECKFRAMEBUFFERSTATUSPROC_HPP fn=reinterpret_cast<PFNGLCHECKFRAMEBUFFERSTATUSPROC_HPP>(_impl::_get_proc_address("glCheckFramebufferStatus",3,0));
+	return fn(target1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Clear
 #define GL_HPP_FUNDEF_Clear
+typedef void (*PFNGLCLEARPROC_HPP)(GLbitfield);
 static inline void Clear(GLbitfield mask1)
 {
-	 glClear(mask1);
+	static PFNGLCLEARPROC_HPP fn=reinterpret_cast<PFNGLCLEARPROC_HPP>(_impl::_get_proc_address("glClear",3,0));
+	 fn(mask1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_ClearBufferfi
 #define GL_HPP_FUNDEF_ClearBufferfi
+typedef void (*PFNGLCLEARBUFFERFIPROC_HPP)(GLenum,GLint,GLfloat,GLint);
 static inline void ClearBufferfi(GLenum buffer1,GLint drawbuffer1,GLfloat depth1,GLint stencil1)
 {
-	 glClearBufferfi(buffer1,drawbuffer1,depth1,stencil1);
+	static PFNGLCLEARBUFFERFIPROC_HPP fn=reinterpret_cast<PFNGLCLEARBUFFERFIPROC_HPP>(_impl::_get_proc_address("glClearBufferfi",3,0));
+	 fn(buffer1,drawbuffer1,depth1,stencil1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_ClearBufferfv
 #define GL_HPP_FUNDEF_ClearBufferfv
+typedef void (*PFNGLCLEARBUFFERFVPROC_HPP)(GLenum,GLint,const GLfloat *);
 static inline void ClearBufferfv(GLenum buffer1,GLint drawbuffer1,const GLfloat * value1)
 {
-	 glClearBufferfv(buffer1,drawbuffer1,value1);
+	static PFNGLCLEARBUFFERFVPROC_HPP fn=reinterpret_cast<PFNGLCLEARBUFFERFVPROC_HPP>(_impl::_get_proc_address("glClearBufferfv",3,0));
+	 fn(buffer1,drawbuffer1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_ClearBufferiv
 #define GL_HPP_FUNDEF_ClearBufferiv
+typedef void (*PFNGLCLEARBUFFERIVPROC_HPP)(GLenum,GLint,const GLint *);
 static inline void ClearBufferiv(GLenum buffer1,GLint drawbuffer1,const GLint * value1)
 {
-	 glClearBufferiv(buffer1,drawbuffer1,value1);
+	static PFNGLCLEARBUFFERIVPROC_HPP fn=reinterpret_cast<PFNGLCLEARBUFFERIVPROC_HPP>(_impl::_get_proc_address("glClearBufferiv",3,0));
+	 fn(buffer1,drawbuffer1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_ClearBufferuiv
 #define GL_HPP_FUNDEF_ClearBufferuiv
+typedef void (*PFNGLCLEARBUFFERUIVPROC_HPP)(GLenum,GLint,const GLuint *);
 static inline void ClearBufferuiv(GLenum buffer1,GLint drawbuffer1,const GLuint * value1)
 {
-	 glClearBufferuiv(buffer1,drawbuffer1,value1);
+	static PFNGLCLEARBUFFERUIVPROC_HPP fn=reinterpret_cast<PFNGLCLEARBUFFERUIVPROC_HPP>(_impl::_get_proc_address("glClearBufferuiv",3,0));
+	 fn(buffer1,drawbuffer1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_ClearColor
 #define GL_HPP_FUNDEF_ClearColor
+typedef void (*PFNGLCLEARCOLORPROC_HPP)(GLfloat,GLfloat,GLfloat,GLfloat);
 static inline void ClearColor(GLfloat red1,GLfloat green1,GLfloat blue1,GLfloat alpha1)
 {
-	 glClearColor(red1,green1,blue1,alpha1);
+	static PFNGLCLEARCOLORPROC_HPP fn=reinterpret_cast<PFNGLCLEARCOLORPROC_HPP>(_impl::_get_proc_address("glClearColor",3,0));
+	 fn(red1,green1,blue1,alpha1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_ClearDepthf
 #define GL_HPP_FUNDEF_ClearDepthf
+typedef void (*PFNGLCLEARDEPTHFPROC_HPP)(GLfloat);
 static inline void ClearDepthf(GLfloat d1)
 {
-	 glClearDepthf(d1);
+	static PFNGLCLEARDEPTHFPROC_HPP fn=reinterpret_cast<PFNGLCLEARDEPTHFPROC_HPP>(_impl::_get_proc_address("glClearDepthf",3,0));
+	 fn(d1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_ClearStencil
 #define GL_HPP_FUNDEF_ClearStencil
+typedef void (*PFNGLCLEARSTENCILPROC_HPP)(GLint);
 static inline void ClearStencil(GLint s1)
 {
-	 glClearStencil(s1);
+	static PFNGLCLEARSTENCILPROC_HPP fn=reinterpret_cast<PFNGLCLEARSTENCILPROC_HPP>(_impl::_get_proc_address("glClearStencil",3,0));
+	 fn(s1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_ClientWaitSync
 #define GL_HPP_FUNDEF_ClientWaitSync
+typedef GLenum (*PFNGLCLIENTWAITSYNCPROC_HPP)(GLsync,GLbitfield,GLuint64);
 static inline GLenum ClientWaitSync(GLsync sync1,GLbitfield flags1,GLuint64 timeout1)
 {
-	return glClientWaitSync(sync1,flags1,timeout1);
+	static PFNGLCLIENTWAITSYNCPROC_HPP fn=reinterpret_cast<PFNGLCLIENTWAITSYNCPROC_HPP>(_impl::_get_proc_address("glClientWaitSync",3,0));
+	return fn(sync1,flags1,timeout1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_ColorMask
 #define GL_HPP_FUNDEF_ColorMask
+typedef void (*PFNGLCOLORMASKPROC_HPP)(GLboolean,GLboolean,GLboolean,GLboolean);
 static inline void ColorMask(GLboolean red1,GLboolean green1,GLboolean blue1,GLboolean alpha1)
 {
-	 glColorMask(red1,green1,blue1,alpha1);
+	static PFNGLCOLORMASKPROC_HPP fn=reinterpret_cast<PFNGLCOLORMASKPROC_HPP>(_impl::_get_proc_address("glColorMask",3,0));
+	 fn(red1,green1,blue1,alpha1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_CompileShader
 #define GL_HPP_FUNDEF_CompileShader
+typedef void (*PFNGLCOMPILESHADERPROC_HPP)(GLuint);
 static inline void CompileShader(GLuint shader1)
 {
-	 glCompileShader(shader1);
+	static PFNGLCOMPILESHADERPROC_HPP fn=reinterpret_cast<PFNGLCOMPILESHADERPROC_HPP>(_impl::_get_proc_address("glCompileShader",3,0));
+	 fn(shader1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_CompressedTexImage2D
 #define GL_HPP_FUNDEF_CompressedTexImage2D
+typedef void (*PFNGLCOMPRESSEDTEXIMAGE2DPROC_HPP)(GLenum,GLint,GLenum,GLsizei,GLsizei,GLint,GLsizei,const void *);
 static inline void CompressedTexImage2D(GLenum target1,GLint level1,GLenum internalformat1,GLsizei width1,GLsizei height1,GLint border1,GLsizei imageSize1,const void * data1)
 {
-	 glCompressedTexImage2D(target1,level1,internalformat1,width1,height1,border1,imageSize1,data1);
+	static PFNGLCOMPRESSEDTEXIMAGE2DPROC_HPP fn=reinterpret_cast<PFNGLCOMPRESSEDTEXIMAGE2DPROC_HPP>(_impl::_get_proc_address("glCompressedTexImage2D",3,0));
+	 fn(target1,level1,internalformat1,width1,height1,border1,imageSize1,data1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_CompressedTexImage3D
 #define GL_HPP_FUNDEF_CompressedTexImage3D
+typedef void (*PFNGLCOMPRESSEDTEXIMAGE3DPROC_HPP)(GLenum,GLint,GLenum,GLsizei,GLsizei,GLsizei,GLint,GLsizei,const void *);
 static inline void CompressedTexImage3D(GLenum target1,GLint level1,GLenum internalformat1,GLsizei width1,GLsizei height1,GLsizei depth1,GLint border1,GLsizei imageSize1,const void * data1)
 {
-	 glCompressedTexImage3D(target1,level1,internalformat1,width1,height1,depth1,border1,imageSize1,data1);
+	static PFNGLCOMPRESSEDTEXIMAGE3DPROC_HPP fn=reinterpret_cast<PFNGLCOMPRESSEDTEXIMAGE3DPROC_HPP>(_impl::_get_proc_address("glCompressedTexImage3D",3,0));
+	 fn(target1,level1,internalformat1,width1,height1,depth1,border1,imageSize1,data1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_CompressedTexSubImage2D
 #define GL_HPP_FUNDEF_CompressedTexSubImage2D
+typedef void (*PFNGLCOMPRESSEDTEXSUBIMAGE2DPROC_HPP)(GLenum,GLint,GLint,GLint,GLsizei,GLsizei,GLenum,GLsizei,const void *);
 static inline void CompressedTexSubImage2D(GLenum target1,GLint level1,GLint xoffset1,GLint yoffset1,GLsizei width1,GLsizei height1,GLenum format1,GLsizei imageSize1,const void * data1)
 {
-	 glCompressedTexSubImage2D(target1,level1,xoffset1,yoffset1,width1,height1,format1,imageSize1,data1);
+	static PFNGLCOMPRESSEDTEXSUBIMAGE2DPROC_HPP fn=reinterpret_cast<PFNGLCOMPRESSEDTEXSUBIMAGE2DPROC_HPP>(_impl::_get_proc_address("glCompressedTexSubImage2D",3,0));
+	 fn(target1,level1,xoffset1,yoffset1,width1,height1,format1,imageSize1,data1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_CompressedTexSubImage3D
 #define GL_HPP_FUNDEF_CompressedTexSubImage3D
+typedef void (*PFNGLCOMPRESSEDTEXSUBIMAGE3DPROC_HPP)(GLenum,GLint,GLint,GLint,GLint,GLsizei,GLsizei,GLsizei,GLenum,GLsizei,const void *);
 static inline void CompressedTexSubImage3D(GLenum target1,GLint level1,GLint xoffset1,GLint yoffset1,GLint zoffset1,GLsizei width1,GLsizei height1,GLsizei depth1,GLenum format1,GLsizei imageSize1,const void * data1)
 {
-	 glCompressedTexSubImage3D(target1,level1,xoffset1,yoffset1,zoffset1,width1,height1,depth1,format1,imageSize1,data1);
+	static PFNGLCOMPRESSEDTEXSUBIMAGE3DPROC_HPP fn=reinterpret_cast<PFNGLCOMPRESSEDTEXSUBIMAGE3DPROC_HPP>(_impl::_get_proc_address("glCompressedTexSubImage3D",3,0));
+	 fn(target1,level1,xoffset1,yoffset1,zoffset1,width1,height1,depth1,format1,imageSize1,data1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_CopyBufferSubData
 #define GL_HPP_FUNDEF_CopyBufferSubData
+typedef void (*PFNGLCOPYBUFFERSUBDATAPROC_HPP)(GLenum,GLenum,GLintptr,GLintptr,GLsizeiptr);
 static inline void CopyBufferSubData(GLenum readTarget1,GLenum writeTarget1,GLintptr readOffset1,GLintptr writeOffset1,GLsizeiptr size1)
 {
-	 glCopyBufferSubData(readTarget1,writeTarget1,readOffset1,writeOffset1,size1);
+	static PFNGLCOPYBUFFERSUBDATAPROC_HPP fn=reinterpret_cast<PFNGLCOPYBUFFERSUBDATAPROC_HPP>(_impl::_get_proc_address("glCopyBufferSubData",3,0));
+	 fn(readTarget1,writeTarget1,readOffset1,writeOffset1,size1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_CopyTexImage2D
 #define GL_HPP_FUNDEF_CopyTexImage2D
+typedef void (*PFNGLCOPYTEXIMAGE2DPROC_HPP)(GLenum,GLint,GLenum,GLint,GLint,GLsizei,GLsizei,GLint);
 static inline void CopyTexImage2D(GLenum target1,GLint level1,GLenum internalformat1,GLint x1,GLint y1,GLsizei width1,GLsizei height1,GLint border1)
 {
-	 glCopyTexImage2D(target1,level1,internalformat1,x1,y1,width1,height1,border1);
+	static PFNGLCOPYTEXIMAGE2DPROC_HPP fn=reinterpret_cast<PFNGLCOPYTEXIMAGE2DPROC_HPP>(_impl::_get_proc_address("glCopyTexImage2D",3,0));
+	 fn(target1,level1,internalformat1,x1,y1,width1,height1,border1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_CopyTexSubImage2D
 #define GL_HPP_FUNDEF_CopyTexSubImage2D
+typedef void (*PFNGLCOPYTEXSUBIMAGE2DPROC_HPP)(GLenum,GLint,GLint,GLint,GLint,GLint,GLsizei,GLsizei);
 static inline void CopyTexSubImage2D(GLenum target1,GLint level1,GLint xoffset1,GLint yoffset1,GLint x1,GLint y1,GLsizei width1,GLsizei height1)
 {
-	 glCopyTexSubImage2D(target1,level1,xoffset1,yoffset1,x1,y1,width1,height1);
+	static PFNGLCOPYTEXSUBIMAGE2DPROC_HPP fn=reinterpret_cast<PFNGLCOPYTEXSUBIMAGE2DPROC_HPP>(_impl::_get_proc_address("glCopyTexSubImage2D",3,0));
+	 fn(target1,level1,xoffset1,yoffset1,x1,y1,width1,height1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_CopyTexSubImage3D
 #define GL_HPP_FUNDEF_CopyTexSubImage3D
+typedef void (*PFNGLCOPYTEXSUBIMAGE3DPROC_HPP)(GLenum,GLint,GLint,GLint,GLint,GLint,GLint,GLsizei,GLsizei);
 static inline void CopyTexSubImage3D(GLenum target1,GLint level1,GLint xoffset1,GLint yoffset1,GLint zoffset1,GLint x1,GLint y1,GLsizei width1,GLsizei height1)
 {
-	 glCopyTexSubImage3D(target1,level1,xoffset1,yoffset1,zoffset1,x1,y1,width1,height1);
+	static PFNGLCOPYTEXSUBIMAGE3DPROC_HPP fn=reinterpret_cast<PFNGLCOPYTEXSUBIMAGE3DPROC_HPP>(_impl::_get_proc_address("glCopyTexSubImage3D",3,0));
+	 fn(target1,level1,xoffset1,yoffset1,zoffset1,x1,y1,width1,height1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_CreateProgram
 #define GL_HPP_FUNDEF_CreateProgram
+typedef GLuint (*PFNGLCREATEPROGRAMPROC_HPP)();
 static inline GLuint CreateProgram()
 {
-	return glCreateProgram();
+	static PFNGLCREATEPROGRAMPROC_HPP fn=reinterpret_cast<PFNGLCREATEPROGRAMPROC_HPP>(_impl::_get_proc_address("glCreateProgram",3,0));
+	return fn();
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_CreateShader
 #define GL_HPP_FUNDEF_CreateShader
+typedef GLuint (*PFNGLCREATESHADERPROC_HPP)(GLenum);
 static inline GLuint CreateShader(GLenum type1)
 {
-	return glCreateShader(type1);
+	static PFNGLCREATESHADERPROC_HPP fn=reinterpret_cast<PFNGLCREATESHADERPROC_HPP>(_impl::_get_proc_address("glCreateShader",3,0));
+	return fn(type1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_CullFace
 #define GL_HPP_FUNDEF_CullFace
+typedef void (*PFNGLCULLFACEPROC_HPP)(GLenum);
 static inline void CullFace(GLenum mode1)
 {
-	 glCullFace(mode1);
+	static PFNGLCULLFACEPROC_HPP fn=reinterpret_cast<PFNGLCULLFACEPROC_HPP>(_impl::_get_proc_address("glCullFace",3,0));
+	 fn(mode1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_DeleteBuffers
 #define GL_HPP_FUNDEF_DeleteBuffers
+typedef void (*PFNGLDELETEBUFFERSPROC_HPP)(GLsizei,const GLuint *);
 static inline void DeleteBuffers(GLsizei n1,const GLuint * buffers1)
 {
-	 glDeleteBuffers(n1,buffers1);
+	static PFNGLDELETEBUFFERSPROC_HPP fn=reinterpret_cast<PFNGLDELETEBUFFERSPROC_HPP>(_impl::_get_proc_address("glDeleteBuffers",3,0));
+	 fn(n1,buffers1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_DeleteFramebuffers
 #define GL_HPP_FUNDEF_DeleteFramebuffers
+typedef void (*PFNGLDELETEFRAMEBUFFERSPROC_HPP)(GLsizei,const GLuint *);
 static inline void DeleteFramebuffers(GLsizei n1,const GLuint * framebuffers1)
 {
-	 glDeleteFramebuffers(n1,framebuffers1);
+	static PFNGLDELETEFRAMEBUFFERSPROC_HPP fn=reinterpret_cast<PFNGLDELETEFRAMEBUFFERSPROC_HPP>(_impl::_get_proc_address("glDeleteFramebuffers",3,0));
+	 fn(n1,framebuffers1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_DeleteProgram
 #define GL_HPP_FUNDEF_DeleteProgram
+typedef void (*PFNGLDELETEPROGRAMPROC_HPP)(GLuint);
 static inline void DeleteProgram(GLuint program1)
 {
-	 glDeleteProgram(program1);
+	static PFNGLDELETEPROGRAMPROC_HPP fn=reinterpret_cast<PFNGLDELETEPROGRAMPROC_HPP>(_impl::_get_proc_address("glDeleteProgram",3,0));
+	 fn(program1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_DeleteQueries
 #define GL_HPP_FUNDEF_DeleteQueries
+typedef void (*PFNGLDELETEQUERIESPROC_HPP)(GLsizei,const GLuint *);
 static inline void DeleteQueries(GLsizei n1,const GLuint * ids1)
 {
-	 glDeleteQueries(n1,ids1);
+	static PFNGLDELETEQUERIESPROC_HPP fn=reinterpret_cast<PFNGLDELETEQUERIESPROC_HPP>(_impl::_get_proc_address("glDeleteQueries",3,0));
+	 fn(n1,ids1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_DeleteRenderbuffers
 #define GL_HPP_FUNDEF_DeleteRenderbuffers
+typedef void (*PFNGLDELETERENDERBUFFERSPROC_HPP)(GLsizei,const GLuint *);
 static inline void DeleteRenderbuffers(GLsizei n1,const GLuint * renderbuffers1)
 {
-	 glDeleteRenderbuffers(n1,renderbuffers1);
+	static PFNGLDELETERENDERBUFFERSPROC_HPP fn=reinterpret_cast<PFNGLDELETERENDERBUFFERSPROC_HPP>(_impl::_get_proc_address("glDeleteRenderbuffers",3,0));
+	 fn(n1,renderbuffers1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_DeleteSamplers
 #define GL_HPP_FUNDEF_DeleteSamplers
+typedef void (*PFNGLDELETESAMPLERSPROC_HPP)(GLsizei,const GLuint *);
 static inline void DeleteSamplers(GLsizei count1,const GLuint * samplers1)
 {
-	 glDeleteSamplers(count1,samplers1);
+	static PFNGLDELETESAMPLERSPROC_HPP fn=reinterpret_cast<PFNGLDELETESAMPLERSPROC_HPP>(_impl::_get_proc_address("glDeleteSamplers",3,0));
+	 fn(count1,samplers1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_DeleteShader
 #define GL_HPP_FUNDEF_DeleteShader
+typedef void (*PFNGLDELETESHADERPROC_HPP)(GLuint);
 static inline void DeleteShader(GLuint shader1)
 {
-	 glDeleteShader(shader1);
+	static PFNGLDELETESHADERPROC_HPP fn=reinterpret_cast<PFNGLDELETESHADERPROC_HPP>(_impl::_get_proc_address("glDeleteShader",3,0));
+	 fn(shader1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_DeleteSync
 #define GL_HPP_FUNDEF_DeleteSync
+typedef void (*PFNGLDELETESYNCPROC_HPP)(GLsync);
 static inline void DeleteSync(GLsync sync1)
 {
-	 glDeleteSync(sync1);
+	static PFNGLDELETESYNCPROC_HPP fn=reinterpret_cast<PFNGLDELETESYNCPROC_HPP>(_impl::_get_proc_address("glDeleteSync",3,0));
+	 fn(sync1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_DeleteTextures
 #define GL_HPP_FUNDEF_DeleteTextures
+typedef void (*PFNGLDELETETEXTURESPROC_HPP)(GLsizei,const GLuint *);
 static inline void DeleteTextures(GLsizei n1,const GLuint * textures1)
 {
-	 glDeleteTextures(n1,textures1);
+	static PFNGLDELETETEXTURESPROC_HPP fn=reinterpret_cast<PFNGLDELETETEXTURESPROC_HPP>(_impl::_get_proc_address("glDeleteTextures",3,0));
+	 fn(n1,textures1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_DeleteTransformFeedbacks
 #define GL_HPP_FUNDEF_DeleteTransformFeedbacks
+typedef void (*PFNGLDELETETRANSFORMFEEDBACKSPROC_HPP)(GLsizei,const GLuint *);
 static inline void DeleteTransformFeedbacks(GLsizei n1,const GLuint * ids1)
 {
-	 glDeleteTransformFeedbacks(n1,ids1);
+	static PFNGLDELETETRANSFORMFEEDBACKSPROC_HPP fn=reinterpret_cast<PFNGLDELETETRANSFORMFEEDBACKSPROC_HPP>(_impl::_get_proc_address("glDeleteTransformFeedbacks",3,0));
+	 fn(n1,ids1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_DeleteVertexArrays
 #define GL_HPP_FUNDEF_DeleteVertexArrays
+typedef void (*PFNGLDELETEVERTEXARRAYSPROC_HPP)(GLsizei,const GLuint *);
 static inline void DeleteVertexArrays(GLsizei n1,const GLuint * arrays1)
 {
-	 glDeleteVertexArrays(n1,arrays1);
+	static PFNGLDELETEVERTEXARRAYSPROC_HPP fn=reinterpret_cast<PFNGLDELETEVERTEXARRAYSPROC_HPP>(_impl::_get_proc_address("glDeleteVertexArrays",3,0));
+	 fn(n1,arrays1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_DepthFunc
 #define GL_HPP_FUNDEF_DepthFunc
+typedef void (*PFNGLDEPTHFUNCPROC_HPP)(GLenum);
 static inline void DepthFunc(GLenum func1)
 {
-	 glDepthFunc(func1);
+	static PFNGLDEPTHFUNCPROC_HPP fn=reinterpret_cast<PFNGLDEPTHFUNCPROC_HPP>(_impl::_get_proc_address("glDepthFunc",3,0));
+	 fn(func1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_DepthMask
 #define GL_HPP_FUNDEF_DepthMask
+typedef void (*PFNGLDEPTHMASKPROC_HPP)(GLboolean);
 static inline void DepthMask(GLboolean flag1)
 {
-	 glDepthMask(flag1);
+	static PFNGLDEPTHMASKPROC_HPP fn=reinterpret_cast<PFNGLDEPTHMASKPROC_HPP>(_impl::_get_proc_address("glDepthMask",3,0));
+	 fn(flag1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_DepthRangef
 #define GL_HPP_FUNDEF_DepthRangef
+typedef void (*PFNGLDEPTHRANGEFPROC_HPP)(GLfloat,GLfloat);
 static inline void DepthRangef(GLfloat n1,GLfloat f1)
 {
-	 glDepthRangef(n1,f1);
+	static PFNGLDEPTHRANGEFPROC_HPP fn=reinterpret_cast<PFNGLDEPTHRANGEFPROC_HPP>(_impl::_get_proc_address("glDepthRangef",3,0));
+	 fn(n1,f1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_DetachShader
 #define GL_HPP_FUNDEF_DetachShader
+typedef void (*PFNGLDETACHSHADERPROC_HPP)(GLuint,GLuint);
 static inline void DetachShader(GLuint program1,GLuint shader1)
 {
-	 glDetachShader(program1,shader1);
+	static PFNGLDETACHSHADERPROC_HPP fn=reinterpret_cast<PFNGLDETACHSHADERPROC_HPP>(_impl::_get_proc_address("glDetachShader",3,0));
+	 fn(program1,shader1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Disable
 #define GL_HPP_FUNDEF_Disable
+typedef void (*PFNGLDISABLEPROC_HPP)(GLenum);
 static inline void Disable(GLenum cap1)
 {
-	 glDisable(cap1);
+	static PFNGLDISABLEPROC_HPP fn=reinterpret_cast<PFNGLDISABLEPROC_HPP>(_impl::_get_proc_address("glDisable",3,0));
+	 fn(cap1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_DisableVertexAttribArray
 #define GL_HPP_FUNDEF_DisableVertexAttribArray
+typedef void (*PFNGLDISABLEVERTEXATTRIBARRAYPROC_HPP)(GLuint);
 static inline void DisableVertexAttribArray(GLuint index1)
 {
-	 glDisableVertexAttribArray(index1);
+	static PFNGLDISABLEVERTEXATTRIBARRAYPROC_HPP fn=reinterpret_cast<PFNGLDISABLEVERTEXATTRIBARRAYPROC_HPP>(_impl::_get_proc_address("glDisableVertexAttribArray",3,0));
+	 fn(index1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_DrawArrays
 #define GL_HPP_FUNDEF_DrawArrays
+typedef void (*PFNGLDRAWARRAYSPROC_HPP)(GLenum,GLint,GLsizei);
 static inline void DrawArrays(GLenum mode1,GLint first1,GLsizei count1)
 {
-	 glDrawArrays(mode1,first1,count1);
+	static PFNGLDRAWARRAYSPROC_HPP fn=reinterpret_cast<PFNGLDRAWARRAYSPROC_HPP>(_impl::_get_proc_address("glDrawArrays",3,0));
+	 fn(mode1,first1,count1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_DrawArraysInstanced
 #define GL_HPP_FUNDEF_DrawArraysInstanced
+typedef void (*PFNGLDRAWARRAYSINSTANCEDPROC_HPP)(GLenum,GLint,GLsizei,GLsizei);
 static inline void DrawArraysInstanced(GLenum mode1,GLint first1,GLsizei count1,GLsizei instancecount1)
 {
-	 glDrawArraysInstanced(mode1,first1,count1,instancecount1);
+	static PFNGLDRAWARRAYSINSTANCEDPROC_HPP fn=reinterpret_cast<PFNGLDRAWARRAYSINSTANCEDPROC_HPP>(_impl::_get_proc_address("glDrawArraysInstanced",3,0));
+	 fn(mode1,first1,count1,instancecount1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_DrawBuffers
 #define GL_HPP_FUNDEF_DrawBuffers
+typedef void (*PFNGLDRAWBUFFERSPROC_HPP)(GLsizei,const GLenum *);
 static inline void DrawBuffers(GLsizei n1,const GLenum * bufs1)
 {
-	 glDrawBuffers(n1,bufs1);
+	static PFNGLDRAWBUFFERSPROC_HPP fn=reinterpret_cast<PFNGLDRAWBUFFERSPROC_HPP>(_impl::_get_proc_address("glDrawBuffers",3,0));
+	 fn(n1,bufs1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_DrawElements
 #define GL_HPP_FUNDEF_DrawElements
+typedef void (*PFNGLDRAWELEMENTSPROC_HPP)(GLenum,GLsizei,GLenum,const void *);
 static inline void DrawElements(GLenum mode1,GLsizei count1,GLenum type1,const void * indices1)
 {
-	 glDrawElements(mode1,count1,type1,indices1);
+	static PFNGLDRAWELEMENTSPROC_HPP fn=reinterpret_cast<PFNGLDRAWELEMENTSPROC_HPP>(_impl::_get_proc_address("glDrawElements",3,0));
+	 fn(mode1,count1,type1,indices1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_DrawElementsInstanced
 #define GL_HPP_FUNDEF_DrawElementsInstanced
+typedef void (*PFNGLDRAWELEMENTSINSTANCEDPROC_HPP)(GLenum,GLsizei,GLenum,const void *,GLsizei);
 static inline void DrawElementsInstanced(GLenum mode1,GLsizei count1,GLenum type1,const void * indices1,GLsizei instancecount1)
 {
-	 glDrawElementsInstanced(mode1,count1,type1,indices1,instancecount1);
+	static PFNGLDRAWELEMENTSINSTANCEDPROC_HPP fn=reinterpret_cast<PFNGLDRAWELEMENTSINSTANCEDPROC_HPP>(_impl::_get_proc_address("glDrawElementsInstanced",3,0));
+	 fn(mode1,count1,type1,indices1,instancecount1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_DrawRangeElements
 #define GL_HPP_FUNDEF_DrawRangeElements
+typedef void (*PFNGLDRAWRANGEELEMENTSPROC_HPP)(GLenum,GLuint,GLuint,GLsizei,GLenum,const void *);
 static inline void DrawRangeElements(GLenum mode1,GLuint start1,GLuint end1,GLsizei count1,GLenum type1,const void * indices1)
 {
-	 glDrawRangeElements(mode1,start1,end1,count1,type1,indices1);
+	static PFNGLDRAWRANGEELEMENTSPROC_HPP fn=reinterpret_cast<PFNGLDRAWRANGEELEMENTSPROC_HPP>(_impl::_get_proc_address("glDrawRangeElements",3,0));
+	 fn(mode1,start1,end1,count1,type1,indices1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Enable
 #define GL_HPP_FUNDEF_Enable
+typedef void (*PFNGLENABLEPROC_HPP)(GLenum);
 static inline void Enable(GLenum cap1)
 {
-	 glEnable(cap1);
+	static PFNGLENABLEPROC_HPP fn=reinterpret_cast<PFNGLENABLEPROC_HPP>(_impl::_get_proc_address("glEnable",3,0));
+	 fn(cap1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_EnableVertexAttribArray
 #define GL_HPP_FUNDEF_EnableVertexAttribArray
+typedef void (*PFNGLENABLEVERTEXATTRIBARRAYPROC_HPP)(GLuint);
 static inline void EnableVertexAttribArray(GLuint index1)
 {
-	 glEnableVertexAttribArray(index1);
+	static PFNGLENABLEVERTEXATTRIBARRAYPROC_HPP fn=reinterpret_cast<PFNGLENABLEVERTEXATTRIBARRAYPROC_HPP>(_impl::_get_proc_address("glEnableVertexAttribArray",3,0));
+	 fn(index1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_EndQuery
 #define GL_HPP_FUNDEF_EndQuery
+typedef void (*PFNGLENDQUERYPROC_HPP)(GLenum);
 static inline void EndQuery(GLenum target1)
 {
-	 glEndQuery(target1);
+	static PFNGLENDQUERYPROC_HPP fn=reinterpret_cast<PFNGLENDQUERYPROC_HPP>(_impl::_get_proc_address("glEndQuery",3,0));
+	 fn(target1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_EndTransformFeedback
 #define GL_HPP_FUNDEF_EndTransformFeedback
+typedef void (*PFNGLENDTRANSFORMFEEDBACKPROC_HPP)();
 static inline void EndTransformFeedback()
 {
-	 glEndTransformFeedback();
+	static PFNGLENDTRANSFORMFEEDBACKPROC_HPP fn=reinterpret_cast<PFNGLENDTRANSFORMFEEDBACKPROC_HPP>(_impl::_get_proc_address("glEndTransformFeedback",3,0));
+	 fn();
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_FenceSync
 #define GL_HPP_FUNDEF_FenceSync
+typedef GLsync (*PFNGLFENCESYNCPROC_HPP)(GLenum,GLbitfield);
 static inline GLsync FenceSync(GLenum condition1,GLbitfield flags1)
 {
-	return glFenceSync(condition1,flags1);
+	static PFNGLFENCESYNCPROC_HPP fn=reinterpret_cast<PFNGLFENCESYNCPROC_HPP>(_impl::_get_proc_address("glFenceSync",3,0));
+	return fn(condition1,flags1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Finish
 #define GL_HPP_FUNDEF_Finish
+typedef void (*PFNGLFINISHPROC_HPP)();
 static inline void Finish()
 {
-	 glFinish();
+	static PFNGLFINISHPROC_HPP fn=reinterpret_cast<PFNGLFINISHPROC_HPP>(_impl::_get_proc_address("glFinish",3,0));
+	 fn();
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Flush
 #define GL_HPP_FUNDEF_Flush
+typedef void (*PFNGLFLUSHPROC_HPP)();
 static inline void Flush()
 {
-	 glFlush();
+	static PFNGLFLUSHPROC_HPP fn=reinterpret_cast<PFNGLFLUSHPROC_HPP>(_impl::_get_proc_address("glFlush",3,0));
+	 fn();
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_FlushMappedBufferRange
 #define GL_HPP_FUNDEF_FlushMappedBufferRange
+typedef void (*PFNGLFLUSHMAPPEDBUFFERRANGEPROC_HPP)(GLenum,GLintptr,GLsizeiptr);
 static inline void FlushMappedBufferRange(GLenum target1,GLintptr offset1,GLsizeiptr length1)
 {
-	 glFlushMappedBufferRange(target1,offset1,length1);
+	static PFNGLFLUSHMAPPEDBUFFERRANGEPROC_HPP fn=reinterpret_cast<PFNGLFLUSHMAPPEDBUFFERRANGEPROC_HPP>(_impl::_get_proc_address("glFlushMappedBufferRange",3,0));
+	 fn(target1,offset1,length1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_FramebufferRenderbuffer
 #define GL_HPP_FUNDEF_FramebufferRenderbuffer
+typedef void (*PFNGLFRAMEBUFFERRENDERBUFFERPROC_HPP)(GLenum,GLenum,GLenum,GLuint);
 static inline void FramebufferRenderbuffer(GLenum target1,GLenum attachment1,GLenum renderbuffertarget1,GLuint renderbuffer1)
 {
-	 glFramebufferRenderbuffer(target1,attachment1,renderbuffertarget1,renderbuffer1);
+	static PFNGLFRAMEBUFFERRENDERBUFFERPROC_HPP fn=reinterpret_cast<PFNGLFRAMEBUFFERRENDERBUFFERPROC_HPP>(_impl::_get_proc_address("glFramebufferRenderbuffer",3,0));
+	 fn(target1,attachment1,renderbuffertarget1,renderbuffer1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_FramebufferTexture2D
 #define GL_HPP_FUNDEF_FramebufferTexture2D
+typedef void (*PFNGLFRAMEBUFFERTEXTURE2DPROC_HPP)(GLenum,GLenum,GLenum,GLuint,GLint);
 static inline void FramebufferTexture2D(GLenum target1,GLenum attachment1,GLenum textarget1,GLuint texture1,GLint level1)
 {
-	 glFramebufferTexture2D(target1,attachment1,textarget1,texture1,level1);
+	static PFNGLFRAMEBUFFERTEXTURE2DPROC_HPP fn=reinterpret_cast<PFNGLFRAMEBUFFERTEXTURE2DPROC_HPP>(_impl::_get_proc_address("glFramebufferTexture2D",3,0));
+	 fn(target1,attachment1,textarget1,texture1,level1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_FramebufferTextureLayer
 #define GL_HPP_FUNDEF_FramebufferTextureLayer
+typedef void (*PFNGLFRAMEBUFFERTEXTURELAYERPROC_HPP)(GLenum,GLenum,GLuint,GLint,GLint);
 static inline void FramebufferTextureLayer(GLenum target1,GLenum attachment1,GLuint texture1,GLint level1,GLint layer1)
 {
-	 glFramebufferTextureLayer(target1,attachment1,texture1,level1,layer1);
+	static PFNGLFRAMEBUFFERTEXTURELAYERPROC_HPP fn=reinterpret_cast<PFNGLFRAMEBUFFERTEXTURELAYERPROC_HPP>(_impl::_get_proc_address("glFramebufferTextureLayer",3,0));
+	 fn(target1,attachment1,texture1,level1,layer1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_FrontFace
 #define GL_HPP_FUNDEF_FrontFace
+typedef void (*PFNGLFRONTFACEPROC_HPP)(GLenum);
 static inline void FrontFace(GLenum mode1)
 {
-	 glFrontFace(mode1);
+	static PFNGLFRONTFACEPROC_HPP fn=reinterpret_cast<PFNGLFRONTFACEPROC_HPP>(_impl::_get_proc_address("glFrontFace",3,0));
+	 fn(mode1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GenBuffers
 #define GL_HPP_FUNDEF_GenBuffers
+typedef void (*PFNGLGENBUFFERSPROC_HPP)(GLsizei,GLuint *);
 static inline void GenBuffers(GLsizei n1,GLuint * buffers1)
 {
-	 glGenBuffers(n1,buffers1);
+	static PFNGLGENBUFFERSPROC_HPP fn=reinterpret_cast<PFNGLGENBUFFERSPROC_HPP>(_impl::_get_proc_address("glGenBuffers",3,0));
+	 fn(n1,buffers1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GenFramebuffers
 #define GL_HPP_FUNDEF_GenFramebuffers
+typedef void (*PFNGLGENFRAMEBUFFERSPROC_HPP)(GLsizei,GLuint *);
 static inline void GenFramebuffers(GLsizei n1,GLuint * framebuffers1)
 {
-	 glGenFramebuffers(n1,framebuffers1);
+	static PFNGLGENFRAMEBUFFERSPROC_HPP fn=reinterpret_cast<PFNGLGENFRAMEBUFFERSPROC_HPP>(_impl::_get_proc_address("glGenFramebuffers",3,0));
+	 fn(n1,framebuffers1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GenQueries
 #define GL_HPP_FUNDEF_GenQueries
+typedef void (*PFNGLGENQUERIESPROC_HPP)(GLsizei,GLuint *);
 static inline void GenQueries(GLsizei n1,GLuint * ids1)
 {
-	 glGenQueries(n1,ids1);
+	static PFNGLGENQUERIESPROC_HPP fn=reinterpret_cast<PFNGLGENQUERIESPROC_HPP>(_impl::_get_proc_address("glGenQueries",3,0));
+	 fn(n1,ids1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GenRenderbuffers
 #define GL_HPP_FUNDEF_GenRenderbuffers
+typedef void (*PFNGLGENRENDERBUFFERSPROC_HPP)(GLsizei,GLuint *);
 static inline void GenRenderbuffers(GLsizei n1,GLuint * renderbuffers1)
 {
-	 glGenRenderbuffers(n1,renderbuffers1);
+	static PFNGLGENRENDERBUFFERSPROC_HPP fn=reinterpret_cast<PFNGLGENRENDERBUFFERSPROC_HPP>(_impl::_get_proc_address("glGenRenderbuffers",3,0));
+	 fn(n1,renderbuffers1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GenSamplers
 #define GL_HPP_FUNDEF_GenSamplers
+typedef void (*PFNGLGENSAMPLERSPROC_HPP)(GLsizei,GLuint *);
 static inline void GenSamplers(GLsizei count1,GLuint * samplers1)
 {
-	 glGenSamplers(count1,samplers1);
+	static PFNGLGENSAMPLERSPROC_HPP fn=reinterpret_cast<PFNGLGENSAMPLERSPROC_HPP>(_impl::_get_proc_address("glGenSamplers",3,0));
+	 fn(count1,samplers1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GenTextures
 #define GL_HPP_FUNDEF_GenTextures
+typedef void (*PFNGLGENTEXTURESPROC_HPP)(GLsizei,GLuint *);
 static inline void GenTextures(GLsizei n1,GLuint * textures1)
 {
-	 glGenTextures(n1,textures1);
+	static PFNGLGENTEXTURESPROC_HPP fn=reinterpret_cast<PFNGLGENTEXTURESPROC_HPP>(_impl::_get_proc_address("glGenTextures",3,0));
+	 fn(n1,textures1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GenTransformFeedbacks
 #define GL_HPP_FUNDEF_GenTransformFeedbacks
+typedef void (*PFNGLGENTRANSFORMFEEDBACKSPROC_HPP)(GLsizei,GLuint *);
 static inline void GenTransformFeedbacks(GLsizei n1,GLuint * ids1)
 {
-	 glGenTransformFeedbacks(n1,ids1);
+	static PFNGLGENTRANSFORMFEEDBACKSPROC_HPP fn=reinterpret_cast<PFNGLGENTRANSFORMFEEDBACKSPROC_HPP>(_impl::_get_proc_address("glGenTransformFeedbacks",3,0));
+	 fn(n1,ids1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GenVertexArrays
 #define GL_HPP_FUNDEF_GenVertexArrays
+typedef void (*PFNGLGENVERTEXARRAYSPROC_HPP)(GLsizei,GLuint *);
 static inline void GenVertexArrays(GLsizei n1,GLuint * arrays1)
 {
-	 glGenVertexArrays(n1,arrays1);
+	static PFNGLGENVERTEXARRAYSPROC_HPP fn=reinterpret_cast<PFNGLGENVERTEXARRAYSPROC_HPP>(_impl::_get_proc_address("glGenVertexArrays",3,0));
+	 fn(n1,arrays1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GenerateMipmap
 #define GL_HPP_FUNDEF_GenerateMipmap
+typedef void (*PFNGLGENERATEMIPMAPPROC_HPP)(GLenum);
 static inline void GenerateMipmap(GLenum target1)
 {
-	 glGenerateMipmap(target1);
+	static PFNGLGENERATEMIPMAPPROC_HPP fn=reinterpret_cast<PFNGLGENERATEMIPMAPPROC_HPP>(_impl::_get_proc_address("glGenerateMipmap",3,0));
+	 fn(target1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetActiveAttrib
 #define GL_HPP_FUNDEF_GetActiveAttrib
+typedef void (*PFNGLGETACTIVEATTRIBPROC_HPP)(GLuint,GLuint,GLsizei,GLsizei *,GLint *,GLenum *,GLchar *);
 static inline void GetActiveAttrib(GLuint program1,GLuint index1,GLsizei bufSize1,GLsizei * length1,GLint * size1,GLenum * type1,GLchar * name1)
 {
-	 glGetActiveAttrib(program1,index1,bufSize1,length1,size1,type1,name1);
+	static PFNGLGETACTIVEATTRIBPROC_HPP fn=reinterpret_cast<PFNGLGETACTIVEATTRIBPROC_HPP>(_impl::_get_proc_address("glGetActiveAttrib",3,0));
+	 fn(program1,index1,bufSize1,length1,size1,type1,name1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetActiveUniform
 #define GL_HPP_FUNDEF_GetActiveUniform
+typedef void (*PFNGLGETACTIVEUNIFORMPROC_HPP)(GLuint,GLuint,GLsizei,GLsizei *,GLint *,GLenum *,GLchar *);
 static inline void GetActiveUniform(GLuint program1,GLuint index1,GLsizei bufSize1,GLsizei * length1,GLint * size1,GLenum * type1,GLchar * name1)
 {
-	 glGetActiveUniform(program1,index1,bufSize1,length1,size1,type1,name1);
+	static PFNGLGETACTIVEUNIFORMPROC_HPP fn=reinterpret_cast<PFNGLGETACTIVEUNIFORMPROC_HPP>(_impl::_get_proc_address("glGetActiveUniform",3,0));
+	 fn(program1,index1,bufSize1,length1,size1,type1,name1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetActiveUniformBlockName
 #define GL_HPP_FUNDEF_GetActiveUniformBlockName
+typedef void (*PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC_HPP)(GLuint,GLuint,GLsizei,GLsizei *,GLchar *);
 static inline void GetActiveUniformBlockName(GLuint program1,GLuint uniformBlockIndex1,GLsizei bufSize1,GLsizei * length1,GLchar * uniformBlockName1)
 {
-	 glGetActiveUniformBlockName(program1,uniformBlockIndex1,bufSize1,length1,uniformBlockName1);
+	static PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC_HPP fn=reinterpret_cast<PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC_HPP>(_impl::_get_proc_address("glGetActiveUniformBlockName",3,0));
+	 fn(program1,uniformBlockIndex1,bufSize1,length1,uniformBlockName1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetActiveUniformBlockiv
 #define GL_HPP_FUNDEF_GetActiveUniformBlockiv
+typedef void (*PFNGLGETACTIVEUNIFORMBLOCKIVPROC_HPP)(GLuint,GLuint,GLenum,GLint *);
 static inline void GetActiveUniformBlockiv(GLuint program1,GLuint uniformBlockIndex1,GLenum pname1,GLint * params1)
 {
-	 glGetActiveUniformBlockiv(program1,uniformBlockIndex1,pname1,params1);
+	static PFNGLGETACTIVEUNIFORMBLOCKIVPROC_HPP fn=reinterpret_cast<PFNGLGETACTIVEUNIFORMBLOCKIVPROC_HPP>(_impl::_get_proc_address("glGetActiveUniformBlockiv",3,0));
+	 fn(program1,uniformBlockIndex1,pname1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetActiveUniformsiv
 #define GL_HPP_FUNDEF_GetActiveUniformsiv
+typedef void (*PFNGLGETACTIVEUNIFORMSIVPROC_HPP)(GLuint,GLsizei,const GLuint *,GLenum,GLint *);
 static inline void GetActiveUniformsiv(GLuint program1,GLsizei uniformCount1,const GLuint * uniformIndices1,GLenum pname1,GLint * params1)
 {
-	 glGetActiveUniformsiv(program1,uniformCount1,uniformIndices1,pname1,params1);
+	static PFNGLGETACTIVEUNIFORMSIVPROC_HPP fn=reinterpret_cast<PFNGLGETACTIVEUNIFORMSIVPROC_HPP>(_impl::_get_proc_address("glGetActiveUniformsiv",3,0));
+	 fn(program1,uniformCount1,uniformIndices1,pname1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetAttachedShaders
 #define GL_HPP_FUNDEF_GetAttachedShaders
+typedef void (*PFNGLGETATTACHEDSHADERSPROC_HPP)(GLuint,GLsizei,GLsizei *,GLuint *);
 static inline void GetAttachedShaders(GLuint program1,GLsizei maxCount1,GLsizei * count1,GLuint * shaders1)
 {
-	 glGetAttachedShaders(program1,maxCount1,count1,shaders1);
+	static PFNGLGETATTACHEDSHADERSPROC_HPP fn=reinterpret_cast<PFNGLGETATTACHEDSHADERSPROC_HPP>(_impl::_get_proc_address("glGetAttachedShaders",3,0));
+	 fn(program1,maxCount1,count1,shaders1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetAttribLocation
 #define GL_HPP_FUNDEF_GetAttribLocation
+typedef GLint (*PFNGLGETATTRIBLOCATIONPROC_HPP)(GLuint,const GLchar *);
 static inline GLint GetAttribLocation(GLuint program1,const GLchar * name1)
 {
-	return glGetAttribLocation(program1,name1);
+	static PFNGLGETATTRIBLOCATIONPROC_HPP fn=reinterpret_cast<PFNGLGETATTRIBLOCATIONPROC_HPP>(_impl::_get_proc_address("glGetAttribLocation",3,0));
+	return fn(program1,name1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetBooleanv
 #define GL_HPP_FUNDEF_GetBooleanv
+typedef void (*PFNGLGETBOOLEANVPROC_HPP)(GLenum,GLboolean *);
 static inline void GetBooleanv(GLenum pname1,GLboolean * data1)
 {
-	 glGetBooleanv(pname1,data1);
+	static PFNGLGETBOOLEANVPROC_HPP fn=reinterpret_cast<PFNGLGETBOOLEANVPROC_HPP>(_impl::_get_proc_address("glGetBooleanv",3,0));
+	 fn(pname1,data1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetBufferParameteri64v
 #define GL_HPP_FUNDEF_GetBufferParameteri64v
+typedef void (*PFNGLGETBUFFERPARAMETERI64VPROC_HPP)(GLenum,GLenum,GLint64 *);
 static inline void GetBufferParameteri64v(GLenum target1,GLenum pname1,GLint64 * params1)
 {
-	 glGetBufferParameteri64v(target1,pname1,params1);
+	static PFNGLGETBUFFERPARAMETERI64VPROC_HPP fn=reinterpret_cast<PFNGLGETBUFFERPARAMETERI64VPROC_HPP>(_impl::_get_proc_address("glGetBufferParameteri64v",3,0));
+	 fn(target1,pname1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetBufferParameteriv
 #define GL_HPP_FUNDEF_GetBufferParameteriv
+typedef void (*PFNGLGETBUFFERPARAMETERIVPROC_HPP)(GLenum,GLenum,GLint *);
 static inline void GetBufferParameteriv(GLenum target1,GLenum pname1,GLint * params1)
 {
-	 glGetBufferParameteriv(target1,pname1,params1);
+	static PFNGLGETBUFFERPARAMETERIVPROC_HPP fn=reinterpret_cast<PFNGLGETBUFFERPARAMETERIVPROC_HPP>(_impl::_get_proc_address("glGetBufferParameteriv",3,0));
+	 fn(target1,pname1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetBufferPointerv
 #define GL_HPP_FUNDEF_GetBufferPointerv
+typedef void (*PFNGLGETBUFFERPOINTERVPROC_HPP)(GLenum,GLenum,void **);
 static inline void GetBufferPointerv(GLenum target1,GLenum pname1,void ** params1)
 {
-	 glGetBufferPointerv(target1,pname1,params1);
+	static PFNGLGETBUFFERPOINTERVPROC_HPP fn=reinterpret_cast<PFNGLGETBUFFERPOINTERVPROC_HPP>(_impl::_get_proc_address("glGetBufferPointerv",3,0));
+	 fn(target1,pname1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetError
 #define GL_HPP_FUNDEF_GetError
+typedef GLenum (*PFNGLGETERRORPROC_HPP)();
 static inline GLenum GetError()
 {
-	return glGetError();
+	static PFNGLGETERRORPROC_HPP fn=reinterpret_cast<PFNGLGETERRORPROC_HPP>(_impl::_get_proc_address("glGetError",3,0));
+	return fn();
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetFloatv
 #define GL_HPP_FUNDEF_GetFloatv
+typedef void (*PFNGLGETFLOATVPROC_HPP)(GLenum,GLfloat *);
 static inline void GetFloatv(GLenum pname1,GLfloat * data1)
 {
-	 glGetFloatv(pname1,data1);
+	static PFNGLGETFLOATVPROC_HPP fn=reinterpret_cast<PFNGLGETFLOATVPROC_HPP>(_impl::_get_proc_address("glGetFloatv",3,0));
+	 fn(pname1,data1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetFragDataLocation
 #define GL_HPP_FUNDEF_GetFragDataLocation
+typedef GLint (*PFNGLGETFRAGDATALOCATIONPROC_HPP)(GLuint,const GLchar *);
 static inline GLint GetFragDataLocation(GLuint program1,const GLchar * name1)
 {
-	return glGetFragDataLocation(program1,name1);
+	static PFNGLGETFRAGDATALOCATIONPROC_HPP fn=reinterpret_cast<PFNGLGETFRAGDATALOCATIONPROC_HPP>(_impl::_get_proc_address("glGetFragDataLocation",3,0));
+	return fn(program1,name1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetFramebufferAttachmentParameteriv
 #define GL_HPP_FUNDEF_GetFramebufferAttachmentParameteriv
+typedef void (*PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC_HPP)(GLenum,GLenum,GLenum,GLint *);
 static inline void GetFramebufferAttachmentParameteriv(GLenum target1,GLenum attachment1,GLenum pname1,GLint * params1)
 {
-	 glGetFramebufferAttachmentParameteriv(target1,attachment1,pname1,params1);
+	static PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC_HPP fn=reinterpret_cast<PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC_HPP>(_impl::_get_proc_address("glGetFramebufferAttachmentParameteriv",3,0));
+	 fn(target1,attachment1,pname1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetInteger64i_v
 #define GL_HPP_FUNDEF_GetInteger64i_v
+typedef void (*PFNGLGETINTEGER64I_VPROC_HPP)(GLenum,GLuint,GLint64 *);
 static inline void GetInteger64i_v(GLenum target1,GLuint index1,GLint64 * data1)
 {
-	 glGetInteger64i_v(target1,index1,data1);
+	static PFNGLGETINTEGER64I_VPROC_HPP fn=reinterpret_cast<PFNGLGETINTEGER64I_VPROC_HPP>(_impl::_get_proc_address("glGetInteger64i_v",3,0));
+	 fn(target1,index1,data1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetInteger64v
 #define GL_HPP_FUNDEF_GetInteger64v
+typedef void (*PFNGLGETINTEGER64VPROC_HPP)(GLenum,GLint64 *);
 static inline void GetInteger64v(GLenum pname1,GLint64 * data1)
 {
-	 glGetInteger64v(pname1,data1);
+	static PFNGLGETINTEGER64VPROC_HPP fn=reinterpret_cast<PFNGLGETINTEGER64VPROC_HPP>(_impl::_get_proc_address("glGetInteger64v",3,0));
+	 fn(pname1,data1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetIntegeri_v
 #define GL_HPP_FUNDEF_GetIntegeri_v
+typedef void (*PFNGLGETINTEGERI_VPROC_HPP)(GLenum,GLuint,GLint *);
 static inline void GetIntegeri_v(GLenum target1,GLuint index1,GLint * data1)
 {
-	 glGetIntegeri_v(target1,index1,data1);
+	static PFNGLGETINTEGERI_VPROC_HPP fn=reinterpret_cast<PFNGLGETINTEGERI_VPROC_HPP>(_impl::_get_proc_address("glGetIntegeri_v",3,0));
+	 fn(target1,index1,data1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetIntegerv
 #define GL_HPP_FUNDEF_GetIntegerv
+typedef void (*PFNGLGETINTEGERVPROC_HPP)(GLenum,GLint *);
 static inline void GetIntegerv(GLenum pname1,GLint * data1)
 {
-	 glGetIntegerv(pname1,data1);
+	static PFNGLGETINTEGERVPROC_HPP fn=reinterpret_cast<PFNGLGETINTEGERVPROC_HPP>(_impl::_get_proc_address("glGetIntegerv",3,0));
+	 fn(pname1,data1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetInternalformativ
 #define GL_HPP_FUNDEF_GetInternalformativ
+typedef void (*PFNGLGETINTERNALFORMATIVPROC_HPP)(GLenum,GLenum,GLenum,GLsizei,GLint *);
 static inline void GetInternalformativ(GLenum target1,GLenum internalformat1,GLenum pname1,GLsizei bufSize1,GLint * params1)
 {
-	 glGetInternalformativ(target1,internalformat1,pname1,bufSize1,params1);
+	static PFNGLGETINTERNALFORMATIVPROC_HPP fn=reinterpret_cast<PFNGLGETINTERNALFORMATIVPROC_HPP>(_impl::_get_proc_address("glGetInternalformativ",3,0));
+	 fn(target1,internalformat1,pname1,bufSize1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetProgramBinary
 #define GL_HPP_FUNDEF_GetProgramBinary
+typedef void (*PFNGLGETPROGRAMBINARYPROC_HPP)(GLuint,GLsizei,GLsizei *,GLenum *,void *);
 static inline void GetProgramBinary(GLuint program1,GLsizei bufSize1,GLsizei * length1,GLenum * binaryFormat1,void * binary1)
 {
-	 glGetProgramBinary(program1,bufSize1,length1,binaryFormat1,binary1);
+	static PFNGLGETPROGRAMBINARYPROC_HPP fn=reinterpret_cast<PFNGLGETPROGRAMBINARYPROC_HPP>(_impl::_get_proc_address("glGetProgramBinary",3,0));
+	 fn(program1,bufSize1,length1,binaryFormat1,binary1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetProgramInfoLog
 #define GL_HPP_FUNDEF_GetProgramInfoLog
+typedef void (*PFNGLGETPROGRAMINFOLOGPROC_HPP)(GLuint,GLsizei,GLsizei *,GLchar *);
 static inline void GetProgramInfoLog(GLuint program1,GLsizei bufSize1,GLsizei * length1,GLchar * infoLog1)
 {
-	 glGetProgramInfoLog(program1,bufSize1,length1,infoLog1);
+	static PFNGLGETPROGRAMINFOLOGPROC_HPP fn=reinterpret_cast<PFNGLGETPROGRAMINFOLOGPROC_HPP>(_impl::_get_proc_address("glGetProgramInfoLog",3,0));
+	 fn(program1,bufSize1,length1,infoLog1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetProgramiv
 #define GL_HPP_FUNDEF_GetProgramiv
+typedef void (*PFNGLGETPROGRAMIVPROC_HPP)(GLuint,GLenum,GLint *);
 static inline void GetProgramiv(GLuint program1,GLenum pname1,GLint * params1)
 {
-	 glGetProgramiv(program1,pname1,params1);
+	static PFNGLGETPROGRAMIVPROC_HPP fn=reinterpret_cast<PFNGLGETPROGRAMIVPROC_HPP>(_impl::_get_proc_address("glGetProgramiv",3,0));
+	 fn(program1,pname1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetQueryObjectuiv
 #define GL_HPP_FUNDEF_GetQueryObjectuiv
+typedef void (*PFNGLGETQUERYOBJECTUIVPROC_HPP)(GLuint,GLenum,GLuint *);
 static inline void GetQueryObjectuiv(GLuint id1,GLenum pname1,GLuint * params1)
 {
-	 glGetQueryObjectuiv(id1,pname1,params1);
+	static PFNGLGETQUERYOBJECTUIVPROC_HPP fn=reinterpret_cast<PFNGLGETQUERYOBJECTUIVPROC_HPP>(_impl::_get_proc_address("glGetQueryObjectuiv",3,0));
+	 fn(id1,pname1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetQueryiv
 #define GL_HPP_FUNDEF_GetQueryiv
+typedef void (*PFNGLGETQUERYIVPROC_HPP)(GLenum,GLenum,GLint *);
 static inline void GetQueryiv(GLenum target1,GLenum pname1,GLint * params1)
 {
-	 glGetQueryiv(target1,pname1,params1);
+	static PFNGLGETQUERYIVPROC_HPP fn=reinterpret_cast<PFNGLGETQUERYIVPROC_HPP>(_impl::_get_proc_address("glGetQueryiv",3,0));
+	 fn(target1,pname1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetRenderbufferParameteriv
 #define GL_HPP_FUNDEF_GetRenderbufferParameteriv
+typedef void (*PFNGLGETRENDERBUFFERPARAMETERIVPROC_HPP)(GLenum,GLenum,GLint *);
 static inline void GetRenderbufferParameteriv(GLenum target1,GLenum pname1,GLint * params1)
 {
-	 glGetRenderbufferParameteriv(target1,pname1,params1);
+	static PFNGLGETRENDERBUFFERPARAMETERIVPROC_HPP fn=reinterpret_cast<PFNGLGETRENDERBUFFERPARAMETERIVPROC_HPP>(_impl::_get_proc_address("glGetRenderbufferParameteriv",3,0));
+	 fn(target1,pname1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetSamplerParameterfv
 #define GL_HPP_FUNDEF_GetSamplerParameterfv
+typedef void (*PFNGLGETSAMPLERPARAMETERFVPROC_HPP)(GLuint,GLenum,GLfloat *);
 static inline void GetSamplerParameterfv(GLuint sampler1,GLenum pname1,GLfloat * params1)
 {
-	 glGetSamplerParameterfv(sampler1,pname1,params1);
+	static PFNGLGETSAMPLERPARAMETERFVPROC_HPP fn=reinterpret_cast<PFNGLGETSAMPLERPARAMETERFVPROC_HPP>(_impl::_get_proc_address("glGetSamplerParameterfv",3,0));
+	 fn(sampler1,pname1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetSamplerParameteriv
 #define GL_HPP_FUNDEF_GetSamplerParameteriv
+typedef void (*PFNGLGETSAMPLERPARAMETERIVPROC_HPP)(GLuint,GLenum,GLint *);
 static inline void GetSamplerParameteriv(GLuint sampler1,GLenum pname1,GLint * params1)
 {
-	 glGetSamplerParameteriv(sampler1,pname1,params1);
+	static PFNGLGETSAMPLERPARAMETERIVPROC_HPP fn=reinterpret_cast<PFNGLGETSAMPLERPARAMETERIVPROC_HPP>(_impl::_get_proc_address("glGetSamplerParameteriv",3,0));
+	 fn(sampler1,pname1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetShaderInfoLog
 #define GL_HPP_FUNDEF_GetShaderInfoLog
+typedef void (*PFNGLGETSHADERINFOLOGPROC_HPP)(GLuint,GLsizei,GLsizei *,GLchar *);
 static inline void GetShaderInfoLog(GLuint shader1,GLsizei bufSize1,GLsizei * length1,GLchar * infoLog1)
 {
-	 glGetShaderInfoLog(shader1,bufSize1,length1,infoLog1);
+	static PFNGLGETSHADERINFOLOGPROC_HPP fn=reinterpret_cast<PFNGLGETSHADERINFOLOGPROC_HPP>(_impl::_get_proc_address("glGetShaderInfoLog",3,0));
+	 fn(shader1,bufSize1,length1,infoLog1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetShaderPrecisionFormat
 #define GL_HPP_FUNDEF_GetShaderPrecisionFormat
+typedef void (*PFNGLGETSHADERPRECISIONFORMATPROC_HPP)(GLenum,GLenum,GLint *,GLint *);
 static inline void GetShaderPrecisionFormat(GLenum shadertype1,GLenum precisiontype1,GLint * range1,GLint * precision1)
 {
-	 glGetShaderPrecisionFormat(shadertype1,precisiontype1,range1,precision1);
+	static PFNGLGETSHADERPRECISIONFORMATPROC_HPP fn=reinterpret_cast<PFNGLGETSHADERPRECISIONFORMATPROC_HPP>(_impl::_get_proc_address("glGetShaderPrecisionFormat",3,0));
+	 fn(shadertype1,precisiontype1,range1,precision1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetShaderSource
 #define GL_HPP_FUNDEF_GetShaderSource
+typedef void (*PFNGLGETSHADERSOURCEPROC_HPP)(GLuint,GLsizei,GLsizei *,GLchar *);
 static inline void GetShaderSource(GLuint shader1,GLsizei bufSize1,GLsizei * length1,GLchar * source1)
 {
-	 glGetShaderSource(shader1,bufSize1,length1,source1);
+	static PFNGLGETSHADERSOURCEPROC_HPP fn=reinterpret_cast<PFNGLGETSHADERSOURCEPROC_HPP>(_impl::_get_proc_address("glGetShaderSource",3,0));
+	 fn(shader1,bufSize1,length1,source1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetShaderiv
 #define GL_HPP_FUNDEF_GetShaderiv
+typedef void (*PFNGLGETSHADERIVPROC_HPP)(GLuint,GLenum,GLint *);
 static inline void GetShaderiv(GLuint shader1,GLenum pname1,GLint * params1)
 {
-	 glGetShaderiv(shader1,pname1,params1);
+	static PFNGLGETSHADERIVPROC_HPP fn=reinterpret_cast<PFNGLGETSHADERIVPROC_HPP>(_impl::_get_proc_address("glGetShaderiv",3,0));
+	 fn(shader1,pname1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetString
 #define GL_HPP_FUNDEF_GetString
+typedef const GLubyte * (*PFNGLGETSTRINGPROC_HPP)(GLenum);
 static inline const GLubyte * GetString(GLenum name1)
 {
-	return glGetString(name1);
+	static PFNGLGETSTRINGPROC_HPP fn=reinterpret_cast<PFNGLGETSTRINGPROC_HPP>(_impl::_get_proc_address("glGetString",3,0));
+	return fn(name1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetStringi
 #define GL_HPP_FUNDEF_GetStringi
+typedef const GLubyte * (*PFNGLGETSTRINGIPROC_HPP)(GLenum,GLuint);
 static inline const GLubyte * GetStringi(GLenum name1,GLuint index1)
 {
-	return glGetStringi(name1,index1);
+	static PFNGLGETSTRINGIPROC_HPP fn=reinterpret_cast<PFNGLGETSTRINGIPROC_HPP>(_impl::_get_proc_address("glGetStringi",3,0));
+	return fn(name1,index1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetSynciv
 #define GL_HPP_FUNDEF_GetSynciv
+typedef void (*PFNGLGETSYNCIVPROC_HPP)(GLsync,GLenum,GLsizei,GLsizei *,GLint *);
 static inline void GetSynciv(GLsync sync1,GLenum pname1,GLsizei bufSize1,GLsizei * length1,GLint * values1)
 {
-	 glGetSynciv(sync1,pname1,bufSize1,length1,values1);
+	static PFNGLGETSYNCIVPROC_HPP fn=reinterpret_cast<PFNGLGETSYNCIVPROC_HPP>(_impl::_get_proc_address("glGetSynciv",3,0));
+	 fn(sync1,pname1,bufSize1,length1,values1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetTexParameterfv
 #define GL_HPP_FUNDEF_GetTexParameterfv
+typedef void (*PFNGLGETTEXPARAMETERFVPROC_HPP)(GLenum,GLenum,GLfloat *);
 static inline void GetTexParameterfv(GLenum target1,GLenum pname1,GLfloat * params1)
 {
-	 glGetTexParameterfv(target1,pname1,params1);
+	static PFNGLGETTEXPARAMETERFVPROC_HPP fn=reinterpret_cast<PFNGLGETTEXPARAMETERFVPROC_HPP>(_impl::_get_proc_address("glGetTexParameterfv",3,0));
+	 fn(target1,pname1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetTexParameteriv
 #define GL_HPP_FUNDEF_GetTexParameteriv
+typedef void (*PFNGLGETTEXPARAMETERIVPROC_HPP)(GLenum,GLenum,GLint *);
 static inline void GetTexParameteriv(GLenum target1,GLenum pname1,GLint * params1)
 {
-	 glGetTexParameteriv(target1,pname1,params1);
+	static PFNGLGETTEXPARAMETERIVPROC_HPP fn=reinterpret_cast<PFNGLGETTEXPARAMETERIVPROC_HPP>(_impl::_get_proc_address("glGetTexParameteriv",3,0));
+	 fn(target1,pname1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetTransformFeedbackVarying
 #define GL_HPP_FUNDEF_GetTransformFeedbackVarying
+typedef void (*PFNGLGETTRANSFORMFEEDBACKVARYINGPROC_HPP)(GLuint,GLuint,GLsizei,GLsizei *,GLsizei *,GLenum *,GLchar *);
 static inline void GetTransformFeedbackVarying(GLuint program1,GLuint index1,GLsizei bufSize1,GLsizei * length1,GLsizei * size1,GLenum * type1,GLchar * name1)
 {
-	 glGetTransformFeedbackVarying(program1,index1,bufSize1,length1,size1,type1,name1);
+	static PFNGLGETTRANSFORMFEEDBACKVARYINGPROC_HPP fn=reinterpret_cast<PFNGLGETTRANSFORMFEEDBACKVARYINGPROC_HPP>(_impl::_get_proc_address("glGetTransformFeedbackVarying",3,0));
+	 fn(program1,index1,bufSize1,length1,size1,type1,name1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetUniformBlockIndex
 #define GL_HPP_FUNDEF_GetUniformBlockIndex
+typedef GLuint (*PFNGLGETUNIFORMBLOCKINDEXPROC_HPP)(GLuint,const GLchar *);
 static inline GLuint GetUniformBlockIndex(GLuint program1,const GLchar * uniformBlockName1)
 {
-	return glGetUniformBlockIndex(program1,uniformBlockName1);
+	static PFNGLGETUNIFORMBLOCKINDEXPROC_HPP fn=reinterpret_cast<PFNGLGETUNIFORMBLOCKINDEXPROC_HPP>(_impl::_get_proc_address("glGetUniformBlockIndex",3,0));
+	return fn(program1,uniformBlockName1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetUniformIndices
 #define GL_HPP_FUNDEF_GetUniformIndices
+typedef void (*PFNGLGETUNIFORMINDICESPROC_HPP)(GLuint,GLsizei,const GLchar *const*,GLuint *);
 static inline void GetUniformIndices(GLuint program1,GLsizei uniformCount1,const GLchar *const* uniformNames1,GLuint * uniformIndices1)
 {
-	 glGetUniformIndices(program1,uniformCount1,uniformNames1,uniformIndices1);
+	static PFNGLGETUNIFORMINDICESPROC_HPP fn=reinterpret_cast<PFNGLGETUNIFORMINDICESPROC_HPP>(_impl::_get_proc_address("glGetUniformIndices",3,0));
+	 fn(program1,uniformCount1,uniformNames1,uniformIndices1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetUniformLocation
 #define GL_HPP_FUNDEF_GetUniformLocation
+typedef GLint (*PFNGLGETUNIFORMLOCATIONPROC_HPP)(GLuint,const GLchar *);
 static inline GLint GetUniformLocation(GLuint program1,const GLchar * name1)
 {
-	return glGetUniformLocation(program1,name1);
+	static PFNGLGETUNIFORMLOCATIONPROC_HPP fn=reinterpret_cast<PFNGLGETUNIFORMLOCATIONPROC_HPP>(_impl::_get_proc_address("glGetUniformLocation",3,0));
+	return fn(program1,name1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetUniformfv
 #define GL_HPP_FUNDEF_GetUniformfv
+typedef void (*PFNGLGETUNIFORMFVPROC_HPP)(GLuint,GLint,GLfloat *);
 static inline void GetUniformfv(GLuint program1,GLint location1,GLfloat * params1)
 {
-	 glGetUniformfv(program1,location1,params1);
+	static PFNGLGETUNIFORMFVPROC_HPP fn=reinterpret_cast<PFNGLGETUNIFORMFVPROC_HPP>(_impl::_get_proc_address("glGetUniformfv",3,0));
+	 fn(program1,location1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetUniformiv
 #define GL_HPP_FUNDEF_GetUniformiv
+typedef void (*PFNGLGETUNIFORMIVPROC_HPP)(GLuint,GLint,GLint *);
 static inline void GetUniformiv(GLuint program1,GLint location1,GLint * params1)
 {
-	 glGetUniformiv(program1,location1,params1);
+	static PFNGLGETUNIFORMIVPROC_HPP fn=reinterpret_cast<PFNGLGETUNIFORMIVPROC_HPP>(_impl::_get_proc_address("glGetUniformiv",3,0));
+	 fn(program1,location1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetUniformuiv
 #define GL_HPP_FUNDEF_GetUniformuiv
+typedef void (*PFNGLGETUNIFORMUIVPROC_HPP)(GLuint,GLint,GLuint *);
 static inline void GetUniformuiv(GLuint program1,GLint location1,GLuint * params1)
 {
-	 glGetUniformuiv(program1,location1,params1);
+	static PFNGLGETUNIFORMUIVPROC_HPP fn=reinterpret_cast<PFNGLGETUNIFORMUIVPROC_HPP>(_impl::_get_proc_address("glGetUniformuiv",3,0));
+	 fn(program1,location1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetVertexAttribIiv
 #define GL_HPP_FUNDEF_GetVertexAttribIiv
+typedef void (*PFNGLGETVERTEXATTRIBIIVPROC_HPP)(GLuint,GLenum,GLint *);
 static inline void GetVertexAttribIiv(GLuint index1,GLenum pname1,GLint * params1)
 {
-	 glGetVertexAttribIiv(index1,pname1,params1);
+	static PFNGLGETVERTEXATTRIBIIVPROC_HPP fn=reinterpret_cast<PFNGLGETVERTEXATTRIBIIVPROC_HPP>(_impl::_get_proc_address("glGetVertexAttribIiv",3,0));
+	 fn(index1,pname1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetVertexAttribIuiv
 #define GL_HPP_FUNDEF_GetVertexAttribIuiv
+typedef void (*PFNGLGETVERTEXATTRIBIUIVPROC_HPP)(GLuint,GLenum,GLuint *);
 static inline void GetVertexAttribIuiv(GLuint index1,GLenum pname1,GLuint * params1)
 {
-	 glGetVertexAttribIuiv(index1,pname1,params1);
+	static PFNGLGETVERTEXATTRIBIUIVPROC_HPP fn=reinterpret_cast<PFNGLGETVERTEXATTRIBIUIVPROC_HPP>(_impl::_get_proc_address("glGetVertexAttribIuiv",3,0));
+	 fn(index1,pname1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetVertexAttribPointerv
 #define GL_HPP_FUNDEF_GetVertexAttribPointerv
+typedef void (*PFNGLGETVERTEXATTRIBPOINTERVPROC_HPP)(GLuint,GLenum,void **);
 static inline void GetVertexAttribPointerv(GLuint index1,GLenum pname1,void ** pointer1)
 {
-	 glGetVertexAttribPointerv(index1,pname1,pointer1);
+	static PFNGLGETVERTEXATTRIBPOINTERVPROC_HPP fn=reinterpret_cast<PFNGLGETVERTEXATTRIBPOINTERVPROC_HPP>(_impl::_get_proc_address("glGetVertexAttribPointerv",3,0));
+	 fn(index1,pname1,pointer1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetVertexAttribfv
 #define GL_HPP_FUNDEF_GetVertexAttribfv
+typedef void (*PFNGLGETVERTEXATTRIBFVPROC_HPP)(GLuint,GLenum,GLfloat *);
 static inline void GetVertexAttribfv(GLuint index1,GLenum pname1,GLfloat * params1)
 {
-	 glGetVertexAttribfv(index1,pname1,params1);
+	static PFNGLGETVERTEXATTRIBFVPROC_HPP fn=reinterpret_cast<PFNGLGETVERTEXATTRIBFVPROC_HPP>(_impl::_get_proc_address("glGetVertexAttribfv",3,0));
+	 fn(index1,pname1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_GetVertexAttribiv
 #define GL_HPP_FUNDEF_GetVertexAttribiv
+typedef void (*PFNGLGETVERTEXATTRIBIVPROC_HPP)(GLuint,GLenum,GLint *);
 static inline void GetVertexAttribiv(GLuint index1,GLenum pname1,GLint * params1)
 {
-	 glGetVertexAttribiv(index1,pname1,params1);
+	static PFNGLGETVERTEXATTRIBIVPROC_HPP fn=reinterpret_cast<PFNGLGETVERTEXATTRIBIVPROC_HPP>(_impl::_get_proc_address("glGetVertexAttribiv",3,0));
+	 fn(index1,pname1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Hint
 #define GL_HPP_FUNDEF_Hint
+typedef void (*PFNGLHINTPROC_HPP)(GLenum,GLenum);
 static inline void Hint(GLenum target1,GLenum mode1)
 {
-	 glHint(target1,mode1);
+	static PFNGLHINTPROC_HPP fn=reinterpret_cast<PFNGLHINTPROC_HPP>(_impl::_get_proc_address("glHint",3,0));
+	 fn(target1,mode1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_InvalidateFramebuffer
 #define GL_HPP_FUNDEF_InvalidateFramebuffer
+typedef void (*PFNGLINVALIDATEFRAMEBUFFERPROC_HPP)(GLenum,GLsizei,const GLenum *);
 static inline void InvalidateFramebuffer(GLenum target1,GLsizei numAttachments1,const GLenum * attachments1)
 {
-	 glInvalidateFramebuffer(target1,numAttachments1,attachments1);
+	static PFNGLINVALIDATEFRAMEBUFFERPROC_HPP fn=reinterpret_cast<PFNGLINVALIDATEFRAMEBUFFERPROC_HPP>(_impl::_get_proc_address("glInvalidateFramebuffer",3,0));
+	 fn(target1,numAttachments1,attachments1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_InvalidateSubFramebuffer
 #define GL_HPP_FUNDEF_InvalidateSubFramebuffer
+typedef void (*PFNGLINVALIDATESUBFRAMEBUFFERPROC_HPP)(GLenum,GLsizei,const GLenum *,GLint,GLint,GLsizei,GLsizei);
 static inline void InvalidateSubFramebuffer(GLenum target1,GLsizei numAttachments1,const GLenum * attachments1,GLint x1,GLint y1,GLsizei width1,GLsizei height1)
 {
-	 glInvalidateSubFramebuffer(target1,numAttachments1,attachments1,x1,y1,width1,height1);
+	static PFNGLINVALIDATESUBFRAMEBUFFERPROC_HPP fn=reinterpret_cast<PFNGLINVALIDATESUBFRAMEBUFFERPROC_HPP>(_impl::_get_proc_address("glInvalidateSubFramebuffer",3,0));
+	 fn(target1,numAttachments1,attachments1,x1,y1,width1,height1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_IsBuffer
 #define GL_HPP_FUNDEF_IsBuffer
+typedef GLboolean (*PFNGLISBUFFERPROC_HPP)(GLuint);
 static inline GLboolean IsBuffer(GLuint buffer1)
 {
-	return glIsBuffer(buffer1);
+	static PFNGLISBUFFERPROC_HPP fn=reinterpret_cast<PFNGLISBUFFERPROC_HPP>(_impl::_get_proc_address("glIsBuffer",3,0));
+	return fn(buffer1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_IsEnabled
 #define GL_HPP_FUNDEF_IsEnabled
+typedef GLboolean (*PFNGLISENABLEDPROC_HPP)(GLenum);
 static inline GLboolean IsEnabled(GLenum cap1)
 {
-	return glIsEnabled(cap1);
+	static PFNGLISENABLEDPROC_HPP fn=reinterpret_cast<PFNGLISENABLEDPROC_HPP>(_impl::_get_proc_address("glIsEnabled",3,0));
+	return fn(cap1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_IsFramebuffer
 #define GL_HPP_FUNDEF_IsFramebuffer
+typedef GLboolean (*PFNGLISFRAMEBUFFERPROC_HPP)(GLuint);
 static inline GLboolean IsFramebuffer(GLuint framebuffer1)
 {
-	return glIsFramebuffer(framebuffer1);
+	static PFNGLISFRAMEBUFFERPROC_HPP fn=reinterpret_cast<PFNGLISFRAMEBUFFERPROC_HPP>(_impl::_get_proc_address("glIsFramebuffer",3,0));
+	return fn(framebuffer1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_IsProgram
 #define GL_HPP_FUNDEF_IsProgram
+typedef GLboolean (*PFNGLISPROGRAMPROC_HPP)(GLuint);
 static inline GLboolean IsProgram(GLuint program1)
 {
-	return glIsProgram(program1);
+	static PFNGLISPROGRAMPROC_HPP fn=reinterpret_cast<PFNGLISPROGRAMPROC_HPP>(_impl::_get_proc_address("glIsProgram",3,0));
+	return fn(program1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_IsQuery
 #define GL_HPP_FUNDEF_IsQuery
+typedef GLboolean (*PFNGLISQUERYPROC_HPP)(GLuint);
 static inline GLboolean IsQuery(GLuint id1)
 {
-	return glIsQuery(id1);
+	static PFNGLISQUERYPROC_HPP fn=reinterpret_cast<PFNGLISQUERYPROC_HPP>(_impl::_get_proc_address("glIsQuery",3,0));
+	return fn(id1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_IsRenderbuffer
 #define GL_HPP_FUNDEF_IsRenderbuffer
+typedef GLboolean (*PFNGLISRENDERBUFFERPROC_HPP)(GLuint);
 static inline GLboolean IsRenderbuffer(GLuint renderbuffer1)
 {
-	return glIsRenderbuffer(renderbuffer1);
+	static PFNGLISRENDERBUFFERPROC_HPP fn=reinterpret_cast<PFNGLISRENDERBUFFERPROC_HPP>(_impl::_get_proc_address("glIsRenderbuffer",3,0));
+	return fn(renderbuffer1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_IsSampler
 #define GL_HPP_FUNDEF_IsSampler
+typedef GLboolean (*PFNGLISSAMPLERPROC_HPP)(GLuint);
 static inline GLboolean IsSampler(GLuint sampler1)
 {
-	return glIsSampler(sampler1);
+	static PFNGLISSAMPLERPROC_HPP fn=reinterpret_cast<PFNGLISSAMPLERPROC_HPP>(_impl::_get_proc_address("glIsSampler",3,0));
+	return fn(sampler1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_IsShader
 #define GL_HPP_FUNDEF_IsShader
+typedef GLboolean (*PFNGLISSHADERPROC_HPP)(GLuint);
 static inline GLboolean IsShader(GLuint shader1)
 {
-	return glIsShader(shader1);
+	static PFNGLISSHADERPROC_HPP fn=reinterpret_cast<PFNGLISSHADERPROC_HPP>(_impl::_get_proc_address("glIsShader",3,0));
+	return fn(shader1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_IsSync
 #define GL_HPP_FUNDEF_IsSync
+typedef GLboolean (*PFNGLISSYNCPROC_HPP)(GLsync);
 static inline GLboolean IsSync(GLsync sync1)
 {
-	return glIsSync(sync1);
+	static PFNGLISSYNCPROC_HPP fn=reinterpret_cast<PFNGLISSYNCPROC_HPP>(_impl::_get_proc_address("glIsSync",3,0));
+	return fn(sync1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_IsTexture
 #define GL_HPP_FUNDEF_IsTexture
+typedef GLboolean (*PFNGLISTEXTUREPROC_HPP)(GLuint);
 static inline GLboolean IsTexture(GLuint texture1)
 {
-	return glIsTexture(texture1);
+	static PFNGLISTEXTUREPROC_HPP fn=reinterpret_cast<PFNGLISTEXTUREPROC_HPP>(_impl::_get_proc_address("glIsTexture",3,0));
+	return fn(texture1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_IsTransformFeedback
 #define GL_HPP_FUNDEF_IsTransformFeedback
+typedef GLboolean (*PFNGLISTRANSFORMFEEDBACKPROC_HPP)(GLuint);
 static inline GLboolean IsTransformFeedback(GLuint id1)
 {
-	return glIsTransformFeedback(id1);
+	static PFNGLISTRANSFORMFEEDBACKPROC_HPP fn=reinterpret_cast<PFNGLISTRANSFORMFEEDBACKPROC_HPP>(_impl::_get_proc_address("glIsTransformFeedback",3,0));
+	return fn(id1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_IsVertexArray
 #define GL_HPP_FUNDEF_IsVertexArray
+typedef GLboolean (*PFNGLISVERTEXARRAYPROC_HPP)(GLuint);
 static inline GLboolean IsVertexArray(GLuint array1)
 {
-	return glIsVertexArray(array1);
+	static PFNGLISVERTEXARRAYPROC_HPP fn=reinterpret_cast<PFNGLISVERTEXARRAYPROC_HPP>(_impl::_get_proc_address("glIsVertexArray",3,0));
+	return fn(array1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_LineWidth
 #define GL_HPP_FUNDEF_LineWidth
+typedef void (*PFNGLLINEWIDTHPROC_HPP)(GLfloat);
 static inline void LineWidth(GLfloat width1)
 {
-	 glLineWidth(width1);
+	static PFNGLLINEWIDTHPROC_HPP fn=reinterpret_cast<PFNGLLINEWIDTHPROC_HPP>(_impl::_get_proc_address("glLineWidth",3,0));
+	 fn(width1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_LinkProgram
 #define GL_HPP_FUNDEF_LinkProgram
+typedef void (*PFNGLLINKPROGRAMPROC_HPP)(GLuint);
 static inline void LinkProgram(GLuint program1)
 {
-	 glLinkProgram(program1);
+	static PFNGLLINKPROGRAMPROC_HPP fn=reinterpret_cast<PFNGLLINKPROGRAMPROC_HPP>(_impl::_get_proc_address("glLinkProgram",3,0));
+	 fn(program1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_MapBufferRange
 #define GL_HPP_FUNDEF_MapBufferRange
+typedef void * (*PFNGLMAPBUFFERRANGEPROC_HPP)(GLenum,GLintptr,GLsizeiptr,GLbitfield);
 static inline void * MapBufferRange(GLenum target1,GLintptr offset1,GLsizeiptr length1,GLbitfield access1)
 {
-	return glMapBufferRange(target1,offset1,length1,access1);
+	static PFNGLMAPBUFFERRANGEPROC_HPP fn=reinterpret_cast<PFNGLMAPBUFFERRANGEPROC_HPP>(_impl::_get_proc_address("glMapBufferRange",3,0));
+	return fn(target1,offset1,length1,access1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_PauseTransformFeedback
 #define GL_HPP_FUNDEF_PauseTransformFeedback
+typedef void (*PFNGLPAUSETRANSFORMFEEDBACKPROC_HPP)();
 static inline void PauseTransformFeedback()
 {
-	 glPauseTransformFeedback();
+	static PFNGLPAUSETRANSFORMFEEDBACKPROC_HPP fn=reinterpret_cast<PFNGLPAUSETRANSFORMFEEDBACKPROC_HPP>(_impl::_get_proc_address("glPauseTransformFeedback",3,0));
+	 fn();
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_PixelStorei
 #define GL_HPP_FUNDEF_PixelStorei
+typedef void (*PFNGLPIXELSTOREIPROC_HPP)(GLenum,GLint);
 static inline void PixelStorei(GLenum pname1,GLint param1)
 {
-	 glPixelStorei(pname1,param1);
+	static PFNGLPIXELSTOREIPROC_HPP fn=reinterpret_cast<PFNGLPIXELSTOREIPROC_HPP>(_impl::_get_proc_address("glPixelStorei",3,0));
+	 fn(pname1,param1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_PolygonOffset
 #define GL_HPP_FUNDEF_PolygonOffset
+typedef void (*PFNGLPOLYGONOFFSETPROC_HPP)(GLfloat,GLfloat);
 static inline void PolygonOffset(GLfloat factor1,GLfloat units1)
 {
-	 glPolygonOffset(factor1,units1);
+	static PFNGLPOLYGONOFFSETPROC_HPP fn=reinterpret_cast<PFNGLPOLYGONOFFSETPROC_HPP>(_impl::_get_proc_address("glPolygonOffset",3,0));
+	 fn(factor1,units1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_ProgramBinary
 #define GL_HPP_FUNDEF_ProgramBinary
+typedef void (*PFNGLPROGRAMBINARYPROC_HPP)(GLuint,GLenum,const void *,GLsizei);
 static inline void ProgramBinary(GLuint program1,GLenum binaryFormat1,const void * binary1,GLsizei length1)
 {
-	 glProgramBinary(program1,binaryFormat1,binary1,length1);
+	static PFNGLPROGRAMBINARYPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMBINARYPROC_HPP>(_impl::_get_proc_address("glProgramBinary",3,0));
+	 fn(program1,binaryFormat1,binary1,length1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_ProgramParameteri
 #define GL_HPP_FUNDEF_ProgramParameteri
+typedef void (*PFNGLPROGRAMPARAMETERIPROC_HPP)(GLuint,GLenum,GLint);
 static inline void ProgramParameteri(GLuint program1,GLenum pname1,GLint value1)
 {
-	 glProgramParameteri(program1,pname1,value1);
+	static PFNGLPROGRAMPARAMETERIPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMPARAMETERIPROC_HPP>(_impl::_get_proc_address("glProgramParameteri",3,0));
+	 fn(program1,pname1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_ReadBuffer
 #define GL_HPP_FUNDEF_ReadBuffer
+typedef void (*PFNGLREADBUFFERPROC_HPP)(GLenum);
 static inline void ReadBuffer(GLenum src1)
 {
-	 glReadBuffer(src1);
+	static PFNGLREADBUFFERPROC_HPP fn=reinterpret_cast<PFNGLREADBUFFERPROC_HPP>(_impl::_get_proc_address("glReadBuffer",3,0));
+	 fn(src1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_ReadPixels
 #define GL_HPP_FUNDEF_ReadPixels
+typedef void (*PFNGLREADPIXELSPROC_HPP)(GLint,GLint,GLsizei,GLsizei,GLenum,GLenum,void *);
 static inline void ReadPixels(GLint x1,GLint y1,GLsizei width1,GLsizei height1,GLenum format1,GLenum type1,void * pixels1)
 {
-	 glReadPixels(x1,y1,width1,height1,format1,type1,pixels1);
+	static PFNGLREADPIXELSPROC_HPP fn=reinterpret_cast<PFNGLREADPIXELSPROC_HPP>(_impl::_get_proc_address("glReadPixels",3,0));
+	 fn(x1,y1,width1,height1,format1,type1,pixels1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_ReleaseShaderCompiler
 #define GL_HPP_FUNDEF_ReleaseShaderCompiler
+typedef void (*PFNGLRELEASESHADERCOMPILERPROC_HPP)();
 static inline void ReleaseShaderCompiler()
 {
-	 glReleaseShaderCompiler();
+	static PFNGLRELEASESHADERCOMPILERPROC_HPP fn=reinterpret_cast<PFNGLRELEASESHADERCOMPILERPROC_HPP>(_impl::_get_proc_address("glReleaseShaderCompiler",3,0));
+	 fn();
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_RenderbufferStorage
 #define GL_HPP_FUNDEF_RenderbufferStorage
+typedef void (*PFNGLRENDERBUFFERSTORAGEPROC_HPP)(GLenum,GLenum,GLsizei,GLsizei);
 static inline void RenderbufferStorage(GLenum target1,GLenum internalformat1,GLsizei width1,GLsizei height1)
 {
-	 glRenderbufferStorage(target1,internalformat1,width1,height1);
+	static PFNGLRENDERBUFFERSTORAGEPROC_HPP fn=reinterpret_cast<PFNGLRENDERBUFFERSTORAGEPROC_HPP>(_impl::_get_proc_address("glRenderbufferStorage",3,0));
+	 fn(target1,internalformat1,width1,height1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_RenderbufferStorageMultisample
 #define GL_HPP_FUNDEF_RenderbufferStorageMultisample
+typedef void (*PFNGLRENDERBUFFERSTORAGEMULTISAMPLEPROC_HPP)(GLenum,GLsizei,GLenum,GLsizei,GLsizei);
 static inline void RenderbufferStorageMultisample(GLenum target1,GLsizei samples1,GLenum internalformat1,GLsizei width1,GLsizei height1)
 {
-	 glRenderbufferStorageMultisample(target1,samples1,internalformat1,width1,height1);
+	static PFNGLRENDERBUFFERSTORAGEMULTISAMPLEPROC_HPP fn=reinterpret_cast<PFNGLRENDERBUFFERSTORAGEMULTISAMPLEPROC_HPP>(_impl::_get_proc_address("glRenderbufferStorageMultisample",3,0));
+	 fn(target1,samples1,internalformat1,width1,height1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_ResumeTransformFeedback
 #define GL_HPP_FUNDEF_ResumeTransformFeedback
+typedef void (*PFNGLRESUMETRANSFORMFEEDBACKPROC_HPP)();
 static inline void ResumeTransformFeedback()
 {
-	 glResumeTransformFeedback();
+	static PFNGLRESUMETRANSFORMFEEDBACKPROC_HPP fn=reinterpret_cast<PFNGLRESUMETRANSFORMFEEDBACKPROC_HPP>(_impl::_get_proc_address("glResumeTransformFeedback",3,0));
+	 fn();
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_SampleCoverage
 #define GL_HPP_FUNDEF_SampleCoverage
+typedef void (*PFNGLSAMPLECOVERAGEPROC_HPP)(GLfloat,GLboolean);
 static inline void SampleCoverage(GLfloat value1,GLboolean invert1)
 {
-	 glSampleCoverage(value1,invert1);
+	static PFNGLSAMPLECOVERAGEPROC_HPP fn=reinterpret_cast<PFNGLSAMPLECOVERAGEPROC_HPP>(_impl::_get_proc_address("glSampleCoverage",3,0));
+	 fn(value1,invert1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_SamplerParameterf
 #define GL_HPP_FUNDEF_SamplerParameterf
+typedef void (*PFNGLSAMPLERPARAMETERFPROC_HPP)(GLuint,GLenum,GLfloat);
 static inline void SamplerParameterf(GLuint sampler1,GLenum pname1,GLfloat param1)
 {
-	 glSamplerParameterf(sampler1,pname1,param1);
+	static PFNGLSAMPLERPARAMETERFPROC_HPP fn=reinterpret_cast<PFNGLSAMPLERPARAMETERFPROC_HPP>(_impl::_get_proc_address("glSamplerParameterf",3,0));
+	 fn(sampler1,pname1,param1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_SamplerParameterfv
 #define GL_HPP_FUNDEF_SamplerParameterfv
+typedef void (*PFNGLSAMPLERPARAMETERFVPROC_HPP)(GLuint,GLenum,const GLfloat *);
 static inline void SamplerParameterfv(GLuint sampler1,GLenum pname1,const GLfloat * param1)
 {
-	 glSamplerParameterfv(sampler1,pname1,param1);
+	static PFNGLSAMPLERPARAMETERFVPROC_HPP fn=reinterpret_cast<PFNGLSAMPLERPARAMETERFVPROC_HPP>(_impl::_get_proc_address("glSamplerParameterfv",3,0));
+	 fn(sampler1,pname1,param1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_SamplerParameteri
 #define GL_HPP_FUNDEF_SamplerParameteri
+typedef void (*PFNGLSAMPLERPARAMETERIPROC_HPP)(GLuint,GLenum,GLint);
 static inline void SamplerParameteri(GLuint sampler1,GLenum pname1,GLint param1)
 {
-	 glSamplerParameteri(sampler1,pname1,param1);
+	static PFNGLSAMPLERPARAMETERIPROC_HPP fn=reinterpret_cast<PFNGLSAMPLERPARAMETERIPROC_HPP>(_impl::_get_proc_address("glSamplerParameteri",3,0));
+	 fn(sampler1,pname1,param1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_SamplerParameteriv
 #define GL_HPP_FUNDEF_SamplerParameteriv
+typedef void (*PFNGLSAMPLERPARAMETERIVPROC_HPP)(GLuint,GLenum,const GLint *);
 static inline void SamplerParameteriv(GLuint sampler1,GLenum pname1,const GLint * param1)
 {
-	 glSamplerParameteriv(sampler1,pname1,param1);
+	static PFNGLSAMPLERPARAMETERIVPROC_HPP fn=reinterpret_cast<PFNGLSAMPLERPARAMETERIVPROC_HPP>(_impl::_get_proc_address("glSamplerParameteriv",3,0));
+	 fn(sampler1,pname1,param1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Scissor
 #define GL_HPP_FUNDEF_Scissor
+typedef void (*PFNGLSCISSORPROC_HPP)(GLint,GLint,GLsizei,GLsizei);
 static inline void Scissor(GLint x1,GLint y1,GLsizei width1,GLsizei height1)
 {
-	 glScissor(x1,y1,width1,height1);
+	static PFNGLSCISSORPROC_HPP fn=reinterpret_cast<PFNGLSCISSORPROC_HPP>(_impl::_get_proc_address("glScissor",3,0));
+	 fn(x1,y1,width1,height1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_ShaderBinary
 #define GL_HPP_FUNDEF_ShaderBinary
+typedef void (*PFNGLSHADERBINARYPROC_HPP)(GLsizei,const GLuint *,GLenum,const void *,GLsizei);
 static inline void ShaderBinary(GLsizei count1,const GLuint * shaders1,GLenum binaryformat1,const void * binary1,GLsizei length1)
 {
-	 glShaderBinary(count1,shaders1,binaryformat1,binary1,length1);
+	static PFNGLSHADERBINARYPROC_HPP fn=reinterpret_cast<PFNGLSHADERBINARYPROC_HPP>(_impl::_get_proc_address("glShaderBinary",3,0));
+	 fn(count1,shaders1,binaryformat1,binary1,length1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_ShaderSource
 #define GL_HPP_FUNDEF_ShaderSource
+typedef void (*PFNGLSHADERSOURCEPROC_HPP)(GLuint,GLsizei,const GLchar *const*,const GLint *);
 static inline void ShaderSource(GLuint shader1,GLsizei count1,const GLchar *const* string1,const GLint * length1)
 {
-	 glShaderSource(shader1,count1,string1,length1);
+	static PFNGLSHADERSOURCEPROC_HPP fn=reinterpret_cast<PFNGLSHADERSOURCEPROC_HPP>(_impl::_get_proc_address("glShaderSource",3,0));
+	 fn(shader1,count1,string1,length1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_StencilFunc
 #define GL_HPP_FUNDEF_StencilFunc
+typedef void (*PFNGLSTENCILFUNCPROC_HPP)(GLenum,GLint,GLuint);
 static inline void StencilFunc(GLenum func1,GLint ref1,GLuint mask1)
 {
-	 glStencilFunc(func1,ref1,mask1);
+	static PFNGLSTENCILFUNCPROC_HPP fn=reinterpret_cast<PFNGLSTENCILFUNCPROC_HPP>(_impl::_get_proc_address("glStencilFunc",3,0));
+	 fn(func1,ref1,mask1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_StencilFuncSeparate
 #define GL_HPP_FUNDEF_StencilFuncSeparate
+typedef void (*PFNGLSTENCILFUNCSEPARATEPROC_HPP)(GLenum,GLenum,GLint,GLuint);
 static inline void StencilFuncSeparate(GLenum face1,GLenum func1,GLint ref1,GLuint mask1)
 {
-	 glStencilFuncSeparate(face1,func1,ref1,mask1);
+	static PFNGLSTENCILFUNCSEPARATEPROC_HPP fn=reinterpret_cast<PFNGLSTENCILFUNCSEPARATEPROC_HPP>(_impl::_get_proc_address("glStencilFuncSeparate",3,0));
+	 fn(face1,func1,ref1,mask1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_StencilMask
 #define GL_HPP_FUNDEF_StencilMask
+typedef void (*PFNGLSTENCILMASKPROC_HPP)(GLuint);
 static inline void StencilMask(GLuint mask1)
 {
-	 glStencilMask(mask1);
+	static PFNGLSTENCILMASKPROC_HPP fn=reinterpret_cast<PFNGLSTENCILMASKPROC_HPP>(_impl::_get_proc_address("glStencilMask",3,0));
+	 fn(mask1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_StencilMaskSeparate
 #define GL_HPP_FUNDEF_StencilMaskSeparate
+typedef void (*PFNGLSTENCILMASKSEPARATEPROC_HPP)(GLenum,GLuint);
 static inline void StencilMaskSeparate(GLenum face1,GLuint mask1)
 {
-	 glStencilMaskSeparate(face1,mask1);
+	static PFNGLSTENCILMASKSEPARATEPROC_HPP fn=reinterpret_cast<PFNGLSTENCILMASKSEPARATEPROC_HPP>(_impl::_get_proc_address("glStencilMaskSeparate",3,0));
+	 fn(face1,mask1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_StencilOp
 #define GL_HPP_FUNDEF_StencilOp
+typedef void (*PFNGLSTENCILOPPROC_HPP)(GLenum,GLenum,GLenum);
 static inline void StencilOp(GLenum fail1,GLenum zfail1,GLenum zpass1)
 {
-	 glStencilOp(fail1,zfail1,zpass1);
+	static PFNGLSTENCILOPPROC_HPP fn=reinterpret_cast<PFNGLSTENCILOPPROC_HPP>(_impl::_get_proc_address("glStencilOp",3,0));
+	 fn(fail1,zfail1,zpass1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_StencilOpSeparate
 #define GL_HPP_FUNDEF_StencilOpSeparate
+typedef void (*PFNGLSTENCILOPSEPARATEPROC_HPP)(GLenum,GLenum,GLenum,GLenum);
 static inline void StencilOpSeparate(GLenum face1,GLenum sfail1,GLenum dpfail1,GLenum dppass1)
 {
-	 glStencilOpSeparate(face1,sfail1,dpfail1,dppass1);
+	static PFNGLSTENCILOPSEPARATEPROC_HPP fn=reinterpret_cast<PFNGLSTENCILOPSEPARATEPROC_HPP>(_impl::_get_proc_address("glStencilOpSeparate",3,0));
+	 fn(face1,sfail1,dpfail1,dppass1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_TexImage2D
 #define GL_HPP_FUNDEF_TexImage2D
+typedef void (*PFNGLTEXIMAGE2DPROC_HPP)(GLenum,GLint,GLint,GLsizei,GLsizei,GLint,GLenum,GLenum,const void *);
 static inline void TexImage2D(GLenum target1,GLint level1,GLint internalformat1,GLsizei width1,GLsizei height1,GLint border1,GLenum format1,GLenum type1,const void * pixels1)
 {
-	 glTexImage2D(target1,level1,internalformat1,width1,height1,border1,format1,type1,pixels1);
+	static PFNGLTEXIMAGE2DPROC_HPP fn=reinterpret_cast<PFNGLTEXIMAGE2DPROC_HPP>(_impl::_get_proc_address("glTexImage2D",3,0));
+	 fn(target1,level1,internalformat1,width1,height1,border1,format1,type1,pixels1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_TexImage3D
 #define GL_HPP_FUNDEF_TexImage3D
+typedef void (*PFNGLTEXIMAGE3DPROC_HPP)(GLenum,GLint,GLint,GLsizei,GLsizei,GLsizei,GLint,GLenum,GLenum,const void *);
 static inline void TexImage3D(GLenum target1,GLint level1,GLint internalformat1,GLsizei width1,GLsizei height1,GLsizei depth1,GLint border1,GLenum format1,GLenum type1,const void * pixels1)
 {
-	 glTexImage3D(target1,level1,internalformat1,width1,height1,depth1,border1,format1,type1,pixels1);
+	static PFNGLTEXIMAGE3DPROC_HPP fn=reinterpret_cast<PFNGLTEXIMAGE3DPROC_HPP>(_impl::_get_proc_address("glTexImage3D",3,0));
+	 fn(target1,level1,internalformat1,width1,height1,depth1,border1,format1,type1,pixels1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_TexParameterf
 #define GL_HPP_FUNDEF_TexParameterf
+typedef void (*PFNGLTEXPARAMETERFPROC_HPP)(GLenum,GLenum,GLfloat);
 static inline void TexParameterf(GLenum target1,GLenum pname1,GLfloat param1)
 {
-	 glTexParameterf(target1,pname1,param1);
+	static PFNGLTEXPARAMETERFPROC_HPP fn=reinterpret_cast<PFNGLTEXPARAMETERFPROC_HPP>(_impl::_get_proc_address("glTexParameterf",3,0));
+	 fn(target1,pname1,param1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_TexParameterfv
 #define GL_HPP_FUNDEF_TexParameterfv
+typedef void (*PFNGLTEXPARAMETERFVPROC_HPP)(GLenum,GLenum,const GLfloat *);
 static inline void TexParameterfv(GLenum target1,GLenum pname1,const GLfloat * params1)
 {
-	 glTexParameterfv(target1,pname1,params1);
+	static PFNGLTEXPARAMETERFVPROC_HPP fn=reinterpret_cast<PFNGLTEXPARAMETERFVPROC_HPP>(_impl::_get_proc_address("glTexParameterfv",3,0));
+	 fn(target1,pname1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_TexParameteri
 #define GL_HPP_FUNDEF_TexParameteri
+typedef void (*PFNGLTEXPARAMETERIPROC_HPP)(GLenum,GLenum,GLint);
 static inline void TexParameteri(GLenum target1,GLenum pname1,GLint param1)
 {
-	 glTexParameteri(target1,pname1,param1);
+	static PFNGLTEXPARAMETERIPROC_HPP fn=reinterpret_cast<PFNGLTEXPARAMETERIPROC_HPP>(_impl::_get_proc_address("glTexParameteri",3,0));
+	 fn(target1,pname1,param1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_TexParameteriv
 #define GL_HPP_FUNDEF_TexParameteriv
+typedef void (*PFNGLTEXPARAMETERIVPROC_HPP)(GLenum,GLenum,const GLint *);
 static inline void TexParameteriv(GLenum target1,GLenum pname1,const GLint * params1)
 {
-	 glTexParameteriv(target1,pname1,params1);
+	static PFNGLTEXPARAMETERIVPROC_HPP fn=reinterpret_cast<PFNGLTEXPARAMETERIVPROC_HPP>(_impl::_get_proc_address("glTexParameteriv",3,0));
+	 fn(target1,pname1,params1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_TexStorage2D
 #define GL_HPP_FUNDEF_TexStorage2D
+typedef void (*PFNGLTEXSTORAGE2DPROC_HPP)(GLenum,GLsizei,GLenum,GLsizei,GLsizei);
 static inline void TexStorage2D(GLenum target1,GLsizei levels1,GLenum internalformat1,GLsizei width1,GLsizei height1)
 {
-	 glTexStorage2D(target1,levels1,internalformat1,width1,height1);
+	static PFNGLTEXSTORAGE2DPROC_HPP fn=reinterpret_cast<PFNGLTEXSTORAGE2DPROC_HPP>(_impl::_get_proc_address("glTexStorage2D",3,0));
+	 fn(target1,levels1,internalformat1,width1,height1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_TexStorage3D
 #define GL_HPP_FUNDEF_TexStorage3D
+typedef void (*PFNGLTEXSTORAGE3DPROC_HPP)(GLenum,GLsizei,GLenum,GLsizei,GLsizei,GLsizei);
 static inline void TexStorage3D(GLenum target1,GLsizei levels1,GLenum internalformat1,GLsizei width1,GLsizei height1,GLsizei depth1)
 {
-	 glTexStorage3D(target1,levels1,internalformat1,width1,height1,depth1);
+	static PFNGLTEXSTORAGE3DPROC_HPP fn=reinterpret_cast<PFNGLTEXSTORAGE3DPROC_HPP>(_impl::_get_proc_address("glTexStorage3D",3,0));
+	 fn(target1,levels1,internalformat1,width1,height1,depth1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_TexSubImage2D
 #define GL_HPP_FUNDEF_TexSubImage2D
+typedef void (*PFNGLTEXSUBIMAGE2DPROC_HPP)(GLenum,GLint,GLint,GLint,GLsizei,GLsizei,GLenum,GLenum,const void *);
 static inline void TexSubImage2D(GLenum target1,GLint level1,GLint xoffset1,GLint yoffset1,GLsizei width1,GLsizei height1,GLenum format1,GLenum type1,const void * pixels1)
 {
-	 glTexSubImage2D(target1,level1,xoffset1,yoffset1,width1,height1,format1,type1,pixels1);
+	static PFNGLTEXSUBIMAGE2DPROC_HPP fn=reinterpret_cast<PFNGLTEXSUBIMAGE2DPROC_HPP>(_impl::_get_proc_address("glTexSubImage2D",3,0));
+	 fn(target1,level1,xoffset1,yoffset1,width1,height1,format1,type1,pixels1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_TexSubImage3D
 #define GL_HPP_FUNDEF_TexSubImage3D
+typedef void (*PFNGLTEXSUBIMAGE3DPROC_HPP)(GLenum,GLint,GLint,GLint,GLint,GLsizei,GLsizei,GLsizei,GLenum,GLenum,const void *);
 static inline void TexSubImage3D(GLenum target1,GLint level1,GLint xoffset1,GLint yoffset1,GLint zoffset1,GLsizei width1,GLsizei height1,GLsizei depth1,GLenum format1,GLenum type1,const void * pixels1)
 {
-	 glTexSubImage3D(target1,level1,xoffset1,yoffset1,zoffset1,width1,height1,depth1,format1,type1,pixels1);
+	static PFNGLTEXSUBIMAGE3DPROC_HPP fn=reinterpret_cast<PFNGLTEXSUBIMAGE3DPROC_HPP>(_impl::_get_proc_address("glTexSubImage3D",3,0));
+	 fn(target1,level1,xoffset1,yoffset1,zoffset1,width1,height1,depth1,format1,type1,pixels1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_TransformFeedbackVaryings
 #define GL_HPP_FUNDEF_TransformFeedbackVaryings
+typedef void (*PFNGLTRANSFORMFEEDBACKVARYINGSPROC_HPP)(GLuint,GLsizei,const GLchar *const*,GLenum);
 static inline void TransformFeedbackVaryings(GLuint program1,GLsizei count1,const GLchar *const* varyings1,GLenum bufferMode1)
 {
-	 glTransformFeedbackVaryings(program1,count1,varyings1,bufferMode1);
+	static PFNGLTRANSFORMFEEDBACKVARYINGSPROC_HPP fn=reinterpret_cast<PFNGLTRANSFORMFEEDBACKVARYINGSPROC_HPP>(_impl::_get_proc_address("glTransformFeedbackVaryings",3,0));
+	 fn(program1,count1,varyings1,bufferMode1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform1f
 #define GL_HPP_FUNDEF_Uniform1f
+typedef void (*PFNGLUNIFORM1FPROC_HPP)(GLint,GLfloat);
 static inline void Uniform1f(GLint location1,GLfloat v01)
 {
-	 glUniform1f(location1,v01);
+	static PFNGLUNIFORM1FPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM1FPROC_HPP>(_impl::_get_proc_address("glUniform1f",3,0));
+	 fn(location1,v01);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform1fv
 #define GL_HPP_FUNDEF_Uniform1fv
+typedef void (*PFNGLUNIFORM1FVPROC_HPP)(GLint,GLsizei,const GLfloat *);
 static inline void Uniform1fv(GLint location1,GLsizei count1,const GLfloat * value1)
 {
-	 glUniform1fv(location1,count1,value1);
+	static PFNGLUNIFORM1FVPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM1FVPROC_HPP>(_impl::_get_proc_address("glUniform1fv",3,0));
+	 fn(location1,count1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform1i
 #define GL_HPP_FUNDEF_Uniform1i
+typedef void (*PFNGLUNIFORM1IPROC_HPP)(GLint,GLint);
 static inline void Uniform1i(GLint location1,GLint v01)
 {
-	 glUniform1i(location1,v01);
+	static PFNGLUNIFORM1IPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM1IPROC_HPP>(_impl::_get_proc_address("glUniform1i",3,0));
+	 fn(location1,v01);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform1iv
 #define GL_HPP_FUNDEF_Uniform1iv
+typedef void (*PFNGLUNIFORM1IVPROC_HPP)(GLint,GLsizei,const GLint *);
 static inline void Uniform1iv(GLint location1,GLsizei count1,const GLint * value1)
 {
-	 glUniform1iv(location1,count1,value1);
+	static PFNGLUNIFORM1IVPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM1IVPROC_HPP>(_impl::_get_proc_address("glUniform1iv",3,0));
+	 fn(location1,count1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform1ui
 #define GL_HPP_FUNDEF_Uniform1ui
+typedef void (*PFNGLUNIFORM1UIPROC_HPP)(GLint,GLuint);
 static inline void Uniform1ui(GLint location1,GLuint v01)
 {
-	 glUniform1ui(location1,v01);
+	static PFNGLUNIFORM1UIPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM1UIPROC_HPP>(_impl::_get_proc_address("glUniform1ui",3,0));
+	 fn(location1,v01);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform1uiv
 #define GL_HPP_FUNDEF_Uniform1uiv
+typedef void (*PFNGLUNIFORM1UIVPROC_HPP)(GLint,GLsizei,const GLuint *);
 static inline void Uniform1uiv(GLint location1,GLsizei count1,const GLuint * value1)
 {
-	 glUniform1uiv(location1,count1,value1);
+	static PFNGLUNIFORM1UIVPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM1UIVPROC_HPP>(_impl::_get_proc_address("glUniform1uiv",3,0));
+	 fn(location1,count1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform2f
 #define GL_HPP_FUNDEF_Uniform2f
+typedef void (*PFNGLUNIFORM2FPROC_HPP)(GLint,GLfloat,GLfloat);
 static inline void Uniform2f(GLint location1,GLfloat v01,GLfloat v11)
 {
-	 glUniform2f(location1,v01,v11);
+	static PFNGLUNIFORM2FPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM2FPROC_HPP>(_impl::_get_proc_address("glUniform2f",3,0));
+	 fn(location1,v01,v11);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform2fv
 #define GL_HPP_FUNDEF_Uniform2fv
+typedef void (*PFNGLUNIFORM2FVPROC_HPP)(GLint,GLsizei,const GLfloat *);
 static inline void Uniform2fv(GLint location1,GLsizei count1,const GLfloat * value1)
 {
-	 glUniform2fv(location1,count1,value1);
+	static PFNGLUNIFORM2FVPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM2FVPROC_HPP>(_impl::_get_proc_address("glUniform2fv",3,0));
+	 fn(location1,count1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform2i
 #define GL_HPP_FUNDEF_Uniform2i
+typedef void (*PFNGLUNIFORM2IPROC_HPP)(GLint,GLint,GLint);
 static inline void Uniform2i(GLint location1,GLint v01,GLint v11)
 {
-	 glUniform2i(location1,v01,v11);
+	static PFNGLUNIFORM2IPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM2IPROC_HPP>(_impl::_get_proc_address("glUniform2i",3,0));
+	 fn(location1,v01,v11);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform2iv
 #define GL_HPP_FUNDEF_Uniform2iv
+typedef void (*PFNGLUNIFORM2IVPROC_HPP)(GLint,GLsizei,const GLint *);
 static inline void Uniform2iv(GLint location1,GLsizei count1,const GLint * value1)
 {
-	 glUniform2iv(location1,count1,value1);
+	static PFNGLUNIFORM2IVPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM2IVPROC_HPP>(_impl::_get_proc_address("glUniform2iv",3,0));
+	 fn(location1,count1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform2ui
 #define GL_HPP_FUNDEF_Uniform2ui
+typedef void (*PFNGLUNIFORM2UIPROC_HPP)(GLint,GLuint,GLuint);
 static inline void Uniform2ui(GLint location1,GLuint v01,GLuint v11)
 {
-	 glUniform2ui(location1,v01,v11);
+	static PFNGLUNIFORM2UIPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM2UIPROC_HPP>(_impl::_get_proc_address("glUniform2ui",3,0));
+	 fn(location1,v01,v11);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform2uiv
 #define GL_HPP_FUNDEF_Uniform2uiv
+typedef void (*PFNGLUNIFORM2UIVPROC_HPP)(GLint,GLsizei,const GLuint *);
 static inline void Uniform2uiv(GLint location1,GLsizei count1,const GLuint * value1)
 {
-	 glUniform2uiv(location1,count1,value1);
+	static PFNGLUNIFORM2UIVPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM2UIVPROC_HPP>(_impl::_get_proc_address("glUniform2uiv",3,0));
+	 fn(location1,count1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform3f
 #define GL_HPP_FUNDEF_Uniform3f
+typedef void (*PFNGLUNIFORM3FPROC_HPP)(GLint,GLfloat,GLfloat,GLfloat);
 static inline void Uniform3f(GLint location1,GLfloat v01,GLfloat v11,GLfloat v21)
 {
-	 glUniform3f(location1,v01,v11,v21);
+	static PFNGLUNIFORM3FPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM3FPROC_HPP>(_impl::_get_proc_address("glUniform3f",3,0));
+	 fn(location1,v01,v11,v21);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform3fv
 #define GL_HPP_FUNDEF_Uniform3fv
+typedef void (*PFNGLUNIFORM3FVPROC_HPP)(GLint,GLsizei,const GLfloat *);
 static inline void Uniform3fv(GLint location1,GLsizei count1,const GLfloat * value1)
 {
-	 glUniform3fv(location1,count1,value1);
+	static PFNGLUNIFORM3FVPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM3FVPROC_HPP>(_impl::_get_proc_address("glUniform3fv",3,0));
+	 fn(location1,count1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform3i
 #define GL_HPP_FUNDEF_Uniform3i
+typedef void (*PFNGLUNIFORM3IPROC_HPP)(GLint,GLint,GLint,GLint);
 static inline void Uniform3i(GLint location1,GLint v01,GLint v11,GLint v21)
 {
-	 glUniform3i(location1,v01,v11,v21);
+	static PFNGLUNIFORM3IPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM3IPROC_HPP>(_impl::_get_proc_address("glUniform3i",3,0));
+	 fn(location1,v01,v11,v21);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform3iv
 #define GL_HPP_FUNDEF_Uniform3iv
+typedef void (*PFNGLUNIFORM3IVPROC_HPP)(GLint,GLsizei,const GLint *);
 static inline void Uniform3iv(GLint location1,GLsizei count1,const GLint * value1)
 {
-	 glUniform3iv(location1,count1,value1);
+	static PFNGLUNIFORM3IVPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM3IVPROC_HPP>(_impl::_get_proc_address("glUniform3iv",3,0));
+	 fn(location1,count1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform3ui
 #define GL_HPP_FUNDEF_Uniform3ui
+typedef void (*PFNGLUNIFORM3UIPROC_HPP)(GLint,GLuint,GLuint,GLuint);
 static inline void Uniform3ui(GLint location1,GLuint v01,GLuint v11,GLuint v21)
 {
-	 glUniform3ui(location1,v01,v11,v21);
+	static PFNGLUNIFORM3UIPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM3UIPROC_HPP>(_impl::_get_proc_address("glUniform3ui",3,0));
+	 fn(location1,v01,v11,v21);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform3uiv
 #define GL_HPP_FUNDEF_Uniform3uiv
+typedef void (*PFNGLUNIFORM3UIVPROC_HPP)(GLint,GLsizei,const GLuint *);
 static inline void Uniform3uiv(GLint location1,GLsizei count1,const GLuint * value1)
 {
-	 glUniform3uiv(location1,count1,value1);
+	static PFNGLUNIFORM3UIVPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM3UIVPROC_HPP>(_impl::_get_proc_address("glUniform3uiv",3,0));
+	 fn(location1,count1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform4f
 #define GL_HPP_FUNDEF_Uniform4f
+typedef void (*PFNGLUNIFORM4FPROC_HPP)(GLint,GLfloat,GLfloat,GLfloat,GLfloat);
 static inline void Uniform4f(GLint location1,GLfloat v01,GLfloat v11,GLfloat v21,GLfloat v31)
 {
-	 glUniform4f(location1,v01,v11,v21,v31);
+	static PFNGLUNIFORM4FPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM4FPROC_HPP>(_impl::_get_proc_address("glUniform4f",3,0));
+	 fn(location1,v01,v11,v21,v31);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform4fv
 #define GL_HPP_FUNDEF_Uniform4fv
+typedef void (*PFNGLUNIFORM4FVPROC_HPP)(GLint,GLsizei,const GLfloat *);
 static inline void Uniform4fv(GLint location1,GLsizei count1,const GLfloat * value1)
 {
-	 glUniform4fv(location1,count1,value1);
+	static PFNGLUNIFORM4FVPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM4FVPROC_HPP>(_impl::_get_proc_address("glUniform4fv",3,0));
+	 fn(location1,count1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform4i
 #define GL_HPP_FUNDEF_Uniform4i
+typedef void (*PFNGLUNIFORM4IPROC_HPP)(GLint,GLint,GLint,GLint,GLint);
 static inline void Uniform4i(GLint location1,GLint v01,GLint v11,GLint v21,GLint v31)
 {
-	 glUniform4i(location1,v01,v11,v21,v31);
+	static PFNGLUNIFORM4IPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM4IPROC_HPP>(_impl::_get_proc_address("glUniform4i",3,0));
+	 fn(location1,v01,v11,v21,v31);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform4iv
 #define GL_HPP_FUNDEF_Uniform4iv
+typedef void (*PFNGLUNIFORM4IVPROC_HPP)(GLint,GLsizei,const GLint *);
 static inline void Uniform4iv(GLint location1,GLsizei count1,const GLint * value1)
 {
-	 glUniform4iv(location1,count1,value1);
+	static PFNGLUNIFORM4IVPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM4IVPROC_HPP>(_impl::_get_proc_address("glUniform4iv",3,0));
+	 fn(location1,count1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform4ui
 #define GL_HPP_FUNDEF_Uniform4ui
+typedef void (*PFNGLUNIFORM4UIPROC_HPP)(GLint,GLuint,GLuint,GLuint,GLuint);
 static inline void Uniform4ui(GLint location1,GLuint v01,GLuint v11,GLuint v21,GLuint v31)
 {
-	 glUniform4ui(location1,v01,v11,v21,v31);
+	static PFNGLUNIFORM4UIPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM4UIPROC_HPP>(_impl::_get_proc_address("glUniform4ui",3,0));
+	 fn(location1,v01,v11,v21,v31);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Uniform4uiv
 #define GL_HPP_FUNDEF_Uniform4uiv
+typedef void (*PFNGLUNIFORM4UIVPROC_HPP)(GLint,GLsizei,const GLuint *);
 static inline void Uniform4uiv(GLint location1,GLsizei count1,const GLuint * value1)
 {
-	 glUniform4uiv(location1,count1,value1);
+	static PFNGLUNIFORM4UIVPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM4UIVPROC_HPP>(_impl::_get_proc_address("glUniform4uiv",3,0));
+	 fn(location1,count1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_UniformBlockBinding
 #define GL_HPP_FUNDEF_UniformBlockBinding
+typedef void (*PFNGLUNIFORMBLOCKBINDINGPROC_HPP)(GLuint,GLuint,GLuint);
 static inline void UniformBlockBinding(GLuint program1,GLuint uniformBlockIndex1,GLuint uniformBlockBinding1)
 {
-	 glUniformBlockBinding(program1,uniformBlockIndex1,uniformBlockBinding1);
+	static PFNGLUNIFORMBLOCKBINDINGPROC_HPP fn=reinterpret_cast<PFNGLUNIFORMBLOCKBINDINGPROC_HPP>(_impl::_get_proc_address("glUniformBlockBinding",3,0));
+	 fn(program1,uniformBlockIndex1,uniformBlockBinding1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_UniformMatrix2fv
 #define GL_HPP_FUNDEF_UniformMatrix2fv
+typedef void (*PFNGLUNIFORMMATRIX2FVPROC_HPP)(GLint,GLsizei,GLboolean,const GLfloat *);
 static inline void UniformMatrix2fv(GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
 {
-	 glUniformMatrix2fv(location1,count1,transpose1,value1);
+	static PFNGLUNIFORMMATRIX2FVPROC_HPP fn=reinterpret_cast<PFNGLUNIFORMMATRIX2FVPROC_HPP>(_impl::_get_proc_address("glUniformMatrix2fv",3,0));
+	 fn(location1,count1,transpose1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_UniformMatrix2x3fv
 #define GL_HPP_FUNDEF_UniformMatrix2x3fv
+typedef void (*PFNGLUNIFORMMATRIX2X3FVPROC_HPP)(GLint,GLsizei,GLboolean,const GLfloat *);
 static inline void UniformMatrix2x3fv(GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
 {
-	 glUniformMatrix2x3fv(location1,count1,transpose1,value1);
+	static PFNGLUNIFORMMATRIX2X3FVPROC_HPP fn=reinterpret_cast<PFNGLUNIFORMMATRIX2X3FVPROC_HPP>(_impl::_get_proc_address("glUniformMatrix2x3fv",3,0));
+	 fn(location1,count1,transpose1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_UniformMatrix2x4fv
 #define GL_HPP_FUNDEF_UniformMatrix2x4fv
+typedef void (*PFNGLUNIFORMMATRIX2X4FVPROC_HPP)(GLint,GLsizei,GLboolean,const GLfloat *);
 static inline void UniformMatrix2x4fv(GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
 {
-	 glUniformMatrix2x4fv(location1,count1,transpose1,value1);
+	static PFNGLUNIFORMMATRIX2X4FVPROC_HPP fn=reinterpret_cast<PFNGLUNIFORMMATRIX2X4FVPROC_HPP>(_impl::_get_proc_address("glUniformMatrix2x4fv",3,0));
+	 fn(location1,count1,transpose1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_UniformMatrix3fv
 #define GL_HPP_FUNDEF_UniformMatrix3fv
+typedef void (*PFNGLUNIFORMMATRIX3FVPROC_HPP)(GLint,GLsizei,GLboolean,const GLfloat *);
 static inline void UniformMatrix3fv(GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
 {
-	 glUniformMatrix3fv(location1,count1,transpose1,value1);
+	static PFNGLUNIFORMMATRIX3FVPROC_HPP fn=reinterpret_cast<PFNGLUNIFORMMATRIX3FVPROC_HPP>(_impl::_get_proc_address("glUniformMatrix3fv",3,0));
+	 fn(location1,count1,transpose1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_UniformMatrix3x2fv
 #define GL_HPP_FUNDEF_UniformMatrix3x2fv
+typedef void (*PFNGLUNIFORMMATRIX3X2FVPROC_HPP)(GLint,GLsizei,GLboolean,const GLfloat *);
 static inline void UniformMatrix3x2fv(GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
 {
-	 glUniformMatrix3x2fv(location1,count1,transpose1,value1);
+	static PFNGLUNIFORMMATRIX3X2FVPROC_HPP fn=reinterpret_cast<PFNGLUNIFORMMATRIX3X2FVPROC_HPP>(_impl::_get_proc_address("glUniformMatrix3x2fv",3,0));
+	 fn(location1,count1,transpose1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_UniformMatrix3x4fv
 #define GL_HPP_FUNDEF_UniformMatrix3x4fv
+typedef void (*PFNGLUNIFORMMATRIX3X4FVPROC_HPP)(GLint,GLsizei,GLboolean,const GLfloat *);
 static inline void UniformMatrix3x4fv(GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
 {
-	 glUniformMatrix3x4fv(location1,count1,transpose1,value1);
+	static PFNGLUNIFORMMATRIX3X4FVPROC_HPP fn=reinterpret_cast<PFNGLUNIFORMMATRIX3X4FVPROC_HPP>(_impl::_get_proc_address("glUniformMatrix3x4fv",3,0));
+	 fn(location1,count1,transpose1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_UniformMatrix4fv
 #define GL_HPP_FUNDEF_UniformMatrix4fv
+typedef void (*PFNGLUNIFORMMATRIX4FVPROC_HPP)(GLint,GLsizei,GLboolean,const GLfloat *);
 static inline void UniformMatrix4fv(GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
 {
-	 glUniformMatrix4fv(location1,count1,transpose1,value1);
+	static PFNGLUNIFORMMATRIX4FVPROC_HPP fn=reinterpret_cast<PFNGLUNIFORMMATRIX4FVPROC_HPP>(_impl::_get_proc_address("glUniformMatrix4fv",3,0));
+	 fn(location1,count1,transpose1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_UniformMatrix4x2fv
 #define GL_HPP_FUNDEF_UniformMatrix4x2fv
+typedef void (*PFNGLUNIFORMMATRIX4X2FVPROC_HPP)(GLint,GLsizei,GLboolean,const GLfloat *);
 static inline void UniformMatrix4x2fv(GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
 {
-	 glUniformMatrix4x2fv(location1,count1,transpose1,value1);
+	static PFNGLUNIFORMMATRIX4X2FVPROC_HPP fn=reinterpret_cast<PFNGLUNIFORMMATRIX4X2FVPROC_HPP>(_impl::_get_proc_address("glUniformMatrix4x2fv",3,0));
+	 fn(location1,count1,transpose1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_UniformMatrix4x3fv
 #define GL_HPP_FUNDEF_UniformMatrix4x3fv
+typedef void (*PFNGLUNIFORMMATRIX4X3FVPROC_HPP)(GLint,GLsizei,GLboolean,const GLfloat *);
 static inline void UniformMatrix4x3fv(GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
 {
-	 glUniformMatrix4x3fv(location1,count1,transpose1,value1);
+	static PFNGLUNIFORMMATRIX4X3FVPROC_HPP fn=reinterpret_cast<PFNGLUNIFORMMATRIX4X3FVPROC_HPP>(_impl::_get_proc_address("glUniformMatrix4x3fv",3,0));
+	 fn(location1,count1,transpose1,value1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_UnmapBuffer
 #define GL_HPP_FUNDEF_UnmapBuffer
+typedef GLboolean (*PFNGLUNMAPBUFFERPROC_HPP)(GLenum);
 static inline GLboolean UnmapBuffer(GLenum target1)
 {
-	return glUnmapBuffer(target1);
+	static PFNGLUNMAPBUFFERPROC_HPP fn=reinterpret_cast<PFNGLUNMAPBUFFERPROC_HPP>(_impl::_get_proc_address("glUnmapBuffer",3,0));
+	return fn(target1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_UseProgram
 #define GL_HPP_FUNDEF_UseProgram
+typedef void (*PFNGLUSEPROGRAMPROC_HPP)(GLuint);
 static inline void UseProgram(GLuint program1)
 {
-	 glUseProgram(program1);
+	static PFNGLUSEPROGRAMPROC_HPP fn=reinterpret_cast<PFNGLUSEPROGRAMPROC_HPP>(_impl::_get_proc_address("glUseProgram",3,0));
+	 fn(program1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_ValidateProgram
 #define GL_HPP_FUNDEF_ValidateProgram
+typedef void (*PFNGLVALIDATEPROGRAMPROC_HPP)(GLuint);
 static inline void ValidateProgram(GLuint program1)
 {
-	 glValidateProgram(program1);
+	static PFNGLVALIDATEPROGRAMPROC_HPP fn=reinterpret_cast<PFNGLVALIDATEPROGRAMPROC_HPP>(_impl::_get_proc_address("glValidateProgram",3,0));
+	 fn(program1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_VertexAttrib1f
 #define GL_HPP_FUNDEF_VertexAttrib1f
+typedef void (*PFNGLVERTEXATTRIB1FPROC_HPP)(GLuint,GLfloat);
 static inline void VertexAttrib1f(GLuint index1,GLfloat x1)
 {
-	 glVertexAttrib1f(index1,x1);
+	static PFNGLVERTEXATTRIB1FPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIB1FPROC_HPP>(_impl::_get_proc_address("glVertexAttrib1f",3,0));
+	 fn(index1,x1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_VertexAttrib1fv
 #define GL_HPP_FUNDEF_VertexAttrib1fv
+typedef void (*PFNGLVERTEXATTRIB1FVPROC_HPP)(GLuint,const GLfloat *);
 static inline void VertexAttrib1fv(GLuint index1,const GLfloat * v1)
 {
-	 glVertexAttrib1fv(index1,v1);
+	static PFNGLVERTEXATTRIB1FVPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIB1FVPROC_HPP>(_impl::_get_proc_address("glVertexAttrib1fv",3,0));
+	 fn(index1,v1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_VertexAttrib2f
 #define GL_HPP_FUNDEF_VertexAttrib2f
+typedef void (*PFNGLVERTEXATTRIB2FPROC_HPP)(GLuint,GLfloat,GLfloat);
 static inline void VertexAttrib2f(GLuint index1,GLfloat x1,GLfloat y1)
 {
-	 glVertexAttrib2f(index1,x1,y1);
+	static PFNGLVERTEXATTRIB2FPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIB2FPROC_HPP>(_impl::_get_proc_address("glVertexAttrib2f",3,0));
+	 fn(index1,x1,y1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_VertexAttrib2fv
 #define GL_HPP_FUNDEF_VertexAttrib2fv
+typedef void (*PFNGLVERTEXATTRIB2FVPROC_HPP)(GLuint,const GLfloat *);
 static inline void VertexAttrib2fv(GLuint index1,const GLfloat * v1)
 {
-	 glVertexAttrib2fv(index1,v1);
+	static PFNGLVERTEXATTRIB2FVPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIB2FVPROC_HPP>(_impl::_get_proc_address("glVertexAttrib2fv",3,0));
+	 fn(index1,v1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_VertexAttrib3f
 #define GL_HPP_FUNDEF_VertexAttrib3f
+typedef void (*PFNGLVERTEXATTRIB3FPROC_HPP)(GLuint,GLfloat,GLfloat,GLfloat);
 static inline void VertexAttrib3f(GLuint index1,GLfloat x1,GLfloat y1,GLfloat z1)
 {
-	 glVertexAttrib3f(index1,x1,y1,z1);
+	static PFNGLVERTEXATTRIB3FPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIB3FPROC_HPP>(_impl::_get_proc_address("glVertexAttrib3f",3,0));
+	 fn(index1,x1,y1,z1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_VertexAttrib3fv
 #define GL_HPP_FUNDEF_VertexAttrib3fv
+typedef void (*PFNGLVERTEXATTRIB3FVPROC_HPP)(GLuint,const GLfloat *);
 static inline void VertexAttrib3fv(GLuint index1,const GLfloat * v1)
 {
-	 glVertexAttrib3fv(index1,v1);
+	static PFNGLVERTEXATTRIB3FVPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIB3FVPROC_HPP>(_impl::_get_proc_address("glVertexAttrib3fv",3,0));
+	 fn(index1,v1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_VertexAttrib4f
 #define GL_HPP_FUNDEF_VertexAttrib4f
+typedef void (*PFNGLVERTEXATTRIB4FPROC_HPP)(GLuint,GLfloat,GLfloat,GLfloat,GLfloat);
 static inline void VertexAttrib4f(GLuint index1,GLfloat x1,GLfloat y1,GLfloat z1,GLfloat w1)
 {
-	 glVertexAttrib4f(index1,x1,y1,z1,w1);
+	static PFNGLVERTEXATTRIB4FPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIB4FPROC_HPP>(_impl::_get_proc_address("glVertexAttrib4f",3,0));
+	 fn(index1,x1,y1,z1,w1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_VertexAttrib4fv
 #define GL_HPP_FUNDEF_VertexAttrib4fv
+typedef void (*PFNGLVERTEXATTRIB4FVPROC_HPP)(GLuint,const GLfloat *);
 static inline void VertexAttrib4fv(GLuint index1,const GLfloat * v1)
 {
-	 glVertexAttrib4fv(index1,v1);
+	static PFNGLVERTEXATTRIB4FVPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIB4FVPROC_HPP>(_impl::_get_proc_address("glVertexAttrib4fv",3,0));
+	 fn(index1,v1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_VertexAttribDivisor
 #define GL_HPP_FUNDEF_VertexAttribDivisor
+typedef void (*PFNGLVERTEXATTRIBDIVISORPROC_HPP)(GLuint,GLuint);
 static inline void VertexAttribDivisor(GLuint index1,GLuint divisor1)
 {
-	 glVertexAttribDivisor(index1,divisor1);
+	static PFNGLVERTEXATTRIBDIVISORPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIBDIVISORPROC_HPP>(_impl::_get_proc_address("glVertexAttribDivisor",3,0));
+	 fn(index1,divisor1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_VertexAttribI4i
 #define GL_HPP_FUNDEF_VertexAttribI4i
+typedef void (*PFNGLVERTEXATTRIBI4IPROC_HPP)(GLuint,GLint,GLint,GLint,GLint);
 static inline void VertexAttribI4i(GLuint index1,GLint x1,GLint y1,GLint z1,GLint w1)
 {
-	 glVertexAttribI4i(index1,x1,y1,z1,w1);
+	static PFNGLVERTEXATTRIBI4IPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIBI4IPROC_HPP>(_impl::_get_proc_address("glVertexAttribI4i",3,0));
+	 fn(index1,x1,y1,z1,w1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_VertexAttribI4iv
 #define GL_HPP_FUNDEF_VertexAttribI4iv
+typedef void (*PFNGLVERTEXATTRIBI4IVPROC_HPP)(GLuint,const GLint *);
 static inline void VertexAttribI4iv(GLuint index1,const GLint * v1)
 {
-	 glVertexAttribI4iv(index1,v1);
+	static PFNGLVERTEXATTRIBI4IVPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIBI4IVPROC_HPP>(_impl::_get_proc_address("glVertexAttribI4iv",3,0));
+	 fn(index1,v1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_VertexAttribI4ui
 #define GL_HPP_FUNDEF_VertexAttribI4ui
+typedef void (*PFNGLVERTEXATTRIBI4UIPROC_HPP)(GLuint,GLuint,GLuint,GLuint,GLuint);
 static inline void VertexAttribI4ui(GLuint index1,GLuint x1,GLuint y1,GLuint z1,GLuint w1)
 {
-	 glVertexAttribI4ui(index1,x1,y1,z1,w1);
+	static PFNGLVERTEXATTRIBI4UIPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIBI4UIPROC_HPP>(_impl::_get_proc_address("glVertexAttribI4ui",3,0));
+	 fn(index1,x1,y1,z1,w1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_VertexAttribI4uiv
 #define GL_HPP_FUNDEF_VertexAttribI4uiv
+typedef void (*PFNGLVERTEXATTRIBI4UIVPROC_HPP)(GLuint,const GLuint *);
 static inline void VertexAttribI4uiv(GLuint index1,const GLuint * v1)
 {
-	 glVertexAttribI4uiv(index1,v1);
+	static PFNGLVERTEXATTRIBI4UIVPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIBI4UIVPROC_HPP>(_impl::_get_proc_address("glVertexAttribI4uiv",3,0));
+	 fn(index1,v1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_VertexAttribIPointer
 #define GL_HPP_FUNDEF_VertexAttribIPointer
+typedef void (*PFNGLVERTEXATTRIBIPOINTERPROC_HPP)(GLuint,GLint,GLenum,GLsizei,const void *);
 static inline void VertexAttribIPointer(GLuint index1,GLint size1,GLenum type1,GLsizei stride1,const void * pointer1)
 {
-	 glVertexAttribIPointer(index1,size1,type1,stride1,pointer1);
+	static PFNGLVERTEXATTRIBIPOINTERPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIBIPOINTERPROC_HPP>(_impl::_get_proc_address("glVertexAttribIPointer",3,0));
+	 fn(index1,size1,type1,stride1,pointer1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_VertexAttribPointer
 #define GL_HPP_FUNDEF_VertexAttribPointer
+typedef void (*PFNGLVERTEXATTRIBPOINTERPROC_HPP)(GLuint,GLint,GLenum,GLboolean,GLsizei,const void *);
 static inline void VertexAttribPointer(GLuint index1,GLint size1,GLenum type1,GLboolean normalized1,GLsizei stride1,const void * pointer1)
 {
-	 glVertexAttribPointer(index1,size1,type1,normalized1,stride1,pointer1);
+	static PFNGLVERTEXATTRIBPOINTERPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIBPOINTERPROC_HPP>(_impl::_get_proc_address("glVertexAttribPointer",3,0));
+	 fn(index1,size1,type1,normalized1,stride1,pointer1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_Viewport
 #define GL_HPP_FUNDEF_Viewport
+typedef void (*PFNGLVIEWPORTPROC_HPP)(GLint,GLint,GLsizei,GLsizei);
 static inline void Viewport(GLint x1,GLint y1,GLsizei width1,GLsizei height1)
 {
-	 glViewport(x1,y1,width1,height1);
+	static PFNGLVIEWPORTPROC_HPP fn=reinterpret_cast<PFNGLVIEWPORTPROC_HPP>(_impl::_get_proc_address("glViewport",3,0));
+	 fn(x1,y1,width1,height1);
 }
 #endif
 
 #ifndef	GL_HPP_FUNDEF_WaitSync
 #define GL_HPP_FUNDEF_WaitSync
+typedef void (*PFNGLWAITSYNCPROC_HPP)(GLsync,GLbitfield,GLuint64);
 static inline void WaitSync(GLsync sync1,GLbitfield flags1,GLuint64 timeout1)
 {
-	 glWaitSync(sync1,flags1,timeout1);
+	static PFNGLWAITSYNCPROC_HPP fn=reinterpret_cast<PFNGLWAITSYNCPROC_HPP>(_impl::_get_proc_address("glWaitSync",3,0));
+	 fn(sync1,flags1,timeout1);
 }
 #endif
 }

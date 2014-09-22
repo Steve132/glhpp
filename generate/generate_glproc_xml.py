@@ -20,6 +20,10 @@ class CommandSpec(object):
 		for pel in commandel.iter('param'):
 			p=CommandSpec.Parameter(nexttype(pel),pel.find('name').text+'1',pel.get('group'))
 			self.params.append(p)
+		self.alias=commandel.find('alias')
+		
+		if(self.alias is not None and (self.name[-3:] in ['EXT'])):	#only allow fallthrough aliases to EXT or ARB functions (ARB will be first due to alphabetical)
+			self.alias=self.alias.get('name')
 			
 	#def pointer_type(self):
 	#	return "PFN"+self.name.upper()+"PROC_HPP"
@@ -29,7 +33,7 @@ class CommandSpec(object):
 		return ','.join([p.name for p in self.params])
 	def arglist(self):
 		return ','.join([ "%s %s" % (p.typ,p.name) for p in self.params])
-		
+
 	def print_definition_function(self,featurename,function_included=False):
 		ptrfuntemplate="""
 #ifndef	GL_HPP_FUNDEF_%(signature)s
@@ -43,15 +47,14 @@ static inline %(rettype)s %(signature)s(%(argstring)s)
 #endif
 """
 		stdfuntemplate="""
-#ifndef	GL_HPP_FUNDEF_%(signature)s
-#define GL_HPP_FUNDEF_%(signature)s
-static inline %(rettype)s %(signature)s(%(argstring)s)
+#ifndef	GL_HPP_FUNDEF_%(asignature)s
+#define GL_HPP_FUNDEF_%(asignature)s
+static inline %(rettype)s %(asignature)s(%(argstring)s)
 {
-	%(rv)s gl%(signature)s(%(justargs)s);
+	%(rv)s %(signature)s(%(justargs)s);
 }
 #endif
 """
-
 		if(self.return_type=='void'):
 			rv=''
 		else:
@@ -64,10 +67,22 @@ static inline %(rettype)s %(signature)s(%(argstring)s)
 		ext=featurename
 		if(featurename[-11:-4]=='VERSION'):
 			ext=featurename[-3]+','+featurename[-1]
+
+		argdict={"rettype": self.return_type,"signature":self.name[2:],"argstring":self.arglist(),"usignature":self.name.upper(),"extension":ext,"justargs":self.argnames(),"rv":rv,"justtypes":self.argtypes(),"asignature":self.name[2:]}
+		fundef=funtemplate % argdict
 			
 		if(function_included):
 			funtemplate=stdfuntemplate
-		return funtemplate % {"rettype": self.return_type,"signature":self.name[2:],"argstring":self.arglist(),"usignature":self.name.upper(),"extension":ext,"justargs":self.argnames(),"rv":rv,"justtypes":self.argtypes()}
+			signature=self.name
+
+		
+		if(self.alias):
+			argdict['signature']=self.name[2:]
+			argdict['asignature']=self.alias[2:]
+			fundef+="\n//ALIAS\n"
+			fundef+=stdfuntemplate % argdict
+		return fundef
+		
 	def print_static_link_declaration(self,featurename):
 		ptrdeclarationtemplate='extern %(rettype)s gl%(signature)s(%(justtypes)s);\n'
 		return ptrdeclarationtemplate % {"rettype": self.return_type,"signature":self.name[2:],"justtypes":self.argtypes()}

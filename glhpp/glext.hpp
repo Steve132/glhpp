@@ -2707,12 +2707,12 @@ namespace gl{
 #ifndef GL_COPY_READ_BUFFER_BINDING
 #define GL_COPY_READ_BUFFER_BINDING 0x8F36
 #endif //GL_COPY_READ_BUFFER_BINDING
-#ifndef GL_COPY_WRITE_BUFFER_BINDING
-#define GL_COPY_WRITE_BUFFER_BINDING 0x8F37
-#endif //GL_COPY_WRITE_BUFFER_BINDING
 #ifndef GL_COPY_WRITE_BUFFER
 #define GL_COPY_WRITE_BUFFER 0x8F37
 #endif //GL_COPY_WRITE_BUFFER
+#ifndef GL_COPY_WRITE_BUFFER_BINDING
+#define GL_COPY_WRITE_BUFFER_BINDING 0x8F37
+#endif //GL_COPY_WRITE_BUFFER_BINDING
 extern "C" {
 }
 namespace gl{
@@ -10931,18 +10931,18 @@ static inline void QueryCounter(GLuint id1,GLenum target1)
 #ifndef GL_TRANSFORM_FEEDBACK
 #define GL_TRANSFORM_FEEDBACK 0x8E22
 #endif //GL_TRANSFORM_FEEDBACK
-#ifndef GL_TRANSFORM_FEEDBACK_PAUSED
-#define GL_TRANSFORM_FEEDBACK_PAUSED 0x8E23
-#endif //GL_TRANSFORM_FEEDBACK_PAUSED
 #ifndef GL_TRANSFORM_FEEDBACK_BUFFER_PAUSED
 #define GL_TRANSFORM_FEEDBACK_BUFFER_PAUSED 0x8E23
 #endif //GL_TRANSFORM_FEEDBACK_BUFFER_PAUSED
-#ifndef GL_TRANSFORM_FEEDBACK_BUFFER_ACTIVE
-#define GL_TRANSFORM_FEEDBACK_BUFFER_ACTIVE 0x8E24
-#endif //GL_TRANSFORM_FEEDBACK_BUFFER_ACTIVE
+#ifndef GL_TRANSFORM_FEEDBACK_PAUSED
+#define GL_TRANSFORM_FEEDBACK_PAUSED 0x8E23
+#endif //GL_TRANSFORM_FEEDBACK_PAUSED
 #ifndef GL_TRANSFORM_FEEDBACK_ACTIVE
 #define GL_TRANSFORM_FEEDBACK_ACTIVE 0x8E24
 #endif //GL_TRANSFORM_FEEDBACK_ACTIVE
+#ifndef GL_TRANSFORM_FEEDBACK_BUFFER_ACTIVE
+#define GL_TRANSFORM_FEEDBACK_BUFFER_ACTIVE 0x8E24
+#endif //GL_TRANSFORM_FEEDBACK_BUFFER_ACTIVE
 #ifndef GL_TRANSFORM_FEEDBACK_BINDING
 #define GL_TRANSFORM_FEEDBACK_BINDING 0x8E25
 #endif //GL_TRANSFORM_FEEDBACK_BINDING
@@ -14125,30 +14125,30 @@ static inline void TexBumpParameterivATI(GLenum pname1,const GLint * param1)
 #ifndef GL_2X_BIT_ATI
 #define GL_2X_BIT_ATI 0x00000001
 #endif //GL_2X_BIT_ATI
-#ifndef GL_4X_BIT_ATI
-#define GL_4X_BIT_ATI 0x00000002
-#endif //GL_4X_BIT_ATI
 #ifndef GL_COMP_BIT_ATI
 #define GL_COMP_BIT_ATI 0x00000002
 #endif //GL_COMP_BIT_ATI
+#ifndef GL_4X_BIT_ATI
+#define GL_4X_BIT_ATI 0x00000002
+#endif //GL_4X_BIT_ATI
 #ifndef GL_GREEN_BIT_ATI
 #define GL_GREEN_BIT_ATI 0x00000002
 #endif //GL_GREEN_BIT_ATI
-#ifndef GL_8X_BIT_ATI
-#define GL_8X_BIT_ATI 0x00000004
-#endif //GL_8X_BIT_ATI
 #ifndef GL_NEGATE_BIT_ATI
 #define GL_NEGATE_BIT_ATI 0x00000004
 #endif //GL_NEGATE_BIT_ATI
 #ifndef GL_BLUE_BIT_ATI
 #define GL_BLUE_BIT_ATI 0x00000004
 #endif //GL_BLUE_BIT_ATI
-#ifndef GL_BIAS_BIT_ATI
-#define GL_BIAS_BIT_ATI 0x00000008
-#endif //GL_BIAS_BIT_ATI
+#ifndef GL_8X_BIT_ATI
+#define GL_8X_BIT_ATI 0x00000004
+#endif //GL_8X_BIT_ATI
 #ifndef GL_HALF_BIT_ATI
 #define GL_HALF_BIT_ATI 0x00000008
 #endif //GL_HALF_BIT_ATI
+#ifndef GL_BIAS_BIT_ATI
+#define GL_BIAS_BIT_ATI 0x00000008
+#endif //GL_BIAS_BIT_ATI
 #ifndef GL_QUARTER_BIT_ATI
 #define GL_QUARTER_BIT_ATI 0x00000010
 #endif //GL_QUARTER_BIT_ATI
@@ -15626,6 +15626,16 @@ static inline void BlendColorEXT(GLfloat red1,GLfloat green1,GLfloat blue1,GLflo
 	 fn(red1,green1,blue1,alpha1);
 }
 #endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_BlendColor
+#define GL_HPP_FUNDEF_BlendColor
+static inline void BlendColor(GLfloat red1,GLfloat green1,GLfloat blue1,GLfloat alpha1)
+{
+	 BlendColorEXT(red1,green1,blue1,alpha1);
+}
+#endif
 }
 #endif
 
@@ -15648,6 +15658,16 @@ static inline void BlendEquationSeparateEXT(GLenum modeRGB1,GLenum modeAlpha1)
 {
 	static PFNGLBLENDEQUATIONSEPARATEEXTPROC_HPP fn=reinterpret_cast<PFNGLBLENDEQUATIONSEPARATEEXTPROC_HPP>(_impl::_get_proc_address("glBlendEquationSeparateEXT","GL_EXT_blend_equation_separate"));
 	 fn(modeRGB1,modeAlpha1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_BlendEquationSeparate
+#define GL_HPP_FUNDEF_BlendEquationSeparate
+static inline void BlendEquationSeparate(GLenum modeRGB1,GLenum modeAlpha1)
+{
+	 BlendEquationSeparateEXT(modeRGB1,modeAlpha1);
 }
 #endif
 }
@@ -15678,6 +15698,16 @@ static inline void BlendFuncSeparateEXT(GLenum sfactorRGB1,GLenum dfactorRGB1,GL
 {
 	static PFNGLBLENDFUNCSEPARATEEXTPROC_HPP fn=reinterpret_cast<PFNGLBLENDFUNCSEPARATEEXTPROC_HPP>(_impl::_get_proc_address("glBlendFuncSeparateEXT","GL_EXT_blend_func_separate"));
 	 fn(sfactorRGB1,dfactorRGB1,sfactorAlpha1,dfactorAlpha1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_BlendFuncSeparate
+#define GL_HPP_FUNDEF_BlendFuncSeparate
+static inline void BlendFuncSeparate(GLenum sfactorRGB1,GLenum dfactorRGB1,GLenum sfactorAlpha1,GLenum dfactorAlpha1)
+{
+	 BlendFuncSeparateEXT(sfactorRGB1,dfactorRGB1,sfactorAlpha1,dfactorAlpha1);
 }
 #endif
 }
@@ -15716,6 +15746,16 @@ static inline void BlendEquationEXT(GLenum mode1)
 {
 	static PFNGLBLENDEQUATIONEXTPROC_HPP fn=reinterpret_cast<PFNGLBLENDEQUATIONEXTPROC_HPP>(_impl::_get_proc_address("glBlendEquationEXT","GL_EXT_blend_minmax"));
 	 fn(mode1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_BlendEquation
+#define GL_HPP_FUNDEF_BlendEquation
+static inline void BlendEquation(GLenum mode1)
+{
+	 BlendEquationEXT(mode1);
 }
 #endif
 }
@@ -15782,6 +15822,16 @@ static inline void ColorSubTableEXT(GLenum target1,GLsizei start1,GLsizei count1
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ColorSubTable
+#define GL_HPP_FUNDEF_ColorSubTable
+static inline void ColorSubTable(GLenum target1,GLsizei start1,GLsizei count1,GLenum format1,GLenum type1,const void * data1)
+{
+	 ColorSubTableEXT(target1,start1,count1,format1,type1,data1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_CopyColorSubTableEXT
 #define GL_HPP_FUNDEF_CopyColorSubTableEXT
 typedef void (*PFNGLCOPYCOLORSUBTABLEEXTPROC_HPP)(GLenum,GLsizei,GLint,GLint,GLsizei);
@@ -15789,6 +15839,16 @@ static inline void CopyColorSubTableEXT(GLenum target1,GLsizei start1,GLint x1,G
 {
 	static PFNGLCOPYCOLORSUBTABLEEXTPROC_HPP fn=reinterpret_cast<PFNGLCOPYCOLORSUBTABLEEXTPROC_HPP>(_impl::_get_proc_address("glCopyColorSubTableEXT","GL_EXT_color_subtable"));
 	 fn(target1,start1,x1,y1,width1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_CopyColorSubTable
+#define GL_HPP_FUNDEF_CopyColorSubTable
+static inline void CopyColorSubTable(GLenum target1,GLsizei start1,GLint x1,GLint y1,GLsizei width1)
+{
+	 CopyColorSubTableEXT(target1,start1,x1,y1,width1);
 }
 #endif
 }
@@ -15904,6 +15964,16 @@ static inline void ConvolutionFilter1DEXT(GLenum target1,GLenum internalformat1,
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ConvolutionFilter1D
+#define GL_HPP_FUNDEF_ConvolutionFilter1D
+static inline void ConvolutionFilter1D(GLenum target1,GLenum internalformat1,GLsizei width1,GLenum format1,GLenum type1,const void * image1)
+{
+	 ConvolutionFilter1DEXT(target1,internalformat1,width1,format1,type1,image1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ConvolutionFilter2DEXT
 #define GL_HPP_FUNDEF_ConvolutionFilter2DEXT
 typedef void (*PFNGLCONVOLUTIONFILTER2DEXTPROC_HPP)(GLenum,GLenum,GLsizei,GLsizei,GLenum,GLenum,const void *);
@@ -15911,6 +15981,16 @@ static inline void ConvolutionFilter2DEXT(GLenum target1,GLenum internalformat1,
 {
 	static PFNGLCONVOLUTIONFILTER2DEXTPROC_HPP fn=reinterpret_cast<PFNGLCONVOLUTIONFILTER2DEXTPROC_HPP>(_impl::_get_proc_address("glConvolutionFilter2DEXT","GL_EXT_convolution"));
 	 fn(target1,internalformat1,width1,height1,format1,type1,image1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ConvolutionFilter2D
+#define GL_HPP_FUNDEF_ConvolutionFilter2D
+static inline void ConvolutionFilter2D(GLenum target1,GLenum internalformat1,GLsizei width1,GLsizei height1,GLenum format1,GLenum type1,const void * image1)
+{
+	 ConvolutionFilter2DEXT(target1,internalformat1,width1,height1,format1,type1,image1);
 }
 #endif
 
@@ -15924,6 +16004,16 @@ static inline void ConvolutionParameterfEXT(GLenum target1,GLenum pname1,GLfloat
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ConvolutionParameterf
+#define GL_HPP_FUNDEF_ConvolutionParameterf
+static inline void ConvolutionParameterf(GLenum target1,GLenum pname1,GLfloat params1)
+{
+	 ConvolutionParameterfEXT(target1,pname1,params1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ConvolutionParameterfvEXT
 #define GL_HPP_FUNDEF_ConvolutionParameterfvEXT
 typedef void (*PFNGLCONVOLUTIONPARAMETERFVEXTPROC_HPP)(GLenum,GLenum,const GLfloat *);
@@ -15931,6 +16021,16 @@ static inline void ConvolutionParameterfvEXT(GLenum target1,GLenum pname1,const 
 {
 	static PFNGLCONVOLUTIONPARAMETERFVEXTPROC_HPP fn=reinterpret_cast<PFNGLCONVOLUTIONPARAMETERFVEXTPROC_HPP>(_impl::_get_proc_address("glConvolutionParameterfvEXT","GL_EXT_convolution"));
 	 fn(target1,pname1,params1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ConvolutionParameterfv
+#define GL_HPP_FUNDEF_ConvolutionParameterfv
+static inline void ConvolutionParameterfv(GLenum target1,GLenum pname1,const GLfloat * params1)
+{
+	 ConvolutionParameterfvEXT(target1,pname1,params1);
 }
 #endif
 
@@ -15944,6 +16044,16 @@ static inline void ConvolutionParameteriEXT(GLenum target1,GLenum pname1,GLint p
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ConvolutionParameteri
+#define GL_HPP_FUNDEF_ConvolutionParameteri
+static inline void ConvolutionParameteri(GLenum target1,GLenum pname1,GLint params1)
+{
+	 ConvolutionParameteriEXT(target1,pname1,params1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ConvolutionParameterivEXT
 #define GL_HPP_FUNDEF_ConvolutionParameterivEXT
 typedef void (*PFNGLCONVOLUTIONPARAMETERIVEXTPROC_HPP)(GLenum,GLenum,const GLint *);
@@ -15951,6 +16061,16 @@ static inline void ConvolutionParameterivEXT(GLenum target1,GLenum pname1,const 
 {
 	static PFNGLCONVOLUTIONPARAMETERIVEXTPROC_HPP fn=reinterpret_cast<PFNGLCONVOLUTIONPARAMETERIVEXTPROC_HPP>(_impl::_get_proc_address("glConvolutionParameterivEXT","GL_EXT_convolution"));
 	 fn(target1,pname1,params1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ConvolutionParameteriv
+#define GL_HPP_FUNDEF_ConvolutionParameteriv
+static inline void ConvolutionParameteriv(GLenum target1,GLenum pname1,const GLint * params1)
+{
+	 ConvolutionParameterivEXT(target1,pname1,params1);
 }
 #endif
 
@@ -15964,6 +16084,16 @@ static inline void CopyConvolutionFilter1DEXT(GLenum target1,GLenum internalform
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_CopyConvolutionFilter1D
+#define GL_HPP_FUNDEF_CopyConvolutionFilter1D
+static inline void CopyConvolutionFilter1D(GLenum target1,GLenum internalformat1,GLint x1,GLint y1,GLsizei width1)
+{
+	 CopyConvolutionFilter1DEXT(target1,internalformat1,x1,y1,width1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_CopyConvolutionFilter2DEXT
 #define GL_HPP_FUNDEF_CopyConvolutionFilter2DEXT
 typedef void (*PFNGLCOPYCONVOLUTIONFILTER2DEXTPROC_HPP)(GLenum,GLenum,GLint,GLint,GLsizei,GLsizei);
@@ -15971,6 +16101,16 @@ static inline void CopyConvolutionFilter2DEXT(GLenum target1,GLenum internalform
 {
 	static PFNGLCOPYCONVOLUTIONFILTER2DEXTPROC_HPP fn=reinterpret_cast<PFNGLCOPYCONVOLUTIONFILTER2DEXTPROC_HPP>(_impl::_get_proc_address("glCopyConvolutionFilter2DEXT","GL_EXT_convolution"));
 	 fn(target1,internalformat1,x1,y1,width1,height1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_CopyConvolutionFilter2D
+#define GL_HPP_FUNDEF_CopyConvolutionFilter2D
+static inline void CopyConvolutionFilter2D(GLenum target1,GLenum internalformat1,GLint x1,GLint y1,GLsizei width1,GLsizei height1)
+{
+	 CopyConvolutionFilter2DEXT(target1,internalformat1,x1,y1,width1,height1);
 }
 #endif
 
@@ -16021,6 +16161,16 @@ static inline void SeparableFilter2DEXT(GLenum target1,GLenum internalformat1,GL
 {
 	static PFNGLSEPARABLEFILTER2DEXTPROC_HPP fn=reinterpret_cast<PFNGLSEPARABLEFILTER2DEXTPROC_HPP>(_impl::_get_proc_address("glSeparableFilter2DEXT","GL_EXT_convolution"));
 	 fn(target1,internalformat1,width1,height1,format1,type1,row1,column1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_SeparableFilter2D
+#define GL_HPP_FUNDEF_SeparableFilter2D
+static inline void SeparableFilter2D(GLenum target1,GLenum internalformat1,GLsizei width1,GLsizei height1,GLenum format1,GLenum type1,const void * row1,const void * column1)
+{
+	 SeparableFilter2DEXT(target1,internalformat1,width1,height1,format1,type1,row1,column1);
 }
 #endif
 }
@@ -16312,6 +16462,16 @@ static inline void CopyTexImage1DEXT(GLenum target1,GLint level1,GLenum internal
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_CopyTexImage1D
+#define GL_HPP_FUNDEF_CopyTexImage1D
+static inline void CopyTexImage1D(GLenum target1,GLint level1,GLenum internalformat1,GLint x1,GLint y1,GLsizei width1,GLint border1)
+{
+	 CopyTexImage1DEXT(target1,level1,internalformat1,x1,y1,width1,border1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_CopyTexImage2DEXT
 #define GL_HPP_FUNDEF_CopyTexImage2DEXT
 typedef void (*PFNGLCOPYTEXIMAGE2DEXTPROC_HPP)(GLenum,GLint,GLenum,GLint,GLint,GLsizei,GLsizei,GLint);
@@ -16319,6 +16479,16 @@ static inline void CopyTexImage2DEXT(GLenum target1,GLint level1,GLenum internal
 {
 	static PFNGLCOPYTEXIMAGE2DEXTPROC_HPP fn=reinterpret_cast<PFNGLCOPYTEXIMAGE2DEXTPROC_HPP>(_impl::_get_proc_address("glCopyTexImage2DEXT","GL_EXT_copy_texture"));
 	 fn(target1,level1,internalformat1,x1,y1,width1,height1,border1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_CopyTexImage2D
+#define GL_HPP_FUNDEF_CopyTexImage2D
+static inline void CopyTexImage2D(GLenum target1,GLint level1,GLenum internalformat1,GLint x1,GLint y1,GLsizei width1,GLsizei height1,GLint border1)
+{
+	 CopyTexImage2DEXT(target1,level1,internalformat1,x1,y1,width1,height1,border1);
 }
 #endif
 
@@ -16332,6 +16502,16 @@ static inline void CopyTexSubImage1DEXT(GLenum target1,GLint level1,GLint xoffse
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_CopyTexSubImage1D
+#define GL_HPP_FUNDEF_CopyTexSubImage1D
+static inline void CopyTexSubImage1D(GLenum target1,GLint level1,GLint xoffset1,GLint x1,GLint y1,GLsizei width1)
+{
+	 CopyTexSubImage1DEXT(target1,level1,xoffset1,x1,y1,width1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_CopyTexSubImage2DEXT
 #define GL_HPP_FUNDEF_CopyTexSubImage2DEXT
 typedef void (*PFNGLCOPYTEXSUBIMAGE2DEXTPROC_HPP)(GLenum,GLint,GLint,GLint,GLint,GLint,GLsizei,GLsizei);
@@ -16342,6 +16522,16 @@ static inline void CopyTexSubImage2DEXT(GLenum target1,GLint level1,GLint xoffse
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_CopyTexSubImage2D
+#define GL_HPP_FUNDEF_CopyTexSubImage2D
+static inline void CopyTexSubImage2D(GLenum target1,GLint level1,GLint xoffset1,GLint yoffset1,GLint x1,GLint y1,GLsizei width1,GLsizei height1)
+{
+	 CopyTexSubImage2DEXT(target1,level1,xoffset1,yoffset1,x1,y1,width1,height1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_CopyTexSubImage3DEXT
 #define GL_HPP_FUNDEF_CopyTexSubImage3DEXT
 typedef void (*PFNGLCOPYTEXSUBIMAGE3DEXTPROC_HPP)(GLenum,GLint,GLint,GLint,GLint,GLint,GLint,GLsizei,GLsizei);
@@ -16349,6 +16539,16 @@ static inline void CopyTexSubImage3DEXT(GLenum target1,GLint level1,GLint xoffse
 {
 	static PFNGLCOPYTEXSUBIMAGE3DEXTPROC_HPP fn=reinterpret_cast<PFNGLCOPYTEXSUBIMAGE3DEXTPROC_HPP>(_impl::_get_proc_address("glCopyTexSubImage3DEXT","GL_EXT_copy_texture"));
 	 fn(target1,level1,xoffset1,yoffset1,zoffset1,x1,y1,width1,height1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_CopyTexSubImage3D
+#define GL_HPP_FUNDEF_CopyTexSubImage3D
+static inline void CopyTexSubImage3D(GLenum target1,GLint level1,GLint xoffset1,GLint yoffset1,GLint zoffset1,GLint x1,GLint y1,GLsizei width1,GLsizei height1)
+{
+	 CopyTexSubImage3DEXT(target1,level1,xoffset1,yoffset1,zoffset1,x1,y1,width1,height1);
 }
 #endif
 }
@@ -16820,6 +17020,16 @@ static inline void DisableIndexedEXT(GLenum target1,GLuint index1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_Disablei
+#define GL_HPP_FUNDEF_Disablei
+static inline void Disablei(GLenum target1,GLuint index1)
+{
+	 DisableIndexedEXT(target1,index1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_DisableVertexArrayAttribEXT
 #define GL_HPP_FUNDEF_DisableVertexArrayAttribEXT
 typedef void (*PFNGLDISABLEVERTEXARRAYATTRIBEXTPROC_HPP)(GLuint,GLuint);
@@ -16867,6 +17077,16 @@ static inline void EnableIndexedEXT(GLenum target1,GLuint index1)
 {
 	static PFNGLENABLEINDEXEDEXTPROC_HPP fn=reinterpret_cast<PFNGLENABLEINDEXEDEXTPROC_HPP>(_impl::_get_proc_address("glEnableIndexedEXT","GL_EXT_direct_state_access"));
 	 fn(target1,index1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_Enablei
+#define GL_HPP_FUNDEF_Enablei
+static inline void Enablei(GLenum target1,GLuint index1)
+{
+	 EnableIndexedEXT(target1,index1);
 }
 #endif
 
@@ -16960,6 +17180,16 @@ static inline void GetBooleanIndexedvEXT(GLenum target1,GLuint index1,GLboolean 
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetBooleani_v
+#define GL_HPP_FUNDEF_GetBooleani_v
+static inline void GetBooleani_v(GLenum target1,GLuint index1,GLboolean * data1)
+{
+	 GetBooleanIndexedvEXT(target1,index1,data1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_GetCompressedMultiTexImageEXT
 #define GL_HPP_FUNDEF_GetCompressedMultiTexImageEXT
 typedef void (*PFNGLGETCOMPRESSEDMULTITEXIMAGEEXTPROC_HPP)(GLenum,GLenum,GLint,void *);
@@ -16990,6 +17220,16 @@ static inline void GetDoubleIndexedvEXT(GLenum target1,GLuint index1,GLdouble * 
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetDoublei_v
+#define GL_HPP_FUNDEF_GetDoublei_v
+static inline void GetDoublei_v(GLenum target1,GLuint index1,GLdouble * data1)
+{
+	 GetDoubleIndexedvEXT(target1,index1,data1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_GetDoublei_vEXT
 #define GL_HPP_FUNDEF_GetDoublei_vEXT
 typedef void (*PFNGLGETDOUBLEI_VEXTPROC_HPP)(GLenum,GLuint,GLdouble *);
@@ -16997,6 +17237,16 @@ static inline void GetDoublei_vEXT(GLenum pname1,GLuint index1,GLdouble * params
 {
 	static PFNGLGETDOUBLEI_VEXTPROC_HPP fn=reinterpret_cast<PFNGLGETDOUBLEI_VEXTPROC_HPP>(_impl::_get_proc_address("glGetDoublei_vEXT","GL_EXT_direct_state_access"));
 	 fn(pname1,index1,params1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetDoublei_v
+#define GL_HPP_FUNDEF_GetDoublei_v
+static inline void GetDoublei_v(GLenum pname1,GLuint index1,GLdouble * params1)
+{
+	 GetDoublei_vEXT(pname1,index1,params1);
 }
 #endif
 
@@ -17010,6 +17260,16 @@ static inline void GetFloatIndexedvEXT(GLenum target1,GLuint index1,GLfloat * da
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetFloati_v
+#define GL_HPP_FUNDEF_GetFloati_v
+static inline void GetFloati_v(GLenum target1,GLuint index1,GLfloat * data1)
+{
+	 GetFloatIndexedvEXT(target1,index1,data1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_GetFloati_vEXT
 #define GL_HPP_FUNDEF_GetFloati_vEXT
 typedef void (*PFNGLGETFLOATI_VEXTPROC_HPP)(GLenum,GLuint,GLfloat *);
@@ -17017,6 +17277,16 @@ static inline void GetFloati_vEXT(GLenum pname1,GLuint index1,GLfloat * params1)
 {
 	static PFNGLGETFLOATI_VEXTPROC_HPP fn=reinterpret_cast<PFNGLGETFLOATI_VEXTPROC_HPP>(_impl::_get_proc_address("glGetFloati_vEXT","GL_EXT_direct_state_access"));
 	 fn(pname1,index1,params1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetFloati_v
+#define GL_HPP_FUNDEF_GetFloati_v
+static inline void GetFloati_v(GLenum pname1,GLuint index1,GLfloat * params1)
+{
+	 GetFloati_vEXT(pname1,index1,params1);
 }
 #endif
 
@@ -17037,6 +17307,16 @@ static inline void GetIntegerIndexedvEXT(GLenum target1,GLuint index1,GLint * da
 {
 	static PFNGLGETINTEGERINDEXEDVEXTPROC_HPP fn=reinterpret_cast<PFNGLGETINTEGERINDEXEDVEXTPROC_HPP>(_impl::_get_proc_address("glGetIntegerIndexedvEXT","GL_EXT_direct_state_access"));
 	 fn(target1,index1,data1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetIntegeri_v
+#define GL_HPP_FUNDEF_GetIntegeri_v
+static inline void GetIntegeri_v(GLenum target1,GLuint index1,GLint * data1)
+{
+	 GetIntegerIndexedvEXT(target1,index1,data1);
 }
 #endif
 
@@ -17417,6 +17697,16 @@ static inline GLboolean IsEnabledIndexedEXT(GLenum target1,GLuint index1)
 {
 	static PFNGLISENABLEDINDEXEDEXTPROC_HPP fn=reinterpret_cast<PFNGLISENABLEDINDEXEDEXTPROC_HPP>(_impl::_get_proc_address("glIsEnabledIndexedEXT","GL_EXT_direct_state_access"));
 	return fn(target1,index1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_IsEnabledi
+#define GL_HPP_FUNDEF_IsEnabledi
+static inline GLboolean IsEnabledi(GLenum target1,GLuint index1)
+{
+	return IsEnabledIndexedEXT(target1,index1);
 }
 #endif
 
@@ -18180,6 +18470,16 @@ static inline void ProgramUniform1fEXT(GLuint program1,GLint location1,GLfloat v
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform1f
+#define GL_HPP_FUNDEF_ProgramUniform1f
+static inline void ProgramUniform1f(GLuint program1,GLint location1,GLfloat v01)
+{
+	 ProgramUniform1fEXT(program1,location1,v01);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform1fvEXT
 #define GL_HPP_FUNDEF_ProgramUniform1fvEXT
 typedef void (*PFNGLPROGRAMUNIFORM1FVEXTPROC_HPP)(GLuint,GLint,GLsizei,const GLfloat *);
@@ -18187,6 +18487,16 @@ static inline void ProgramUniform1fvEXT(GLuint program1,GLint location1,GLsizei 
 {
 	static PFNGLPROGRAMUNIFORM1FVEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM1FVEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform1fvEXT","GL_EXT_direct_state_access"));
 	 fn(program1,location1,count1,value1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform1fv
+#define GL_HPP_FUNDEF_ProgramUniform1fv
+static inline void ProgramUniform1fv(GLuint program1,GLint location1,GLsizei count1,const GLfloat * value1)
+{
+	 ProgramUniform1fvEXT(program1,location1,count1,value1);
 }
 #endif
 
@@ -18200,6 +18510,16 @@ static inline void ProgramUniform1iEXT(GLuint program1,GLint location1,GLint v01
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform1i
+#define GL_HPP_FUNDEF_ProgramUniform1i
+static inline void ProgramUniform1i(GLuint program1,GLint location1,GLint v01)
+{
+	 ProgramUniform1iEXT(program1,location1,v01);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform1ivEXT
 #define GL_HPP_FUNDEF_ProgramUniform1ivEXT
 typedef void (*PFNGLPROGRAMUNIFORM1IVEXTPROC_HPP)(GLuint,GLint,GLsizei,const GLint *);
@@ -18207,6 +18527,16 @@ static inline void ProgramUniform1ivEXT(GLuint program1,GLint location1,GLsizei 
 {
 	static PFNGLPROGRAMUNIFORM1IVEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM1IVEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform1ivEXT","GL_EXT_direct_state_access"));
 	 fn(program1,location1,count1,value1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform1iv
+#define GL_HPP_FUNDEF_ProgramUniform1iv
+static inline void ProgramUniform1iv(GLuint program1,GLint location1,GLsizei count1,const GLint * value1)
+{
+	 ProgramUniform1ivEXT(program1,location1,count1,value1);
 }
 #endif
 
@@ -18220,6 +18550,16 @@ static inline void ProgramUniform1uiEXT(GLuint program1,GLint location1,GLuint v
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform1ui
+#define GL_HPP_FUNDEF_ProgramUniform1ui
+static inline void ProgramUniform1ui(GLuint program1,GLint location1,GLuint v01)
+{
+	 ProgramUniform1uiEXT(program1,location1,v01);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform1uivEXT
 #define GL_HPP_FUNDEF_ProgramUniform1uivEXT
 typedef void (*PFNGLPROGRAMUNIFORM1UIVEXTPROC_HPP)(GLuint,GLint,GLsizei,const GLuint *);
@@ -18227,6 +18567,16 @@ static inline void ProgramUniform1uivEXT(GLuint program1,GLint location1,GLsizei
 {
 	static PFNGLPROGRAMUNIFORM1UIVEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM1UIVEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform1uivEXT","GL_EXT_direct_state_access"));
 	 fn(program1,location1,count1,value1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform1uiv
+#define GL_HPP_FUNDEF_ProgramUniform1uiv
+static inline void ProgramUniform1uiv(GLuint program1,GLint location1,GLsizei count1,const GLuint * value1)
+{
+	 ProgramUniform1uivEXT(program1,location1,count1,value1);
 }
 #endif
 
@@ -18260,6 +18610,16 @@ static inline void ProgramUniform2fEXT(GLuint program1,GLint location1,GLfloat v
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform2f
+#define GL_HPP_FUNDEF_ProgramUniform2f
+static inline void ProgramUniform2f(GLuint program1,GLint location1,GLfloat v01,GLfloat v11)
+{
+	 ProgramUniform2fEXT(program1,location1,v01,v11);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform2fvEXT
 #define GL_HPP_FUNDEF_ProgramUniform2fvEXT
 typedef void (*PFNGLPROGRAMUNIFORM2FVEXTPROC_HPP)(GLuint,GLint,GLsizei,const GLfloat *);
@@ -18267,6 +18627,16 @@ static inline void ProgramUniform2fvEXT(GLuint program1,GLint location1,GLsizei 
 {
 	static PFNGLPROGRAMUNIFORM2FVEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM2FVEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform2fvEXT","GL_EXT_direct_state_access"));
 	 fn(program1,location1,count1,value1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform2fv
+#define GL_HPP_FUNDEF_ProgramUniform2fv
+static inline void ProgramUniform2fv(GLuint program1,GLint location1,GLsizei count1,const GLfloat * value1)
+{
+	 ProgramUniform2fvEXT(program1,location1,count1,value1);
 }
 #endif
 
@@ -18280,6 +18650,16 @@ static inline void ProgramUniform2iEXT(GLuint program1,GLint location1,GLint v01
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform2i
+#define GL_HPP_FUNDEF_ProgramUniform2i
+static inline void ProgramUniform2i(GLuint program1,GLint location1,GLint v01,GLint v11)
+{
+	 ProgramUniform2iEXT(program1,location1,v01,v11);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform2ivEXT
 #define GL_HPP_FUNDEF_ProgramUniform2ivEXT
 typedef void (*PFNGLPROGRAMUNIFORM2IVEXTPROC_HPP)(GLuint,GLint,GLsizei,const GLint *);
@@ -18287,6 +18667,16 @@ static inline void ProgramUniform2ivEXT(GLuint program1,GLint location1,GLsizei 
 {
 	static PFNGLPROGRAMUNIFORM2IVEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM2IVEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform2ivEXT","GL_EXT_direct_state_access"));
 	 fn(program1,location1,count1,value1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform2iv
+#define GL_HPP_FUNDEF_ProgramUniform2iv
+static inline void ProgramUniform2iv(GLuint program1,GLint location1,GLsizei count1,const GLint * value1)
+{
+	 ProgramUniform2ivEXT(program1,location1,count1,value1);
 }
 #endif
 
@@ -18300,6 +18690,16 @@ static inline void ProgramUniform2uiEXT(GLuint program1,GLint location1,GLuint v
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform2ui
+#define GL_HPP_FUNDEF_ProgramUniform2ui
+static inline void ProgramUniform2ui(GLuint program1,GLint location1,GLuint v01,GLuint v11)
+{
+	 ProgramUniform2uiEXT(program1,location1,v01,v11);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform2uivEXT
 #define GL_HPP_FUNDEF_ProgramUniform2uivEXT
 typedef void (*PFNGLPROGRAMUNIFORM2UIVEXTPROC_HPP)(GLuint,GLint,GLsizei,const GLuint *);
@@ -18307,6 +18707,16 @@ static inline void ProgramUniform2uivEXT(GLuint program1,GLint location1,GLsizei
 {
 	static PFNGLPROGRAMUNIFORM2UIVEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM2UIVEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform2uivEXT","GL_EXT_direct_state_access"));
 	 fn(program1,location1,count1,value1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform2uiv
+#define GL_HPP_FUNDEF_ProgramUniform2uiv
+static inline void ProgramUniform2uiv(GLuint program1,GLint location1,GLsizei count1,const GLuint * value1)
+{
+	 ProgramUniform2uivEXT(program1,location1,count1,value1);
 }
 #endif
 
@@ -18340,6 +18750,16 @@ static inline void ProgramUniform3fEXT(GLuint program1,GLint location1,GLfloat v
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform3f
+#define GL_HPP_FUNDEF_ProgramUniform3f
+static inline void ProgramUniform3f(GLuint program1,GLint location1,GLfloat v01,GLfloat v11,GLfloat v21)
+{
+	 ProgramUniform3fEXT(program1,location1,v01,v11,v21);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform3fvEXT
 #define GL_HPP_FUNDEF_ProgramUniform3fvEXT
 typedef void (*PFNGLPROGRAMUNIFORM3FVEXTPROC_HPP)(GLuint,GLint,GLsizei,const GLfloat *);
@@ -18347,6 +18767,16 @@ static inline void ProgramUniform3fvEXT(GLuint program1,GLint location1,GLsizei 
 {
 	static PFNGLPROGRAMUNIFORM3FVEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM3FVEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform3fvEXT","GL_EXT_direct_state_access"));
 	 fn(program1,location1,count1,value1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform3fv
+#define GL_HPP_FUNDEF_ProgramUniform3fv
+static inline void ProgramUniform3fv(GLuint program1,GLint location1,GLsizei count1,const GLfloat * value1)
+{
+	 ProgramUniform3fvEXT(program1,location1,count1,value1);
 }
 #endif
 
@@ -18360,6 +18790,16 @@ static inline void ProgramUniform3iEXT(GLuint program1,GLint location1,GLint v01
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform3i
+#define GL_HPP_FUNDEF_ProgramUniform3i
+static inline void ProgramUniform3i(GLuint program1,GLint location1,GLint v01,GLint v11,GLint v21)
+{
+	 ProgramUniform3iEXT(program1,location1,v01,v11,v21);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform3ivEXT
 #define GL_HPP_FUNDEF_ProgramUniform3ivEXT
 typedef void (*PFNGLPROGRAMUNIFORM3IVEXTPROC_HPP)(GLuint,GLint,GLsizei,const GLint *);
@@ -18367,6 +18807,16 @@ static inline void ProgramUniform3ivEXT(GLuint program1,GLint location1,GLsizei 
 {
 	static PFNGLPROGRAMUNIFORM3IVEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM3IVEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform3ivEXT","GL_EXT_direct_state_access"));
 	 fn(program1,location1,count1,value1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform3iv
+#define GL_HPP_FUNDEF_ProgramUniform3iv
+static inline void ProgramUniform3iv(GLuint program1,GLint location1,GLsizei count1,const GLint * value1)
+{
+	 ProgramUniform3ivEXT(program1,location1,count1,value1);
 }
 #endif
 
@@ -18380,6 +18830,16 @@ static inline void ProgramUniform3uiEXT(GLuint program1,GLint location1,GLuint v
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform3ui
+#define GL_HPP_FUNDEF_ProgramUniform3ui
+static inline void ProgramUniform3ui(GLuint program1,GLint location1,GLuint v01,GLuint v11,GLuint v21)
+{
+	 ProgramUniform3uiEXT(program1,location1,v01,v11,v21);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform3uivEXT
 #define GL_HPP_FUNDEF_ProgramUniform3uivEXT
 typedef void (*PFNGLPROGRAMUNIFORM3UIVEXTPROC_HPP)(GLuint,GLint,GLsizei,const GLuint *);
@@ -18387,6 +18847,16 @@ static inline void ProgramUniform3uivEXT(GLuint program1,GLint location1,GLsizei
 {
 	static PFNGLPROGRAMUNIFORM3UIVEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM3UIVEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform3uivEXT","GL_EXT_direct_state_access"));
 	 fn(program1,location1,count1,value1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform3uiv
+#define GL_HPP_FUNDEF_ProgramUniform3uiv
+static inline void ProgramUniform3uiv(GLuint program1,GLint location1,GLsizei count1,const GLuint * value1)
+{
+	 ProgramUniform3uivEXT(program1,location1,count1,value1);
 }
 #endif
 
@@ -18420,6 +18890,16 @@ static inline void ProgramUniform4fEXT(GLuint program1,GLint location1,GLfloat v
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform4f
+#define GL_HPP_FUNDEF_ProgramUniform4f
+static inline void ProgramUniform4f(GLuint program1,GLint location1,GLfloat v01,GLfloat v11,GLfloat v21,GLfloat v31)
+{
+	 ProgramUniform4fEXT(program1,location1,v01,v11,v21,v31);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform4fvEXT
 #define GL_HPP_FUNDEF_ProgramUniform4fvEXT
 typedef void (*PFNGLPROGRAMUNIFORM4FVEXTPROC_HPP)(GLuint,GLint,GLsizei,const GLfloat *);
@@ -18427,6 +18907,16 @@ static inline void ProgramUniform4fvEXT(GLuint program1,GLint location1,GLsizei 
 {
 	static PFNGLPROGRAMUNIFORM4FVEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM4FVEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform4fvEXT","GL_EXT_direct_state_access"));
 	 fn(program1,location1,count1,value1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform4fv
+#define GL_HPP_FUNDEF_ProgramUniform4fv
+static inline void ProgramUniform4fv(GLuint program1,GLint location1,GLsizei count1,const GLfloat * value1)
+{
+	 ProgramUniform4fvEXT(program1,location1,count1,value1);
 }
 #endif
 
@@ -18440,6 +18930,16 @@ static inline void ProgramUniform4iEXT(GLuint program1,GLint location1,GLint v01
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform4i
+#define GL_HPP_FUNDEF_ProgramUniform4i
+static inline void ProgramUniform4i(GLuint program1,GLint location1,GLint v01,GLint v11,GLint v21,GLint v31)
+{
+	 ProgramUniform4iEXT(program1,location1,v01,v11,v21,v31);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform4ivEXT
 #define GL_HPP_FUNDEF_ProgramUniform4ivEXT
 typedef void (*PFNGLPROGRAMUNIFORM4IVEXTPROC_HPP)(GLuint,GLint,GLsizei,const GLint *);
@@ -18447,6 +18947,16 @@ static inline void ProgramUniform4ivEXT(GLuint program1,GLint location1,GLsizei 
 {
 	static PFNGLPROGRAMUNIFORM4IVEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM4IVEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform4ivEXT","GL_EXT_direct_state_access"));
 	 fn(program1,location1,count1,value1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform4iv
+#define GL_HPP_FUNDEF_ProgramUniform4iv
+static inline void ProgramUniform4iv(GLuint program1,GLint location1,GLsizei count1,const GLint * value1)
+{
+	 ProgramUniform4ivEXT(program1,location1,count1,value1);
 }
 #endif
 
@@ -18460,6 +18970,16 @@ static inline void ProgramUniform4uiEXT(GLuint program1,GLint location1,GLuint v
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform4ui
+#define GL_HPP_FUNDEF_ProgramUniform4ui
+static inline void ProgramUniform4ui(GLuint program1,GLint location1,GLuint v01,GLuint v11,GLuint v21,GLuint v31)
+{
+	 ProgramUniform4uiEXT(program1,location1,v01,v11,v21,v31);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform4uivEXT
 #define GL_HPP_FUNDEF_ProgramUniform4uivEXT
 typedef void (*PFNGLPROGRAMUNIFORM4UIVEXTPROC_HPP)(GLuint,GLint,GLsizei,const GLuint *);
@@ -18467,6 +18987,16 @@ static inline void ProgramUniform4uivEXT(GLuint program1,GLint location1,GLsizei
 {
 	static PFNGLPROGRAMUNIFORM4UIVEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM4UIVEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform4uivEXT","GL_EXT_direct_state_access"));
 	 fn(program1,location1,count1,value1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform4uiv
+#define GL_HPP_FUNDEF_ProgramUniform4uiv
+static inline void ProgramUniform4uiv(GLuint program1,GLint location1,GLsizei count1,const GLuint * value1)
+{
+	 ProgramUniform4uivEXT(program1,location1,count1,value1);
 }
 #endif
 
@@ -18490,6 +19020,16 @@ static inline void ProgramUniformMatrix2fvEXT(GLuint program1,GLint location1,GL
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix2fv
+#define GL_HPP_FUNDEF_ProgramUniformMatrix2fv
+static inline void ProgramUniformMatrix2fv(GLuint program1,GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
+{
+	 ProgramUniformMatrix2fvEXT(program1,location1,count1,transpose1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix2x3dvEXT
 #define GL_HPP_FUNDEF_ProgramUniformMatrix2x3dvEXT
 typedef void (*PFNGLPROGRAMUNIFORMMATRIX2X3DVEXTPROC_HPP)(GLuint,GLint,GLsizei,GLboolean,const GLdouble *);
@@ -18507,6 +19047,16 @@ static inline void ProgramUniformMatrix2x3fvEXT(GLuint program1,GLint location1,
 {
 	static PFNGLPROGRAMUNIFORMMATRIX2X3FVEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORMMATRIX2X3FVEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniformMatrix2x3fvEXT","GL_EXT_direct_state_access"));
 	 fn(program1,location1,count1,transpose1,value1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix2x3fv
+#define GL_HPP_FUNDEF_ProgramUniformMatrix2x3fv
+static inline void ProgramUniformMatrix2x3fv(GLuint program1,GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
+{
+	 ProgramUniformMatrix2x3fvEXT(program1,location1,count1,transpose1,value1);
 }
 #endif
 
@@ -18530,6 +19080,16 @@ static inline void ProgramUniformMatrix2x4fvEXT(GLuint program1,GLint location1,
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix2x4fv
+#define GL_HPP_FUNDEF_ProgramUniformMatrix2x4fv
+static inline void ProgramUniformMatrix2x4fv(GLuint program1,GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
+{
+	 ProgramUniformMatrix2x4fvEXT(program1,location1,count1,transpose1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix3dvEXT
 #define GL_HPP_FUNDEF_ProgramUniformMatrix3dvEXT
 typedef void (*PFNGLPROGRAMUNIFORMMATRIX3DVEXTPROC_HPP)(GLuint,GLint,GLsizei,GLboolean,const GLdouble *);
@@ -18547,6 +19107,16 @@ static inline void ProgramUniformMatrix3fvEXT(GLuint program1,GLint location1,GL
 {
 	static PFNGLPROGRAMUNIFORMMATRIX3FVEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORMMATRIX3FVEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniformMatrix3fvEXT","GL_EXT_direct_state_access"));
 	 fn(program1,location1,count1,transpose1,value1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix3fv
+#define GL_HPP_FUNDEF_ProgramUniformMatrix3fv
+static inline void ProgramUniformMatrix3fv(GLuint program1,GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
+{
+	 ProgramUniformMatrix3fvEXT(program1,location1,count1,transpose1,value1);
 }
 #endif
 
@@ -18570,6 +19140,16 @@ static inline void ProgramUniformMatrix3x2fvEXT(GLuint program1,GLint location1,
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix3x2fv
+#define GL_HPP_FUNDEF_ProgramUniformMatrix3x2fv
+static inline void ProgramUniformMatrix3x2fv(GLuint program1,GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
+{
+	 ProgramUniformMatrix3x2fvEXT(program1,location1,count1,transpose1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix3x4dvEXT
 #define GL_HPP_FUNDEF_ProgramUniformMatrix3x4dvEXT
 typedef void (*PFNGLPROGRAMUNIFORMMATRIX3X4DVEXTPROC_HPP)(GLuint,GLint,GLsizei,GLboolean,const GLdouble *);
@@ -18587,6 +19167,16 @@ static inline void ProgramUniformMatrix3x4fvEXT(GLuint program1,GLint location1,
 {
 	static PFNGLPROGRAMUNIFORMMATRIX3X4FVEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORMMATRIX3X4FVEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniformMatrix3x4fvEXT","GL_EXT_direct_state_access"));
 	 fn(program1,location1,count1,transpose1,value1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix3x4fv
+#define GL_HPP_FUNDEF_ProgramUniformMatrix3x4fv
+static inline void ProgramUniformMatrix3x4fv(GLuint program1,GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
+{
+	 ProgramUniformMatrix3x4fvEXT(program1,location1,count1,transpose1,value1);
 }
 #endif
 
@@ -18610,6 +19200,16 @@ static inline void ProgramUniformMatrix4fvEXT(GLuint program1,GLint location1,GL
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix4fv
+#define GL_HPP_FUNDEF_ProgramUniformMatrix4fv
+static inline void ProgramUniformMatrix4fv(GLuint program1,GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
+{
+	 ProgramUniformMatrix4fvEXT(program1,location1,count1,transpose1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix4x2dvEXT
 #define GL_HPP_FUNDEF_ProgramUniformMatrix4x2dvEXT
 typedef void (*PFNGLPROGRAMUNIFORMMATRIX4X2DVEXTPROC_HPP)(GLuint,GLint,GLsizei,GLboolean,const GLdouble *);
@@ -18630,6 +19230,16 @@ static inline void ProgramUniformMatrix4x2fvEXT(GLuint program1,GLint location1,
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix4x2fv
+#define GL_HPP_FUNDEF_ProgramUniformMatrix4x2fv
+static inline void ProgramUniformMatrix4x2fv(GLuint program1,GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
+{
+	 ProgramUniformMatrix4x2fvEXT(program1,location1,count1,transpose1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix4x3dvEXT
 #define GL_HPP_FUNDEF_ProgramUniformMatrix4x3dvEXT
 typedef void (*PFNGLPROGRAMUNIFORMMATRIX4X3DVEXTPROC_HPP)(GLuint,GLint,GLsizei,GLboolean,const GLdouble *);
@@ -18647,6 +19257,16 @@ static inline void ProgramUniformMatrix4x3fvEXT(GLuint program1,GLint location1,
 {
 	static PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniformMatrix4x3fvEXT","GL_EXT_direct_state_access"));
 	 fn(program1,location1,count1,transpose1,value1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix4x3fv
+#define GL_HPP_FUNDEF_ProgramUniformMatrix4x3fv
+static inline void ProgramUniformMatrix4x3fv(GLuint program1,GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
+{
+	 ProgramUniformMatrix4x3fvEXT(program1,location1,count1,transpose1,value1);
 }
 #endif
 
@@ -19088,6 +19708,16 @@ static inline void ColorMaskIndexedEXT(GLuint index1,GLboolean r1,GLboolean g1,G
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ColorMaski
+#define GL_HPP_FUNDEF_ColorMaski
+static inline void ColorMaski(GLuint index1,GLboolean r1,GLboolean g1,GLboolean b1,GLboolean a1)
+{
+	 ColorMaskIndexedEXT(index1,r1,g1,b1,a1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_DisableIndexedEXT
 #define GL_HPP_FUNDEF_DisableIndexedEXT
 typedef void (*PFNGLDISABLEINDEXEDEXTPROC_HPP)(GLenum,GLuint);
@@ -19095,6 +19725,16 @@ static inline void DisableIndexedEXT(GLenum target1,GLuint index1)
 {
 	static PFNGLDISABLEINDEXEDEXTPROC_HPP fn=reinterpret_cast<PFNGLDISABLEINDEXEDEXTPROC_HPP>(_impl::_get_proc_address("glDisableIndexedEXT","GL_EXT_draw_buffers2"));
 	 fn(target1,index1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_Disablei
+#define GL_HPP_FUNDEF_Disablei
+static inline void Disablei(GLenum target1,GLuint index1)
+{
+	 DisableIndexedEXT(target1,index1);
 }
 #endif
 
@@ -19108,6 +19748,16 @@ static inline void EnableIndexedEXT(GLenum target1,GLuint index1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_Enablei
+#define GL_HPP_FUNDEF_Enablei
+static inline void Enablei(GLenum target1,GLuint index1)
+{
+	 EnableIndexedEXT(target1,index1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_GetBooleanIndexedvEXT
 #define GL_HPP_FUNDEF_GetBooleanIndexedvEXT
 typedef void (*PFNGLGETBOOLEANINDEXEDVEXTPROC_HPP)(GLenum,GLuint,GLboolean *);
@@ -19115,6 +19765,16 @@ static inline void GetBooleanIndexedvEXT(GLenum target1,GLuint index1,GLboolean 
 {
 	static PFNGLGETBOOLEANINDEXEDVEXTPROC_HPP fn=reinterpret_cast<PFNGLGETBOOLEANINDEXEDVEXTPROC_HPP>(_impl::_get_proc_address("glGetBooleanIndexedvEXT","GL_EXT_draw_buffers2"));
 	 fn(target1,index1,data1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetBooleani_v
+#define GL_HPP_FUNDEF_GetBooleani_v
+static inline void GetBooleani_v(GLenum target1,GLuint index1,GLboolean * data1)
+{
+	 GetBooleanIndexedvEXT(target1,index1,data1);
 }
 #endif
 
@@ -19128,6 +19788,16 @@ static inline void GetIntegerIndexedvEXT(GLenum target1,GLuint index1,GLint * da
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetIntegeri_v
+#define GL_HPP_FUNDEF_GetIntegeri_v
+static inline void GetIntegeri_v(GLenum target1,GLuint index1,GLint * data1)
+{
+	 GetIntegerIndexedvEXT(target1,index1,data1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_IsEnabledIndexedEXT
 #define GL_HPP_FUNDEF_IsEnabledIndexedEXT
 typedef GLboolean (*PFNGLISENABLEDINDEXEDEXTPROC_HPP)(GLenum,GLuint);
@@ -19135,6 +19805,16 @@ static inline GLboolean IsEnabledIndexedEXT(GLenum target1,GLuint index1)
 {
 	static PFNGLISENABLEDINDEXEDEXTPROC_HPP fn=reinterpret_cast<PFNGLISENABLEDINDEXEDEXTPROC_HPP>(_impl::_get_proc_address("glIsEnabledIndexedEXT","GL_EXT_draw_buffers2"));
 	return fn(target1,index1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_IsEnabledi
+#define GL_HPP_FUNDEF_IsEnabledi
+static inline GLboolean IsEnabledi(GLenum target1,GLuint index1)
+{
+	return IsEnabledIndexedEXT(target1,index1);
 }
 #endif
 }
@@ -19156,6 +19836,16 @@ static inline void DrawArraysInstancedEXT(GLenum mode1,GLint start1,GLsizei coun
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_DrawArraysInstanced
+#define GL_HPP_FUNDEF_DrawArraysInstanced
+static inline void DrawArraysInstanced(GLenum mode1,GLint start1,GLsizei count1,GLsizei primcount1)
+{
+	 DrawArraysInstancedEXT(mode1,start1,count1,primcount1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_DrawElementsInstancedEXT
 #define GL_HPP_FUNDEF_DrawElementsInstancedEXT
 typedef void (*PFNGLDRAWELEMENTSINSTANCEDEXTPROC_HPP)(GLenum,GLsizei,GLenum,const void *,GLsizei);
@@ -19163,6 +19853,16 @@ static inline void DrawElementsInstancedEXT(GLenum mode1,GLsizei count1,GLenum t
 {
 	static PFNGLDRAWELEMENTSINSTANCEDEXTPROC_HPP fn=reinterpret_cast<PFNGLDRAWELEMENTSINSTANCEDEXTPROC_HPP>(_impl::_get_proc_address("glDrawElementsInstancedEXT","GL_EXT_draw_instanced"));
 	 fn(mode1,count1,type1,indices1,primcount1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_DrawElementsInstanced
+#define GL_HPP_FUNDEF_DrawElementsInstanced
+static inline void DrawElementsInstanced(GLenum mode1,GLsizei count1,GLenum type1,const void * indices1,GLsizei primcount1)
+{
+	 DrawElementsInstancedEXT(mode1,count1,type1,indices1,primcount1);
 }
 #endif
 }
@@ -19187,6 +19887,16 @@ static inline void DrawRangeElementsEXT(GLenum mode1,GLuint start1,GLuint end1,G
 {
 	static PFNGLDRAWRANGEELEMENTSEXTPROC_HPP fn=reinterpret_cast<PFNGLDRAWRANGEELEMENTSEXTPROC_HPP>(_impl::_get_proc_address("glDrawRangeElementsEXT","GL_EXT_draw_range_elements"));
 	 fn(mode1,start1,end1,count1,type1,indices1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_DrawRangeElements
+#define GL_HPP_FUNDEF_DrawRangeElements
+static inline void DrawRangeElements(GLenum mode1,GLuint start1,GLuint end1,GLsizei count1,GLenum type1,const void * indices1)
+{
+	 DrawRangeElementsEXT(mode1,start1,end1,count1,type1,indices1);
 }
 #endif
 }
@@ -19232,6 +19942,16 @@ static inline void FogCoordPointerEXT(GLenum type1,GLsizei stride1,const void * 
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_FogCoordPointer
+#define GL_HPP_FUNDEF_FogCoordPointer
+static inline void FogCoordPointer(GLenum type1,GLsizei stride1,const void * pointer1)
+{
+	 FogCoordPointerEXT(type1,stride1,pointer1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_FogCoorddEXT
 #define GL_HPP_FUNDEF_FogCoorddEXT
 typedef void (*PFNGLFOGCOORDDEXTPROC_HPP)(GLdouble);
@@ -19239,6 +19959,16 @@ static inline void FogCoorddEXT(GLdouble coord1)
 {
 	static PFNGLFOGCOORDDEXTPROC_HPP fn=reinterpret_cast<PFNGLFOGCOORDDEXTPROC_HPP>(_impl::_get_proc_address("glFogCoorddEXT","GL_EXT_fog_coord"));
 	 fn(coord1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_FogCoordd
+#define GL_HPP_FUNDEF_FogCoordd
+static inline void FogCoordd(GLdouble coord1)
+{
+	 FogCoorddEXT(coord1);
 }
 #endif
 
@@ -19252,6 +19982,16 @@ static inline void FogCoorddvEXT(const GLdouble * coord1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_FogCoorddv
+#define GL_HPP_FUNDEF_FogCoorddv
+static inline void FogCoorddv(const GLdouble * coord1)
+{
+	 FogCoorddvEXT(coord1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_FogCoordfEXT
 #define GL_HPP_FUNDEF_FogCoordfEXT
 typedef void (*PFNGLFOGCOORDFEXTPROC_HPP)(GLfloat);
@@ -19262,6 +20002,16 @@ static inline void FogCoordfEXT(GLfloat coord1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_FogCoordf
+#define GL_HPP_FUNDEF_FogCoordf
+static inline void FogCoordf(GLfloat coord1)
+{
+	 FogCoordfEXT(coord1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_FogCoordfvEXT
 #define GL_HPP_FUNDEF_FogCoordfvEXT
 typedef void (*PFNGLFOGCOORDFVEXTPROC_HPP)(const GLfloat *);
@@ -19269,6 +20019,16 @@ static inline void FogCoordfvEXT(const GLfloat * coord1)
 {
 	static PFNGLFOGCOORDFVEXTPROC_HPP fn=reinterpret_cast<PFNGLFOGCOORDFVEXTPROC_HPP>(_impl::_get_proc_address("glFogCoordfvEXT","GL_EXT_fog_coord"));
 	 fn(coord1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_FogCoordfv
+#define GL_HPP_FUNDEF_FogCoordfv
+static inline void FogCoordfv(const GLfloat * coord1)
+{
+	 FogCoordfvEXT(coord1);
 }
 #endif
 }
@@ -19301,6 +20061,16 @@ static inline void BlitFramebufferEXT(GLint srcX01,GLint srcY01,GLint srcX11,GLi
 	 fn(srcX01,srcY01,srcX11,srcY11,dstX01,dstY01,dstX11,dstY11,mask1,filter1);
 }
 #endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_BlitFramebuffer
+#define GL_HPP_FUNDEF_BlitFramebuffer
+static inline void BlitFramebuffer(GLint srcX01,GLint srcY01,GLint srcX11,GLint srcY11,GLint dstX01,GLint dstY01,GLint dstX11,GLint dstY11,GLbitfield mask1,GLenum filter1)
+{
+	 BlitFramebufferEXT(srcX01,srcY01,srcX11,srcY11,dstX01,dstY01,dstX11,dstY11,mask1,filter1);
+}
+#endif
 }
 #endif
 
@@ -19326,6 +20096,16 @@ static inline void RenderbufferStorageMultisampleEXT(GLenum target1,GLsizei samp
 {
 	static PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC_HPP fn=reinterpret_cast<PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC_HPP>(_impl::_get_proc_address("glRenderbufferStorageMultisampleEXT","GL_EXT_framebuffer_multisample"));
 	 fn(target1,samples1,internalformat1,width1,height1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_RenderbufferStorageMultisample
+#define GL_HPP_FUNDEF_RenderbufferStorageMultisample
+static inline void RenderbufferStorageMultisample(GLenum target1,GLsizei samples1,GLenum internalformat1,GLsizei width1,GLsizei height1)
+{
+	 RenderbufferStorageMultisampleEXT(target1,samples1,internalformat1,width1,height1);
 }
 #endif
 }
@@ -19534,6 +20314,16 @@ static inline GLenum CheckFramebufferStatusEXT(GLenum target1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_CheckFramebufferStatus
+#define GL_HPP_FUNDEF_CheckFramebufferStatus
+static inline GLenum CheckFramebufferStatus(GLenum target1)
+{
+	return CheckFramebufferStatusEXT(target1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_DeleteFramebuffersEXT
 #define GL_HPP_FUNDEF_DeleteFramebuffersEXT
 typedef void (*PFNGLDELETEFRAMEBUFFERSEXTPROC_HPP)(GLsizei,const GLuint *);
@@ -19541,6 +20331,16 @@ static inline void DeleteFramebuffersEXT(GLsizei n1,const GLuint * framebuffers1
 {
 	static PFNGLDELETEFRAMEBUFFERSEXTPROC_HPP fn=reinterpret_cast<PFNGLDELETEFRAMEBUFFERSEXTPROC_HPP>(_impl::_get_proc_address("glDeleteFramebuffersEXT","GL_EXT_framebuffer_object"));
 	 fn(n1,framebuffers1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_DeleteFramebuffers
+#define GL_HPP_FUNDEF_DeleteFramebuffers
+static inline void DeleteFramebuffers(GLsizei n1,const GLuint * framebuffers1)
+{
+	 DeleteFramebuffersEXT(n1,framebuffers1);
 }
 #endif
 
@@ -19554,6 +20354,16 @@ static inline void DeleteRenderbuffersEXT(GLsizei n1,const GLuint * renderbuffer
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_DeleteRenderbuffers
+#define GL_HPP_FUNDEF_DeleteRenderbuffers
+static inline void DeleteRenderbuffers(GLsizei n1,const GLuint * renderbuffers1)
+{
+	 DeleteRenderbuffersEXT(n1,renderbuffers1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_FramebufferRenderbufferEXT
 #define GL_HPP_FUNDEF_FramebufferRenderbufferEXT
 typedef void (*PFNGLFRAMEBUFFERRENDERBUFFEREXTPROC_HPP)(GLenum,GLenum,GLenum,GLuint);
@@ -19561,6 +20371,16 @@ static inline void FramebufferRenderbufferEXT(GLenum target1,GLenum attachment1,
 {
 	static PFNGLFRAMEBUFFERRENDERBUFFEREXTPROC_HPP fn=reinterpret_cast<PFNGLFRAMEBUFFERRENDERBUFFEREXTPROC_HPP>(_impl::_get_proc_address("glFramebufferRenderbufferEXT","GL_EXT_framebuffer_object"));
 	 fn(target1,attachment1,renderbuffertarget1,renderbuffer1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_FramebufferRenderbuffer
+#define GL_HPP_FUNDEF_FramebufferRenderbuffer
+static inline void FramebufferRenderbuffer(GLenum target1,GLenum attachment1,GLenum renderbuffertarget1,GLuint renderbuffer1)
+{
+	 FramebufferRenderbufferEXT(target1,attachment1,renderbuffertarget1,renderbuffer1);
 }
 #endif
 
@@ -19574,6 +20394,16 @@ static inline void FramebufferTexture1DEXT(GLenum target1,GLenum attachment1,GLe
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_FramebufferTexture1D
+#define GL_HPP_FUNDEF_FramebufferTexture1D
+static inline void FramebufferTexture1D(GLenum target1,GLenum attachment1,GLenum textarget1,GLuint texture1,GLint level1)
+{
+	 FramebufferTexture1DEXT(target1,attachment1,textarget1,texture1,level1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_FramebufferTexture2DEXT
 #define GL_HPP_FUNDEF_FramebufferTexture2DEXT
 typedef void (*PFNGLFRAMEBUFFERTEXTURE2DEXTPROC_HPP)(GLenum,GLenum,GLenum,GLuint,GLint);
@@ -19581,6 +20411,16 @@ static inline void FramebufferTexture2DEXT(GLenum target1,GLenum attachment1,GLe
 {
 	static PFNGLFRAMEBUFFERTEXTURE2DEXTPROC_HPP fn=reinterpret_cast<PFNGLFRAMEBUFFERTEXTURE2DEXTPROC_HPP>(_impl::_get_proc_address("glFramebufferTexture2DEXT","GL_EXT_framebuffer_object"));
 	 fn(target1,attachment1,textarget1,texture1,level1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_FramebufferTexture2D
+#define GL_HPP_FUNDEF_FramebufferTexture2D
+static inline void FramebufferTexture2D(GLenum target1,GLenum attachment1,GLenum textarget1,GLuint texture1,GLint level1)
+{
+	 FramebufferTexture2DEXT(target1,attachment1,textarget1,texture1,level1);
 }
 #endif
 
@@ -19594,6 +20434,16 @@ static inline void FramebufferTexture3DEXT(GLenum target1,GLenum attachment1,GLe
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_FramebufferTexture3D
+#define GL_HPP_FUNDEF_FramebufferTexture3D
+static inline void FramebufferTexture3D(GLenum target1,GLenum attachment1,GLenum textarget1,GLuint texture1,GLint level1,GLint zoffset1)
+{
+	 FramebufferTexture3DEXT(target1,attachment1,textarget1,texture1,level1,zoffset1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_GenFramebuffersEXT
 #define GL_HPP_FUNDEF_GenFramebuffersEXT
 typedef void (*PFNGLGENFRAMEBUFFERSEXTPROC_HPP)(GLsizei,GLuint *);
@@ -19601,6 +20451,16 @@ static inline void GenFramebuffersEXT(GLsizei n1,GLuint * framebuffers1)
 {
 	static PFNGLGENFRAMEBUFFERSEXTPROC_HPP fn=reinterpret_cast<PFNGLGENFRAMEBUFFERSEXTPROC_HPP>(_impl::_get_proc_address("glGenFramebuffersEXT","GL_EXT_framebuffer_object"));
 	 fn(n1,framebuffers1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GenFramebuffers
+#define GL_HPP_FUNDEF_GenFramebuffers
+static inline void GenFramebuffers(GLsizei n1,GLuint * framebuffers1)
+{
+	 GenFramebuffersEXT(n1,framebuffers1);
 }
 #endif
 
@@ -19614,6 +20474,16 @@ static inline void GenRenderbuffersEXT(GLsizei n1,GLuint * renderbuffers1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GenRenderbuffers
+#define GL_HPP_FUNDEF_GenRenderbuffers
+static inline void GenRenderbuffers(GLsizei n1,GLuint * renderbuffers1)
+{
+	 GenRenderbuffersEXT(n1,renderbuffers1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_GenerateMipmapEXT
 #define GL_HPP_FUNDEF_GenerateMipmapEXT
 typedef void (*PFNGLGENERATEMIPMAPEXTPROC_HPP)(GLenum);
@@ -19621,6 +20491,16 @@ static inline void GenerateMipmapEXT(GLenum target1)
 {
 	static PFNGLGENERATEMIPMAPEXTPROC_HPP fn=reinterpret_cast<PFNGLGENERATEMIPMAPEXTPROC_HPP>(_impl::_get_proc_address("glGenerateMipmapEXT","GL_EXT_framebuffer_object"));
 	 fn(target1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GenerateMipmap
+#define GL_HPP_FUNDEF_GenerateMipmap
+static inline void GenerateMipmap(GLenum target1)
+{
+	 GenerateMipmapEXT(target1);
 }
 #endif
 
@@ -19634,6 +20514,16 @@ static inline void GetFramebufferAttachmentParameterivEXT(GLenum target1,GLenum 
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetFramebufferAttachmentParameteriv
+#define GL_HPP_FUNDEF_GetFramebufferAttachmentParameteriv
+static inline void GetFramebufferAttachmentParameteriv(GLenum target1,GLenum attachment1,GLenum pname1,GLint * params1)
+{
+	 GetFramebufferAttachmentParameterivEXT(target1,attachment1,pname1,params1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_GetRenderbufferParameterivEXT
 #define GL_HPP_FUNDEF_GetRenderbufferParameterivEXT
 typedef void (*PFNGLGETRENDERBUFFERPARAMETERIVEXTPROC_HPP)(GLenum,GLenum,GLint *);
@@ -19641,6 +20531,16 @@ static inline void GetRenderbufferParameterivEXT(GLenum target1,GLenum pname1,GL
 {
 	static PFNGLGETRENDERBUFFERPARAMETERIVEXTPROC_HPP fn=reinterpret_cast<PFNGLGETRENDERBUFFERPARAMETERIVEXTPROC_HPP>(_impl::_get_proc_address("glGetRenderbufferParameterivEXT","GL_EXT_framebuffer_object"));
 	 fn(target1,pname1,params1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetRenderbufferParameteriv
+#define GL_HPP_FUNDEF_GetRenderbufferParameteriv
+static inline void GetRenderbufferParameteriv(GLenum target1,GLenum pname1,GLint * params1)
+{
+	 GetRenderbufferParameterivEXT(target1,pname1,params1);
 }
 #endif
 
@@ -19654,6 +20554,16 @@ static inline GLboolean IsFramebufferEXT(GLuint framebuffer1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_IsFramebuffer
+#define GL_HPP_FUNDEF_IsFramebuffer
+static inline GLboolean IsFramebuffer(GLuint framebuffer1)
+{
+	return IsFramebufferEXT(framebuffer1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_IsRenderbufferEXT
 #define GL_HPP_FUNDEF_IsRenderbufferEXT
 typedef GLboolean (*PFNGLISRENDERBUFFEREXTPROC_HPP)(GLuint);
@@ -19664,6 +20574,16 @@ static inline GLboolean IsRenderbufferEXT(GLuint renderbuffer1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_IsRenderbuffer
+#define GL_HPP_FUNDEF_IsRenderbuffer
+static inline GLboolean IsRenderbuffer(GLuint renderbuffer1)
+{
+	return IsRenderbufferEXT(renderbuffer1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_RenderbufferStorageEXT
 #define GL_HPP_FUNDEF_RenderbufferStorageEXT
 typedef void (*PFNGLRENDERBUFFERSTORAGEEXTPROC_HPP)(GLenum,GLenum,GLsizei,GLsizei);
@@ -19671,6 +20591,16 @@ static inline void RenderbufferStorageEXT(GLenum target1,GLenum internalformat1,
 {
 	static PFNGLRENDERBUFFERSTORAGEEXTPROC_HPP fn=reinterpret_cast<PFNGLRENDERBUFFERSTORAGEEXTPROC_HPP>(_impl::_get_proc_address("glRenderbufferStorageEXT","GL_EXT_framebuffer_object"));
 	 fn(target1,internalformat1,width1,height1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_RenderbufferStorage
+#define GL_HPP_FUNDEF_RenderbufferStorage
+static inline void RenderbufferStorage(GLenum target1,GLenum internalformat1,GLsizei width1,GLsizei height1)
+{
+	 RenderbufferStorageEXT(target1,internalformat1,width1,height1);
 }
 #endif
 }
@@ -19763,6 +20693,16 @@ static inline void ProgramParameteriEXT(GLuint program1,GLenum pname1,GLint valu
 {
 	static PFNGLPROGRAMPARAMETERIEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMPARAMETERIEXTPROC_HPP>(_impl::_get_proc_address("glProgramParameteriEXT","GL_EXT_geometry_shader4"));
 	 fn(program1,pname1,value1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramParameteri
+#define GL_HPP_FUNDEF_ProgramParameteri
+static inline void ProgramParameteri(GLuint program1,GLenum pname1,GLint value1)
+{
+	 ProgramParameteriEXT(program1,pname1,value1);
 }
 #endif
 }
@@ -19896,6 +20836,16 @@ static inline void BindFragDataLocationEXT(GLuint program1,GLuint color1,const G
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_BindFragDataLocation
+#define GL_HPP_FUNDEF_BindFragDataLocation
+static inline void BindFragDataLocation(GLuint program1,GLuint color1,const GLchar * name1)
+{
+	 BindFragDataLocationEXT(program1,color1,name1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_GetFragDataLocationEXT
 #define GL_HPP_FUNDEF_GetFragDataLocationEXT
 typedef GLint (*PFNGLGETFRAGDATALOCATIONEXTPROC_HPP)(GLuint,const GLchar *);
@@ -19903,6 +20853,16 @@ static inline GLint GetFragDataLocationEXT(GLuint program1,const GLchar * name1)
 {
 	static PFNGLGETFRAGDATALOCATIONEXTPROC_HPP fn=reinterpret_cast<PFNGLGETFRAGDATALOCATIONEXTPROC_HPP>(_impl::_get_proc_address("glGetFragDataLocationEXT","GL_EXT_gpu_shader4"));
 	return fn(program1,name1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetFragDataLocation
+#define GL_HPP_FUNDEF_GetFragDataLocation
+static inline GLint GetFragDataLocation(GLuint program1,const GLchar * name1)
+{
+	return GetFragDataLocationEXT(program1,name1);
 }
 #endif
 
@@ -19916,6 +20876,16 @@ static inline void GetUniformuivEXT(GLuint program1,GLint location1,GLuint * par
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetUniformuiv
+#define GL_HPP_FUNDEF_GetUniformuiv
+static inline void GetUniformuiv(GLuint program1,GLint location1,GLuint * params1)
+{
+	 GetUniformuivEXT(program1,location1,params1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_Uniform1uiEXT
 #define GL_HPP_FUNDEF_Uniform1uiEXT
 typedef void (*PFNGLUNIFORM1UIEXTPROC_HPP)(GLint,GLuint);
@@ -19923,6 +20893,16 @@ static inline void Uniform1uiEXT(GLint location1,GLuint v01)
 {
 	static PFNGLUNIFORM1UIEXTPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM1UIEXTPROC_HPP>(_impl::_get_proc_address("glUniform1uiEXT","GL_EXT_gpu_shader4"));
 	 fn(location1,v01);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_Uniform1ui
+#define GL_HPP_FUNDEF_Uniform1ui
+static inline void Uniform1ui(GLint location1,GLuint v01)
+{
+	 Uniform1uiEXT(location1,v01);
 }
 #endif
 
@@ -19936,6 +20916,16 @@ static inline void Uniform1uivEXT(GLint location1,GLsizei count1,const GLuint * 
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_Uniform1uiv
+#define GL_HPP_FUNDEF_Uniform1uiv
+static inline void Uniform1uiv(GLint location1,GLsizei count1,const GLuint * value1)
+{
+	 Uniform1uivEXT(location1,count1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_Uniform2uiEXT
 #define GL_HPP_FUNDEF_Uniform2uiEXT
 typedef void (*PFNGLUNIFORM2UIEXTPROC_HPP)(GLint,GLuint,GLuint);
@@ -19943,6 +20933,16 @@ static inline void Uniform2uiEXT(GLint location1,GLuint v01,GLuint v11)
 {
 	static PFNGLUNIFORM2UIEXTPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM2UIEXTPROC_HPP>(_impl::_get_proc_address("glUniform2uiEXT","GL_EXT_gpu_shader4"));
 	 fn(location1,v01,v11);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_Uniform2ui
+#define GL_HPP_FUNDEF_Uniform2ui
+static inline void Uniform2ui(GLint location1,GLuint v01,GLuint v11)
+{
+	 Uniform2uiEXT(location1,v01,v11);
 }
 #endif
 
@@ -19956,6 +20956,16 @@ static inline void Uniform2uivEXT(GLint location1,GLsizei count1,const GLuint * 
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_Uniform2uiv
+#define GL_HPP_FUNDEF_Uniform2uiv
+static inline void Uniform2uiv(GLint location1,GLsizei count1,const GLuint * value1)
+{
+	 Uniform2uivEXT(location1,count1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_Uniform3uiEXT
 #define GL_HPP_FUNDEF_Uniform3uiEXT
 typedef void (*PFNGLUNIFORM3UIEXTPROC_HPP)(GLint,GLuint,GLuint,GLuint);
@@ -19963,6 +20973,16 @@ static inline void Uniform3uiEXT(GLint location1,GLuint v01,GLuint v11,GLuint v2
 {
 	static PFNGLUNIFORM3UIEXTPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM3UIEXTPROC_HPP>(_impl::_get_proc_address("glUniform3uiEXT","GL_EXT_gpu_shader4"));
 	 fn(location1,v01,v11,v21);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_Uniform3ui
+#define GL_HPP_FUNDEF_Uniform3ui
+static inline void Uniform3ui(GLint location1,GLuint v01,GLuint v11,GLuint v21)
+{
+	 Uniform3uiEXT(location1,v01,v11,v21);
 }
 #endif
 
@@ -19976,6 +20996,16 @@ static inline void Uniform3uivEXT(GLint location1,GLsizei count1,const GLuint * 
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_Uniform3uiv
+#define GL_HPP_FUNDEF_Uniform3uiv
+static inline void Uniform3uiv(GLint location1,GLsizei count1,const GLuint * value1)
+{
+	 Uniform3uivEXT(location1,count1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_Uniform4uiEXT
 #define GL_HPP_FUNDEF_Uniform4uiEXT
 typedef void (*PFNGLUNIFORM4UIEXTPROC_HPP)(GLint,GLuint,GLuint,GLuint,GLuint);
@@ -19986,6 +21016,16 @@ static inline void Uniform4uiEXT(GLint location1,GLuint v01,GLuint v11,GLuint v2
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_Uniform4ui
+#define GL_HPP_FUNDEF_Uniform4ui
+static inline void Uniform4ui(GLint location1,GLuint v01,GLuint v11,GLuint v21,GLuint v31)
+{
+	 Uniform4uiEXT(location1,v01,v11,v21,v31);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_Uniform4uivEXT
 #define GL_HPP_FUNDEF_Uniform4uivEXT
 typedef void (*PFNGLUNIFORM4UIVEXTPROC_HPP)(GLint,GLsizei,const GLuint *);
@@ -19993,6 +21033,16 @@ static inline void Uniform4uivEXT(GLint location1,GLsizei count1,const GLuint * 
 {
 	static PFNGLUNIFORM4UIVEXTPROC_HPP fn=reinterpret_cast<PFNGLUNIFORM4UIVEXTPROC_HPP>(_impl::_get_proc_address("glUniform4uivEXT","GL_EXT_gpu_shader4"));
 	 fn(location1,count1,value1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_Uniform4uiv
+#define GL_HPP_FUNDEF_Uniform4uiv
+static inline void Uniform4uiv(GLint location1,GLsizei count1,const GLuint * value1)
+{
+	 Uniform4uivEXT(location1,count1,value1);
 }
 #endif
 }
@@ -20116,6 +21166,16 @@ static inline void HistogramEXT(GLenum target1,GLsizei width1,GLenum internalfor
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_Histogram
+#define GL_HPP_FUNDEF_Histogram
+static inline void Histogram(GLenum target1,GLsizei width1,GLenum internalformat1,GLboolean sink1)
+{
+	 HistogramEXT(target1,width1,internalformat1,sink1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_MinmaxEXT
 #define GL_HPP_FUNDEF_MinmaxEXT
 typedef void (*PFNGLMINMAXEXTPROC_HPP)(GLenum,GLenum,GLboolean);
@@ -20123,6 +21183,16 @@ static inline void MinmaxEXT(GLenum target1,GLenum internalformat1,GLboolean sin
 {
 	static PFNGLMINMAXEXTPROC_HPP fn=reinterpret_cast<PFNGLMINMAXEXTPROC_HPP>(_impl::_get_proc_address("glMinmaxEXT","GL_EXT_histogram"));
 	 fn(target1,internalformat1,sink1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_Minmax
+#define GL_HPP_FUNDEF_Minmax
+static inline void Minmax(GLenum target1,GLenum internalformat1,GLboolean sink1)
+{
+	 MinmaxEXT(target1,internalformat1,sink1);
 }
 #endif
 
@@ -20136,6 +21206,16 @@ static inline void ResetHistogramEXT(GLenum target1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ResetHistogram
+#define GL_HPP_FUNDEF_ResetHistogram
+static inline void ResetHistogram(GLenum target1)
+{
+	 ResetHistogramEXT(target1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ResetMinmaxEXT
 #define GL_HPP_FUNDEF_ResetMinmaxEXT
 typedef void (*PFNGLRESETMINMAXEXTPROC_HPP)(GLenum);
@@ -20143,6 +21223,16 @@ static inline void ResetMinmaxEXT(GLenum target1)
 {
 	static PFNGLRESETMINMAXEXTPROC_HPP fn=reinterpret_cast<PFNGLRESETMINMAXEXTPROC_HPP>(_impl::_get_proc_address("glResetMinmaxEXT","GL_EXT_histogram"));
 	 fn(target1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ResetMinmax
+#define GL_HPP_FUNDEF_ResetMinmax
+static inline void ResetMinmax(GLenum target1)
+{
+	 ResetMinmaxEXT(target1);
 }
 #endif
 }
@@ -20334,6 +21424,16 @@ static inline void MultiDrawArraysEXT(GLenum mode1,const GLint * first1,const GL
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_MultiDrawArrays
+#define GL_HPP_FUNDEF_MultiDrawArrays
+static inline void MultiDrawArrays(GLenum mode1,const GLint * first1,const GLsizei * count1,GLsizei primcount1)
+{
+	 MultiDrawArraysEXT(mode1,first1,count1,primcount1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_MultiDrawElementsEXT
 #define GL_HPP_FUNDEF_MultiDrawElementsEXT
 typedef void (*PFNGLMULTIDRAWELEMENTSEXTPROC_HPP)(GLenum,const GLsizei *,GLenum,const void *const*,GLsizei);
@@ -20341,6 +21441,16 @@ static inline void MultiDrawElementsEXT(GLenum mode1,const GLsizei * count1,GLen
 {
 	static PFNGLMULTIDRAWELEMENTSEXTPROC_HPP fn=reinterpret_cast<PFNGLMULTIDRAWELEMENTSEXTPROC_HPP>(_impl::_get_proc_address("glMultiDrawElementsEXT","GL_EXT_multi_draw_arrays"));
 	 fn(mode1,count1,type1,indices1,primcount1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_MultiDrawElements
+#define GL_HPP_FUNDEF_MultiDrawElements
+static inline void MultiDrawElements(GLenum mode1,const GLsizei * count1,GLenum type1,const void *const* indices1,GLsizei primcount1)
+{
+	 MultiDrawElementsEXT(mode1,count1,type1,indices1,primcount1);
 }
 #endif
 }
@@ -20522,6 +21632,16 @@ static inline void ColorTableEXT(GLenum target1,GLenum internalFormat1,GLsizei w
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ColorTable
+#define GL_HPP_FUNDEF_ColorTable
+static inline void ColorTable(GLenum target1,GLenum internalFormat1,GLsizei width1,GLenum format1,GLenum type1,const void * table1)
+{
+	 ColorTableEXT(target1,internalFormat1,width1,format1,type1,table1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_GetColorTableEXT
 #define GL_HPP_FUNDEF_GetColorTableEXT
 typedef void (*PFNGLGETCOLORTABLEEXTPROC_HPP)(GLenum,GLenum,GLenum,void *);
@@ -20529,6 +21649,16 @@ static inline void GetColorTableEXT(GLenum target1,GLenum format1,GLenum type1,v
 {
 	static PFNGLGETCOLORTABLEEXTPROC_HPP fn=reinterpret_cast<PFNGLGETCOLORTABLEEXTPROC_HPP>(_impl::_get_proc_address("glGetColorTableEXT","GL_EXT_paletted_texture"));
 	 fn(target1,format1,type1,data1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetColorTable
+#define GL_HPP_FUNDEF_GetColorTable
+static inline void GetColorTable(GLenum target1,GLenum format1,GLenum type1,void * data1)
+{
+	 GetColorTableEXT(target1,format1,type1,data1);
 }
 #endif
 
@@ -20542,6 +21672,16 @@ static inline void GetColorTableParameterfvEXT(GLenum target1,GLenum pname1,GLfl
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetColorTableParameterfv
+#define GL_HPP_FUNDEF_GetColorTableParameterfv
+static inline void GetColorTableParameterfv(GLenum target1,GLenum pname1,GLfloat * params1)
+{
+	 GetColorTableParameterfvEXT(target1,pname1,params1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_GetColorTableParameterivEXT
 #define GL_HPP_FUNDEF_GetColorTableParameterivEXT
 typedef void (*PFNGLGETCOLORTABLEPARAMETERIVEXTPROC_HPP)(GLenum,GLenum,GLint *);
@@ -20549,6 +21689,16 @@ static inline void GetColorTableParameterivEXT(GLenum target1,GLenum pname1,GLin
 {
 	static PFNGLGETCOLORTABLEPARAMETERIVEXTPROC_HPP fn=reinterpret_cast<PFNGLGETCOLORTABLEPARAMETERIVEXTPROC_HPP>(_impl::_get_proc_address("glGetColorTableParameterivEXT","GL_EXT_paletted_texture"));
 	 fn(target1,pname1,params1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetColorTableParameteriv
+#define GL_HPP_FUNDEF_GetColorTableParameteriv
+static inline void GetColorTableParameteriv(GLenum target1,GLenum pname1,GLint * params1)
+{
+	 GetColorTableParameterivEXT(target1,pname1,params1);
 }
 #endif
 }
@@ -20705,6 +21855,16 @@ static inline void PointParameterfEXT(GLenum pname1,GLfloat param1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_PointParameterf
+#define GL_HPP_FUNDEF_PointParameterf
+static inline void PointParameterf(GLenum pname1,GLfloat param1)
+{
+	 PointParameterfEXT(pname1,param1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_PointParameterfvEXT
 #define GL_HPP_FUNDEF_PointParameterfvEXT
 typedef void (*PFNGLPOINTPARAMETERFVEXTPROC_HPP)(GLenum,const GLfloat *);
@@ -20712,6 +21872,16 @@ static inline void PointParameterfvEXT(GLenum pname1,const GLfloat * params1)
 {
 	static PFNGLPOINTPARAMETERFVEXTPROC_HPP fn=reinterpret_cast<PFNGLPOINTPARAMETERFVEXTPROC_HPP>(_impl::_get_proc_address("glPointParameterfvEXT","GL_EXT_point_parameters"));
 	 fn(pname1,params1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_PointParameterfv
+#define GL_HPP_FUNDEF_PointParameterfv
+static inline void PointParameterfv(GLenum pname1,const GLfloat * params1)
+{
+	 PointParameterfvEXT(pname1,params1);
 }
 #endif
 }
@@ -20792,6 +21962,16 @@ static inline void ProvokingVertexEXT(GLenum mode1)
 	 fn(mode1);
 }
 #endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProvokingVertex
+#define GL_HPP_FUNDEF_ProvokingVertex
+static inline void ProvokingVertex(GLenum mode1)
+{
+	 ProvokingVertexEXT(mode1);
+}
+#endif
 }
 #endif
 
@@ -20843,6 +22023,16 @@ static inline void SecondaryColor3bEXT(GLbyte red1,GLbyte green1,GLbyte blue1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3b
+#define GL_HPP_FUNDEF_SecondaryColor3b
+static inline void SecondaryColor3b(GLbyte red1,GLbyte green1,GLbyte blue1)
+{
+	 SecondaryColor3bEXT(red1,green1,blue1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_SecondaryColor3bvEXT
 #define GL_HPP_FUNDEF_SecondaryColor3bvEXT
 typedef void (*PFNGLSECONDARYCOLOR3BVEXTPROC_HPP)(const GLbyte *);
@@ -20850,6 +22040,16 @@ static inline void SecondaryColor3bvEXT(const GLbyte * v1)
 {
 	static PFNGLSECONDARYCOLOR3BVEXTPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLOR3BVEXTPROC_HPP>(_impl::_get_proc_address("glSecondaryColor3bvEXT","GL_EXT_secondary_color"));
 	 fn(v1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3bv
+#define GL_HPP_FUNDEF_SecondaryColor3bv
+static inline void SecondaryColor3bv(const GLbyte * v1)
+{
+	 SecondaryColor3bvEXT(v1);
 }
 #endif
 
@@ -20863,6 +22063,16 @@ static inline void SecondaryColor3dEXT(GLdouble red1,GLdouble green1,GLdouble bl
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3d
+#define GL_HPP_FUNDEF_SecondaryColor3d
+static inline void SecondaryColor3d(GLdouble red1,GLdouble green1,GLdouble blue1)
+{
+	 SecondaryColor3dEXT(red1,green1,blue1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_SecondaryColor3dvEXT
 #define GL_HPP_FUNDEF_SecondaryColor3dvEXT
 typedef void (*PFNGLSECONDARYCOLOR3DVEXTPROC_HPP)(const GLdouble *);
@@ -20870,6 +22080,16 @@ static inline void SecondaryColor3dvEXT(const GLdouble * v1)
 {
 	static PFNGLSECONDARYCOLOR3DVEXTPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLOR3DVEXTPROC_HPP>(_impl::_get_proc_address("glSecondaryColor3dvEXT","GL_EXT_secondary_color"));
 	 fn(v1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3dv
+#define GL_HPP_FUNDEF_SecondaryColor3dv
+static inline void SecondaryColor3dv(const GLdouble * v1)
+{
+	 SecondaryColor3dvEXT(v1);
 }
 #endif
 
@@ -20883,6 +22103,16 @@ static inline void SecondaryColor3fEXT(GLfloat red1,GLfloat green1,GLfloat blue1
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3f
+#define GL_HPP_FUNDEF_SecondaryColor3f
+static inline void SecondaryColor3f(GLfloat red1,GLfloat green1,GLfloat blue1)
+{
+	 SecondaryColor3fEXT(red1,green1,blue1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_SecondaryColor3fvEXT
 #define GL_HPP_FUNDEF_SecondaryColor3fvEXT
 typedef void (*PFNGLSECONDARYCOLOR3FVEXTPROC_HPP)(const GLfloat *);
@@ -20890,6 +22120,16 @@ static inline void SecondaryColor3fvEXT(const GLfloat * v1)
 {
 	static PFNGLSECONDARYCOLOR3FVEXTPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLOR3FVEXTPROC_HPP>(_impl::_get_proc_address("glSecondaryColor3fvEXT","GL_EXT_secondary_color"));
 	 fn(v1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3fv
+#define GL_HPP_FUNDEF_SecondaryColor3fv
+static inline void SecondaryColor3fv(const GLfloat * v1)
+{
+	 SecondaryColor3fvEXT(v1);
 }
 #endif
 
@@ -20903,6 +22143,16 @@ static inline void SecondaryColor3iEXT(GLint red1,GLint green1,GLint blue1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3i
+#define GL_HPP_FUNDEF_SecondaryColor3i
+static inline void SecondaryColor3i(GLint red1,GLint green1,GLint blue1)
+{
+	 SecondaryColor3iEXT(red1,green1,blue1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_SecondaryColor3ivEXT
 #define GL_HPP_FUNDEF_SecondaryColor3ivEXT
 typedef void (*PFNGLSECONDARYCOLOR3IVEXTPROC_HPP)(const GLint *);
@@ -20910,6 +22160,16 @@ static inline void SecondaryColor3ivEXT(const GLint * v1)
 {
 	static PFNGLSECONDARYCOLOR3IVEXTPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLOR3IVEXTPROC_HPP>(_impl::_get_proc_address("glSecondaryColor3ivEXT","GL_EXT_secondary_color"));
 	 fn(v1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3iv
+#define GL_HPP_FUNDEF_SecondaryColor3iv
+static inline void SecondaryColor3iv(const GLint * v1)
+{
+	 SecondaryColor3ivEXT(v1);
 }
 #endif
 
@@ -20923,6 +22183,16 @@ static inline void SecondaryColor3sEXT(GLshort red1,GLshort green1,GLshort blue1
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3s
+#define GL_HPP_FUNDEF_SecondaryColor3s
+static inline void SecondaryColor3s(GLshort red1,GLshort green1,GLshort blue1)
+{
+	 SecondaryColor3sEXT(red1,green1,blue1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_SecondaryColor3svEXT
 #define GL_HPP_FUNDEF_SecondaryColor3svEXT
 typedef void (*PFNGLSECONDARYCOLOR3SVEXTPROC_HPP)(const GLshort *);
@@ -20930,6 +22200,16 @@ static inline void SecondaryColor3svEXT(const GLshort * v1)
 {
 	static PFNGLSECONDARYCOLOR3SVEXTPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLOR3SVEXTPROC_HPP>(_impl::_get_proc_address("glSecondaryColor3svEXT","GL_EXT_secondary_color"));
 	 fn(v1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3sv
+#define GL_HPP_FUNDEF_SecondaryColor3sv
+static inline void SecondaryColor3sv(const GLshort * v1)
+{
+	 SecondaryColor3svEXT(v1);
 }
 #endif
 
@@ -20943,6 +22223,16 @@ static inline void SecondaryColor3ubEXT(GLubyte red1,GLubyte green1,GLubyte blue
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3ub
+#define GL_HPP_FUNDEF_SecondaryColor3ub
+static inline void SecondaryColor3ub(GLubyte red1,GLubyte green1,GLubyte blue1)
+{
+	 SecondaryColor3ubEXT(red1,green1,blue1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_SecondaryColor3ubvEXT
 #define GL_HPP_FUNDEF_SecondaryColor3ubvEXT
 typedef void (*PFNGLSECONDARYCOLOR3UBVEXTPROC_HPP)(const GLubyte *);
@@ -20950,6 +22240,16 @@ static inline void SecondaryColor3ubvEXT(const GLubyte * v1)
 {
 	static PFNGLSECONDARYCOLOR3UBVEXTPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLOR3UBVEXTPROC_HPP>(_impl::_get_proc_address("glSecondaryColor3ubvEXT","GL_EXT_secondary_color"));
 	 fn(v1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3ubv
+#define GL_HPP_FUNDEF_SecondaryColor3ubv
+static inline void SecondaryColor3ubv(const GLubyte * v1)
+{
+	 SecondaryColor3ubvEXT(v1);
 }
 #endif
 
@@ -20963,6 +22263,16 @@ static inline void SecondaryColor3uiEXT(GLuint red1,GLuint green1,GLuint blue1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3ui
+#define GL_HPP_FUNDEF_SecondaryColor3ui
+static inline void SecondaryColor3ui(GLuint red1,GLuint green1,GLuint blue1)
+{
+	 SecondaryColor3uiEXT(red1,green1,blue1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_SecondaryColor3uivEXT
 #define GL_HPP_FUNDEF_SecondaryColor3uivEXT
 typedef void (*PFNGLSECONDARYCOLOR3UIVEXTPROC_HPP)(const GLuint *);
@@ -20970,6 +22280,16 @@ static inline void SecondaryColor3uivEXT(const GLuint * v1)
 {
 	static PFNGLSECONDARYCOLOR3UIVEXTPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLOR3UIVEXTPROC_HPP>(_impl::_get_proc_address("glSecondaryColor3uivEXT","GL_EXT_secondary_color"));
 	 fn(v1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3uiv
+#define GL_HPP_FUNDEF_SecondaryColor3uiv
+static inline void SecondaryColor3uiv(const GLuint * v1)
+{
+	 SecondaryColor3uivEXT(v1);
 }
 #endif
 
@@ -20983,6 +22303,16 @@ static inline void SecondaryColor3usEXT(GLushort red1,GLushort green1,GLushort b
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3us
+#define GL_HPP_FUNDEF_SecondaryColor3us
+static inline void SecondaryColor3us(GLushort red1,GLushort green1,GLushort blue1)
+{
+	 SecondaryColor3usEXT(red1,green1,blue1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_SecondaryColor3usvEXT
 #define GL_HPP_FUNDEF_SecondaryColor3usvEXT
 typedef void (*PFNGLSECONDARYCOLOR3USVEXTPROC_HPP)(const GLushort *);
@@ -20993,6 +22323,16 @@ static inline void SecondaryColor3usvEXT(const GLushort * v1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColor3usv
+#define GL_HPP_FUNDEF_SecondaryColor3usv
+static inline void SecondaryColor3usv(const GLushort * v1)
+{
+	 SecondaryColor3usvEXT(v1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_SecondaryColorPointerEXT
 #define GL_HPP_FUNDEF_SecondaryColorPointerEXT
 typedef void (*PFNGLSECONDARYCOLORPOINTEREXTPROC_HPP)(GLint,GLenum,GLsizei,const void *);
@@ -21000,6 +22340,16 @@ static inline void SecondaryColorPointerEXT(GLint size1,GLenum type1,GLsizei str
 {
 	static PFNGLSECONDARYCOLORPOINTEREXTPROC_HPP fn=reinterpret_cast<PFNGLSECONDARYCOLORPOINTEREXTPROC_HPP>(_impl::_get_proc_address("glSecondaryColorPointerEXT","GL_EXT_secondary_color"));
 	 fn(size1,type1,stride1,pointer1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_SecondaryColorPointer
+#define GL_HPP_FUNDEF_SecondaryColorPointer
+static inline void SecondaryColorPointer(GLint size1,GLenum type1,GLsizei stride1,const void * pointer1)
+{
+	 SecondaryColorPointerEXT(size1,type1,stride1,pointer1);
 }
 #endif
 }
@@ -21139,6 +22489,16 @@ static inline void ProgramParameteriEXT(GLuint program1,GLenum pname1,GLint valu
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramParameteri
+#define GL_HPP_FUNDEF_ProgramParameteri
+static inline void ProgramParameteri(GLuint program1,GLenum pname1,GLint value1)
+{
+	 ProgramParameteriEXT(program1,pname1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform1fEXT
 #define GL_HPP_FUNDEF_ProgramUniform1fEXT
 typedef void (*PFNGLPROGRAMUNIFORM1FEXTPROC_HPP)(GLuint,GLint,GLfloat);
@@ -21146,6 +22506,16 @@ static inline void ProgramUniform1fEXT(GLuint program1,GLint location1,GLfloat v
 {
 	static PFNGLPROGRAMUNIFORM1FEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM1FEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform1fEXT","GL_EXT_separate_shader_objects"));
 	 fn(program1,location1,v01);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform1f
+#define GL_HPP_FUNDEF_ProgramUniform1f
+static inline void ProgramUniform1f(GLuint program1,GLint location1,GLfloat v01)
+{
+	 ProgramUniform1fEXT(program1,location1,v01);
 }
 #endif
 
@@ -21159,6 +22529,16 @@ static inline void ProgramUniform1fvEXT(GLuint program1,GLint location1,GLsizei 
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform1fv
+#define GL_HPP_FUNDEF_ProgramUniform1fv
+static inline void ProgramUniform1fv(GLuint program1,GLint location1,GLsizei count1,const GLfloat * value1)
+{
+	 ProgramUniform1fvEXT(program1,location1,count1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform1iEXT
 #define GL_HPP_FUNDEF_ProgramUniform1iEXT
 typedef void (*PFNGLPROGRAMUNIFORM1IEXTPROC_HPP)(GLuint,GLint,GLint);
@@ -21166,6 +22546,16 @@ static inline void ProgramUniform1iEXT(GLuint program1,GLint location1,GLint v01
 {
 	static PFNGLPROGRAMUNIFORM1IEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM1IEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform1iEXT","GL_EXT_separate_shader_objects"));
 	 fn(program1,location1,v01);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform1i
+#define GL_HPP_FUNDEF_ProgramUniform1i
+static inline void ProgramUniform1i(GLuint program1,GLint location1,GLint v01)
+{
+	 ProgramUniform1iEXT(program1,location1,v01);
 }
 #endif
 
@@ -21179,6 +22569,16 @@ static inline void ProgramUniform1ivEXT(GLuint program1,GLint location1,GLsizei 
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform1iv
+#define GL_HPP_FUNDEF_ProgramUniform1iv
+static inline void ProgramUniform1iv(GLuint program1,GLint location1,GLsizei count1,const GLint * value1)
+{
+	 ProgramUniform1ivEXT(program1,location1,count1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform1uiEXT
 #define GL_HPP_FUNDEF_ProgramUniform1uiEXT
 typedef void (*PFNGLPROGRAMUNIFORM1UIEXTPROC_HPP)(GLuint,GLint,GLuint);
@@ -21186,6 +22586,16 @@ static inline void ProgramUniform1uiEXT(GLuint program1,GLint location1,GLuint v
 {
 	static PFNGLPROGRAMUNIFORM1UIEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM1UIEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform1uiEXT","GL_EXT_separate_shader_objects"));
 	 fn(program1,location1,v01);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform1ui
+#define GL_HPP_FUNDEF_ProgramUniform1ui
+static inline void ProgramUniform1ui(GLuint program1,GLint location1,GLuint v01)
+{
+	 ProgramUniform1uiEXT(program1,location1,v01);
 }
 #endif
 
@@ -21199,6 +22609,16 @@ static inline void ProgramUniform1uivEXT(GLuint program1,GLint location1,GLsizei
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform1uiv
+#define GL_HPP_FUNDEF_ProgramUniform1uiv
+static inline void ProgramUniform1uiv(GLuint program1,GLint location1,GLsizei count1,const GLuint * value1)
+{
+	 ProgramUniform1uivEXT(program1,location1,count1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform2fEXT
 #define GL_HPP_FUNDEF_ProgramUniform2fEXT
 typedef void (*PFNGLPROGRAMUNIFORM2FEXTPROC_HPP)(GLuint,GLint,GLfloat,GLfloat);
@@ -21206,6 +22626,16 @@ static inline void ProgramUniform2fEXT(GLuint program1,GLint location1,GLfloat v
 {
 	static PFNGLPROGRAMUNIFORM2FEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM2FEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform2fEXT","GL_EXT_separate_shader_objects"));
 	 fn(program1,location1,v01,v11);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform2f
+#define GL_HPP_FUNDEF_ProgramUniform2f
+static inline void ProgramUniform2f(GLuint program1,GLint location1,GLfloat v01,GLfloat v11)
+{
+	 ProgramUniform2fEXT(program1,location1,v01,v11);
 }
 #endif
 
@@ -21219,6 +22649,16 @@ static inline void ProgramUniform2fvEXT(GLuint program1,GLint location1,GLsizei 
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform2fv
+#define GL_HPP_FUNDEF_ProgramUniform2fv
+static inline void ProgramUniform2fv(GLuint program1,GLint location1,GLsizei count1,const GLfloat * value1)
+{
+	 ProgramUniform2fvEXT(program1,location1,count1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform2iEXT
 #define GL_HPP_FUNDEF_ProgramUniform2iEXT
 typedef void (*PFNGLPROGRAMUNIFORM2IEXTPROC_HPP)(GLuint,GLint,GLint,GLint);
@@ -21226,6 +22666,16 @@ static inline void ProgramUniform2iEXT(GLuint program1,GLint location1,GLint v01
 {
 	static PFNGLPROGRAMUNIFORM2IEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM2IEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform2iEXT","GL_EXT_separate_shader_objects"));
 	 fn(program1,location1,v01,v11);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform2i
+#define GL_HPP_FUNDEF_ProgramUniform2i
+static inline void ProgramUniform2i(GLuint program1,GLint location1,GLint v01,GLint v11)
+{
+	 ProgramUniform2iEXT(program1,location1,v01,v11);
 }
 #endif
 
@@ -21239,6 +22689,16 @@ static inline void ProgramUniform2ivEXT(GLuint program1,GLint location1,GLsizei 
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform2iv
+#define GL_HPP_FUNDEF_ProgramUniform2iv
+static inline void ProgramUniform2iv(GLuint program1,GLint location1,GLsizei count1,const GLint * value1)
+{
+	 ProgramUniform2ivEXT(program1,location1,count1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform2uiEXT
 #define GL_HPP_FUNDEF_ProgramUniform2uiEXT
 typedef void (*PFNGLPROGRAMUNIFORM2UIEXTPROC_HPP)(GLuint,GLint,GLuint,GLuint);
@@ -21246,6 +22706,16 @@ static inline void ProgramUniform2uiEXT(GLuint program1,GLint location1,GLuint v
 {
 	static PFNGLPROGRAMUNIFORM2UIEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM2UIEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform2uiEXT","GL_EXT_separate_shader_objects"));
 	 fn(program1,location1,v01,v11);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform2ui
+#define GL_HPP_FUNDEF_ProgramUniform2ui
+static inline void ProgramUniform2ui(GLuint program1,GLint location1,GLuint v01,GLuint v11)
+{
+	 ProgramUniform2uiEXT(program1,location1,v01,v11);
 }
 #endif
 
@@ -21259,6 +22729,16 @@ static inline void ProgramUniform2uivEXT(GLuint program1,GLint location1,GLsizei
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform2uiv
+#define GL_HPP_FUNDEF_ProgramUniform2uiv
+static inline void ProgramUniform2uiv(GLuint program1,GLint location1,GLsizei count1,const GLuint * value1)
+{
+	 ProgramUniform2uivEXT(program1,location1,count1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform3fEXT
 #define GL_HPP_FUNDEF_ProgramUniform3fEXT
 typedef void (*PFNGLPROGRAMUNIFORM3FEXTPROC_HPP)(GLuint,GLint,GLfloat,GLfloat,GLfloat);
@@ -21266,6 +22746,16 @@ static inline void ProgramUniform3fEXT(GLuint program1,GLint location1,GLfloat v
 {
 	static PFNGLPROGRAMUNIFORM3FEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM3FEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform3fEXT","GL_EXT_separate_shader_objects"));
 	 fn(program1,location1,v01,v11,v21);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform3f
+#define GL_HPP_FUNDEF_ProgramUniform3f
+static inline void ProgramUniform3f(GLuint program1,GLint location1,GLfloat v01,GLfloat v11,GLfloat v21)
+{
+	 ProgramUniform3fEXT(program1,location1,v01,v11,v21);
 }
 #endif
 
@@ -21279,6 +22769,16 @@ static inline void ProgramUniform3fvEXT(GLuint program1,GLint location1,GLsizei 
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform3fv
+#define GL_HPP_FUNDEF_ProgramUniform3fv
+static inline void ProgramUniform3fv(GLuint program1,GLint location1,GLsizei count1,const GLfloat * value1)
+{
+	 ProgramUniform3fvEXT(program1,location1,count1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform3iEXT
 #define GL_HPP_FUNDEF_ProgramUniform3iEXT
 typedef void (*PFNGLPROGRAMUNIFORM3IEXTPROC_HPP)(GLuint,GLint,GLint,GLint,GLint);
@@ -21286,6 +22786,16 @@ static inline void ProgramUniform3iEXT(GLuint program1,GLint location1,GLint v01
 {
 	static PFNGLPROGRAMUNIFORM3IEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM3IEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform3iEXT","GL_EXT_separate_shader_objects"));
 	 fn(program1,location1,v01,v11,v21);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform3i
+#define GL_HPP_FUNDEF_ProgramUniform3i
+static inline void ProgramUniform3i(GLuint program1,GLint location1,GLint v01,GLint v11,GLint v21)
+{
+	 ProgramUniform3iEXT(program1,location1,v01,v11,v21);
 }
 #endif
 
@@ -21299,6 +22809,16 @@ static inline void ProgramUniform3ivEXT(GLuint program1,GLint location1,GLsizei 
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform3iv
+#define GL_HPP_FUNDEF_ProgramUniform3iv
+static inline void ProgramUniform3iv(GLuint program1,GLint location1,GLsizei count1,const GLint * value1)
+{
+	 ProgramUniform3ivEXT(program1,location1,count1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform3uiEXT
 #define GL_HPP_FUNDEF_ProgramUniform3uiEXT
 typedef void (*PFNGLPROGRAMUNIFORM3UIEXTPROC_HPP)(GLuint,GLint,GLuint,GLuint,GLuint);
@@ -21306,6 +22826,16 @@ static inline void ProgramUniform3uiEXT(GLuint program1,GLint location1,GLuint v
 {
 	static PFNGLPROGRAMUNIFORM3UIEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM3UIEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform3uiEXT","GL_EXT_separate_shader_objects"));
 	 fn(program1,location1,v01,v11,v21);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform3ui
+#define GL_HPP_FUNDEF_ProgramUniform3ui
+static inline void ProgramUniform3ui(GLuint program1,GLint location1,GLuint v01,GLuint v11,GLuint v21)
+{
+	 ProgramUniform3uiEXT(program1,location1,v01,v11,v21);
 }
 #endif
 
@@ -21319,6 +22849,16 @@ static inline void ProgramUniform3uivEXT(GLuint program1,GLint location1,GLsizei
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform3uiv
+#define GL_HPP_FUNDEF_ProgramUniform3uiv
+static inline void ProgramUniform3uiv(GLuint program1,GLint location1,GLsizei count1,const GLuint * value1)
+{
+	 ProgramUniform3uivEXT(program1,location1,count1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform4fEXT
 #define GL_HPP_FUNDEF_ProgramUniform4fEXT
 typedef void (*PFNGLPROGRAMUNIFORM4FEXTPROC_HPP)(GLuint,GLint,GLfloat,GLfloat,GLfloat,GLfloat);
@@ -21326,6 +22866,16 @@ static inline void ProgramUniform4fEXT(GLuint program1,GLint location1,GLfloat v
 {
 	static PFNGLPROGRAMUNIFORM4FEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM4FEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform4fEXT","GL_EXT_separate_shader_objects"));
 	 fn(program1,location1,v01,v11,v21,v31);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform4f
+#define GL_HPP_FUNDEF_ProgramUniform4f
+static inline void ProgramUniform4f(GLuint program1,GLint location1,GLfloat v01,GLfloat v11,GLfloat v21,GLfloat v31)
+{
+	 ProgramUniform4fEXT(program1,location1,v01,v11,v21,v31);
 }
 #endif
 
@@ -21339,6 +22889,16 @@ static inline void ProgramUniform4fvEXT(GLuint program1,GLint location1,GLsizei 
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform4fv
+#define GL_HPP_FUNDEF_ProgramUniform4fv
+static inline void ProgramUniform4fv(GLuint program1,GLint location1,GLsizei count1,const GLfloat * value1)
+{
+	 ProgramUniform4fvEXT(program1,location1,count1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform4iEXT
 #define GL_HPP_FUNDEF_ProgramUniform4iEXT
 typedef void (*PFNGLPROGRAMUNIFORM4IEXTPROC_HPP)(GLuint,GLint,GLint,GLint,GLint,GLint);
@@ -21346,6 +22906,16 @@ static inline void ProgramUniform4iEXT(GLuint program1,GLint location1,GLint v01
 {
 	static PFNGLPROGRAMUNIFORM4IEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM4IEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform4iEXT","GL_EXT_separate_shader_objects"));
 	 fn(program1,location1,v01,v11,v21,v31);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform4i
+#define GL_HPP_FUNDEF_ProgramUniform4i
+static inline void ProgramUniform4i(GLuint program1,GLint location1,GLint v01,GLint v11,GLint v21,GLint v31)
+{
+	 ProgramUniform4iEXT(program1,location1,v01,v11,v21,v31);
 }
 #endif
 
@@ -21359,6 +22929,16 @@ static inline void ProgramUniform4ivEXT(GLuint program1,GLint location1,GLsizei 
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform4iv
+#define GL_HPP_FUNDEF_ProgramUniform4iv
+static inline void ProgramUniform4iv(GLuint program1,GLint location1,GLsizei count1,const GLint * value1)
+{
+	 ProgramUniform4ivEXT(program1,location1,count1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniform4uiEXT
 #define GL_HPP_FUNDEF_ProgramUniform4uiEXT
 typedef void (*PFNGLPROGRAMUNIFORM4UIEXTPROC_HPP)(GLuint,GLint,GLuint,GLuint,GLuint,GLuint);
@@ -21366,6 +22946,16 @@ static inline void ProgramUniform4uiEXT(GLuint program1,GLint location1,GLuint v
 {
 	static PFNGLPROGRAMUNIFORM4UIEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORM4UIEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniform4uiEXT","GL_EXT_separate_shader_objects"));
 	 fn(program1,location1,v01,v11,v21,v31);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform4ui
+#define GL_HPP_FUNDEF_ProgramUniform4ui
+static inline void ProgramUniform4ui(GLuint program1,GLint location1,GLuint v01,GLuint v11,GLuint v21,GLuint v31)
+{
+	 ProgramUniform4uiEXT(program1,location1,v01,v11,v21,v31);
 }
 #endif
 
@@ -21379,6 +22969,16 @@ static inline void ProgramUniform4uivEXT(GLuint program1,GLint location1,GLsizei
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniform4uiv
+#define GL_HPP_FUNDEF_ProgramUniform4uiv
+static inline void ProgramUniform4uiv(GLuint program1,GLint location1,GLsizei count1,const GLuint * value1)
+{
+	 ProgramUniform4uivEXT(program1,location1,count1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix2fvEXT
 #define GL_HPP_FUNDEF_ProgramUniformMatrix2fvEXT
 typedef void (*PFNGLPROGRAMUNIFORMMATRIX2FVEXTPROC_HPP)(GLuint,GLint,GLsizei,GLboolean,const GLfloat *);
@@ -21386,6 +22986,16 @@ static inline void ProgramUniformMatrix2fvEXT(GLuint program1,GLint location1,GL
 {
 	static PFNGLPROGRAMUNIFORMMATRIX2FVEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORMMATRIX2FVEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniformMatrix2fvEXT","GL_EXT_separate_shader_objects"));
 	 fn(program1,location1,count1,transpose1,value1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix2fv
+#define GL_HPP_FUNDEF_ProgramUniformMatrix2fv
+static inline void ProgramUniformMatrix2fv(GLuint program1,GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
+{
+	 ProgramUniformMatrix2fvEXT(program1,location1,count1,transpose1,value1);
 }
 #endif
 
@@ -21399,6 +23009,16 @@ static inline void ProgramUniformMatrix2x3fvEXT(GLuint program1,GLint location1,
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix2x3fv
+#define GL_HPP_FUNDEF_ProgramUniformMatrix2x3fv
+static inline void ProgramUniformMatrix2x3fv(GLuint program1,GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
+{
+	 ProgramUniformMatrix2x3fvEXT(program1,location1,count1,transpose1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix2x4fvEXT
 #define GL_HPP_FUNDEF_ProgramUniformMatrix2x4fvEXT
 typedef void (*PFNGLPROGRAMUNIFORMMATRIX2X4FVEXTPROC_HPP)(GLuint,GLint,GLsizei,GLboolean,const GLfloat *);
@@ -21406,6 +23026,16 @@ static inline void ProgramUniformMatrix2x4fvEXT(GLuint program1,GLint location1,
 {
 	static PFNGLPROGRAMUNIFORMMATRIX2X4FVEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORMMATRIX2X4FVEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniformMatrix2x4fvEXT","GL_EXT_separate_shader_objects"));
 	 fn(program1,location1,count1,transpose1,value1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix2x4fv
+#define GL_HPP_FUNDEF_ProgramUniformMatrix2x4fv
+static inline void ProgramUniformMatrix2x4fv(GLuint program1,GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
+{
+	 ProgramUniformMatrix2x4fvEXT(program1,location1,count1,transpose1,value1);
 }
 #endif
 
@@ -21419,6 +23049,16 @@ static inline void ProgramUniformMatrix3fvEXT(GLuint program1,GLint location1,GL
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix3fv
+#define GL_HPP_FUNDEF_ProgramUniformMatrix3fv
+static inline void ProgramUniformMatrix3fv(GLuint program1,GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
+{
+	 ProgramUniformMatrix3fvEXT(program1,location1,count1,transpose1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix3x2fvEXT
 #define GL_HPP_FUNDEF_ProgramUniformMatrix3x2fvEXT
 typedef void (*PFNGLPROGRAMUNIFORMMATRIX3X2FVEXTPROC_HPP)(GLuint,GLint,GLsizei,GLboolean,const GLfloat *);
@@ -21426,6 +23066,16 @@ static inline void ProgramUniformMatrix3x2fvEXT(GLuint program1,GLint location1,
 {
 	static PFNGLPROGRAMUNIFORMMATRIX3X2FVEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORMMATRIX3X2FVEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniformMatrix3x2fvEXT","GL_EXT_separate_shader_objects"));
 	 fn(program1,location1,count1,transpose1,value1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix3x2fv
+#define GL_HPP_FUNDEF_ProgramUniformMatrix3x2fv
+static inline void ProgramUniformMatrix3x2fv(GLuint program1,GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
+{
+	 ProgramUniformMatrix3x2fvEXT(program1,location1,count1,transpose1,value1);
 }
 #endif
 
@@ -21439,6 +23089,16 @@ static inline void ProgramUniformMatrix3x4fvEXT(GLuint program1,GLint location1,
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix3x4fv
+#define GL_HPP_FUNDEF_ProgramUniformMatrix3x4fv
+static inline void ProgramUniformMatrix3x4fv(GLuint program1,GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
+{
+	 ProgramUniformMatrix3x4fvEXT(program1,location1,count1,transpose1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix4fvEXT
 #define GL_HPP_FUNDEF_ProgramUniformMatrix4fvEXT
 typedef void (*PFNGLPROGRAMUNIFORMMATRIX4FVEXTPROC_HPP)(GLuint,GLint,GLsizei,GLboolean,const GLfloat *);
@@ -21446,6 +23106,16 @@ static inline void ProgramUniformMatrix4fvEXT(GLuint program1,GLint location1,GL
 {
 	static PFNGLPROGRAMUNIFORMMATRIX4FVEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORMMATRIX4FVEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniformMatrix4fvEXT","GL_EXT_separate_shader_objects"));
 	 fn(program1,location1,count1,transpose1,value1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix4fv
+#define GL_HPP_FUNDEF_ProgramUniformMatrix4fv
+static inline void ProgramUniformMatrix4fv(GLuint program1,GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
+{
+	 ProgramUniformMatrix4fvEXT(program1,location1,count1,transpose1,value1);
 }
 #endif
 
@@ -21459,6 +23129,16 @@ static inline void ProgramUniformMatrix4x2fvEXT(GLuint program1,GLint location1,
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix4x2fv
+#define GL_HPP_FUNDEF_ProgramUniformMatrix4x2fv
+static inline void ProgramUniformMatrix4x2fv(GLuint program1,GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
+{
+	 ProgramUniformMatrix4x2fvEXT(program1,location1,count1,transpose1,value1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix4x3fvEXT
 #define GL_HPP_FUNDEF_ProgramUniformMatrix4x3fvEXT
 typedef void (*PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC_HPP)(GLuint,GLint,GLsizei,GLboolean,const GLfloat *);
@@ -21466,6 +23146,16 @@ static inline void ProgramUniformMatrix4x3fvEXT(GLuint program1,GLint location1,
 {
 	static PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC_HPP fn=reinterpret_cast<PFNGLPROGRAMUNIFORMMATRIX4X3FVEXTPROC_HPP>(_impl::_get_proc_address("glProgramUniformMatrix4x3fvEXT","GL_EXT_separate_shader_objects"));
 	 fn(program1,location1,count1,transpose1,value1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ProgramUniformMatrix4x3fv
+#define GL_HPP_FUNDEF_ProgramUniformMatrix4x3fv
+static inline void ProgramUniformMatrix4x3fv(GLuint program1,GLint location1,GLsizei count1,GLboolean transpose1,const GLfloat * value1)
+{
+	 ProgramUniformMatrix4x3fvEXT(program1,location1,count1,transpose1,value1);
 }
 #endif
 
@@ -21716,6 +23406,16 @@ static inline void MemoryBarrierEXT(GLbitfield barriers1)
 	 fn(barriers1);
 }
 #endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_MemoryBarrier
+#define GL_HPP_FUNDEF_MemoryBarrier
+static inline void MemoryBarrier(GLbitfield barriers1)
+{
+	 MemoryBarrierEXT(barriers1);
+}
+#endif
 }
 #endif
 
@@ -21824,6 +23524,16 @@ static inline void TexSubImage1DEXT(GLenum target1,GLint level1,GLint xoffset1,G
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_TexSubImage1D
+#define GL_HPP_FUNDEF_TexSubImage1D
+static inline void TexSubImage1D(GLenum target1,GLint level1,GLint xoffset1,GLsizei width1,GLenum format1,GLenum type1,const void * pixels1)
+{
+	 TexSubImage1DEXT(target1,level1,xoffset1,width1,format1,type1,pixels1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_TexSubImage2DEXT
 #define GL_HPP_FUNDEF_TexSubImage2DEXT
 typedef void (*PFNGLTEXSUBIMAGE2DEXTPROC_HPP)(GLenum,GLint,GLint,GLint,GLsizei,GLsizei,GLenum,GLenum,const void *);
@@ -21831,6 +23541,16 @@ static inline void TexSubImage2DEXT(GLenum target1,GLint level1,GLint xoffset1,G
 {
 	static PFNGLTEXSUBIMAGE2DEXTPROC_HPP fn=reinterpret_cast<PFNGLTEXSUBIMAGE2DEXTPROC_HPP>(_impl::_get_proc_address("glTexSubImage2DEXT","GL_EXT_subtexture"));
 	 fn(target1,level1,xoffset1,yoffset1,width1,height1,format1,type1,pixels1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_TexSubImage2D
+#define GL_HPP_FUNDEF_TexSubImage2D
+static inline void TexSubImage2D(GLenum target1,GLint level1,GLint xoffset1,GLint yoffset1,GLsizei width1,GLsizei height1,GLenum format1,GLenum type1,const void * pixels1)
+{
+	 TexSubImage2DEXT(target1,level1,xoffset1,yoffset1,width1,height1,format1,type1,pixels1);
 }
 #endif
 }
@@ -22016,6 +23736,16 @@ static inline void TexImage3DEXT(GLenum target1,GLint level1,GLenum internalform
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_TexImage3D
+#define GL_HPP_FUNDEF_TexImage3D
+static inline void TexImage3D(GLenum target1,GLint level1,GLenum internalformat1,GLsizei width1,GLsizei height1,GLsizei depth1,GLint border1,GLenum format1,GLenum type1,const void * pixels1)
+{
+	 TexImage3DEXT(target1,level1,internalformat1,width1,height1,depth1,border1,format1,type1,pixels1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_TexSubImage3DEXT
 #define GL_HPP_FUNDEF_TexSubImage3DEXT
 typedef void (*PFNGLTEXSUBIMAGE3DEXTPROC_HPP)(GLenum,GLint,GLint,GLint,GLint,GLsizei,GLsizei,GLsizei,GLenum,GLenum,const void *);
@@ -22023,6 +23753,16 @@ static inline void TexSubImage3DEXT(GLenum target1,GLint level1,GLint xoffset1,G
 {
 	static PFNGLTEXSUBIMAGE3DEXTPROC_HPP fn=reinterpret_cast<PFNGLTEXSUBIMAGE3DEXTPROC_HPP>(_impl::_get_proc_address("glTexSubImage3DEXT","GL_EXT_texture3D"));
 	 fn(target1,level1,xoffset1,yoffset1,zoffset1,width1,height1,depth1,format1,type1,pixels1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_TexSubImage3D
+#define GL_HPP_FUNDEF_TexSubImage3D
+static inline void TexSubImage3D(GLenum target1,GLint level1,GLint xoffset1,GLint yoffset1,GLint zoffset1,GLsizei width1,GLsizei height1,GLsizei depth1,GLenum format1,GLenum type1,const void * pixels1)
+{
+	 TexSubImage3DEXT(target1,level1,xoffset1,yoffset1,zoffset1,width1,height1,depth1,format1,type1,pixels1);
 }
 #endif
 }
@@ -22070,6 +23810,16 @@ static inline void FramebufferTextureLayerEXT(GLenum target1,GLenum attachment1,
 	 fn(target1,attachment1,texture1,level1,layer1);
 }
 #endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_FramebufferTextureLayer
+#define GL_HPP_FUNDEF_FramebufferTextureLayer
+static inline void FramebufferTextureLayer(GLenum target1,GLenum attachment1,GLuint texture1,GLint level1,GLint layer1)
+{
+	 FramebufferTextureLayerEXT(target1,attachment1,texture1,level1,layer1);
+}
+#endif
 }
 #endif
 
@@ -22101,6 +23851,16 @@ static inline void TexBufferEXT(GLenum target1,GLenum internalformat1,GLuint buf
 {
 	static PFNGLTEXBUFFEREXTPROC_HPP fn=reinterpret_cast<PFNGLTEXBUFFEREXTPROC_HPP>(_impl::_get_proc_address("glTexBufferEXT","GL_EXT_texture_buffer_object"));
 	 fn(target1,internalformat1,buffer1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_TexBuffer
+#define GL_HPP_FUNDEF_TexBuffer
+static inline void TexBuffer(GLenum target1,GLenum internalformat1,GLuint buffer1)
+{
+	 TexBufferEXT(target1,internalformat1,buffer1);
 }
 #endif
 }
@@ -22494,6 +24254,16 @@ static inline void GetTexParameterIivEXT(GLenum target1,GLenum pname1,GLint * pa
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetTexParameterIiv
+#define GL_HPP_FUNDEF_GetTexParameterIiv
+static inline void GetTexParameterIiv(GLenum target1,GLenum pname1,GLint * params1)
+{
+	 GetTexParameterIivEXT(target1,pname1,params1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_GetTexParameterIuivEXT
 #define GL_HPP_FUNDEF_GetTexParameterIuivEXT
 typedef void (*PFNGLGETTEXPARAMETERIUIVEXTPROC_HPP)(GLenum,GLenum,GLuint *);
@@ -22501,6 +24271,16 @@ static inline void GetTexParameterIuivEXT(GLenum target1,GLenum pname1,GLuint * 
 {
 	static PFNGLGETTEXPARAMETERIUIVEXTPROC_HPP fn=reinterpret_cast<PFNGLGETTEXPARAMETERIUIVEXTPROC_HPP>(_impl::_get_proc_address("glGetTexParameterIuivEXT","GL_EXT_texture_integer"));
 	 fn(target1,pname1,params1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetTexParameterIuiv
+#define GL_HPP_FUNDEF_GetTexParameterIuiv
+static inline void GetTexParameterIuiv(GLenum target1,GLenum pname1,GLuint * params1)
+{
+	 GetTexParameterIuivEXT(target1,pname1,params1);
 }
 #endif
 
@@ -22514,6 +24294,16 @@ static inline void TexParameterIivEXT(GLenum target1,GLenum pname1,const GLint *
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_TexParameterIiv
+#define GL_HPP_FUNDEF_TexParameterIiv
+static inline void TexParameterIiv(GLenum target1,GLenum pname1,const GLint * params1)
+{
+	 TexParameterIivEXT(target1,pname1,params1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_TexParameterIuivEXT
 #define GL_HPP_FUNDEF_TexParameterIuivEXT
 typedef void (*PFNGLTEXPARAMETERIUIVEXTPROC_HPP)(GLenum,GLenum,const GLuint *);
@@ -22521,6 +24311,16 @@ static inline void TexParameterIuivEXT(GLenum target1,GLenum pname1,const GLuint
 {
 	static PFNGLTEXPARAMETERIUIVEXTPROC_HPP fn=reinterpret_cast<PFNGLTEXPARAMETERIUIVEXTPROC_HPP>(_impl::_get_proc_address("glTexParameterIuivEXT","GL_EXT_texture_integer"));
 	 fn(target1,pname1,params1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_TexParameterIuiv
+#define GL_HPP_FUNDEF_TexParameterIuiv
+static inline void TexParameterIuiv(GLenum target1,GLenum pname1,const GLuint * params1)
+{
+	 TexParameterIuivEXT(target1,pname1,params1);
 }
 #endif
 }
@@ -22601,6 +24401,16 @@ static inline void BindTextureEXT(GLenum target1,GLuint texture1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_BindTexture
+#define GL_HPP_FUNDEF_BindTexture
+static inline void BindTexture(GLenum target1,GLuint texture1)
+{
+	 BindTextureEXT(target1,texture1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_DeleteTexturesEXT
 #define GL_HPP_FUNDEF_DeleteTexturesEXT
 typedef void (*PFNGLDELETETEXTURESEXTPROC_HPP)(GLsizei,const GLuint *);
@@ -22638,6 +24448,16 @@ static inline void PrioritizeTexturesEXT(GLsizei n1,const GLuint * textures1,con
 {
 	static PFNGLPRIORITIZETEXTURESEXTPROC_HPP fn=reinterpret_cast<PFNGLPRIORITIZETEXTURESEXTPROC_HPP>(_impl::_get_proc_address("glPrioritizeTexturesEXT","GL_EXT_texture_object"));
 	 fn(n1,textures1,priorities1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_PrioritizeTextures
+#define GL_HPP_FUNDEF_PrioritizeTextures
+static inline void PrioritizeTextures(GLsizei n1,const GLuint * textures1,const GLclampf * priorities1)
+{
+	 PrioritizeTexturesEXT(n1,textures1,priorities1);
 }
 #endif
 }
@@ -22882,6 +24702,16 @@ static inline void GetQueryObjecti64vEXT(GLuint id1,GLenum pname1,GLint64 * para
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetQueryObjecti64v
+#define GL_HPP_FUNDEF_GetQueryObjecti64v
+static inline void GetQueryObjecti64v(GLuint id1,GLenum pname1,GLint64 * params1)
+{
+	 GetQueryObjecti64vEXT(id1,pname1,params1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_GetQueryObjectui64vEXT
 #define GL_HPP_FUNDEF_GetQueryObjectui64vEXT
 typedef void (*PFNGLGETQUERYOBJECTUI64VEXTPROC_HPP)(GLuint,GLenum,GLuint64 *);
@@ -22889,6 +24719,16 @@ static inline void GetQueryObjectui64vEXT(GLuint id1,GLenum pname1,GLuint64 * pa
 {
 	static PFNGLGETQUERYOBJECTUI64VEXTPROC_HPP fn=reinterpret_cast<PFNGLGETQUERYOBJECTUI64VEXTPROC_HPP>(_impl::_get_proc_address("glGetQueryObjectui64vEXT","GL_EXT_timer_query"));
 	 fn(id1,pname1,params1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetQueryObjectui64v
+#define GL_HPP_FUNDEF_GetQueryObjectui64v
+static inline void GetQueryObjectui64v(GLuint id1,GLenum pname1,GLuint64 * params1)
+{
+	 GetQueryObjectui64vEXT(id1,pname1,params1);
 }
 #endif
 }
@@ -22955,6 +24795,16 @@ static inline void BeginTransformFeedbackEXT(GLenum primitiveMode1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_BeginTransformFeedback
+#define GL_HPP_FUNDEF_BeginTransformFeedback
+static inline void BeginTransformFeedback(GLenum primitiveMode1)
+{
+	 BeginTransformFeedbackEXT(primitiveMode1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_BindBufferBaseEXT
 #define GL_HPP_FUNDEF_BindBufferBaseEXT
 typedef void (*PFNGLBINDBUFFERBASEEXTPROC_HPP)(GLenum,GLuint,GLuint);
@@ -22962,6 +24812,16 @@ static inline void BindBufferBaseEXT(GLenum target1,GLuint index1,GLuint buffer1
 {
 	static PFNGLBINDBUFFERBASEEXTPROC_HPP fn=reinterpret_cast<PFNGLBINDBUFFERBASEEXTPROC_HPP>(_impl::_get_proc_address("glBindBufferBaseEXT","GL_EXT_transform_feedback"));
 	 fn(target1,index1,buffer1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_BindBufferBase
+#define GL_HPP_FUNDEF_BindBufferBase
+static inline void BindBufferBase(GLenum target1,GLuint index1,GLuint buffer1)
+{
+	 BindBufferBaseEXT(target1,index1,buffer1);
 }
 #endif
 
@@ -22985,6 +24845,16 @@ static inline void BindBufferRangeEXT(GLenum target1,GLuint index1,GLuint buffer
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_BindBufferRange
+#define GL_HPP_FUNDEF_BindBufferRange
+static inline void BindBufferRange(GLenum target1,GLuint index1,GLuint buffer1,GLintptr offset1,GLsizeiptr size1)
+{
+	 BindBufferRangeEXT(target1,index1,buffer1,offset1,size1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_EndTransformFeedbackEXT
 #define GL_HPP_FUNDEF_EndTransformFeedbackEXT
 typedef void (*PFNGLENDTRANSFORMFEEDBACKEXTPROC_HPP)();
@@ -22992,6 +24862,16 @@ static inline void EndTransformFeedbackEXT()
 {
 	static PFNGLENDTRANSFORMFEEDBACKEXTPROC_HPP fn=reinterpret_cast<PFNGLENDTRANSFORMFEEDBACKEXTPROC_HPP>(_impl::_get_proc_address("glEndTransformFeedbackEXT","GL_EXT_transform_feedback"));
 	 fn();
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_EndTransformFeedback
+#define GL_HPP_FUNDEF_EndTransformFeedback
+static inline void EndTransformFeedback()
+{
+	 EndTransformFeedbackEXT();
 }
 #endif
 
@@ -23005,6 +24885,16 @@ static inline void GetTransformFeedbackVaryingEXT(GLuint program1,GLuint index1,
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetTransformFeedbackVarying
+#define GL_HPP_FUNDEF_GetTransformFeedbackVarying
+static inline void GetTransformFeedbackVarying(GLuint program1,GLuint index1,GLsizei bufSize1,GLsizei * length1,GLsizei * size1,GLenum * type1,GLchar * name1)
+{
+	 GetTransformFeedbackVaryingEXT(program1,index1,bufSize1,length1,size1,type1,name1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_TransformFeedbackVaryingsEXT
 #define GL_HPP_FUNDEF_TransformFeedbackVaryingsEXT
 typedef void (*PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC_HPP)(GLuint,GLsizei,const GLchar *const*,GLenum);
@@ -23012,6 +24902,16 @@ static inline void TransformFeedbackVaryingsEXT(GLuint program1,GLsizei count1,c
 {
 	static PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC_HPP fn=reinterpret_cast<PFNGLTRANSFORMFEEDBACKVARYINGSEXTPROC_HPP>(_impl::_get_proc_address("glTransformFeedbackVaryingsEXT","GL_EXT_transform_feedback"));
 	 fn(program1,count1,varyings1,bufferMode1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_TransformFeedbackVaryings
+#define GL_HPP_FUNDEF_TransformFeedbackVaryings
+static inline void TransformFeedbackVaryings(GLuint program1,GLsizei count1,const GLchar *const* varyings1,GLenum bufferMode1)
+{
+	 TransformFeedbackVaryingsEXT(program1,count1,varyings1,bufferMode1);
 }
 #endif
 }
@@ -23129,6 +25029,16 @@ static inline void ArrayElementEXT(GLint i1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_ArrayElement
+#define GL_HPP_FUNDEF_ArrayElement
+static inline void ArrayElement(GLint i1)
+{
+	 ArrayElementEXT(i1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_ColorPointerEXT
 #define GL_HPP_FUNDEF_ColorPointerEXT
 typedef void (*PFNGLCOLORPOINTEREXTPROC_HPP)(GLint,GLenum,GLsizei,GLsizei,const void *);
@@ -23149,6 +25059,16 @@ static inline void DrawArraysEXT(GLenum mode1,GLint first1,GLsizei count1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_DrawArrays
+#define GL_HPP_FUNDEF_DrawArrays
+static inline void DrawArrays(GLenum mode1,GLint first1,GLsizei count1)
+{
+	 DrawArraysEXT(mode1,first1,count1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_EdgeFlagPointerEXT
 #define GL_HPP_FUNDEF_EdgeFlagPointerEXT
 typedef void (*PFNGLEDGEFLAGPOINTEREXTPROC_HPP)(GLsizei,GLsizei,const GLboolean *);
@@ -23166,6 +25086,16 @@ static inline void GetPointervEXT(GLenum pname1,void ** params1)
 {
 	static PFNGLGETPOINTERVEXTPROC_HPP fn=reinterpret_cast<PFNGLGETPOINTERVEXTPROC_HPP>(_impl::_get_proc_address("glGetPointervEXT","GL_EXT_vertex_array"));
 	 fn(pname1,params1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetPointerv
+#define GL_HPP_FUNDEF_GetPointerv
+static inline void GetPointerv(GLenum pname1,void ** params1)
+{
+	 GetPointervEXT(pname1,params1);
 }
 #endif
 
@@ -23277,6 +25207,16 @@ static inline void GetVertexAttribLdvEXT(GLuint index1,GLenum pname1,GLdouble * 
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetVertexAttribLdv
+#define GL_HPP_FUNDEF_GetVertexAttribLdv
+static inline void GetVertexAttribLdv(GLuint index1,GLenum pname1,GLdouble * params1)
+{
+	 GetVertexAttribLdvEXT(index1,pname1,params1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_VertexAttribL1dEXT
 #define GL_HPP_FUNDEF_VertexAttribL1dEXT
 typedef void (*PFNGLVERTEXATTRIBL1DEXTPROC_HPP)(GLuint,GLdouble);
@@ -23284,6 +25224,16 @@ static inline void VertexAttribL1dEXT(GLuint index1,GLdouble x1)
 {
 	static PFNGLVERTEXATTRIBL1DEXTPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIBL1DEXTPROC_HPP>(_impl::_get_proc_address("glVertexAttribL1dEXT","GL_EXT_vertex_attrib_64bit"));
 	 fn(index1,x1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribL1d
+#define GL_HPP_FUNDEF_VertexAttribL1d
+static inline void VertexAttribL1d(GLuint index1,GLdouble x1)
+{
+	 VertexAttribL1dEXT(index1,x1);
 }
 #endif
 
@@ -23297,6 +25247,16 @@ static inline void VertexAttribL1dvEXT(GLuint index1,const GLdouble * v1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribL1dv
+#define GL_HPP_FUNDEF_VertexAttribL1dv
+static inline void VertexAttribL1dv(GLuint index1,const GLdouble * v1)
+{
+	 VertexAttribL1dvEXT(index1,v1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_VertexAttribL2dEXT
 #define GL_HPP_FUNDEF_VertexAttribL2dEXT
 typedef void (*PFNGLVERTEXATTRIBL2DEXTPROC_HPP)(GLuint,GLdouble,GLdouble);
@@ -23304,6 +25264,16 @@ static inline void VertexAttribL2dEXT(GLuint index1,GLdouble x1,GLdouble y1)
 {
 	static PFNGLVERTEXATTRIBL2DEXTPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIBL2DEXTPROC_HPP>(_impl::_get_proc_address("glVertexAttribL2dEXT","GL_EXT_vertex_attrib_64bit"));
 	 fn(index1,x1,y1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribL2d
+#define GL_HPP_FUNDEF_VertexAttribL2d
+static inline void VertexAttribL2d(GLuint index1,GLdouble x1,GLdouble y1)
+{
+	 VertexAttribL2dEXT(index1,x1,y1);
 }
 #endif
 
@@ -23317,6 +25287,16 @@ static inline void VertexAttribL2dvEXT(GLuint index1,const GLdouble * v1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribL2dv
+#define GL_HPP_FUNDEF_VertexAttribL2dv
+static inline void VertexAttribL2dv(GLuint index1,const GLdouble * v1)
+{
+	 VertexAttribL2dvEXT(index1,v1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_VertexAttribL3dEXT
 #define GL_HPP_FUNDEF_VertexAttribL3dEXT
 typedef void (*PFNGLVERTEXATTRIBL3DEXTPROC_HPP)(GLuint,GLdouble,GLdouble,GLdouble);
@@ -23324,6 +25304,16 @@ static inline void VertexAttribL3dEXT(GLuint index1,GLdouble x1,GLdouble y1,GLdo
 {
 	static PFNGLVERTEXATTRIBL3DEXTPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIBL3DEXTPROC_HPP>(_impl::_get_proc_address("glVertexAttribL3dEXT","GL_EXT_vertex_attrib_64bit"));
 	 fn(index1,x1,y1,z1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribL3d
+#define GL_HPP_FUNDEF_VertexAttribL3d
+static inline void VertexAttribL3d(GLuint index1,GLdouble x1,GLdouble y1,GLdouble z1)
+{
+	 VertexAttribL3dEXT(index1,x1,y1,z1);
 }
 #endif
 
@@ -23337,6 +25327,16 @@ static inline void VertexAttribL3dvEXT(GLuint index1,const GLdouble * v1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribL3dv
+#define GL_HPP_FUNDEF_VertexAttribL3dv
+static inline void VertexAttribL3dv(GLuint index1,const GLdouble * v1)
+{
+	 VertexAttribL3dvEXT(index1,v1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_VertexAttribL4dEXT
 #define GL_HPP_FUNDEF_VertexAttribL4dEXT
 typedef void (*PFNGLVERTEXATTRIBL4DEXTPROC_HPP)(GLuint,GLdouble,GLdouble,GLdouble,GLdouble);
@@ -23344,6 +25344,16 @@ static inline void VertexAttribL4dEXT(GLuint index1,GLdouble x1,GLdouble y1,GLdo
 {
 	static PFNGLVERTEXATTRIBL4DEXTPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIBL4DEXTPROC_HPP>(_impl::_get_proc_address("glVertexAttribL4dEXT","GL_EXT_vertex_attrib_64bit"));
 	 fn(index1,x1,y1,z1,w1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribL4d
+#define GL_HPP_FUNDEF_VertexAttribL4d
+static inline void VertexAttribL4d(GLuint index1,GLdouble x1,GLdouble y1,GLdouble z1,GLdouble w1)
+{
+	 VertexAttribL4dEXT(index1,x1,y1,z1,w1);
 }
 #endif
 
@@ -23357,6 +25367,16 @@ static inline void VertexAttribL4dvEXT(GLuint index1,const GLdouble * v1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribL4dv
+#define GL_HPP_FUNDEF_VertexAttribL4dv
+static inline void VertexAttribL4dv(GLuint index1,const GLdouble * v1)
+{
+	 VertexAttribL4dvEXT(index1,v1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_VertexAttribLPointerEXT
 #define GL_HPP_FUNDEF_VertexAttribLPointerEXT
 typedef void (*PFNGLVERTEXATTRIBLPOINTEREXTPROC_HPP)(GLuint,GLint,GLenum,GLsizei,const void *);
@@ -23364,6 +25384,16 @@ static inline void VertexAttribLPointerEXT(GLuint index1,GLint size1,GLenum type
 {
 	static PFNGLVERTEXATTRIBLPOINTEREXTPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIBLPOINTEREXTPROC_HPP>(_impl::_get_proc_address("glVertexAttribLPointerEXT","GL_EXT_vertex_attrib_64bit"));
 	 fn(index1,size1,type1,stride1,pointer1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribLPointer
+#define GL_HPP_FUNDEF_VertexAttribLPointer
+static inline void VertexAttribLPointer(GLuint index1,GLint size1,GLenum type1,GLsizei stride1,const void * pointer1)
+{
+	 VertexAttribLPointerEXT(index1,size1,type1,stride1,pointer1);
 }
 #endif
 }
@@ -25075,12 +27105,12 @@ namespace gl{
 #ifndef GL_NONE
 #define GL_NONE 0
 #endif //GL_NONE
-#ifndef GL_CONTEXT_RELEASE_BEHAVIOR_KHR
-#define GL_CONTEXT_RELEASE_BEHAVIOR_KHR 0x82FB
-#endif //GL_CONTEXT_RELEASE_BEHAVIOR_KHR
 #ifndef GL_CONTEXT_RELEASE_BEHAVIOR
 #define GL_CONTEXT_RELEASE_BEHAVIOR 0x82FB
 #endif //GL_CONTEXT_RELEASE_BEHAVIOR
+#ifndef GL_CONTEXT_RELEASE_BEHAVIOR_KHR
+#define GL_CONTEXT_RELEASE_BEHAVIOR_KHR 0x82FB
+#endif //GL_CONTEXT_RELEASE_BEHAVIOR_KHR
 #ifndef GL_CONTEXT_RELEASE_BEHAVIOR_FLUSH
 #define GL_CONTEXT_RELEASE_BEHAVIOR_FLUSH 0x82FC
 #endif //GL_CONTEXT_RELEASE_BEHAVIOR_FLUSH
@@ -25107,18 +27137,18 @@ namespace gl{
 #ifndef GL_STACK_OVERFLOW
 #define GL_STACK_OVERFLOW 0x0503
 #endif //GL_STACK_OVERFLOW
-#ifndef GL_STACK_UNDERFLOW_KHR
-#define GL_STACK_UNDERFLOW_KHR 0x0504
-#endif //GL_STACK_UNDERFLOW_KHR
 #ifndef GL_STACK_UNDERFLOW
 #define GL_STACK_UNDERFLOW 0x0504
 #endif //GL_STACK_UNDERFLOW
-#ifndef GL_VERTEX_ARRAY
-#define GL_VERTEX_ARRAY 0x8074
-#endif //GL_VERTEX_ARRAY
+#ifndef GL_STACK_UNDERFLOW_KHR
+#define GL_STACK_UNDERFLOW_KHR 0x0504
+#endif //GL_STACK_UNDERFLOW_KHR
 #ifndef GL_VERTEX_ARRAY_KHR
 #define GL_VERTEX_ARRAY_KHR 0x8074
 #endif //GL_VERTEX_ARRAY_KHR
+#ifndef GL_VERTEX_ARRAY
+#define GL_VERTEX_ARRAY 0x8074
+#endif //GL_VERTEX_ARRAY
 #ifndef GL_DEBUG_OUTPUT_SYNCHRONOUS_KHR
 #define GL_DEBUG_OUTPUT_SYNCHRONOUS_KHR 0x8242
 #endif //GL_DEBUG_OUTPUT_SYNCHRONOUS_KHR
@@ -25137,30 +27167,30 @@ namespace gl{
 #ifndef GL_DEBUG_CALLBACK_FUNCTION_KHR
 #define GL_DEBUG_CALLBACK_FUNCTION_KHR 0x8244
 #endif //GL_DEBUG_CALLBACK_FUNCTION_KHR
-#ifndef GL_DEBUG_CALLBACK_USER_PARAM_KHR
-#define GL_DEBUG_CALLBACK_USER_PARAM_KHR 0x8245
-#endif //GL_DEBUG_CALLBACK_USER_PARAM_KHR
 #ifndef GL_DEBUG_CALLBACK_USER_PARAM
 #define GL_DEBUG_CALLBACK_USER_PARAM 0x8245
 #endif //GL_DEBUG_CALLBACK_USER_PARAM
+#ifndef GL_DEBUG_CALLBACK_USER_PARAM_KHR
+#define GL_DEBUG_CALLBACK_USER_PARAM_KHR 0x8245
+#endif //GL_DEBUG_CALLBACK_USER_PARAM_KHR
 #ifndef GL_DEBUG_SOURCE_API_KHR
 #define GL_DEBUG_SOURCE_API_KHR 0x8246
 #endif //GL_DEBUG_SOURCE_API_KHR
 #ifndef GL_DEBUG_SOURCE_API
 #define GL_DEBUG_SOURCE_API 0x8246
 #endif //GL_DEBUG_SOURCE_API
-#ifndef GL_DEBUG_SOURCE_WINDOW_SYSTEM_KHR
-#define GL_DEBUG_SOURCE_WINDOW_SYSTEM_KHR 0x8247
-#endif //GL_DEBUG_SOURCE_WINDOW_SYSTEM_KHR
 #ifndef GL_DEBUG_SOURCE_WINDOW_SYSTEM
 #define GL_DEBUG_SOURCE_WINDOW_SYSTEM 0x8247
 #endif //GL_DEBUG_SOURCE_WINDOW_SYSTEM
-#ifndef GL_DEBUG_SOURCE_SHADER_COMPILER
-#define GL_DEBUG_SOURCE_SHADER_COMPILER 0x8248
-#endif //GL_DEBUG_SOURCE_SHADER_COMPILER
+#ifndef GL_DEBUG_SOURCE_WINDOW_SYSTEM_KHR
+#define GL_DEBUG_SOURCE_WINDOW_SYSTEM_KHR 0x8247
+#endif //GL_DEBUG_SOURCE_WINDOW_SYSTEM_KHR
 #ifndef GL_DEBUG_SOURCE_SHADER_COMPILER_KHR
 #define GL_DEBUG_SOURCE_SHADER_COMPILER_KHR 0x8248
 #endif //GL_DEBUG_SOURCE_SHADER_COMPILER_KHR
+#ifndef GL_DEBUG_SOURCE_SHADER_COMPILER
+#define GL_DEBUG_SOURCE_SHADER_COMPILER 0x8248
+#endif //GL_DEBUG_SOURCE_SHADER_COMPILER
 #ifndef GL_DEBUG_SOURCE_THIRD_PARTY
 #define GL_DEBUG_SOURCE_THIRD_PARTY 0x8249
 #endif //GL_DEBUG_SOURCE_THIRD_PARTY
@@ -25179,42 +27209,42 @@ namespace gl{
 #ifndef GL_DEBUG_SOURCE_OTHER_KHR
 #define GL_DEBUG_SOURCE_OTHER_KHR 0x824B
 #endif //GL_DEBUG_SOURCE_OTHER_KHR
-#ifndef GL_DEBUG_TYPE_ERROR
-#define GL_DEBUG_TYPE_ERROR 0x824C
-#endif //GL_DEBUG_TYPE_ERROR
 #ifndef GL_DEBUG_TYPE_ERROR_KHR
 #define GL_DEBUG_TYPE_ERROR_KHR 0x824C
 #endif //GL_DEBUG_TYPE_ERROR_KHR
-#ifndef GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR
-#define GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR 0x824D
-#endif //GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR
+#ifndef GL_DEBUG_TYPE_ERROR
+#define GL_DEBUG_TYPE_ERROR 0x824C
+#endif //GL_DEBUG_TYPE_ERROR
 #ifndef GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR_KHR
 #define GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR_KHR 0x824D
 #endif //GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR_KHR
+#ifndef GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR
+#define GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR 0x824D
+#endif //GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR
 #ifndef GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR
 #define GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR 0x824E
 #endif //GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR
 #ifndef GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR_KHR
 #define GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR_KHR 0x824E
 #endif //GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR_KHR
-#ifndef GL_DEBUG_TYPE_PORTABILITY_KHR
-#define GL_DEBUG_TYPE_PORTABILITY_KHR 0x824F
-#endif //GL_DEBUG_TYPE_PORTABILITY_KHR
 #ifndef GL_DEBUG_TYPE_PORTABILITY
 #define GL_DEBUG_TYPE_PORTABILITY 0x824F
 #endif //GL_DEBUG_TYPE_PORTABILITY
-#ifndef GL_DEBUG_TYPE_PERFORMANCE_KHR
-#define GL_DEBUG_TYPE_PERFORMANCE_KHR 0x8250
-#endif //GL_DEBUG_TYPE_PERFORMANCE_KHR
+#ifndef GL_DEBUG_TYPE_PORTABILITY_KHR
+#define GL_DEBUG_TYPE_PORTABILITY_KHR 0x824F
+#endif //GL_DEBUG_TYPE_PORTABILITY_KHR
 #ifndef GL_DEBUG_TYPE_PERFORMANCE
 #define GL_DEBUG_TYPE_PERFORMANCE 0x8250
 #endif //GL_DEBUG_TYPE_PERFORMANCE
-#ifndef GL_DEBUG_TYPE_OTHER
-#define GL_DEBUG_TYPE_OTHER 0x8251
-#endif //GL_DEBUG_TYPE_OTHER
+#ifndef GL_DEBUG_TYPE_PERFORMANCE_KHR
+#define GL_DEBUG_TYPE_PERFORMANCE_KHR 0x8250
+#endif //GL_DEBUG_TYPE_PERFORMANCE_KHR
 #ifndef GL_DEBUG_TYPE_OTHER_KHR
 #define GL_DEBUG_TYPE_OTHER_KHR 0x8251
 #endif //GL_DEBUG_TYPE_OTHER_KHR
+#ifndef GL_DEBUG_TYPE_OTHER
+#define GL_DEBUG_TYPE_OTHER 0x8251
+#endif //GL_DEBUG_TYPE_OTHER
 #ifndef GL_DEBUG_TYPE_MARKER_KHR
 #define GL_DEBUG_TYPE_MARKER_KHR 0x8268
 #endif //GL_DEBUG_TYPE_MARKER_KHR
@@ -25227,30 +27257,30 @@ namespace gl{
 #ifndef GL_DEBUG_TYPE_PUSH_GROUP_KHR
 #define GL_DEBUG_TYPE_PUSH_GROUP_KHR 0x8269
 #endif //GL_DEBUG_TYPE_PUSH_GROUP_KHR
-#ifndef GL_DEBUG_TYPE_POP_GROUP
-#define GL_DEBUG_TYPE_POP_GROUP 0x826A
-#endif //GL_DEBUG_TYPE_POP_GROUP
 #ifndef GL_DEBUG_TYPE_POP_GROUP_KHR
 #define GL_DEBUG_TYPE_POP_GROUP_KHR 0x826A
 #endif //GL_DEBUG_TYPE_POP_GROUP_KHR
+#ifndef GL_DEBUG_TYPE_POP_GROUP
+#define GL_DEBUG_TYPE_POP_GROUP 0x826A
+#endif //GL_DEBUG_TYPE_POP_GROUP
 #ifndef GL_DEBUG_SEVERITY_NOTIFICATION
 #define GL_DEBUG_SEVERITY_NOTIFICATION 0x826B
 #endif //GL_DEBUG_SEVERITY_NOTIFICATION
 #ifndef GL_DEBUG_SEVERITY_NOTIFICATION_KHR
 #define GL_DEBUG_SEVERITY_NOTIFICATION_KHR 0x826B
 #endif //GL_DEBUG_SEVERITY_NOTIFICATION_KHR
-#ifndef GL_MAX_DEBUG_GROUP_STACK_DEPTH
-#define GL_MAX_DEBUG_GROUP_STACK_DEPTH 0x826C
-#endif //GL_MAX_DEBUG_GROUP_STACK_DEPTH
 #ifndef GL_MAX_DEBUG_GROUP_STACK_DEPTH_KHR
 #define GL_MAX_DEBUG_GROUP_STACK_DEPTH_KHR 0x826C
 #endif //GL_MAX_DEBUG_GROUP_STACK_DEPTH_KHR
-#ifndef GL_DEBUG_GROUP_STACK_DEPTH
-#define GL_DEBUG_GROUP_STACK_DEPTH 0x826D
-#endif //GL_DEBUG_GROUP_STACK_DEPTH
+#ifndef GL_MAX_DEBUG_GROUP_STACK_DEPTH
+#define GL_MAX_DEBUG_GROUP_STACK_DEPTH 0x826C
+#endif //GL_MAX_DEBUG_GROUP_STACK_DEPTH
 #ifndef GL_DEBUG_GROUP_STACK_DEPTH_KHR
 #define GL_DEBUG_GROUP_STACK_DEPTH_KHR 0x826D
 #endif //GL_DEBUG_GROUP_STACK_DEPTH_KHR
+#ifndef GL_DEBUG_GROUP_STACK_DEPTH
+#define GL_DEBUG_GROUP_STACK_DEPTH 0x826D
+#endif //GL_DEBUG_GROUP_STACK_DEPTH
 #ifndef GL_BUFFER_KHR
 #define GL_BUFFER_KHR 0x82E0
 #endif //GL_BUFFER_KHR
@@ -25263,18 +27293,18 @@ namespace gl{
 #ifndef GL_SHADER_KHR
 #define GL_SHADER_KHR 0x82E1
 #endif //GL_SHADER_KHR
-#ifndef GL_PROGRAM
-#define GL_PROGRAM 0x82E2
-#endif //GL_PROGRAM
 #ifndef GL_PROGRAM_KHR
 #define GL_PROGRAM_KHR 0x82E2
 #endif //GL_PROGRAM_KHR
-#ifndef GL_QUERY
-#define GL_QUERY 0x82E3
-#endif //GL_QUERY
+#ifndef GL_PROGRAM
+#define GL_PROGRAM 0x82E2
+#endif //GL_PROGRAM
 #ifndef GL_QUERY_KHR
 #define GL_QUERY_KHR 0x82E3
 #endif //GL_QUERY_KHR
+#ifndef GL_QUERY
+#define GL_QUERY 0x82E3
+#endif //GL_QUERY
 #ifndef GL_PROGRAM_PIPELINE
 #define GL_PROGRAM_PIPELINE 0x82E4
 #endif //GL_PROGRAM_PIPELINE
@@ -25302,12 +27332,12 @@ namespace gl{
 #ifndef GL_MAX_DEBUG_LOGGED_MESSAGES
 #define GL_MAX_DEBUG_LOGGED_MESSAGES 0x9144
 #endif //GL_MAX_DEBUG_LOGGED_MESSAGES
-#ifndef GL_DEBUG_LOGGED_MESSAGES
-#define GL_DEBUG_LOGGED_MESSAGES 0x9145
-#endif //GL_DEBUG_LOGGED_MESSAGES
 #ifndef GL_DEBUG_LOGGED_MESSAGES_KHR
 #define GL_DEBUG_LOGGED_MESSAGES_KHR 0x9145
 #endif //GL_DEBUG_LOGGED_MESSAGES_KHR
+#ifndef GL_DEBUG_LOGGED_MESSAGES
+#define GL_DEBUG_LOGGED_MESSAGES 0x9145
+#endif //GL_DEBUG_LOGGED_MESSAGES
 #ifndef GL_DEBUG_SEVERITY_HIGH_KHR
 #define GL_DEBUG_SEVERITY_HIGH_KHR 0x9146
 #endif //GL_DEBUG_SEVERITY_HIGH_KHR
@@ -25320,12 +27350,12 @@ namespace gl{
 #ifndef GL_DEBUG_SEVERITY_MEDIUM_KHR
 #define GL_DEBUG_SEVERITY_MEDIUM_KHR 0x9147
 #endif //GL_DEBUG_SEVERITY_MEDIUM_KHR
-#ifndef GL_DEBUG_SEVERITY_LOW_KHR
-#define GL_DEBUG_SEVERITY_LOW_KHR 0x9148
-#endif //GL_DEBUG_SEVERITY_LOW_KHR
 #ifndef GL_DEBUG_SEVERITY_LOW
 #define GL_DEBUG_SEVERITY_LOW 0x9148
 #endif //GL_DEBUG_SEVERITY_LOW
+#ifndef GL_DEBUG_SEVERITY_LOW_KHR
+#define GL_DEBUG_SEVERITY_LOW_KHR 0x9148
+#endif //GL_DEBUG_SEVERITY_LOW_KHR
 #ifndef GL_DEBUG_OUTPUT_KHR
 #define GL_DEBUG_OUTPUT_KHR 0x92E0
 #endif //GL_DEBUG_OUTPUT_KHR
@@ -25571,42 +27601,42 @@ namespace gl{
 #ifndef GL_NO_ERROR
 #define GL_NO_ERROR 0
 #endif //GL_NO_ERROR
-#ifndef GL_CONTEXT_LOST_KHR
-#define GL_CONTEXT_LOST_KHR 0x0507
-#endif //GL_CONTEXT_LOST_KHR
 #ifndef GL_CONTEXT_LOST
 #define GL_CONTEXT_LOST 0x0507
 #endif //GL_CONTEXT_LOST
-#ifndef GL_LOSE_CONTEXT_ON_RESET
-#define GL_LOSE_CONTEXT_ON_RESET 0x8252
-#endif //GL_LOSE_CONTEXT_ON_RESET
+#ifndef GL_CONTEXT_LOST_KHR
+#define GL_CONTEXT_LOST_KHR 0x0507
+#endif //GL_CONTEXT_LOST_KHR
 #ifndef GL_LOSE_CONTEXT_ON_RESET_KHR
 #define GL_LOSE_CONTEXT_ON_RESET_KHR 0x8252
 #endif //GL_LOSE_CONTEXT_ON_RESET_KHR
-#ifndef GL_GUILTY_CONTEXT_RESET_KHR
-#define GL_GUILTY_CONTEXT_RESET_KHR 0x8253
-#endif //GL_GUILTY_CONTEXT_RESET_KHR
+#ifndef GL_LOSE_CONTEXT_ON_RESET
+#define GL_LOSE_CONTEXT_ON_RESET 0x8252
+#endif //GL_LOSE_CONTEXT_ON_RESET
 #ifndef GL_GUILTY_CONTEXT_RESET
 #define GL_GUILTY_CONTEXT_RESET 0x8253
 #endif //GL_GUILTY_CONTEXT_RESET
-#ifndef GL_INNOCENT_CONTEXT_RESET_KHR
-#define GL_INNOCENT_CONTEXT_RESET_KHR 0x8254
-#endif //GL_INNOCENT_CONTEXT_RESET_KHR
+#ifndef GL_GUILTY_CONTEXT_RESET_KHR
+#define GL_GUILTY_CONTEXT_RESET_KHR 0x8253
+#endif //GL_GUILTY_CONTEXT_RESET_KHR
 #ifndef GL_INNOCENT_CONTEXT_RESET
 #define GL_INNOCENT_CONTEXT_RESET 0x8254
 #endif //GL_INNOCENT_CONTEXT_RESET
+#ifndef GL_INNOCENT_CONTEXT_RESET_KHR
+#define GL_INNOCENT_CONTEXT_RESET_KHR 0x8254
+#endif //GL_INNOCENT_CONTEXT_RESET_KHR
 #ifndef GL_UNKNOWN_CONTEXT_RESET_KHR
 #define GL_UNKNOWN_CONTEXT_RESET_KHR 0x8255
 #endif //GL_UNKNOWN_CONTEXT_RESET_KHR
 #ifndef GL_UNKNOWN_CONTEXT_RESET
 #define GL_UNKNOWN_CONTEXT_RESET 0x8255
 #endif //GL_UNKNOWN_CONTEXT_RESET
-#ifndef GL_RESET_NOTIFICATION_STRATEGY
-#define GL_RESET_NOTIFICATION_STRATEGY 0x8256
-#endif //GL_RESET_NOTIFICATION_STRATEGY
 #ifndef GL_RESET_NOTIFICATION_STRATEGY_KHR
 #define GL_RESET_NOTIFICATION_STRATEGY_KHR 0x8256
 #endif //GL_RESET_NOTIFICATION_STRATEGY_KHR
+#ifndef GL_RESET_NOTIFICATION_STRATEGY
+#define GL_RESET_NOTIFICATION_STRATEGY 0x8256
+#endif //GL_RESET_NOTIFICATION_STRATEGY
 #ifndef GL_NO_RESET_NOTIFICATION_KHR
 #define GL_NO_RESET_NOTIFICATION_KHR 0x8261
 #endif //GL_NO_RESET_NOTIFICATION_KHR
@@ -27470,6 +29500,16 @@ static inline void FramebufferTextureEXT(GLenum target1,GLenum attachment1,GLuin
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_FramebufferTextureARB
+#define GL_HPP_FUNDEF_FramebufferTextureARB
+static inline void FramebufferTextureARB(GLenum target1,GLenum attachment1,GLuint texture1,GLint level1)
+{
+	 FramebufferTextureEXT(target1,attachment1,texture1,level1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_FramebufferTextureFaceEXT
 #define GL_HPP_FUNDEF_FramebufferTextureFaceEXT
 typedef void (*PFNGLFRAMEBUFFERTEXTUREFACEEXTPROC_HPP)(GLenum,GLenum,GLuint,GLint,GLenum);
@@ -27480,6 +29520,16 @@ static inline void FramebufferTextureFaceEXT(GLenum target1,GLenum attachment1,G
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_FramebufferTextureFaceARB
+#define GL_HPP_FUNDEF_FramebufferTextureFaceARB
+static inline void FramebufferTextureFaceARB(GLenum target1,GLenum attachment1,GLuint texture1,GLint level1,GLenum face1)
+{
+	 FramebufferTextureFaceEXT(target1,attachment1,texture1,level1,face1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_FramebufferTextureLayerEXT
 #define GL_HPP_FUNDEF_FramebufferTextureLayerEXT
 typedef void (*PFNGLFRAMEBUFFERTEXTURELAYEREXTPROC_HPP)(GLenum,GLenum,GLuint,GLint,GLint);
@@ -27487,6 +29537,16 @@ static inline void FramebufferTextureLayerEXT(GLenum target1,GLenum attachment1,
 {
 	static PFNGLFRAMEBUFFERTEXTURELAYEREXTPROC_HPP fn=reinterpret_cast<PFNGLFRAMEBUFFERTEXTURELAYEREXTPROC_HPP>(_impl::_get_proc_address("glFramebufferTextureLayerEXT","GL_NV_geometry_program4"));
 	 fn(target1,attachment1,texture1,level1,layer1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_FramebufferTextureLayer
+#define GL_HPP_FUNDEF_FramebufferTextureLayer
+static inline void FramebufferTextureLayer(GLenum target1,GLenum attachment1,GLuint texture1,GLint level1,GLint layer1)
+{
+	 FramebufferTextureLayerEXT(target1,attachment1,texture1,level1,layer1);
 }
 #endif
 
@@ -28891,21 +30951,21 @@ namespace gl{
 #ifndef GL_FONT_HEIGHT_BIT_NV
 #define GL_FONT_HEIGHT_BIT_NV 0x00800000
 #endif //GL_FONT_HEIGHT_BIT_NV
-#ifndef GL_BOLD_BIT_NV
-#define GL_BOLD_BIT_NV 0x01
-#endif //GL_BOLD_BIT_NV
 #ifndef GL_GLYPH_WIDTH_BIT_NV
 #define GL_GLYPH_WIDTH_BIT_NV 0x01
 #endif //GL_GLYPH_WIDTH_BIT_NV
+#ifndef GL_BOLD_BIT_NV
+#define GL_BOLD_BIT_NV 0x01
+#endif //GL_BOLD_BIT_NV
 #ifndef GL_FONT_MAX_ADVANCE_WIDTH_BIT_NV
 #define GL_FONT_MAX_ADVANCE_WIDTH_BIT_NV 0x01000000
 #endif //GL_FONT_MAX_ADVANCE_WIDTH_BIT_NV
-#ifndef GL_GLYPH_HEIGHT_BIT_NV
-#define GL_GLYPH_HEIGHT_BIT_NV 0x02
-#endif //GL_GLYPH_HEIGHT_BIT_NV
 #ifndef GL_ITALIC_BIT_NV
 #define GL_ITALIC_BIT_NV 0x02
 #endif //GL_ITALIC_BIT_NV
+#ifndef GL_GLYPH_HEIGHT_BIT_NV
+#define GL_GLYPH_HEIGHT_BIT_NV 0x02
+#endif //GL_GLYPH_HEIGHT_BIT_NV
 #ifndef GL_MOVE_TO_NV
 #define GL_MOVE_TO_NV 0x02
 #endif //GL_MOVE_TO_NV
@@ -28981,12 +31041,12 @@ namespace gl{
 #ifndef GL_RELATIVE_SMOOTH_QUADRATIC_CURVE_TO_NV
 #define GL_RELATIVE_SMOOTH_QUADRATIC_CURVE_TO_NV 0x0F
 #endif //GL_RELATIVE_SMOOTH_QUADRATIC_CURVE_TO_NV
-#ifndef GL_SMOOTH_CUBIC_CURVE_TO_NV
-#define GL_SMOOTH_CUBIC_CURVE_TO_NV 0x10
-#endif //GL_SMOOTH_CUBIC_CURVE_TO_NV
 #ifndef GL_GLYPH_HORIZONTAL_BEARING_ADVANCE_BIT_NV
 #define GL_GLYPH_HORIZONTAL_BEARING_ADVANCE_BIT_NV 0x10
 #endif //GL_GLYPH_HORIZONTAL_BEARING_ADVANCE_BIT_NV
+#ifndef GL_SMOOTH_CUBIC_CURVE_TO_NV
+#define GL_SMOOTH_CUBIC_CURVE_TO_NV 0x10
+#endif //GL_SMOOTH_CUBIC_CURVE_TO_NV
 #ifndef GL_GLYPH_HAS_KERNING_BIT_NV
 #define GL_GLYPH_HAS_KERNING_BIT_NV 0x100
 #endif //GL_GLYPH_HAS_KERNING_BIT_NV
@@ -30189,12 +32249,12 @@ static inline void PrimitiveRestartNV()
 
 #ifndef GL_NV_register_combiners
 #define GL_NV_register_combiners
-#ifndef GL_ZERO
-#define GL_ZERO 0
-#endif //GL_ZERO
 #ifndef GL_NONE
 #define GL_NONE 0
 #endif //GL_NONE
+#ifndef GL_ZERO
+#define GL_ZERO 0
+#endif //GL_ZERO
 #ifndef GL_FOG
 #define GL_FOG 0x0B60
 #endif //GL_FOG
@@ -30998,24 +33058,24 @@ namespace gl{
 #ifndef GL_CULL_MODES_NV
 #define GL_CULL_MODES_NV 0x86E0
 #endif //GL_CULL_MODES_NV
-#ifndef GL_OFFSET_TEXTURE_2D_MATRIX_NV
-#define GL_OFFSET_TEXTURE_2D_MATRIX_NV 0x86E1
-#endif //GL_OFFSET_TEXTURE_2D_MATRIX_NV
 #ifndef GL_OFFSET_TEXTURE_MATRIX_NV
 #define GL_OFFSET_TEXTURE_MATRIX_NV 0x86E1
 #endif //GL_OFFSET_TEXTURE_MATRIX_NV
-#ifndef GL_OFFSET_TEXTURE_2D_SCALE_NV
-#define GL_OFFSET_TEXTURE_2D_SCALE_NV 0x86E2
-#endif //GL_OFFSET_TEXTURE_2D_SCALE_NV
+#ifndef GL_OFFSET_TEXTURE_2D_MATRIX_NV
+#define GL_OFFSET_TEXTURE_2D_MATRIX_NV 0x86E1
+#endif //GL_OFFSET_TEXTURE_2D_MATRIX_NV
 #ifndef GL_OFFSET_TEXTURE_SCALE_NV
 #define GL_OFFSET_TEXTURE_SCALE_NV 0x86E2
 #endif //GL_OFFSET_TEXTURE_SCALE_NV
-#ifndef GL_OFFSET_TEXTURE_2D_BIAS_NV
-#define GL_OFFSET_TEXTURE_2D_BIAS_NV 0x86E3
-#endif //GL_OFFSET_TEXTURE_2D_BIAS_NV
+#ifndef GL_OFFSET_TEXTURE_2D_SCALE_NV
+#define GL_OFFSET_TEXTURE_2D_SCALE_NV 0x86E2
+#endif //GL_OFFSET_TEXTURE_2D_SCALE_NV
 #ifndef GL_OFFSET_TEXTURE_BIAS_NV
 #define GL_OFFSET_TEXTURE_BIAS_NV 0x86E3
 #endif //GL_OFFSET_TEXTURE_BIAS_NV
+#ifndef GL_OFFSET_TEXTURE_2D_BIAS_NV
+#define GL_OFFSET_TEXTURE_2D_BIAS_NV 0x86E3
+#endif //GL_OFFSET_TEXTURE_2D_BIAS_NV
 #ifndef GL_PREVIOUS_TEXTURE_INPUT_NV
 #define GL_PREVIOUS_TEXTURE_INPUT_NV 0x86E4
 #endif //GL_PREVIOUS_TEXTURE_INPUT_NV
@@ -33126,6 +35186,16 @@ static inline void GetVertexAttribIivEXT(GLuint index1,GLenum pname1,GLint * par
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetVertexAttribIiv
+#define GL_HPP_FUNDEF_GetVertexAttribIiv
+static inline void GetVertexAttribIiv(GLuint index1,GLenum pname1,GLint * params1)
+{
+	 GetVertexAttribIivEXT(index1,pname1,params1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_GetVertexAttribIuivEXT
 #define GL_HPP_FUNDEF_GetVertexAttribIuivEXT
 typedef void (*PFNGLGETVERTEXATTRIBIUIVEXTPROC_HPP)(GLuint,GLenum,GLuint *);
@@ -33133,6 +35203,16 @@ static inline void GetVertexAttribIuivEXT(GLuint index1,GLenum pname1,GLuint * p
 {
 	static PFNGLGETVERTEXATTRIBIUIVEXTPROC_HPP fn=reinterpret_cast<PFNGLGETVERTEXATTRIBIUIVEXTPROC_HPP>(_impl::_get_proc_address("glGetVertexAttribIuivEXT","GL_NV_vertex_program4"));
 	 fn(index1,pname1,params1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_GetVertexAttribIuiv
+#define GL_HPP_FUNDEF_GetVertexAttribIuiv
+static inline void GetVertexAttribIuiv(GLuint index1,GLenum pname1,GLuint * params1)
+{
+	 GetVertexAttribIuivEXT(index1,pname1,params1);
 }
 #endif
 
@@ -33146,6 +35226,16 @@ static inline void VertexAttribI1iEXT(GLuint index1,GLint x1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribI1i
+#define GL_HPP_FUNDEF_VertexAttribI1i
+static inline void VertexAttribI1i(GLuint index1,GLint x1)
+{
+	 VertexAttribI1iEXT(index1,x1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_VertexAttribI1ivEXT
 #define GL_HPP_FUNDEF_VertexAttribI1ivEXT
 typedef void (*PFNGLVERTEXATTRIBI1IVEXTPROC_HPP)(GLuint,const GLint *);
@@ -33153,6 +35243,16 @@ static inline void VertexAttribI1ivEXT(GLuint index1,const GLint * v1)
 {
 	static PFNGLVERTEXATTRIBI1IVEXTPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIBI1IVEXTPROC_HPP>(_impl::_get_proc_address("glVertexAttribI1ivEXT","GL_NV_vertex_program4"));
 	 fn(index1,v1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribI1iv
+#define GL_HPP_FUNDEF_VertexAttribI1iv
+static inline void VertexAttribI1iv(GLuint index1,const GLint * v1)
+{
+	 VertexAttribI1ivEXT(index1,v1);
 }
 #endif
 
@@ -33166,6 +35266,16 @@ static inline void VertexAttribI1uiEXT(GLuint index1,GLuint x1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribI1ui
+#define GL_HPP_FUNDEF_VertexAttribI1ui
+static inline void VertexAttribI1ui(GLuint index1,GLuint x1)
+{
+	 VertexAttribI1uiEXT(index1,x1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_VertexAttribI1uivEXT
 #define GL_HPP_FUNDEF_VertexAttribI1uivEXT
 typedef void (*PFNGLVERTEXATTRIBI1UIVEXTPROC_HPP)(GLuint,const GLuint *);
@@ -33173,6 +35283,16 @@ static inline void VertexAttribI1uivEXT(GLuint index1,const GLuint * v1)
 {
 	static PFNGLVERTEXATTRIBI1UIVEXTPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIBI1UIVEXTPROC_HPP>(_impl::_get_proc_address("glVertexAttribI1uivEXT","GL_NV_vertex_program4"));
 	 fn(index1,v1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribI1uiv
+#define GL_HPP_FUNDEF_VertexAttribI1uiv
+static inline void VertexAttribI1uiv(GLuint index1,const GLuint * v1)
+{
+	 VertexAttribI1uivEXT(index1,v1);
 }
 #endif
 
@@ -33186,6 +35306,16 @@ static inline void VertexAttribI2iEXT(GLuint index1,GLint x1,GLint y1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribI2i
+#define GL_HPP_FUNDEF_VertexAttribI2i
+static inline void VertexAttribI2i(GLuint index1,GLint x1,GLint y1)
+{
+	 VertexAttribI2iEXT(index1,x1,y1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_VertexAttribI2ivEXT
 #define GL_HPP_FUNDEF_VertexAttribI2ivEXT
 typedef void (*PFNGLVERTEXATTRIBI2IVEXTPROC_HPP)(GLuint,const GLint *);
@@ -33193,6 +35323,16 @@ static inline void VertexAttribI2ivEXT(GLuint index1,const GLint * v1)
 {
 	static PFNGLVERTEXATTRIBI2IVEXTPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIBI2IVEXTPROC_HPP>(_impl::_get_proc_address("glVertexAttribI2ivEXT","GL_NV_vertex_program4"));
 	 fn(index1,v1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribI2iv
+#define GL_HPP_FUNDEF_VertexAttribI2iv
+static inline void VertexAttribI2iv(GLuint index1,const GLint * v1)
+{
+	 VertexAttribI2ivEXT(index1,v1);
 }
 #endif
 
@@ -33206,6 +35346,16 @@ static inline void VertexAttribI2uiEXT(GLuint index1,GLuint x1,GLuint y1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribI2ui
+#define GL_HPP_FUNDEF_VertexAttribI2ui
+static inline void VertexAttribI2ui(GLuint index1,GLuint x1,GLuint y1)
+{
+	 VertexAttribI2uiEXT(index1,x1,y1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_VertexAttribI2uivEXT
 #define GL_HPP_FUNDEF_VertexAttribI2uivEXT
 typedef void (*PFNGLVERTEXATTRIBI2UIVEXTPROC_HPP)(GLuint,const GLuint *);
@@ -33213,6 +35363,16 @@ static inline void VertexAttribI2uivEXT(GLuint index1,const GLuint * v1)
 {
 	static PFNGLVERTEXATTRIBI2UIVEXTPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIBI2UIVEXTPROC_HPP>(_impl::_get_proc_address("glVertexAttribI2uivEXT","GL_NV_vertex_program4"));
 	 fn(index1,v1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribI2uiv
+#define GL_HPP_FUNDEF_VertexAttribI2uiv
+static inline void VertexAttribI2uiv(GLuint index1,const GLuint * v1)
+{
+	 VertexAttribI2uivEXT(index1,v1);
 }
 #endif
 
@@ -33226,6 +35386,16 @@ static inline void VertexAttribI3iEXT(GLuint index1,GLint x1,GLint y1,GLint z1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribI3i
+#define GL_HPP_FUNDEF_VertexAttribI3i
+static inline void VertexAttribI3i(GLuint index1,GLint x1,GLint y1,GLint z1)
+{
+	 VertexAttribI3iEXT(index1,x1,y1,z1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_VertexAttribI3ivEXT
 #define GL_HPP_FUNDEF_VertexAttribI3ivEXT
 typedef void (*PFNGLVERTEXATTRIBI3IVEXTPROC_HPP)(GLuint,const GLint *);
@@ -33233,6 +35403,16 @@ static inline void VertexAttribI3ivEXT(GLuint index1,const GLint * v1)
 {
 	static PFNGLVERTEXATTRIBI3IVEXTPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIBI3IVEXTPROC_HPP>(_impl::_get_proc_address("glVertexAttribI3ivEXT","GL_NV_vertex_program4"));
 	 fn(index1,v1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribI3iv
+#define GL_HPP_FUNDEF_VertexAttribI3iv
+static inline void VertexAttribI3iv(GLuint index1,const GLint * v1)
+{
+	 VertexAttribI3ivEXT(index1,v1);
 }
 #endif
 
@@ -33246,6 +35426,16 @@ static inline void VertexAttribI3uiEXT(GLuint index1,GLuint x1,GLuint y1,GLuint 
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribI3ui
+#define GL_HPP_FUNDEF_VertexAttribI3ui
+static inline void VertexAttribI3ui(GLuint index1,GLuint x1,GLuint y1,GLuint z1)
+{
+	 VertexAttribI3uiEXT(index1,x1,y1,z1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_VertexAttribI3uivEXT
 #define GL_HPP_FUNDEF_VertexAttribI3uivEXT
 typedef void (*PFNGLVERTEXATTRIBI3UIVEXTPROC_HPP)(GLuint,const GLuint *);
@@ -33253,6 +35443,16 @@ static inline void VertexAttribI3uivEXT(GLuint index1,const GLuint * v1)
 {
 	static PFNGLVERTEXATTRIBI3UIVEXTPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIBI3UIVEXTPROC_HPP>(_impl::_get_proc_address("glVertexAttribI3uivEXT","GL_NV_vertex_program4"));
 	 fn(index1,v1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribI3uiv
+#define GL_HPP_FUNDEF_VertexAttribI3uiv
+static inline void VertexAttribI3uiv(GLuint index1,const GLuint * v1)
+{
+	 VertexAttribI3uivEXT(index1,v1);
 }
 #endif
 
@@ -33266,6 +35466,16 @@ static inline void VertexAttribI4bvEXT(GLuint index1,const GLbyte * v1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribI4bv
+#define GL_HPP_FUNDEF_VertexAttribI4bv
+static inline void VertexAttribI4bv(GLuint index1,const GLbyte * v1)
+{
+	 VertexAttribI4bvEXT(index1,v1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_VertexAttribI4iEXT
 #define GL_HPP_FUNDEF_VertexAttribI4iEXT
 typedef void (*PFNGLVERTEXATTRIBI4IEXTPROC_HPP)(GLuint,GLint,GLint,GLint,GLint);
@@ -33273,6 +35483,16 @@ static inline void VertexAttribI4iEXT(GLuint index1,GLint x1,GLint y1,GLint z1,G
 {
 	static PFNGLVERTEXATTRIBI4IEXTPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIBI4IEXTPROC_HPP>(_impl::_get_proc_address("glVertexAttribI4iEXT","GL_NV_vertex_program4"));
 	 fn(index1,x1,y1,z1,w1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribI4i
+#define GL_HPP_FUNDEF_VertexAttribI4i
+static inline void VertexAttribI4i(GLuint index1,GLint x1,GLint y1,GLint z1,GLint w1)
+{
+	 VertexAttribI4iEXT(index1,x1,y1,z1,w1);
 }
 #endif
 
@@ -33286,6 +35506,16 @@ static inline void VertexAttribI4ivEXT(GLuint index1,const GLint * v1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribI4iv
+#define GL_HPP_FUNDEF_VertexAttribI4iv
+static inline void VertexAttribI4iv(GLuint index1,const GLint * v1)
+{
+	 VertexAttribI4ivEXT(index1,v1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_VertexAttribI4svEXT
 #define GL_HPP_FUNDEF_VertexAttribI4svEXT
 typedef void (*PFNGLVERTEXATTRIBI4SVEXTPROC_HPP)(GLuint,const GLshort *);
@@ -33293,6 +35523,16 @@ static inline void VertexAttribI4svEXT(GLuint index1,const GLshort * v1)
 {
 	static PFNGLVERTEXATTRIBI4SVEXTPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIBI4SVEXTPROC_HPP>(_impl::_get_proc_address("glVertexAttribI4svEXT","GL_NV_vertex_program4"));
 	 fn(index1,v1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribI4sv
+#define GL_HPP_FUNDEF_VertexAttribI4sv
+static inline void VertexAttribI4sv(GLuint index1,const GLshort * v1)
+{
+	 VertexAttribI4svEXT(index1,v1);
 }
 #endif
 
@@ -33306,6 +35546,16 @@ static inline void VertexAttribI4ubvEXT(GLuint index1,const GLubyte * v1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribI4ubv
+#define GL_HPP_FUNDEF_VertexAttribI4ubv
+static inline void VertexAttribI4ubv(GLuint index1,const GLubyte * v1)
+{
+	 VertexAttribI4ubvEXT(index1,v1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_VertexAttribI4uiEXT
 #define GL_HPP_FUNDEF_VertexAttribI4uiEXT
 typedef void (*PFNGLVERTEXATTRIBI4UIEXTPROC_HPP)(GLuint,GLuint,GLuint,GLuint,GLuint);
@@ -33313,6 +35563,16 @@ static inline void VertexAttribI4uiEXT(GLuint index1,GLuint x1,GLuint y1,GLuint 
 {
 	static PFNGLVERTEXATTRIBI4UIEXTPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIBI4UIEXTPROC_HPP>(_impl::_get_proc_address("glVertexAttribI4uiEXT","GL_NV_vertex_program4"));
 	 fn(index1,x1,y1,z1,w1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribI4ui
+#define GL_HPP_FUNDEF_VertexAttribI4ui
+static inline void VertexAttribI4ui(GLuint index1,GLuint x1,GLuint y1,GLuint z1,GLuint w1)
+{
+	 VertexAttribI4uiEXT(index1,x1,y1,z1,w1);
 }
 #endif
 
@@ -33326,6 +35586,16 @@ static inline void VertexAttribI4uivEXT(GLuint index1,const GLuint * v1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribI4uiv
+#define GL_HPP_FUNDEF_VertexAttribI4uiv
+static inline void VertexAttribI4uiv(GLuint index1,const GLuint * v1)
+{
+	 VertexAttribI4uivEXT(index1,v1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_VertexAttribI4usvEXT
 #define GL_HPP_FUNDEF_VertexAttribI4usvEXT
 typedef void (*PFNGLVERTEXATTRIBI4USVEXTPROC_HPP)(GLuint,const GLushort *);
@@ -33336,6 +35606,16 @@ static inline void VertexAttribI4usvEXT(GLuint index1,const GLushort * v1)
 }
 #endif
 
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribI4usv
+#define GL_HPP_FUNDEF_VertexAttribI4usv
+static inline void VertexAttribI4usv(GLuint index1,const GLushort * v1)
+{
+	 VertexAttribI4usvEXT(index1,v1);
+}
+#endif
+
 #ifndef	GL_HPP_FUNDEF_VertexAttribIPointerEXT
 #define GL_HPP_FUNDEF_VertexAttribIPointerEXT
 typedef void (*PFNGLVERTEXATTRIBIPOINTEREXTPROC_HPP)(GLuint,GLint,GLenum,GLsizei,const void *);
@@ -33343,6 +35623,16 @@ static inline void VertexAttribIPointerEXT(GLuint index1,GLint size1,GLenum type
 {
 	static PFNGLVERTEXATTRIBIPOINTEREXTPROC_HPP fn=reinterpret_cast<PFNGLVERTEXATTRIBIPOINTEREXTPROC_HPP>(_impl::_get_proc_address("glVertexAttribIPointerEXT","GL_NV_vertex_program4"));
 	 fn(index1,size1,type1,stride1,pointer1);
+}
+#endif
+
+//ALIAS
+
+#ifndef	GL_HPP_FUNDEF_VertexAttribIPointer
+#define GL_HPP_FUNDEF_VertexAttribIPointer
+static inline void VertexAttribIPointer(GLuint index1,GLint size1,GLenum type1,GLsizei stride1,const void * pointer1)
+{
+	 VertexAttribIPointerEXT(index1,size1,type1,stride1,pointer1);
 }
 #endif
 }
