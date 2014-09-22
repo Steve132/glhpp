@@ -11,7 +11,6 @@
 #include<cstdint>
 #include<unordered_map>
 #include<initializer_list>
-#include "glproc.hpp"
 
 //GL_HPP_ERROR_CHECKING
 //Options
@@ -21,6 +20,9 @@
 
 //This file supports OpenGL 3.1 or higher (3.0 is not supported because of the lack of GL_COPY_READ_BUFFER)
 
+#ifndef GL_HPP_COMMON_HPP
+#error "This file needs to have an opengl API selected from glhpp and included before this file.  Such as #include<glhpp/gl3.1.hpp>"
+#endif
 
 #define GL_HPP_CUSTOM 0x0001
 namespace gl

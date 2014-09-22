@@ -20,8 +20,8 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 
 */
 
-#ifndef GL_PROC_COMMON_HPP
-#define GL_PROC_COMMON_HPP
+#ifndef GL_HPP_COMMON_HPP
+#define GL_HPP_COMMON_HPP
 
 #include<string>
 #include<sstream>

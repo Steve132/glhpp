@@ -206,7 +206,8 @@ class SpecificationsXML(object):
 			return False
 			
 	def print_enums(self,enumlist,fileobj):
-		constdefin="#ifndef %(k)s\n#define %(k)s %(v)s\n#endif //%(k)s\n"
+		#constdefin="#ifndef %(k)s\n#define %(k)s %(v)s\n#endif //%(k)s\n"
+		constdefin="#undef %(k)s\nstatic const GLenum %(k)s=%(v)s;\n"
 		
 		senums=[(e,self.enum_values[e]) for e in sorted(enumlist,key=lambda x: self.enum_values[x])]
 		for k,v in senums:
