@@ -1,8 +1,14 @@
-#ifndef GL_PROC_GL_VERSION_ES_CM_1_0_HPP
-#define GL_PROC_GL_VERSION_ES_CM_1_0_HPP
+#ifndef GL_HPP_GL_VERSION_ES_CM_1_0_HPP
+#define GL_HPP_GL_VERSION_ES_CM_1_0_HPP
 #include "common.hpp"
 
 
+#ifndef GL_HPP_API_NAME
+#define GL_HPP_API_NAME GL_HPP_GLES_API
+#endif
+#ifndef GL_HPP_API_VERSION
+#define GL_HPP_API_VERSION 100
+#endif
 #ifndef GL_NO_ERROR
 #define GL_NO_ERROR 0
 #endif //GL_NO_ERROR
@@ -987,21 +993,21 @@
 #ifndef GL_DYNAMIC_DRAW
 #define GL_DYNAMIC_DRAW 0x88E8
 #endif //GL_DYNAMIC_DRAW
-#ifndef GL_ONE
-#define GL_ONE 1
-#endif //GL_ONE
 #ifndef GL_VERSION_ES_CL_1_0
 #define GL_VERSION_ES_CL_1_0 1
 #endif //GL_VERSION_ES_CL_1_0
-#ifndef GL_VERSION_ES_CL_1_1
-#define GL_VERSION_ES_CL_1_1 1
-#endif //GL_VERSION_ES_CL_1_1
 #ifndef GL_VERSION_ES_CM_1_1
 #define GL_VERSION_ES_CM_1_1 1
 #endif //GL_VERSION_ES_CM_1_1
 #ifndef GL_TRUE
 #define GL_TRUE 1
 #endif //GL_TRUE
+#ifndef GL_ONE
+#define GL_ONE 1
+#endif //GL_ONE
+#ifndef GL_VERSION_ES_CL_1_1
+#define GL_VERSION_ES_CL_1_1 1
+#endif //GL_VERSION_ES_CL_1_1
 extern "C" {
 extern void glAlphaFunc(GLenum,GLfloat);
 extern void glBindTexture(GLenum,GLuint);

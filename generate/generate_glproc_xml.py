@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 from collections import namedtuple
+import hashlib
 
 class CommandSpec(object):
 	Parameter=namedtuple('Parameter',['typ','name','group'])
@@ -228,11 +229,14 @@ class SpecificationsXML(object):
 
 			
 	def write_feature(self,cfeature,fileobj):
-		fileobj.write("#ifndef GL_PROC_%(LONGNAME)s_HPP\n#define GL_PROC_%(LONGNAME)s_HPP\n" % {'LONGNAME':cfeature.name})
+		fileobj.write("#ifndef GL_HPP_%(LONGNAME)s_HPP\n#define GL_HPP_%(LONGNAME)s_HPP\n" % {'LONGNAME':cfeature.name})
 		fileobj.write('#include "common.hpp"\n')
 		fileobj.write('\n\n')
-		
-		#Todo: write headers based on GL API (for ES as well
+				
+		apiname='gles' if cfeature.api[:4]=='gles' else cfeature.api
+				
+		fileobj.write("#ifndef GL_HPP_API_NAME\n#define GL_HPP_API_NAME GL_HPP_%(API)s_API\n#endif\n" % {'API':apiname.upper()})
+		fileobj.write("#ifndef GL_HPP_API_VERSION\n#define GL_HPP_API_VERSION %(VERSION)d\n#endif\n" % {'VERSION':int(float(cfeature.versionfloat)*100)})
 		
 		self.print_enums(cfeature.required.enums,fileobj)
 		self.print_definitions(cfeature.required.commands,cfeature.name,fileobj)
@@ -240,7 +244,7 @@ class SpecificationsXML(object):
 		fileobj.write("#endif\n")
 	
 	def write_extensions(self,apiname,fileobj):
-		fileobj.write("#ifndef GL_PROC_%(LONGNAME)s_HPP\n#define GL_PROC_%(LONGNAME)s_HPP\n" % {'LONGNAME':apiname+'EXT'})
+		fileobj.write("#ifndef GL_HPP_%(LONGNAME)s_HPP\n#define GL_HPP_%(LONGNAME)s_HPP\n" % {'LONGNAME':apiname+'EXT'})
 		fileobj.write('#include "common.hpp"\n')
 		fileobj.write('\n\n')
 		
@@ -253,6 +257,7 @@ class SpecificationsXML(object):
 				fileobj.write("#endif\n\n")
 		
 		fileobj.write("#endif\n")
+	
 if __name__=='__main__':
 	import sys
 	import os,shutil
@@ -263,11 +268,16 @@ if __name__=='__main__':
 	except:
 		pass
 		
-	common=open('common.hpp.in').read() % {'TYPEDEFS':spec.typestring}
-	open(os.path.join(ghproot,'common.hpp'),'w').write(common)
-	
+	apinames=''
+	completed=set()
 	for k,v in spec.complete_apis.items():
 		kb='gles' if k[:4]=='gles' else k
+		
+		if(kb not in completed):
+			code='0x'+hashlib.sha256(kb.encode('ascii')).hexdigest()[-5:-1]
+			apinames+='#ifndef GL_HPP_%(API)s_API\n#define GL_HPP_%(API)s_API %(CODE)s\n#endif\n' % {'API':kb.upper(),'CODE':code}
+			completed.add(kb)
+			
 		for feat in v:
 			fname=kb+feat.versionfloat
 			fout=open(os.path.join(ghproot,fname+'.hpp'),'w')
@@ -275,6 +285,9 @@ if __name__=='__main__':
 		efname=k+'ext.hpp'
 		efout=open(os.path.join(ghproot,efname),'w')
 		spec.write_extensions(k,efout)
+		
+	common=open('common.hpp.in').read() % {'TYPEDEFS':spec.typestring,'API_NAMES':apinames}
+	open(os.path.join(ghproot,'common.hpp'),'w').write(common)
 			
 	#templatefile=open('glproc.hpp.in').read()
 	#output=templatefile % {'GL_MAX_VERSION':spec.max_version,'GL_SPECS':spec.print_specs()}

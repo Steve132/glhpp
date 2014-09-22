@@ -1,8 +1,14 @@
-#ifndef GL_PROC_GL_VERSION_1_0_HPP
-#define GL_PROC_GL_VERSION_1_0_HPP
+#ifndef GL_HPP_GL_VERSION_1_0_HPP
+#define GL_HPP_GL_VERSION_1_0_HPP
 #include "common.hpp"
 
 
+#ifndef GL_HPP_API_NAME
+#define GL_HPP_API_NAME GL_HPP_GL_API
+#endif
+#ifndef GL_HPP_API_VERSION
+#define GL_HPP_API_VERSION 100
+#endif
 extern "C" {
 extern void glAccum(GLenum,GLfloat);
 extern void glAlphaFunc(GLenum,GLfloat);

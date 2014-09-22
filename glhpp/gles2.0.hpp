@@ -1,8 +1,17 @@
-#ifndef GL_PROC_GL_ES_VERSION_2_0_HPP
-#define GL_PROC_GL_ES_VERSION_2_0_HPP
+#ifndef GL_HPP_GL_ES_VERSION_2_0_HPP
+#define GL_HPP_GL_ES_VERSION_2_0_HPP
 #include "common.hpp"
 
 
+#ifndef GL_HPP_API_NAME
+#define GL_HPP_API_NAME GL_HPP_GLES_API
+#endif
+#ifndef GL_HPP_API_VERSION
+#define GL_HPP_API_VERSION 200
+#endif
+#ifndef GL_NONE
+#define GL_NONE 0
+#endif //GL_NONE
 #ifndef GL_NO_ERROR
 #define GL_NO_ERROR 0
 #endif //GL_NO_ERROR
@@ -12,9 +21,6 @@
 #ifndef GL_FALSE
 #define GL_FALSE 0
 #endif //GL_FALSE
-#ifndef GL_NONE
-#define GL_NONE 0
-#endif //GL_NONE
 #ifndef GL_POINTS
 #define GL_POINTS 0x0000
 #endif //GL_POINTS
@@ -372,12 +378,12 @@
 #ifndef GL_FUNC_ADD
 #define GL_FUNC_ADD 0x8006
 #endif //GL_FUNC_ADD
-#ifndef GL_BLEND_EQUATION
-#define GL_BLEND_EQUATION 0x8009
-#endif //GL_BLEND_EQUATION
 #ifndef GL_BLEND_EQUATION_RGB
 #define GL_BLEND_EQUATION_RGB 0x8009
 #endif //GL_BLEND_EQUATION_RGB
+#ifndef GL_BLEND_EQUATION
+#define GL_BLEND_EQUATION 0x8009
+#endif //GL_BLEND_EQUATION
 #ifndef GL_FUNC_SUBTRACT
 #define GL_FUNC_SUBTRACT 0x800A
 #endif //GL_FUNC_SUBTRACT
@@ -900,12 +906,12 @@
 #ifndef GL_MAX_FRAGMENT_UNIFORM_VECTORS
 #define GL_MAX_FRAGMENT_UNIFORM_VECTORS 0x8DFD
 #endif //GL_MAX_FRAGMENT_UNIFORM_VECTORS
-#ifndef GL_ONE
-#define GL_ONE 1
-#endif //GL_ONE
 #ifndef GL_TRUE
 #define GL_TRUE 1
 #endif //GL_TRUE
+#ifndef GL_ONE
+#define GL_ONE 1
+#endif //GL_ONE
 extern "C" {
 extern void glActiveTexture(GLenum);
 extern void glAttachShader(GLuint,GLuint);

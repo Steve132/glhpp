@@ -1,5 +1,5 @@
-#ifndef GL_PROC_gles1EXT_HPP
-#define GL_PROC_gles1EXT_HPP
+#ifndef GL_HPP_gles1EXT_HPP
+#define GL_HPP_gles1EXT_HPP
 #include "common.hpp"
 
 
