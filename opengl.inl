@@ -1238,6 +1238,106 @@ inline void Texture::texture_function_dsa(Callable1 dsafunc,Callable2 ndsafunc,G
 		
 }
 
+
+template<>
+inline GLint Texture::GetParameter<GLint>(GLenum targ,GLenum pname)
+{
+	GLint out[4];
+	texture_function_dsa(&gl::GetTextureParameterivEXT,&gl::GetTexParameteriv,targ,pname,out);
+	return out[0];
+}
+template<>
+inline GLint Texture::GetParameter<GLint>(GLenum pname)
+{
+	GLint out[4];
+	texture_function_dsa(&gl::GetTextureParameterivEXT,&gl::GetTexParameteriv,m_target,pname,out);
+	return out[0];
+}
+template<>
+inline GLfloat Texture::GetParameter<GLfloat>(GLenum targ,GLenum pname)
+{
+	GLfloat out[4];
+	texture_function_dsa(&gl::GetTextureParameterfvEXT,&gl::GetTexParameterfv,targ,pname,out);
+	return out[0];
+}
+template<>
+inline GLfloat Texture::GetParameter<GLfloat>(GLenum pname)
+{
+	GLfloat out[4];
+	texture_function_dsa(&gl::GetTextureParameterfvEXT,&gl::GetTexParameterfv,m_target,pname,out);
+	return out[0];
+}
+template<>
+inline GLint Texture::GetParameterI<GLint>(GLenum targ,GLenum pname)
+{
+	GLint out[4];
+	texture_function_dsa(&gl::GetTextureParameterIivEXT,&gl::GetTexParameterIiv,targ,pname,out);
+	return out[0];
+}
+template<>
+inline GLint Texture::GetParameterI<GLint>(GLenum pname)
+{
+	GLint out[4];
+	texture_function_dsa(&gl::GetTextureParameterIivEXT,&gl::GetTexParameterIiv,m_target,pname,out);
+	return out[0];
+}
+template<>
+inline GLuint Texture::GetParameterI<GLuint>(GLenum targ,GLenum pname)
+{
+	GLuint out[4];
+	texture_function_dsa(&gl::GetTextureParameterIuivEXT,&gl::GetTexParameterIuiv,targ,pname,out);
+	return out[0];
+}
+template<>
+inline GLuint Texture::GetParameterI<GLuint>(GLenum pname)
+{
+	GLuint out[4];
+	texture_function_dsa(&gl::GetTextureParameterIuivEXT,&gl::GetTexParameterIuiv,m_target,pname,out);
+	return out[0];
+}
+
+template<>
+inline GLint Texture::GetLevelParameter(GLenum targ,int lod, GLenum value)
+{
+	GLint out[4];
+	texture_function_dsa(&gl::GetTextureLevelParameterivEXT,&gl::GetTexLevelParameteriv,targ,lod,value,out);
+	return out[0];
+}
+template<>
+inline GLint Texture::GetLevelParameter(int lod, GLenum value)
+{
+	GLint out[4];
+	texture_function_dsa(&gl::GetTextureLevelParameterivEXT,&gl::GetTexLevelParameteriv,m_target,lod,value,out);
+	return out[0];
+}
+template<>
+inline GLfloat Texture::GetLevelParameter(GLenum targ,int lod, GLenum value)
+{
+	GLfloat out[4];
+	texture_function_dsa(&gl::GetTextureLevelParameterfvEXT,&gl::GetTexLevelParameterfv,targ,lod,value,out);
+	return out[0];
+}
+template<>
+inline GLfloat Texture::GetLevelParameter(int lod, GLenum value)
+{
+	GLfloat out[4];
+	texture_function_dsa(&gl::GetTextureLevelParameterfvEXT,&gl::GetTexLevelParameterfv,m_target,lod,value,out);
+	return out[0];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 template<class Callable1,class Callable2,typename... Types>
 inline void Framebuffer::framebuffer_function_dsa(Callable1 dsafunc,Callable2 ndsafunc,Types... params)
 {
