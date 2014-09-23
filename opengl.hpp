@@ -953,11 +953,11 @@ boolean fixedsamplelocations);
 	
 	void GetImage(GLenum tex, GLint lod, GLenum format, GLenum type, GLvoid *img)
 	{
-		texture_function_dsa(&gl::GetTextureImage,&gl::GetTexImage,tex,lod,format,type,img);
+		texture_function_dsa(&gl::GetTextureImageEXT,&gl::GetTexImage,tex,lod,format,type,img);
 	}
 	void GetImage(GLint lod, GLenum format, GLenum type, GLvoid *img)
 	{
-		texture_function_dsa(&gl::GetTextureImage,&gl::GetTexImage,m_target,lod,format,type,img);
+		texture_function_dsa(&gl::GetTextureImageEXT,&gl::GetTexImage,m_target,lod,format,type,img);
 	}
 	
 	void GetCompressedImage(GLenum targ,GLint lod, GLvoid *img)
@@ -1194,24 +1194,24 @@ public:
 	GLint GetParameter(GLenum pname)
 	{
 		GLint params;
-		framebuffer_function_dsa(&gl::GetFramebufferParameteriv,&gl::GetFramebufferParameteriv,pname,&params);
+		framebuffer_function_dsa(&gl::GetFramebufferParameterivEXT,&gl::GetFramebufferParameteriv,pname,&params);
 		return params;
 	}
 	
 	GLint GetAttachmentParameteriv(GLenum attachment,GLenum pname)
 	{
 		GLint params;
-		framebuffer_function_dsa(&gl::GetNamedFramebufferAttachmentParameteriv,&gl::GetFramebufferAttachmentParameteriv,attachment,pname,&params);
+		framebuffer_function_dsa(&gl::GetNamedFramebufferAttachmentParameterivEXT,&gl::GetFramebufferAttachmentParameteriv,attachment,pname,&params);
 		return params;
 	}
 	
 	void Texture(GLenum attachment, GLuint texture, GLint level)
 	{
-		framebuffer_function_dsa(&gl::NamedFramebufferTexture,&gl::FramebufferTexture,attachment,texture,level);
+		framebuffer_function_dsa(&gl::NamedFramebufferTextureEXT,&gl::FramebufferTexture,attachment,texture,level);
 	}
 	void Texture(GLenum attachment,const gl::Texture& tex, GLint level)
 	{
-		framebuffer_function_dsa(&gl::NamedFramebufferTexture,&gl::FramebufferTexture,attachment,tex.name,level);
+		framebuffer_function_dsa(&gl::NamedFramebufferTextureEXT,&gl::FramebufferTexture,attachment,tex.name,level);
 	}
 
 	void Renderbuffer(GLenum attachment, GLuint renderbuffer, GLint level);
@@ -1243,7 +1243,7 @@ public:
 	}
 	void CheckStatus(GLenum target)
 	{
-		framebuffer_function_dsa(&gl::CheckNamedFramebufferStatus,[](GLenum t,GLenum){ return gl::CheckFramebufferStatus(t); },target);
+		framebuffer_function_dsa(&gl::CheckNamedFramebufferStatusEXT,[](GLenum t,GLenum){ return gl::CheckFramebufferStatus(t); },target);
 	}
 protected:
 	explicit Framebuffer(GLuint o):
@@ -1268,16 +1268,16 @@ public:
 	
 	void StorageMultisample(GLsizei samples,GLenum internalformat, GLsizei width, GLsizei height)
 	{
-		renderbuffer_function_dsa(&gl::NamedRenderbufferStorageMultisample,&gl::RenderbufferStorageMultisample,samples,internalformat,width,height);
+		renderbuffer_function_dsa(&gl::NamedRenderbufferStorageMultisampleEXT,&gl::RenderbufferStorageMultisample,samples,internalformat,width,height);
 	}
 	void Storage(GLenum internalformat,GLsizei width,GLsizei height)
 	{
-		renderbuffer_function_dsa(&gl::NamedRenderbufferStorage,&gl::RenderbufferStorage,internalformat,width,height);
+		renderbuffer_function_dsa(&gl::NamedRenderbufferStorageEXT,&gl::RenderbufferStorage,internalformat,width,height);
 	}
 	GLint GetRenderbufferParameteriv(GLenum pname)
 	{
 		int params;
-		renderbuffer_function_dsa(&gl::GetRenderbufferParameteriv,&gl::GetRenderbufferParameteriv,pname,&params);
+		renderbuffer_function_dsa(&gl::GetRenderbufferParameterivEXT,&gl::GetRenderbufferParameteriv,pname,&params);
 		return params;
 	}
 	
@@ -1288,11 +1288,11 @@ protected:
 };
 void Framebuffer::Renderbuffer(GLenum attachment, GLuint renderbuffer, GLint level)
 {
-	framebuffer_function_dsa(&gl::NamedFramebufferRenderbuffer,&gl::FramebufferRenderbuffer,attachment,GL_RENDERBUFFER,renderbuffer);
+	framebuffer_function_dsa(&gl::NamedFramebufferRenderbuffer,&gl::FramebufferRenderbufferEXT,attachment,GL_RENDERBUFFER,renderbuffer);
 }
 void Framebuffer::Renderbuffer(GLenum attachment,const gl::Renderbuffer& rb, GLint level)
 {
-	framebuffer_function_dsa(&gl::NamedFramebufferRenderbuffer,&gl::FramebufferRenderbuffer,attachment,GL_RENDERBUFFER,rb.name);
+	framebuffer_function_dsa(&gl::NamedFramebufferRenderbuffer,&gl::FramebufferRenderbufferEXT,attachment,GL_RENDERBUFFER,rb.name);
 }
 
 
