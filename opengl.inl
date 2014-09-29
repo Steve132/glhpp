@@ -4,12 +4,12 @@ namespace gl
 ////Implementation-Defined stuff
 namespace _impl
 {
-inline void _handleError(GLenum errcode,const std::string& what)
+static inline void _handleError(GLenum errcode,const std::string& what)
 {
 	throw Exception(errcode,what);
 }
 #ifdef GL_HPP_ERROR_CHECKING
-inline void _checkError(GLenum errcode,const std::string& what)
+static inline void _checkError(GLenum errcode,const std::string& what)
 {
 	static const unsigned int NUM_ERRORS=6;
 	static const GLenum errenums[NUM_ERRORS]={GL_INVALID_ENUM,GL_INVALID_VALUE,GL_INVALID_OPERATION,GL_INVALID_FRAMEBUFFER_OPERATION,GL_OUT_OF_MEMORY,GL_HPP_CUSTOM};
@@ -35,11 +35,11 @@ inline void _checkError(GLenum errcode,const std::string& what)
 	}
 }
 #else
-inline void _checkError(GLenum,const std::string&)
+static inline void _checkError(GLenum,const std::string&)
 {}
 #endif
 
-inline void checkUniform()
+static inline void checkUniform()
 {
 	_impl::_checkError(GL_INVALID_OPERATION,
 		"An ambiguous error occured.  One of the following things has happened:\n"
@@ -59,7 +59,7 @@ inline void checkUniform()
 ///////////////////////////////////////////////////
 //GETTERS 
 template<>
-inline	GLfloat Get<GLfloat>(GLenum e)
+static inline	GLfloat Get<GLfloat>(GLenum e)
 {
 	GLfloat v;
 	gl::GetFloatv(e,&v);
@@ -68,7 +68,7 @@ inline	GLfloat Get<GLfloat>(GLenum e)
 }
 
 template<>
-inline	GLdouble Get<GLdouble>(GLenum e)
+static inline	GLdouble Get<GLdouble>(GLenum e)
 {
 	GLdouble v;
 	gl::GetDoublev(e,&v);
@@ -77,7 +77,7 @@ inline	GLdouble Get<GLdouble>(GLenum e)
 }
 
 template<>
-inline	GLboolean Get<GLboolean>(GLenum e)
+static inline	GLboolean Get<GLboolean>(GLenum e)
 {
 	GLboolean v;
 	gl::GetBooleanv(e,&v);
@@ -87,7 +87,7 @@ inline	GLboolean Get<GLboolean>(GLenum e)
 
 
 template<>
-inline	GLint Get<GLint>(GLenum e)
+static inline	GLint Get<GLint>(GLenum e)
 {
 	GLint v;
 	gl::GetIntegerv(e,&v);
@@ -96,7 +96,7 @@ inline	GLint Get<GLint>(GLenum e)
 }
 
 template<>
-inline	GLint64 Get<GLint64>(GLenum e)
+static inline	GLint64 Get<GLint64>(GLenum e)
 {
 	GLint64 v;
 	gl::GetInteger64v(e,&v);
@@ -105,7 +105,7 @@ inline	GLint64 Get<GLint64>(GLenum e)
 }
 
 template<> 
-inline std::string Get<std::string>(GLenum e)
+static inline std::string Get<std::string>(GLenum e)
 {
 	const char* bv=reinterpret_cast<const char*>(glGetString(e));
 	_impl::_checkError(GL_INVALID_ENUM,"Invalid variable read with glGet");
@@ -113,7 +113,7 @@ inline std::string Get<std::string>(GLenum e)
 }
 
 template<>
-inline GLboolean Get<GLboolean>(GLenum e,GLsizei i)
+static inline GLboolean Get<GLboolean>(GLenum e,GLsizei i)
 {
 	GLboolean v;
 	gl::GetBooleani_v(e,i,&v);
@@ -123,7 +123,7 @@ inline GLboolean Get<GLboolean>(GLenum e,GLsizei i)
 }
 
 template<>
-inline GLint Get<GLint>(GLenum e,GLsizei i)
+static inline GLint Get<GLint>(GLenum e,GLsizei i)
 {
 	GLint v;
 	gl::GetIntegeri_v(e,i,&v);
@@ -133,7 +133,7 @@ inline GLint Get<GLint>(GLenum e,GLsizei i)
 }
 
 template<>
-inline GLint64 Get<GLint64>(GLenum e,GLsizei i)
+static inline GLint64 Get<GLint64>(GLenum e,GLsizei i)
 {
 	GLint64 v;
 	gl::GetInteger64i_v(e,i,&v);
@@ -142,7 +142,7 @@ inline GLint64 Get<GLint64>(GLenum e,GLsizei i)
 	return v;
 }
 template<>
-inline std::string Get<std::string>(GLenum e,GLsizei i)
+static inline std::string Get<std::string>(GLenum e,GLsizei i)
 {
 	const char* v=reinterpret_cast<const char*>(gl::GetStringi(e,i));
 	_impl::_checkError(GL_INVALID_ENUM,"Invalid variable read with glGet");

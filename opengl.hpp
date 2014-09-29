@@ -177,10 +177,10 @@ public:
 
 //These should only exist in their specializations
 template<class T> 
-T Get(GLenum v) = delete;
+T Get(GLenum v);
 
 template<class T>
-T Get(GLenum v,GLsizei i) = delete;
+T Get(GLenum v, GLsizei i);
 
 class Exception: public std::runtime_error
 {
@@ -243,9 +243,9 @@ public:
 	std::string Compile();
 	static void ReleaseCompiler();
 
-	void Binary(GLenum binaryformat,const uint8_t* bindata,size_t bindatalen)
+	void Binary(GLenum binaryformat,const void* bindata,GLsizei bindatalen)
 	{
-		gl::ShaderBinary(1,&name,binaryformat,(const void*)bindata,bindatalen);
+		gl::ShaderBinary(1,&name,binaryformat,bindata,bindatalen);
 	}
 
 	std::string GetInfoLog() const
@@ -492,10 +492,10 @@ SHADER_STORAGE}_BARRIER_BIT
 	//matrix and array uniforms
 	//should only exist in their specializations
 	template<class T,GLuint sz>
-	void Uniform(const std::string& n,const T*,GLsizei count=1)=delete;
+	void Uniform(const std::string& n, const T*, GLsizei count = 1);
 	
 	template<class T,GLuint rows,GLuint cols>
-	void UniformMatrix(const std::string& n,const T*,bool transposed=false,GLsizei count=1)=delete;
+	void UniformMatrix(const std::string& n, const T*, bool transposed = false, GLsizei count = 1);
 	
 	std::string Link();
 	
