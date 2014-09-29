@@ -20,27 +20,8 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 
 */
 
-#ifndef GL_HPP_COMMON_HPP
-#define GL_HPP_COMMON_HPP
-
-#include<string>
-#include<sstream>
-#include<iterator>
-
-#if __cplusplus >= 201103L || defined(__GXX_EXPERIMENTAL_CXX0X__)  //if C++0x, then use hash set instead for speed.
-#include<unordered_set>
-typedef std::unordered_set<std::string> EXTENSION_SET;
-#define CONSTRUCT_EXTENSION_SET(x) std::unordered_set<std::string> x(128)
-#else
-#include<set>
-typedef std::set<std::string> EXTENSION_SET;
-#define CONSTRUCT_EXTENSION_SET(x) std::set<std::string> x;
-#endif
-
-
-#include<stdexcept>
-#include<utility>
-
+#ifndef GL_HPP_COMMON_H
+#define GL_HPP_COMMON_H
 
 %(TYPEDEFS)s
 
@@ -49,68 +30,108 @@ typedef std::set<std::string> EXTENSION_SET;
 #define GLHPP_GL_VERSION                        0x1F02
 #define GLHPP_GL_EXTENSIONS			0x1F03
 #define GLHPP_GL_NUM_EXTENSIONS                 0x821D
-extern "C"
-{
+
+#ifndef GLHPP_HASH_TABLE_BITS		
+#define GLHPP_HASH_TABLE_BITS		16
+#endif
+
+#define GLHPP_HASH_TABLE_LENGTH		(1 << GLHPP_HASH_TABLE_BITS)
+
 extern const GLubyte* glGetString(GLenum name);
 extern void glGetIntegerv(GLenum pname,GLint *params);
+
+typedef struct _version_info_t
+{
+	unsigned int first;
+	unsigned int second;
+} version_info;
+
+typedef struct _extension_set_t
+{
+	const char* extensionstringmemory;
+	const char** extensionstringbeginnings;
+	size_t num_extensions;
+} extension_set;
+
+int check_extension(const char* extname);
+int check_version(unsigned int vmaj,unsigned int vmin);
+int check_version(const version_info* version);
+
+void* get_proc_address(const char* funcname);
+void* get_proc_address_ext(const char* funcname,const char* extname);
+
+const extension_set* get_extensions();
+const version_info* get_version();
+
+inline int strptrcmp(const void* a,const void* b)
+{
+	return strcmp(*(const char**)a,*(const char**)b);
 }
-//define Opengl
-namespace gl
+static inline version_info _get_version()
 {
-class ProcedureNotFound: public std::runtime_error
-{
-public:
-	explicit ProcedureNotFound(const std::string& s):
-		std::runtime_error(s)
-	{}	
-};
-
-typedef std::pair<unsigned int,unsigned int> version_info;
-
-bool check_extension(const std::string& extname);
-bool check_version(unsigned int vmaj,unsigned int vmin);
-bool check_version(const version_info& version);
-const version_info& get_version();
-void* get_proc_address(const std::string& funcname);
-void* get_proc_address(const std::string& funcname,const std::string& extname);
-const EXTENSION_SET& get_extensions();
-
-
-
-namespace _impl
-{
-
-inline version_info _get_version()
-{
-	const char* vs=reinterpret_cast<const char*>(glGetString(GLHPP_GL_VERSION));
-	std::istringstream iss(vs);
-	unsigned int maj,min;
-	iss >> maj;
-	iss.ignore();
-	iss >> min;
-	return std::make_pair(maj,min);
+	const char* vs=(const char*)glGetString(GLHPP_GL_VERSION));
+	
+	version_info vis;
+	vs.first = (int)(vs[0]-'0');
+	vs.second= (int)(vs[2]-'0');
+	return vis;
 }
 typedef const GLubyte* (*PFNGLGETSTRINGIPROC_PRIV)(GLenum name, GLuint index);
 
-inline EXTENSION_SET _get_extensions()
+inline extension_set _get_extensions()
 {
-	CONSTRUCT_EXTENSION_SET(extlist);
-	GLint extmax;
-	if(check_version(3,0))
+	extension_set extlist;
+	GLint isversion=check_version(3,0);
+
+	if(isversion)
 	{
-		static PFNGLGETSTRINGIPROC_PRIV gsi=reinterpret_cast<PFNGLGETSTRINGIPROC_PRIV>(_prim_GetProcAddress("glGetStringi"));
+		GLint extmax;
+		char* extstring;
+		char* extstringhead=extstring;
+		size_t bufsize=0;
+		size_t bufbackingsize=0;
+		static PFNGLGETSTRINGIPROC_PRIV gsi=(PFNGLGETSTRINGIPROC_PRIV)_prim_GetProcAddress("glGetStringi");
+		GLint i;
 		glGetIntegerv(GLHPP_GL_NUM_EXTENSIONS,&extmax);
-		for(GLint i=0;i<extmax;i++)
+		static const size_t AVG_EXTNAME_BYTES=12;
+		bufbackingsize=AVG_EXTNAME_BYTES*extmax; //estimate size to minimize reallocs to approximately 3
+		exstring=(char*)malloc(bufbackingsize);
+		for(i=0;i<extmax;i++)
 		{
-			extlist.insert((const char*)gsi(GLHPP_GL_EXTENSIONS,i));
+			const char* curstringname=(const char*)gsi(GLHPP_GL_EXTENSIONS,i);
+			size_t csnl=strlen(curstringname)+1;
+			if(exstringhead+csnl >= exstring+backingsize)
+			{
+				bufbackingsize<<=1;
+				extstring=(char)realloc(extstring,bufbackingsize);
+			}
+			strncpy(extstringhead,curstringname,csnl);
+			extstringhead[csnl-1]=' ';
+			extstringhead+=csnl;
 		}
+		extlist.num_extensions=extmax;
+		extlist.extensionstringmemory=exstring;
+		memset(extstringhead,extstring+bufbackingsize,0);
 	}
 	else
 	{
-		std::istringstream extstream((const char*)glGetString(GLHPP_GL_EXTENSIONS));
-		extlist.insert(std::istream_iterator<std::string>(extstream),std::istream_iterator<std::string>());
+		const char* extother=(const char*)glGetString(GLHPP_GL_EXTENSIONS);
+		extlist.extensionstringmemory=(char*)malloc(strlen(extother));
+		strcpy(extlist.extensionstringmemory,extother);
+		for(char* pch=strchr(extlist.extensionstringmemory,' ');pch!=NULL;pch=strchr(pch+1,' '))
+		{
+			extlist.num_extensions++;
+		}
 	}
-	
+	char** extindices=(char**)malloc(exlist.num_extensions*sizeof(const char*));
+	char** extindiceshead=extindices
+	for(char* pch=strtok(extlist.extensionstringmemory," \n\t");pch!=NULL;pch=strchr(extlist.extensionstringmemory," \n\t"))
+	{
+		*(extindiceshead++)=pch;
+	}
+	//binary sort the extindices for searching later
+	qsort(extindices,exlist.num_extensions,sizeof(const char*),strptrcmp);
+	extlist.extensionstringbeginnings=extindices;
 	return extlist;
 }
 
