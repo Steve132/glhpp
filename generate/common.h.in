@@ -31,12 +31,6 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #define GLHPP_GL_EXTENSIONS			0x1F03
 #define GLHPP_GL_NUM_EXTENSIONS                 0x821D
 
-#ifndef GLHPP_HASH_TABLE_BITS		
-#define GLHPP_HASH_TABLE_BITS		16
-#endif
-
-#define GLHPP_HASH_TABLE_LENGTH		(1 << GLHPP_HASH_TABLE_BITS)
-
 extern const GLubyte* glGetString(GLenum name);
 extern void glGetIntegerv(GLenum pname,GLint *params);
 
@@ -53,15 +47,45 @@ typedef struct _extension_set_t
 	size_t num_extensions;
 } extension_set;
 
-int check_extension(const char* extname);
-int check_version(unsigned int vmaj,unsigned int vmin);
-int check_version(const version_info* version);
+int glhppCheckExtension(const char* extname);
+int glhppCheckVersion(unsigned int vmaj,unsigned int vmin);
 
-void* get_proc_address(const char* funcname);
-void* get_proc_address_ext(const char* funcname,const char* extname);
+void* glhppGetProcAddress(const char* funcname);
+void* glhppGetProcAddressExtension(const char* funcname,const char* extname);
+void* glhppGetProcAddressVersion(const char* funcname,unsigned int vmaj,unsigned int vmin);
 
-const extension_set* get_extensions();
-const version_info* get_version();
+const extension_set* glhppGetExtensions();
+const version_info* glhppGetVersion();
+
+typedef void (*_glhpp_error_callback_func)(void* userdata,const char* msgformat,const char* extname,const char* extfunc);
+inline void _glhppDefaultError(void* userdata,const char* msgformat,const char* extname,const char* extfunc)
+{
+	fprintf(msgformat,extname,exfunc);
+}
+
+inline void _glhppErrorCallbackBackend(void* userdata,const char* msgformat,const char* extname,const char* extfunc,_glhpp_error_callback_func cbfnew)
+{
+	static _glhpp_error_callback_func ecb=&_glhppDefaultError;
+	static void* ud=userdata;
+	if(cbfnew)
+	{
+		ecb=cbfnew;
+		ud=userdata;
+	}
+	else
+	{
+		return ecb(ud,msgformat,extname,extfunc);
+	}
+}
+
+inline void glhppError(sconst char* msgformat,const char* extname,const char* extfunc)
+{
+	_glhppErrorCallbackBackend(NULL,msgformat,extname,extfunc,NULL);
+}
+inline void glhppSetError(_glhpp_error_callback_func cbfnew,void* ud)
+{
+	_glhppErrorCallbackBackend(ud,NULL,NULL,NULL,cbfnew);
+}
 
 inline int strptrcmp(const void* a,const void* b)
 {
@@ -81,7 +105,7 @@ typedef const GLubyte* (*PFNGLGETSTRINGIPROC_PRIV)(GLenum name, GLuint index);
 inline extension_set _get_extensions()
 {
 	extension_set extlist;
-	GLint isversion=check_version(3,0);
+	GLint isversion=glhppCheckVersion(3,0);
 
 	if(isversion)
 	{
@@ -134,92 +158,83 @@ inline extension_set _get_extensions()
 	extlist.extensionstringbeginnings=extindices;
 	return extlist;
 }
-
-inline void* _get_proc_address(const char* frequest,const char* extext)
+inline int _es_contains(const char* namecheck)
 {
-	if(check_extension(extext))
+	static const extension_set* es=get_extensions();
+	return bsearch(&namecheck,es->extensionstringbeginnings,es->num_extensions,sizeof(const char*),strptrcmp)!=NULL;
+}
+
+inline int glhppCheckExtension(const char* extname)
+{
+	return _es_contains(extname);
+}
+
+inline const version_info* glhppGetVersion()
+{
+	static version_info v=_get_version();
+	return &v;
+}
+inline const extension_set* glhppGetExtensions()
+{
+	static extension_set extarray=_get_extensions();
+	return &extarray;
+}
+inline int glhppCheckVersion(unsigned int vmaj,unsigned int vmin)
+{
+	static const version_info* v=glhppGetVersion();
+	return (vmaj*10+vmin) <= (v->first*10+v->second);
+}
+inline void* glhppGetProcAddress(const char* funcname)
+{
+	void* fptr=_prim_GetProcAddress(funcname);
+	if(fptr)
+		return fptr;
+	else
+	{
+		glhppError("Error, %s was not found in this context %s\n",funcname,"",NULL);
+	}
+}
+
+inline void* glhppGetProcAddressExtension(const char* frequest,const char* extext)
+{
+	if(glhppCheckExtension(extext))
 	{
 		void* fptr=_prim_GetProcAddress(frequest);
 		if(fptr)
 			return fptr;
 		else
 		{
-			std::ostringstream oss;
-			oss << "Error, " << extext << " is supported, but " << frequest << " was not found in the context.";
-			throw ProcedureNotFound(oss.str());
+			glhppError("Error, %s was not found in this context even though %s is supported\n",funcname,extext,NULL);
 		}
 	}
 	else
 	{	
+		glhppError("Error, %s was not found in this context because %s is not supported\n",funcname,extext,NULL);
 		std::ostringstream oss;
 		oss << "Error, " << extext << " is not supported, so " << frequest << " was not found in the context.";
 		throw ProcedureNotFound(oss.str());
 	}
 }
-inline void* _get_proc_address(const char* frequest,unsigned int vmaj,unsigned int vmin)
+inline void* glhppGetProcAddressVersion(const char* frequest,unsigned int vmaj,unsigned int vmin)
 {
-	if(check_version(vmaj,vmin))
+	char vstring[]="X.X"
+	vstring[0]=(char)('0'+vmaj);
+	vstring[2]=(char)('0'+vmin);
+	if(glhppCheckVersion(vmaj,vmin))
 	{
 		void* fptr=_prim_GetProcAddress(frequest);
 		if(fptr)
 			return fptr;
 		else
 		{
-			std::ostringstream oss;
-			oss << "Error, OpenGL Version " << vmaj << '.' << vmin << " is supported, but " << frequest << " was not found in the context.  Could this function be deprecated in this context?";
-			throw ProcedureNotFound(oss.str());
+			glhppError("Error, %s was not found in this context even though GL version %s\n",frequest,vstring,NULL);
 		}
 	}
 	else
 	{
-		std::ostringstream oss;
-		oss << "Error, OpenGL Version " << vmaj << '.' << vmin << " is not supported, so " << frequest << " could not be found in the context.";
-		throw ProcedureNotFound(oss.str());
+		glhppError("Error, %s was not found in this context because GL version %s is not supported by this context\n",frequest,vstring,NULL);
 	}
 }
-}
 
-inline bool check_extension(const std::string& extname)
-{
-	static const EXTENSION_SET& extarray=get_extensions();
-	return extarray.find(extname)!=extarray.end();
-}
-
-inline const version_info& get_version()
-{
-	static version_info v=_impl::_get_version();
-	return v;
-}
-inline bool check_version(unsigned int vmaj,unsigned int vmin)
-{
-	static const version_info& v=get_version();
-	return (vmaj*10+vmin) <= (v.first*10+v.second);
-}
-inline bool check_version(const version_info& v)
-{
-	return check_version(v.first,v.second);
-}
-inline void* get_proc_address(const std::string& funcname)
-{
-	void* fptr=_prim_GetProcAddress(funcname.c_str());
-	if(fptr)
-		return fptr;
-	else
-	{
-		std::ostringstream oss;
-		oss << "Error, " << funcname << " was not found in the context.";
-		throw ProcedureNotFound(oss.str());
-	}
-}
-inline void* get_proc_address(const std::string& funcname,const std::string& extname)
-{
-	return _impl::_get_proc_address(funcname.c_str(),extname.c_str());
-}
-inline const EXTENSION_SET& get_extensions()
-{
-	static EXTENSION_SET extarray=_impl::_get_extensions();
-	return extarray;
-}
-}
 
 #endif

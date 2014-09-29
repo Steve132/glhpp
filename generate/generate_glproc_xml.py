@@ -160,10 +160,10 @@ class ExtensionSpec(object):
 		
 
 class SpecificationsXML(object):
-	def __init__(self,filename):
+	def __init__(self,filename,cmode=False):
 		et=ET.parse(filename)
 		root=et.getroot()
-		
+		self.cmode=cmode
 		self.typestring=''
 		for t in root.find('types').iter('type'):
 			if(t.get('name')!='khrplatform' and t.get('requires') !='khrplatform'):

@@ -43,7 +43,6 @@ typedef std::set<std::string> EXTENSION_SET;
 
 
 %(TYPEDEFS)s
-
 %(API_NAMES)s
 
 #define GLHPP_GL_VERSION                        0x1F02
