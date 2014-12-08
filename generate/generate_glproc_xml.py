@@ -93,7 +93,6 @@ static inline %(rettype)s gl%(signature)s(%(argstring)s)
 		fundef=funtemplate % argdict
 			
 		if(function_included):
-			print(self.name)
 			if(cmode):
 				funtemplate=""
 				return ""

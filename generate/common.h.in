@@ -42,6 +42,13 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #define CGUARDEND
 #endif
 
+%(TYPEDEFS)s
+%(API_NAMES)s
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
 #if defined(__sgi) || defined(__sun) || (defined(__APPLE__) && defined(GLALT_APPLE_GLX))
 #include<dlfcn.h>
 
@@ -185,10 +192,6 @@ static inline void* _glalt_prim_GetProcAddress(const char* name)
 
 #endif
 
-
-%(TYPEDEFS)s
-%(API_NAMES)s
-
 #define GLALT_GL_VERSION                        0x1F02
 #define GLALT_GL_EXTENSIONS			0x1F03
 #define GLALT_GL_NUM_EXTENSIONS                 0x821D
@@ -208,7 +211,7 @@ typedef struct _glalt_version_info_t
 
 typedef struct _glalt_extension_set_t
 {
-	const char* extensionstringmemory;
+	char* extensionstringmemory;
 	const char** extensionstringbeginnings;
 	size_t num_extensions;
 	#ifdef __cplusplus
@@ -233,7 +236,7 @@ const glalt_version_info* glaltGetVersion();
 typedef void (*_glalt_error_callback_func)(void* userdata,const char* msgformat,const char* extname,const char* extfunc);
 inline void _glaltDefaultError(void* userdata,const char* msgformat,const char* extname,const char* extfunc)
 {
-	fprintf(msgformat,extname,exfunc);
+	fprintf(stderr, msgformat,extname,extfunc);
 }
 
 inline void _glaltErrorCallbackBackend(void* userdata,const char* msgformat,const char* extname,const char* extfunc,_glalt_error_callback_func cbfnew)
@@ -251,7 +254,7 @@ inline void _glaltErrorCallbackBackend(void* userdata,const char* msgformat,cons
 	}
 }
 
-inline void glaltError(sconst char* msgformat,const char* extname,const char* extfunc)
+inline void glaltError(const char* msgformat,const char* extname,const char* extfunc)
 {
 	_glaltErrorCallbackBackend(NULL,msgformat,extname,extfunc,NULL);
 }
@@ -266,11 +269,11 @@ static inline int strptrcmp(const void* a,const void* b)
 }
 static inline glalt_version_info _get_version()
 {
-	const char* vs=(const char*)glGetString(GLALT_GL_VERSION));
+	const char* vs=(const char*)glGetString(GLALT_GL_VERSION);
 	
 	glalt_version_info vis;
-	vs.first = (int)(vs[0]-'0');
-	vs.second= (int)(vs[2]-'0');
+	vis.first = (int)(vs[0]-'0');
+	vis.second= (int)(vs[2]-'0');
 	return vis;
 }
 typedef const GLubyte* (*PFNGLGETSTRINGIPROC_PRIV)(GLenum name, GLuint index);
@@ -292,23 +295,23 @@ inline glalt_extension_set _get_extensions()
 		glGetIntegerv(GLALT_GL_NUM_EXTENSIONS,&extmax);
 		static const size_t AVG_EXTNAME_BYTES=12;
 		bufbackingsize=AVG_EXTNAME_BYTES*extmax; //estimate size to minimize reallocs to approximately 3
-		exstring=(char*)malloc(bufbackingsize);
+		extstring=(char*)malloc(bufbackingsize);
 		for(i=0;i<extmax;i++)
 		{
 			const char* curstringname=(const char*)gsi(GLALT_GL_EXTENSIONS,i);
 			size_t csnl=strlen(curstringname)+1;
-			if(exstringhead+csnl >= exstring+backingsize)
+			if(extstringhead+csnl >= extstring+bufbackingsize)
 			{
 				bufbackingsize<<=1;
-				extstring=(char)realloc(extstring,bufbackingsize);
+				extstring=(char*)realloc(extstring,bufbackingsize);
 			}
 			strncpy(extstringhead,curstringname,csnl);
 			extstringhead[csnl-1]=' ';
 			extstringhead+=csnl;
 		}
 		extlist.num_extensions=extmax;
-		extlist.extensionstringmemory=exstring;
-		memset(extstringhead,extstring+bufbackingsize,0);
+		extlist.extensionstringmemory=extstring;
+		memset(extstringhead,0,extstring+bufbackingsize - extstringhead);
 	}
 	else
 	{
@@ -320,14 +323,14 @@ inline glalt_extension_set _get_extensions()
 			extlist.num_extensions++;
 		}
 	}
-	char** extindices=(char**)malloc(exlist.num_extensions*sizeof(const char*));
-	char** extindiceshead=extindices
-	for(char* pch=strtok(extlist.extensionstringmemory," \n\t");pch!=NULL;pch=strchr(extlist.extensionstringmemory," \n\t"))
+	const char** extindices=(const char**)malloc(extlist.num_extensions*sizeof(const char*));
+	const char** extindiceshead=extindices;
+	for(char* pch=strtok(extlist.extensionstringmemory," \n\t");pch!=NULL;pch=strpbrk(extlist.extensionstringmemory," \n\t"))
 	{
 		*(extindiceshead++)=pch;
 	}
 	//binary sort the extindices for searching later
-	qsort(extindices,exlist.num_extensions,sizeof(const char*),strptrcmp);
+	qsort(extindices,extlist.num_extensions,sizeof(const char*),strptrcmp);
 	extlist.extensionstringbeginnings=extindices;
 	return extlist;
 }
@@ -364,7 +367,7 @@ inline void* glaltGetProcAddress(const char* funcname)
 		return fptr;
 	else
 	{
-		glaltError("Error, %%s was not found in this context %%s\n",funcname,"",NULL);
+		glaltError("Error, %%s was not found in this context %%s\n",funcname,"");
 	}
 }
 
@@ -377,17 +380,17 @@ inline void* glaltGetProcAddressExtension(const char* frequest,const char* extex
 			return fptr;
 		else
 		{
-			glaltError("Error, %%s was not found in this context even though %%s is supported\n",funcname,extext,NULL);
+			glaltError("Error, %%s was not found in this context even though %%s is supported\n",frequest,extext);
 		}
 	}
 	else
 	{	
-		glaltError("Error, %%s was not found in this context because %%s is not supported\n",funcname,extext,NULL);
+		glaltError("Error, %%s was not found in this context because %%s is not supported\n",frequest,extext);
 	}
 }
 inline void* glaltGetProcAddressVersion(const char* frequest,unsigned int vmaj,unsigned int vmin)
 {
-	char vstring[]="X.X"
+	char vstring[]="X.X";
 	vstring[0]=(char)('0'+vmaj);
 	vstring[2]=(char)('0'+vmin);
 	if(glaltCheckVersion(vmaj,vmin))
@@ -397,12 +400,12 @@ inline void* glaltGetProcAddressVersion(const char* frequest,unsigned int vmaj,u
 			return fptr;
 		else
 		{
-			glaltError("Error, %%s was not found in this context even though GL version %%s\n",frequest,vstring,NULL);
+			glaltError("Error, %%s was not found in this context even though GL version %%s\n",frequest,vstring);
 		}
 	}
 	else
 	{
-		glaltError("Error, %%s was not found in this context because GL version %%s is not supported by this context\n",frequest,vstring,NULL);
+		glaltError("Error, %%s was not found in this context because GL version %%s is not supported by this context\n",frequest,vstring);
 	}
 }
 
