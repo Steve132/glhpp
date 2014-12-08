@@ -181,13 +181,14 @@ static inline void* _glalt_prim_GetProcAddress(const char* name)
 
 #else
 
+#include<GL/glx.h>
 CGUARDBEGIN
-void *glXGetProcAddressARB(const GLubyte *procName);
+//void *glXGetProcAddressARB(const GLubyte *procName);
 CGUARDEND
 
 static inline void* _glalt_prim_GetProcAddress(const char* name)
 {
-	return glXGetProcAddressARB((const GLubyte*)name);
+	return (void*)glXGetProcAddressARB((const GLubyte*)name);
 }
 
 #endif

@@ -70,7 +70,7 @@ static inline %(rettype)s %(asignature)s(%(argstring)s)
 typedef %(rettype)s (*PFN%(usignature)sPROC_ALT)(%(justtypes)s);
 static inline %(rettype)s gl%(signature)s(%(argstring)s)
 {
-	static PFN%(usignature)sPROC_ALT fn=(PFN%(usignature)sPROC_ALT)glhppGetProcAddress%(extorversion)s(\"gl%(signature)s\",%(extension)s));
+	static PFN%(usignature)sPROC_ALT fn=(PFN%(usignature)sPROC_ALT)glaltGetProcAddress%(extorversion)s(\"gl%(signature)s\",%(extension)s);
 	%(rv)s fn(%(justargs)s);
 }
 #endif
@@ -310,6 +310,8 @@ class SpecificationsXML(object):
 				fileobj.write("#endif\n\n")
 		
 		fileobj.write("#endif\n")
+
+
 	
 if __name__=='__main__':
 	import sys
@@ -327,6 +329,8 @@ if __name__=='__main__':
 	completed=set()
 	ext = '.h' if cmode else '.hpp'
 
+	allfilesout=[]
+
 	for k,v in spec.complete_apis.items():
 		kb='gles' if k[:4]=='gles' else k
 		
@@ -337,15 +341,27 @@ if __name__=='__main__':
 			
 		for feat in v:
 			fname=kb+feat.versionfloat
-			fout=open(os.path.join(ghproot,fname+ext),'w')
+			fname2=os.path.join(ghproot,fname+ext)
+			allfilesout.append(fname2)
+			fout=open(fname2,'w')
 			spec.write_feature(feat,fout)
 		efname=k+'ext'+ext
+		allfilesout.append(os.path.join(ghproot,efname))
 		efout=open(os.path.join(ghproot,efname),'w')
 		spec.write_extensions(k,efout)
 		
 	
 	common_header=open('common'+ext+'.in').read() % {'TYPEDEFS':spec.typestring,'API_NAMES':apinames}
-	open(os.path.join(ghproot,'common'+ext),'w').write(common_header)
+	cname=os.path.join(ghproot,'common'+ext)
+	open(cname,'w').write(common_header)
+	allfilesout.append(cname)
+	
+	for a in allfilesout:
+		afo=open(a,'r')	
+		astring=afo.read()
+		afo.close()
+		open(a,'w').write(astring.replace('GLDEBUGPROC','GLALTDEBUGPROC'))
+	
 	#templatefile=open('glproc.hpp.in').read()
 	#output=templatefile % {'GL_MAX_VERSION':spec.max_version,'GL_SPECS':spec.print_specs()}
 	
