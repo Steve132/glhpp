@@ -79,16 +79,7 @@ const EXTENSION_SET& get_extensions();
 namespace _impl
 {
 
-inline version_info _get_version()
-{
-	const char* vs=reinterpret_cast<const char*>(glGetString(GLHPP_GL_VERSION));
-	std::istringstream iss(vs);
-	unsigned int maj,min;
-	iss >> maj;
-	iss.ignore();
-	iss >> min;
-	return std::make_pair(maj,min);
-}
+
 typedef const GLubyte* (*PFNGLGETSTRINGIPROC_PRIV)(GLenum name, GLuint index);
 
 inline EXTENSION_SET _get_extensions()

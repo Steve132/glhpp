@@ -20,52 +20,225 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 
 */
 
-#ifndef GL_HPP_COMMON_H
-#define GL_HPP_COMMON_H
+#ifndef GL_ALT_COMMON_H
+#define GL_ALT_COMMON_H
+
+
+
+#ifdef _WIN32
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+#include<windows.h>
+#endif
+
+//DEFINE PLATFORM GET PROCEDURE CALL
+
+#ifdef __cplusplus
+#define CGUARDBEGIN extern "C" {
+#define CGUARDEND }
+#else
+#define CGUARDBEGIN
+#define CGUARDEND
+#endif
+
+#if defined(__sgi) || defined(__sun) || (defined(__APPLE__) && defined(GLALT_APPLE_GLX))
+#include<dlfcn.h>
+
+typedef void* (*_dl_gpa_func)(const char*);
+struct _dl_prim_xpa:
+{
+	void* h_image;
+	_dl_gpa_func x_get_proc_address;
+	_dl_prim_xpa():
+		h_image(nullptr),
+		x_get_proc_address(nullptr)
+	{
+		h=dlopen(NULL,RTLD_LAZY | RTLD_LOCAL);
+		if(h)
+		{
+			x_get_proc_address=dlsym(h,"glXGetProcAddress");
+		}
+	}
+	void* get(const char* name)
+	{
+		if(x_get_proc_address)
+		{
+			return x_get_proc_address(name);
+		}
+		if(h)
+		{
+			return dlsym(h,name);
+		}
+		return nullptr;
+	}
+};
+
+#elif defined(__APPLE__)
+
+typedef void* (*_dl_gpa_func)(const char*);
+struct _dl_prim_xpa:
+{
+	void* get(const char*)
+	{
+		return nullptr;
+	}
+};
+#endif
+
+
+
+
+//begin procedure calls.
+
+#if defined(_WIN32)
+
+static inline void* _glalt_prim_GetProcAddress(const char* name)
+{
+	return wglGetProcAddress((LPCSTR)name);
+}
+
+#elif defined(__APPLE__)
+
+#include <AvailabilityMacros.h>
+#include <mach-o/dyld.h>
+
+#ifdef GLALT_REGAL
+#define GLALT_APPLE_DYLIB "libRegal.dylib"
+#else
+#define GLALT_APPLE_DYLIB "/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL"
+#endif
+
+inline void* _apple_dl_get2(const char* name)
+{
+	static _dl_prim_xpa dxpa;
+	return dxpa.get(name);
+}
+
+struct _apple_dl_image
+{
+#ifdef MAC_OS_X_VERSION_10_3
+	void* image;
+	_apple_dl_image():image(nullptr)
+	{
+		image=dlopen(GLALT_APPLE_DYLIB,RTLD_LAZY);
+	}
+	void* get(const char* name)
+	{
+		if(!image) 
+		{
+			return nullptr;
+		}
+		void* addr=dlsym(image,name);
+		if(addr)
+		{
+			return addr;
+		}
+		return _apple_dl_get2(name);
+	}
+#else
+	const struct mach_header* image;
+	_apple_dl_image():image(nullptr)
+	{
+		image=NSAddImage(GLALT_APPLE_DYLIB,NSADDIMAGE_OPTION_RETURN_ON_ERROR);
+	}
+	static void* get2(const char* name)
+	{
+		static _dl_prim_xpa dxpa;
+		return dxpa.get(name);
+	}
+	void* get(const char* name)
+	{
+		std::string symbolname("_");
+		symbolname+=name;
+		NSSymbol symbol=image ? NSLookupSymbolInImage(image,symbolname.c_str(),NSLOOKUPSYMBOLINIMAGE_OPTION_BIND | NSLOOKUPSYMBOLINIMAGE_OPTION_RETURN_ON_ERROR) : nullptr;
+		if(symbol)
+			return NSAddressOfSymbol(symbol);
+		return _apple_dl_get2(name);
+	}
+#endif	
+};
+
+static inline void* _glalt_prim_GetProcAddress(const char* name)
+{
+	static _apple_dl_image adi;
+	return adi.get(name);
+}
+#elif defined(__sun) || defined(__sgi)
+
+static inline void* _glalt_prim_GetProcAddress(const char* name)
+{
+	static _dl_prim_xpa dxpa;
+	return dxpa.get(name);
+}
+
+#else
+
+CGUARDBEGIN
+void *glXGetProcAddressARB(const GLubyte *procName);
+CGUARDEND
+
+static inline void* _glalt_prim_GetProcAddress(const char* name)
+{
+	return glXGetProcAddressARB((const GLubyte*)name);
+}
+
+#endif
+
 
 %(TYPEDEFS)s
-
 %(API_NAMES)s
 
-#define GLHPP_GL_VERSION                        0x1F02
-#define GLHPP_GL_EXTENSIONS			0x1F03
-#define GLHPP_GL_NUM_EXTENSIONS                 0x821D
+#define GLALT_GL_VERSION                        0x1F02
+#define GLALT_GL_EXTENSIONS			0x1F03
+#define GLALT_GL_NUM_EXTENSIONS                 0x821D
 
+CGUARDBEGIN
 extern const GLubyte* glGetString(GLenum name);
 extern void glGetIntegerv(GLenum pname,GLint *params);
+CGUARDEND
 
-typedef struct _version_info_t
+
+typedef struct _glalt_version_info_t
 {
 	unsigned int first;
 	unsigned int second;
-} version_info;
+} glalt_version_info;
 
-typedef struct _extension_set_t
+
+typedef struct _glalt_extension_set_t
 {
 	const char* extensionstringmemory;
 	const char** extensionstringbeginnings;
 	size_t num_extensions;
-} extension_set;
+	#ifdef __cplusplus
+	~_glalt_extension_set_t()
+	{
+		free(extensionstringmemory);
+		free(extensionstringbeginnings);
+	}
+	#endif
+} glalt_extension_set;
 
-int glhppCheckExtension(const char* extname);
-int glhppCheckVersion(unsigned int vmaj,unsigned int vmin);
+int glaltCheckExtension(const char* extname);
+int glaltCheckVersion(unsigned int vmaj,unsigned int vmin);
 
-void* glhppGetProcAddress(const char* funcname);
-void* glhppGetProcAddressExtension(const char* funcname,const char* extname);
-void* glhppGetProcAddressVersion(const char* funcname,unsigned int vmaj,unsigned int vmin);
+void* glaltGetProcAddress(const char* funcname);
+void* glaltGetProcAddressExtension(const char* funcname,const char* extname);
+void* glaltGetProcAddressVersion(const char* funcname,unsigned int vmaj,unsigned int vmin);
 
-const extension_set* glhppGetExtensions();
-const version_info* glhppGetVersion();
+const glalt_extension_set* glaltGetExtensions();
+const glalt_version_info* glaltGetVersion();
 
-typedef void (*_glhpp_error_callback_func)(void* userdata,const char* msgformat,const char* extname,const char* extfunc);
-inline void _glhppDefaultError(void* userdata,const char* msgformat,const char* extname,const char* extfunc)
+typedef void (*_glalt_error_callback_func)(void* userdata,const char* msgformat,const char* extname,const char* extfunc);
+inline void _glaltDefaultError(void* userdata,const char* msgformat,const char* extname,const char* extfunc)
 {
 	fprintf(msgformat,extname,exfunc);
 }
 
-inline void _glhppErrorCallbackBackend(void* userdata,const char* msgformat,const char* extname,const char* extfunc,_glhpp_error_callback_func cbfnew)
+inline void _glaltErrorCallbackBackend(void* userdata,const char* msgformat,const char* extname,const char* extfunc,_glalt_error_callback_func cbfnew)
 {
-	static _glhpp_error_callback_func ecb=&_glhppDefaultError;
+	static _glalt_error_callback_func ecb=&_glaltDefaultError;
 	static void* ud=userdata;
 	if(cbfnew)
 	{
@@ -78,34 +251,34 @@ inline void _glhppErrorCallbackBackend(void* userdata,const char* msgformat,cons
 	}
 }
 
-inline void glhppError(sconst char* msgformat,const char* extname,const char* extfunc)
+inline void glaltError(sconst char* msgformat,const char* extname,const char* extfunc)
 {
-	_glhppErrorCallbackBackend(NULL,msgformat,extname,extfunc,NULL);
+	_glaltErrorCallbackBackend(NULL,msgformat,extname,extfunc,NULL);
 }
-inline void glhppSetError(_glhpp_error_callback_func cbfnew,void* ud)
+inline void glaltSetError(_glalt_error_callback_func cbfnew,void* ud)
 {
-	_glhppErrorCallbackBackend(ud,NULL,NULL,NULL,cbfnew);
+	_glaltErrorCallbackBackend(ud,NULL,NULL,NULL,cbfnew);
 }
 
-inline int strptrcmp(const void* a,const void* b)
+static inline int strptrcmp(const void* a,const void* b)
 {
 	return strcmp(*(const char**)a,*(const char**)b);
 }
-static inline version_info _get_version()
+static inline glalt_version_info _get_version()
 {
-	const char* vs=(const char*)glGetString(GLHPP_GL_VERSION));
+	const char* vs=(const char*)glGetString(GLALT_GL_VERSION));
 	
-	version_info vis;
+	glalt_version_info vis;
 	vs.first = (int)(vs[0]-'0');
 	vs.second= (int)(vs[2]-'0');
 	return vis;
 }
 typedef const GLubyte* (*PFNGLGETSTRINGIPROC_PRIV)(GLenum name, GLuint index);
 
-inline extension_set _get_extensions()
+inline glalt_extension_set _get_extensions()
 {
-	extension_set extlist;
-	GLint isversion=glhppCheckVersion(3,0);
+	glalt_extension_set extlist;
+	GLint isversion=glaltCheckVersion(3,0);
 
 	if(isversion)
 	{
@@ -114,15 +287,15 @@ inline extension_set _get_extensions()
 		char* extstringhead=extstring;
 		size_t bufsize=0;
 		size_t bufbackingsize=0;
-		static PFNGLGETSTRINGIPROC_PRIV gsi=(PFNGLGETSTRINGIPROC_PRIV)_prim_GetProcAddress("glGetStringi");
+		static PFNGLGETSTRINGIPROC_PRIV gsi=(PFNGLGETSTRINGIPROC_PRIV)_glalt_prim_GetProcAddress("glGetStringi");
 		GLint i;
-		glGetIntegerv(GLHPP_GL_NUM_EXTENSIONS,&extmax);
+		glGetIntegerv(GLALT_GL_NUM_EXTENSIONS,&extmax);
 		static const size_t AVG_EXTNAME_BYTES=12;
 		bufbackingsize=AVG_EXTNAME_BYTES*extmax; //estimate size to minimize reallocs to approximately 3
 		exstring=(char*)malloc(bufbackingsize);
 		for(i=0;i<extmax;i++)
 		{
-			const char* curstringname=(const char*)gsi(GLHPP_GL_EXTENSIONS,i);
+			const char* curstringname=(const char*)gsi(GLALT_GL_EXTENSIONS,i);
 			size_t csnl=strlen(curstringname)+1;
 			if(exstringhead+csnl >= exstring+backingsize)
 			{
@@ -139,7 +312,7 @@ inline extension_set _get_extensions()
 	}
 	else
 	{
-		const char* extother=(const char*)glGetString(GLHPP_GL_EXTENSIONS);
+		const char* extother=(const char*)glGetString(GLALT_GL_EXTENSIONS);
 		extlist.extensionstringmemory=(char*)malloc(strlen(extother));
 		strcpy(extlist.extensionstringmemory,extother);
 		for(char* pch=strchr(extlist.extensionstringmemory,' ');pch!=NULL;pch=strchr(pch+1,' '))
@@ -160,79 +333,76 @@ inline extension_set _get_extensions()
 }
 inline int _es_contains(const char* namecheck)
 {
-	static const extension_set* es=get_extensions();
+	static const glalt_extension_set* es=glaltGetExtensions();
 	return bsearch(&namecheck,es->extensionstringbeginnings,es->num_extensions,sizeof(const char*),strptrcmp)!=NULL;
 }
 
-inline int glhppCheckExtension(const char* extname)
+inline int glaltCheckExtension(const char* extname)
 {
 	return _es_contains(extname);
 }
 
-inline const version_info* glhppGetVersion()
+inline const glalt_version_info* glaltGetVersion()
 {
-	static version_info v=_get_version();
+	static glalt_version_info v=_get_version();
 	return &v;
 }
-inline const extension_set* glhppGetExtensions()
+inline const glalt_extension_set* glaltGetExtensions()
 {
-	static extension_set extarray=_get_extensions();
+	static glalt_extension_set extarray=_get_extensions();
 	return &extarray;
 }
-inline int glhppCheckVersion(unsigned int vmaj,unsigned int vmin)
+inline int glaltCheckVersion(unsigned int vmaj,unsigned int vmin)
 {
-	static const version_info* v=glhppGetVersion();
+	static const glalt_version_info* v=glaltGetVersion();
 	return (vmaj*10+vmin) <= (v->first*10+v->second);
 }
-inline void* glhppGetProcAddress(const char* funcname)
+inline void* glaltGetProcAddress(const char* funcname)
 {
-	void* fptr=_prim_GetProcAddress(funcname);
+	void* fptr=_glalt_prim_GetProcAddress(funcname);
 	if(fptr)
 		return fptr;
 	else
 	{
-		glhppError("Error, %s was not found in this context %s\n",funcname,"",NULL);
+		glaltError("Error, %%s was not found in this context %%s\n",funcname,"",NULL);
 	}
 }
 
-inline void* glhppGetProcAddressExtension(const char* frequest,const char* extext)
+inline void* glaltGetProcAddressExtension(const char* frequest,const char* extext)
 {
-	if(glhppCheckExtension(extext))
+	if(glaltCheckExtension(extext))
 	{
-		void* fptr=_prim_GetProcAddress(frequest);
+		void* fptr=_glalt_prim_GetProcAddress(frequest);
 		if(fptr)
 			return fptr;
 		else
 		{
-			glhppError("Error, %s was not found in this context even though %s is supported\n",funcname,extext,NULL);
+			glaltError("Error, %%s was not found in this context even though %%s is supported\n",funcname,extext,NULL);
 		}
 	}
 	else
 	{	
-		glhppError("Error, %s was not found in this context because %s is not supported\n",funcname,extext,NULL);
-		std::ostringstream oss;
-		oss << "Error, " << extext << " is not supported, so " << frequest << " was not found in the context.";
-		throw ProcedureNotFound(oss.str());
+		glaltError("Error, %%s was not found in this context because %%s is not supported\n",funcname,extext,NULL);
 	}
 }
-inline void* glhppGetProcAddressVersion(const char* frequest,unsigned int vmaj,unsigned int vmin)
+inline void* glaltGetProcAddressVersion(const char* frequest,unsigned int vmaj,unsigned int vmin)
 {
 	char vstring[]="X.X"
 	vstring[0]=(char)('0'+vmaj);
 	vstring[2]=(char)('0'+vmin);
-	if(glhppCheckVersion(vmaj,vmin))
+	if(glaltCheckVersion(vmaj,vmin))
 	{
-		void* fptr=_prim_GetProcAddress(frequest);
+		void* fptr=_glalt_prim_GetProcAddress(frequest);
 		if(fptr)
 			return fptr;
 		else
 		{
-			glhppError("Error, %s was not found in this context even though GL version %s\n",frequest,vstring,NULL);
+			glaltError("Error, %%s was not found in this context even though GL version %%s\n",frequest,vstring,NULL);
 		}
 	}
 	else
 	{
-		glhppError("Error, %s was not found in this context because GL version %s is not supported by this context\n",frequest,vstring,NULL);
+		glaltError("Error, %%s was not found in this context because GL version %%s is not supported by this context\n",frequest,vstring,NULL);
 	}
 }
 
