@@ -3068,7 +3068,12 @@ extern void glViewport(GLint,GLint,GLsizei,GLsizei);
 typedef void (*PFNGLCOPYTEXSUBIMAGE3DPROC_ALT)(GLenum,GLint,GLint,GLint,GLint,GLint,GLint,GLsizei,GLsizei);
 static inline void glCopyTexSubImage3D(GLenum target1,GLint level1,GLint xoffset1,GLint yoffset1,GLint zoffset1,GLint x1,GLint y1,GLsizei width1,GLsizei height1)
 {
+#ifdef __cplusplus
 	static PFNGLCOPYTEXSUBIMAGE3DPROC_ALT fn=(PFNGLCOPYTEXSUBIMAGE3DPROC_ALT)glaltGetProcAddressVersion("glCopyTexSubImage3D",1,2);
+#else
+	static PFNGLCOPYTEXSUBIMAGE3DPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLCOPYTEXSUBIMAGE3DPROC_ALT)glaltGetProcAddressVersion("glCopyTexSubImage3D",1,2); }
+#endif
 	 fn(target1,level1,xoffset1,yoffset1,zoffset1,x1,y1,width1,height1);
 }
 #endif
@@ -3080,7 +3085,12 @@ static inline void glCopyTexSubImage3D(GLenum target1,GLint level1,GLint xoffset
 typedef void (*PFNGLDRAWRANGEELEMENTSPROC_ALT)(GLenum,GLuint,GLuint,GLsizei,GLenum,const void *);
 static inline void glDrawRangeElements(GLenum mode1,GLuint start1,GLuint end1,GLsizei count1,GLenum type1,const void * indices1)
 {
+#ifdef __cplusplus
 	static PFNGLDRAWRANGEELEMENTSPROC_ALT fn=(PFNGLDRAWRANGEELEMENTSPROC_ALT)glaltGetProcAddressVersion("glDrawRangeElements",1,2);
+#else
+	static PFNGLDRAWRANGEELEMENTSPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLDRAWRANGEELEMENTSPROC_ALT)glaltGetProcAddressVersion("glDrawRangeElements",1,2); }
+#endif
 	 fn(mode1,start1,end1,count1,type1,indices1);
 }
 #endif
@@ -3092,7 +3102,12 @@ static inline void glDrawRangeElements(GLenum mode1,GLuint start1,GLuint end1,GL
 typedef void (*PFNGLTEXIMAGE3DPROC_ALT)(GLenum,GLint,GLint,GLsizei,GLsizei,GLsizei,GLint,GLenum,GLenum,const void *);
 static inline void glTexImage3D(GLenum target1,GLint level1,GLint internalformat1,GLsizei width1,GLsizei height1,GLsizei depth1,GLint border1,GLenum format1,GLenum type1,const void * pixels1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXIMAGE3DPROC_ALT fn=(PFNGLTEXIMAGE3DPROC_ALT)glaltGetProcAddressVersion("glTexImage3D",1,2);
+#else
+	static PFNGLTEXIMAGE3DPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXIMAGE3DPROC_ALT)glaltGetProcAddressVersion("glTexImage3D",1,2); }
+#endif
 	 fn(target1,level1,internalformat1,width1,height1,depth1,border1,format1,type1,pixels1);
 }
 #endif
@@ -3104,7 +3119,12 @@ static inline void glTexImage3D(GLenum target1,GLint level1,GLint internalformat
 typedef void (*PFNGLTEXSUBIMAGE3DPROC_ALT)(GLenum,GLint,GLint,GLint,GLint,GLsizei,GLsizei,GLsizei,GLenum,GLenum,const void *);
 static inline void glTexSubImage3D(GLenum target1,GLint level1,GLint xoffset1,GLint yoffset1,GLint zoffset1,GLsizei width1,GLsizei height1,GLsizei depth1,GLenum format1,GLenum type1,const void * pixels1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXSUBIMAGE3DPROC_ALT fn=(PFNGLTEXSUBIMAGE3DPROC_ALT)glaltGetProcAddressVersion("glTexSubImage3D",1,2);
+#else
+	static PFNGLTEXSUBIMAGE3DPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXSUBIMAGE3DPROC_ALT)glaltGetProcAddressVersion("glTexSubImage3D",1,2); }
+#endif
 	 fn(target1,level1,xoffset1,yoffset1,zoffset1,width1,height1,depth1,format1,type1,pixels1);
 }
 #endif

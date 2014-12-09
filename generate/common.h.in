@@ -263,7 +263,11 @@ inline void _glaltDefaultError(void* userdata,const char* msgformat,const char* 
 inline void _glaltErrorCallbackBackend(void* userdata,const char* msgformat,const char* extname,const char* extfunc,_glalt_error_callback_func cbfnew)
 {
 	static _glalt_error_callback_func ecb=&_glaltDefaultError;
+#ifdef __cplusplus
 	static void* ud=userdata;
+#else
+	static void* ud=NULL;if(!ud){ud=userdata;}
+#endif
 	if(cbfnew)
 	{
 		ecb=cbfnew;
@@ -316,6 +320,7 @@ inline glalt_extension_set _get_extensions()
 {
 	glalt_extension_set extlist;
 	GLint isversion=glaltCheckVersion(3,0);
+	GLint i;
 
 	if(isversion)
 	{
@@ -324,8 +329,13 @@ inline glalt_extension_set _get_extensions()
 		char* extstringhead;
 		size_t bufsize=0;
 		size_t bufbackingsize=0;
+#ifdef __cplusplus
 		static PFNGLGETSTRINGIPROC_PRIV gsi=(PFNGLGETSTRINGIPROC_PRIV)_glalt_prim_GetProcAddress("glGetStringi");
-		GLint i;
+#else
+		static PFNGLGETSTRINGIPROC_PRIV gsi=NULL;
+		if(!gsi){ gsi=(PFNGLGETSTRINGIPROC_PRIV)_glalt_prim_GetProcAddress("glGetStringi");}
+#endif
+
 		glGetIntegerv(GLALT_GL_NUM_EXTENSIONS,&extmax);
 		static const size_t AVG_EXTNAME_BYTES=12;
 		bufbackingsize=AVG_EXTNAME_BYTES*extmax; //estimate size to minimize reallocs to approximately 3
@@ -355,11 +365,12 @@ inline glalt_extension_set _get_extensions()
 	{
 		const char* extother=(const char*)glGetString(GLALT_GL_EXTENSIONS);
 		size_t extslen=strlen(extother);
+		char* pch;
 		extlist.extensionstringmemory=(char*)malloc(extslen+1); //empty at the beginning
 		memcpy(extlist.extensionstringmemory+1,extother,extslen);
 		extlist.extensionstringmemory[extslen+1]=' ';//last whitespace at the end
 
-		for(char* pch=extlist.extensionstringmemory;pch!=NULL;pch=strchr(pch+1,' '))
+		for(pch=extlist.extensionstringmemory;pch!=NULL;pch=strchr(pch+1,' '))
 		{
 			size_t sz=strcspn(pch+1," ")+1;
 			*pch=(char)sz;
@@ -369,7 +380,7 @@ inline glalt_extension_set _get_extensions()
 	const char** extindices=(const char**)malloc(extlist.num_extensions*sizeof(const char*));
 	const char** extindiceshead=extindices;
 	char* pch=extlist.extensionstringmemory;
-	for(int i=0;i<extlist.num_extensions;i++)
+	for(i=0;i<extlist.num_extensions;i++)
 	{
 		*(extindiceshead++)=pch;
 		pch+=*pch;//the first element of the array is the size offset
@@ -381,7 +392,11 @@ inline glalt_extension_set _get_extensions()
 }
 inline int _es_contains(const char* namecheck)
 {
+#ifdef __cplusplus
 	static const glalt_extension_set* es=glaltGetExtensions();
+#else
+	static const glalt_extension_set* es=NULL;if(!es) {es=glaltGetExtensions();};
+#endif
 	return bsearch(&namecheck,es->extensionstringbeginnings,es->num_extensions,sizeof(const char*),_glalt_extelemcmp)!=NULL;
 }
 
@@ -392,17 +407,32 @@ inline int glaltCheckExtension(const char* extname)
 
 inline const glalt_version_info* glaltGetVersion()
 {
+#ifdef __cplusplus
 	static glalt_version_info v=_get_version();
+#else
+	static glalt_version_info v={0,0};
+	if(v.first == 0) v=_get_version();
+#endif
 	return &v;
 }
 inline const glalt_extension_set* glaltGetExtensions()
 {
+#ifdef __cplusplus
 	static glalt_extension_set extarray=_get_extensions();
+#else
+	static glalt_extension_set extarray={NULL,NULL,0};
+	if(extarray.num_extensions==0){ extarray=_get_extensions();}
+#endif
 	return &extarray;
 }
 inline int glaltCheckVersion(unsigned int vmaj,unsigned int vmin)
 {
+#ifdef __cplusplus
 	static const glalt_version_info* v=glaltGetVersion();
+#else
+	static const glalt_version_info* v=NULL;
+	if(!v){v=glaltGetVersion();}
+#endif
 	return (vmaj*10+vmin) <= (v->first*10+v->second);
 }
 inline void* glaltGetProcAddress(const char* funcname)

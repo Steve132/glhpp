@@ -44,7 +44,12 @@ CGUARDBEGIN
 typedef void (*PFNGLCOPYTEXTURELEVELSAPPLEPROC_ALT)(GLuint,GLuint,GLint,GLsizei);
 static inline void glCopyTextureLevelsAPPLE(GLuint destinationTexture1,GLuint sourceTexture1,GLint sourceBaseLevel1,GLsizei sourceLevelCount1)
 {
+#ifdef __cplusplus
 	static PFNGLCOPYTEXTURELEVELSAPPLEPROC_ALT fn=(PFNGLCOPYTEXTURELEVELSAPPLEPROC_ALT)glaltGetProcAddressExtension("glCopyTextureLevelsAPPLE","GL_APPLE_copy_texture_levels");
+#else
+	static PFNGLCOPYTEXTURELEVELSAPPLEPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLCOPYTEXTURELEVELSAPPLEPROC_ALT)glaltGetProcAddressExtension("glCopyTextureLevelsAPPLE","GL_APPLE_copy_texture_levels"); }
+#endif
 	 fn(destinationTexture1,sourceTexture1,sourceBaseLevel1,sourceLevelCount1);
 }
 #endif
@@ -83,7 +88,12 @@ CGUARDBEGIN
 typedef void (*PFNGLRENDERBUFFERSTORAGEMULTISAMPLEAPPLEPROC_ALT)(GLenum,GLsizei,GLenum,GLsizei,GLsizei);
 static inline void glRenderbufferStorageMultisampleAPPLE(GLenum target1,GLsizei samples1,GLenum internalformat1,GLsizei width1,GLsizei height1)
 {
+#ifdef __cplusplus
 	static PFNGLRENDERBUFFERSTORAGEMULTISAMPLEAPPLEPROC_ALT fn=(PFNGLRENDERBUFFERSTORAGEMULTISAMPLEAPPLEPROC_ALT)glaltGetProcAddressExtension("glRenderbufferStorageMultisampleAPPLE","GL_APPLE_framebuffer_multisample");
+#else
+	static PFNGLRENDERBUFFERSTORAGEMULTISAMPLEAPPLEPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLRENDERBUFFERSTORAGEMULTISAMPLEAPPLEPROC_ALT)glaltGetProcAddressExtension("glRenderbufferStorageMultisampleAPPLE","GL_APPLE_framebuffer_multisample"); }
+#endif
 	 fn(target1,samples1,internalformat1,width1,height1);
 }
 #endif
@@ -93,7 +103,12 @@ static inline void glRenderbufferStorageMultisampleAPPLE(GLenum target1,GLsizei 
 typedef void (*PFNGLRESOLVEMULTISAMPLEFRAMEBUFFERAPPLEPROC_ALT)();
 static inline void glResolveMultisampleFramebufferAPPLE()
 {
+#ifdef __cplusplus
 	static PFNGLRESOLVEMULTISAMPLEFRAMEBUFFERAPPLEPROC_ALT fn=(PFNGLRESOLVEMULTISAMPLEFRAMEBUFFERAPPLEPROC_ALT)glaltGetProcAddressExtension("glResolveMultisampleFramebufferAPPLE","GL_APPLE_framebuffer_multisample");
+#else
+	static PFNGLRESOLVEMULTISAMPLEFRAMEBUFFERAPPLEPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLRESOLVEMULTISAMPLEFRAMEBUFFERAPPLEPROC_ALT)glaltGetProcAddressExtension("glResolveMultisampleFramebufferAPPLE","GL_APPLE_framebuffer_multisample"); }
+#endif
 	 fn();
 }
 #endif
@@ -159,7 +174,12 @@ CGUARDBEGIN
 typedef GLenum (*PFNGLCLIENTWAITSYNCAPPLEPROC_ALT)(GLsync,GLbitfield,GLuint64);
 static inline GLenum glClientWaitSyncAPPLE(GLsync sync1,GLbitfield flags1,GLuint64 timeout1)
 {
+#ifdef __cplusplus
 	static PFNGLCLIENTWAITSYNCAPPLEPROC_ALT fn=(PFNGLCLIENTWAITSYNCAPPLEPROC_ALT)glaltGetProcAddressExtension("glClientWaitSyncAPPLE","GL_APPLE_sync");
+#else
+	static PFNGLCLIENTWAITSYNCAPPLEPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLCLIENTWAITSYNCAPPLEPROC_ALT)glaltGetProcAddressExtension("glClientWaitSyncAPPLE","GL_APPLE_sync"); }
+#endif
 	return fn(sync1,flags1,timeout1);
 }
 #endif
@@ -171,7 +191,12 @@ static inline GLenum glClientWaitSyncAPPLE(GLsync sync1,GLbitfield flags1,GLuint
 typedef void (*PFNGLDELETESYNCAPPLEPROC_ALT)(GLsync);
 static inline void glDeleteSyncAPPLE(GLsync sync1)
 {
+#ifdef __cplusplus
 	static PFNGLDELETESYNCAPPLEPROC_ALT fn=(PFNGLDELETESYNCAPPLEPROC_ALT)glaltGetProcAddressExtension("glDeleteSyncAPPLE","GL_APPLE_sync");
+#else
+	static PFNGLDELETESYNCAPPLEPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLDELETESYNCAPPLEPROC_ALT)glaltGetProcAddressExtension("glDeleteSyncAPPLE","GL_APPLE_sync"); }
+#endif
 	 fn(sync1);
 }
 #endif
@@ -183,7 +208,12 @@ static inline void glDeleteSyncAPPLE(GLsync sync1)
 typedef GLsync (*PFNGLFENCESYNCAPPLEPROC_ALT)(GLenum,GLbitfield);
 static inline GLsync glFenceSyncAPPLE(GLenum condition1,GLbitfield flags1)
 {
+#ifdef __cplusplus
 	static PFNGLFENCESYNCAPPLEPROC_ALT fn=(PFNGLFENCESYNCAPPLEPROC_ALT)glaltGetProcAddressExtension("glFenceSyncAPPLE","GL_APPLE_sync");
+#else
+	static PFNGLFENCESYNCAPPLEPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLFENCESYNCAPPLEPROC_ALT)glaltGetProcAddressExtension("glFenceSyncAPPLE","GL_APPLE_sync"); }
+#endif
 	return fn(condition1,flags1);
 }
 #endif
@@ -195,7 +225,12 @@ static inline GLsync glFenceSyncAPPLE(GLenum condition1,GLbitfield flags1)
 typedef void (*PFNGLGETINTEGER64VAPPLEPROC_ALT)(GLenum,GLint64 *);
 static inline void glGetInteger64vAPPLE(GLenum pname1,GLint64 * params1)
 {
+#ifdef __cplusplus
 	static PFNGLGETINTEGER64VAPPLEPROC_ALT fn=(PFNGLGETINTEGER64VAPPLEPROC_ALT)glaltGetProcAddressExtension("glGetInteger64vAPPLE","GL_APPLE_sync");
+#else
+	static PFNGLGETINTEGER64VAPPLEPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETINTEGER64VAPPLEPROC_ALT)glaltGetProcAddressExtension("glGetInteger64vAPPLE","GL_APPLE_sync"); }
+#endif
 	 fn(pname1,params1);
 }
 #endif
@@ -207,7 +242,12 @@ static inline void glGetInteger64vAPPLE(GLenum pname1,GLint64 * params1)
 typedef void (*PFNGLGETSYNCIVAPPLEPROC_ALT)(GLsync,GLenum,GLsizei,GLsizei *,GLint *);
 static inline void glGetSyncivAPPLE(GLsync sync1,GLenum pname1,GLsizei bufSize1,GLsizei * length1,GLint * values1)
 {
+#ifdef __cplusplus
 	static PFNGLGETSYNCIVAPPLEPROC_ALT fn=(PFNGLGETSYNCIVAPPLEPROC_ALT)glaltGetProcAddressExtension("glGetSyncivAPPLE","GL_APPLE_sync");
+#else
+	static PFNGLGETSYNCIVAPPLEPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETSYNCIVAPPLEPROC_ALT)glaltGetProcAddressExtension("glGetSyncivAPPLE","GL_APPLE_sync"); }
+#endif
 	 fn(sync1,pname1,bufSize1,length1,values1);
 }
 #endif
@@ -219,7 +259,12 @@ static inline void glGetSyncivAPPLE(GLsync sync1,GLenum pname1,GLsizei bufSize1,
 typedef GLboolean (*PFNGLISSYNCAPPLEPROC_ALT)(GLsync);
 static inline GLboolean glIsSyncAPPLE(GLsync sync1)
 {
+#ifdef __cplusplus
 	static PFNGLISSYNCAPPLEPROC_ALT fn=(PFNGLISSYNCAPPLEPROC_ALT)glaltGetProcAddressExtension("glIsSyncAPPLE","GL_APPLE_sync");
+#else
+	static PFNGLISSYNCAPPLEPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLISSYNCAPPLEPROC_ALT)glaltGetProcAddressExtension("glIsSyncAPPLE","GL_APPLE_sync"); }
+#endif
 	return fn(sync1);
 }
 #endif
@@ -231,7 +276,12 @@ static inline GLboolean glIsSyncAPPLE(GLsync sync1)
 typedef void (*PFNGLWAITSYNCAPPLEPROC_ALT)(GLsync,GLbitfield,GLuint64);
 static inline void glWaitSyncAPPLE(GLsync sync1,GLbitfield flags1,GLuint64 timeout1)
 {
+#ifdef __cplusplus
 	static PFNGLWAITSYNCAPPLEPROC_ALT fn=(PFNGLWAITSYNCAPPLEPROC_ALT)glaltGetProcAddressExtension("glWaitSyncAPPLE","GL_APPLE_sync");
+#else
+	static PFNGLWAITSYNCAPPLEPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLWAITSYNCAPPLEPROC_ALT)glaltGetProcAddressExtension("glWaitSyncAPPLE","GL_APPLE_sync"); }
+#endif
 	 fn(sync1,flags1,timeout1);
 }
 #endif
@@ -304,7 +354,12 @@ CGUARDBEGIN
 typedef void (*PFNGLBLENDEQUATIONEXTPROC_ALT)(GLenum);
 static inline void glBlendEquationEXT(GLenum mode1)
 {
+#ifdef __cplusplus
 	static PFNGLBLENDEQUATIONEXTPROC_ALT fn=(PFNGLBLENDEQUATIONEXTPROC_ALT)glaltGetProcAddressExtension("glBlendEquationEXT","GL_EXT_blend_minmax");
+#else
+	static PFNGLBLENDEQUATIONEXTPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLBLENDEQUATIONEXTPROC_ALT)glaltGetProcAddressExtension("glBlendEquationEXT","GL_EXT_blend_minmax"); }
+#endif
 	 fn(mode1);
 }
 #endif
@@ -333,7 +388,12 @@ CGUARDBEGIN
 typedef void (*PFNGLDISCARDFRAMEBUFFEREXTPROC_ALT)(GLenum,GLsizei,const GLenum *);
 static inline void glDiscardFramebufferEXT(GLenum target1,GLsizei numAttachments1,const GLenum * attachments1)
 {
+#ifdef __cplusplus
 	static PFNGLDISCARDFRAMEBUFFEREXTPROC_ALT fn=(PFNGLDISCARDFRAMEBUFFEREXTPROC_ALT)glaltGetProcAddressExtension("glDiscardFramebufferEXT","GL_EXT_discard_framebuffer");
+#else
+	static PFNGLDISCARDFRAMEBUFFEREXTPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLDISCARDFRAMEBUFFEREXTPROC_ALT)glaltGetProcAddressExtension("glDiscardFramebufferEXT","GL_EXT_discard_framebuffer"); }
+#endif
 	 fn(target1,numAttachments1,attachments1);
 }
 #endif
@@ -369,7 +429,12 @@ CGUARDBEGIN
 typedef void (*PFNGLFLUSHMAPPEDBUFFERRANGEEXTPROC_ALT)(GLenum,GLintptr,GLsizeiptr);
 static inline void glFlushMappedBufferRangeEXT(GLenum target1,GLintptr offset1,GLsizeiptr length1)
 {
+#ifdef __cplusplus
 	static PFNGLFLUSHMAPPEDBUFFERRANGEEXTPROC_ALT fn=(PFNGLFLUSHMAPPEDBUFFERRANGEEXTPROC_ALT)glaltGetProcAddressExtension("glFlushMappedBufferRangeEXT","GL_EXT_map_buffer_range");
+#else
+	static PFNGLFLUSHMAPPEDBUFFERRANGEEXTPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLFLUSHMAPPEDBUFFERRANGEEXTPROC_ALT)glaltGetProcAddressExtension("glFlushMappedBufferRangeEXT","GL_EXT_map_buffer_range"); }
+#endif
 	 fn(target1,offset1,length1);
 }
 #endif
@@ -381,7 +446,12 @@ static inline void glFlushMappedBufferRangeEXT(GLenum target1,GLintptr offset1,G
 typedef void * (*PFNGLMAPBUFFERRANGEEXTPROC_ALT)(GLenum,GLintptr,GLsizeiptr,GLbitfield);
 static inline void * glMapBufferRangeEXT(GLenum target1,GLintptr offset1,GLsizeiptr length1,GLbitfield access1)
 {
+#ifdef __cplusplus
 	static PFNGLMAPBUFFERRANGEEXTPROC_ALT fn=(PFNGLMAPBUFFERRANGEEXTPROC_ALT)glaltGetProcAddressExtension("glMapBufferRangeEXT","GL_EXT_map_buffer_range");
+#else
+	static PFNGLMAPBUFFERRANGEEXTPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMAPBUFFERRANGEEXTPROC_ALT)glaltGetProcAddressExtension("glMapBufferRangeEXT","GL_EXT_map_buffer_range"); }
+#endif
 	return fn(target1,offset1,length1,access1);
 }
 #endif
@@ -401,7 +471,12 @@ CGUARDBEGIN
 typedef void (*PFNGLMULTIDRAWARRAYSEXTPROC_ALT)(GLenum,const GLint *,const GLsizei *,GLsizei);
 static inline void glMultiDrawArraysEXT(GLenum mode1,const GLint * first1,const GLsizei * count1,GLsizei primcount1)
 {
+#ifdef __cplusplus
 	static PFNGLMULTIDRAWARRAYSEXTPROC_ALT fn=(PFNGLMULTIDRAWARRAYSEXTPROC_ALT)glaltGetProcAddressExtension("glMultiDrawArraysEXT","GL_EXT_multi_draw_arrays");
+#else
+	static PFNGLMULTIDRAWARRAYSEXTPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMULTIDRAWARRAYSEXTPROC_ALT)glaltGetProcAddressExtension("glMultiDrawArraysEXT","GL_EXT_multi_draw_arrays"); }
+#endif
 	 fn(mode1,first1,count1,primcount1);
 }
 #endif
@@ -413,7 +488,12 @@ static inline void glMultiDrawArraysEXT(GLenum mode1,const GLint * first1,const 
 typedef void (*PFNGLMULTIDRAWELEMENTSEXTPROC_ALT)(GLenum,const GLsizei *,GLenum,const void *const*,GLsizei);
 static inline void glMultiDrawElementsEXT(GLenum mode1,const GLsizei * count1,GLenum type1,const void *const* indices1,GLsizei primcount1)
 {
+#ifdef __cplusplus
 	static PFNGLMULTIDRAWELEMENTSEXTPROC_ALT fn=(PFNGLMULTIDRAWELEMENTSEXTPROC_ALT)glaltGetProcAddressExtension("glMultiDrawElementsEXT","GL_EXT_multi_draw_arrays");
+#else
+	static PFNGLMULTIDRAWELEMENTSEXTPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMULTIDRAWELEMENTSEXTPROC_ALT)glaltGetProcAddressExtension("glMultiDrawElementsEXT","GL_EXT_multi_draw_arrays"); }
+#endif
 	 fn(mode1,count1,type1,indices1,primcount1);
 }
 #endif
@@ -445,7 +525,12 @@ CGUARDBEGIN
 typedef void (*PFNGLFRAMEBUFFERTEXTURE2DMULTISAMPLEEXTPROC_ALT)(GLenum,GLenum,GLenum,GLuint,GLint,GLsizei);
 static inline void glFramebufferTexture2DMultisampleEXT(GLenum target1,GLenum attachment1,GLenum textarget1,GLuint texture1,GLint level1,GLsizei samples1)
 {
+#ifdef __cplusplus
 	static PFNGLFRAMEBUFFERTEXTURE2DMULTISAMPLEEXTPROC_ALT fn=(PFNGLFRAMEBUFFERTEXTURE2DMULTISAMPLEEXTPROC_ALT)glaltGetProcAddressExtension("glFramebufferTexture2DMultisampleEXT","GL_EXT_multisampled_render_to_texture");
+#else
+	static PFNGLFRAMEBUFFERTEXTURE2DMULTISAMPLEEXTPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLFRAMEBUFFERTEXTURE2DMULTISAMPLEEXTPROC_ALT)glaltGetProcAddressExtension("glFramebufferTexture2DMultisampleEXT","GL_EXT_multisampled_render_to_texture"); }
+#endif
 	 fn(target1,attachment1,textarget1,texture1,level1,samples1);
 }
 #endif
@@ -455,7 +540,12 @@ static inline void glFramebufferTexture2DMultisampleEXT(GLenum target1,GLenum at
 typedef void (*PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC_ALT)(GLenum,GLsizei,GLenum,GLsizei,GLsizei);
 static inline void glRenderbufferStorageMultisampleEXT(GLenum target1,GLsizei samples1,GLenum internalformat1,GLsizei width1,GLsizei height1)
 {
+#ifdef __cplusplus
 	static PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC_ALT fn=(PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC_ALT)glaltGetProcAddressExtension("glRenderbufferStorageMultisampleEXT","GL_EXT_multisampled_render_to_texture");
+#else
+	static PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLRENDERBUFFERSTORAGEMULTISAMPLEEXTPROC_ALT)glaltGetProcAddressExtension("glRenderbufferStorageMultisampleEXT","GL_EXT_multisampled_render_to_texture"); }
+#endif
 	 fn(target1,samples1,internalformat1,width1,height1);
 }
 #endif
@@ -516,7 +606,12 @@ CGUARDBEGIN
 typedef GLenum (*PFNGLGETGRAPHICSRESETSTATUSEXTPROC_ALT)();
 static inline GLenum glGetGraphicsResetStatusEXT()
 {
+#ifdef __cplusplus
 	static PFNGLGETGRAPHICSRESETSTATUSEXTPROC_ALT fn=(PFNGLGETGRAPHICSRESETSTATUSEXTPROC_ALT)glaltGetProcAddressExtension("glGetGraphicsResetStatusEXT","GL_EXT_robustness");
+#else
+	static PFNGLGETGRAPHICSRESETSTATUSEXTPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETGRAPHICSRESETSTATUSEXTPROC_ALT)glaltGetProcAddressExtension("glGetGraphicsResetStatusEXT","GL_EXT_robustness"); }
+#endif
 	return fn();
 }
 #endif
@@ -526,7 +621,12 @@ static inline GLenum glGetGraphicsResetStatusEXT()
 typedef void (*PFNGLGETNUNIFORMFVEXTPROC_ALT)(GLuint,GLint,GLsizei,GLfloat *);
 static inline void glGetnUniformfvEXT(GLuint program1,GLint location1,GLsizei bufSize1,GLfloat * params1)
 {
+#ifdef __cplusplus
 	static PFNGLGETNUNIFORMFVEXTPROC_ALT fn=(PFNGLGETNUNIFORMFVEXTPROC_ALT)glaltGetProcAddressExtension("glGetnUniformfvEXT","GL_EXT_robustness");
+#else
+	static PFNGLGETNUNIFORMFVEXTPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETNUNIFORMFVEXTPROC_ALT)glaltGetProcAddressExtension("glGetnUniformfvEXT","GL_EXT_robustness"); }
+#endif
 	 fn(program1,location1,bufSize1,params1);
 }
 #endif
@@ -536,7 +636,12 @@ static inline void glGetnUniformfvEXT(GLuint program1,GLint location1,GLsizei bu
 typedef void (*PFNGLGETNUNIFORMIVEXTPROC_ALT)(GLuint,GLint,GLsizei,GLint *);
 static inline void glGetnUniformivEXT(GLuint program1,GLint location1,GLsizei bufSize1,GLint * params1)
 {
+#ifdef __cplusplus
 	static PFNGLGETNUNIFORMIVEXTPROC_ALT fn=(PFNGLGETNUNIFORMIVEXTPROC_ALT)glaltGetProcAddressExtension("glGetnUniformivEXT","GL_EXT_robustness");
+#else
+	static PFNGLGETNUNIFORMIVEXTPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETNUNIFORMIVEXTPROC_ALT)glaltGetProcAddressExtension("glGetnUniformivEXT","GL_EXT_robustness"); }
+#endif
 	 fn(program1,location1,bufSize1,params1);
 }
 #endif
@@ -546,7 +651,12 @@ static inline void glGetnUniformivEXT(GLuint program1,GLint location1,GLsizei bu
 typedef void (*PFNGLREADNPIXELSEXTPROC_ALT)(GLint,GLint,GLsizei,GLsizei,GLenum,GLenum,GLsizei,void *);
 static inline void glReadnPixelsEXT(GLint x1,GLint y1,GLsizei width1,GLsizei height1,GLenum format1,GLenum type1,GLsizei bufSize1,void * data1)
 {
+#ifdef __cplusplus
 	static PFNGLREADNPIXELSEXTPROC_ALT fn=(PFNGLREADNPIXELSEXTPROC_ALT)glaltGetProcAddressExtension("glReadnPixelsEXT","GL_EXT_robustness");
+#else
+	static PFNGLREADNPIXELSEXTPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLREADNPIXELSEXTPROC_ALT)glaltGetProcAddressExtension("glReadnPixelsEXT","GL_EXT_robustness"); }
+#endif
 	 fn(x1,y1,width1,height1,format1,type1,bufSize1,data1);
 }
 #endif
@@ -711,7 +821,12 @@ CGUARDBEGIN
 typedef void (*PFNGLTEXSTORAGE1DEXTPROC_ALT)(GLenum,GLsizei,GLenum,GLsizei);
 static inline void glTexStorage1DEXT(GLenum target1,GLsizei levels1,GLenum internalformat1,GLsizei width1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXSTORAGE1DEXTPROC_ALT fn=(PFNGLTEXSTORAGE1DEXTPROC_ALT)glaltGetProcAddressExtension("glTexStorage1DEXT","GL_EXT_texture_storage");
+#else
+	static PFNGLTEXSTORAGE1DEXTPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXSTORAGE1DEXTPROC_ALT)glaltGetProcAddressExtension("glTexStorage1DEXT","GL_EXT_texture_storage"); }
+#endif
 	 fn(target1,levels1,internalformat1,width1);
 }
 #endif
@@ -723,7 +838,12 @@ static inline void glTexStorage1DEXT(GLenum target1,GLsizei levels1,GLenum inter
 typedef void (*PFNGLTEXSTORAGE2DEXTPROC_ALT)(GLenum,GLsizei,GLenum,GLsizei,GLsizei);
 static inline void glTexStorage2DEXT(GLenum target1,GLsizei levels1,GLenum internalformat1,GLsizei width1,GLsizei height1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXSTORAGE2DEXTPROC_ALT fn=(PFNGLTEXSTORAGE2DEXTPROC_ALT)glaltGetProcAddressExtension("glTexStorage2DEXT","GL_EXT_texture_storage");
+#else
+	static PFNGLTEXSTORAGE2DEXTPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXSTORAGE2DEXTPROC_ALT)glaltGetProcAddressExtension("glTexStorage2DEXT","GL_EXT_texture_storage"); }
+#endif
 	 fn(target1,levels1,internalformat1,width1,height1);
 }
 #endif
@@ -735,7 +855,12 @@ static inline void glTexStorage2DEXT(GLenum target1,GLsizei levels1,GLenum inter
 typedef void (*PFNGLTEXSTORAGE3DEXTPROC_ALT)(GLenum,GLsizei,GLenum,GLsizei,GLsizei,GLsizei);
 static inline void glTexStorage3DEXT(GLenum target1,GLsizei levels1,GLenum internalformat1,GLsizei width1,GLsizei height1,GLsizei depth1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXSTORAGE3DEXTPROC_ALT fn=(PFNGLTEXSTORAGE3DEXTPROC_ALT)glaltGetProcAddressExtension("glTexStorage3DEXT","GL_EXT_texture_storage");
+#else
+	static PFNGLTEXSTORAGE3DEXTPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXSTORAGE3DEXTPROC_ALT)glaltGetProcAddressExtension("glTexStorage3DEXT","GL_EXT_texture_storage"); }
+#endif
 	 fn(target1,levels1,internalformat1,width1,height1,depth1);
 }
 #endif
@@ -747,7 +872,12 @@ static inline void glTexStorage3DEXT(GLenum target1,GLsizei levels1,GLenum inter
 typedef void (*PFNGLTEXTURESTORAGE1DEXTPROC_ALT)(GLuint,GLenum,GLsizei,GLenum,GLsizei);
 static inline void glTextureStorage1DEXT(GLuint texture1,GLenum target1,GLsizei levels1,GLenum internalformat1,GLsizei width1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXTURESTORAGE1DEXTPROC_ALT fn=(PFNGLTEXTURESTORAGE1DEXTPROC_ALT)glaltGetProcAddressExtension("glTextureStorage1DEXT","GL_EXT_texture_storage");
+#else
+	static PFNGLTEXTURESTORAGE1DEXTPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXTURESTORAGE1DEXTPROC_ALT)glaltGetProcAddressExtension("glTextureStorage1DEXT","GL_EXT_texture_storage"); }
+#endif
 	 fn(texture1,target1,levels1,internalformat1,width1);
 }
 #endif
@@ -757,7 +887,12 @@ static inline void glTextureStorage1DEXT(GLuint texture1,GLenum target1,GLsizei 
 typedef void (*PFNGLTEXTURESTORAGE2DEXTPROC_ALT)(GLuint,GLenum,GLsizei,GLenum,GLsizei,GLsizei);
 static inline void glTextureStorage2DEXT(GLuint texture1,GLenum target1,GLsizei levels1,GLenum internalformat1,GLsizei width1,GLsizei height1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXTURESTORAGE2DEXTPROC_ALT fn=(PFNGLTEXTURESTORAGE2DEXTPROC_ALT)glaltGetProcAddressExtension("glTextureStorage2DEXT","GL_EXT_texture_storage");
+#else
+	static PFNGLTEXTURESTORAGE2DEXTPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXTURESTORAGE2DEXTPROC_ALT)glaltGetProcAddressExtension("glTextureStorage2DEXT","GL_EXT_texture_storage"); }
+#endif
 	 fn(texture1,target1,levels1,internalformat1,width1,height1);
 }
 #endif
@@ -767,7 +902,12 @@ static inline void glTextureStorage2DEXT(GLuint texture1,GLenum target1,GLsizei 
 typedef void (*PFNGLTEXTURESTORAGE3DEXTPROC_ALT)(GLuint,GLenum,GLsizei,GLenum,GLsizei,GLsizei,GLsizei);
 static inline void glTextureStorage3DEXT(GLuint texture1,GLenum target1,GLsizei levels1,GLenum internalformat1,GLsizei width1,GLsizei height1,GLsizei depth1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXTURESTORAGE3DEXTPROC_ALT fn=(PFNGLTEXTURESTORAGE3DEXTPROC_ALT)glaltGetProcAddressExtension("glTextureStorage3DEXT","GL_EXT_texture_storage");
+#else
+	static PFNGLTEXTURESTORAGE3DEXTPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXTURESTORAGE3DEXTPROC_ALT)glaltGetProcAddressExtension("glTextureStorage3DEXT","GL_EXT_texture_storage"); }
+#endif
 	 fn(texture1,target1,levels1,internalformat1,width1,height1,depth1);
 }
 #endif
@@ -797,7 +937,12 @@ CGUARDBEGIN
 typedef void (*PFNGLFRAMEBUFFERTEXTURE2DMULTISAMPLEIMGPROC_ALT)(GLenum,GLenum,GLenum,GLuint,GLint,GLsizei);
 static inline void glFramebufferTexture2DMultisampleIMG(GLenum target1,GLenum attachment1,GLenum textarget1,GLuint texture1,GLint level1,GLsizei samples1)
 {
+#ifdef __cplusplus
 	static PFNGLFRAMEBUFFERTEXTURE2DMULTISAMPLEIMGPROC_ALT fn=(PFNGLFRAMEBUFFERTEXTURE2DMULTISAMPLEIMGPROC_ALT)glaltGetProcAddressExtension("glFramebufferTexture2DMultisampleIMG","GL_IMG_multisampled_render_to_texture");
+#else
+	static PFNGLFRAMEBUFFERTEXTURE2DMULTISAMPLEIMGPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLFRAMEBUFFERTEXTURE2DMULTISAMPLEIMGPROC_ALT)glaltGetProcAddressExtension("glFramebufferTexture2DMultisampleIMG","GL_IMG_multisampled_render_to_texture"); }
+#endif
 	 fn(target1,attachment1,textarget1,texture1,level1,samples1);
 }
 #endif
@@ -807,7 +952,12 @@ static inline void glFramebufferTexture2DMultisampleIMG(GLenum target1,GLenum at
 typedef void (*PFNGLRENDERBUFFERSTORAGEMULTISAMPLEIMGPROC_ALT)(GLenum,GLsizei,GLenum,GLsizei,GLsizei);
 static inline void glRenderbufferStorageMultisampleIMG(GLenum target1,GLsizei samples1,GLenum internalformat1,GLsizei width1,GLsizei height1)
 {
+#ifdef __cplusplus
 	static PFNGLRENDERBUFFERSTORAGEMULTISAMPLEIMGPROC_ALT fn=(PFNGLRENDERBUFFERSTORAGEMULTISAMPLEIMGPROC_ALT)glaltGetProcAddressExtension("glRenderbufferStorageMultisampleIMG","GL_IMG_multisampled_render_to_texture");
+#else
+	static PFNGLRENDERBUFFERSTORAGEMULTISAMPLEIMGPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLRENDERBUFFERSTORAGEMULTISAMPLEIMGPROC_ALT)glaltGetProcAddressExtension("glRenderbufferStorageMultisampleIMG","GL_IMG_multisampled_render_to_texture"); }
+#endif
 	 fn(target1,samples1,internalformat1,width1,height1);
 }
 #endif
@@ -909,7 +1059,12 @@ CGUARDBEGIN
 typedef void (*PFNGLCLIPPLANEFIMGPROC_ALT)(GLenum,const GLfloat *);
 static inline void glClipPlanefIMG(GLenum p1,const GLfloat * eqn1)
 {
+#ifdef __cplusplus
 	static PFNGLCLIPPLANEFIMGPROC_ALT fn=(PFNGLCLIPPLANEFIMGPROC_ALT)glaltGetProcAddressExtension("glClipPlanefIMG","GL_IMG_user_clip_plane");
+#else
+	static PFNGLCLIPPLANEFIMGPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLCLIPPLANEFIMGPROC_ALT)glaltGetProcAddressExtension("glClipPlanefIMG","GL_IMG_user_clip_plane"); }
+#endif
 	 fn(p1,eqn1);
 }
 #endif
@@ -919,7 +1074,12 @@ static inline void glClipPlanefIMG(GLenum p1,const GLfloat * eqn1)
 typedef void (*PFNGLCLIPPLANEXIMGPROC_ALT)(GLenum,const GLfixed *);
 static inline void glClipPlanexIMG(GLenum p1,const GLfixed * eqn1)
 {
+#ifdef __cplusplus
 	static PFNGLCLIPPLANEXIMGPROC_ALT fn=(PFNGLCLIPPLANEXIMGPROC_ALT)glaltGetProcAddressExtension("glClipPlanexIMG","GL_IMG_user_clip_plane");
+#else
+	static PFNGLCLIPPLANEXIMGPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLCLIPPLANEXIMGPROC_ALT)glaltGetProcAddressExtension("glClipPlanexIMG","GL_IMG_user_clip_plane"); }
+#endif
 	 fn(p1,eqn1);
 }
 #endif
@@ -946,7 +1106,12 @@ CGUARDBEGIN
 typedef void (*PFNGLDELETEFENCESNVPROC_ALT)(GLsizei,const GLuint *);
 static inline void glDeleteFencesNV(GLsizei n1,const GLuint * fences1)
 {
+#ifdef __cplusplus
 	static PFNGLDELETEFENCESNVPROC_ALT fn=(PFNGLDELETEFENCESNVPROC_ALT)glaltGetProcAddressExtension("glDeleteFencesNV","GL_NV_fence");
+#else
+	static PFNGLDELETEFENCESNVPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLDELETEFENCESNVPROC_ALT)glaltGetProcAddressExtension("glDeleteFencesNV","GL_NV_fence"); }
+#endif
 	 fn(n1,fences1);
 }
 #endif
@@ -956,7 +1121,12 @@ static inline void glDeleteFencesNV(GLsizei n1,const GLuint * fences1)
 typedef void (*PFNGLFINISHFENCENVPROC_ALT)(GLuint);
 static inline void glFinishFenceNV(GLuint fence1)
 {
+#ifdef __cplusplus
 	static PFNGLFINISHFENCENVPROC_ALT fn=(PFNGLFINISHFENCENVPROC_ALT)glaltGetProcAddressExtension("glFinishFenceNV","GL_NV_fence");
+#else
+	static PFNGLFINISHFENCENVPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLFINISHFENCENVPROC_ALT)glaltGetProcAddressExtension("glFinishFenceNV","GL_NV_fence"); }
+#endif
 	 fn(fence1);
 }
 #endif
@@ -966,7 +1136,12 @@ static inline void glFinishFenceNV(GLuint fence1)
 typedef void (*PFNGLGENFENCESNVPROC_ALT)(GLsizei,GLuint *);
 static inline void glGenFencesNV(GLsizei n1,GLuint * fences1)
 {
+#ifdef __cplusplus
 	static PFNGLGENFENCESNVPROC_ALT fn=(PFNGLGENFENCESNVPROC_ALT)glaltGetProcAddressExtension("glGenFencesNV","GL_NV_fence");
+#else
+	static PFNGLGENFENCESNVPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGENFENCESNVPROC_ALT)glaltGetProcAddressExtension("glGenFencesNV","GL_NV_fence"); }
+#endif
 	 fn(n1,fences1);
 }
 #endif
@@ -976,7 +1151,12 @@ static inline void glGenFencesNV(GLsizei n1,GLuint * fences1)
 typedef void (*PFNGLGETFENCEIVNVPROC_ALT)(GLuint,GLenum,GLint *);
 static inline void glGetFenceivNV(GLuint fence1,GLenum pname1,GLint * params1)
 {
+#ifdef __cplusplus
 	static PFNGLGETFENCEIVNVPROC_ALT fn=(PFNGLGETFENCEIVNVPROC_ALT)glaltGetProcAddressExtension("glGetFenceivNV","GL_NV_fence");
+#else
+	static PFNGLGETFENCEIVNVPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETFENCEIVNVPROC_ALT)glaltGetProcAddressExtension("glGetFenceivNV","GL_NV_fence"); }
+#endif
 	 fn(fence1,pname1,params1);
 }
 #endif
@@ -986,7 +1166,12 @@ static inline void glGetFenceivNV(GLuint fence1,GLenum pname1,GLint * params1)
 typedef GLboolean (*PFNGLISFENCENVPROC_ALT)(GLuint);
 static inline GLboolean glIsFenceNV(GLuint fence1)
 {
+#ifdef __cplusplus
 	static PFNGLISFENCENVPROC_ALT fn=(PFNGLISFENCENVPROC_ALT)glaltGetProcAddressExtension("glIsFenceNV","GL_NV_fence");
+#else
+	static PFNGLISFENCENVPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLISFENCENVPROC_ALT)glaltGetProcAddressExtension("glIsFenceNV","GL_NV_fence"); }
+#endif
 	return fn(fence1);
 }
 #endif
@@ -996,7 +1181,12 @@ static inline GLboolean glIsFenceNV(GLuint fence1)
 typedef void (*PFNGLSETFENCENVPROC_ALT)(GLuint,GLenum);
 static inline void glSetFenceNV(GLuint fence1,GLenum condition1)
 {
+#ifdef __cplusplus
 	static PFNGLSETFENCENVPROC_ALT fn=(PFNGLSETFENCENVPROC_ALT)glaltGetProcAddressExtension("glSetFenceNV","GL_NV_fence");
+#else
+	static PFNGLSETFENCENVPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLSETFENCENVPROC_ALT)glaltGetProcAddressExtension("glSetFenceNV","GL_NV_fence"); }
+#endif
 	 fn(fence1,condition1);
 }
 #endif
@@ -1006,7 +1196,12 @@ static inline void glSetFenceNV(GLuint fence1,GLenum condition1)
 typedef GLboolean (*PFNGLTESTFENCENVPROC_ALT)(GLuint);
 static inline GLboolean glTestFenceNV(GLuint fence1)
 {
+#ifdef __cplusplus
 	static PFNGLTESTFENCENVPROC_ALT fn=(PFNGLTESTFENCENVPROC_ALT)glaltGetProcAddressExtension("glTestFenceNV","GL_NV_fence");
+#else
+	static PFNGLTESTFENCENVPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTESTFENCENVPROC_ALT)glaltGetProcAddressExtension("glTestFenceNV","GL_NV_fence"); }
+#endif
 	return fn(fence1);
 }
 #endif
@@ -1024,7 +1219,12 @@ CGUARDBEGIN
 typedef void (*PFNGLEGLIMAGETARGETRENDERBUFFERSTORAGEOESPROC_ALT)(GLenum,GLeglImageOES);
 static inline void glEGLImageTargetRenderbufferStorageOES(GLenum target1,GLeglImageOES image1)
 {
+#ifdef __cplusplus
 	static PFNGLEGLIMAGETARGETRENDERBUFFERSTORAGEOESPROC_ALT fn=(PFNGLEGLIMAGETARGETRENDERBUFFERSTORAGEOESPROC_ALT)glaltGetProcAddressExtension("glEGLImageTargetRenderbufferStorageOES","GL_OES_EGL_image");
+#else
+	static PFNGLEGLIMAGETARGETRENDERBUFFERSTORAGEOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLEGLIMAGETARGETRENDERBUFFERSTORAGEOESPROC_ALT)glaltGetProcAddressExtension("glEGLImageTargetRenderbufferStorageOES","GL_OES_EGL_image"); }
+#endif
 	 fn(target1,image1);
 }
 #endif
@@ -1034,7 +1234,12 @@ static inline void glEGLImageTargetRenderbufferStorageOES(GLenum target1,GLeglIm
 typedef void (*PFNGLEGLIMAGETARGETTEXTURE2DOESPROC_ALT)(GLenum,GLeglImageOES);
 static inline void glEGLImageTargetTexture2DOES(GLenum target1,GLeglImageOES image1)
 {
+#ifdef __cplusplus
 	static PFNGLEGLIMAGETARGETTEXTURE2DOESPROC_ALT fn=(PFNGLEGLIMAGETARGETTEXTURE2DOESPROC_ALT)glaltGetProcAddressExtension("glEGLImageTargetTexture2DOES","GL_OES_EGL_image");
+#else
+	static PFNGLEGLIMAGETARGETTEXTURE2DOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLEGLIMAGETARGETTEXTURE2DOESPROC_ALT)glaltGetProcAddressExtension("glEGLImageTargetTexture2DOES","GL_OES_EGL_image"); }
+#endif
 	 fn(target1,image1);
 }
 #endif
@@ -1078,7 +1283,12 @@ CGUARDBEGIN
 typedef void (*PFNGLBLENDEQUATIONSEPARATEOESPROC_ALT)(GLenum,GLenum);
 static inline void glBlendEquationSeparateOES(GLenum modeRGB1,GLenum modeAlpha1)
 {
+#ifdef __cplusplus
 	static PFNGLBLENDEQUATIONSEPARATEOESPROC_ALT fn=(PFNGLBLENDEQUATIONSEPARATEOESPROC_ALT)glaltGetProcAddressExtension("glBlendEquationSeparateOES","GL_OES_blend_equation_separate");
+#else
+	static PFNGLBLENDEQUATIONSEPARATEOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLBLENDEQUATIONSEPARATEOESPROC_ALT)glaltGetProcAddressExtension("glBlendEquationSeparateOES","GL_OES_blend_equation_separate"); }
+#endif
 	 fn(modeRGB1,modeAlpha1);
 }
 #endif
@@ -1108,7 +1318,12 @@ CGUARDBEGIN
 typedef void (*PFNGLBLENDFUNCSEPARATEOESPROC_ALT)(GLenum,GLenum,GLenum,GLenum);
 static inline void glBlendFuncSeparateOES(GLenum srcRGB1,GLenum dstRGB1,GLenum srcAlpha1,GLenum dstAlpha1)
 {
+#ifdef __cplusplus
 	static PFNGLBLENDFUNCSEPARATEOESPROC_ALT fn=(PFNGLBLENDFUNCSEPARATEOESPROC_ALT)glaltGetProcAddressExtension("glBlendFuncSeparateOES","GL_OES_blend_func_separate");
+#else
+	static PFNGLBLENDFUNCSEPARATEOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLBLENDFUNCSEPARATEOESPROC_ALT)glaltGetProcAddressExtension("glBlendFuncSeparateOES","GL_OES_blend_func_separate"); }
+#endif
 	 fn(srcRGB1,dstRGB1,srcAlpha1,dstAlpha1);
 }
 #endif
@@ -1138,7 +1353,12 @@ CGUARDBEGIN
 typedef void (*PFNGLBLENDEQUATIONOESPROC_ALT)(GLenum);
 static inline void glBlendEquationOES(GLenum mode1)
 {
+#ifdef __cplusplus
 	static PFNGLBLENDEQUATIONOESPROC_ALT fn=(PFNGLBLENDEQUATIONOESPROC_ALT)glaltGetProcAddressExtension("glBlendEquationOES","GL_OES_blend_subtract");
+#else
+	static PFNGLBLENDEQUATIONOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLBLENDEQUATIONOESPROC_ALT)glaltGetProcAddressExtension("glBlendEquationOES","GL_OES_blend_subtract"); }
+#endif
 	 fn(mode1);
 }
 #endif
@@ -1159,7 +1379,12 @@ CGUARDBEGIN
 typedef void (*PFNGLMULTITEXCOORD1BOESPROC_ALT)(GLenum,GLbyte);
 static inline void glMultiTexCoord1bOES(GLenum texture1,GLbyte s1)
 {
+#ifdef __cplusplus
 	static PFNGLMULTITEXCOORD1BOESPROC_ALT fn=(PFNGLMULTITEXCOORD1BOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord1bOES","GL_OES_byte_coordinates");
+#else
+	static PFNGLMULTITEXCOORD1BOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMULTITEXCOORD1BOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord1bOES","GL_OES_byte_coordinates"); }
+#endif
 	 fn(texture1,s1);
 }
 #endif
@@ -1169,7 +1394,12 @@ static inline void glMultiTexCoord1bOES(GLenum texture1,GLbyte s1)
 typedef void (*PFNGLMULTITEXCOORD1BVOESPROC_ALT)(GLenum,const GLbyte *);
 static inline void glMultiTexCoord1bvOES(GLenum texture1,const GLbyte * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLMULTITEXCOORD1BVOESPROC_ALT fn=(PFNGLMULTITEXCOORD1BVOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord1bvOES","GL_OES_byte_coordinates");
+#else
+	static PFNGLMULTITEXCOORD1BVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMULTITEXCOORD1BVOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord1bvOES","GL_OES_byte_coordinates"); }
+#endif
 	 fn(texture1,coords1);
 }
 #endif
@@ -1179,7 +1409,12 @@ static inline void glMultiTexCoord1bvOES(GLenum texture1,const GLbyte * coords1)
 typedef void (*PFNGLMULTITEXCOORD2BOESPROC_ALT)(GLenum,GLbyte,GLbyte);
 static inline void glMultiTexCoord2bOES(GLenum texture1,GLbyte s1,GLbyte t1)
 {
+#ifdef __cplusplus
 	static PFNGLMULTITEXCOORD2BOESPROC_ALT fn=(PFNGLMULTITEXCOORD2BOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord2bOES","GL_OES_byte_coordinates");
+#else
+	static PFNGLMULTITEXCOORD2BOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMULTITEXCOORD2BOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord2bOES","GL_OES_byte_coordinates"); }
+#endif
 	 fn(texture1,s1,t1);
 }
 #endif
@@ -1189,7 +1424,12 @@ static inline void glMultiTexCoord2bOES(GLenum texture1,GLbyte s1,GLbyte t1)
 typedef void (*PFNGLMULTITEXCOORD2BVOESPROC_ALT)(GLenum,const GLbyte *);
 static inline void glMultiTexCoord2bvOES(GLenum texture1,const GLbyte * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLMULTITEXCOORD2BVOESPROC_ALT fn=(PFNGLMULTITEXCOORD2BVOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord2bvOES","GL_OES_byte_coordinates");
+#else
+	static PFNGLMULTITEXCOORD2BVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMULTITEXCOORD2BVOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord2bvOES","GL_OES_byte_coordinates"); }
+#endif
 	 fn(texture1,coords1);
 }
 #endif
@@ -1199,7 +1439,12 @@ static inline void glMultiTexCoord2bvOES(GLenum texture1,const GLbyte * coords1)
 typedef void (*PFNGLMULTITEXCOORD3BOESPROC_ALT)(GLenum,GLbyte,GLbyte,GLbyte);
 static inline void glMultiTexCoord3bOES(GLenum texture1,GLbyte s1,GLbyte t1,GLbyte r1)
 {
+#ifdef __cplusplus
 	static PFNGLMULTITEXCOORD3BOESPROC_ALT fn=(PFNGLMULTITEXCOORD3BOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord3bOES","GL_OES_byte_coordinates");
+#else
+	static PFNGLMULTITEXCOORD3BOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMULTITEXCOORD3BOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord3bOES","GL_OES_byte_coordinates"); }
+#endif
 	 fn(texture1,s1,t1,r1);
 }
 #endif
@@ -1209,7 +1454,12 @@ static inline void glMultiTexCoord3bOES(GLenum texture1,GLbyte s1,GLbyte t1,GLby
 typedef void (*PFNGLMULTITEXCOORD3BVOESPROC_ALT)(GLenum,const GLbyte *);
 static inline void glMultiTexCoord3bvOES(GLenum texture1,const GLbyte * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLMULTITEXCOORD3BVOESPROC_ALT fn=(PFNGLMULTITEXCOORD3BVOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord3bvOES","GL_OES_byte_coordinates");
+#else
+	static PFNGLMULTITEXCOORD3BVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMULTITEXCOORD3BVOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord3bvOES","GL_OES_byte_coordinates"); }
+#endif
 	 fn(texture1,coords1);
 }
 #endif
@@ -1219,7 +1469,12 @@ static inline void glMultiTexCoord3bvOES(GLenum texture1,const GLbyte * coords1)
 typedef void (*PFNGLMULTITEXCOORD4BOESPROC_ALT)(GLenum,GLbyte,GLbyte,GLbyte,GLbyte);
 static inline void glMultiTexCoord4bOES(GLenum texture1,GLbyte s1,GLbyte t1,GLbyte r1,GLbyte q1)
 {
+#ifdef __cplusplus
 	static PFNGLMULTITEXCOORD4BOESPROC_ALT fn=(PFNGLMULTITEXCOORD4BOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord4bOES","GL_OES_byte_coordinates");
+#else
+	static PFNGLMULTITEXCOORD4BOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMULTITEXCOORD4BOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord4bOES","GL_OES_byte_coordinates"); }
+#endif
 	 fn(texture1,s1,t1,r1,q1);
 }
 #endif
@@ -1229,7 +1484,12 @@ static inline void glMultiTexCoord4bOES(GLenum texture1,GLbyte s1,GLbyte t1,GLby
 typedef void (*PFNGLMULTITEXCOORD4BVOESPROC_ALT)(GLenum,const GLbyte *);
 static inline void glMultiTexCoord4bvOES(GLenum texture1,const GLbyte * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLMULTITEXCOORD4BVOESPROC_ALT fn=(PFNGLMULTITEXCOORD4BVOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord4bvOES","GL_OES_byte_coordinates");
+#else
+	static PFNGLMULTITEXCOORD4BVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMULTITEXCOORD4BVOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord4bvOES","GL_OES_byte_coordinates"); }
+#endif
 	 fn(texture1,coords1);
 }
 #endif
@@ -1239,7 +1499,12 @@ static inline void glMultiTexCoord4bvOES(GLenum texture1,const GLbyte * coords1)
 typedef void (*PFNGLTEXCOORD1BOESPROC_ALT)(GLbyte);
 static inline void glTexCoord1bOES(GLbyte s1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXCOORD1BOESPROC_ALT fn=(PFNGLTEXCOORD1BOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord1bOES","GL_OES_byte_coordinates");
+#else
+	static PFNGLTEXCOORD1BOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXCOORD1BOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord1bOES","GL_OES_byte_coordinates"); }
+#endif
 	 fn(s1);
 }
 #endif
@@ -1249,7 +1514,12 @@ static inline void glTexCoord1bOES(GLbyte s1)
 typedef void (*PFNGLTEXCOORD1BVOESPROC_ALT)(const GLbyte *);
 static inline void glTexCoord1bvOES(const GLbyte * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXCOORD1BVOESPROC_ALT fn=(PFNGLTEXCOORD1BVOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord1bvOES","GL_OES_byte_coordinates");
+#else
+	static PFNGLTEXCOORD1BVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXCOORD1BVOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord1bvOES","GL_OES_byte_coordinates"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -1259,7 +1529,12 @@ static inline void glTexCoord1bvOES(const GLbyte * coords1)
 typedef void (*PFNGLTEXCOORD2BOESPROC_ALT)(GLbyte,GLbyte);
 static inline void glTexCoord2bOES(GLbyte s1,GLbyte t1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXCOORD2BOESPROC_ALT fn=(PFNGLTEXCOORD2BOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord2bOES","GL_OES_byte_coordinates");
+#else
+	static PFNGLTEXCOORD2BOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXCOORD2BOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord2bOES","GL_OES_byte_coordinates"); }
+#endif
 	 fn(s1,t1);
 }
 #endif
@@ -1269,7 +1544,12 @@ static inline void glTexCoord2bOES(GLbyte s1,GLbyte t1)
 typedef void (*PFNGLTEXCOORD2BVOESPROC_ALT)(const GLbyte *);
 static inline void glTexCoord2bvOES(const GLbyte * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXCOORD2BVOESPROC_ALT fn=(PFNGLTEXCOORD2BVOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord2bvOES","GL_OES_byte_coordinates");
+#else
+	static PFNGLTEXCOORD2BVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXCOORD2BVOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord2bvOES","GL_OES_byte_coordinates"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -1279,7 +1559,12 @@ static inline void glTexCoord2bvOES(const GLbyte * coords1)
 typedef void (*PFNGLTEXCOORD3BOESPROC_ALT)(GLbyte,GLbyte,GLbyte);
 static inline void glTexCoord3bOES(GLbyte s1,GLbyte t1,GLbyte r1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXCOORD3BOESPROC_ALT fn=(PFNGLTEXCOORD3BOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord3bOES","GL_OES_byte_coordinates");
+#else
+	static PFNGLTEXCOORD3BOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXCOORD3BOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord3bOES","GL_OES_byte_coordinates"); }
+#endif
 	 fn(s1,t1,r1);
 }
 #endif
@@ -1289,7 +1574,12 @@ static inline void glTexCoord3bOES(GLbyte s1,GLbyte t1,GLbyte r1)
 typedef void (*PFNGLTEXCOORD3BVOESPROC_ALT)(const GLbyte *);
 static inline void glTexCoord3bvOES(const GLbyte * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXCOORD3BVOESPROC_ALT fn=(PFNGLTEXCOORD3BVOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord3bvOES","GL_OES_byte_coordinates");
+#else
+	static PFNGLTEXCOORD3BVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXCOORD3BVOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord3bvOES","GL_OES_byte_coordinates"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -1299,7 +1589,12 @@ static inline void glTexCoord3bvOES(const GLbyte * coords1)
 typedef void (*PFNGLTEXCOORD4BOESPROC_ALT)(GLbyte,GLbyte,GLbyte,GLbyte);
 static inline void glTexCoord4bOES(GLbyte s1,GLbyte t1,GLbyte r1,GLbyte q1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXCOORD4BOESPROC_ALT fn=(PFNGLTEXCOORD4BOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord4bOES","GL_OES_byte_coordinates");
+#else
+	static PFNGLTEXCOORD4BOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXCOORD4BOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord4bOES","GL_OES_byte_coordinates"); }
+#endif
 	 fn(s1,t1,r1,q1);
 }
 #endif
@@ -1309,7 +1604,12 @@ static inline void glTexCoord4bOES(GLbyte s1,GLbyte t1,GLbyte r1,GLbyte q1)
 typedef void (*PFNGLTEXCOORD4BVOESPROC_ALT)(const GLbyte *);
 static inline void glTexCoord4bvOES(const GLbyte * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXCOORD4BVOESPROC_ALT fn=(PFNGLTEXCOORD4BVOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord4bvOES","GL_OES_byte_coordinates");
+#else
+	static PFNGLTEXCOORD4BVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXCOORD4BVOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord4bvOES","GL_OES_byte_coordinates"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -1319,7 +1619,12 @@ static inline void glTexCoord4bvOES(const GLbyte * coords1)
 typedef void (*PFNGLVERTEX2BOESPROC_ALT)(GLbyte,GLbyte);
 static inline void glVertex2bOES(GLbyte x1,GLbyte y1)
 {
+#ifdef __cplusplus
 	static PFNGLVERTEX2BOESPROC_ALT fn=(PFNGLVERTEX2BOESPROC_ALT)glaltGetProcAddressExtension("glVertex2bOES","GL_OES_byte_coordinates");
+#else
+	static PFNGLVERTEX2BOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLVERTEX2BOESPROC_ALT)glaltGetProcAddressExtension("glVertex2bOES","GL_OES_byte_coordinates"); }
+#endif
 	 fn(x1,y1);
 }
 #endif
@@ -1329,7 +1634,12 @@ static inline void glVertex2bOES(GLbyte x1,GLbyte y1)
 typedef void (*PFNGLVERTEX2BVOESPROC_ALT)(const GLbyte *);
 static inline void glVertex2bvOES(const GLbyte * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLVERTEX2BVOESPROC_ALT fn=(PFNGLVERTEX2BVOESPROC_ALT)glaltGetProcAddressExtension("glVertex2bvOES","GL_OES_byte_coordinates");
+#else
+	static PFNGLVERTEX2BVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLVERTEX2BVOESPROC_ALT)glaltGetProcAddressExtension("glVertex2bvOES","GL_OES_byte_coordinates"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -1339,7 +1649,12 @@ static inline void glVertex2bvOES(const GLbyte * coords1)
 typedef void (*PFNGLVERTEX3BOESPROC_ALT)(GLbyte,GLbyte,GLbyte);
 static inline void glVertex3bOES(GLbyte x1,GLbyte y1,GLbyte z1)
 {
+#ifdef __cplusplus
 	static PFNGLVERTEX3BOESPROC_ALT fn=(PFNGLVERTEX3BOESPROC_ALT)glaltGetProcAddressExtension("glVertex3bOES","GL_OES_byte_coordinates");
+#else
+	static PFNGLVERTEX3BOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLVERTEX3BOESPROC_ALT)glaltGetProcAddressExtension("glVertex3bOES","GL_OES_byte_coordinates"); }
+#endif
 	 fn(x1,y1,z1);
 }
 #endif
@@ -1349,7 +1664,12 @@ static inline void glVertex3bOES(GLbyte x1,GLbyte y1,GLbyte z1)
 typedef void (*PFNGLVERTEX3BVOESPROC_ALT)(const GLbyte *);
 static inline void glVertex3bvOES(const GLbyte * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLVERTEX3BVOESPROC_ALT fn=(PFNGLVERTEX3BVOESPROC_ALT)glaltGetProcAddressExtension("glVertex3bvOES","GL_OES_byte_coordinates");
+#else
+	static PFNGLVERTEX3BVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLVERTEX3BVOESPROC_ALT)glaltGetProcAddressExtension("glVertex3bvOES","GL_OES_byte_coordinates"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -1359,7 +1679,12 @@ static inline void glVertex3bvOES(const GLbyte * coords1)
 typedef void (*PFNGLVERTEX4BOESPROC_ALT)(GLbyte,GLbyte,GLbyte,GLbyte);
 static inline void glVertex4bOES(GLbyte x1,GLbyte y1,GLbyte z1,GLbyte w1)
 {
+#ifdef __cplusplus
 	static PFNGLVERTEX4BOESPROC_ALT fn=(PFNGLVERTEX4BOESPROC_ALT)glaltGetProcAddressExtension("glVertex4bOES","GL_OES_byte_coordinates");
+#else
+	static PFNGLVERTEX4BOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLVERTEX4BOESPROC_ALT)glaltGetProcAddressExtension("glVertex4bOES","GL_OES_byte_coordinates"); }
+#endif
 	 fn(x1,y1,z1,w1);
 }
 #endif
@@ -1369,7 +1694,12 @@ static inline void glVertex4bOES(GLbyte x1,GLbyte y1,GLbyte z1,GLbyte w1)
 typedef void (*PFNGLVERTEX4BVOESPROC_ALT)(const GLbyte *);
 static inline void glVertex4bvOES(const GLbyte * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLVERTEX4BVOESPROC_ALT fn=(PFNGLVERTEX4BVOESPROC_ALT)glaltGetProcAddressExtension("glVertex4bvOES","GL_OES_byte_coordinates");
+#else
+	static PFNGLVERTEX4BVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLVERTEX4BVOESPROC_ALT)glaltGetProcAddressExtension("glVertex4bvOES","GL_OES_byte_coordinates"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -1469,7 +1799,12 @@ CGUARDBEGIN
 typedef void (*PFNGLDRAWTEXFOESPROC_ALT)(GLfloat,GLfloat,GLfloat,GLfloat,GLfloat);
 static inline void glDrawTexfOES(GLfloat x1,GLfloat y1,GLfloat z1,GLfloat width1,GLfloat height1)
 {
+#ifdef __cplusplus
 	static PFNGLDRAWTEXFOESPROC_ALT fn=(PFNGLDRAWTEXFOESPROC_ALT)glaltGetProcAddressExtension("glDrawTexfOES","GL_OES_draw_texture");
+#else
+	static PFNGLDRAWTEXFOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLDRAWTEXFOESPROC_ALT)glaltGetProcAddressExtension("glDrawTexfOES","GL_OES_draw_texture"); }
+#endif
 	 fn(x1,y1,z1,width1,height1);
 }
 #endif
@@ -1479,7 +1814,12 @@ static inline void glDrawTexfOES(GLfloat x1,GLfloat y1,GLfloat z1,GLfloat width1
 typedef void (*PFNGLDRAWTEXFVOESPROC_ALT)(const GLfloat *);
 static inline void glDrawTexfvOES(const GLfloat * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLDRAWTEXFVOESPROC_ALT fn=(PFNGLDRAWTEXFVOESPROC_ALT)glaltGetProcAddressExtension("glDrawTexfvOES","GL_OES_draw_texture");
+#else
+	static PFNGLDRAWTEXFVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLDRAWTEXFVOESPROC_ALT)glaltGetProcAddressExtension("glDrawTexfvOES","GL_OES_draw_texture"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -1489,7 +1829,12 @@ static inline void glDrawTexfvOES(const GLfloat * coords1)
 typedef void (*PFNGLDRAWTEXIOESPROC_ALT)(GLint,GLint,GLint,GLint,GLint);
 static inline void glDrawTexiOES(GLint x1,GLint y1,GLint z1,GLint width1,GLint height1)
 {
+#ifdef __cplusplus
 	static PFNGLDRAWTEXIOESPROC_ALT fn=(PFNGLDRAWTEXIOESPROC_ALT)glaltGetProcAddressExtension("glDrawTexiOES","GL_OES_draw_texture");
+#else
+	static PFNGLDRAWTEXIOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLDRAWTEXIOESPROC_ALT)glaltGetProcAddressExtension("glDrawTexiOES","GL_OES_draw_texture"); }
+#endif
 	 fn(x1,y1,z1,width1,height1);
 }
 #endif
@@ -1499,7 +1844,12 @@ static inline void glDrawTexiOES(GLint x1,GLint y1,GLint z1,GLint width1,GLint h
 typedef void (*PFNGLDRAWTEXIVOESPROC_ALT)(const GLint *);
 static inline void glDrawTexivOES(const GLint * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLDRAWTEXIVOESPROC_ALT fn=(PFNGLDRAWTEXIVOESPROC_ALT)glaltGetProcAddressExtension("glDrawTexivOES","GL_OES_draw_texture");
+#else
+	static PFNGLDRAWTEXIVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLDRAWTEXIVOESPROC_ALT)glaltGetProcAddressExtension("glDrawTexivOES","GL_OES_draw_texture"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -1509,7 +1859,12 @@ static inline void glDrawTexivOES(const GLint * coords1)
 typedef void (*PFNGLDRAWTEXSOESPROC_ALT)(GLshort,GLshort,GLshort,GLshort,GLshort);
 static inline void glDrawTexsOES(GLshort x1,GLshort y1,GLshort z1,GLshort width1,GLshort height1)
 {
+#ifdef __cplusplus
 	static PFNGLDRAWTEXSOESPROC_ALT fn=(PFNGLDRAWTEXSOESPROC_ALT)glaltGetProcAddressExtension("glDrawTexsOES","GL_OES_draw_texture");
+#else
+	static PFNGLDRAWTEXSOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLDRAWTEXSOESPROC_ALT)glaltGetProcAddressExtension("glDrawTexsOES","GL_OES_draw_texture"); }
+#endif
 	 fn(x1,y1,z1,width1,height1);
 }
 #endif
@@ -1519,7 +1874,12 @@ static inline void glDrawTexsOES(GLshort x1,GLshort y1,GLshort z1,GLshort width1
 typedef void (*PFNGLDRAWTEXSVOESPROC_ALT)(const GLshort *);
 static inline void glDrawTexsvOES(const GLshort * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLDRAWTEXSVOESPROC_ALT fn=(PFNGLDRAWTEXSVOESPROC_ALT)glaltGetProcAddressExtension("glDrawTexsvOES","GL_OES_draw_texture");
+#else
+	static PFNGLDRAWTEXSVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLDRAWTEXSVOESPROC_ALT)glaltGetProcAddressExtension("glDrawTexsvOES","GL_OES_draw_texture"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -1529,7 +1889,12 @@ static inline void glDrawTexsvOES(const GLshort * coords1)
 typedef void (*PFNGLDRAWTEXXOESPROC_ALT)(GLfixed,GLfixed,GLfixed,GLfixed,GLfixed);
 static inline void glDrawTexxOES(GLfixed x1,GLfixed y1,GLfixed z1,GLfixed width1,GLfixed height1)
 {
+#ifdef __cplusplus
 	static PFNGLDRAWTEXXOESPROC_ALT fn=(PFNGLDRAWTEXXOESPROC_ALT)glaltGetProcAddressExtension("glDrawTexxOES","GL_OES_draw_texture");
+#else
+	static PFNGLDRAWTEXXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLDRAWTEXXOESPROC_ALT)glaltGetProcAddressExtension("glDrawTexxOES","GL_OES_draw_texture"); }
+#endif
 	 fn(x1,y1,z1,width1,height1);
 }
 #endif
@@ -1539,7 +1904,12 @@ static inline void glDrawTexxOES(GLfixed x1,GLfixed y1,GLfixed z1,GLfixed width1
 typedef void (*PFNGLDRAWTEXXVOESPROC_ALT)(const GLfixed *);
 static inline void glDrawTexxvOES(const GLfixed * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLDRAWTEXXVOESPROC_ALT fn=(PFNGLDRAWTEXXVOESPROC_ALT)glaltGetProcAddressExtension("glDrawTexxvOES","GL_OES_draw_texture");
+#else
+	static PFNGLDRAWTEXXVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLDRAWTEXXVOESPROC_ALT)glaltGetProcAddressExtension("glDrawTexxvOES","GL_OES_draw_texture"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -1587,7 +1957,12 @@ CGUARDBEGIN
 typedef void (*PFNGLACCUMXOESPROC_ALT)(GLenum,GLfixed);
 static inline void glAccumxOES(GLenum op1,GLfixed value1)
 {
+#ifdef __cplusplus
 	static PFNGLACCUMXOESPROC_ALT fn=(PFNGLACCUMXOESPROC_ALT)glaltGetProcAddressExtension("glAccumxOES","GL_OES_fixed_point");
+#else
+	static PFNGLACCUMXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLACCUMXOESPROC_ALT)glaltGetProcAddressExtension("glAccumxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(op1,value1);
 }
 #endif
@@ -1597,7 +1972,12 @@ static inline void glAccumxOES(GLenum op1,GLfixed value1)
 typedef void (*PFNGLALPHAFUNCXOESPROC_ALT)(GLenum,GLfixed);
 static inline void glAlphaFuncxOES(GLenum func1,GLfixed ref1)
 {
+#ifdef __cplusplus
 	static PFNGLALPHAFUNCXOESPROC_ALT fn=(PFNGLALPHAFUNCXOESPROC_ALT)glaltGetProcAddressExtension("glAlphaFuncxOES","GL_OES_fixed_point");
+#else
+	static PFNGLALPHAFUNCXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLALPHAFUNCXOESPROC_ALT)glaltGetProcAddressExtension("glAlphaFuncxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(func1,ref1);
 }
 #endif
@@ -1607,7 +1987,12 @@ static inline void glAlphaFuncxOES(GLenum func1,GLfixed ref1)
 typedef void (*PFNGLBITMAPXOESPROC_ALT)(GLsizei,GLsizei,GLfixed,GLfixed,GLfixed,GLfixed,const GLubyte *);
 static inline void glBitmapxOES(GLsizei width1,GLsizei height1,GLfixed xorig1,GLfixed yorig1,GLfixed xmove1,GLfixed ymove1,const GLubyte * bitmap1)
 {
+#ifdef __cplusplus
 	static PFNGLBITMAPXOESPROC_ALT fn=(PFNGLBITMAPXOESPROC_ALT)glaltGetProcAddressExtension("glBitmapxOES","GL_OES_fixed_point");
+#else
+	static PFNGLBITMAPXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLBITMAPXOESPROC_ALT)glaltGetProcAddressExtension("glBitmapxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(width1,height1,xorig1,yorig1,xmove1,ymove1,bitmap1);
 }
 #endif
@@ -1617,7 +2002,12 @@ static inline void glBitmapxOES(GLsizei width1,GLsizei height1,GLfixed xorig1,GL
 typedef void (*PFNGLBLENDCOLORXOESPROC_ALT)(GLfixed,GLfixed,GLfixed,GLfixed);
 static inline void glBlendColorxOES(GLfixed red1,GLfixed green1,GLfixed blue1,GLfixed alpha1)
 {
+#ifdef __cplusplus
 	static PFNGLBLENDCOLORXOESPROC_ALT fn=(PFNGLBLENDCOLORXOESPROC_ALT)glaltGetProcAddressExtension("glBlendColorxOES","GL_OES_fixed_point");
+#else
+	static PFNGLBLENDCOLORXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLBLENDCOLORXOESPROC_ALT)glaltGetProcAddressExtension("glBlendColorxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(red1,green1,blue1,alpha1);
 }
 #endif
@@ -1627,7 +2017,12 @@ static inline void glBlendColorxOES(GLfixed red1,GLfixed green1,GLfixed blue1,GL
 typedef void (*PFNGLCLEARACCUMXOESPROC_ALT)(GLfixed,GLfixed,GLfixed,GLfixed);
 static inline void glClearAccumxOES(GLfixed red1,GLfixed green1,GLfixed blue1,GLfixed alpha1)
 {
+#ifdef __cplusplus
 	static PFNGLCLEARACCUMXOESPROC_ALT fn=(PFNGLCLEARACCUMXOESPROC_ALT)glaltGetProcAddressExtension("glClearAccumxOES","GL_OES_fixed_point");
+#else
+	static PFNGLCLEARACCUMXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLCLEARACCUMXOESPROC_ALT)glaltGetProcAddressExtension("glClearAccumxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(red1,green1,blue1,alpha1);
 }
 #endif
@@ -1637,7 +2032,12 @@ static inline void glClearAccumxOES(GLfixed red1,GLfixed green1,GLfixed blue1,GL
 typedef void (*PFNGLCLEARCOLORXOESPROC_ALT)(GLfixed,GLfixed,GLfixed,GLfixed);
 static inline void glClearColorxOES(GLfixed red1,GLfixed green1,GLfixed blue1,GLfixed alpha1)
 {
+#ifdef __cplusplus
 	static PFNGLCLEARCOLORXOESPROC_ALT fn=(PFNGLCLEARCOLORXOESPROC_ALT)glaltGetProcAddressExtension("glClearColorxOES","GL_OES_fixed_point");
+#else
+	static PFNGLCLEARCOLORXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLCLEARCOLORXOESPROC_ALT)glaltGetProcAddressExtension("glClearColorxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(red1,green1,blue1,alpha1);
 }
 #endif
@@ -1647,7 +2047,12 @@ static inline void glClearColorxOES(GLfixed red1,GLfixed green1,GLfixed blue1,GL
 typedef void (*PFNGLCLEARDEPTHXOESPROC_ALT)(GLfixed);
 static inline void glClearDepthxOES(GLfixed depth1)
 {
+#ifdef __cplusplus
 	static PFNGLCLEARDEPTHXOESPROC_ALT fn=(PFNGLCLEARDEPTHXOESPROC_ALT)glaltGetProcAddressExtension("glClearDepthxOES","GL_OES_fixed_point");
+#else
+	static PFNGLCLEARDEPTHXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLCLEARDEPTHXOESPROC_ALT)glaltGetProcAddressExtension("glClearDepthxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(depth1);
 }
 #endif
@@ -1657,7 +2062,12 @@ static inline void glClearDepthxOES(GLfixed depth1)
 typedef void (*PFNGLCLIPPLANEXOESPROC_ALT)(GLenum,const GLfixed *);
 static inline void glClipPlanexOES(GLenum plane1,const GLfixed * equation1)
 {
+#ifdef __cplusplus
 	static PFNGLCLIPPLANEXOESPROC_ALT fn=(PFNGLCLIPPLANEXOESPROC_ALT)glaltGetProcAddressExtension("glClipPlanexOES","GL_OES_fixed_point");
+#else
+	static PFNGLCLIPPLANEXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLCLIPPLANEXOESPROC_ALT)glaltGetProcAddressExtension("glClipPlanexOES","GL_OES_fixed_point"); }
+#endif
 	 fn(plane1,equation1);
 }
 #endif
@@ -1667,7 +2077,12 @@ static inline void glClipPlanexOES(GLenum plane1,const GLfixed * equation1)
 typedef void (*PFNGLCOLOR3XOESPROC_ALT)(GLfixed,GLfixed,GLfixed);
 static inline void glColor3xOES(GLfixed red1,GLfixed green1,GLfixed blue1)
 {
+#ifdef __cplusplus
 	static PFNGLCOLOR3XOESPROC_ALT fn=(PFNGLCOLOR3XOESPROC_ALT)glaltGetProcAddressExtension("glColor3xOES","GL_OES_fixed_point");
+#else
+	static PFNGLCOLOR3XOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLCOLOR3XOESPROC_ALT)glaltGetProcAddressExtension("glColor3xOES","GL_OES_fixed_point"); }
+#endif
 	 fn(red1,green1,blue1);
 }
 #endif
@@ -1677,7 +2092,12 @@ static inline void glColor3xOES(GLfixed red1,GLfixed green1,GLfixed blue1)
 typedef void (*PFNGLCOLOR3XVOESPROC_ALT)(const GLfixed *);
 static inline void glColor3xvOES(const GLfixed * components1)
 {
+#ifdef __cplusplus
 	static PFNGLCOLOR3XVOESPROC_ALT fn=(PFNGLCOLOR3XVOESPROC_ALT)glaltGetProcAddressExtension("glColor3xvOES","GL_OES_fixed_point");
+#else
+	static PFNGLCOLOR3XVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLCOLOR3XVOESPROC_ALT)glaltGetProcAddressExtension("glColor3xvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(components1);
 }
 #endif
@@ -1687,7 +2107,12 @@ static inline void glColor3xvOES(const GLfixed * components1)
 typedef void (*PFNGLCOLOR4XOESPROC_ALT)(GLfixed,GLfixed,GLfixed,GLfixed);
 static inline void glColor4xOES(GLfixed red1,GLfixed green1,GLfixed blue1,GLfixed alpha1)
 {
+#ifdef __cplusplus
 	static PFNGLCOLOR4XOESPROC_ALT fn=(PFNGLCOLOR4XOESPROC_ALT)glaltGetProcAddressExtension("glColor4xOES","GL_OES_fixed_point");
+#else
+	static PFNGLCOLOR4XOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLCOLOR4XOESPROC_ALT)glaltGetProcAddressExtension("glColor4xOES","GL_OES_fixed_point"); }
+#endif
 	 fn(red1,green1,blue1,alpha1);
 }
 #endif
@@ -1697,7 +2122,12 @@ static inline void glColor4xOES(GLfixed red1,GLfixed green1,GLfixed blue1,GLfixe
 typedef void (*PFNGLCOLOR4XVOESPROC_ALT)(const GLfixed *);
 static inline void glColor4xvOES(const GLfixed * components1)
 {
+#ifdef __cplusplus
 	static PFNGLCOLOR4XVOESPROC_ALT fn=(PFNGLCOLOR4XVOESPROC_ALT)glaltGetProcAddressExtension("glColor4xvOES","GL_OES_fixed_point");
+#else
+	static PFNGLCOLOR4XVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLCOLOR4XVOESPROC_ALT)glaltGetProcAddressExtension("glColor4xvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(components1);
 }
 #endif
@@ -1707,7 +2137,12 @@ static inline void glColor4xvOES(const GLfixed * components1)
 typedef void (*PFNGLCONVOLUTIONPARAMETERXOESPROC_ALT)(GLenum,GLenum,GLfixed);
 static inline void glConvolutionParameterxOES(GLenum target1,GLenum pname1,GLfixed param1)
 {
+#ifdef __cplusplus
 	static PFNGLCONVOLUTIONPARAMETERXOESPROC_ALT fn=(PFNGLCONVOLUTIONPARAMETERXOESPROC_ALT)glaltGetProcAddressExtension("glConvolutionParameterxOES","GL_OES_fixed_point");
+#else
+	static PFNGLCONVOLUTIONPARAMETERXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLCONVOLUTIONPARAMETERXOESPROC_ALT)glaltGetProcAddressExtension("glConvolutionParameterxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(target1,pname1,param1);
 }
 #endif
@@ -1717,7 +2152,12 @@ static inline void glConvolutionParameterxOES(GLenum target1,GLenum pname1,GLfix
 typedef void (*PFNGLCONVOLUTIONPARAMETERXVOESPROC_ALT)(GLenum,GLenum,const GLfixed *);
 static inline void glConvolutionParameterxvOES(GLenum target1,GLenum pname1,const GLfixed * params1)
 {
+#ifdef __cplusplus
 	static PFNGLCONVOLUTIONPARAMETERXVOESPROC_ALT fn=(PFNGLCONVOLUTIONPARAMETERXVOESPROC_ALT)glaltGetProcAddressExtension("glConvolutionParameterxvOES","GL_OES_fixed_point");
+#else
+	static PFNGLCONVOLUTIONPARAMETERXVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLCONVOLUTIONPARAMETERXVOESPROC_ALT)glaltGetProcAddressExtension("glConvolutionParameterxvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(target1,pname1,params1);
 }
 #endif
@@ -1727,7 +2167,12 @@ static inline void glConvolutionParameterxvOES(GLenum target1,GLenum pname1,cons
 typedef void (*PFNGLDEPTHRANGEXOESPROC_ALT)(GLfixed,GLfixed);
 static inline void glDepthRangexOES(GLfixed n1,GLfixed f1)
 {
+#ifdef __cplusplus
 	static PFNGLDEPTHRANGEXOESPROC_ALT fn=(PFNGLDEPTHRANGEXOESPROC_ALT)glaltGetProcAddressExtension("glDepthRangexOES","GL_OES_fixed_point");
+#else
+	static PFNGLDEPTHRANGEXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLDEPTHRANGEXOESPROC_ALT)glaltGetProcAddressExtension("glDepthRangexOES","GL_OES_fixed_point"); }
+#endif
 	 fn(n1,f1);
 }
 #endif
@@ -1737,7 +2182,12 @@ static inline void glDepthRangexOES(GLfixed n1,GLfixed f1)
 typedef void (*PFNGLEVALCOORD1XOESPROC_ALT)(GLfixed);
 static inline void glEvalCoord1xOES(GLfixed u1)
 {
+#ifdef __cplusplus
 	static PFNGLEVALCOORD1XOESPROC_ALT fn=(PFNGLEVALCOORD1XOESPROC_ALT)glaltGetProcAddressExtension("glEvalCoord1xOES","GL_OES_fixed_point");
+#else
+	static PFNGLEVALCOORD1XOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLEVALCOORD1XOESPROC_ALT)glaltGetProcAddressExtension("glEvalCoord1xOES","GL_OES_fixed_point"); }
+#endif
 	 fn(u1);
 }
 #endif
@@ -1747,7 +2197,12 @@ static inline void glEvalCoord1xOES(GLfixed u1)
 typedef void (*PFNGLEVALCOORD1XVOESPROC_ALT)(const GLfixed *);
 static inline void glEvalCoord1xvOES(const GLfixed * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLEVALCOORD1XVOESPROC_ALT fn=(PFNGLEVALCOORD1XVOESPROC_ALT)glaltGetProcAddressExtension("glEvalCoord1xvOES","GL_OES_fixed_point");
+#else
+	static PFNGLEVALCOORD1XVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLEVALCOORD1XVOESPROC_ALT)glaltGetProcAddressExtension("glEvalCoord1xvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -1757,7 +2212,12 @@ static inline void glEvalCoord1xvOES(const GLfixed * coords1)
 typedef void (*PFNGLEVALCOORD2XOESPROC_ALT)(GLfixed,GLfixed);
 static inline void glEvalCoord2xOES(GLfixed u1,GLfixed v1)
 {
+#ifdef __cplusplus
 	static PFNGLEVALCOORD2XOESPROC_ALT fn=(PFNGLEVALCOORD2XOESPROC_ALT)glaltGetProcAddressExtension("glEvalCoord2xOES","GL_OES_fixed_point");
+#else
+	static PFNGLEVALCOORD2XOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLEVALCOORD2XOESPROC_ALT)glaltGetProcAddressExtension("glEvalCoord2xOES","GL_OES_fixed_point"); }
+#endif
 	 fn(u1,v1);
 }
 #endif
@@ -1767,7 +2227,12 @@ static inline void glEvalCoord2xOES(GLfixed u1,GLfixed v1)
 typedef void (*PFNGLEVALCOORD2XVOESPROC_ALT)(const GLfixed *);
 static inline void glEvalCoord2xvOES(const GLfixed * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLEVALCOORD2XVOESPROC_ALT fn=(PFNGLEVALCOORD2XVOESPROC_ALT)glaltGetProcAddressExtension("glEvalCoord2xvOES","GL_OES_fixed_point");
+#else
+	static PFNGLEVALCOORD2XVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLEVALCOORD2XVOESPROC_ALT)glaltGetProcAddressExtension("glEvalCoord2xvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -1777,7 +2242,12 @@ static inline void glEvalCoord2xvOES(const GLfixed * coords1)
 typedef void (*PFNGLFEEDBACKBUFFERXOESPROC_ALT)(GLsizei,GLenum,const GLfixed *);
 static inline void glFeedbackBufferxOES(GLsizei n1,GLenum type1,const GLfixed * buffer1)
 {
+#ifdef __cplusplus
 	static PFNGLFEEDBACKBUFFERXOESPROC_ALT fn=(PFNGLFEEDBACKBUFFERXOESPROC_ALT)glaltGetProcAddressExtension("glFeedbackBufferxOES","GL_OES_fixed_point");
+#else
+	static PFNGLFEEDBACKBUFFERXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLFEEDBACKBUFFERXOESPROC_ALT)glaltGetProcAddressExtension("glFeedbackBufferxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(n1,type1,buffer1);
 }
 #endif
@@ -1787,7 +2257,12 @@ static inline void glFeedbackBufferxOES(GLsizei n1,GLenum type1,const GLfixed * 
 typedef void (*PFNGLFOGXOESPROC_ALT)(GLenum,GLfixed);
 static inline void glFogxOES(GLenum pname1,GLfixed param1)
 {
+#ifdef __cplusplus
 	static PFNGLFOGXOESPROC_ALT fn=(PFNGLFOGXOESPROC_ALT)glaltGetProcAddressExtension("glFogxOES","GL_OES_fixed_point");
+#else
+	static PFNGLFOGXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLFOGXOESPROC_ALT)glaltGetProcAddressExtension("glFogxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(pname1,param1);
 }
 #endif
@@ -1797,7 +2272,12 @@ static inline void glFogxOES(GLenum pname1,GLfixed param1)
 typedef void (*PFNGLFOGXVOESPROC_ALT)(GLenum,const GLfixed *);
 static inline void glFogxvOES(GLenum pname1,const GLfixed * param1)
 {
+#ifdef __cplusplus
 	static PFNGLFOGXVOESPROC_ALT fn=(PFNGLFOGXVOESPROC_ALT)glaltGetProcAddressExtension("glFogxvOES","GL_OES_fixed_point");
+#else
+	static PFNGLFOGXVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLFOGXVOESPROC_ALT)glaltGetProcAddressExtension("glFogxvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(pname1,param1);
 }
 #endif
@@ -1807,7 +2287,12 @@ static inline void glFogxvOES(GLenum pname1,const GLfixed * param1)
 typedef void (*PFNGLFRUSTUMXOESPROC_ALT)(GLfixed,GLfixed,GLfixed,GLfixed,GLfixed,GLfixed);
 static inline void glFrustumxOES(GLfixed l1,GLfixed r1,GLfixed b1,GLfixed t1,GLfixed n1,GLfixed f1)
 {
+#ifdef __cplusplus
 	static PFNGLFRUSTUMXOESPROC_ALT fn=(PFNGLFRUSTUMXOESPROC_ALT)glaltGetProcAddressExtension("glFrustumxOES","GL_OES_fixed_point");
+#else
+	static PFNGLFRUSTUMXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLFRUSTUMXOESPROC_ALT)glaltGetProcAddressExtension("glFrustumxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(l1,r1,b1,t1,n1,f1);
 }
 #endif
@@ -1817,7 +2302,12 @@ static inline void glFrustumxOES(GLfixed l1,GLfixed r1,GLfixed b1,GLfixed t1,GLf
 typedef void (*PFNGLGETCLIPPLANEXOESPROC_ALT)(GLenum,GLfixed *);
 static inline void glGetClipPlanexOES(GLenum plane1,GLfixed * equation1)
 {
+#ifdef __cplusplus
 	static PFNGLGETCLIPPLANEXOESPROC_ALT fn=(PFNGLGETCLIPPLANEXOESPROC_ALT)glaltGetProcAddressExtension("glGetClipPlanexOES","GL_OES_fixed_point");
+#else
+	static PFNGLGETCLIPPLANEXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETCLIPPLANEXOESPROC_ALT)glaltGetProcAddressExtension("glGetClipPlanexOES","GL_OES_fixed_point"); }
+#endif
 	 fn(plane1,equation1);
 }
 #endif
@@ -1827,7 +2317,12 @@ static inline void glGetClipPlanexOES(GLenum plane1,GLfixed * equation1)
 typedef void (*PFNGLGETCONVOLUTIONPARAMETERXVOESPROC_ALT)(GLenum,GLenum,GLfixed *);
 static inline void glGetConvolutionParameterxvOES(GLenum target1,GLenum pname1,GLfixed * params1)
 {
+#ifdef __cplusplus
 	static PFNGLGETCONVOLUTIONPARAMETERXVOESPROC_ALT fn=(PFNGLGETCONVOLUTIONPARAMETERXVOESPROC_ALT)glaltGetProcAddressExtension("glGetConvolutionParameterxvOES","GL_OES_fixed_point");
+#else
+	static PFNGLGETCONVOLUTIONPARAMETERXVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETCONVOLUTIONPARAMETERXVOESPROC_ALT)glaltGetProcAddressExtension("glGetConvolutionParameterxvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(target1,pname1,params1);
 }
 #endif
@@ -1837,7 +2332,12 @@ static inline void glGetConvolutionParameterxvOES(GLenum target1,GLenum pname1,G
 typedef void (*PFNGLGETFIXEDVOESPROC_ALT)(GLenum,GLfixed *);
 static inline void glGetFixedvOES(GLenum pname1,GLfixed * params1)
 {
+#ifdef __cplusplus
 	static PFNGLGETFIXEDVOESPROC_ALT fn=(PFNGLGETFIXEDVOESPROC_ALT)glaltGetProcAddressExtension("glGetFixedvOES","GL_OES_fixed_point");
+#else
+	static PFNGLGETFIXEDVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETFIXEDVOESPROC_ALT)glaltGetProcAddressExtension("glGetFixedvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(pname1,params1);
 }
 #endif
@@ -1847,7 +2347,12 @@ static inline void glGetFixedvOES(GLenum pname1,GLfixed * params1)
 typedef void (*PFNGLGETHISTOGRAMPARAMETERXVOESPROC_ALT)(GLenum,GLenum,GLfixed *);
 static inline void glGetHistogramParameterxvOES(GLenum target1,GLenum pname1,GLfixed * params1)
 {
+#ifdef __cplusplus
 	static PFNGLGETHISTOGRAMPARAMETERXVOESPROC_ALT fn=(PFNGLGETHISTOGRAMPARAMETERXVOESPROC_ALT)glaltGetProcAddressExtension("glGetHistogramParameterxvOES","GL_OES_fixed_point");
+#else
+	static PFNGLGETHISTOGRAMPARAMETERXVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETHISTOGRAMPARAMETERXVOESPROC_ALT)glaltGetProcAddressExtension("glGetHistogramParameterxvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(target1,pname1,params1);
 }
 #endif
@@ -1857,7 +2362,12 @@ static inline void glGetHistogramParameterxvOES(GLenum target1,GLenum pname1,GLf
 typedef void (*PFNGLGETLIGHTXOESPROC_ALT)(GLenum,GLenum,GLfixed *);
 static inline void glGetLightxOES(GLenum light1,GLenum pname1,GLfixed * params1)
 {
+#ifdef __cplusplus
 	static PFNGLGETLIGHTXOESPROC_ALT fn=(PFNGLGETLIGHTXOESPROC_ALT)glaltGetProcAddressExtension("glGetLightxOES","GL_OES_fixed_point");
+#else
+	static PFNGLGETLIGHTXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETLIGHTXOESPROC_ALT)glaltGetProcAddressExtension("glGetLightxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(light1,pname1,params1);
 }
 #endif
@@ -1867,7 +2377,12 @@ static inline void glGetLightxOES(GLenum light1,GLenum pname1,GLfixed * params1)
 typedef void (*PFNGLGETLIGHTXVOESPROC_ALT)(GLenum,GLenum,GLfixed *);
 static inline void glGetLightxvOES(GLenum light1,GLenum pname1,GLfixed * params1)
 {
+#ifdef __cplusplus
 	static PFNGLGETLIGHTXVOESPROC_ALT fn=(PFNGLGETLIGHTXVOESPROC_ALT)glaltGetProcAddressExtension("glGetLightxvOES","GL_OES_fixed_point");
+#else
+	static PFNGLGETLIGHTXVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETLIGHTXVOESPROC_ALT)glaltGetProcAddressExtension("glGetLightxvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(light1,pname1,params1);
 }
 #endif
@@ -1877,7 +2392,12 @@ static inline void glGetLightxvOES(GLenum light1,GLenum pname1,GLfixed * params1
 typedef void (*PFNGLGETMAPXVOESPROC_ALT)(GLenum,GLenum,GLfixed *);
 static inline void glGetMapxvOES(GLenum target1,GLenum query1,GLfixed * v1)
 {
+#ifdef __cplusplus
 	static PFNGLGETMAPXVOESPROC_ALT fn=(PFNGLGETMAPXVOESPROC_ALT)glaltGetProcAddressExtension("glGetMapxvOES","GL_OES_fixed_point");
+#else
+	static PFNGLGETMAPXVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETMAPXVOESPROC_ALT)glaltGetProcAddressExtension("glGetMapxvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(target1,query1,v1);
 }
 #endif
@@ -1887,7 +2407,12 @@ static inline void glGetMapxvOES(GLenum target1,GLenum query1,GLfixed * v1)
 typedef void (*PFNGLGETMATERIALXOESPROC_ALT)(GLenum,GLenum,GLfixed);
 static inline void glGetMaterialxOES(GLenum face1,GLenum pname1,GLfixed param1)
 {
+#ifdef __cplusplus
 	static PFNGLGETMATERIALXOESPROC_ALT fn=(PFNGLGETMATERIALXOESPROC_ALT)glaltGetProcAddressExtension("glGetMaterialxOES","GL_OES_fixed_point");
+#else
+	static PFNGLGETMATERIALXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETMATERIALXOESPROC_ALT)glaltGetProcAddressExtension("glGetMaterialxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(face1,pname1,param1);
 }
 #endif
@@ -1897,7 +2422,12 @@ static inline void glGetMaterialxOES(GLenum face1,GLenum pname1,GLfixed param1)
 typedef void (*PFNGLGETMATERIALXVOESPROC_ALT)(GLenum,GLenum,GLfixed *);
 static inline void glGetMaterialxvOES(GLenum face1,GLenum pname1,GLfixed * params1)
 {
+#ifdef __cplusplus
 	static PFNGLGETMATERIALXVOESPROC_ALT fn=(PFNGLGETMATERIALXVOESPROC_ALT)glaltGetProcAddressExtension("glGetMaterialxvOES","GL_OES_fixed_point");
+#else
+	static PFNGLGETMATERIALXVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETMATERIALXVOESPROC_ALT)glaltGetProcAddressExtension("glGetMaterialxvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(face1,pname1,params1);
 }
 #endif
@@ -1907,7 +2437,12 @@ static inline void glGetMaterialxvOES(GLenum face1,GLenum pname1,GLfixed * param
 typedef void (*PFNGLGETPIXELMAPXVPROC_ALT)(GLenum,GLint,GLfixed *);
 static inline void glGetPixelMapxv(GLenum map1,GLint size1,GLfixed * values1)
 {
+#ifdef __cplusplus
 	static PFNGLGETPIXELMAPXVPROC_ALT fn=(PFNGLGETPIXELMAPXVPROC_ALT)glaltGetProcAddressExtension("glGetPixelMapxv","GL_OES_fixed_point");
+#else
+	static PFNGLGETPIXELMAPXVPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETPIXELMAPXVPROC_ALT)glaltGetProcAddressExtension("glGetPixelMapxv","GL_OES_fixed_point"); }
+#endif
 	 fn(map1,size1,values1);
 }
 #endif
@@ -1917,7 +2452,12 @@ static inline void glGetPixelMapxv(GLenum map1,GLint size1,GLfixed * values1)
 typedef void (*PFNGLGETTEXENVXVOESPROC_ALT)(GLenum,GLenum,GLfixed *);
 static inline void glGetTexEnvxvOES(GLenum target1,GLenum pname1,GLfixed * params1)
 {
+#ifdef __cplusplus
 	static PFNGLGETTEXENVXVOESPROC_ALT fn=(PFNGLGETTEXENVXVOESPROC_ALT)glaltGetProcAddressExtension("glGetTexEnvxvOES","GL_OES_fixed_point");
+#else
+	static PFNGLGETTEXENVXVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETTEXENVXVOESPROC_ALT)glaltGetProcAddressExtension("glGetTexEnvxvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(target1,pname1,params1);
 }
 #endif
@@ -1927,7 +2467,12 @@ static inline void glGetTexEnvxvOES(GLenum target1,GLenum pname1,GLfixed * param
 typedef void (*PFNGLGETTEXGENXVOESPROC_ALT)(GLenum,GLenum,GLfixed *);
 static inline void glGetTexGenxvOES(GLenum coord1,GLenum pname1,GLfixed * params1)
 {
+#ifdef __cplusplus
 	static PFNGLGETTEXGENXVOESPROC_ALT fn=(PFNGLGETTEXGENXVOESPROC_ALT)glaltGetProcAddressExtension("glGetTexGenxvOES","GL_OES_fixed_point");
+#else
+	static PFNGLGETTEXGENXVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETTEXGENXVOESPROC_ALT)glaltGetProcAddressExtension("glGetTexGenxvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(coord1,pname1,params1);
 }
 #endif
@@ -1937,7 +2482,12 @@ static inline void glGetTexGenxvOES(GLenum coord1,GLenum pname1,GLfixed * params
 typedef void (*PFNGLGETTEXLEVELPARAMETERXVOESPROC_ALT)(GLenum,GLint,GLenum,GLfixed *);
 static inline void glGetTexLevelParameterxvOES(GLenum target1,GLint level1,GLenum pname1,GLfixed * params1)
 {
+#ifdef __cplusplus
 	static PFNGLGETTEXLEVELPARAMETERXVOESPROC_ALT fn=(PFNGLGETTEXLEVELPARAMETERXVOESPROC_ALT)glaltGetProcAddressExtension("glGetTexLevelParameterxvOES","GL_OES_fixed_point");
+#else
+	static PFNGLGETTEXLEVELPARAMETERXVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETTEXLEVELPARAMETERXVOESPROC_ALT)glaltGetProcAddressExtension("glGetTexLevelParameterxvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(target1,level1,pname1,params1);
 }
 #endif
@@ -1947,7 +2497,12 @@ static inline void glGetTexLevelParameterxvOES(GLenum target1,GLint level1,GLenu
 typedef void (*PFNGLGETTEXPARAMETERXVOESPROC_ALT)(GLenum,GLenum,GLfixed *);
 static inline void glGetTexParameterxvOES(GLenum target1,GLenum pname1,GLfixed * params1)
 {
+#ifdef __cplusplus
 	static PFNGLGETTEXPARAMETERXVOESPROC_ALT fn=(PFNGLGETTEXPARAMETERXVOESPROC_ALT)glaltGetProcAddressExtension("glGetTexParameterxvOES","GL_OES_fixed_point");
+#else
+	static PFNGLGETTEXPARAMETERXVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETTEXPARAMETERXVOESPROC_ALT)glaltGetProcAddressExtension("glGetTexParameterxvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(target1,pname1,params1);
 }
 #endif
@@ -1957,7 +2512,12 @@ static inline void glGetTexParameterxvOES(GLenum target1,GLenum pname1,GLfixed *
 typedef void (*PFNGLINDEXXOESPROC_ALT)(GLfixed);
 static inline void glIndexxOES(GLfixed component1)
 {
+#ifdef __cplusplus
 	static PFNGLINDEXXOESPROC_ALT fn=(PFNGLINDEXXOESPROC_ALT)glaltGetProcAddressExtension("glIndexxOES","GL_OES_fixed_point");
+#else
+	static PFNGLINDEXXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLINDEXXOESPROC_ALT)glaltGetProcAddressExtension("glIndexxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(component1);
 }
 #endif
@@ -1967,7 +2527,12 @@ static inline void glIndexxOES(GLfixed component1)
 typedef void (*PFNGLINDEXXVOESPROC_ALT)(const GLfixed *);
 static inline void glIndexxvOES(const GLfixed * component1)
 {
+#ifdef __cplusplus
 	static PFNGLINDEXXVOESPROC_ALT fn=(PFNGLINDEXXVOESPROC_ALT)glaltGetProcAddressExtension("glIndexxvOES","GL_OES_fixed_point");
+#else
+	static PFNGLINDEXXVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLINDEXXVOESPROC_ALT)glaltGetProcAddressExtension("glIndexxvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(component1);
 }
 #endif
@@ -1977,7 +2542,12 @@ static inline void glIndexxvOES(const GLfixed * component1)
 typedef void (*PFNGLLIGHTMODELXOESPROC_ALT)(GLenum,GLfixed);
 static inline void glLightModelxOES(GLenum pname1,GLfixed param1)
 {
+#ifdef __cplusplus
 	static PFNGLLIGHTMODELXOESPROC_ALT fn=(PFNGLLIGHTMODELXOESPROC_ALT)glaltGetProcAddressExtension("glLightModelxOES","GL_OES_fixed_point");
+#else
+	static PFNGLLIGHTMODELXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLLIGHTMODELXOESPROC_ALT)glaltGetProcAddressExtension("glLightModelxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(pname1,param1);
 }
 #endif
@@ -1987,7 +2557,12 @@ static inline void glLightModelxOES(GLenum pname1,GLfixed param1)
 typedef void (*PFNGLLIGHTMODELXVOESPROC_ALT)(GLenum,const GLfixed *);
 static inline void glLightModelxvOES(GLenum pname1,const GLfixed * param1)
 {
+#ifdef __cplusplus
 	static PFNGLLIGHTMODELXVOESPROC_ALT fn=(PFNGLLIGHTMODELXVOESPROC_ALT)glaltGetProcAddressExtension("glLightModelxvOES","GL_OES_fixed_point");
+#else
+	static PFNGLLIGHTMODELXVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLLIGHTMODELXVOESPROC_ALT)glaltGetProcAddressExtension("glLightModelxvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(pname1,param1);
 }
 #endif
@@ -1997,7 +2572,12 @@ static inline void glLightModelxvOES(GLenum pname1,const GLfixed * param1)
 typedef void (*PFNGLLIGHTXOESPROC_ALT)(GLenum,GLenum,GLfixed);
 static inline void glLightxOES(GLenum light1,GLenum pname1,GLfixed param1)
 {
+#ifdef __cplusplus
 	static PFNGLLIGHTXOESPROC_ALT fn=(PFNGLLIGHTXOESPROC_ALT)glaltGetProcAddressExtension("glLightxOES","GL_OES_fixed_point");
+#else
+	static PFNGLLIGHTXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLLIGHTXOESPROC_ALT)glaltGetProcAddressExtension("glLightxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(light1,pname1,param1);
 }
 #endif
@@ -2007,7 +2587,12 @@ static inline void glLightxOES(GLenum light1,GLenum pname1,GLfixed param1)
 typedef void (*PFNGLLIGHTXVOESPROC_ALT)(GLenum,GLenum,const GLfixed *);
 static inline void glLightxvOES(GLenum light1,GLenum pname1,const GLfixed * params1)
 {
+#ifdef __cplusplus
 	static PFNGLLIGHTXVOESPROC_ALT fn=(PFNGLLIGHTXVOESPROC_ALT)glaltGetProcAddressExtension("glLightxvOES","GL_OES_fixed_point");
+#else
+	static PFNGLLIGHTXVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLLIGHTXVOESPROC_ALT)glaltGetProcAddressExtension("glLightxvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(light1,pname1,params1);
 }
 #endif
@@ -2017,7 +2602,12 @@ static inline void glLightxvOES(GLenum light1,GLenum pname1,const GLfixed * para
 typedef void (*PFNGLLINEWIDTHXOESPROC_ALT)(GLfixed);
 static inline void glLineWidthxOES(GLfixed width1)
 {
+#ifdef __cplusplus
 	static PFNGLLINEWIDTHXOESPROC_ALT fn=(PFNGLLINEWIDTHXOESPROC_ALT)glaltGetProcAddressExtension("glLineWidthxOES","GL_OES_fixed_point");
+#else
+	static PFNGLLINEWIDTHXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLLINEWIDTHXOESPROC_ALT)glaltGetProcAddressExtension("glLineWidthxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(width1);
 }
 #endif
@@ -2027,7 +2617,12 @@ static inline void glLineWidthxOES(GLfixed width1)
 typedef void (*PFNGLLOADMATRIXXOESPROC_ALT)(const GLfixed *);
 static inline void glLoadMatrixxOES(const GLfixed * m1)
 {
+#ifdef __cplusplus
 	static PFNGLLOADMATRIXXOESPROC_ALT fn=(PFNGLLOADMATRIXXOESPROC_ALT)glaltGetProcAddressExtension("glLoadMatrixxOES","GL_OES_fixed_point");
+#else
+	static PFNGLLOADMATRIXXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLLOADMATRIXXOESPROC_ALT)glaltGetProcAddressExtension("glLoadMatrixxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(m1);
 }
 #endif
@@ -2037,7 +2632,12 @@ static inline void glLoadMatrixxOES(const GLfixed * m1)
 typedef void (*PFNGLLOADTRANSPOSEMATRIXXOESPROC_ALT)(const GLfixed *);
 static inline void glLoadTransposeMatrixxOES(const GLfixed * m1)
 {
+#ifdef __cplusplus
 	static PFNGLLOADTRANSPOSEMATRIXXOESPROC_ALT fn=(PFNGLLOADTRANSPOSEMATRIXXOESPROC_ALT)glaltGetProcAddressExtension("glLoadTransposeMatrixxOES","GL_OES_fixed_point");
+#else
+	static PFNGLLOADTRANSPOSEMATRIXXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLLOADTRANSPOSEMATRIXXOESPROC_ALT)glaltGetProcAddressExtension("glLoadTransposeMatrixxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(m1);
 }
 #endif
@@ -2047,7 +2647,12 @@ static inline void glLoadTransposeMatrixxOES(const GLfixed * m1)
 typedef void (*PFNGLMAP1XOESPROC_ALT)(GLenum,GLfixed,GLfixed,GLint,GLint,GLfixed);
 static inline void glMap1xOES(GLenum target1,GLfixed u11,GLfixed u21,GLint stride1,GLint order1,GLfixed points1)
 {
+#ifdef __cplusplus
 	static PFNGLMAP1XOESPROC_ALT fn=(PFNGLMAP1XOESPROC_ALT)glaltGetProcAddressExtension("glMap1xOES","GL_OES_fixed_point");
+#else
+	static PFNGLMAP1XOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMAP1XOESPROC_ALT)glaltGetProcAddressExtension("glMap1xOES","GL_OES_fixed_point"); }
+#endif
 	 fn(target1,u11,u21,stride1,order1,points1);
 }
 #endif
@@ -2057,7 +2662,12 @@ static inline void glMap1xOES(GLenum target1,GLfixed u11,GLfixed u21,GLint strid
 typedef void (*PFNGLMAP2XOESPROC_ALT)(GLenum,GLfixed,GLfixed,GLint,GLint,GLfixed,GLfixed,GLint,GLint,GLfixed);
 static inline void glMap2xOES(GLenum target1,GLfixed u11,GLfixed u21,GLint ustride1,GLint uorder1,GLfixed v11,GLfixed v21,GLint vstride1,GLint vorder1,GLfixed points1)
 {
+#ifdef __cplusplus
 	static PFNGLMAP2XOESPROC_ALT fn=(PFNGLMAP2XOESPROC_ALT)glaltGetProcAddressExtension("glMap2xOES","GL_OES_fixed_point");
+#else
+	static PFNGLMAP2XOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMAP2XOESPROC_ALT)glaltGetProcAddressExtension("glMap2xOES","GL_OES_fixed_point"); }
+#endif
 	 fn(target1,u11,u21,ustride1,uorder1,v11,v21,vstride1,vorder1,points1);
 }
 #endif
@@ -2067,7 +2677,12 @@ static inline void glMap2xOES(GLenum target1,GLfixed u11,GLfixed u21,GLint ustri
 typedef void (*PFNGLMAPGRID1XOESPROC_ALT)(GLint,GLfixed,GLfixed);
 static inline void glMapGrid1xOES(GLint n1,GLfixed u11,GLfixed u21)
 {
+#ifdef __cplusplus
 	static PFNGLMAPGRID1XOESPROC_ALT fn=(PFNGLMAPGRID1XOESPROC_ALT)glaltGetProcAddressExtension("glMapGrid1xOES","GL_OES_fixed_point");
+#else
+	static PFNGLMAPGRID1XOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMAPGRID1XOESPROC_ALT)glaltGetProcAddressExtension("glMapGrid1xOES","GL_OES_fixed_point"); }
+#endif
 	 fn(n1,u11,u21);
 }
 #endif
@@ -2077,7 +2692,12 @@ static inline void glMapGrid1xOES(GLint n1,GLfixed u11,GLfixed u21)
 typedef void (*PFNGLMAPGRID2XOESPROC_ALT)(GLint,GLfixed,GLfixed,GLfixed,GLfixed);
 static inline void glMapGrid2xOES(GLint n1,GLfixed u11,GLfixed u21,GLfixed v11,GLfixed v21)
 {
+#ifdef __cplusplus
 	static PFNGLMAPGRID2XOESPROC_ALT fn=(PFNGLMAPGRID2XOESPROC_ALT)glaltGetProcAddressExtension("glMapGrid2xOES","GL_OES_fixed_point");
+#else
+	static PFNGLMAPGRID2XOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMAPGRID2XOESPROC_ALT)glaltGetProcAddressExtension("glMapGrid2xOES","GL_OES_fixed_point"); }
+#endif
 	 fn(n1,u11,u21,v11,v21);
 }
 #endif
@@ -2087,7 +2707,12 @@ static inline void glMapGrid2xOES(GLint n1,GLfixed u11,GLfixed u21,GLfixed v11,G
 typedef void (*PFNGLMATERIALXOESPROC_ALT)(GLenum,GLenum,GLfixed);
 static inline void glMaterialxOES(GLenum face1,GLenum pname1,GLfixed param1)
 {
+#ifdef __cplusplus
 	static PFNGLMATERIALXOESPROC_ALT fn=(PFNGLMATERIALXOESPROC_ALT)glaltGetProcAddressExtension("glMaterialxOES","GL_OES_fixed_point");
+#else
+	static PFNGLMATERIALXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMATERIALXOESPROC_ALT)glaltGetProcAddressExtension("glMaterialxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(face1,pname1,param1);
 }
 #endif
@@ -2097,7 +2722,12 @@ static inline void glMaterialxOES(GLenum face1,GLenum pname1,GLfixed param1)
 typedef void (*PFNGLMATERIALXVOESPROC_ALT)(GLenum,GLenum,const GLfixed *);
 static inline void glMaterialxvOES(GLenum face1,GLenum pname1,const GLfixed * param1)
 {
+#ifdef __cplusplus
 	static PFNGLMATERIALXVOESPROC_ALT fn=(PFNGLMATERIALXVOESPROC_ALT)glaltGetProcAddressExtension("glMaterialxvOES","GL_OES_fixed_point");
+#else
+	static PFNGLMATERIALXVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMATERIALXVOESPROC_ALT)glaltGetProcAddressExtension("glMaterialxvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(face1,pname1,param1);
 }
 #endif
@@ -2107,7 +2737,12 @@ static inline void glMaterialxvOES(GLenum face1,GLenum pname1,const GLfixed * pa
 typedef void (*PFNGLMULTMATRIXXOESPROC_ALT)(const GLfixed *);
 static inline void glMultMatrixxOES(const GLfixed * m1)
 {
+#ifdef __cplusplus
 	static PFNGLMULTMATRIXXOESPROC_ALT fn=(PFNGLMULTMATRIXXOESPROC_ALT)glaltGetProcAddressExtension("glMultMatrixxOES","GL_OES_fixed_point");
+#else
+	static PFNGLMULTMATRIXXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMULTMATRIXXOESPROC_ALT)glaltGetProcAddressExtension("glMultMatrixxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(m1);
 }
 #endif
@@ -2117,7 +2752,12 @@ static inline void glMultMatrixxOES(const GLfixed * m1)
 typedef void (*PFNGLMULTTRANSPOSEMATRIXXOESPROC_ALT)(const GLfixed *);
 static inline void glMultTransposeMatrixxOES(const GLfixed * m1)
 {
+#ifdef __cplusplus
 	static PFNGLMULTTRANSPOSEMATRIXXOESPROC_ALT fn=(PFNGLMULTTRANSPOSEMATRIXXOESPROC_ALT)glaltGetProcAddressExtension("glMultTransposeMatrixxOES","GL_OES_fixed_point");
+#else
+	static PFNGLMULTTRANSPOSEMATRIXXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMULTTRANSPOSEMATRIXXOESPROC_ALT)glaltGetProcAddressExtension("glMultTransposeMatrixxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(m1);
 }
 #endif
@@ -2127,7 +2767,12 @@ static inline void glMultTransposeMatrixxOES(const GLfixed * m1)
 typedef void (*PFNGLMULTITEXCOORD1XOESPROC_ALT)(GLenum,GLfixed);
 static inline void glMultiTexCoord1xOES(GLenum texture1,GLfixed s1)
 {
+#ifdef __cplusplus
 	static PFNGLMULTITEXCOORD1XOESPROC_ALT fn=(PFNGLMULTITEXCOORD1XOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord1xOES","GL_OES_fixed_point");
+#else
+	static PFNGLMULTITEXCOORD1XOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMULTITEXCOORD1XOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord1xOES","GL_OES_fixed_point"); }
+#endif
 	 fn(texture1,s1);
 }
 #endif
@@ -2137,7 +2782,12 @@ static inline void glMultiTexCoord1xOES(GLenum texture1,GLfixed s1)
 typedef void (*PFNGLMULTITEXCOORD1XVOESPROC_ALT)(GLenum,const GLfixed *);
 static inline void glMultiTexCoord1xvOES(GLenum texture1,const GLfixed * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLMULTITEXCOORD1XVOESPROC_ALT fn=(PFNGLMULTITEXCOORD1XVOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord1xvOES","GL_OES_fixed_point");
+#else
+	static PFNGLMULTITEXCOORD1XVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMULTITEXCOORD1XVOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord1xvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(texture1,coords1);
 }
 #endif
@@ -2147,7 +2797,12 @@ static inline void glMultiTexCoord1xvOES(GLenum texture1,const GLfixed * coords1
 typedef void (*PFNGLMULTITEXCOORD2XOESPROC_ALT)(GLenum,GLfixed,GLfixed);
 static inline void glMultiTexCoord2xOES(GLenum texture1,GLfixed s1,GLfixed t1)
 {
+#ifdef __cplusplus
 	static PFNGLMULTITEXCOORD2XOESPROC_ALT fn=(PFNGLMULTITEXCOORD2XOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord2xOES","GL_OES_fixed_point");
+#else
+	static PFNGLMULTITEXCOORD2XOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMULTITEXCOORD2XOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord2xOES","GL_OES_fixed_point"); }
+#endif
 	 fn(texture1,s1,t1);
 }
 #endif
@@ -2157,7 +2812,12 @@ static inline void glMultiTexCoord2xOES(GLenum texture1,GLfixed s1,GLfixed t1)
 typedef void (*PFNGLMULTITEXCOORD2XVOESPROC_ALT)(GLenum,const GLfixed *);
 static inline void glMultiTexCoord2xvOES(GLenum texture1,const GLfixed * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLMULTITEXCOORD2XVOESPROC_ALT fn=(PFNGLMULTITEXCOORD2XVOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord2xvOES","GL_OES_fixed_point");
+#else
+	static PFNGLMULTITEXCOORD2XVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMULTITEXCOORD2XVOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord2xvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(texture1,coords1);
 }
 #endif
@@ -2167,7 +2827,12 @@ static inline void glMultiTexCoord2xvOES(GLenum texture1,const GLfixed * coords1
 typedef void (*PFNGLMULTITEXCOORD3XOESPROC_ALT)(GLenum,GLfixed,GLfixed,GLfixed);
 static inline void glMultiTexCoord3xOES(GLenum texture1,GLfixed s1,GLfixed t1,GLfixed r1)
 {
+#ifdef __cplusplus
 	static PFNGLMULTITEXCOORD3XOESPROC_ALT fn=(PFNGLMULTITEXCOORD3XOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord3xOES","GL_OES_fixed_point");
+#else
+	static PFNGLMULTITEXCOORD3XOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMULTITEXCOORD3XOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord3xOES","GL_OES_fixed_point"); }
+#endif
 	 fn(texture1,s1,t1,r1);
 }
 #endif
@@ -2177,7 +2842,12 @@ static inline void glMultiTexCoord3xOES(GLenum texture1,GLfixed s1,GLfixed t1,GL
 typedef void (*PFNGLMULTITEXCOORD3XVOESPROC_ALT)(GLenum,const GLfixed *);
 static inline void glMultiTexCoord3xvOES(GLenum texture1,const GLfixed * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLMULTITEXCOORD3XVOESPROC_ALT fn=(PFNGLMULTITEXCOORD3XVOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord3xvOES","GL_OES_fixed_point");
+#else
+	static PFNGLMULTITEXCOORD3XVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMULTITEXCOORD3XVOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord3xvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(texture1,coords1);
 }
 #endif
@@ -2187,7 +2857,12 @@ static inline void glMultiTexCoord3xvOES(GLenum texture1,const GLfixed * coords1
 typedef void (*PFNGLMULTITEXCOORD4XOESPROC_ALT)(GLenum,GLfixed,GLfixed,GLfixed,GLfixed);
 static inline void glMultiTexCoord4xOES(GLenum texture1,GLfixed s1,GLfixed t1,GLfixed r1,GLfixed q1)
 {
+#ifdef __cplusplus
 	static PFNGLMULTITEXCOORD4XOESPROC_ALT fn=(PFNGLMULTITEXCOORD4XOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord4xOES","GL_OES_fixed_point");
+#else
+	static PFNGLMULTITEXCOORD4XOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMULTITEXCOORD4XOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord4xOES","GL_OES_fixed_point"); }
+#endif
 	 fn(texture1,s1,t1,r1,q1);
 }
 #endif
@@ -2197,7 +2872,12 @@ static inline void glMultiTexCoord4xOES(GLenum texture1,GLfixed s1,GLfixed t1,GL
 typedef void (*PFNGLMULTITEXCOORD4XVOESPROC_ALT)(GLenum,const GLfixed *);
 static inline void glMultiTexCoord4xvOES(GLenum texture1,const GLfixed * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLMULTITEXCOORD4XVOESPROC_ALT fn=(PFNGLMULTITEXCOORD4XVOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord4xvOES","GL_OES_fixed_point");
+#else
+	static PFNGLMULTITEXCOORD4XVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMULTITEXCOORD4XVOESPROC_ALT)glaltGetProcAddressExtension("glMultiTexCoord4xvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(texture1,coords1);
 }
 #endif
@@ -2207,7 +2887,12 @@ static inline void glMultiTexCoord4xvOES(GLenum texture1,const GLfixed * coords1
 typedef void (*PFNGLNORMAL3XOESPROC_ALT)(GLfixed,GLfixed,GLfixed);
 static inline void glNormal3xOES(GLfixed nx1,GLfixed ny1,GLfixed nz1)
 {
+#ifdef __cplusplus
 	static PFNGLNORMAL3XOESPROC_ALT fn=(PFNGLNORMAL3XOESPROC_ALT)glaltGetProcAddressExtension("glNormal3xOES","GL_OES_fixed_point");
+#else
+	static PFNGLNORMAL3XOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLNORMAL3XOESPROC_ALT)glaltGetProcAddressExtension("glNormal3xOES","GL_OES_fixed_point"); }
+#endif
 	 fn(nx1,ny1,nz1);
 }
 #endif
@@ -2217,7 +2902,12 @@ static inline void glNormal3xOES(GLfixed nx1,GLfixed ny1,GLfixed nz1)
 typedef void (*PFNGLNORMAL3XVOESPROC_ALT)(const GLfixed *);
 static inline void glNormal3xvOES(const GLfixed * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLNORMAL3XVOESPROC_ALT fn=(PFNGLNORMAL3XVOESPROC_ALT)glaltGetProcAddressExtension("glNormal3xvOES","GL_OES_fixed_point");
+#else
+	static PFNGLNORMAL3XVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLNORMAL3XVOESPROC_ALT)glaltGetProcAddressExtension("glNormal3xvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -2227,7 +2917,12 @@ static inline void glNormal3xvOES(const GLfixed * coords1)
 typedef void (*PFNGLORTHOXOESPROC_ALT)(GLfixed,GLfixed,GLfixed,GLfixed,GLfixed,GLfixed);
 static inline void glOrthoxOES(GLfixed l1,GLfixed r1,GLfixed b1,GLfixed t1,GLfixed n1,GLfixed f1)
 {
+#ifdef __cplusplus
 	static PFNGLORTHOXOESPROC_ALT fn=(PFNGLORTHOXOESPROC_ALT)glaltGetProcAddressExtension("glOrthoxOES","GL_OES_fixed_point");
+#else
+	static PFNGLORTHOXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLORTHOXOESPROC_ALT)glaltGetProcAddressExtension("glOrthoxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(l1,r1,b1,t1,n1,f1);
 }
 #endif
@@ -2237,7 +2932,12 @@ static inline void glOrthoxOES(GLfixed l1,GLfixed r1,GLfixed b1,GLfixed t1,GLfix
 typedef void (*PFNGLPASSTHROUGHXOESPROC_ALT)(GLfixed);
 static inline void glPassThroughxOES(GLfixed token1)
 {
+#ifdef __cplusplus
 	static PFNGLPASSTHROUGHXOESPROC_ALT fn=(PFNGLPASSTHROUGHXOESPROC_ALT)glaltGetProcAddressExtension("glPassThroughxOES","GL_OES_fixed_point");
+#else
+	static PFNGLPASSTHROUGHXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLPASSTHROUGHXOESPROC_ALT)glaltGetProcAddressExtension("glPassThroughxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(token1);
 }
 #endif
@@ -2247,7 +2947,12 @@ static inline void glPassThroughxOES(GLfixed token1)
 typedef void (*PFNGLPIXELMAPXPROC_ALT)(GLenum,GLint,const GLfixed *);
 static inline void glPixelMapx(GLenum map1,GLint size1,const GLfixed * values1)
 {
+#ifdef __cplusplus
 	static PFNGLPIXELMAPXPROC_ALT fn=(PFNGLPIXELMAPXPROC_ALT)glaltGetProcAddressExtension("glPixelMapx","GL_OES_fixed_point");
+#else
+	static PFNGLPIXELMAPXPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLPIXELMAPXPROC_ALT)glaltGetProcAddressExtension("glPixelMapx","GL_OES_fixed_point"); }
+#endif
 	 fn(map1,size1,values1);
 }
 #endif
@@ -2257,7 +2962,12 @@ static inline void glPixelMapx(GLenum map1,GLint size1,const GLfixed * values1)
 typedef void (*PFNGLPIXELSTOREXPROC_ALT)(GLenum,GLfixed);
 static inline void glPixelStorex(GLenum pname1,GLfixed param1)
 {
+#ifdef __cplusplus
 	static PFNGLPIXELSTOREXPROC_ALT fn=(PFNGLPIXELSTOREXPROC_ALT)glaltGetProcAddressExtension("glPixelStorex","GL_OES_fixed_point");
+#else
+	static PFNGLPIXELSTOREXPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLPIXELSTOREXPROC_ALT)glaltGetProcAddressExtension("glPixelStorex","GL_OES_fixed_point"); }
+#endif
 	 fn(pname1,param1);
 }
 #endif
@@ -2267,7 +2977,12 @@ static inline void glPixelStorex(GLenum pname1,GLfixed param1)
 typedef void (*PFNGLPIXELTRANSFERXOESPROC_ALT)(GLenum,GLfixed);
 static inline void glPixelTransferxOES(GLenum pname1,GLfixed param1)
 {
+#ifdef __cplusplus
 	static PFNGLPIXELTRANSFERXOESPROC_ALT fn=(PFNGLPIXELTRANSFERXOESPROC_ALT)glaltGetProcAddressExtension("glPixelTransferxOES","GL_OES_fixed_point");
+#else
+	static PFNGLPIXELTRANSFERXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLPIXELTRANSFERXOESPROC_ALT)glaltGetProcAddressExtension("glPixelTransferxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(pname1,param1);
 }
 #endif
@@ -2277,7 +2992,12 @@ static inline void glPixelTransferxOES(GLenum pname1,GLfixed param1)
 typedef void (*PFNGLPIXELZOOMXOESPROC_ALT)(GLfixed,GLfixed);
 static inline void glPixelZoomxOES(GLfixed xfactor1,GLfixed yfactor1)
 {
+#ifdef __cplusplus
 	static PFNGLPIXELZOOMXOESPROC_ALT fn=(PFNGLPIXELZOOMXOESPROC_ALT)glaltGetProcAddressExtension("glPixelZoomxOES","GL_OES_fixed_point");
+#else
+	static PFNGLPIXELZOOMXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLPIXELZOOMXOESPROC_ALT)glaltGetProcAddressExtension("glPixelZoomxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(xfactor1,yfactor1);
 }
 #endif
@@ -2287,7 +3007,12 @@ static inline void glPixelZoomxOES(GLfixed xfactor1,GLfixed yfactor1)
 typedef void (*PFNGLPOINTPARAMETERXOESPROC_ALT)(GLenum,GLfixed);
 static inline void glPointParameterxOES(GLenum pname1,GLfixed param1)
 {
+#ifdef __cplusplus
 	static PFNGLPOINTPARAMETERXOESPROC_ALT fn=(PFNGLPOINTPARAMETERXOESPROC_ALT)glaltGetProcAddressExtension("glPointParameterxOES","GL_OES_fixed_point");
+#else
+	static PFNGLPOINTPARAMETERXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLPOINTPARAMETERXOESPROC_ALT)glaltGetProcAddressExtension("glPointParameterxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(pname1,param1);
 }
 #endif
@@ -2297,7 +3022,12 @@ static inline void glPointParameterxOES(GLenum pname1,GLfixed param1)
 typedef void (*PFNGLPOINTPARAMETERXVOESPROC_ALT)(GLenum,const GLfixed *);
 static inline void glPointParameterxvOES(GLenum pname1,const GLfixed * params1)
 {
+#ifdef __cplusplus
 	static PFNGLPOINTPARAMETERXVOESPROC_ALT fn=(PFNGLPOINTPARAMETERXVOESPROC_ALT)glaltGetProcAddressExtension("glPointParameterxvOES","GL_OES_fixed_point");
+#else
+	static PFNGLPOINTPARAMETERXVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLPOINTPARAMETERXVOESPROC_ALT)glaltGetProcAddressExtension("glPointParameterxvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(pname1,params1);
 }
 #endif
@@ -2307,7 +3037,12 @@ static inline void glPointParameterxvOES(GLenum pname1,const GLfixed * params1)
 typedef void (*PFNGLPOINTSIZEXOESPROC_ALT)(GLfixed);
 static inline void glPointSizexOES(GLfixed size1)
 {
+#ifdef __cplusplus
 	static PFNGLPOINTSIZEXOESPROC_ALT fn=(PFNGLPOINTSIZEXOESPROC_ALT)glaltGetProcAddressExtension("glPointSizexOES","GL_OES_fixed_point");
+#else
+	static PFNGLPOINTSIZEXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLPOINTSIZEXOESPROC_ALT)glaltGetProcAddressExtension("glPointSizexOES","GL_OES_fixed_point"); }
+#endif
 	 fn(size1);
 }
 #endif
@@ -2317,7 +3052,12 @@ static inline void glPointSizexOES(GLfixed size1)
 typedef void (*PFNGLPOLYGONOFFSETXOESPROC_ALT)(GLfixed,GLfixed);
 static inline void glPolygonOffsetxOES(GLfixed factor1,GLfixed units1)
 {
+#ifdef __cplusplus
 	static PFNGLPOLYGONOFFSETXOESPROC_ALT fn=(PFNGLPOLYGONOFFSETXOESPROC_ALT)glaltGetProcAddressExtension("glPolygonOffsetxOES","GL_OES_fixed_point");
+#else
+	static PFNGLPOLYGONOFFSETXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLPOLYGONOFFSETXOESPROC_ALT)glaltGetProcAddressExtension("glPolygonOffsetxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(factor1,units1);
 }
 #endif
@@ -2327,7 +3067,12 @@ static inline void glPolygonOffsetxOES(GLfixed factor1,GLfixed units1)
 typedef void (*PFNGLPRIORITIZETEXTURESXOESPROC_ALT)(GLsizei,const GLuint *,const GLfixed *);
 static inline void glPrioritizeTexturesxOES(GLsizei n1,const GLuint * textures1,const GLfixed * priorities1)
 {
+#ifdef __cplusplus
 	static PFNGLPRIORITIZETEXTURESXOESPROC_ALT fn=(PFNGLPRIORITIZETEXTURESXOESPROC_ALT)glaltGetProcAddressExtension("glPrioritizeTexturesxOES","GL_OES_fixed_point");
+#else
+	static PFNGLPRIORITIZETEXTURESXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLPRIORITIZETEXTURESXOESPROC_ALT)glaltGetProcAddressExtension("glPrioritizeTexturesxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(n1,textures1,priorities1);
 }
 #endif
@@ -2337,7 +3082,12 @@ static inline void glPrioritizeTexturesxOES(GLsizei n1,const GLuint * textures1,
 typedef void (*PFNGLRASTERPOS2XOESPROC_ALT)(GLfixed,GLfixed);
 static inline void glRasterPos2xOES(GLfixed x1,GLfixed y1)
 {
+#ifdef __cplusplus
 	static PFNGLRASTERPOS2XOESPROC_ALT fn=(PFNGLRASTERPOS2XOESPROC_ALT)glaltGetProcAddressExtension("glRasterPos2xOES","GL_OES_fixed_point");
+#else
+	static PFNGLRASTERPOS2XOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLRASTERPOS2XOESPROC_ALT)glaltGetProcAddressExtension("glRasterPos2xOES","GL_OES_fixed_point"); }
+#endif
 	 fn(x1,y1);
 }
 #endif
@@ -2347,7 +3097,12 @@ static inline void glRasterPos2xOES(GLfixed x1,GLfixed y1)
 typedef void (*PFNGLRASTERPOS2XVOESPROC_ALT)(const GLfixed *);
 static inline void glRasterPos2xvOES(const GLfixed * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLRASTERPOS2XVOESPROC_ALT fn=(PFNGLRASTERPOS2XVOESPROC_ALT)glaltGetProcAddressExtension("glRasterPos2xvOES","GL_OES_fixed_point");
+#else
+	static PFNGLRASTERPOS2XVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLRASTERPOS2XVOESPROC_ALT)glaltGetProcAddressExtension("glRasterPos2xvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -2357,7 +3112,12 @@ static inline void glRasterPos2xvOES(const GLfixed * coords1)
 typedef void (*PFNGLRASTERPOS3XOESPROC_ALT)(GLfixed,GLfixed,GLfixed);
 static inline void glRasterPos3xOES(GLfixed x1,GLfixed y1,GLfixed z1)
 {
+#ifdef __cplusplus
 	static PFNGLRASTERPOS3XOESPROC_ALT fn=(PFNGLRASTERPOS3XOESPROC_ALT)glaltGetProcAddressExtension("glRasterPos3xOES","GL_OES_fixed_point");
+#else
+	static PFNGLRASTERPOS3XOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLRASTERPOS3XOESPROC_ALT)glaltGetProcAddressExtension("glRasterPos3xOES","GL_OES_fixed_point"); }
+#endif
 	 fn(x1,y1,z1);
 }
 #endif
@@ -2367,7 +3127,12 @@ static inline void glRasterPos3xOES(GLfixed x1,GLfixed y1,GLfixed z1)
 typedef void (*PFNGLRASTERPOS3XVOESPROC_ALT)(const GLfixed *);
 static inline void glRasterPos3xvOES(const GLfixed * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLRASTERPOS3XVOESPROC_ALT fn=(PFNGLRASTERPOS3XVOESPROC_ALT)glaltGetProcAddressExtension("glRasterPos3xvOES","GL_OES_fixed_point");
+#else
+	static PFNGLRASTERPOS3XVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLRASTERPOS3XVOESPROC_ALT)glaltGetProcAddressExtension("glRasterPos3xvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -2377,7 +3142,12 @@ static inline void glRasterPos3xvOES(const GLfixed * coords1)
 typedef void (*PFNGLRASTERPOS4XOESPROC_ALT)(GLfixed,GLfixed,GLfixed,GLfixed);
 static inline void glRasterPos4xOES(GLfixed x1,GLfixed y1,GLfixed z1,GLfixed w1)
 {
+#ifdef __cplusplus
 	static PFNGLRASTERPOS4XOESPROC_ALT fn=(PFNGLRASTERPOS4XOESPROC_ALT)glaltGetProcAddressExtension("glRasterPos4xOES","GL_OES_fixed_point");
+#else
+	static PFNGLRASTERPOS4XOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLRASTERPOS4XOESPROC_ALT)glaltGetProcAddressExtension("glRasterPos4xOES","GL_OES_fixed_point"); }
+#endif
 	 fn(x1,y1,z1,w1);
 }
 #endif
@@ -2387,7 +3157,12 @@ static inline void glRasterPos4xOES(GLfixed x1,GLfixed y1,GLfixed z1,GLfixed w1)
 typedef void (*PFNGLRASTERPOS4XVOESPROC_ALT)(const GLfixed *);
 static inline void glRasterPos4xvOES(const GLfixed * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLRASTERPOS4XVOESPROC_ALT fn=(PFNGLRASTERPOS4XVOESPROC_ALT)glaltGetProcAddressExtension("glRasterPos4xvOES","GL_OES_fixed_point");
+#else
+	static PFNGLRASTERPOS4XVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLRASTERPOS4XVOESPROC_ALT)glaltGetProcAddressExtension("glRasterPos4xvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -2397,7 +3172,12 @@ static inline void glRasterPos4xvOES(const GLfixed * coords1)
 typedef void (*PFNGLRECTXOESPROC_ALT)(GLfixed,GLfixed,GLfixed,GLfixed);
 static inline void glRectxOES(GLfixed x11,GLfixed y11,GLfixed x21,GLfixed y21)
 {
+#ifdef __cplusplus
 	static PFNGLRECTXOESPROC_ALT fn=(PFNGLRECTXOESPROC_ALT)glaltGetProcAddressExtension("glRectxOES","GL_OES_fixed_point");
+#else
+	static PFNGLRECTXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLRECTXOESPROC_ALT)glaltGetProcAddressExtension("glRectxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(x11,y11,x21,y21);
 }
 #endif
@@ -2407,7 +3187,12 @@ static inline void glRectxOES(GLfixed x11,GLfixed y11,GLfixed x21,GLfixed y21)
 typedef void (*PFNGLRECTXVOESPROC_ALT)(const GLfixed *,const GLfixed *);
 static inline void glRectxvOES(const GLfixed * v11,const GLfixed * v21)
 {
+#ifdef __cplusplus
 	static PFNGLRECTXVOESPROC_ALT fn=(PFNGLRECTXVOESPROC_ALT)glaltGetProcAddressExtension("glRectxvOES","GL_OES_fixed_point");
+#else
+	static PFNGLRECTXVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLRECTXVOESPROC_ALT)glaltGetProcAddressExtension("glRectxvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(v11,v21);
 }
 #endif
@@ -2417,7 +3202,12 @@ static inline void glRectxvOES(const GLfixed * v11,const GLfixed * v21)
 typedef void (*PFNGLROTATEXOESPROC_ALT)(GLfixed,GLfixed,GLfixed,GLfixed);
 static inline void glRotatexOES(GLfixed angle1,GLfixed x1,GLfixed y1,GLfixed z1)
 {
+#ifdef __cplusplus
 	static PFNGLROTATEXOESPROC_ALT fn=(PFNGLROTATEXOESPROC_ALT)glaltGetProcAddressExtension("glRotatexOES","GL_OES_fixed_point");
+#else
+	static PFNGLROTATEXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLROTATEXOESPROC_ALT)glaltGetProcAddressExtension("glRotatexOES","GL_OES_fixed_point"); }
+#endif
 	 fn(angle1,x1,y1,z1);
 }
 #endif
@@ -2427,7 +3217,12 @@ static inline void glRotatexOES(GLfixed angle1,GLfixed x1,GLfixed y1,GLfixed z1)
 typedef void (*PFNGLSAMPLECOVERAGEOESPROC_ALT)(GLfixed,GLboolean);
 static inline void glSampleCoverageOES(GLfixed value1,GLboolean invert1)
 {
+#ifdef __cplusplus
 	static PFNGLSAMPLECOVERAGEOESPROC_ALT fn=(PFNGLSAMPLECOVERAGEOESPROC_ALT)glaltGetProcAddressExtension("glSampleCoverageOES","GL_OES_fixed_point");
+#else
+	static PFNGLSAMPLECOVERAGEOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLSAMPLECOVERAGEOESPROC_ALT)glaltGetProcAddressExtension("glSampleCoverageOES","GL_OES_fixed_point"); }
+#endif
 	 fn(value1,invert1);
 }
 #endif
@@ -2437,7 +3232,12 @@ static inline void glSampleCoverageOES(GLfixed value1,GLboolean invert1)
 typedef void (*PFNGLSAMPLECOVERAGEXOESPROC_ALT)(GLclampx,GLboolean);
 static inline void glSampleCoveragexOES(GLclampx value1,GLboolean invert1)
 {
+#ifdef __cplusplus
 	static PFNGLSAMPLECOVERAGEXOESPROC_ALT fn=(PFNGLSAMPLECOVERAGEXOESPROC_ALT)glaltGetProcAddressExtension("glSampleCoveragexOES","GL_OES_fixed_point");
+#else
+	static PFNGLSAMPLECOVERAGEXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLSAMPLECOVERAGEXOESPROC_ALT)glaltGetProcAddressExtension("glSampleCoveragexOES","GL_OES_fixed_point"); }
+#endif
 	 fn(value1,invert1);
 }
 #endif
@@ -2447,7 +3247,12 @@ static inline void glSampleCoveragexOES(GLclampx value1,GLboolean invert1)
 typedef void (*PFNGLSCALEXOESPROC_ALT)(GLfixed,GLfixed,GLfixed);
 static inline void glScalexOES(GLfixed x1,GLfixed y1,GLfixed z1)
 {
+#ifdef __cplusplus
 	static PFNGLSCALEXOESPROC_ALT fn=(PFNGLSCALEXOESPROC_ALT)glaltGetProcAddressExtension("glScalexOES","GL_OES_fixed_point");
+#else
+	static PFNGLSCALEXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLSCALEXOESPROC_ALT)glaltGetProcAddressExtension("glScalexOES","GL_OES_fixed_point"); }
+#endif
 	 fn(x1,y1,z1);
 }
 #endif
@@ -2457,7 +3262,12 @@ static inline void glScalexOES(GLfixed x1,GLfixed y1,GLfixed z1)
 typedef void (*PFNGLTEXCOORD1XOESPROC_ALT)(GLfixed);
 static inline void glTexCoord1xOES(GLfixed s1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXCOORD1XOESPROC_ALT fn=(PFNGLTEXCOORD1XOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord1xOES","GL_OES_fixed_point");
+#else
+	static PFNGLTEXCOORD1XOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXCOORD1XOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord1xOES","GL_OES_fixed_point"); }
+#endif
 	 fn(s1);
 }
 #endif
@@ -2467,7 +3277,12 @@ static inline void glTexCoord1xOES(GLfixed s1)
 typedef void (*PFNGLTEXCOORD1XVOESPROC_ALT)(const GLfixed *);
 static inline void glTexCoord1xvOES(const GLfixed * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXCOORD1XVOESPROC_ALT fn=(PFNGLTEXCOORD1XVOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord1xvOES","GL_OES_fixed_point");
+#else
+	static PFNGLTEXCOORD1XVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXCOORD1XVOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord1xvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -2477,7 +3292,12 @@ static inline void glTexCoord1xvOES(const GLfixed * coords1)
 typedef void (*PFNGLTEXCOORD2XOESPROC_ALT)(GLfixed,GLfixed);
 static inline void glTexCoord2xOES(GLfixed s1,GLfixed t1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXCOORD2XOESPROC_ALT fn=(PFNGLTEXCOORD2XOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord2xOES","GL_OES_fixed_point");
+#else
+	static PFNGLTEXCOORD2XOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXCOORD2XOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord2xOES","GL_OES_fixed_point"); }
+#endif
 	 fn(s1,t1);
 }
 #endif
@@ -2487,7 +3307,12 @@ static inline void glTexCoord2xOES(GLfixed s1,GLfixed t1)
 typedef void (*PFNGLTEXCOORD2XVOESPROC_ALT)(const GLfixed *);
 static inline void glTexCoord2xvOES(const GLfixed * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXCOORD2XVOESPROC_ALT fn=(PFNGLTEXCOORD2XVOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord2xvOES","GL_OES_fixed_point");
+#else
+	static PFNGLTEXCOORD2XVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXCOORD2XVOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord2xvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -2497,7 +3322,12 @@ static inline void glTexCoord2xvOES(const GLfixed * coords1)
 typedef void (*PFNGLTEXCOORD3XOESPROC_ALT)(GLfixed,GLfixed,GLfixed);
 static inline void glTexCoord3xOES(GLfixed s1,GLfixed t1,GLfixed r1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXCOORD3XOESPROC_ALT fn=(PFNGLTEXCOORD3XOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord3xOES","GL_OES_fixed_point");
+#else
+	static PFNGLTEXCOORD3XOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXCOORD3XOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord3xOES","GL_OES_fixed_point"); }
+#endif
 	 fn(s1,t1,r1);
 }
 #endif
@@ -2507,7 +3337,12 @@ static inline void glTexCoord3xOES(GLfixed s1,GLfixed t1,GLfixed r1)
 typedef void (*PFNGLTEXCOORD3XVOESPROC_ALT)(const GLfixed *);
 static inline void glTexCoord3xvOES(const GLfixed * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXCOORD3XVOESPROC_ALT fn=(PFNGLTEXCOORD3XVOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord3xvOES","GL_OES_fixed_point");
+#else
+	static PFNGLTEXCOORD3XVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXCOORD3XVOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord3xvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -2517,7 +3352,12 @@ static inline void glTexCoord3xvOES(const GLfixed * coords1)
 typedef void (*PFNGLTEXCOORD4XOESPROC_ALT)(GLfixed,GLfixed,GLfixed,GLfixed);
 static inline void glTexCoord4xOES(GLfixed s1,GLfixed t1,GLfixed r1,GLfixed q1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXCOORD4XOESPROC_ALT fn=(PFNGLTEXCOORD4XOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord4xOES","GL_OES_fixed_point");
+#else
+	static PFNGLTEXCOORD4XOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXCOORD4XOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord4xOES","GL_OES_fixed_point"); }
+#endif
 	 fn(s1,t1,r1,q1);
 }
 #endif
@@ -2527,7 +3367,12 @@ static inline void glTexCoord4xOES(GLfixed s1,GLfixed t1,GLfixed r1,GLfixed q1)
 typedef void (*PFNGLTEXCOORD4XVOESPROC_ALT)(const GLfixed *);
 static inline void glTexCoord4xvOES(const GLfixed * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXCOORD4XVOESPROC_ALT fn=(PFNGLTEXCOORD4XVOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord4xvOES","GL_OES_fixed_point");
+#else
+	static PFNGLTEXCOORD4XVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXCOORD4XVOESPROC_ALT)glaltGetProcAddressExtension("glTexCoord4xvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -2537,7 +3382,12 @@ static inline void glTexCoord4xvOES(const GLfixed * coords1)
 typedef void (*PFNGLTEXENVXOESPROC_ALT)(GLenum,GLenum,GLfixed);
 static inline void glTexEnvxOES(GLenum target1,GLenum pname1,GLfixed param1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXENVXOESPROC_ALT fn=(PFNGLTEXENVXOESPROC_ALT)glaltGetProcAddressExtension("glTexEnvxOES","GL_OES_fixed_point");
+#else
+	static PFNGLTEXENVXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXENVXOESPROC_ALT)glaltGetProcAddressExtension("glTexEnvxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(target1,pname1,param1);
 }
 #endif
@@ -2547,7 +3397,12 @@ static inline void glTexEnvxOES(GLenum target1,GLenum pname1,GLfixed param1)
 typedef void (*PFNGLTEXENVXVOESPROC_ALT)(GLenum,GLenum,const GLfixed *);
 static inline void glTexEnvxvOES(GLenum target1,GLenum pname1,const GLfixed * params1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXENVXVOESPROC_ALT fn=(PFNGLTEXENVXVOESPROC_ALT)glaltGetProcAddressExtension("glTexEnvxvOES","GL_OES_fixed_point");
+#else
+	static PFNGLTEXENVXVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXENVXVOESPROC_ALT)glaltGetProcAddressExtension("glTexEnvxvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(target1,pname1,params1);
 }
 #endif
@@ -2557,7 +3412,12 @@ static inline void glTexEnvxvOES(GLenum target1,GLenum pname1,const GLfixed * pa
 typedef void (*PFNGLTEXGENXOESPROC_ALT)(GLenum,GLenum,GLfixed);
 static inline void glTexGenxOES(GLenum coord1,GLenum pname1,GLfixed param1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXGENXOESPROC_ALT fn=(PFNGLTEXGENXOESPROC_ALT)glaltGetProcAddressExtension("glTexGenxOES","GL_OES_fixed_point");
+#else
+	static PFNGLTEXGENXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXGENXOESPROC_ALT)glaltGetProcAddressExtension("glTexGenxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(coord1,pname1,param1);
 }
 #endif
@@ -2567,7 +3427,12 @@ static inline void glTexGenxOES(GLenum coord1,GLenum pname1,GLfixed param1)
 typedef void (*PFNGLTEXGENXVOESPROC_ALT)(GLenum,GLenum,const GLfixed *);
 static inline void glTexGenxvOES(GLenum coord1,GLenum pname1,const GLfixed * params1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXGENXVOESPROC_ALT fn=(PFNGLTEXGENXVOESPROC_ALT)glaltGetProcAddressExtension("glTexGenxvOES","GL_OES_fixed_point");
+#else
+	static PFNGLTEXGENXVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXGENXVOESPROC_ALT)glaltGetProcAddressExtension("glTexGenxvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(coord1,pname1,params1);
 }
 #endif
@@ -2577,7 +3442,12 @@ static inline void glTexGenxvOES(GLenum coord1,GLenum pname1,const GLfixed * par
 typedef void (*PFNGLTEXPARAMETERXOESPROC_ALT)(GLenum,GLenum,GLfixed);
 static inline void glTexParameterxOES(GLenum target1,GLenum pname1,GLfixed param1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXPARAMETERXOESPROC_ALT fn=(PFNGLTEXPARAMETERXOESPROC_ALT)glaltGetProcAddressExtension("glTexParameterxOES","GL_OES_fixed_point");
+#else
+	static PFNGLTEXPARAMETERXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXPARAMETERXOESPROC_ALT)glaltGetProcAddressExtension("glTexParameterxOES","GL_OES_fixed_point"); }
+#endif
 	 fn(target1,pname1,param1);
 }
 #endif
@@ -2587,7 +3457,12 @@ static inline void glTexParameterxOES(GLenum target1,GLenum pname1,GLfixed param
 typedef void (*PFNGLTEXPARAMETERXVOESPROC_ALT)(GLenum,GLenum,const GLfixed *);
 static inline void glTexParameterxvOES(GLenum target1,GLenum pname1,const GLfixed * params1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXPARAMETERXVOESPROC_ALT fn=(PFNGLTEXPARAMETERXVOESPROC_ALT)glaltGetProcAddressExtension("glTexParameterxvOES","GL_OES_fixed_point");
+#else
+	static PFNGLTEXPARAMETERXVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXPARAMETERXVOESPROC_ALT)glaltGetProcAddressExtension("glTexParameterxvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(target1,pname1,params1);
 }
 #endif
@@ -2597,7 +3472,12 @@ static inline void glTexParameterxvOES(GLenum target1,GLenum pname1,const GLfixe
 typedef void (*PFNGLTRANSLATEXOESPROC_ALT)(GLfixed,GLfixed,GLfixed);
 static inline void glTranslatexOES(GLfixed x1,GLfixed y1,GLfixed z1)
 {
+#ifdef __cplusplus
 	static PFNGLTRANSLATEXOESPROC_ALT fn=(PFNGLTRANSLATEXOESPROC_ALT)glaltGetProcAddressExtension("glTranslatexOES","GL_OES_fixed_point");
+#else
+	static PFNGLTRANSLATEXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTRANSLATEXOESPROC_ALT)glaltGetProcAddressExtension("glTranslatexOES","GL_OES_fixed_point"); }
+#endif
 	 fn(x1,y1,z1);
 }
 #endif
@@ -2607,7 +3487,12 @@ static inline void glTranslatexOES(GLfixed x1,GLfixed y1,GLfixed z1)
 typedef void (*PFNGLVERTEX2XOESPROC_ALT)(GLfixed);
 static inline void glVertex2xOES(GLfixed x1)
 {
+#ifdef __cplusplus
 	static PFNGLVERTEX2XOESPROC_ALT fn=(PFNGLVERTEX2XOESPROC_ALT)glaltGetProcAddressExtension("glVertex2xOES","GL_OES_fixed_point");
+#else
+	static PFNGLVERTEX2XOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLVERTEX2XOESPROC_ALT)glaltGetProcAddressExtension("glVertex2xOES","GL_OES_fixed_point"); }
+#endif
 	 fn(x1);
 }
 #endif
@@ -2617,7 +3502,12 @@ static inline void glVertex2xOES(GLfixed x1)
 typedef void (*PFNGLVERTEX2XVOESPROC_ALT)(const GLfixed *);
 static inline void glVertex2xvOES(const GLfixed * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLVERTEX2XVOESPROC_ALT fn=(PFNGLVERTEX2XVOESPROC_ALT)glaltGetProcAddressExtension("glVertex2xvOES","GL_OES_fixed_point");
+#else
+	static PFNGLVERTEX2XVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLVERTEX2XVOESPROC_ALT)glaltGetProcAddressExtension("glVertex2xvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -2627,7 +3517,12 @@ static inline void glVertex2xvOES(const GLfixed * coords1)
 typedef void (*PFNGLVERTEX3XOESPROC_ALT)(GLfixed,GLfixed);
 static inline void glVertex3xOES(GLfixed x1,GLfixed y1)
 {
+#ifdef __cplusplus
 	static PFNGLVERTEX3XOESPROC_ALT fn=(PFNGLVERTEX3XOESPROC_ALT)glaltGetProcAddressExtension("glVertex3xOES","GL_OES_fixed_point");
+#else
+	static PFNGLVERTEX3XOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLVERTEX3XOESPROC_ALT)glaltGetProcAddressExtension("glVertex3xOES","GL_OES_fixed_point"); }
+#endif
 	 fn(x1,y1);
 }
 #endif
@@ -2637,7 +3532,12 @@ static inline void glVertex3xOES(GLfixed x1,GLfixed y1)
 typedef void (*PFNGLVERTEX3XVOESPROC_ALT)(const GLfixed *);
 static inline void glVertex3xvOES(const GLfixed * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLVERTEX3XVOESPROC_ALT fn=(PFNGLVERTEX3XVOESPROC_ALT)glaltGetProcAddressExtension("glVertex3xvOES","GL_OES_fixed_point");
+#else
+	static PFNGLVERTEX3XVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLVERTEX3XVOESPROC_ALT)glaltGetProcAddressExtension("glVertex3xvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -2647,7 +3547,12 @@ static inline void glVertex3xvOES(const GLfixed * coords1)
 typedef void (*PFNGLVERTEX4XOESPROC_ALT)(GLfixed,GLfixed,GLfixed);
 static inline void glVertex4xOES(GLfixed x1,GLfixed y1,GLfixed z1)
 {
+#ifdef __cplusplus
 	static PFNGLVERTEX4XOESPROC_ALT fn=(PFNGLVERTEX4XOESPROC_ALT)glaltGetProcAddressExtension("glVertex4xOES","GL_OES_fixed_point");
+#else
+	static PFNGLVERTEX4XOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLVERTEX4XOESPROC_ALT)glaltGetProcAddressExtension("glVertex4xOES","GL_OES_fixed_point"); }
+#endif
 	 fn(x1,y1,z1);
 }
 #endif
@@ -2657,7 +3562,12 @@ static inline void glVertex4xOES(GLfixed x1,GLfixed y1,GLfixed z1)
 typedef void (*PFNGLVERTEX4XVOESPROC_ALT)(const GLfixed *);
 static inline void glVertex4xvOES(const GLfixed * coords1)
 {
+#ifdef __cplusplus
 	static PFNGLVERTEX4XVOESPROC_ALT fn=(PFNGLVERTEX4XVOESPROC_ALT)glaltGetProcAddressExtension("glVertex4xvOES","GL_OES_fixed_point");
+#else
+	static PFNGLVERTEX4XVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLVERTEX4XVOESPROC_ALT)glaltGetProcAddressExtension("glVertex4xvOES","GL_OES_fixed_point"); }
+#endif
 	 fn(coords1);
 }
 #endif
@@ -2774,7 +3684,12 @@ CGUARDBEGIN
 typedef void (*PFNGLBINDFRAMEBUFFEROESPROC_ALT)(GLenum,GLuint);
 static inline void glBindFramebufferOES(GLenum target1,GLuint framebuffer1)
 {
+#ifdef __cplusplus
 	static PFNGLBINDFRAMEBUFFEROESPROC_ALT fn=(PFNGLBINDFRAMEBUFFEROESPROC_ALT)glaltGetProcAddressExtension("glBindFramebufferOES","GL_OES_framebuffer_object");
+#else
+	static PFNGLBINDFRAMEBUFFEROESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLBINDFRAMEBUFFEROESPROC_ALT)glaltGetProcAddressExtension("glBindFramebufferOES","GL_OES_framebuffer_object"); }
+#endif
 	 fn(target1,framebuffer1);
 }
 #endif
@@ -2784,7 +3699,12 @@ static inline void glBindFramebufferOES(GLenum target1,GLuint framebuffer1)
 typedef void (*PFNGLBINDRENDERBUFFEROESPROC_ALT)(GLenum,GLuint);
 static inline void glBindRenderbufferOES(GLenum target1,GLuint renderbuffer1)
 {
+#ifdef __cplusplus
 	static PFNGLBINDRENDERBUFFEROESPROC_ALT fn=(PFNGLBINDRENDERBUFFEROESPROC_ALT)glaltGetProcAddressExtension("glBindRenderbufferOES","GL_OES_framebuffer_object");
+#else
+	static PFNGLBINDRENDERBUFFEROESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLBINDRENDERBUFFEROESPROC_ALT)glaltGetProcAddressExtension("glBindRenderbufferOES","GL_OES_framebuffer_object"); }
+#endif
 	 fn(target1,renderbuffer1);
 }
 #endif
@@ -2794,7 +3714,12 @@ static inline void glBindRenderbufferOES(GLenum target1,GLuint renderbuffer1)
 typedef GLenum (*PFNGLCHECKFRAMEBUFFERSTATUSOESPROC_ALT)(GLenum);
 static inline GLenum glCheckFramebufferStatusOES(GLenum target1)
 {
+#ifdef __cplusplus
 	static PFNGLCHECKFRAMEBUFFERSTATUSOESPROC_ALT fn=(PFNGLCHECKFRAMEBUFFERSTATUSOESPROC_ALT)glaltGetProcAddressExtension("glCheckFramebufferStatusOES","GL_OES_framebuffer_object");
+#else
+	static PFNGLCHECKFRAMEBUFFERSTATUSOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLCHECKFRAMEBUFFERSTATUSOESPROC_ALT)glaltGetProcAddressExtension("glCheckFramebufferStatusOES","GL_OES_framebuffer_object"); }
+#endif
 	return fn(target1);
 }
 #endif
@@ -2804,7 +3729,12 @@ static inline GLenum glCheckFramebufferStatusOES(GLenum target1)
 typedef void (*PFNGLDELETEFRAMEBUFFERSOESPROC_ALT)(GLsizei,const GLuint *);
 static inline void glDeleteFramebuffersOES(GLsizei n1,const GLuint * framebuffers1)
 {
+#ifdef __cplusplus
 	static PFNGLDELETEFRAMEBUFFERSOESPROC_ALT fn=(PFNGLDELETEFRAMEBUFFERSOESPROC_ALT)glaltGetProcAddressExtension("glDeleteFramebuffersOES","GL_OES_framebuffer_object");
+#else
+	static PFNGLDELETEFRAMEBUFFERSOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLDELETEFRAMEBUFFERSOESPROC_ALT)glaltGetProcAddressExtension("glDeleteFramebuffersOES","GL_OES_framebuffer_object"); }
+#endif
 	 fn(n1,framebuffers1);
 }
 #endif
@@ -2814,7 +3744,12 @@ static inline void glDeleteFramebuffersOES(GLsizei n1,const GLuint * framebuffer
 typedef void (*PFNGLDELETERENDERBUFFERSOESPROC_ALT)(GLsizei,const GLuint *);
 static inline void glDeleteRenderbuffersOES(GLsizei n1,const GLuint * renderbuffers1)
 {
+#ifdef __cplusplus
 	static PFNGLDELETERENDERBUFFERSOESPROC_ALT fn=(PFNGLDELETERENDERBUFFERSOESPROC_ALT)glaltGetProcAddressExtension("glDeleteRenderbuffersOES","GL_OES_framebuffer_object");
+#else
+	static PFNGLDELETERENDERBUFFERSOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLDELETERENDERBUFFERSOESPROC_ALT)glaltGetProcAddressExtension("glDeleteRenderbuffersOES","GL_OES_framebuffer_object"); }
+#endif
 	 fn(n1,renderbuffers1);
 }
 #endif
@@ -2824,7 +3759,12 @@ static inline void glDeleteRenderbuffersOES(GLsizei n1,const GLuint * renderbuff
 typedef void (*PFNGLFRAMEBUFFERRENDERBUFFEROESPROC_ALT)(GLenum,GLenum,GLenum,GLuint);
 static inline void glFramebufferRenderbufferOES(GLenum target1,GLenum attachment1,GLenum renderbuffertarget1,GLuint renderbuffer1)
 {
+#ifdef __cplusplus
 	static PFNGLFRAMEBUFFERRENDERBUFFEROESPROC_ALT fn=(PFNGLFRAMEBUFFERRENDERBUFFEROESPROC_ALT)glaltGetProcAddressExtension("glFramebufferRenderbufferOES","GL_OES_framebuffer_object");
+#else
+	static PFNGLFRAMEBUFFERRENDERBUFFEROESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLFRAMEBUFFERRENDERBUFFEROESPROC_ALT)glaltGetProcAddressExtension("glFramebufferRenderbufferOES","GL_OES_framebuffer_object"); }
+#endif
 	 fn(target1,attachment1,renderbuffertarget1,renderbuffer1);
 }
 #endif
@@ -2834,7 +3774,12 @@ static inline void glFramebufferRenderbufferOES(GLenum target1,GLenum attachment
 typedef void (*PFNGLFRAMEBUFFERTEXTURE2DOESPROC_ALT)(GLenum,GLenum,GLenum,GLuint,GLint);
 static inline void glFramebufferTexture2DOES(GLenum target1,GLenum attachment1,GLenum textarget1,GLuint texture1,GLint level1)
 {
+#ifdef __cplusplus
 	static PFNGLFRAMEBUFFERTEXTURE2DOESPROC_ALT fn=(PFNGLFRAMEBUFFERTEXTURE2DOESPROC_ALT)glaltGetProcAddressExtension("glFramebufferTexture2DOES","GL_OES_framebuffer_object");
+#else
+	static PFNGLFRAMEBUFFERTEXTURE2DOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLFRAMEBUFFERTEXTURE2DOESPROC_ALT)glaltGetProcAddressExtension("glFramebufferTexture2DOES","GL_OES_framebuffer_object"); }
+#endif
 	 fn(target1,attachment1,textarget1,texture1,level1);
 }
 #endif
@@ -2844,7 +3789,12 @@ static inline void glFramebufferTexture2DOES(GLenum target1,GLenum attachment1,G
 typedef void (*PFNGLGENFRAMEBUFFERSOESPROC_ALT)(GLsizei,GLuint *);
 static inline void glGenFramebuffersOES(GLsizei n1,GLuint * framebuffers1)
 {
+#ifdef __cplusplus
 	static PFNGLGENFRAMEBUFFERSOESPROC_ALT fn=(PFNGLGENFRAMEBUFFERSOESPROC_ALT)glaltGetProcAddressExtension("glGenFramebuffersOES","GL_OES_framebuffer_object");
+#else
+	static PFNGLGENFRAMEBUFFERSOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGENFRAMEBUFFERSOESPROC_ALT)glaltGetProcAddressExtension("glGenFramebuffersOES","GL_OES_framebuffer_object"); }
+#endif
 	 fn(n1,framebuffers1);
 }
 #endif
@@ -2854,7 +3804,12 @@ static inline void glGenFramebuffersOES(GLsizei n1,GLuint * framebuffers1)
 typedef void (*PFNGLGENRENDERBUFFERSOESPROC_ALT)(GLsizei,GLuint *);
 static inline void glGenRenderbuffersOES(GLsizei n1,GLuint * renderbuffers1)
 {
+#ifdef __cplusplus
 	static PFNGLGENRENDERBUFFERSOESPROC_ALT fn=(PFNGLGENRENDERBUFFERSOESPROC_ALT)glaltGetProcAddressExtension("glGenRenderbuffersOES","GL_OES_framebuffer_object");
+#else
+	static PFNGLGENRENDERBUFFERSOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGENRENDERBUFFERSOESPROC_ALT)glaltGetProcAddressExtension("glGenRenderbuffersOES","GL_OES_framebuffer_object"); }
+#endif
 	 fn(n1,renderbuffers1);
 }
 #endif
@@ -2864,7 +3819,12 @@ static inline void glGenRenderbuffersOES(GLsizei n1,GLuint * renderbuffers1)
 typedef void (*PFNGLGENERATEMIPMAPOESPROC_ALT)(GLenum);
 static inline void glGenerateMipmapOES(GLenum target1)
 {
+#ifdef __cplusplus
 	static PFNGLGENERATEMIPMAPOESPROC_ALT fn=(PFNGLGENERATEMIPMAPOESPROC_ALT)glaltGetProcAddressExtension("glGenerateMipmapOES","GL_OES_framebuffer_object");
+#else
+	static PFNGLGENERATEMIPMAPOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGENERATEMIPMAPOESPROC_ALT)glaltGetProcAddressExtension("glGenerateMipmapOES","GL_OES_framebuffer_object"); }
+#endif
 	 fn(target1);
 }
 #endif
@@ -2874,7 +3834,12 @@ static inline void glGenerateMipmapOES(GLenum target1)
 typedef void (*PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVOESPROC_ALT)(GLenum,GLenum,GLenum,GLint *);
 static inline void glGetFramebufferAttachmentParameterivOES(GLenum target1,GLenum attachment1,GLenum pname1,GLint * params1)
 {
+#ifdef __cplusplus
 	static PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVOESPROC_ALT fn=(PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVOESPROC_ALT)glaltGetProcAddressExtension("glGetFramebufferAttachmentParameterivOES","GL_OES_framebuffer_object");
+#else
+	static PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVOESPROC_ALT)glaltGetProcAddressExtension("glGetFramebufferAttachmentParameterivOES","GL_OES_framebuffer_object"); }
+#endif
 	 fn(target1,attachment1,pname1,params1);
 }
 #endif
@@ -2884,7 +3849,12 @@ static inline void glGetFramebufferAttachmentParameterivOES(GLenum target1,GLenu
 typedef void (*PFNGLGETRENDERBUFFERPARAMETERIVOESPROC_ALT)(GLenum,GLenum,GLint *);
 static inline void glGetRenderbufferParameterivOES(GLenum target1,GLenum pname1,GLint * params1)
 {
+#ifdef __cplusplus
 	static PFNGLGETRENDERBUFFERPARAMETERIVOESPROC_ALT fn=(PFNGLGETRENDERBUFFERPARAMETERIVOESPROC_ALT)glaltGetProcAddressExtension("glGetRenderbufferParameterivOES","GL_OES_framebuffer_object");
+#else
+	static PFNGLGETRENDERBUFFERPARAMETERIVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETRENDERBUFFERPARAMETERIVOESPROC_ALT)glaltGetProcAddressExtension("glGetRenderbufferParameterivOES","GL_OES_framebuffer_object"); }
+#endif
 	 fn(target1,pname1,params1);
 }
 #endif
@@ -2894,7 +3864,12 @@ static inline void glGetRenderbufferParameterivOES(GLenum target1,GLenum pname1,
 typedef GLboolean (*PFNGLISFRAMEBUFFEROESPROC_ALT)(GLuint);
 static inline GLboolean glIsFramebufferOES(GLuint framebuffer1)
 {
+#ifdef __cplusplus
 	static PFNGLISFRAMEBUFFEROESPROC_ALT fn=(PFNGLISFRAMEBUFFEROESPROC_ALT)glaltGetProcAddressExtension("glIsFramebufferOES","GL_OES_framebuffer_object");
+#else
+	static PFNGLISFRAMEBUFFEROESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLISFRAMEBUFFEROESPROC_ALT)glaltGetProcAddressExtension("glIsFramebufferOES","GL_OES_framebuffer_object"); }
+#endif
 	return fn(framebuffer1);
 }
 #endif
@@ -2904,7 +3879,12 @@ static inline GLboolean glIsFramebufferOES(GLuint framebuffer1)
 typedef GLboolean (*PFNGLISRENDERBUFFEROESPROC_ALT)(GLuint);
 static inline GLboolean glIsRenderbufferOES(GLuint renderbuffer1)
 {
+#ifdef __cplusplus
 	static PFNGLISRENDERBUFFEROESPROC_ALT fn=(PFNGLISRENDERBUFFEROESPROC_ALT)glaltGetProcAddressExtension("glIsRenderbufferOES","GL_OES_framebuffer_object");
+#else
+	static PFNGLISRENDERBUFFEROESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLISRENDERBUFFEROESPROC_ALT)glaltGetProcAddressExtension("glIsRenderbufferOES","GL_OES_framebuffer_object"); }
+#endif
 	return fn(renderbuffer1);
 }
 #endif
@@ -2914,7 +3894,12 @@ static inline GLboolean glIsRenderbufferOES(GLuint renderbuffer1)
 typedef void (*PFNGLRENDERBUFFERSTORAGEOESPROC_ALT)(GLenum,GLenum,GLsizei,GLsizei);
 static inline void glRenderbufferStorageOES(GLenum target1,GLenum internalformat1,GLsizei width1,GLsizei height1)
 {
+#ifdef __cplusplus
 	static PFNGLRENDERBUFFERSTORAGEOESPROC_ALT fn=(PFNGLRENDERBUFFERSTORAGEOESPROC_ALT)glaltGetProcAddressExtension("glRenderbufferStorageOES","GL_OES_framebuffer_object");
+#else
+	static PFNGLRENDERBUFFERSTORAGEOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLRENDERBUFFERSTORAGEOESPROC_ALT)glaltGetProcAddressExtension("glRenderbufferStorageOES","GL_OES_framebuffer_object"); }
+#endif
 	 fn(target1,internalformat1,width1,height1);
 }
 #endif
@@ -2944,7 +3929,12 @@ CGUARDBEGIN
 typedef void (*PFNGLGETBUFFERPOINTERVOESPROC_ALT)(GLenum,GLenum,void **);
 static inline void glGetBufferPointervOES(GLenum target1,GLenum pname1,void ** params1)
 {
+#ifdef __cplusplus
 	static PFNGLGETBUFFERPOINTERVOESPROC_ALT fn=(PFNGLGETBUFFERPOINTERVOESPROC_ALT)glaltGetProcAddressExtension("glGetBufferPointervOES","GL_OES_mapbuffer");
+#else
+	static PFNGLGETBUFFERPOINTERVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETBUFFERPOINTERVOESPROC_ALT)glaltGetProcAddressExtension("glGetBufferPointervOES","GL_OES_mapbuffer"); }
+#endif
 	 fn(target1,pname1,params1);
 }
 #endif
@@ -2956,7 +3946,12 @@ static inline void glGetBufferPointervOES(GLenum target1,GLenum pname1,void ** p
 typedef void * (*PFNGLMAPBUFFEROESPROC_ALT)(GLenum,GLenum);
 static inline void * glMapBufferOES(GLenum target1,GLenum access1)
 {
+#ifdef __cplusplus
 	static PFNGLMAPBUFFEROESPROC_ALT fn=(PFNGLMAPBUFFEROESPROC_ALT)glaltGetProcAddressExtension("glMapBufferOES","GL_OES_mapbuffer");
+#else
+	static PFNGLMAPBUFFEROESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMAPBUFFEROESPROC_ALT)glaltGetProcAddressExtension("glMapBufferOES","GL_OES_mapbuffer"); }
+#endif
 	return fn(target1,access1);
 }
 #endif
@@ -2968,7 +3963,12 @@ static inline void * glMapBufferOES(GLenum target1,GLenum access1)
 typedef GLboolean (*PFNGLUNMAPBUFFEROESPROC_ALT)(GLenum);
 static inline GLboolean glUnmapBufferOES(GLenum target1)
 {
+#ifdef __cplusplus
 	static PFNGLUNMAPBUFFEROESPROC_ALT fn=(PFNGLUNMAPBUFFEROESPROC_ALT)glaltGetProcAddressExtension("glUnmapBufferOES","GL_OES_mapbuffer");
+#else
+	static PFNGLUNMAPBUFFEROESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLUNMAPBUFFEROESPROC_ALT)glaltGetProcAddressExtension("glUnmapBufferOES","GL_OES_mapbuffer"); }
+#endif
 	return fn(target1);
 }
 #endif
@@ -3053,7 +4053,12 @@ CGUARDBEGIN
 typedef void (*PFNGLCURRENTPALETTEMATRIXOESPROC_ALT)(GLuint);
 static inline void glCurrentPaletteMatrixOES(GLuint matrixpaletteindex1)
 {
+#ifdef __cplusplus
 	static PFNGLCURRENTPALETTEMATRIXOESPROC_ALT fn=(PFNGLCURRENTPALETTEMATRIXOESPROC_ALT)glaltGetProcAddressExtension("glCurrentPaletteMatrixOES","GL_OES_matrix_palette");
+#else
+	static PFNGLCURRENTPALETTEMATRIXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLCURRENTPALETTEMATRIXOESPROC_ALT)glaltGetProcAddressExtension("glCurrentPaletteMatrixOES","GL_OES_matrix_palette"); }
+#endif
 	 fn(matrixpaletteindex1);
 }
 #endif
@@ -3063,7 +4068,12 @@ static inline void glCurrentPaletteMatrixOES(GLuint matrixpaletteindex1)
 typedef void (*PFNGLLOADPALETTEFROMMODELVIEWMATRIXOESPROC_ALT)();
 static inline void glLoadPaletteFromModelViewMatrixOES()
 {
+#ifdef __cplusplus
 	static PFNGLLOADPALETTEFROMMODELVIEWMATRIXOESPROC_ALT fn=(PFNGLLOADPALETTEFROMMODELVIEWMATRIXOESPROC_ALT)glaltGetProcAddressExtension("glLoadPaletteFromModelViewMatrixOES","GL_OES_matrix_palette");
+#else
+	static PFNGLLOADPALETTEFROMMODELVIEWMATRIXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLLOADPALETTEFROMMODELVIEWMATRIXOESPROC_ALT)glaltGetProcAddressExtension("glLoadPaletteFromModelViewMatrixOES","GL_OES_matrix_palette"); }
+#endif
 	 fn();
 }
 #endif
@@ -3073,7 +4083,12 @@ static inline void glLoadPaletteFromModelViewMatrixOES()
 typedef void (*PFNGLMATRIXINDEXPOINTEROESPROC_ALT)(GLint,GLenum,GLsizei,const void *);
 static inline void glMatrixIndexPointerOES(GLint size1,GLenum type1,GLsizei stride1,const void * pointer1)
 {
+#ifdef __cplusplus
 	static PFNGLMATRIXINDEXPOINTEROESPROC_ALT fn=(PFNGLMATRIXINDEXPOINTEROESPROC_ALT)glaltGetProcAddressExtension("glMatrixIndexPointerOES","GL_OES_matrix_palette");
+#else
+	static PFNGLMATRIXINDEXPOINTEROESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLMATRIXINDEXPOINTEROESPROC_ALT)glaltGetProcAddressExtension("glMatrixIndexPointerOES","GL_OES_matrix_palette"); }
+#endif
 	 fn(size1,type1,stride1,pointer1);
 }
 #endif
@@ -3083,7 +4098,12 @@ static inline void glMatrixIndexPointerOES(GLint size1,GLenum type1,GLsizei stri
 typedef void (*PFNGLWEIGHTPOINTEROESPROC_ALT)(GLint,GLenum,GLsizei,const void *);
 static inline void glWeightPointerOES(GLint size1,GLenum type1,GLsizei stride1,const void * pointer1)
 {
+#ifdef __cplusplus
 	static PFNGLWEIGHTPOINTEROESPROC_ALT fn=(PFNGLWEIGHTPOINTEROESPROC_ALT)glaltGetProcAddressExtension("glWeightPointerOES","GL_OES_matrix_palette");
+#else
+	static PFNGLWEIGHTPOINTEROESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLWEIGHTPOINTEROESPROC_ALT)glaltGetProcAddressExtension("glWeightPointerOES","GL_OES_matrix_palette"); }
+#endif
 	 fn(size1,type1,stride1,pointer1);
 }
 #endif
@@ -3133,7 +4153,12 @@ CGUARDBEGIN
 typedef void (*PFNGLPOINTSIZEPOINTEROESPROC_ALT)(GLenum,GLsizei,const void *);
 static inline void glPointSizePointerOES(GLenum type1,GLsizei stride1,const void * pointer1)
 {
+#ifdef __cplusplus
 	static PFNGLPOINTSIZEPOINTEROESPROC_ALT fn=(PFNGLPOINTSIZEPOINTEROESPROC_ALT)glaltGetProcAddressExtension("glPointSizePointerOES","GL_OES_point_size_array");
+#else
+	static PFNGLPOINTSIZEPOINTEROESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLPOINTSIZEPOINTEROESPROC_ALT)glaltGetProcAddressExtension("glPointSizePointerOES","GL_OES_point_size_array"); }
+#endif
 	 fn(type1,stride1,pointer1);
 }
 #endif
@@ -3165,7 +4190,12 @@ CGUARDBEGIN
 typedef GLbitfield (*PFNGLQUERYMATRIXXOESPROC_ALT)(GLfixed *,GLint *);
 static inline GLbitfield glQueryMatrixxOES(GLfixed * mantissa1,GLint * exponent1)
 {
+#ifdef __cplusplus
 	static PFNGLQUERYMATRIXXOESPROC_ALT fn=(PFNGLQUERYMATRIXXOESPROC_ALT)glaltGetProcAddressExtension("glQueryMatrixxOES","GL_OES_query_matrix");
+#else
+	static PFNGLQUERYMATRIXXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLQUERYMATRIXXOESPROC_ALT)glaltGetProcAddressExtension("glQueryMatrixxOES","GL_OES_query_matrix"); }
+#endif
 	return fn(mantissa1,exponent1);
 }
 #endif
@@ -3264,7 +4294,12 @@ CGUARDBEGIN
 typedef void (*PFNGLCLEARDEPTHFOESPROC_ALT)(GLclampf);
 static inline void glClearDepthfOES(GLclampf depth1)
 {
+#ifdef __cplusplus
 	static PFNGLCLEARDEPTHFOESPROC_ALT fn=(PFNGLCLEARDEPTHFOESPROC_ALT)glaltGetProcAddressExtension("glClearDepthfOES","GL_OES_single_precision");
+#else
+	static PFNGLCLEARDEPTHFOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLCLEARDEPTHFOESPROC_ALT)glaltGetProcAddressExtension("glClearDepthfOES","GL_OES_single_precision"); }
+#endif
 	 fn(depth1);
 }
 #endif
@@ -3276,7 +4311,12 @@ static inline void glClearDepthfOES(GLclampf depth1)
 typedef void (*PFNGLCLIPPLANEFOESPROC_ALT)(GLenum,const GLfloat *);
 static inline void glClipPlanefOES(GLenum plane1,const GLfloat * equation1)
 {
+#ifdef __cplusplus
 	static PFNGLCLIPPLANEFOESPROC_ALT fn=(PFNGLCLIPPLANEFOESPROC_ALT)glaltGetProcAddressExtension("glClipPlanefOES","GL_OES_single_precision");
+#else
+	static PFNGLCLIPPLANEFOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLCLIPPLANEFOESPROC_ALT)glaltGetProcAddressExtension("glClipPlanefOES","GL_OES_single_precision"); }
+#endif
 	 fn(plane1,equation1);
 }
 #endif
@@ -3286,7 +4326,12 @@ static inline void glClipPlanefOES(GLenum plane1,const GLfloat * equation1)
 typedef void (*PFNGLDEPTHRANGEFOESPROC_ALT)(GLclampf,GLclampf);
 static inline void glDepthRangefOES(GLclampf n1,GLclampf f1)
 {
+#ifdef __cplusplus
 	static PFNGLDEPTHRANGEFOESPROC_ALT fn=(PFNGLDEPTHRANGEFOESPROC_ALT)glaltGetProcAddressExtension("glDepthRangefOES","GL_OES_single_precision");
+#else
+	static PFNGLDEPTHRANGEFOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLDEPTHRANGEFOESPROC_ALT)glaltGetProcAddressExtension("glDepthRangefOES","GL_OES_single_precision"); }
+#endif
 	 fn(n1,f1);
 }
 #endif
@@ -3298,7 +4343,12 @@ static inline void glDepthRangefOES(GLclampf n1,GLclampf f1)
 typedef void (*PFNGLFRUSTUMFOESPROC_ALT)(GLfloat,GLfloat,GLfloat,GLfloat,GLfloat,GLfloat);
 static inline void glFrustumfOES(GLfloat l1,GLfloat r1,GLfloat b1,GLfloat t1,GLfloat n1,GLfloat f1)
 {
+#ifdef __cplusplus
 	static PFNGLFRUSTUMFOESPROC_ALT fn=(PFNGLFRUSTUMFOESPROC_ALT)glaltGetProcAddressExtension("glFrustumfOES","GL_OES_single_precision");
+#else
+	static PFNGLFRUSTUMFOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLFRUSTUMFOESPROC_ALT)glaltGetProcAddressExtension("glFrustumfOES","GL_OES_single_precision"); }
+#endif
 	 fn(l1,r1,b1,t1,n1,f1);
 }
 #endif
@@ -3308,7 +4358,12 @@ static inline void glFrustumfOES(GLfloat l1,GLfloat r1,GLfloat b1,GLfloat t1,GLf
 typedef void (*PFNGLGETCLIPPLANEFOESPROC_ALT)(GLenum,GLfloat *);
 static inline void glGetClipPlanefOES(GLenum plane1,GLfloat * equation1)
 {
+#ifdef __cplusplus
 	static PFNGLGETCLIPPLANEFOESPROC_ALT fn=(PFNGLGETCLIPPLANEFOESPROC_ALT)glaltGetProcAddressExtension("glGetClipPlanefOES","GL_OES_single_precision");
+#else
+	static PFNGLGETCLIPPLANEFOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETCLIPPLANEFOESPROC_ALT)glaltGetProcAddressExtension("glGetClipPlanefOES","GL_OES_single_precision"); }
+#endif
 	 fn(plane1,equation1);
 }
 #endif
@@ -3318,7 +4373,12 @@ static inline void glGetClipPlanefOES(GLenum plane1,GLfloat * equation1)
 typedef void (*PFNGLORTHOFOESPROC_ALT)(GLfloat,GLfloat,GLfloat,GLfloat,GLfloat,GLfloat);
 static inline void glOrthofOES(GLfloat l1,GLfloat r1,GLfloat b1,GLfloat t1,GLfloat n1,GLfloat f1)
 {
+#ifdef __cplusplus
 	static PFNGLORTHOFOESPROC_ALT fn=(PFNGLORTHOFOESPROC_ALT)glaltGetProcAddressExtension("glOrthofOES","GL_OES_single_precision");
+#else
+	static PFNGLORTHOFOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLORTHOFOESPROC_ALT)glaltGetProcAddressExtension("glOrthofOES","GL_OES_single_precision"); }
+#endif
 	 fn(l1,r1,b1,t1,n1,f1);
 }
 #endif
@@ -3422,7 +4482,12 @@ CGUARDBEGIN
 typedef void (*PFNGLGETTEXGENFVOESPROC_ALT)(GLenum,GLenum,GLfloat *);
 static inline void glGetTexGenfvOES(GLenum coord1,GLenum pname1,GLfloat * params1)
 {
+#ifdef __cplusplus
 	static PFNGLGETTEXGENFVOESPROC_ALT fn=(PFNGLGETTEXGENFVOESPROC_ALT)glaltGetProcAddressExtension("glGetTexGenfvOES","GL_OES_texture_cube_map");
+#else
+	static PFNGLGETTEXGENFVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETTEXGENFVOESPROC_ALT)glaltGetProcAddressExtension("glGetTexGenfvOES","GL_OES_texture_cube_map"); }
+#endif
 	 fn(coord1,pname1,params1);
 }
 #endif
@@ -3432,7 +4497,12 @@ static inline void glGetTexGenfvOES(GLenum coord1,GLenum pname1,GLfloat * params
 typedef void (*PFNGLGETTEXGENIVOESPROC_ALT)(GLenum,GLenum,GLint *);
 static inline void glGetTexGenivOES(GLenum coord1,GLenum pname1,GLint * params1)
 {
+#ifdef __cplusplus
 	static PFNGLGETTEXGENIVOESPROC_ALT fn=(PFNGLGETTEXGENIVOESPROC_ALT)glaltGetProcAddressExtension("glGetTexGenivOES","GL_OES_texture_cube_map");
+#else
+	static PFNGLGETTEXGENIVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETTEXGENIVOESPROC_ALT)glaltGetProcAddressExtension("glGetTexGenivOES","GL_OES_texture_cube_map"); }
+#endif
 	 fn(coord1,pname1,params1);
 }
 #endif
@@ -3442,7 +4512,12 @@ static inline void glGetTexGenivOES(GLenum coord1,GLenum pname1,GLint * params1)
 typedef void (*PFNGLGETTEXGENXVOESPROC_ALT)(GLenum,GLenum,GLfixed *);
 static inline void glGetTexGenxvOES(GLenum coord1,GLenum pname1,GLfixed * params1)
 {
+#ifdef __cplusplus
 	static PFNGLGETTEXGENXVOESPROC_ALT fn=(PFNGLGETTEXGENXVOESPROC_ALT)glaltGetProcAddressExtension("glGetTexGenxvOES","GL_OES_texture_cube_map");
+#else
+	static PFNGLGETTEXGENXVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETTEXGENXVOESPROC_ALT)glaltGetProcAddressExtension("glGetTexGenxvOES","GL_OES_texture_cube_map"); }
+#endif
 	 fn(coord1,pname1,params1);
 }
 #endif
@@ -3452,7 +4527,12 @@ static inline void glGetTexGenxvOES(GLenum coord1,GLenum pname1,GLfixed * params
 typedef void (*PFNGLTEXGENFOESPROC_ALT)(GLenum,GLenum,GLfloat);
 static inline void glTexGenfOES(GLenum coord1,GLenum pname1,GLfloat param1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXGENFOESPROC_ALT fn=(PFNGLTEXGENFOESPROC_ALT)glaltGetProcAddressExtension("glTexGenfOES","GL_OES_texture_cube_map");
+#else
+	static PFNGLTEXGENFOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXGENFOESPROC_ALT)glaltGetProcAddressExtension("glTexGenfOES","GL_OES_texture_cube_map"); }
+#endif
 	 fn(coord1,pname1,param1);
 }
 #endif
@@ -3462,7 +4542,12 @@ static inline void glTexGenfOES(GLenum coord1,GLenum pname1,GLfloat param1)
 typedef void (*PFNGLTEXGENFVOESPROC_ALT)(GLenum,GLenum,const GLfloat *);
 static inline void glTexGenfvOES(GLenum coord1,GLenum pname1,const GLfloat * params1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXGENFVOESPROC_ALT fn=(PFNGLTEXGENFVOESPROC_ALT)glaltGetProcAddressExtension("glTexGenfvOES","GL_OES_texture_cube_map");
+#else
+	static PFNGLTEXGENFVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXGENFVOESPROC_ALT)glaltGetProcAddressExtension("glTexGenfvOES","GL_OES_texture_cube_map"); }
+#endif
 	 fn(coord1,pname1,params1);
 }
 #endif
@@ -3472,7 +4557,12 @@ static inline void glTexGenfvOES(GLenum coord1,GLenum pname1,const GLfloat * par
 typedef void (*PFNGLTEXGENIOESPROC_ALT)(GLenum,GLenum,GLint);
 static inline void glTexGeniOES(GLenum coord1,GLenum pname1,GLint param1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXGENIOESPROC_ALT fn=(PFNGLTEXGENIOESPROC_ALT)glaltGetProcAddressExtension("glTexGeniOES","GL_OES_texture_cube_map");
+#else
+	static PFNGLTEXGENIOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXGENIOESPROC_ALT)glaltGetProcAddressExtension("glTexGeniOES","GL_OES_texture_cube_map"); }
+#endif
 	 fn(coord1,pname1,param1);
 }
 #endif
@@ -3482,7 +4572,12 @@ static inline void glTexGeniOES(GLenum coord1,GLenum pname1,GLint param1)
 typedef void (*PFNGLTEXGENIVOESPROC_ALT)(GLenum,GLenum,const GLint *);
 static inline void glTexGenivOES(GLenum coord1,GLenum pname1,const GLint * params1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXGENIVOESPROC_ALT fn=(PFNGLTEXGENIVOESPROC_ALT)glaltGetProcAddressExtension("glTexGenivOES","GL_OES_texture_cube_map");
+#else
+	static PFNGLTEXGENIVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXGENIVOESPROC_ALT)glaltGetProcAddressExtension("glTexGenivOES","GL_OES_texture_cube_map"); }
+#endif
 	 fn(coord1,pname1,params1);
 }
 #endif
@@ -3492,7 +4587,12 @@ static inline void glTexGenivOES(GLenum coord1,GLenum pname1,const GLint * param
 typedef void (*PFNGLTEXGENXOESPROC_ALT)(GLenum,GLenum,GLfixed);
 static inline void glTexGenxOES(GLenum coord1,GLenum pname1,GLfixed param1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXGENXOESPROC_ALT fn=(PFNGLTEXGENXOESPROC_ALT)glaltGetProcAddressExtension("glTexGenxOES","GL_OES_texture_cube_map");
+#else
+	static PFNGLTEXGENXOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXGENXOESPROC_ALT)glaltGetProcAddressExtension("glTexGenxOES","GL_OES_texture_cube_map"); }
+#endif
 	 fn(coord1,pname1,param1);
 }
 #endif
@@ -3502,7 +4602,12 @@ static inline void glTexGenxOES(GLenum coord1,GLenum pname1,GLfixed param1)
 typedef void (*PFNGLTEXGENXVOESPROC_ALT)(GLenum,GLenum,const GLfixed *);
 static inline void glTexGenxvOES(GLenum coord1,GLenum pname1,const GLfixed * params1)
 {
+#ifdef __cplusplus
 	static PFNGLTEXGENXVOESPROC_ALT fn=(PFNGLTEXGENXVOESPROC_ALT)glaltGetProcAddressExtension("glTexGenxvOES","GL_OES_texture_cube_map");
+#else
+	static PFNGLTEXGENXVOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLTEXGENXVOESPROC_ALT)glaltGetProcAddressExtension("glTexGenxvOES","GL_OES_texture_cube_map"); }
+#endif
 	 fn(coord1,pname1,params1);
 }
 #endif
@@ -3542,7 +4647,12 @@ CGUARDBEGIN
 typedef void (*PFNGLBINDVERTEXARRAYOESPROC_ALT)(GLuint);
 static inline void glBindVertexArrayOES(GLuint array1)
 {
+#ifdef __cplusplus
 	static PFNGLBINDVERTEXARRAYOESPROC_ALT fn=(PFNGLBINDVERTEXARRAYOESPROC_ALT)glaltGetProcAddressExtension("glBindVertexArrayOES","GL_OES_vertex_array_object");
+#else
+	static PFNGLBINDVERTEXARRAYOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLBINDVERTEXARRAYOESPROC_ALT)glaltGetProcAddressExtension("glBindVertexArrayOES","GL_OES_vertex_array_object"); }
+#endif
 	 fn(array1);
 }
 #endif
@@ -3554,7 +4664,12 @@ static inline void glBindVertexArrayOES(GLuint array1)
 typedef void (*PFNGLDELETEVERTEXARRAYSOESPROC_ALT)(GLsizei,const GLuint *);
 static inline void glDeleteVertexArraysOES(GLsizei n1,const GLuint * arrays1)
 {
+#ifdef __cplusplus
 	static PFNGLDELETEVERTEXARRAYSOESPROC_ALT fn=(PFNGLDELETEVERTEXARRAYSOESPROC_ALT)glaltGetProcAddressExtension("glDeleteVertexArraysOES","GL_OES_vertex_array_object");
+#else
+	static PFNGLDELETEVERTEXARRAYSOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLDELETEVERTEXARRAYSOESPROC_ALT)glaltGetProcAddressExtension("glDeleteVertexArraysOES","GL_OES_vertex_array_object"); }
+#endif
 	 fn(n1,arrays1);
 }
 #endif
@@ -3566,7 +4681,12 @@ static inline void glDeleteVertexArraysOES(GLsizei n1,const GLuint * arrays1)
 typedef void (*PFNGLGENVERTEXARRAYSOESPROC_ALT)(GLsizei,GLuint *);
 static inline void glGenVertexArraysOES(GLsizei n1,GLuint * arrays1)
 {
+#ifdef __cplusplus
 	static PFNGLGENVERTEXARRAYSOESPROC_ALT fn=(PFNGLGENVERTEXARRAYSOESPROC_ALT)glaltGetProcAddressExtension("glGenVertexArraysOES","GL_OES_vertex_array_object");
+#else
+	static PFNGLGENVERTEXARRAYSOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGENVERTEXARRAYSOESPROC_ALT)glaltGetProcAddressExtension("glGenVertexArraysOES","GL_OES_vertex_array_object"); }
+#endif
 	 fn(n1,arrays1);
 }
 #endif
@@ -3578,7 +4698,12 @@ static inline void glGenVertexArraysOES(GLsizei n1,GLuint * arrays1)
 typedef GLboolean (*PFNGLISVERTEXARRAYOESPROC_ALT)(GLuint);
 static inline GLboolean glIsVertexArrayOES(GLuint array1)
 {
+#ifdef __cplusplus
 	static PFNGLISVERTEXARRAYOESPROC_ALT fn=(PFNGLISVERTEXARRAYOESPROC_ALT)glaltGetProcAddressExtension("glIsVertexArrayOES","GL_OES_vertex_array_object");
+#else
+	static PFNGLISVERTEXARRAYOESPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLISVERTEXARRAYOESPROC_ALT)glaltGetProcAddressExtension("glIsVertexArrayOES","GL_OES_vertex_array_object"); }
+#endif
 	return fn(array1);
 }
 #endif
@@ -3598,7 +4723,12 @@ CGUARDBEGIN
 typedef void (*PFNGLDISABLEDRIVERCONTROLQCOMPROC_ALT)(GLuint);
 static inline void glDisableDriverControlQCOM(GLuint driverControl1)
 {
+#ifdef __cplusplus
 	static PFNGLDISABLEDRIVERCONTROLQCOMPROC_ALT fn=(PFNGLDISABLEDRIVERCONTROLQCOMPROC_ALT)glaltGetProcAddressExtension("glDisableDriverControlQCOM","GL_QCOM_driver_control");
+#else
+	static PFNGLDISABLEDRIVERCONTROLQCOMPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLDISABLEDRIVERCONTROLQCOMPROC_ALT)glaltGetProcAddressExtension("glDisableDriverControlQCOM","GL_QCOM_driver_control"); }
+#endif
 	 fn(driverControl1);
 }
 #endif
@@ -3608,7 +4738,12 @@ static inline void glDisableDriverControlQCOM(GLuint driverControl1)
 typedef void (*PFNGLENABLEDRIVERCONTROLQCOMPROC_ALT)(GLuint);
 static inline void glEnableDriverControlQCOM(GLuint driverControl1)
 {
+#ifdef __cplusplus
 	static PFNGLENABLEDRIVERCONTROLQCOMPROC_ALT fn=(PFNGLENABLEDRIVERCONTROLQCOMPROC_ALT)glaltGetProcAddressExtension("glEnableDriverControlQCOM","GL_QCOM_driver_control");
+#else
+	static PFNGLENABLEDRIVERCONTROLQCOMPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLENABLEDRIVERCONTROLQCOMPROC_ALT)glaltGetProcAddressExtension("glEnableDriverControlQCOM","GL_QCOM_driver_control"); }
+#endif
 	 fn(driverControl1);
 }
 #endif
@@ -3618,7 +4753,12 @@ static inline void glEnableDriverControlQCOM(GLuint driverControl1)
 typedef void (*PFNGLGETDRIVERCONTROLSTRINGQCOMPROC_ALT)(GLuint,GLsizei,GLsizei *,GLchar *);
 static inline void glGetDriverControlStringQCOM(GLuint driverControl1,GLsizei bufSize1,GLsizei * length1,GLchar * driverControlString1)
 {
+#ifdef __cplusplus
 	static PFNGLGETDRIVERCONTROLSTRINGQCOMPROC_ALT fn=(PFNGLGETDRIVERCONTROLSTRINGQCOMPROC_ALT)glaltGetProcAddressExtension("glGetDriverControlStringQCOM","GL_QCOM_driver_control");
+#else
+	static PFNGLGETDRIVERCONTROLSTRINGQCOMPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETDRIVERCONTROLSTRINGQCOMPROC_ALT)glaltGetProcAddressExtension("glGetDriverControlStringQCOM","GL_QCOM_driver_control"); }
+#endif
 	 fn(driverControl1,bufSize1,length1,driverControlString1);
 }
 #endif
@@ -3628,7 +4768,12 @@ static inline void glGetDriverControlStringQCOM(GLuint driverControl1,GLsizei bu
 typedef void (*PFNGLGETDRIVERCONTROLSQCOMPROC_ALT)(GLint *,GLsizei,GLuint *);
 static inline void glGetDriverControlsQCOM(GLint * num1,GLsizei size1,GLuint * driverControls1)
 {
+#ifdef __cplusplus
 	static PFNGLGETDRIVERCONTROLSQCOMPROC_ALT fn=(PFNGLGETDRIVERCONTROLSQCOMPROC_ALT)glaltGetProcAddressExtension("glGetDriverControlsQCOM","GL_QCOM_driver_control");
+#else
+	static PFNGLGETDRIVERCONTROLSQCOMPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLGETDRIVERCONTROLSQCOMPROC_ALT)glaltGetProcAddressExtension("glGetDriverControlsQCOM","GL_QCOM_driver_control"); }
+#endif
 	 fn(num1,size1,driverControls1);
 }
 #endif
@@ -3679,7 +4824,12 @@ CGUARDBEGIN
 typedef void (*PFNGLEXTGETBUFFERPOINTERVQCOMPROC_ALT)(GLenum,void **);
 static inline void glExtGetBufferPointervQCOM(GLenum target1,void ** params1)
 {
+#ifdef __cplusplus
 	static PFNGLEXTGETBUFFERPOINTERVQCOMPROC_ALT fn=(PFNGLEXTGETBUFFERPOINTERVQCOMPROC_ALT)glaltGetProcAddressExtension("glExtGetBufferPointervQCOM","GL_QCOM_extended_get");
+#else
+	static PFNGLEXTGETBUFFERPOINTERVQCOMPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLEXTGETBUFFERPOINTERVQCOMPROC_ALT)glaltGetProcAddressExtension("glExtGetBufferPointervQCOM","GL_QCOM_extended_get"); }
+#endif
 	 fn(target1,params1);
 }
 #endif
@@ -3689,7 +4839,12 @@ static inline void glExtGetBufferPointervQCOM(GLenum target1,void ** params1)
 typedef void (*PFNGLEXTGETBUFFERSQCOMPROC_ALT)(GLuint *,GLint,GLint *);
 static inline void glExtGetBuffersQCOM(GLuint * buffers1,GLint maxBuffers1,GLint * numBuffers1)
 {
+#ifdef __cplusplus
 	static PFNGLEXTGETBUFFERSQCOMPROC_ALT fn=(PFNGLEXTGETBUFFERSQCOMPROC_ALT)glaltGetProcAddressExtension("glExtGetBuffersQCOM","GL_QCOM_extended_get");
+#else
+	static PFNGLEXTGETBUFFERSQCOMPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLEXTGETBUFFERSQCOMPROC_ALT)glaltGetProcAddressExtension("glExtGetBuffersQCOM","GL_QCOM_extended_get"); }
+#endif
 	 fn(buffers1,maxBuffers1,numBuffers1);
 }
 #endif
@@ -3699,7 +4854,12 @@ static inline void glExtGetBuffersQCOM(GLuint * buffers1,GLint maxBuffers1,GLint
 typedef void (*PFNGLEXTGETFRAMEBUFFERSQCOMPROC_ALT)(GLuint *,GLint,GLint *);
 static inline void glExtGetFramebuffersQCOM(GLuint * framebuffers1,GLint maxFramebuffers1,GLint * numFramebuffers1)
 {
+#ifdef __cplusplus
 	static PFNGLEXTGETFRAMEBUFFERSQCOMPROC_ALT fn=(PFNGLEXTGETFRAMEBUFFERSQCOMPROC_ALT)glaltGetProcAddressExtension("glExtGetFramebuffersQCOM","GL_QCOM_extended_get");
+#else
+	static PFNGLEXTGETFRAMEBUFFERSQCOMPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLEXTGETFRAMEBUFFERSQCOMPROC_ALT)glaltGetProcAddressExtension("glExtGetFramebuffersQCOM","GL_QCOM_extended_get"); }
+#endif
 	 fn(framebuffers1,maxFramebuffers1,numFramebuffers1);
 }
 #endif
@@ -3709,7 +4869,12 @@ static inline void glExtGetFramebuffersQCOM(GLuint * framebuffers1,GLint maxFram
 typedef void (*PFNGLEXTGETRENDERBUFFERSQCOMPROC_ALT)(GLuint *,GLint,GLint *);
 static inline void glExtGetRenderbuffersQCOM(GLuint * renderbuffers1,GLint maxRenderbuffers1,GLint * numRenderbuffers1)
 {
+#ifdef __cplusplus
 	static PFNGLEXTGETRENDERBUFFERSQCOMPROC_ALT fn=(PFNGLEXTGETRENDERBUFFERSQCOMPROC_ALT)glaltGetProcAddressExtension("glExtGetRenderbuffersQCOM","GL_QCOM_extended_get");
+#else
+	static PFNGLEXTGETRENDERBUFFERSQCOMPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLEXTGETRENDERBUFFERSQCOMPROC_ALT)glaltGetProcAddressExtension("glExtGetRenderbuffersQCOM","GL_QCOM_extended_get"); }
+#endif
 	 fn(renderbuffers1,maxRenderbuffers1,numRenderbuffers1);
 }
 #endif
@@ -3719,7 +4884,12 @@ static inline void glExtGetRenderbuffersQCOM(GLuint * renderbuffers1,GLint maxRe
 typedef void (*PFNGLEXTGETTEXLEVELPARAMETERIVQCOMPROC_ALT)(GLuint,GLenum,GLint,GLenum,GLint *);
 static inline void glExtGetTexLevelParameterivQCOM(GLuint texture1,GLenum face1,GLint level1,GLenum pname1,GLint * params1)
 {
+#ifdef __cplusplus
 	static PFNGLEXTGETTEXLEVELPARAMETERIVQCOMPROC_ALT fn=(PFNGLEXTGETTEXLEVELPARAMETERIVQCOMPROC_ALT)glaltGetProcAddressExtension("glExtGetTexLevelParameterivQCOM","GL_QCOM_extended_get");
+#else
+	static PFNGLEXTGETTEXLEVELPARAMETERIVQCOMPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLEXTGETTEXLEVELPARAMETERIVQCOMPROC_ALT)glaltGetProcAddressExtension("glExtGetTexLevelParameterivQCOM","GL_QCOM_extended_get"); }
+#endif
 	 fn(texture1,face1,level1,pname1,params1);
 }
 #endif
@@ -3729,7 +4899,12 @@ static inline void glExtGetTexLevelParameterivQCOM(GLuint texture1,GLenum face1,
 typedef void (*PFNGLEXTGETTEXSUBIMAGEQCOMPROC_ALT)(GLenum,GLint,GLint,GLint,GLint,GLsizei,GLsizei,GLsizei,GLenum,GLenum,void *);
 static inline void glExtGetTexSubImageQCOM(GLenum target1,GLint level1,GLint xoffset1,GLint yoffset1,GLint zoffset1,GLsizei width1,GLsizei height1,GLsizei depth1,GLenum format1,GLenum type1,void * texels1)
 {
+#ifdef __cplusplus
 	static PFNGLEXTGETTEXSUBIMAGEQCOMPROC_ALT fn=(PFNGLEXTGETTEXSUBIMAGEQCOMPROC_ALT)glaltGetProcAddressExtension("glExtGetTexSubImageQCOM","GL_QCOM_extended_get");
+#else
+	static PFNGLEXTGETTEXSUBIMAGEQCOMPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLEXTGETTEXSUBIMAGEQCOMPROC_ALT)glaltGetProcAddressExtension("glExtGetTexSubImageQCOM","GL_QCOM_extended_get"); }
+#endif
 	 fn(target1,level1,xoffset1,yoffset1,zoffset1,width1,height1,depth1,format1,type1,texels1);
 }
 #endif
@@ -3739,7 +4914,12 @@ static inline void glExtGetTexSubImageQCOM(GLenum target1,GLint level1,GLint xof
 typedef void (*PFNGLEXTGETTEXTURESQCOMPROC_ALT)(GLuint *,GLint,GLint *);
 static inline void glExtGetTexturesQCOM(GLuint * textures1,GLint maxTextures1,GLint * numTextures1)
 {
+#ifdef __cplusplus
 	static PFNGLEXTGETTEXTURESQCOMPROC_ALT fn=(PFNGLEXTGETTEXTURESQCOMPROC_ALT)glaltGetProcAddressExtension("glExtGetTexturesQCOM","GL_QCOM_extended_get");
+#else
+	static PFNGLEXTGETTEXTURESQCOMPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLEXTGETTEXTURESQCOMPROC_ALT)glaltGetProcAddressExtension("glExtGetTexturesQCOM","GL_QCOM_extended_get"); }
+#endif
 	 fn(textures1,maxTextures1,numTextures1);
 }
 #endif
@@ -3749,7 +4929,12 @@ static inline void glExtGetTexturesQCOM(GLuint * textures1,GLint maxTextures1,GL
 typedef void (*PFNGLEXTTEXOBJECTSTATEOVERRIDEIQCOMPROC_ALT)(GLenum,GLenum,GLint);
 static inline void glExtTexObjectStateOverrideiQCOM(GLenum target1,GLenum pname1,GLint param1)
 {
+#ifdef __cplusplus
 	static PFNGLEXTTEXOBJECTSTATEOVERRIDEIQCOMPROC_ALT fn=(PFNGLEXTTEXOBJECTSTATEOVERRIDEIQCOMPROC_ALT)glaltGetProcAddressExtension("glExtTexObjectStateOverrideiQCOM","GL_QCOM_extended_get");
+#else
+	static PFNGLEXTTEXOBJECTSTATEOVERRIDEIQCOMPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLEXTTEXOBJECTSTATEOVERRIDEIQCOMPROC_ALT)glaltGetProcAddressExtension("glExtTexObjectStateOverrideiQCOM","GL_QCOM_extended_get"); }
+#endif
 	 fn(target1,pname1,param1);
 }
 #endif
@@ -3767,7 +4952,12 @@ CGUARDBEGIN
 typedef void (*PFNGLEXTGETPROGRAMBINARYSOURCEQCOMPROC_ALT)(GLuint,GLenum,GLchar *,GLint *);
 static inline void glExtGetProgramBinarySourceQCOM(GLuint program1,GLenum shadertype1,GLchar * source1,GLint * length1)
 {
+#ifdef __cplusplus
 	static PFNGLEXTGETPROGRAMBINARYSOURCEQCOMPROC_ALT fn=(PFNGLEXTGETPROGRAMBINARYSOURCEQCOMPROC_ALT)glaltGetProcAddressExtension("glExtGetProgramBinarySourceQCOM","GL_QCOM_extended_get2");
+#else
+	static PFNGLEXTGETPROGRAMBINARYSOURCEQCOMPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLEXTGETPROGRAMBINARYSOURCEQCOMPROC_ALT)glaltGetProcAddressExtension("glExtGetProgramBinarySourceQCOM","GL_QCOM_extended_get2"); }
+#endif
 	 fn(program1,shadertype1,source1,length1);
 }
 #endif
@@ -3777,7 +4967,12 @@ static inline void glExtGetProgramBinarySourceQCOM(GLuint program1,GLenum shader
 typedef void (*PFNGLEXTGETPROGRAMSQCOMPROC_ALT)(GLuint *,GLint,GLint *);
 static inline void glExtGetProgramsQCOM(GLuint * programs1,GLint maxPrograms1,GLint * numPrograms1)
 {
+#ifdef __cplusplus
 	static PFNGLEXTGETPROGRAMSQCOMPROC_ALT fn=(PFNGLEXTGETPROGRAMSQCOMPROC_ALT)glaltGetProcAddressExtension("glExtGetProgramsQCOM","GL_QCOM_extended_get2");
+#else
+	static PFNGLEXTGETPROGRAMSQCOMPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLEXTGETPROGRAMSQCOMPROC_ALT)glaltGetProcAddressExtension("glExtGetProgramsQCOM","GL_QCOM_extended_get2"); }
+#endif
 	 fn(programs1,maxPrograms1,numPrograms1);
 }
 #endif
@@ -3787,7 +4982,12 @@ static inline void glExtGetProgramsQCOM(GLuint * programs1,GLint maxPrograms1,GL
 typedef void (*PFNGLEXTGETSHADERSQCOMPROC_ALT)(GLuint *,GLint,GLint *);
 static inline void glExtGetShadersQCOM(GLuint * shaders1,GLint maxShaders1,GLint * numShaders1)
 {
+#ifdef __cplusplus
 	static PFNGLEXTGETSHADERSQCOMPROC_ALT fn=(PFNGLEXTGETSHADERSQCOMPROC_ALT)glaltGetProcAddressExtension("glExtGetShadersQCOM","GL_QCOM_extended_get2");
+#else
+	static PFNGLEXTGETSHADERSQCOMPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLEXTGETSHADERSQCOMPROC_ALT)glaltGetProcAddressExtension("glExtGetShadersQCOM","GL_QCOM_extended_get2"); }
+#endif
 	 fn(shaders1,maxShaders1,numShaders1);
 }
 #endif
@@ -3797,7 +4997,12 @@ static inline void glExtGetShadersQCOM(GLuint * shaders1,GLint maxShaders1,GLint
 typedef GLboolean (*PFNGLEXTISPROGRAMBINARYQCOMPROC_ALT)(GLuint);
 static inline GLboolean glExtIsProgramBinaryQCOM(GLuint program1)
 {
+#ifdef __cplusplus
 	static PFNGLEXTISPROGRAMBINARYQCOMPROC_ALT fn=(PFNGLEXTISPROGRAMBINARYQCOMPROC_ALT)glaltGetProcAddressExtension("glExtIsProgramBinaryQCOM","GL_QCOM_extended_get2");
+#else
+	static PFNGLEXTISPROGRAMBINARYQCOMPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLEXTISPROGRAMBINARYQCOMPROC_ALT)glaltGetProcAddressExtension("glExtIsProgramBinaryQCOM","GL_QCOM_extended_get2"); }
+#endif
 	return fn(program1);
 }
 #endif
@@ -3922,7 +5127,12 @@ CGUARDBEGIN
 typedef void (*PFNGLENDTILINGQCOMPROC_ALT)(GLbitfield);
 static inline void glEndTilingQCOM(GLbitfield preserveMask1)
 {
+#ifdef __cplusplus
 	static PFNGLENDTILINGQCOMPROC_ALT fn=(PFNGLENDTILINGQCOMPROC_ALT)glaltGetProcAddressExtension("glEndTilingQCOM","GL_QCOM_tiled_rendering");
+#else
+	static PFNGLENDTILINGQCOMPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLENDTILINGQCOMPROC_ALT)glaltGetProcAddressExtension("glEndTilingQCOM","GL_QCOM_tiled_rendering"); }
+#endif
 	 fn(preserveMask1);
 }
 #endif
@@ -3932,7 +5142,12 @@ static inline void glEndTilingQCOM(GLbitfield preserveMask1)
 typedef void (*PFNGLSTARTTILINGQCOMPROC_ALT)(GLuint,GLuint,GLuint,GLuint,GLbitfield);
 static inline void glStartTilingQCOM(GLuint x1,GLuint y1,GLuint width1,GLuint height1,GLbitfield preserveMask1)
 {
+#ifdef __cplusplus
 	static PFNGLSTARTTILINGQCOMPROC_ALT fn=(PFNGLSTARTTILINGQCOMPROC_ALT)glaltGetProcAddressExtension("glStartTilingQCOM","GL_QCOM_tiled_rendering");
+#else
+	static PFNGLSTARTTILINGQCOMPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFNGLSTARTTILINGQCOMPROC_ALT)glaltGetProcAddressExtension("glStartTilingQCOM","GL_QCOM_tiled_rendering"); }
+#endif
 	 fn(x1,y1,width1,height1,preserveMask1);
 }
 #endif

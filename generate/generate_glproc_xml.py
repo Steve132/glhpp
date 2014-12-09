@@ -70,7 +70,12 @@ static inline %(rettype)s %(asignature)s(%(argstring)s)
 typedef %(rettype)s (*PFN%(usignature)sPROC_ALT)(%(justtypes)s);
 static inline %(rettype)s gl%(signature)s(%(argstring)s)
 {
+#ifdef __cplusplus
 	static PFN%(usignature)sPROC_ALT fn=(PFN%(usignature)sPROC_ALT)glaltGetProcAddress%(extorversion)s(\"gl%(signature)s\",%(extension)s);
+#else
+	static PFN%(usignature)sPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFN%(usignature)sPROC_ALT)glaltGetProcAddress%(extorversion)s(\"gl%(signature)s\",%(extension)s); }
+#endif
 	%(rv)s fn(%(justargs)s);
 }
 #endif

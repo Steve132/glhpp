@@ -9,5 +9,8 @@ if(NOT(MSVC))
 endif()
 #add_executable(maintest maintest.cpp)
 add_executable(glxgears glxgears.cpp)
+add_executable(glxgearsc glxgears.c)
 #target_link_libraries(maintest ${OPENGL_gl_LIBRARY})
 target_link_libraries(glxgears X11 GL)
+target_link_libraries(glxgearsc X11 GL m)
+
