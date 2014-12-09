@@ -252,6 +252,12 @@ class SpecificationsXML(object):
 			return True
 		else:
 			return False
+
+	def get_first_gl_api(self,name,commandname):
+		if(name[:10]=="GL_VERSION"):
+			for api in self.complete_apis['gl']:
+				if(commandname in api.required.commands):
+					return api			
 			
 	def print_enums(self,enumlist,fileobj):
 		constdefin="#ifndef %(k)s\n#define %(k)s %(v)s\n#endif //%(k)s\n"
@@ -260,25 +266,41 @@ class SpecificationsXML(object):
 		senums=[(e,self.enum_values[e]) for e in sorted(enumlist,key=lambda x: self.enum_values[x])]
 		for k,v in senums:
 			fileobj.write(constdefin % {'k':k,'v':v,'TENUM':('GLenum' if len(v) <=10 else 'GLuint64')})
+
+	def gl_first_api_wrapwrite(self,cmdstr,current,featurename,co,fileobj):
+		api=self.get_first_gl_api(featurename,co)
+		if(api and cmdstr is not ''):
+			fileobj.write("#ifndef %s" % (api.name))
+			fileobj.write(cmdstr)
+			fileobj.write("#endif\n\n")
+		else:
+			fileobj.write(cmdstr)
 			
 	def print_static_link_declarations(self,cmdlist,featurename,fileobj):
 		if(not self.cmode):
 			fileobj.write('extern "C" {\n')
 		for co in sorted(cmdlist):
 			if(self.static_function_check(featurename,co)):
-				fileobj.write(self.commands[co].print_static_link_declaration(featurename))
+				defstring='\n'+self.commands[co].print_static_link_declaration(featurename)
+				self.gl_first_api_wrapwrite(defstring,'',featurename,co,fileobj)
+			
 		if(not self.cmode):
 			fileobj.write('}\n')
 			
 	def print_definitions(self,cmdlist,featurename,fileobj):
+
+		fileobj.write("CGUARDBEGIN\n\n")
 		self.print_static_link_declarations(cmdlist,featurename,fileobj)
 	
 		if(not self.cmode):
 			fileobj.write("namespace gl{\n")
 		for co in sorted(cmdlist):
-			fileobj.write(self.commands[co].print_definition_function(featurename,self.static_function_check(featurename,co),self.cmode))
+			defstring=self.commands[co].print_definition_function(featurename,self.static_function_check(featurename,co),self.cmode)
+			self.gl_first_api_wrapwrite(defstring,'',featurename,co,fileobj)
 		if(not self.cmode):
 			fileobj.write("}\n")
+
+		fileobj.write("CGUARDEND\n\n")
 
 			
 	def write_feature(self,cfeature,fileobj):
@@ -292,6 +314,7 @@ class SpecificationsXML(object):
 		fileobj.write("#ifndef GL_ALT_API_VERSION\n#define GL_ALT_API_VERSION %(VERSION)d\n#endif\n" % {'VERSION':int(float(cfeature.versionfloat)*100)})
 		
 		self.print_enums(cfeature.required.enums,fileobj)
+		
 		self.print_definitions(cfeature.required.commands,cfeature.name,fileobj)
 		
 		fileobj.write("#endif\n")
@@ -305,6 +328,7 @@ class SpecificationsXML(object):
 			if(apiname in espec.supported):
 				fileobj.write("#ifndef %(EXTNAME)s\n#define %(EXTNAME)s\n" % {'EXTNAME':espec.name})
 				self.print_enums(espec.required.enums,fileobj)
+
 				self.print_definitions(espec.required.commands,'"'+ename+'"',fileobj)
 				
 				fileobj.write("#endif\n\n")

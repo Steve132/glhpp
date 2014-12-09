@@ -62,8 +62,96 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 #define CGUARDEND
 #endif
 
-%(TYPEDEFS)s
-%(API_NAMES)s
+#include <stddef.h>
+#ifndef GLEXT_64_TYPES_DEFINED
+/* This code block is duplicated in glxext.h, so must be protected */
+#define GLEXT_64_TYPES_DEFINED
+/* Define int32_t, int64_t, and uint64_t types for UST/MSC */
+/* (as used in the GL_EXT_timer_query extension). */
+#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
+#include <inttypes.h>
+#elif defined(__sun__) || defined(__digital__)
+#include <inttypes.h>
+#if defined(__STDC__)
+#if defined(__arch64__) || defined(_LP64)
+typedef long int int64_t;
+typedef unsigned long int uint64_t;
+#else
+typedef long long int int64_t;
+typedef unsigned long long int uint64_t;
+#endif /* __arch64__ */
+#endif /* __STDC__ */
+#elif defined( __VMS ) || defined(__sgi)
+#include <inttypes.h>
+#elif defined(__SCO__) || defined(__USLC__)
+#include <stdint.h>
+#elif defined(__UNIXOS2__) || defined(__SOL64__)
+typedef long int int32_t;
+typedef long long int int64_t;
+typedef unsigned long long int uint64_t;
+#elif defined(_WIN32) && defined(__GNUC__)
+#include <stdint.h>
+#elif defined(_WIN32)
+typedef __int32 int32_t;
+typedef __int64 int64_t;
+typedef unsigned __int64 uint64_t;
+#else
+/* Fallback if nothing above works */
+#include <inttypes.h>
+#endif
+#endif
+typedef unsigned int GLenum;
+typedef unsigned char GLboolean;
+typedef unsigned int GLbitfield;
+typedef void GLvoid;
+typedef signed char GLbyte;
+typedef short GLshort;
+typedef int GLint;
+typedef int GLclampx;
+typedef unsigned char GLubyte;
+typedef unsigned short GLushort;
+typedef unsigned int GLuint;
+typedef int GLsizei;
+typedef float GLfloat;
+typedef float GLclampf;
+typedef double GLdouble;
+typedef double GLclampd;
+typedef void *GLeglImageOES;
+typedef char GLchar;
+typedef char GLcharARB;
+#ifdef __APPLE__
+typedef void *GLhandleARB;
+#else
+typedef unsigned int GLhandleARB;
+#endif
+typedef unsigned short GLhalfARB;
+typedef unsigned short GLhalf;
+typedef GLint GLfixed;
+typedef ptrdiff_t GLintptr;
+typedef ptrdiff_t GLsizeiptr;
+typedef int64_t GLint64;
+typedef uint64_t GLuint64;
+typedef ptrdiff_t GLintptrARB;
+typedef ptrdiff_t GLsizeiptrARB;
+typedef int64_t GLint64EXT;
+typedef uint64_t GLuint64EXT;
+typedef struct __GLsync *GLsync;
+struct _cl_context;
+struct _cl_event;
+typedef void (GLALTDEBUGPROC)(GLenum source,GLenum type,GLuint id,GLenum severity,GLsizei length,const GLchar *message,const void *userParam);
+typedef void (GLALTDEBUGPROCARB)(GLenum source,GLenum type,GLuint id,GLenum severity,GLsizei length,const GLchar *message,const void *userParam);
+typedef void (GLALTDEBUGPROCKHR)(GLenum source,GLenum type,GLuint id,GLenum severity,GLsizei length,const GLchar *message,const void *userParam);
+typedef void (GLALTDEBUGPROCAMD)(GLuint id,GLenum category,GLenum severity,GLsizei length,const GLchar *message,void *userParam);
+typedef unsigned short GLhalfNV;
+typedef GLintptr GLvdpauSurfaceNV;
+
+#ifndef GL_HEADER_GL_API
+#define GL_HEADER_GL_API 0xcce4
+#endif
+#ifndef GL_HEADER_GLES_API
+#define GL_HEADER_GLES_API 0xf168
+#endif
+
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -412,7 +500,7 @@ inline void* glaltGetProcAddress(const char* funcname)
 		return fptr;
 	else
 	{
-		glaltError("Error, %%s was not found in this context %%s\n",funcname,"");
+		glaltError("Error, %s was not found in this context %s\n",funcname,"");
 	}
 }
 
@@ -425,12 +513,12 @@ inline void* glaltGetProcAddressExtension(const char* frequest,const char* extex
 			return fptr;
 		else
 		{
-			glaltError("Error, %%s was not found in this context even though %%s is supported\n",frequest,extext);
+			glaltError("Error, %s was not found in this context even though %s is supported\n",frequest,extext);
 		}
 	}
 	else
 	{	
-		glaltError("Error, %%s was not found in this context because %%s is not supported\n",frequest,extext);
+		glaltError("Error, %s was not found in this context because %s is not supported\n",frequest,extext);
 	}
 }
 inline void* glaltGetProcAddressVersion(const char* frequest,unsigned int vmaj,unsigned int vmin)
@@ -445,12 +533,12 @@ inline void* glaltGetProcAddressVersion(const char* frequest,unsigned int vmaj,u
 			return fptr;
 		else
 		{
-			glaltError("Error, %%s was not found in this context even though GL version %%s\n",frequest,vstring);
+			glaltError("Error, %s was not found in this context even though GL version %s\n",frequest,vstring);
 		}
 	}
 	else
 	{
-		glaltError("Error, %%s was not found in this context because GL version %%s is not supported by this context\n",frequest,vstring);
+		glaltError("Error, %s was not found in this context because GL version %s is not supported by this context\n",frequest,vstring);
 	}
 }
 

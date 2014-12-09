@@ -36,7 +36,7 @@
 #include <string.h>
 #include <X11/Xlib.h>
 #include <X11/keysym.h>
-#include "glalt/gl4.1.h"
+#include "glalt/gl2.1.h"
 #include <GL/glx.h>
 
 
@@ -268,6 +268,13 @@ reshape(int width, int height)
    glTranslatef(0.0, 0.0, -40.0);
 }
 
+static void test()
+{
+	const glalt_extension_set* glexts=glaltGetExtensions();
+	printf("The number of detected extensions is %ld\n",glexts->num_extensions);
+	glDeleteProgram(glCreateProgram());
+}
+
 
 static void
 init(void)
@@ -303,6 +310,11 @@ init(void)
    glEndList();
 
    glEnable(GL_NORMALIZE);
+
+
+   test();
+
+
 }
 
 
