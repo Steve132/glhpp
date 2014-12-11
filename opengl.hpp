@@ -20,13 +20,27 @@
 
 //This file supports OpenGL 3.1 or higher (3.0 is not supported because of the lack of GL_COPY_READ_BUFFER)
 
-#ifndef GL_HPP_COMMON_HPP
+/*#ifndef GL_HPP_COMMON_HPP
 #error "This file needs to have an opengl API selected from glhpp and included before this file.  Such as #include<glhpp/gl3.1.hpp>"
-#endif
+#endif*/
 
 #define GL_HPP_CUSTOM 0x0001
 namespace gl
 {
+	
+#ifdef GL_ALT_API_NAME
+inline bool check_version(unsigned int a,unsigned int b)
+{
+	return glaltCheckVersion(a,b);
+}
+inline bool check_extension(const std::string& ext)
+{
+	return glaltCheckExtension(ext.c_str());
+}
+#endif
+	
+	
+	
 namespace _impl
 {
 void _handleError(GLenum errcode,const std::string& what);
@@ -51,6 +65,7 @@ public:
 	DefaultZeroType():Base(0)
 	{}
 };
+
 
 class VersionDependency
 {
@@ -197,8 +212,8 @@ public:
 	Sync(GLenum condition=GL_SYNC_GPU_COMMANDS_COMPLETE,GLbitfield flags=0):
 		name(object)
 	{
-		_impl::VersionDependency("create gl::Sync",{"GL_VERSION_3_2","GL_ARB_sync"});
-		object=gl::FenceSync(condition,flags);
+		_impl::VersionDependency("create glSync",{"GL_VERSION_3_2","GL_ARB_sync"});
+		object=glFenceSync(condition,flags);
 		_impl::_checkError(GL_INVALID_ENUM,"glFenceSync() condition is not GL_SYNC_GPU_COMMANDS_COMPLETE.\n");
 		_impl::_checkError(GL_INVALID_VALUE,"glFenceSync() flags is not zero.\n");
 		if(object==0)
@@ -208,17 +223,17 @@ public:
 	}
 	void Wait()
 	{
-		gl::WaitSync(object,0,GL_TIMEOUT_IGNORED);
+		glWaitSync(object,0,GL_TIMEOUT_IGNORED);
 	}
 	GLenum ClientWait(GLuint64 timeout=0)
 	{
-		return gl::ClientWaitSync(object,GL_SYNC_FLUSH_COMMANDS_BIT,timeout);
+		return glClientWaitSync(object,GL_SYNC_FLUSH_COMMANDS_BIT,timeout);
 	}
 	GLint Get(GLenum pname) const
 	{
 		GLint p;
 		GLsizei numwritten=0;
-		gl::GetSynciv(object,pname,1,&numwritten,&p);	
+		glGetSynciv(object,pname,1,&numwritten,&p);	
 		if(numwritten==0)
 		{
 			_impl::_handleError(GL_HPP_CUSTOM,"Error getting sync parameter");
@@ -245,7 +260,7 @@ public:
 
 	void Binary(GLenum binaryformat,const void* bindata,GLsizei bindatalen)
 	{
-		gl::ShaderBinary(1,&name,binaryformat,bindata,bindatalen);
+		glShaderBinary(1,&name,binaryformat,bindata,bindatalen);
 	}
 
 	std::string GetInfoLog() const
@@ -253,7 +268,7 @@ public:
 		GLint sz=Get(GL_INFO_LOG_LENGTH);
 		char* m=new char[sz];
 		GLsizei outsz;
-		gl::GetShaderInfoLog(name,sz,&outsz,m);
+		glGetShaderInfoLog(name,sz,&outsz,m);
 		std::string strdata(m,m+outsz);
 		delete [] m;
 		return strdata;
@@ -263,7 +278,7 @@ public:
 		GLint sz=Get(GL_SHADER_SOURCE_LENGTH);
 		char* m=new char[sz];
 		GLsizei outsz;
-		gl::GetShaderSource(name,sz,&outsz,m);
+		glGetShaderSource(name,sz,&outsz,m);
 		std::string strdata(m,m+outsz);
 		delete [] m;
 		return strdata;
@@ -552,12 +567,12 @@ public:
 	void CopySubData(const Buffer& read,GLintptr readoffset,GLintptr writeoffset,GLsizeiptr sz);
 	
 	Buffer():
-		_impl::GLObject<Buffer>("GLBuffer",gl::GenBuffers,gl::DeleteBuffers)
+		_impl::GLObject<Buffer>("GLBuffer",glGenBuffers,glDeleteBuffers)
 	{}
 	
 protected:
 	explicit Buffer(GLuint o):
-		_impl::GLObject<Buffer>(o,gl::DeleteBuffers)
+		_impl::GLObject<Buffer>(o,glDeleteBuffers)
 	{}
 };
 
@@ -587,12 +602,12 @@ public:
 	void Elements(const Buffer&b);
 
 	VertexArray():
-		_impl::GLObject<VertexArray>("GLVertexArray",gl::GenVertexArrays,gl::DeleteVertexArrays)
+		_impl::GLObject<VertexArray>("GLVertexArray",glGenVertexArrays,glDeleteVertexArrays)
 	{}
 
 protected:
 	explicit VertexArray(GLuint o):
-		_impl::GLObject<VertexArray>(o,gl::DeleteVertexArrays)
+		_impl::GLObject<VertexArray>(o,glDeleteVertexArrays)
 	{}
 };
 
@@ -613,19 +628,19 @@ public:
 	T Get(GLenum) const;
 
 	Query():
-		_impl::GLObject<Query>("GLQuery",gl::GenQueries,gl::DeleteQueries)
+		_impl::GLObject<Query>("GLQuery",glGenQueries,glDeleteQueries)
 	{}
 	
 	void Counter()
 	{
-		gl::QueryCounter(object,GL_TIMESTAMP);
+		glQueryCounter(object,GL_TIMESTAMP);
 		_impl::_checkError(GL_INVALID_OPERATION,"Query object is already in use within a glBeginQuery / glEndQuery block.");
 		_impl::_checkError(GL_INVALID_VALUE,"Query object is not the name of a query object returned from a previous call to glGenQueries.");
 	}
 	
 protected:
 	explicit Query(GLuint o):
-		_impl::GLObject<Query>(o,gl::DeleteQueries)
+		_impl::GLObject<Query>(o,glDeleteQueries)
 	{}
 };
 
@@ -666,176 +681,176 @@ private:
 public:
 	const GLenum& target;
 	Texture():
-		_impl::GLObject<Texture>("GLTexture",gl::GenTextures,gl::DeleteTextures),
+		_impl::GLObject<Texture>("GLTexture",glGenTextures,glDeleteTextures),
 		m_target(GL_TEXTURE_2D),
 		m_lastbinding(GL_TEXTURE_BINDING_2D),
 		target(m_target)
 	{}
 	void Bind(GLenum targ)
 	{
-		gl::BindTexture(targ,object);
+		glBindTexture(targ,object);
 		_impl::_checkError(GL_INVALID_ENUM,"target is not one of the allowable values.");
 		_impl::_checkError(GL_INVALID_OPERATION,"texture was previously created with a target that doesn't match that of target.");
 	}
 	void Bind()
 	{
-		gl::BindTexture(m_target,object);
+		glBindTexture(m_target,object);
 		_impl::_checkError(GL_INVALID_ENUM,"target is not one of the allowable values.");
 		_impl::_checkError(GL_INVALID_OPERATION,"texture was previously created with a target that doesn't match that of target.");
 	}
 	void Image1D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
-		texture_function_dsa(gl::TextureImage1DEXT,gl::TexImage1D,targ,level,internalformat,width,border,format,type,data);
+		texture_function_dsa(glTextureImage1DEXT,glTexImage1D,targ,level,internalformat,width,border,format,type,data);
 	}
 	void Image1D(GLint level,GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
-		texture_function_dsa(gl::TextureImage1DEXT, gl::TexImage1D, m_target, level, internalformat, width, border, format, type, data);
+		texture_function_dsa(glTextureImage1DEXT, glTexImage1D, m_target, level, internalformat, width, border, format, type, data);
 	}
 	void Image2D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLsizei height,GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
-		texture_function_dsa(gl::TextureImage2DEXT, gl::TexImage2D, targ, level, internalformat, width, height, border, format, type, data);
+		texture_function_dsa(glTextureImage2DEXT, glTexImage2D, targ, level, internalformat, width, height, border, format, type, data);
 	}
 	void Image2D(GLint level,GLint internalformat, GLsizei width, GLsizei height,GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
-		texture_function_dsa(gl::TextureImage2DEXT, gl::TexImage2D, m_target, level, internalformat, width, height, border, format, type, data);
+		texture_function_dsa(glTextureImage2DEXT, glTexImage2D, m_target, level, internalformat, width, height, border, format, type, data);
 	}
 	void Image3D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLsizei height, GLsizei depth,GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
-		texture_function_dsa(gl::TextureImage3DEXT,gl::TexImage3D,targ,level,internalformat,width,height,depth,border,format,type,data);
+		texture_function_dsa(glTextureImage3DEXT,glTexImage3D,targ,level,internalformat,width,height,depth,border,format,type,data);
 	}
 	void Image3D(GLint level,GLint internalformat, GLsizei width, GLsizei height, GLsizei depth,GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
-		texture_function_dsa(gl::TextureImage3DEXT,gl::TexImage3D,m_target,level,internalformat,width,height,depth,border,format,type,data);
+		texture_function_dsa(glTextureImage3DEXT,glTexImage3D,m_target,level,internalformat,width,height,depth,border,format,type,data);
 	}
 	
 	void CopyImage1D(GLenum targ,GLint level, GLenum internalformat, GLint x,GLint y, GLsizei width, GLint border)
 	{
-		texture_function_dsa(gl::CopyTextureImage1DEXT,gl::CopyTexImage1D,targ,level,internalformat,x,y,width,border);
+		texture_function_dsa(glCopyTextureImage1DEXT,glCopyTexImage1D,targ,level,internalformat,x,y,width,border);
 	}
 	void CopyImage1D(GLint level, GLenum internalformat, GLint x,GLint y, GLsizei width, GLint border)
 	{
-		texture_function_dsa(gl::CopyTextureImage1DEXT, gl::CopyTexImage1D, m_target, level, internalformat, x, y, width, border);
+		texture_function_dsa(glCopyTextureImage1DEXT, glCopyTexImage1D, m_target, level, internalformat, x, y, width, border);
 	}
 	void CopyImage2D(GLenum targ,GLint level, GLenum internalformat, GLint x,GLint y, GLsizei width, GLsizei height,GLint border)
 	{
-		texture_function_dsa(gl::CopyTextureImage2DEXT, gl::CopyTexImage2D, targ, level, internalformat, x, y, width, height, border);
+		texture_function_dsa(glCopyTextureImage2DEXT, glCopyTexImage2D, targ, level, internalformat, x, y, width, height, border);
 	}
 	void CopyImage2D(GLint level, GLenum internalformat, GLint x,GLint y, GLsizei width, GLsizei height,GLint border)
 	{
-		texture_function_dsa(gl::CopyTextureImage2DEXT, gl::CopyTexImage2D, m_target, level, internalformat, x, y, width, height, border);
+		texture_function_dsa(glCopyTextureImage2DEXT, glCopyTexImage2D, m_target, level, internalformat, x, y, width, height, border);
 	}
 	
 	void SubImage1D(GLenum targ, GLint level, GLint xoffset, GLsizei width, GLenum format, 
 GLenum type, const GLvoid *data)
 	{
-		texture_function_dsa(gl::TextureSubImage1DEXT,gl::TexSubImage1D,targ,level,xoffset,width,format,type,data);
+		texture_function_dsa(glTextureSubImage1DEXT,glTexSubImage1D,targ,level,xoffset,width,format,type,data);
 	}
 	void SubImage1D(GLint level, GLint xoffset, GLsizei width, GLenum format, 
 GLenum type, const GLvoid *data)
 	{
-		texture_function_dsa(gl::TextureSubImage1DEXT,gl::TexSubImage1D,m_target,level,xoffset,width,format,type,data);
+		texture_function_dsa(glTextureSubImage1DEXT,glTexSubImage1D,m_target,level,xoffset,width,format,type,data);
 	}
 	void SubImage2D(GLenum targ, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height,GLenum format, 
 GLenum type, const GLvoid *data)
 	{
-		texture_function_dsa(gl::TextureSubImage2DEXT,gl::TexSubImage2D,targ,level,xoffset,yoffset,width,height,format,type,data);
+		texture_function_dsa(glTextureSubImage2DEXT,glTexSubImage2D,targ,level,xoffset,yoffset,width,height,format,type,data);
 	}
 	void SubImage2D(GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height,GLenum format, 
 GLenum type, const GLvoid *data)
 	{
-		texture_function_dsa(gl::TextureSubImage2DEXT,gl::TexSubImage2D,m_target,level,xoffset,yoffset,width,height,format,type,data);
+		texture_function_dsa(glTextureSubImage2DEXT,glTexSubImage2D,m_target,level,xoffset,yoffset,width,height,format,type,data);
 	}  
 
 	void SubImage3D(GLenum targ, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, 
 GLenum type, const GLvoid *data)
 	{
-		texture_function_dsa(gl::TextureSubImage3DEXT,gl::TexSubImage3D,targ,level,xoffset,yoffset,zoffset,width,height,depth,format,type,data);
+		texture_function_dsa(glTextureSubImage3DEXT,glTexSubImage3D,targ,level,xoffset,yoffset,zoffset,width,height,depth,format,type,data);
 	}
 	void SubImage3D(GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, 
 GLenum type, const GLvoid *data)
 	{
-		texture_function_dsa(gl::TextureSubImage3DEXT,gl::TexSubImage3D,m_target,level,xoffset,yoffset,zoffset,width,height,depth,format,type,data);
+		texture_function_dsa(glTextureSubImage3DEXT,glTexSubImage3D,m_target,level,xoffset,yoffset,zoffset,width,height,depth,format,type,data);
 	}
 	
 	void CopySubImage1D(GLenum targ,GLint level, GLint xoffset, GLint x, GLint y, GLsizei width)
 	{
-		texture_function_dsa(gl::CopyTextureSubImage1DEXT,gl::CopyTexSubImage1D,targ,level,xoffset,x,y,width);
+		texture_function_dsa(glCopyTextureSubImage1DEXT,glCopyTexSubImage1D,targ,level,xoffset,x,y,width);
 	}
 	void CopySubImage1D(GLint level, GLint xoffset, GLint x, GLint y, GLsizei width)
 	{
-		texture_function_dsa(gl::CopyTextureSubImage1DEXT,gl::CopyTexSubImage1D,m_target,level,xoffset,x,y,width);
+		texture_function_dsa(glCopyTextureSubImage1DEXT,glCopyTexSubImage1D,m_target,level,xoffset,x,y,width);
 	}
 	void CopySubImage2D(GLenum targ,GLint level, GLint xoffset, GLint yoffset,GLint x, GLint y, GLsizei width, GLsizei height)
 	{
-		texture_function_dsa(gl::CopyTextureSubImage2DEXT,gl::CopyTexSubImage2D,targ,level,xoffset,yoffset,x,y,width,height);
+		texture_function_dsa(glCopyTextureSubImage2DEXT,glCopyTexSubImage2D,targ,level,xoffset,yoffset,x,y,width,height);
 	}
 	void CopySubImage2D(GLint level, GLint xoffset, GLint yoffset,GLint x, GLint y, GLsizei width, GLsizei height)
 	{
-		texture_function_dsa(gl::CopyTextureSubImage2DEXT,gl::CopyTexSubImage2D,m_target,level,xoffset,yoffset,x,y,width,height);
+		texture_function_dsa(glCopyTextureSubImage2DEXT,glCopyTexSubImage2D,m_target,level,xoffset,yoffset,x,y,width,height);
 	}
 	void CopySubImage3D(GLenum targ,GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height)
 	{
-		texture_function_dsa(gl::CopyTextureSubImage3DEXT,gl::CopyTexSubImage3D,targ,level,xoffset,yoffset,zoffset,x,y,width,height);
+		texture_function_dsa(glCopyTextureSubImage3DEXT,glCopyTexSubImage3D,targ,level,xoffset,yoffset,zoffset,x,y,width,height);
 	}
 	void CopySubImage3D(GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height)
 	{
-		texture_function_dsa(gl::CopyTextureSubImage3DEXT,gl::CopyTexSubImage3D,m_target,level,xoffset,yoffset,zoffset,x,y,width,height);
+		texture_function_dsa(glCopyTextureSubImage3DEXT,glCopyTexSubImage3D,m_target,level,xoffset,yoffset,zoffset,x,y,width,height);
 	}
 	void CompressedImage1D(GLenum targ,GLint level,GLenum internalformat,GLsizei width, GLint border, GLsizei imagesize,const void* data)
 	{
-		texture_function_dsa(gl::CompressedTextureImage1DEXT, gl::CompressedTexImage1D, targ, level, internalformat, width, border, imagesize, data);
+		texture_function_dsa(glCompressedTextureImage1DEXT, glCompressedTexImage1D, targ, level, internalformat, width, border, imagesize, data);
 	}
 	void CompressedImage1D(GLint level,GLenum internalformat,GLsizei width, GLint border, GLsizei imagesize,const void* data)
 	{
-		texture_function_dsa(gl::CompressedTextureImage1DEXT, gl::CompressedTexImage1D, m_target, level, internalformat, width, border, imagesize, data);
+		texture_function_dsa(glCompressedTextureImage1DEXT, glCompressedTexImage1D, m_target, level, internalformat, width, border, imagesize, data);
 	}
 	void CompressedImage2D(GLenum targ,GLint level, GLenum internalformat, 
 GLsizei width, GLsizei height, GLint border, 
 GLsizei imagesize, const void *data)
 	{
-		texture_function_dsa(gl::CompressedTextureImage2DEXT, gl::CompressedTexImage2D, targ, level, internalformat, width, height, border, imagesize, data);
+		texture_function_dsa(glCompressedTextureImage2DEXT, glCompressedTexImage2D, targ, level, internalformat, width, height, border, imagesize, data);
 	}
 	void CompressedImage2D(GLint level, GLenum internalformat, 
 GLsizei width, GLsizei height, GLint border, 
 GLsizei imagesize, const void *data)
 	{
-		texture_function_dsa(gl::CompressedTextureImage2DEXT, gl::CompressedTexImage2D, m_target, level, internalformat, width, height, border, imagesize, data);
+		texture_function_dsa(glCompressedTextureImage2DEXT, glCompressedTexImage2D, m_target, level, internalformat, width, height, border, imagesize, data);
 	}
 	void CompressedImage3D(GLenum targ,GLint level, GLenum internalformat, 
 GLsizei width, GLsizei height, GLsizei depth, GLint border, 
 GLsizei imagesize, const void *data)
 	{
-		texture_function_dsa(gl::CompressedTextureImage3DEXT, gl::CompressedTexImage3D, targ, level, internalformat, width, height, depth, border, imagesize, data);
+		texture_function_dsa(glCompressedTextureImage3DEXT, glCompressedTexImage3D, targ, level, internalformat, width, height, depth, border, imagesize, data);
 	}
 	void CompressedImage3D(GLint level, GLenum internalformat, 
 GLsizei width, GLsizei height, GLsizei depth, GLint border, 
 GLsizei imagesize, const void *data)
 	{
-		texture_function_dsa(gl::CompressedTextureImage3DEXT, gl::CompressedTexImage3D, m_target, level, internalformat, width, height, depth, border, imagesize, data);
+		texture_function_dsa(glCompressedTextureImage3DEXT, glCompressedTexImage3D, m_target, level, internalformat, width, height, depth, border, imagesize, data);
 	}
 	void CompressedSubImage1D(GLenum targ, GLint level, GLint xoffset,GLsizei width, GLenum format, GLsizei imagesize, const void *data)
 	{
-		texture_function_dsa(gl::CompressedTextureSubImage1DEXT,gl::CompressedTexSubImage1D,targ,level,xoffset,width,format,imagesize,data);
+		texture_function_dsa(glCompressedTextureSubImage1DEXT,glCompressedTexSubImage1D,targ,level,xoffset,width,format,imagesize,data);
 	}
 	void CompressedSubImage1D(GLint level, GLint xoffset,GLsizei width, GLenum format, GLsizei imagesize, const void *data)
 	{
-		texture_function_dsa(gl::CompressedTextureSubImage1DEXT,gl::CompressedTexSubImage1D,m_target,level,xoffset,width,format,imagesize,data);
+		texture_function_dsa(glCompressedTextureSubImage1DEXT,glCompressedTexSubImage1D,m_target,level,xoffset,width,format,imagesize,data);
 	}
 	void CompressedSubImage2D(GLenum targ, GLint level, GLint xoffset,GLint yoffset,GLsizei width,GLsizei height, GLenum format, GLsizei imagesize, const void *data)
 	{
-		texture_function_dsa(gl::CompressedTextureSubImage2DEXT,gl::CompressedTexSubImage2D,targ,level,xoffset,yoffset,width,height,format,imagesize,data);
+		texture_function_dsa(glCompressedTextureSubImage2DEXT,glCompressedTexSubImage2D,targ,level,xoffset,yoffset,width,height,format,imagesize,data);
 	}
 	void CompressedSubImage2D(GLint level, GLint xoffset,GLint yoffset,GLsizei width,GLsizei height, GLenum format, GLsizei imagesize, const void *data)
 	{
-		texture_function_dsa(gl::CompressedTextureSubImage2DEXT,gl::CompressedTexSubImage2D,m_target,level,xoffset,yoffset,width,height,format,imagesize,data);
+		texture_function_dsa(glCompressedTextureSubImage2DEXT,glCompressedTexSubImage2D,m_target,level,xoffset,yoffset,width,height,format,imagesize,data);
 	}
 	void CompressedSubImage3D(GLenum targ, GLint level, GLint xoffset,GLint yoffset,GLint zoffset,GLsizei width,GLsizei height, GLsizei depth, GLenum format, GLsizei imagesize, const void *data)
 	{
-		texture_function_dsa(gl::CompressedTextureSubImage3DEXT,gl::CompressedTexSubImage3D,targ,level,xoffset,yoffset,zoffset,width,height,depth,format,imagesize,data);
+		texture_function_dsa(glCompressedTextureSubImage3DEXT,glCompressedTexSubImage3D,targ,level,xoffset,yoffset,zoffset,width,height,depth,format,imagesize,data);
 	}
 	void CompressedSubImage3D(GLint level, GLint xoffset,GLint yoffset,GLint zoffset,GLsizei width,GLsizei height, GLsizei depth,GLenum format, GLsizei imagesize, const void *data)
 	{
-		texture_function_dsa(gl::CompressedTextureSubImage3DEXT,gl::CompressedTexSubImage3D,m_target,level,xoffset,yoffset,zoffset,width,height,depth,format,imagesize,data);
+		texture_function_dsa(glCompressedTextureSubImage3DEXT,glCompressedTexSubImage3D,m_target,level,xoffset,yoffset,zoffset,width,height,depth,format,imagesize,data);
 	}
 	/*TODO: cannot be dsaed
 	 * void Image2DMultisample(GLenum target, GLsizei samples, GLint internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations)
@@ -853,7 +868,7 @@ boolean fixedsamplelocations);
 	*/
 	void Buffer(GLenum targ,GLenum internalformat, GLuint buffer)
 	{
-		texture_function_dsa(gl::TextureBufferEXT,gl::TexBuffer,targ,internalformat,buffer);
+		texture_function_dsa(glTextureBufferEXT,glTexBuffer,targ,internalformat,buffer);
 	}
 	void Buffer(GLenum targ,GLenum internalformat,const gl::Buffer& buf)
 	{
@@ -861,7 +876,7 @@ boolean fixedsamplelocations);
 	}
 	void Buffer(GLenum internalformat, GLuint buffer)
 	{
-		texture_function_dsa(gl::TextureBufferEXT,gl::TexBuffer,m_target,internalformat,buffer);
+		texture_function_dsa(glTextureBufferEXT,glTexBuffer,m_target,internalformat,buffer);
 	}
 	void Buffer(GLenum internalformat,const gl::Buffer& buf)
 	{
@@ -869,7 +884,7 @@ boolean fixedsamplelocations);
 	}
 	void BufferRange(GLenum targ,GLenum internalformat,GLuint buffer,GLintptr offset,GLsizeiptr size)
 	{
-		texture_function_dsa(gl::TextureBufferRangeEXT,gl::TexBufferRange,targ,internalformat,buffer,offset,size);
+		texture_function_dsa(glTextureBufferRangeEXT,glTexBufferRange,targ,internalformat,buffer,offset,size);
 	}
 	void BufferRange(GLenum targ,GLenum internalformat,const gl::Buffer& buf,GLintptr offset,GLsizeiptr size)
 	{
@@ -877,7 +892,7 @@ boolean fixedsamplelocations);
 	}
 	void BufferRange(GLenum internalformat,GLuint buffer,GLintptr offset,GLsizeiptr size)
 	{
-		texture_function_dsa(gl::TextureBufferRangeEXT,gl::TexBufferRange,m_target,internalformat,buffer,offset,size);
+		texture_function_dsa(glTextureBufferRangeEXT,glTexBufferRange,m_target,internalformat,buffer,offset,size);
 	}
 	void BufferRange(GLenum internalformat,const gl::Buffer& buf,GLintptr offset,GLsizeiptr size)
 	{
@@ -886,51 +901,51 @@ boolean fixedsamplelocations);
 	
 	void Parameter(GLenum targ,GLenum pname,GLint i)
 	{
-		texture_function_dsa(&gl::TextureParameteriEXT,&gl::TexParameteri,targ,pname,i);
+		texture_function_dsa(&glTextureParameteriEXT,&glTexParameteri,targ,pname,i);
 	}
 	void Parameter(GLenum pname,GLint i)
 	{
-		texture_function_dsa(&gl::TextureParameteriEXT,&gl::TexParameteri,m_target,pname,i);
+		texture_function_dsa(&glTextureParameteriEXT,&glTexParameteri,m_target,pname,i);
 	}
 	void Parameter(GLenum targ,GLenum pname,GLfloat f)
 	{
-		texture_function_dsa(&gl::TextureParameterfEXT,&gl::TexParameterf,targ,pname,f);
+		texture_function_dsa(&glTextureParameterfEXT,&glTexParameterf,targ,pname,f);
 	}
 	void Parameter(GLenum pname,GLfloat f)
 	{
-		texture_function_dsa(&gl::TextureParameterfEXT,&gl::TexParameterf,m_target,pname,f);
+		texture_function_dsa(&glTextureParameterfEXT,&glTexParameterf,m_target,pname,f);
 	}
 	void Parameter(GLenum targ,GLenum pname,const GLint* params)
 	{
-		texture_function_dsa(&gl::TextureParameterivEXT,&gl::TexParameteriv,targ,pname,params);
+		texture_function_dsa(&glTextureParameterivEXT,&glTexParameteriv,targ,pname,params);
 	}
 	void Parameter(GLenum pname,const GLint* params)
 	{
-		texture_function_dsa(&gl::TextureParameterivEXT,&gl::TexParameteriv,m_target,pname,params);
+		texture_function_dsa(&glTextureParameterivEXT,&glTexParameteriv,m_target,pname,params);
 	}
 	void Parameter(GLenum targ,GLenum pname,const GLfloat* params)
 	{
-		texture_function_dsa(&gl::TextureParameterfvEXT,&gl::TexParameterfv,targ,pname,params);
+		texture_function_dsa(&glTextureParameterfvEXT,&glTexParameterfv,targ,pname,params);
 	}
 	void Parameter(GLenum pname,const GLfloat* params)
 	{
-		texture_function_dsa(&gl::TextureParameterfvEXT,&gl::TexParameterfv,m_target,pname,params);
+		texture_function_dsa(&glTextureParameterfvEXT,&glTexParameterfv,m_target,pname,params);
 	}
 	void ParameterI(GLenum targ,GLenum pname,const GLint* params)
 	{
-		texture_function_dsa(&gl::TextureParameterIivEXT,&gl::TexParameterIiv,targ,pname,params);
+		texture_function_dsa(&glTextureParameterIivEXT,&glTexParameterIiv,targ,pname,params);
 	}
 	void ParameterI(GLenum pname,const GLint* params)
 	{
-		texture_function_dsa(&gl::TextureParameterIivEXT,&gl::TexParameterIiv,m_target,pname,params);
+		texture_function_dsa(&glTextureParameterIivEXT,&glTexParameterIiv,m_target,pname,params);
 	}
 	void ParameterI(GLenum targ,GLenum pname,const GLuint* params)
 	{
-		texture_function_dsa(&gl::TextureParameterIuivEXT,&gl::TexParameterIuiv,targ,pname,params);
+		texture_function_dsa(&glTextureParameterIuivEXT,&glTexParameterIuiv,targ,pname,params);
 	}
 	void ParameterI(GLenum pname,const GLuint* params)
 	{
-		texture_function_dsa(&gl::TextureParameterIuivEXT,&gl::TexParameterIuiv,m_target,pname,params);
+		texture_function_dsa(&glTextureParameterIuivEXT,&glTexParameterIuiv,m_target,pname,params);
 	}
 	
 	template<typename Type>
@@ -953,71 +968,71 @@ boolean fixedsamplelocations);
 	
 	void GetImage(GLenum tex, GLint lod, GLenum format, GLenum type, GLvoid *img)
 	{
-		texture_function_dsa(&gl::GetTextureImageEXT,&gl::GetTexImage,tex,lod,format,type,img);
+		texture_function_dsa(&glGetTextureImageEXT,&glGetTexImage,tex,lod,format,type,img);
 	}
 	void GetImage(GLint lod, GLenum format, GLenum type, GLvoid *img)
 	{
-		texture_function_dsa(&gl::GetTextureImageEXT,&gl::GetTexImage,m_target,lod,format,type,img);
+		texture_function_dsa(&glGetTextureImageEXT,&glGetTexImage,m_target,lod,format,type,img);
 	}
 	
 	void GetCompressedImage(GLenum targ,GLint lod, GLvoid *img)
 	{
-		texture_function_dsa(&gl::GetCompressedTextureImage,&gl::GetCompressedTexImage,targ,lod,img);
+		texture_function_dsa(&glGetCompressedTextureImage,&glGetCompressedTexImage,targ,lod,img);
 	}
 	void GetCompressedImage(GLint lod, GLvoid *img)
 	{
-		texture_function_dsa(&gl::GetCompressedTextureImage,&gl::GetCompressedTexImage,m_target,lod,img);
+		texture_function_dsa(&glGetCompressedTextureImage,&glGetCompressedTexImage,m_target,lod,img);
 	}
 	
 	void GenerateMipmap(GLenum targ)
 	{
-		texture_function_dsa(&gl::GenerateTextureMipmapEXT,&gl::GenerateMipmap,targ);
+		texture_function_dsa(&glGenerateTextureMipmapEXT,&glGenerateMipmap,targ);
 	}
 	void GenerateMipmap()
 	{
-		texture_function_dsa(&gl::GenerateTextureMipmapEXT,&gl::GenerateMipmap,m_target);
+		texture_function_dsa(&glGenerateTextureMipmapEXT,&glGenerateMipmap,m_target);
 	}
 	void View(GLenum targ,GLuint origtexture,GLenum internalformat,GLuint minlevel,GLuint numlevels,GLuint minlayer,GLuint numlayers)
 	{
-		gl::TextureView(object,targ,origtexture,internalformat,minlevel,numlevels,minlayer,numlayers);
+		glTextureView(object,targ,origtexture,internalformat,minlevel,numlevels,minlayer,numlayers);
 	}
 	void View(GLuint origtexture,GLenum internalformat,GLuint minlevel,GLuint numlevels,GLuint minlayer,GLuint numlayers)
 	{
-		gl::TextureView(object,m_target,origtexture,internalformat,minlevel,numlevels,minlayer,numlayers);
+		glTextureView(object,m_target,origtexture,internalformat,minlevel,numlevels,minlayer,numlayers);
 	}
 	
 	void View(GLenum targ,const Texture& otex,GLenum internalformat,GLuint minlevel,GLuint numlevels,GLuint minlayer,GLuint numlayers)
 	{
-		gl::TextureView(object,targ,otex.name,internalformat,minlevel,numlevels,minlayer,numlayers);
+		glTextureView(object,targ,otex.name,internalformat,minlevel,numlevels,minlayer,numlayers);
 	}
 	void View(const Texture& otex,GLenum internalformat,GLuint minlevel,GLuint numlevels,GLuint minlayer,GLuint numlayers)
 	{
-		gl::TextureView(object,m_target,otex.name,internalformat,minlevel,numlevels,minlayer,numlayers);
+		glTextureView(object,m_target,otex.name,internalformat,minlevel,numlevels,minlayer,numlayers);
 	}
 	
 	void Storage1D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width)
 	{
-		texture_function_dsa(&gl::TextureStorage1DEXT,&gl::TexStorage1D,targ,levels,internalformat,width);
+		texture_function_dsa(&glTextureStorage1DEXT,&glTexStorage1D,targ,levels,internalformat,width);
 	}
 	void Storage1D(GLsizei levels, GLenum internalformat, GLsizei width)
 	{
-		texture_function_dsa(&gl::TextureStorage1DEXT,&gl::TexStorage1D,m_target,levels,internalformat,width);
+		texture_function_dsa(&glTextureStorage1DEXT,&glTexStorage1D,m_target,levels,internalformat,width);
 	}
 	void Storage2D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height)
 	{
-		texture_function_dsa(&gl::TextureStorage2DEXT,&gl::TexStorage2D,targ,levels,internalformat,width,height);
+		texture_function_dsa(&glTextureStorage2DEXT,&glTexStorage2D,targ,levels,internalformat,width,height);
 	}
 	void Storage2D(GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height)
 	{
-		texture_function_dsa(&gl::TextureStorage2DEXT,&gl::TexStorage2D,m_target,levels,internalformat,width,height);
+		texture_function_dsa(&glTextureStorage2DEXT,&glTexStorage2D,m_target,levels,internalformat,width,height);
 	}
 	void Storage3D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height,GLsizei depth)
 	{
-		texture_function_dsa(&gl::TextureStorage3DEXT,&gl::TexStorage3D,targ,levels,internalformat,width,height,depth);
+		texture_function_dsa(&glTextureStorage3DEXT,&glTexStorage3D,targ,levels,internalformat,width,height,depth);
 	}
 	void Storage3D(GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height,GLsizei depth)
 	{
-		texture_function_dsa(&gl::TextureStorage3DEXT,&gl::TexStorage3D,m_target,levels,internalformat,width,height,depth);
+		texture_function_dsa(&glTextureStorage3DEXT,&glTexStorage3D,m_target,levels,internalformat,width,height,depth);
 	}
 	/*Can't be dsaed
 void TexStorage2DMultisample(
@@ -1046,20 +1061,20 @@ Invalidating Texture Image Data [8.20]
 */
 	void InvalidateSubImage(GLint level,GLint xoffset,GLint yoffset,GLint zoffset,GLsizei width,GLsizei height, GLsizei depth)
 	{
-		gl::InvalidateTexSubImage(object,level,xoffset,yoffset,zoffset,width,height,depth);
+		glInvalidateTexSubImage(object,level,xoffset,yoffset,zoffset,width,height,depth);
 	}
 	void InvalidateImage(GLint level)
 	{
-		gl::InvalidateTexImage(object,level);
+		glInvalidateTexImage(object,level);
 	}
 
 	void BindImage(GLuint index,GLint level, GLboolean layered, GLint layer, GLenum access, GLenum format)
 	{
-		gl::BindImageTexture(index,object,level,layered,layer,access,format);
+		glBindImageTexture(index,object,level,layered,layer,access,format);
 	}
 protected:
 	explicit Texture(GLuint o):
-		_impl::GLObject<Texture>(o,gl::DeleteTextures),
+		_impl::GLObject<Texture>(o,glDeleteTextures),
 		m_target(GL_TEXTURE_2D),
 		m_lastbinding(GL_TEXTURE_BINDING_2D),
 		target(m_target)
@@ -1072,49 +1087,49 @@ class Sampler:public _impl::GLObject<Sampler>
 {
 public:
 	Sampler():
-		_impl::GLObject<Sampler>("GLSampler",gl::GenSamplers,gl::DeleteSamplers)
+		_impl::GLObject<Sampler>("GLSampler",glGenSamplers,glDeleteSamplers)
 	{}
 	
 	void Bind(GLuint unit)
 	{
-		gl::BindSampler(unit,object);
+		glBindSampler(unit,object);
 		_impl::_checkError(GL_INVALID_VALUE,"unit is greater than or equal to the value of GL_MAX_COMBIED_TEXTURE_IMAGE_UNITS.");
 		_impl::_checkError(GL_INVALID_OPERATION,"Sampler is not zero or a name previously returned from a call to glGenSamplers, or if such a name has been deleted by a call to glDeleteSamplers.");
 	}
 	
 	void Parameter(GLenum pname,GLint param)
 	{
-		gl::SamplerParameteri(object,pname,param);
+		glSamplerParameteri(object,pname,param);
 		_impl::_checkError(GL_INVALID_VALUE,"sampler is not the name of a sampler object previously returned from a call to glGenSamplers.");
 		_impl::_checkError(GL_INVALID_ENUM,"params should have a defined constant value (based on the value of pname) and does not.");
 	}
 	void Parameter(GLenum pname,GLfloat param)
 	{
-		gl::SamplerParameterf(object,pname,param);
+		glSamplerParameterf(object,pname,param);
 		_impl::_checkError(GL_INVALID_VALUE,"sampler is not the name of a sampler object previously returned from a call to glGenSamplers.");
 		_impl::_checkError(GL_INVALID_ENUM,"params should have a defined constant value (based on the value of pname) and does not.");
 	}
 	void Parameter(GLenum pname,const GLint* param)
 	{
-		gl::SamplerParameteriv(object,pname,param);
+		glSamplerParameteriv(object,pname,param);
 		_impl::_checkError(GL_INVALID_VALUE,"sampler is not the name of a sampler object previously returned from a call to glGenSamplers.");
 		_impl::_checkError(GL_INVALID_ENUM,"params should have a defined constant value (based on the value of pname) and does not.");
 	}
 	void Parameter(GLenum pname,const GLfloat* param)
 	{
-		gl::SamplerParameterfv(object,pname,param);
+		glSamplerParameterfv(object,pname,param);
 		_impl::_checkError(GL_INVALID_VALUE,"sampler is not the name of a sampler object previously returned from a call to glGenSamplers.");
 		_impl::_checkError(GL_INVALID_ENUM,"params should have a defined constant value (based on the value of pname) and does not.");
 	}
 	void ParameterIiv(GLenum pname,const GLint* param)
 	{
-		gl::SamplerParameterIiv(object,pname,param);
+		glSamplerParameterIiv(object,pname,param);
 		_impl::_checkError(GL_INVALID_VALUE,"sampler is not the name of a sampler object previously returned from a call to glGenSamplers.");
 		_impl::_checkError(GL_INVALID_ENUM,"params should have a defined constant value (based on the value of pname) and does not.");
 	}
 	void ParameterIui(GLenum pname,const GLuint* param)
 	{
-		gl::SamplerParameterIuiv(object,pname,param);
+		glSamplerParameterIuiv(object,pname,param);
 		_impl::_checkError(GL_INVALID_VALUE,"sampler is not the name of a sampler object previously returned from a call to glGenSamplers.");
 		_impl::_checkError(GL_INVALID_ENUM,"params should have a defined constant value (based on the value of pname) and does not.");
 	}
@@ -1127,7 +1142,7 @@ public:
 	
 protected:
 	explicit Sampler(GLuint o):
-		_impl::GLObject<Sampler>(o,gl::DeleteSamplers)
+		_impl::GLObject<Sampler>(o,glDeleteSamplers)
 	{}
 };
 
@@ -1135,7 +1150,7 @@ template<>
 inline GLint Sampler::GetParameter<GLint>(GLenum pname)
 {
 	GLint out[4];
-	gl::GetSamplerParameteriv(object,pname,out);
+	glGetSamplerParameteriv(object,pname,out);
 	_impl::_checkError(GL_INVALID_VALUE,"sampler is not the name of a sampler object previously returned from a call to glGenSamplers.");
 	_impl::_checkError(GL_INVALID_ENUM,"Sampler get params is incorrect");
 	return out[0];
@@ -1144,7 +1159,7 @@ template<>
 inline GLfloat Sampler::GetParameter<GLfloat>(GLenum pname)
 {
 	GLfloat out[4];
-	gl::GetSamplerParameterfv(object,pname,out);
+	glGetSamplerParameterfv(object,pname,out);
 	_impl::_checkError(GL_INVALID_VALUE,"sampler is not the name of a sampler object previously returned from a call to glGenSamplers.");
 	_impl::_checkError(GL_INVALID_ENUM,"Sampler get params is incorrect");
 	return out[0];
@@ -1153,7 +1168,7 @@ template<>
 inline GLint Sampler::GetParameterI<GLint>(GLenum pname)
 {
 	GLint out[4];
-	gl::GetSamplerParameterIiv(object,pname,out);
+	glGetSamplerParameterIiv(object,pname,out);
 	_impl::_checkError(GL_INVALID_VALUE,"sampler is not the name of a sampler object previously returned from a call to glGenSamplers.");
 	_impl::_checkError(GL_INVALID_ENUM,"Sampler get params is incorrect");
 	return out[0];
@@ -1162,7 +1177,7 @@ template<>
 inline GLuint Sampler::GetParameterI<GLuint>(GLenum pname)
 {
 	GLuint out[4];
-	gl::GetSamplerParameterIuiv(object,pname,out);
+	glGetSamplerParameterIuiv(object,pname,out);
 	_impl::_checkError(GL_INVALID_VALUE,"sampler is not the name of a sampler object previously returned from a call to glGenSamplers.");
 	_impl::_checkError(GL_INVALID_ENUM,"Sampler get params is incorrect");
 	return out[0];
@@ -1177,41 +1192,41 @@ private:
 	GLenum m_target;
 public:
 	Framebuffer():
-		_impl::GLObject<Framebuffer>("GLFramebuffer",gl::GenFramebuffers,gl::DeleteFramebuffers),
+		_impl::GLObject<Framebuffer>("GLFramebuffer",glGenFramebuffers,glDeleteFramebuffers),
 		m_target(GL_DRAW_FRAMEBUFFER)
 	{}
 	
 	void Bind(GLenum target)
 	{
 		m_target=target;
-		gl::BindFramebuffer(target,object);
+		glBindFramebuffer(target,object);
 	}
 	static void Parameter(GLenum target,GLenum pname, GLint param)
 	{
-		gl::FramebufferParameteri(target,pname,param);
+		glFramebufferParameteri(target,pname,param);
 	}
 	
 	GLint GetParameter(GLenum pname)
 	{
 		GLint params;
-		framebuffer_function_dsa(&gl::GetFramebufferParameterivEXT,&gl::GetFramebufferParameteriv,pname,&params);
+		framebuffer_function_dsa(&glGetFramebufferParameterivEXT,&glGetFramebufferParameteriv,pname,&params);
 		return params;
 	}
 	
 	GLint GetAttachmentParameteriv(GLenum attachment,GLenum pname)
 	{
 		GLint params;
-		framebuffer_function_dsa(&gl::GetNamedFramebufferAttachmentParameterivEXT,&gl::GetFramebufferAttachmentParameteriv,attachment,pname,&params);
+		framebuffer_function_dsa(&glGetNamedFramebufferAttachmentParameterivEXT,&glGetFramebufferAttachmentParameteriv,attachment,pname,&params);
 		return params;
 	}
 	
 	void Texture(GLenum attachment, GLuint texture, GLint level)
 	{
-		framebuffer_function_dsa(&gl::NamedFramebufferTextureEXT,&gl::FramebufferTexture,attachment,texture,level);
+		framebuffer_function_dsa(&glNamedFramebufferTextureEXT,&glFramebufferTexture,attachment,texture,level);
 	}
 	void Texture(GLenum attachment,const gl::Texture& tex, GLint level)
 	{
-		framebuffer_function_dsa(&gl::NamedFramebufferTextureEXT,&gl::FramebufferTexture,attachment,tex.name,level);
+		framebuffer_function_dsa(&glNamedFramebufferTextureEXT,&glFramebufferTexture,attachment,tex.name,level);
 	}
 
 	void Renderbuffer(GLenum attachment, GLuint renderbuffer, GLint level);
@@ -1219,35 +1234,35 @@ public:
 
 	void Texture1D(GLenum attachment, GLenum textarget, GLuint texture, GLint level)
 	{
-		framebuffer_function_dsa(&gl::NamedFramebufferTexture1DEXT, &gl::FramebufferTexture1D, attachment, textarget, texture, level);
+		framebuffer_function_dsa(&glNamedFramebufferTexture1DEXT, &glFramebufferTexture1D, attachment, textarget, texture, level);
 	}
 	void Texture1D(GLenum attachment,const gl::Texture& tex,GLint level)
 	{
-		framebuffer_function_dsa(&gl::NamedFramebufferTexture1DEXT, &gl::FramebufferTexture1D, attachment, tex.target, tex.name, level);
+		framebuffer_function_dsa(&glNamedFramebufferTexture1DEXT, &glFramebufferTexture1D, attachment, tex.target, tex.name, level);
 	}
 	void Texture2D(GLenum attachment, GLenum textarget, GLuint texture, GLint level)
 	{
-		framebuffer_function_dsa(&gl::NamedFramebufferTexture2DEXT, &gl::FramebufferTexture2D, attachment, textarget, texture, level);
+		framebuffer_function_dsa(&glNamedFramebufferTexture2DEXT, &glFramebufferTexture2D, attachment, textarget, texture, level);
 	}
 	void Texture2D(GLenum attachment,const gl::Texture& tex,GLint level)
 	{
-		framebuffer_function_dsa(&gl::NamedFramebufferTexture2DEXT, &gl::FramebufferTexture2D, attachment, tex.target, tex.name, level);
+		framebuffer_function_dsa(&glNamedFramebufferTexture2DEXT, &glFramebufferTexture2D, attachment, tex.target, tex.name, level);
 	}
 	void Texture3D(GLenum attachment, GLenum textarget, GLuint texture, GLint level,GLint layer)
 	{
-		framebuffer_function_dsa(&gl::NamedFramebufferTexture3DEXT, &gl::FramebufferTexture3D, attachment, textarget, texture, level, layer);
+		framebuffer_function_dsa(&glNamedFramebufferTexture3DEXT, &glFramebufferTexture3D, attachment, textarget, texture, level, layer);
 	}
 	void Texture3D(GLenum attachment,const gl::Texture& tex,GLint level,GLint layer)
 	{
-		framebuffer_function_dsa(&gl::NamedFramebufferTexture3DEXT, &gl::FramebufferTexture3D, attachment, tex.target, tex.name, level, layer);
+		framebuffer_function_dsa(&glNamedFramebufferTexture3DEXT, &glFramebufferTexture3D, attachment, tex.target, tex.name, level, layer);
 	}
 	void CheckStatus(GLenum target)
 	{
-		framebuffer_function_dsa(&gl::CheckNamedFramebufferStatusEXT,[](GLenum t,GLenum){ return gl::CheckFramebufferStatus(t); },target);
+		framebuffer_function_dsa(&glCheckNamedFramebufferStatusEXT,[](GLenum t,GLenum){ return glCheckFramebufferStatus(t); },target);
 	}
 protected:
 	explicit Framebuffer(GLuint o):
-		_impl::GLObject<Framebuffer>(o,gl::DeleteFramebuffers)
+		_impl::GLObject<Framebuffer>(o,glDeleteFramebuffers)
 	{}	
 };
 
@@ -1258,41 +1273,41 @@ private:
 	void renderbuffer_function_dsa(Callable1,Callable2,Types... params);
 public:
 	Renderbuffer():
-		_impl::GLObject<Renderbuffer>("GLRenderbuffer",gl::GenRenderbuffers,gl::DeleteRenderbuffers)
+		_impl::GLObject<Renderbuffer>("GLRenderbuffer",glGenRenderbuffers,glDeleteRenderbuffers)
 	{}
 	
 	void Bind()
 	{
-		gl::BindRenderbuffer(GL_RENDERBUFFER,object);
+		glBindRenderbuffer(GL_RENDERBUFFER,object);
 	}
 	
 	void StorageMultisample(GLsizei samples,GLenum internalformat, GLsizei width, GLsizei height)
 	{
-		renderbuffer_function_dsa(&gl::NamedRenderbufferStorageMultisampleEXT,&gl::RenderbufferStorageMultisample,samples,internalformat,width,height);
+		renderbuffer_function_dsa(&glNamedRenderbufferStorageMultisampleEXT,&glRenderbufferStorageMultisample,samples,internalformat,width,height);
 	}
 	void Storage(GLenum internalformat,GLsizei width,GLsizei height)
 	{
-		renderbuffer_function_dsa(&gl::NamedRenderbufferStorageEXT,&gl::RenderbufferStorage,internalformat,width,height);
+		renderbuffer_function_dsa(&glNamedRenderbufferStorageEXT,&glRenderbufferStorage,internalformat,width,height);
 	}
 	GLint GetRenderbufferParameteriv(GLenum pname)
 	{
 		int params;
-		renderbuffer_function_dsa(&gl::GetRenderbufferParameterivEXT,&gl::GetRenderbufferParameteriv,pname,&params);
+		renderbuffer_function_dsa(&glGetRenderbufferParameterivEXT,&glGetRenderbufferParameteriv,pname,&params);
 		return params;
 	}
 	
 protected:
 	explicit Renderbuffer(GLuint o):
-		_impl::GLObject<Renderbuffer>(o,gl::DeleteRenderbuffers)
+		_impl::GLObject<Renderbuffer>(o,glDeleteRenderbuffers)
 	{}
 };
 void Framebuffer::Renderbuffer(GLenum attachment, GLuint renderbuffer, GLint level)
 {
-	framebuffer_function_dsa(&gl::NamedFramebufferRenderbuffer,&gl::FramebufferRenderbufferEXT,attachment,GL_RENDERBUFFER,renderbuffer);
+	framebuffer_function_dsa(&glNamedFramebufferRenderbuffer,&glFramebufferRenderbufferEXT,attachment,GL_RENDERBUFFER,renderbuffer);
 }
 void Framebuffer::Renderbuffer(GLenum attachment,const gl::Renderbuffer& rb, GLint level)
 {
-	framebuffer_function_dsa(&gl::NamedFramebufferRenderbuffer,&gl::FramebufferRenderbufferEXT,attachment,GL_RENDERBUFFER,rb.name);
+	framebuffer_function_dsa(&glNamedFramebufferRenderbuffer,&glFramebufferRenderbufferEXT,attachment,GL_RENDERBUFFER,rb.name);
 }
 
 

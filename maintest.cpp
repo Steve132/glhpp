@@ -1,5 +1,5 @@
-#include "glhpp/gl4.5.hpp"
-#include "glhpp/glext.hpp"
+#include "glalt/gl4.5.h"
+#include "glalt/glext.h"
 #include "opengl.hpp"
 
 int main(int argc,char** argv)
