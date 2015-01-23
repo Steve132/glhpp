@@ -859,7 +859,6 @@ GLenum type, const GLvoid *data)
 	}
   #endif
 
-
     #if defined(GL_HPP_FUNDEF_TexSubImage3D) || defined(GL_HPP_FUNDEF_TextureSubImage3DEXT)
 	void SubImage3D(GLenum targ, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format,
 GLenum type, const GLvoid *data)
