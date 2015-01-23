@@ -231,23 +231,36 @@ private:
 	GLsync object;
 };*/
 
+    
+#ifdef GL_HPP_FUNDEF_CreateShader
 class Shader: public _impl::GLObject<Shader>
 {
 public:
 	Shader(GLenum t);
-	GLint Get(GLenum variable) const;
-	void Source(const std::string& src);
+    GLint Get(GLenum variable) const;
+	
+    #if defined(GL_HPP_FUNDEF_ShaderSource)
+    void Source(const std::string& src);
 	void Source(std::istream& in);
 	void SourceFile(const std::string& filename);
-		
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_CompileShader)
 	std::string Compile();
-	static void ReleaseCompiler();
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_ReleaseShaderCompiler)
+	static void ReleaseCompiler(); ///\todo no implementation found
+    #endif
 
+    #if defined(GL_HPP_FUNDEF_ShaderBinary)
 	void Binary(GLenum binaryformat,const uint8_t* bindata,size_t bindatalen)
 	{
 		gl::ShaderBinary(1,&name,binaryformat,(const void*)bindata,bindatalen);
 	}
+    #endif
 
+    #if defined(GL_HPP_FUNDEF_GetShaderInfoLog)
 	std::string GetInfoLog() const
 	{
 		GLint sz=Get(GL_INFO_LOG_LENGTH);
@@ -258,6 +271,9 @@ public:
 		delete [] m;
 		return strdata;
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_GetShaderSource)
 	std::string GetSource() const
 	{
 		GLint sz=Get(GL_SHADER_SOURCE_LENGTH);
@@ -268,27 +284,39 @@ public:
 		delete [] m;
 		return strdata;
 	}
+    #endif
 	
 private:
 	GLenum type;
 };
+#endif
 
-
-
+#ifdef GL_HPP_FUNDEF_CreateProgram
 class Program: public _impl::GLObject<Program>
 {
 public:
 	Program();
+    
+    #if defined (GL_HPP_FUNDEF_GetProgramiv)
 	GLint Get(GLenum variable) const;
-	
+    #endif
+   
+    #if defined (GL_HPP_FUNDEF_AttachShader)
 	void Attach(const Shader& s);
-
+    #endif
+    
+    #if defined (GL_HPP_FUNDEF_DetachShader)
 	void Detach(const Shader& s);
+    #endif
 	
+    #if defined (GL_HPP_FUNDEF_BindAttribLocation)
 	void BindAttribLocation(GLuint index,const std::string& name);
-	
+    #endif
+
+    #if defined (GL_HPP_FUNDEF_ValidateProgram) && defined (GL_HPP_FUNDEF_GetProgramInfoLog) && defined (GL_HPP_FUNDEF_GetProgramiv)
 	std::pair<bool,std::string> Validate() const;
-	
+    #endif
+    
 	struct ActiveInfo
 	{
 	public:
@@ -302,10 +330,13 @@ public:
 	ActiveInfo GetActiveUniform(GLuint index) const;
 	ActiveInfo GetActiveUniform(const std::string& name) const;
 	
+    #if defined (GL_HPP_FUNDEF_GetAttribLocation)
 	GLint GetAttribLocation(const std::string& n) const;
-	
+    #endif
+    
+    #if defined (GL_HPP_FUNDEF_GetUniformLocation)
 	GLint GetUniformLocation(const std::string& n) const;
-
+    #endif
 
 	/*TODO: These functions are unavailable
 	uint GetUniformBlockIndex(uint program, const char *uniformBlockName);
@@ -497,18 +528,29 @@ SHADER_STORAGE}_BARRIER_BIT
 	template<class T,GLuint rows,GLuint cols>
 	void UniformMatrix(const std::string& n,const T*,bool transposed=false,GLsizei count=1)=delete;
 	
+    #ifdef GL_HPP_FUNDEF_LinkProgram
 	std::string Link();
+    #endif
 	
+    #ifdef GL_HPP_FUNDEF_UseProgram
 	void Use() const;
+    #endif
 	
 protected:
 	explicit Program(GLuint obj);
 };
+    
+#endif
 
+    
+#ifdef GL_HPP_FUNDEF_GenBuffers
 class Buffer: public _impl::GLObject<Buffer>
 {
 public:
+    
+    #if defined(GL_HPP_FUNDEF_BindBuffer)
  	void Bind(GLenum bt) const;
+    #endif
 
 	void BindRange(GLenum target, GLuint index,GLintptr offset, GLsizeiptr size) const;
 	void BindBase(GLenum target,GLuint index) const;
@@ -537,7 +579,6 @@ public:
 
 	void* Map(GLenum access);
 	
-
 	template<GLenum ac>
 	typename _impl::BufferMapType<ac>::ptrtype Map();
 
@@ -560,17 +601,27 @@ protected:
 		_impl::GLObject<Buffer>(o,gl::DeleteBuffers)
 	{}
 };
+#endif
+    
+    
 
-
+#ifdef GL_HPP_FUNDEF_GenVertexArrays ///\todo make this available with an emulated path where vbo's are available
 class VertexArray: public _impl::GLObject<VertexArray>
 {
 public:
-
+    
+    #if defined(GL_HPP_FUNDEF_BindVertexArray)
 	void Bind() const;
+    #endif
 
+    #if defined(GL_HPP_FUNDEF_EnableVertexArrayAttribEXT) || defined(GL_HPP_FUNDEF_EnableVertexAttribArray)
 	void EnableAttrib(GLuint index);
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_DisableVertexArrayAttribEXT) || defined(GL_HPP_FUNDEF_DisableVertexAttribArray)
 	void DisableAttrib(GLuint index);
-
+    #endif
+    
 	void AttribPointer(GLuint index,GLint size,GLenum type,bool normalized,GLsizei stride,const GLvoid * pointer);
 	void AttribIPointer(GLuint index,GLint size,GLenum type,GLsizei stride,const GLvoid * pointer);
 
@@ -583,8 +634,10 @@ public:
 	void Attrib(GLuint index,GLint size,GLenum type,bool normalized,GLsizei stride,const Buffer& b,GLsizeiptr offset);
 	void AttribI(GLuint index,GLint size,GLenum type,GLsizei stride,const Buffer& b,GLsizeiptr offset);
 
-	void Elements(const GLvoid * pointer);
+    #if defined(GL_HPP_FUNDEF_BindVertexArray) && defined(GL_HPP_FUNDEF_BindBuffer)
+	void Elements(const GLvoid * pointer);///\todo no implementation
 	void Elements(const Buffer&b);
+    #endif
 
 	VertexArray():
 		_impl::GLObject<VertexArray>("GLVertexArray",gl::GenVertexArrays,gl::DeleteVertexArrays)
@@ -595,20 +648,36 @@ protected:
 		_impl::GLObject<VertexArray>(o,gl::DeleteVertexArrays)
 	{}
 };
+#endif
 
-
+#ifdef GL_HPP_FUNDEF_GenQueries
 class Query: public _impl::GLObject<Query>
 {
 public:
+    #if defined(GL_HPP_FUNDEF_BeginConditionalRender)
 	void BeginConditionalRender(GLenum mode);
-	void EndConditionalRender();
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_EndConditionalRender)
+    void EndConditionalRender();
+    #endif
 
+    #if defined(GL_HPP_FUNDEF_BeginQuery)
 	void Begin(GLenum target);
-	void End(GLenum target);
+    #endif
 	
+    #if defined(GL_HPP_FUNDEF_EndQuery)
+    void End(GLenum target);
+    #endif
+	
+    #if defined(GL_HPP_FUNDEF_BeginQueryIndexed)
 	void BeginIndexed(GLenum target,GLuint index);
-	void EndIndexed(GLenum target,GLuint index);
-
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_EndQueryIndexed)
+    void EndIndexed(GLenum target,GLuint index);
+    #endif
+    
 	template<class T>
 	T Get(GLenum) const;
 
@@ -628,7 +697,7 @@ protected:
 		_impl::GLObject<Query>(o,gl::DeleteQueries)
 	{}
 };
-
+#endif
 
 
 class ContextInfo
@@ -651,6 +720,8 @@ public:
 	}
 };
 
+    
+#ifdef GL_HPP_FUNDEF_GenTextures
 class Texture:public _impl::GLObject<Texture>
 {
 private:
@@ -658,8 +729,10 @@ private:
 	{
 		//TODO: texture error handling"
 	}
+    #if defined(GL_HPP_FUNDEF_GetIntegerv)
 	GLint tbinding_query(GLenum targ);
-	
+    #endif
+    
 	template<typename Callable1,typename Callable2, typename... Types>
 	void texture_function_dsa(Callable1,Callable2,GLenum targ,Types... params);
 	GLenum m_target,m_lastbinding;
@@ -671,7 +744,9 @@ public:
 		m_lastbinding(GL_TEXTURE_BINDING_2D),
 		target(m_target)
 	{}
-	void Bind(GLenum targ)
+    
+    #if defined(GL_HPP_FUNDEF_BindTexture)
+    void Bind(GLenum targ)
 	{
 		gl::BindTexture(targ,object);
 		_impl::_checkError(GL_INVALID_ENUM,"target is not one of the allowable values.");
@@ -683,14 +758,21 @@ public:
 		_impl::_checkError(GL_INVALID_ENUM,"target is not one of the allowable values.");
 		_impl::_checkError(GL_INVALID_OPERATION,"texture was previously created with a target that doesn't match that of target.");
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_TexImage1D) || defined(GL_HPP_FUNDEF_TextureImage1DEXT)
 	void Image1D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		texture_function_dsa(gl::TextureImage1DEXT,gl::TexImage1D,targ,level,internalformat,width,border,format,type,data);
 	}
+    
 	void Image1D(GLint level,GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		texture_function_dsa(gl::TextureImage1DEXT, gl::TexImage1D, m_target, level, internalformat, width, border, format, type, data);
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_TexImage2D) || defined(GL_HPP_FUNDEF_TextureImage2DEXT)
 	void Image2D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLsizei height,GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		texture_function_dsa(gl::TextureImage2DEXT, gl::TexImage2D, targ, level, internalformat, width, height, border, format, type, data);
@@ -699,6 +781,9 @@ public:
 	{
 		texture_function_dsa(gl::TextureImage2DEXT, gl::TexImage2D, m_target, level, internalformat, width, height, border, format, type, data);
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_TexImage3D) || defined(GL_HPP_FUNDEF_TextureImage3DEXT)
 	void Image3D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLsizei height, GLsizei depth,GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		texture_function_dsa(gl::TextureImage3DEXT,gl::TexImage3D,targ,level,internalformat,width,height,depth,border,format,type,data);
@@ -707,15 +792,21 @@ public:
 	{
 		texture_function_dsa(gl::TextureImage3DEXT,gl::TexImage3D,m_target,level,internalformat,width,height,depth,border,format,type,data);
 	}
+    #endif
 	
+    #if defined(GL_HPP_FUNDEF_CopyTexImage1D) || defined(GL_HPP_FUNDEF_CopyTextureImage1DEXT)
 	void CopyImage1D(GLenum targ,GLint level, GLenum internalformat, GLint x,GLint y, GLsizei width, GLint border)
 	{
 		texture_function_dsa(gl::CopyTextureImage1DEXT,gl::CopyTexImage1D,targ,level,internalformat,x,y,width,border);
 	}
+
 	void CopyImage1D(GLint level, GLenum internalformat, GLint x,GLint y, GLsizei width, GLint border)
 	{
 		texture_function_dsa(gl::CopyTextureImage1DEXT, gl::CopyTexImage1D, m_target, level, internalformat, x, y, width, border);
-	}
+    }
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_CopyTexImage2D) || defined(GL_HPP_FUNDEF_CopyTextureImage2DEXT)
 	void CopyImage2D(GLenum targ,GLint level, GLenum internalformat, GLint x,GLint y, GLsizei width, GLsizei height,GLint border)
 	{
 		texture_function_dsa(gl::CopyTextureImage2DEXT, gl::CopyTexImage2D, targ, level, internalformat, x, y, width, height, border);
@@ -724,8 +815,10 @@ public:
 	{
 		texture_function_dsa(gl::CopyTextureImage2DEXT, gl::CopyTexImage2D, m_target, level, internalformat, x, y, width, height, border);
 	}
+    #endif
 	
-	void SubImage1D(GLenum targ, GLint level, GLint xoffset, GLsizei width, GLenum format, 
+    #if defined(GL_HPP_FUNDEF_TexSubImage1D) || defined(GL_HPP_FUNDEF_TextureSubImage1DEXT)
+	void SubImage1D(GLenum targ, GLint level, GLint xoffset, GLsizei width, GLenum format,
 GLenum type, const GLvoid *data)
 	{
 		texture_function_dsa(gl::TextureSubImage1DEXT,gl::TexSubImage1D,targ,level,xoffset,width,format,type,data);
@@ -735,7 +828,10 @@ GLenum type, const GLvoid *data)
 	{
 		texture_function_dsa(gl::TextureSubImage1DEXT,gl::TexSubImage1D,m_target,level,xoffset,width,format,type,data);
 	}
-	void SubImage2D(GLenum targ, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height,GLenum format, 
+    #endif
+
+    #if defined(GL_HPP_FUNDEF_TexSubImage2D) || defined(GL_HPP_FUNDEF_TextureSubImage2DEXT)
+	void SubImage2D(GLenum targ, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height,GLenum format,
 GLenum type, const GLvoid *data)
 	{
 		texture_function_dsa(gl::TextureSubImage2DEXT,gl::TexSubImage2D,targ,level,xoffset,yoffset,width,height,format,type,data);
@@ -744,9 +840,11 @@ GLenum type, const GLvoid *data)
 GLenum type, const GLvoid *data)
 	{
 		texture_function_dsa(gl::TextureSubImage2DEXT,gl::TexSubImage2D,m_target,level,xoffset,yoffset,width,height,format,type,data);
-	}  
+	}
+    #endif
 
-	void SubImage3D(GLenum targ, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, 
+    #if defined(GL_HPP_FUNDEF_TexSubImage3D) || defined(GL_HPP_FUNDEF_TextureSubImage3DEXT)
+	void SubImage3D(GLenum targ, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format,
 GLenum type, const GLvoid *data)
 	{
 		texture_function_dsa(gl::TextureSubImage3DEXT,gl::TexSubImage3D,targ,level,xoffset,yoffset,zoffset,width,height,depth,format,type,data);
@@ -756,7 +854,10 @@ GLenum type, const GLvoid *data)
 	{
 		texture_function_dsa(gl::TextureSubImage3DEXT,gl::TexSubImage3D,m_target,level,xoffset,yoffset,zoffset,width,height,depth,format,type,data);
 	}
+    #endif
 	
+    
+    #if defined(GL_HPP_FUNDEF_CopyTexSubImage1D) || defined(GL_HPP_FUNDEF_CopyTextureSubImage1DEXT)
 	void CopySubImage1D(GLenum targ,GLint level, GLint xoffset, GLint x, GLint y, GLsizei width)
 	{
 		texture_function_dsa(gl::CopyTextureSubImage1DEXT,gl::CopyTexSubImage1D,targ,level,xoffset,x,y,width);
@@ -765,6 +866,9 @@ GLenum type, const GLvoid *data)
 	{
 		texture_function_dsa(gl::CopyTextureSubImage1DEXT,gl::CopyTexSubImage1D,m_target,level,xoffset,x,y,width);
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_CopyTexSubImage1D) || defined(GL_HPP_FUNDEF_CopyTextureSubImage1DEXT)
 	void CopySubImage2D(GLenum targ,GLint level, GLint xoffset, GLint yoffset,GLint x, GLint y, GLsizei width, GLsizei height)
 	{
 		texture_function_dsa(gl::CopyTextureSubImage2DEXT,gl::CopyTexSubImage2D,targ,level,xoffset,yoffset,x,y,width,height);
@@ -773,6 +877,9 @@ GLenum type, const GLvoid *data)
 	{
 		texture_function_dsa(gl::CopyTextureSubImage2DEXT,gl::CopyTexSubImage2D,m_target,level,xoffset,yoffset,x,y,width,height);
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_CopyTexSubImage3D) || defined(GL_HPP_FUNDEF_CopyTextureSubImage3DEXT)
 	void CopySubImage3D(GLenum targ,GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height)
 	{
 		texture_function_dsa(gl::CopyTextureSubImage3DEXT,gl::CopyTexSubImage3D,targ,level,xoffset,yoffset,zoffset,x,y,width,height);
@@ -781,6 +888,9 @@ GLenum type, const GLvoid *data)
 	{
 		texture_function_dsa(gl::CopyTextureSubImage3DEXT,gl::CopyTexSubImage3D,m_target,level,xoffset,yoffset,zoffset,x,y,width,height);
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_CompressedTexImage1D) || defined(GL_HPP_FUNDEF_CompressedTextureImage1DEXT)
 	void CompressedImage1D(GLenum targ,GLint level,GLenum internalformat,GLsizei width, GLint border, GLsizei imagesize,const void* data)
 	{
 		texture_function_dsa(gl::CompressedTextureImage1DEXT, gl::CompressedTexImage1D, targ, level, internalformat, width, border, imagesize, data);
@@ -789,6 +899,9 @@ GLenum type, const GLvoid *data)
 	{
 		texture_function_dsa(gl::CompressedTextureImage1DEXT, gl::CompressedTexImage1D, m_target, level, internalformat, width, border, imagesize, data);
 	}
+    #endif
+    
+     #if defined(GL_HPP_FUNDEF_CompressedTexImage2D) || defined(GL_HPP_FUNDEF_CompressedTextureImage2DEXT)
 	void CompressedImage2D(GLenum targ,GLint level, GLenum internalformat, 
 GLsizei width, GLsizei height, GLint border, 
 GLsizei imagesize, const void *data)
@@ -801,6 +914,9 @@ GLsizei imagesize, const void *data)
 	{
 		texture_function_dsa(gl::CompressedTextureImage2DEXT, gl::CompressedTexImage2D, m_target, level, internalformat, width, height, border, imagesize, data);
 	}
+    #endif
+    
+     #if defined(GL_HPP_FUNDEF_CompressedTexImage3D) || defined(GL_HPP_FUNDEF_CompressedTextureImage3DEXT)
 	void CompressedImage3D(GLenum targ,GLint level, GLenum internalformat, 
 GLsizei width, GLsizei height, GLsizei depth, GLint border, 
 GLsizei imagesize, const void *data)
@@ -813,6 +929,9 @@ GLsizei imagesize, const void *data)
 	{
 		texture_function_dsa(gl::CompressedTextureImage3DEXT, gl::CompressedTexImage3D, m_target, level, internalformat, width, height, depth, border, imagesize, data);
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_CompressedTexSubImage1D) || defined(GL_HPP_FUNDEF_CompressedTextureSubImage1DEXT)
 	void CompressedSubImage1D(GLenum targ, GLint level, GLint xoffset,GLsizei width, GLenum format, GLsizei imagesize, const void *data)
 	{
 		texture_function_dsa(gl::CompressedTextureSubImage1DEXT,gl::CompressedTexSubImage1D,targ,level,xoffset,width,format,imagesize,data);
@@ -821,7 +940,10 @@ GLsizei imagesize, const void *data)
 	{
 		texture_function_dsa(gl::CompressedTextureSubImage1DEXT,gl::CompressedTexSubImage1D,m_target,level,xoffset,width,format,imagesize,data);
 	}
-	void CompressedSubImage2D(GLenum targ, GLint level, GLint xoffset,GLint yoffset,GLsizei width,GLsizei height, GLenum format, GLsizei imagesize, const void *data)
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_CompressedTexSubImage2D) || defined(GL_HPP_FUNDEF_CompressedTextureSubImage2DEXT)
+    void CompressedSubImage2D(GLenum targ, GLint level, GLint xoffset,GLint yoffset,GLsizei width,GLsizei height, GLenum format, GLsizei imagesize, const void *data)
 	{
 		texture_function_dsa(gl::CompressedTextureSubImage2DEXT,gl::CompressedTexSubImage2D,targ,level,xoffset,yoffset,width,height,format,imagesize,data);
 	}
@@ -829,6 +951,9 @@ GLsizei imagesize, const void *data)
 	{
 		texture_function_dsa(gl::CompressedTextureSubImage2DEXT,gl::CompressedTexSubImage2D,m_target,level,xoffset,yoffset,width,height,format,imagesize,data);
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_CompressedTexSubImage3D) || defined(GL_HPP_FUNDEF_CompressedTextureSubImage3DEXT)
 	void CompressedSubImage3D(GLenum targ, GLint level, GLint xoffset,GLint yoffset,GLint zoffset,GLsizei width,GLsizei height, GLsizei depth, GLenum format, GLsizei imagesize, const void *data)
 	{
 		texture_function_dsa(gl::CompressedTextureSubImage3DEXT,gl::CompressedTexSubImage3D,targ,level,xoffset,yoffset,zoffset,width,height,depth,format,imagesize,data);
@@ -837,6 +962,8 @@ GLsizei imagesize, const void *data)
 	{
 		texture_function_dsa(gl::CompressedTextureSubImage3DEXT,gl::CompressedTexSubImage3D,m_target,level,xoffset,yoffset,zoffset,width,height,depth,format,imagesize,data);
 	}
+    #endif
+    
 	/*TODO: cannot be dsaed
 	 * void Image2DMultisample(GLenum target, GLsizei samples, GLint internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations)
 	{
@@ -851,6 +978,8 @@ sizei width, sizei height, sizei depth,
 boolean fixedsamplelocations);
 
 	*/
+    
+    #if defined(GL_HPP_FUNDEF_TexBuffer) || defined(GL_HPP_FUNDEF_TextureBufferEXT)
 	void Buffer(GLenum targ,GLenum internalformat, GLuint buffer)
 	{
 		texture_function_dsa(gl::TextureBufferEXT,gl::TexBuffer,targ,internalformat,buffer);
@@ -867,6 +996,9 @@ boolean fixedsamplelocations);
 	{
 		this->Buffer(m_target,internalformat,buf.name);
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_TexBufferRange) || defined(GL_HPP_FUNDEF_TextureBufferRangeEXT)
 	void BufferRange(GLenum targ,GLenum internalformat,GLuint buffer,GLintptr offset,GLsizeiptr size)
 	{
 		texture_function_dsa(gl::TextureBufferRangeEXT,gl::TexBufferRange,targ,internalformat,buffer,offset,size);
@@ -883,7 +1015,9 @@ boolean fixedsamplelocations);
 	{
 		BufferRange(m_target,internalformat,buf.name,offset,size);
 	}
-	
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_TexParameteri) || defined(GL_HPP_FUNDEF_TextureParameteriEXT)
 	void Parameter(GLenum targ,GLenum pname,GLint i)
 	{
 		texture_function_dsa(&gl::TextureParameteriEXT,&gl::TexParameteri,targ,pname,i);
@@ -892,6 +1026,9 @@ boolean fixedsamplelocations);
 	{
 		texture_function_dsa(&gl::TextureParameteriEXT,&gl::TexParameteri,m_target,pname,i);
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_TexParameterf) || defined(GL_HPP_FUNDEF_TextureParameterfEXT)
 	void Parameter(GLenum targ,GLenum pname,GLfloat f)
 	{
 		texture_function_dsa(&gl::TextureParameterfEXT,&gl::TexParameterf,targ,pname,f);
@@ -900,6 +1037,10 @@ boolean fixedsamplelocations);
 	{
 		texture_function_dsa(&gl::TextureParameterfEXT,&gl::TexParameterf,m_target,pname,f);
 	}
+    #endif
+    
+    
+    #if defined(GL_HPP_FUNDEF_TexParameteriv) || defined(GL_HPP_FUNDEF_TextureParameterivEXT)
 	void Parameter(GLenum targ,GLenum pname,const GLint* params)
 	{
 		texture_function_dsa(&gl::TextureParameterivEXT,&gl::TexParameteriv,targ,pname,params);
@@ -908,6 +1049,9 @@ boolean fixedsamplelocations);
 	{
 		texture_function_dsa(&gl::TextureParameterivEXT,&gl::TexParameteriv,m_target,pname,params);
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_TexParameterfv) || defined(GL_HPP_FUNDEF_TextureParameterfvEXT)
 	void Parameter(GLenum targ,GLenum pname,const GLfloat* params)
 	{
 		texture_function_dsa(&gl::TextureParameterfvEXT,&gl::TexParameterfv,targ,pname,params);
@@ -916,6 +1060,9 @@ boolean fixedsamplelocations);
 	{
 		texture_function_dsa(&gl::TextureParameterfvEXT,&gl::TexParameterfv,m_target,pname,params);
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_TexParameterIiv) || defined(GL_HPP_FUNDEF_TextureParameterIivEXT)
 	void ParameterI(GLenum targ,GLenum pname,const GLint* params)
 	{
 		texture_function_dsa(&gl::TextureParameterIivEXT,&gl::TexParameterIiv,targ,pname,params);
@@ -924,6 +1071,9 @@ boolean fixedsamplelocations);
 	{
 		texture_function_dsa(&gl::TextureParameterIivEXT,&gl::TexParameterIiv,m_target,pname,params);
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_TexParameterIuiv) || defined(GL_HPP_FUNDEF_TextureParameterIuivEXT)
 	void ParameterI(GLenum targ,GLenum pname,const GLuint* params)
 	{
 		texture_function_dsa(&gl::TextureParameterIuivEXT,&gl::TexParameterIuiv,targ,pname,params);
@@ -932,6 +1082,7 @@ boolean fixedsamplelocations);
 	{
 		texture_function_dsa(&gl::TextureParameterIuivEXT,&gl::TexParameterIuiv,m_target,pname,params);
 	}
+    #endif
 	
 	template<typename Type>
 	Type GetParameter(GLenum targ,GLenum pname);
@@ -951,6 +1102,7 @@ boolean fixedsamplelocations);
 	template<typename Type>
 	Type GetLevelParameter(GLint lod, GLenum value);
 	
+    #if defined(GL_HPP_FUNDEF_GetTexImage) || defined(GL_HPP_FUNDEF_GetTextureImageEXT)
 	void GetImage(GLenum tex, GLint lod, GLenum format, GLenum type, GLvoid *img)
 	{
 		texture_function_dsa(&gl::GetTextureImageEXT,&gl::GetTexImage,tex,lod,format,type,img);
@@ -959,7 +1111,9 @@ boolean fixedsamplelocations);
 	{
 		texture_function_dsa(&gl::GetTextureImageEXT,&gl::GetTexImage,m_target,lod,format,type,img);
 	}
-	
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_GetCompressedTexImage) || defined(GL_HPP_FUNDEF_GetCompressedTextureImage)
 	void GetCompressedImage(GLenum targ,GLint lod, GLvoid *img)
 	{
 		texture_function_dsa(&gl::GetCompressedTextureImage,&gl::GetCompressedTexImage,targ,lod,img);
@@ -968,7 +1122,9 @@ boolean fixedsamplelocations);
 	{
 		texture_function_dsa(&gl::GetCompressedTextureImage,&gl::GetCompressedTexImage,m_target,lod,img);
 	}
-	
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_GenerateMipmap) || defined(GL_HPP_FUNDEF_GenerateTextureMipmapEXT)
 	void GenerateMipmap(GLenum targ)
 	{
 		texture_function_dsa(&gl::GenerateTextureMipmapEXT,&gl::GenerateMipmap,targ);
@@ -977,7 +1133,10 @@ boolean fixedsamplelocations);
 	{
 		texture_function_dsa(&gl::GenerateTextureMipmapEXT,&gl::GenerateMipmap,m_target);
 	}
-	void View(GLenum targ,GLuint origtexture,GLenum internalformat,GLuint minlevel,GLuint numlevels,GLuint minlayer,GLuint numlayers)
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_TextureView)
+    void View(GLenum targ,GLuint origtexture,GLenum internalformat,GLuint minlevel,GLuint numlevels,GLuint minlayer,GLuint numlayers)
 	{
 		gl::TextureView(object,targ,origtexture,internalformat,minlevel,numlevels,minlayer,numlayers);
 	}
@@ -994,7 +1153,9 @@ boolean fixedsamplelocations);
 	{
 		gl::TextureView(object,m_target,otex.name,internalformat,minlevel,numlevels,minlayer,numlayers);
 	}
+    #endif
 	
+    #if defined(GL_HPP_FUNDEF_TexStorage1D) || defined(GL_HPP_FUNDEF_TextureStorage1DEXT)
 	void Storage1D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width)
 	{
 		texture_function_dsa(&gl::TextureStorage1DEXT,&gl::TexStorage1D,targ,levels,internalformat,width);
@@ -1003,6 +1164,9 @@ boolean fixedsamplelocations);
 	{
 		texture_function_dsa(&gl::TextureStorage1DEXT,&gl::TexStorage1D,m_target,levels,internalformat,width);
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_TexStorage2D) || defined(GL_HPP_FUNDEF_TextureStorage2DEXT)
 	void Storage2D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height)
 	{
 		texture_function_dsa(&gl::TextureStorage2DEXT,&gl::TexStorage2D,targ,levels,internalformat,width,height);
@@ -1011,6 +1175,9 @@ boolean fixedsamplelocations);
 	{
 		texture_function_dsa(&gl::TextureStorage2DEXT,&gl::TexStorage2D,m_target,levels,internalformat,width,height);
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_TexStorage3D) || defined(GL_HPP_FUNDEF_TextureStorage3DEXT)
 	void Storage3D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height,GLsizei depth)
 	{
 		texture_function_dsa(&gl::TextureStorage3DEXT,&gl::TexStorage3D,targ,levels,internalformat,width,height,depth);
@@ -1019,6 +1186,7 @@ boolean fixedsamplelocations);
 	{
 		texture_function_dsa(&gl::TextureStorage3DEXT,&gl::TexStorage3D,m_target,levels,internalformat,width,height,depth);
 	}
+    #endif
 	/*Can't be dsaed
 void TexStorage2DMultisample(
 
@@ -1044,19 +1212,27 @@ target: {PROXY_}TEXTURE_2D_MULTISAMPLE_ARRAY
 
 Invalidating Texture Image Data [8.20]
 */
+    #if defined(GL_HPP_FUNDEF_InvalidateTexSubImage)
 	void InvalidateSubImage(GLint level,GLint xoffset,GLint yoffset,GLint zoffset,GLsizei width,GLsizei height, GLsizei depth)
 	{
 		gl::InvalidateTexSubImage(object,level,xoffset,yoffset,zoffset,width,height,depth);
 	}
-	void InvalidateImage(GLint level)
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_InvalidateTexImage)
+    void InvalidateImage(GLint level)
 	{
 		gl::InvalidateTexImage(object,level);
 	}
-
-	void BindImage(GLuint index,GLint level, GLboolean layered, GLint layer, GLenum access, GLenum format)
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_BindImageTexture)
+    void BindImage(GLuint index,GLint level, GLboolean layered, GLint layer, GLenum access, GLenum format)
 	{
 		gl::BindImageTexture(index,object,level,layered,layer,access,format);
 	}
+    #endif
+    
 protected:
 	explicit Texture(GLuint o):
 		_impl::GLObject<Texture>(o,gl::DeleteTextures),
@@ -1066,8 +1242,10 @@ protected:
 	{}
 };
 
+#endif
+    
 
-
+#ifdef GL_HPP_FUNDEF_GenSamplers
 class Sampler:public _impl::GLObject<Sampler>
 {
 public:
@@ -1075,49 +1253,68 @@ public:
 		_impl::GLObject<Sampler>("GLSampler",gl::GenSamplers,gl::DeleteSamplers)
 	{}
 	
+    #if defined(GL_HPP_FUNDEF_BindSampler)
 	void Bind(GLuint unit)
 	{
 		gl::BindSampler(unit,object);
 		_impl::_checkError(GL_INVALID_VALUE,"unit is greater than or equal to the value of GL_MAX_COMBIED_TEXTURE_IMAGE_UNITS.");
 		_impl::_checkError(GL_INVALID_OPERATION,"Sampler is not zero or a name previously returned from a call to glGenSamplers, or if such a name has been deleted by a call to glDeleteSamplers.");
 	}
+    #endif
 	
+    #if defined(GL_HPP_FUNDEF_SamplerParameteri)
 	void Parameter(GLenum pname,GLint param)
 	{
 		gl::SamplerParameteri(object,pname,param);
 		_impl::_checkError(GL_INVALID_VALUE,"sampler is not the name of a sampler object previously returned from a call to glGenSamplers.");
 		_impl::_checkError(GL_INVALID_ENUM,"params should have a defined constant value (based on the value of pname) and does not.");
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_SamplerParameterf)
 	void Parameter(GLenum pname,GLfloat param)
 	{
 		gl::SamplerParameterf(object,pname,param);
 		_impl::_checkError(GL_INVALID_VALUE,"sampler is not the name of a sampler object previously returned from a call to glGenSamplers.");
 		_impl::_checkError(GL_INVALID_ENUM,"params should have a defined constant value (based on the value of pname) and does not.");
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_SamplerParameteriv)
 	void Parameter(GLenum pname,const GLint* param)
 	{
 		gl::SamplerParameteriv(object,pname,param);
 		_impl::_checkError(GL_INVALID_VALUE,"sampler is not the name of a sampler object previously returned from a call to glGenSamplers.");
 		_impl::_checkError(GL_INVALID_ENUM,"params should have a defined constant value (based on the value of pname) and does not.");
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_SamplerParameterfv)
 	void Parameter(GLenum pname,const GLfloat* param)
 	{
 		gl::SamplerParameterfv(object,pname,param);
 		_impl::_checkError(GL_INVALID_VALUE,"sampler is not the name of a sampler object previously returned from a call to glGenSamplers.");
 		_impl::_checkError(GL_INVALID_ENUM,"params should have a defined constant value (based on the value of pname) and does not.");
 	}
-	void ParameterIiv(GLenum pname,const GLint* param)
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_SamplerParameterIiv)
+    void ParameterIiv(GLenum pname,const GLint* param)
 	{
 		gl::SamplerParameterIiv(object,pname,param);
 		_impl::_checkError(GL_INVALID_VALUE,"sampler is not the name of a sampler object previously returned from a call to glGenSamplers.");
 		_impl::_checkError(GL_INVALID_ENUM,"params should have a defined constant value (based on the value of pname) and does not.");
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_SamplerParameterIui)
 	void ParameterIui(GLenum pname,const GLuint* param)
 	{
 		gl::SamplerParameterIuiv(object,pname,param);
 		_impl::_checkError(GL_INVALID_VALUE,"sampler is not the name of a sampler object previously returned from a call to glGenSamplers.");
 		_impl::_checkError(GL_INVALID_ENUM,"params should have a defined constant value (based on the value of pname) and does not.");
 	}
+    #endif
 	
 	template<typename Type>
 	Type GetParameter(GLenum pname);
@@ -1131,6 +1328,7 @@ protected:
 	{}
 };
 
+#if defined(GL_HPP_FUNDEF_GetSamplerParameteriv)
 template<>
 inline GLint Sampler::GetParameter<GLint>(GLenum pname)
 {
@@ -1140,6 +1338,9 @@ inline GLint Sampler::GetParameter<GLint>(GLenum pname)
 	_impl::_checkError(GL_INVALID_ENUM,"Sampler get params is incorrect");
 	return out[0];
 }
+#endif
+    
+#if defined(GL_HPP_FUNDEF_GetSamplerParameterfv)
 template<>
 inline GLfloat Sampler::GetParameter<GLfloat>(GLenum pname)
 {
@@ -1149,6 +1350,10 @@ inline GLfloat Sampler::GetParameter<GLfloat>(GLenum pname)
 	_impl::_checkError(GL_INVALID_ENUM,"Sampler get params is incorrect");
 	return out[0];
 }
+#endif
+    
+
+#if defined(GL_HPP_FUNDEF_GetSamplerParameterIiv)
 template<>
 inline GLint Sampler::GetParameterI<GLint>(GLenum pname)
 {
@@ -1158,6 +1363,9 @@ inline GLint Sampler::GetParameterI<GLint>(GLenum pname)
 	_impl::_checkError(GL_INVALID_ENUM,"Sampler get params is incorrect");
 	return out[0];
 }
+#endif
+
+#if defined(GL_HPP_FUNDEF_GetSamplerParameterIuiv)
 template<>
 inline GLuint Sampler::GetParameterI<GLuint>(GLenum pname)
 {
@@ -1167,8 +1375,15 @@ inline GLuint Sampler::GetParameterI<GLuint>(GLenum pname)
 	_impl::_checkError(GL_INVALID_ENUM,"Sampler get params is incorrect");
 	return out[0];
 }
+#endif
+    
+#endif // sampler
 
+#ifdef	GL_HPP_FUNDEF_GenRenderbuffers
 class Renderbuffer;
+#endif
+
+#ifdef GL_HPP_FUNDEF_GenFramebuffers
 class Framebuffer: public _impl::GLObject<Framebuffer>
 {
 private:
@@ -1181,30 +1396,40 @@ public:
 		m_target(GL_DRAW_FRAMEBUFFER)
 	{}
 	
+    #if defined(GL_HPP_FUNDEF_BindFramebuffer)
 	void Bind(GLenum target)
 	{
 		m_target=target;
 		gl::BindFramebuffer(target,object);
 	}
-	static void Parameter(GLenum target,GLenum pname, GLint param)
+    #endif
+	
+    #if defined(GL_HPP_FUNDEF_NamedFramebufferParameteri)
+    static void Parameter(GLenum target,GLenum pname, GLint param)
 	{
 		gl::FramebufferParameteri(target,pname,param);
 	}
+    #endif
 	
+    #if defined(GL_HPP_FUNDEF_GetFramebufferParameterivEXT) || defined(GL_HPP_FUNDEF_GetFramebufferParameteriv)
 	GLint GetParameter(GLenum pname)
 	{
 		GLint params;
 		framebuffer_function_dsa(&gl::GetFramebufferParameterivEXT,&gl::GetFramebufferParameteriv,pname,&params);
 		return params;
 	}
+    #endif
 	
+    #if defined(GL_HPP_FUNDEF_GetNamedFramebufferAttachmentParameterivEXT) || defined(GL_HPP_FUNDEF_GetFramebufferAttachmentParameterivEXT)
 	GLint GetAttachmentParameteriv(GLenum attachment,GLenum pname)
 	{
 		GLint params;
 		framebuffer_function_dsa(&gl::GetNamedFramebufferAttachmentParameterivEXT,&gl::GetFramebufferAttachmentParameteriv,attachment,pname,&params);
 		return params;
 	}
+    #endif
 	
+    #if defined(GL_HPP_FUNDEF_NamedFramebufferTextureEXT) || defined(GL_HPP_FUNDEF_FramebufferTexture)
 	void Texture(GLenum attachment, GLuint texture, GLint level)
 	{
 		framebuffer_function_dsa(&gl::NamedFramebufferTextureEXT,&gl::FramebufferTexture,attachment,texture,level);
@@ -1213,10 +1438,14 @@ public:
 	{
 		framebuffer_function_dsa(&gl::NamedFramebufferTextureEXT,&gl::FramebufferTexture,attachment,tex.name,level);
 	}
+    #endif
 
+    #if defined(GL_HPP_FUNDEF_NamedFramebufferRenderbuffer) || defined(GL_HPP_FUNDEF_NamedFramebufferRenderbufferEXT)
 	void Renderbuffer(GLenum attachment, GLuint renderbuffer, GLint level);
 	void Renderbuffer(GLenum attachment,const gl::Renderbuffer& rb, GLint level);
+    #endif
 
+    #if defined(GL_HPP_FUNDEF_FramebufferTexture1D) || defined(GL_HPP_FUNDEF_NamedFramebufferTexture1DEXT)
 	void Texture1D(GLenum attachment, GLenum textarget, GLuint texture, GLint level)
 	{
 		framebuffer_function_dsa(&gl::NamedFramebufferTexture1DEXT, &gl::FramebufferTexture1D, attachment, textarget, texture, level);
@@ -1225,6 +1454,9 @@ public:
 	{
 		framebuffer_function_dsa(&gl::NamedFramebufferTexture1DEXT, &gl::FramebufferTexture1D, attachment, tex.target, tex.name, level);
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_FramebufferTexture2D) || defined(GL_HPP_FUNDEF_NamedFramebufferTexture2DEXT)
 	void Texture2D(GLenum attachment, GLenum textarget, GLuint texture, GLint level)
 	{
 		framebuffer_function_dsa(&gl::NamedFramebufferTexture2DEXT, &gl::FramebufferTexture2D, attachment, textarget, texture, level);
@@ -1233,6 +1465,9 @@ public:
 	{
 		framebuffer_function_dsa(&gl::NamedFramebufferTexture2DEXT, &gl::FramebufferTexture2D, attachment, tex.target, tex.name, level);
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_FramebufferTexture3D) || defined(GL_HPP_FUNDEF_NamedFramebufferTexture3DEXT)
 	void Texture3D(GLenum attachment, GLenum textarget, GLuint texture, GLint level,GLint layer)
 	{
 		framebuffer_function_dsa(&gl::NamedFramebufferTexture3DEXT, &gl::FramebufferTexture3D, attachment, textarget, texture, level, layer);
@@ -1241,16 +1476,24 @@ public:
 	{
 		framebuffer_function_dsa(&gl::NamedFramebufferTexture3DEXT, &gl::FramebufferTexture3D, attachment, tex.target, tex.name, level, layer);
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_CheckNamedFramebufferStatusEXT) || defined(GL_HPP_FUNDEF_CheckFramebufferStatus)
 	void CheckStatus(GLenum target)
 	{
 		framebuffer_function_dsa(&gl::CheckNamedFramebufferStatusEXT,[](GLenum t,GLenum){ return gl::CheckFramebufferStatus(t); },target);
 	}
+    #endif
+    
 protected:
 	explicit Framebuffer(GLuint o):
 		_impl::GLObject<Framebuffer>(o,gl::DeleteFramebuffers)
 	{}	
 };
-
+#endif
+    
+    
+#ifdef	GL_HPP_FUNDEF_GenRenderbuffers
 class Renderbuffer: public _impl::GLObject<Renderbuffer>
 {
 private:
@@ -1261,46 +1504,56 @@ public:
 		_impl::GLObject<Renderbuffer>("GLRenderbuffer",gl::GenRenderbuffers,gl::DeleteRenderbuffers)
 	{}
 	
+    #ifdef GL_HPP_FUNDEF_BindRenderbuffer
 	void Bind()
 	{
 		gl::BindRenderbuffer(GL_RENDERBUFFER,object);
 	}
+    #endif
 	
+    #if defined(GL_HPP_FUNDEF_NamedRenderbufferStorageMultisampleEXT) || defined(GL_HPP_FUNDEF_RenderbufferStorageMultisampleEXT)
 	void StorageMultisample(GLsizei samples,GLenum internalformat, GLsizei width, GLsizei height)
 	{
 		renderbuffer_function_dsa(&gl::NamedRenderbufferStorageMultisampleEXT,&gl::RenderbufferStorageMultisample,samples,internalformat,width,height);
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_NamedRenderbufferStorageEXT) || defined(GL_HPP_FUNDEF_RenderbufferStorage)
 	void Storage(GLenum internalformat,GLsizei width,GLsizei height)
 	{
 		renderbuffer_function_dsa(&gl::NamedRenderbufferStorageEXT,&gl::RenderbufferStorage,internalformat,width,height);
 	}
+    #endif
+    
+    #if defined(GL_HPP_FUNDEF_GetRenderbufferParameteriv) || defined(GL_HPP_FUNDEF_GetRenderbufferParameterivEXT)
 	GLint GetRenderbufferParameteriv(GLenum pname)
 	{
 		int params;
 		renderbuffer_function_dsa(&gl::GetRenderbufferParameterivEXT,&gl::GetRenderbufferParameteriv,pname,&params);
 		return params;
 	}
-	
+    #endif
+    
 protected:
 	explicit Renderbuffer(GLuint o):
 		_impl::GLObject<Renderbuffer>(o,gl::DeleteRenderbuffers)
 	{}
 };
+    
+#if defined(GL_HPP_FUNDEF_NamedFramebufferRenderbuffer) || defined(GL_HPP_FUNDEF_NamedFramebufferRenderbufferEXT)
 void Framebuffer::Renderbuffer(GLenum attachment, GLuint renderbuffer, GLint level)
 {
 	framebuffer_function_dsa(&gl::NamedFramebufferRenderbuffer,&gl::FramebufferRenderbufferEXT,attachment,GL_RENDERBUFFER,renderbuffer);
 }
+
 void Framebuffer::Renderbuffer(GLenum attachment,const gl::Renderbuffer& rb, GLint level)
 {
 	framebuffer_function_dsa(&gl::NamedFramebufferRenderbuffer,&gl::FramebufferRenderbufferEXT,attachment,GL_RENDERBUFFER,rb.name);
 }
-
-
-
+#endif
 
 }
-
-
+#endif
 
 #include "opengl.inl"
 
