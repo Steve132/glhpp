@@ -1,0 +1,161 @@
+#ifndef GL_HPP_GETPROCADDRESS_H
+#define GL_HPP_GETPROCADDRESS_H
+
+#ifdef _WIN32
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+#include<windows.h>
+#endif
+
+//DEFINE PLATFORM GET PROCEDURE CALL
+
+
+#if defined(__sgi) || defined(__sun) || (defined(__APPLE__) && defined(GLHPP_APPLE_GLX))
+#include<dlfcn.h>
+
+typedef void* (*_dl_gpa_func)(const char*);
+struct _dl_prim_xpa:
+{
+	void* h_image;
+	_dl_gpa_func x_get_proc_address;
+	_dl_prim_xpa():
+		h_image(nullptr),
+		x_get_proc_address(nullptr)
+	{
+		h=dlopen(NULL,RTLD_LAZY | RTLD_LOCAL);
+		if(h)
+		{
+			x_get_proc_address=dlsym(h,"glXGetProcAddress");
+		}
+	}
+	void* get(const char* name)
+	{
+		if(x_get_proc_address)
+		{
+			return x_get_proc_address(name);
+		}
+		if(h)
+		{
+			return dlsym(h,name);
+		}
+		return nullptr;
+	}
+};
+
+#elif defined(__APPLE__)
+
+typedef void* (*_dl_gpa_func)(const char*);
+struct _dl_prim_xpa:
+{
+	void* get(const char*)
+	{
+		return nullptr;
+	}
+};
+#endif
+
+
+
+
+//begin procedure calls.
+
+#if defined(_WIN32)
+
+static inline void* _prim_GetProcAddress(const char* name)
+{
+	return wglGetProcAddress((LPCSTR)name);
+}
+
+#elif defined(__APPLE__)
+
+#include <AvailabilityMacros.h>
+#include <mach-o/dyld.h>
+
+#ifdef GLHPP_REGAL
+#define GLHPP_APPLE_DYLIB "libRegal.dylib"
+#else
+#define GLHPP_APPLE_DYLIB "/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL"
+#endif
+
+inline void* _apple_dl_get2(const char* name)
+{
+	static _dl_prim_xpa dxpa;
+	return dxpa.get(name);
+}
+
+struct _apple_dl_image
+{
+#ifdef MAC_OS_X_VERSION_10_3
+	void* image;
+	_apple_dl_image():image(nullptr)
+	{
+		image=dlopen(GLHPP_APPLE_DYLIB,RTLD_LAZY);
+	}
+	void* get(const char* name)
+	{
+		if(!image) 
+		{
+			return nullptr;
+		}
+		void* addr=dlsym(image,name);
+		if(addr)
+		{
+			return addr;
+		}
+		return _apple_dl_get2(name);
+	}
+#else
+	const struct mach_header* image;
+	_apple_dl_image():image(nullptr)
+	{
+		image=NSAddImage(GLHPP_APPLE_DYLIB,NSADDIMAGE_OPTION_RETURN_ON_ERROR);
+	}
+	static void* get2(const char* name)
+	{
+		static _dl_prim_xpa dxpa;
+		return dxpa.get(name);
+	}
+	void* get(const char* name)
+	{
+		std::string symbolname("_");
+		symbolname+=name;
+		NSSymbol symbol=image ? NSLookupSymbolInImage(image,symbolname.c_str(),NSLOOKUPSYMBOLINIMAGE_OPTION_BIND | NSLOOKUPSYMBOLINIMAGE_OPTION_RETURN_ON_ERROR) : nullptr;
+		if(symbol)
+			return NSAddressOfSymbol(symbol);
+		return _apple_dl_get2(name);
+	}
+#endif	
+};
+
+static inline void* _prim_GetProcAddress(const char* name)
+{
+	static _apple_dl_image adi;
+	return adi.get(name);
+}
+#elif defined(__sun) || defined(__sgi)
+
+static inline void* _prim_GetProcAddress(const char* name)
+{
+	static _dl_prim_xpa dxpa;
+	return dxpa.get(name);
+}
+
+#else
+
+extern "C"
+{
+void *glXGetProcAddressARB(const GLubyte *procName);
+}
+
+static inline void* _prim_GetProcAddress(const char* name)
+{
+	return glXGetProcAddressARB((const GLubyte*)name);
+}
+
+#endif
+
+
+
+#endif
+

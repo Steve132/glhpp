@@ -26,7 +26,7 @@ class CommandSpec(object):
 			self.alias=self.alias.get('name')
 			
 	#def pointer_type(self):
-	#	return "PFN"+self.name.upper()+"PROC_HPP"
+	#	return "PFN"+self.name.upper()+"PROC_ALT"
 	def argtypes(self):
 		return ','.join([p.typ for p in self.params])
 	def argnames(self):
@@ -34,49 +34,79 @@ class CommandSpec(object):
 	def arglist(self):
 		return ','.join([ "%s %s" % (p.typ,p.name) for p in self.params])
 
-	def print_definition_function(self,featurename,function_included=False):
-		ptrfuntemplate="""
-#ifndef	GL_HPP_FUNDEF_%(signature)s
-#define GL_HPP_FUNDEF_%(signature)s
-typedef %(rettype)s (*PFN%(usignature)sPROC_HPP)(%(justtypes)s);
+	def print_definition_function(self,featurename,function_included=False,cmode=True):
+		
+		if(self.return_type=='void'):
+			rv=''
+		else:
+			rv='return';
+		
+
+		if(not cmode):
+			ptrfuntemplate="""
+#ifndef	GL_ALT_FUNDEF_%(signature)s
+#define GL_ALT_FUNDEF_%(signature)s
+typedef %(rettype)s (*PFN%(usignature)sPROC_ALT)(%(justtypes)s);
 static inline %(rettype)s %(signature)s(%(argstring)s)
 {
-	static PFN%(usignature)sPROC_HPP fn=reinterpret_cast<PFN%(usignature)sPROC_HPP>(_impl::_get_proc_address(\"gl%(signature)s\",%(extension)s));
+	static PFN%(usignature)sPROC_ALT fn=reinterpret_cast<PFN%(usignature)sPROC_ALT>(_impl::_get_proc_address(\"gl%(signature)s\",%(extension)s));
 	%(rv)s fn(%(justargs)s);
 }
 #endif
 """
-		stdfuntemplate="""
-#ifndef	GL_HPP_FUNDEF_%(asignature)s
-#define GL_HPP_FUNDEF_%(asignature)s
+			stdfuntemplate="""
+#ifndef	GL_ALT_FUNDEF_%(asignature)s
+#define GL_ALT_FUNDEF_%(asignature)s
 static inline %(rettype)s %(asignature)s(%(argstring)s)
 {
 	%(rv)s %(signature)s(%(justargs)s);
 }
 #endif
 """
-		if(self.return_type=='void'):
-			rv=''
 		else:
-			rv='return';
-		
-		
+			ptrfuntemplate="""
+#ifndef	GL_ALT_FUNDEF_%(signature)s
+#define GL_ALT_FUNDEF_%(signature)s
+typedef %(rettype)s (*PFN%(usignature)sPROC_ALT)(%(justtypes)s);
+static inline %(rettype)s gl%(signature)s(%(argstring)s)
+{
+#ifdef __cplusplus
+	static PFN%(usignature)sPROC_ALT fn=(PFN%(usignature)sPROC_ALT)glaltGetProcAddress%(extorversion)s(\"gl%(signature)s\",%(extension)s);
+#else
+	static PFN%(usignature)sPROC_ALT fn=NULL;
+	if(!fn) { fn=(PFN%(usignature)sPROC_ALT)glaltGetProcAddress%(extorversion)s(\"gl%(signature)s\",%(extension)s); }
+#endif
+	%(rv)s fn(%(justargs)s);
+}
+#endif
+"""
+			stdfuntemplate=""
+
+
+
 		funtemplate=ptrfuntemplate
-		
+	
+
 		#TODO: use st
 		ext=featurename
+		eorv="Extension"
 		if(featurename[-11:-4]=='VERSION'):
 			ext=featurename[-3]+','+featurename[-1]
+			eorv="Version"
 
-		argdict={"rettype": self.return_type,"signature":self.name[2:],"argstring":self.arglist(),"usignature":self.name.upper(),"extension":ext,"justargs":self.argnames(),"rv":rv,"justtypes":self.argtypes(),"asignature":self.name[2:]}
+		argdict={"rettype": self.return_type,"signature":self.name[2:],"argstring":self.arglist(),"usignature":self.name.upper(),"extension":ext,"justargs":self.argnames(),"rv":rv,"justtypes":self.argtypes(),"asignature":self.name[2:],"extorversion":eorv}
 		fundef=funtemplate % argdict
 			
 		if(function_included):
-			funtemplate=stdfuntemplate
+			if(cmode):
+				funtemplate=""
+				return ""
+			else:
+				funtemplate=stdfuntemplate
 			signature=self.name
 
 		
-		if(self.alias):
+		if(self.alias is not None):
 			argdict['signature']=self.name[2:]
 			argdict['asignature']=self.alias[2:]
 			fundef+="\n//ALIAS\n"
@@ -160,10 +190,10 @@ class ExtensionSpec(object):
 		
 
 class SpecificationsXML(object):
-	def __init__(self,filename):
+	def __init__(self,filename,cmode=True):
 		et=ET.parse(filename)
 		root=et.getroot()
-		
+		self.cmode=cmode
 		self.typestring=''
 		for t in root.find('types').iter('type'):
 			if(t.get('name')!='khrplatform' and t.get('requires') !='khrplatform'):
@@ -227,6 +257,12 @@ class SpecificationsXML(object):
 			return True
 		else:
 			return False
+
+	def get_first_gl_api(self,name,commandname):
+		if(name[:10]=="GL_VERSION"):
+			for api in self.complete_apis['gl']:
+				if(commandname in api.required.commands):
+					return api			
 			
 	def print_enums(self,enumlist,fileobj):
 		constdefin="#ifndef %(k)s\n#define %(k)s %(v)s\n#endif //%(k)s\n"
@@ -235,58 +271,84 @@ class SpecificationsXML(object):
 		senums=[(e,self.enum_values[e]) for e in sorted(enumlist,key=lambda x: self.enum_values[x])]
 		for k,v in senums:
 			fileobj.write(constdefin % {'k':k,'v':v,'TENUM':('GLenum' if len(v) <=10 else 'GLuint64')})
+
+	def gl_first_api_wrapwrite(self,cmdstr,current,featurename,co,fileobj):
+		api=self.get_first_gl_api(featurename,co)
+		if(api and cmdstr is not ''):
+			fileobj.write("#ifndef %s" % (api.name))
+			fileobj.write(cmdstr)
+			fileobj.write("#endif\n\n")
+		else:
+			fileobj.write(cmdstr)
 			
 	def print_static_link_declarations(self,cmdlist,featurename,fileobj):
-		fileobj.write('extern "C" {\n')
+		if(not self.cmode):
+			fileobj.write('extern "C" {\n')
 		for co in sorted(cmdlist):
 			if(self.static_function_check(featurename,co)):
-				fileobj.write(self.commands[co].print_static_link_declaration(featurename))
-		fileobj.write('}\n')
+				defstring='\n'+self.commands[co].print_static_link_declaration(featurename)
+				self.gl_first_api_wrapwrite(defstring,'',featurename,co,fileobj)
+			
+		if(not self.cmode):
+			fileobj.write('}\n')
 			
 	def print_definitions(self,cmdlist,featurename,fileobj):
+
+		fileobj.write("CGUARDBEGIN\n\n")
 		self.print_static_link_declarations(cmdlist,featurename,fileobj)
 	
-		fileobj.write("namespace gl{\n")
+		if(not self.cmode):
+			fileobj.write("namespace gl{\n")
 		for co in sorted(cmdlist):
-			fileobj.write(self.commands[co].print_definition_function(featurename,self.static_function_check(featurename,co)))
-		fileobj.write("}\n")
+			defstring=self.commands[co].print_definition_function(featurename,self.static_function_check(featurename,co),self.cmode)
+			self.gl_first_api_wrapwrite(defstring,'',featurename,co,fileobj)
+		if(not self.cmode):
+			fileobj.write("}\n")
+
+		fileobj.write("CGUARDEND\n\n")
 
 			
 	def write_feature(self,cfeature,fileobj):
-		fileobj.write("#ifndef GL_HPP_%(LONGNAME)s_HPP\n#define GL_HPP_%(LONGNAME)s_HPP\n" % {'LONGNAME':cfeature.name})
-		fileobj.write('#include "common.hpp"\n')
+		fileobj.write("#ifndef GL_ALT_%(LONGNAME)s_ALT\n#define GL_ALT_%(LONGNAME)s_ALT\n" % {'LONGNAME':cfeature.name})
+		fileobj.write('#include "common.hpp"\n' if not self.cmode else '#include "common.h"\n')
 		fileobj.write('\n\n')
 				
 		apiname='gles' if cfeature.api[:4]=='gles' else cfeature.api
 				
-		fileobj.write("#ifndef GL_HPP_API_NAME\n#define GL_HPP_API_NAME GL_HPP_%(API)s_API\n#endif\n" % {'API':apiname.upper()})
-		fileobj.write("#ifndef GL_HPP_API_VERSION\n#define GL_HPP_API_VERSION %(VERSION)d\n#endif\n" % {'VERSION':int(float(cfeature.versionfloat)*100)})
+		fileobj.write("#ifndef GL_ALT_API_NAME\n#define GL_ALT_API_NAME GL_ALT_%(API)s_API\n#endif\n" % {'API':apiname.upper()})
+		fileobj.write("#ifndef GL_ALT_API_VERSION\n#define GL_ALT_API_VERSION %(VERSION)d\n#endif\n" % {'VERSION':int(float(cfeature.versionfloat)*100)})
 		
 		self.print_enums(cfeature.required.enums,fileobj)
+		
 		self.print_definitions(cfeature.required.commands,cfeature.name,fileobj)
 		
 		fileobj.write("#endif\n")
 	
 	def write_extensions(self,apiname,fileobj):
-		fileobj.write("#ifndef GL_HPP_%(LONGNAME)s_HPP\n#define GL_HPP_%(LONGNAME)s_HPP\n" % {'LONGNAME':apiname+'EXT'})
-		fileobj.write('#include "common.hpp"\n')
+		fileobj.write("#ifndef GL_ALT_%(LONGNAME)s_ALT\n#define GL_ALT_%(LONGNAME)s_ALT\n" % {'LONGNAME':apiname+'EXT'})
+		fileobj.write('#include "common.hpp"\n' if not self.cmode else '#include "common.h"\n')
 		fileobj.write('\n\n')
 		
 		for ename,espec in sorted(self.extensions.items()):
 			if(apiname in espec.supported):
 				fileobj.write("#ifndef %(EXTNAME)s\n#define %(EXTNAME)s\n" % {'EXTNAME':espec.name})
 				self.print_enums(espec.required.enums,fileobj)
+
 				self.print_definitions(espec.required.commands,'"'+ename+'"',fileobj)
 				
 				fileobj.write("#endif\n\n")
 		
 		fileobj.write("#endif\n")
+
+
 	
 if __name__=='__main__':
 	import sys
 	import os,shutil
+
+	cmode=True
 	spec=SpecificationsXML(os.path.join('khronosgl','gl.xml'))
-	ghproot=os.path.join('..','glhpp')
+	ghproot=os.path.join('..','glalt')
 	try:
 		os.mkdir(ghproot)
 	except:
@@ -294,25 +356,41 @@ if __name__=='__main__':
 		
 	apinames=''
 	completed=set()
+	ext = '.h' if cmode else '.hpp'
+
+	allfilesout=[]
+
 	for k,v in spec.complete_apis.items():
 		kb='gles' if k[:4]=='gles' else k
 		
 		if(kb not in completed):
 			code='0x'+hashlib.sha256(kb.encode('ascii')).hexdigest()[-5:-1]
-			apinames+='#ifndef GL_HPP_%(API)s_API\n#define GL_HPP_%(API)s_API %(CODE)s\n#endif\n' % {'API':kb.upper(),'CODE':code}
+			apinames+='#ifndef GL_HEADER_%(API)s_API\n#define GL_HEADER_%(API)s_API %(CODE)s\n#endif\n' % {'API':kb.upper(),'CODE':code}
 			completed.add(kb)
 			
 		for feat in v:
 			fname=kb+feat.versionfloat
-			fout=open(os.path.join(ghproot,fname+'.hpp'),'w')
+			fname2=os.path.join(ghproot,fname+ext)
+			allfilesout.append(fname2)
+			fout=open(fname2,'w')
 			spec.write_feature(feat,fout)
-		efname=k+'ext.hpp'
+		efname=k+'ext'+ext
+		allfilesout.append(os.path.join(ghproot,efname))
 		efout=open(os.path.join(ghproot,efname),'w')
 		spec.write_extensions(k,efout)
 		
-	common=open('common.hpp.in').read() % {'TYPEDEFS':spec.typestring,'API_NAMES':apinames}
-	open(os.path.join(ghproot,'common.hpp'),'w').write(common)
-			
+	
+	common_header=open('common'+ext+'.in').read() % {'TYPEDEFS':spec.typestring,'API_NAMES':apinames}
+	cname=os.path.join(ghproot,'common'+ext)
+	open(cname,'w').write(common_header)
+	allfilesout.append(cname)
+	
+	for a in allfilesout:
+		afo=open(a,'r')	
+		astring=afo.read()
+		afo.close()
+		open(a,'w').write(astring.replace('GLDEBUGPROC','GLALTDEBUGPROC'))
+	
 	#templatefile=open('glproc.hpp.in').read()
 	#output=templatefile % {'GL_MAX_VERSION':spec.max_version,'GL_SPECS':spec.print_specs()}
 	
