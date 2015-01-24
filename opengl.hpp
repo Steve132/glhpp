@@ -787,15 +787,19 @@ public:
 		_impl::_checkError(GL_INVALID_OPERATION,"texture was previously created with a target that doesn't match that of target.");
 	}
     #endif
-    
+
+    void BindMulti(GLuint unit, GLenum targ = 0);
+
     #if defined(GL_ALT_FUNDEF_TexImage1D) || defined(GL_ALT_FUNDEF_TextureImage1DEXT)
-	void Image1D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum type, const GLvoid *data)
+    void Image1D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
+		m_target = targ;
 		texture_function_dsa(glTextureImage1DEXT,glTexImage1D,targ,level,internalformat,width,border,format,type,data);
 	}
     
 	void Image1D(GLint level,GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
+		m_target = GL_TEXTURE_1D;
 		texture_function_dsa(glTextureImage1DEXT, glTexImage1D, m_target, level, internalformat, width, border, format, type, data);
 	}
     #endif
@@ -803,10 +807,12 @@ public:
     #if defined(GL_ALT_FUNDEF_TexImage2D) || defined(GL_ALT_FUNDEF_TextureImage2DEXT)
 	void Image2D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLsizei height,GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
+		m_target = targ;
 		texture_function_dsa(glTextureImage2DEXT, glTexImage2D, targ, level, internalformat, width, height, border, format, type, data);
 	}
-	void Image2D(GLint level,GLint internalformat, GLsizei width, GLsizei height,GLint border, GLenum format, GLenum type, const GLvoid *data)
+	void Image2D(GLint level, GLint internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
+		m_target = GL_TEXTURE_2D;
 		texture_function_dsa(glTextureImage2DEXT, glTexImage2D, m_target, level, internalformat, width, height, border, format, type, data);
 	}
     #endif
@@ -814,10 +820,12 @@ public:
     #if defined(GL_ALT_FUNDEF_TexImage3D) || defined(GL_ALT_FUNDEF_TextureImage3DEXT)
 	void Image3D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLsizei height, GLsizei depth,GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
+		m_target = targ;
 		texture_function_dsa(glTextureImage3DEXT,glTexImage3D,targ,level,internalformat,width,height,depth,border,format,type,data);
 	}
 	void Image3D(GLint level,GLint internalformat, GLsizei width, GLsizei height, GLsizei depth,GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
+		m_target = GL_TEXTURE_3D;
 		texture_function_dsa(glTextureImage3DEXT,glTexImage3D,m_target,level,internalformat,width,height,depth,border,format,type,data);
 	}
     #endif

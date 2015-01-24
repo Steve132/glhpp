@@ -1415,6 +1415,22 @@ inline void Texture::texture_function_dsaf(Callable1 dsafunc,Callable2 ndsafunc,
 }
 #endif
 
+inline void Texture::BindMulti(GLuint unit,GLenum targ)
+{
+	GLenum tu = targ ? targ : m_target;
+	if (direct_state_access_supported)
+	{
+		glBindMultiTextureEXT(unit, tu, object);
+	}
+	else
+	{
+		int at = gl::Get<int>(GL_ACTIVE_TEXTURE);
+		glActiveTexture(GL_TEXTURE0 + unit);
+		Bind(tu);
+		glActiveTexture(at);
+	}
+}
+
 #if defined(GL_ALT_FUNDEF_GetTextureParameterivEXT) || defined(GL_ALT_FUNDEF_GetTexParameteriv)
 template<>
 inline GLint Texture::GetParameter<GLint>(GLenum targ,GLenum pname)
