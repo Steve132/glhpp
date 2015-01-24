@@ -441,7 +441,7 @@ inline glalt_extension_set _get_extensions()
 				extstring=(char*)realloc(extstring,bufbackingsize);
 				extstringhead=extstring+offset;
 			}
-			strncpy(extstringhead+1,curstringname,csnl);
+			memcpy(extstringhead+1,curstringname,csnl);
 			extstringhead[0]=(char)(csnl);//the length of the string to the next marker
 			extstringhead+=csnl;
 		}
