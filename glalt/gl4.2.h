@@ -3077,12 +3077,14 @@ CGUARDBEGIN
 #define GL_ALT_FUNDEF_BindTexture
 extern void glBindTexture(GLenum,GLuint);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_BlendFunc
 #define GL_ALT_FUNDEF_BlendFunc
 extern void glBlendFunc(GLenum,GLenum);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_0
@@ -3091,12 +3093,14 @@ extern void glBlendFunc(GLenum,GLenum);
 #define GL_ALT_FUNDEF_Clear
 extern void glClear(GLbitfield);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_ClearColor
 #define GL_ALT_FUNDEF_ClearColor
 extern void glClearColor(GLfloat,GLfloat,GLfloat,GLfloat);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_0
@@ -3105,12 +3109,14 @@ extern void glClearColor(GLfloat,GLfloat,GLfloat,GLfloat);
 #define GL_ALT_FUNDEF_ClearDepth
 extern void glClearDepth(GLdouble);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_ClearStencil
 #define GL_ALT_FUNDEF_ClearStencil
 extern void glClearStencil(GLint);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_0
@@ -3119,12 +3125,14 @@ extern void glClearStencil(GLint);
 #define GL_ALT_FUNDEF_ColorMask
 extern void glColorMask(GLboolean,GLboolean,GLboolean,GLboolean);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_1
 
 #ifndef	GL_ALT_FUNDEF_CopyTexImage1D
 #define GL_ALT_FUNDEF_CopyTexImage1D
 extern void glCopyTexImage1D(GLenum,GLint,GLenum,GLint,GLint,GLsizei,GLint);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_1
@@ -3133,12 +3141,14 @@ extern void glCopyTexImage1D(GLenum,GLint,GLenum,GLint,GLint,GLsizei,GLint);
 #define GL_ALT_FUNDEF_CopyTexImage2D
 extern void glCopyTexImage2D(GLenum,GLint,GLenum,GLint,GLint,GLsizei,GLsizei,GLint);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_1
 
 #ifndef	GL_ALT_FUNDEF_CopyTexSubImage1D
 #define GL_ALT_FUNDEF_CopyTexSubImage1D
 extern void glCopyTexSubImage1D(GLenum,GLint,GLint,GLint,GLint,GLsizei);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_1
@@ -3147,12 +3157,14 @@ extern void glCopyTexSubImage1D(GLenum,GLint,GLint,GLint,GLint,GLsizei);
 #define GL_ALT_FUNDEF_CopyTexSubImage2D
 extern void glCopyTexSubImage2D(GLenum,GLint,GLint,GLint,GLint,GLint,GLsizei,GLsizei);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_CullFace
 #define GL_ALT_FUNDEF_CullFace
 extern void glCullFace(GLenum);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_1
@@ -3161,12 +3173,14 @@ extern void glCullFace(GLenum);
 #define GL_ALT_FUNDEF_DeleteTextures
 extern void glDeleteTextures(GLsizei,const GLuint *);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_DepthFunc
 #define GL_ALT_FUNDEF_DepthFunc
 extern void glDepthFunc(GLenum);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_0
@@ -3175,12 +3189,14 @@ extern void glDepthFunc(GLenum);
 #define GL_ALT_FUNDEF_DepthMask
 extern void glDepthMask(GLboolean);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_DepthRange
 #define GL_ALT_FUNDEF_DepthRange
 extern void glDepthRange(GLdouble,GLdouble);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_0
@@ -3189,12 +3205,14 @@ extern void glDepthRange(GLdouble,GLdouble);
 #define GL_ALT_FUNDEF_Disable
 extern void glDisable(GLenum);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_1
 
 #ifndef	GL_ALT_FUNDEF_DrawArrays
 #define GL_ALT_FUNDEF_DrawArrays
 extern void glDrawArrays(GLenum,GLint,GLsizei);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_0
@@ -3203,12 +3221,14 @@ extern void glDrawArrays(GLenum,GLint,GLsizei);
 #define GL_ALT_FUNDEF_DrawBuffer
 extern void glDrawBuffer(GLenum);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_1
 
 #ifndef	GL_ALT_FUNDEF_DrawElements
 #define GL_ALT_FUNDEF_DrawElements
 extern void glDrawElements(GLenum,GLsizei,GLenum,const void *);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_0
@@ -3217,12 +3237,14 @@ extern void glDrawElements(GLenum,GLsizei,GLenum,const void *);
 #define GL_ALT_FUNDEF_Enable
 extern void glEnable(GLenum);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_Finish
 #define GL_ALT_FUNDEF_Finish
 extern void glFinish();
+#endif
 #endif
 
 #ifndef GL_VERSION_1_0
@@ -3231,12 +3253,14 @@ extern void glFinish();
 #define GL_ALT_FUNDEF_Flush
 extern void glFlush();
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_FrontFace
 #define GL_ALT_FUNDEF_FrontFace
 extern void glFrontFace(GLenum);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_1
@@ -3245,12 +3269,14 @@ extern void glFrontFace(GLenum);
 #define GL_ALT_FUNDEF_GenTextures
 extern void glGenTextures(GLsizei,GLuint *);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_GetBooleanv
 #define GL_ALT_FUNDEF_GetBooleanv
 extern void glGetBooleanv(GLenum,GLboolean *);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_0
@@ -3259,12 +3285,14 @@ extern void glGetBooleanv(GLenum,GLboolean *);
 #define GL_ALT_FUNDEF_GetDoublev
 extern void glGetDoublev(GLenum,GLdouble *);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_GetError
 #define GL_ALT_FUNDEF_GetError
 extern GLenum glGetError();
+#endif
 #endif
 
 #ifndef GL_VERSION_1_0
@@ -3273,12 +3301,14 @@ extern GLenum glGetError();
 #define GL_ALT_FUNDEF_GetFloatv
 extern void glGetFloatv(GLenum,GLfloat *);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_GetIntegerv
 #define GL_ALT_FUNDEF_GetIntegerv
 extern void glGetIntegerv(GLenum,GLint *);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_0
@@ -3287,12 +3317,14 @@ extern void glGetIntegerv(GLenum,GLint *);
 #define GL_ALT_FUNDEF_GetString
 extern const GLubyte * glGetString(GLenum);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_GetTexImage
 #define GL_ALT_FUNDEF_GetTexImage
 extern void glGetTexImage(GLenum,GLint,GLenum,GLenum,void *);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_0
@@ -3301,12 +3333,14 @@ extern void glGetTexImage(GLenum,GLint,GLenum,GLenum,void *);
 #define GL_ALT_FUNDEF_GetTexLevelParameterfv
 extern void glGetTexLevelParameterfv(GLenum,GLint,GLenum,GLfloat *);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_GetTexLevelParameteriv
 #define GL_ALT_FUNDEF_GetTexLevelParameteriv
 extern void glGetTexLevelParameteriv(GLenum,GLint,GLenum,GLint *);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_0
@@ -3315,12 +3349,14 @@ extern void glGetTexLevelParameteriv(GLenum,GLint,GLenum,GLint *);
 #define GL_ALT_FUNDEF_GetTexParameterfv
 extern void glGetTexParameterfv(GLenum,GLenum,GLfloat *);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_GetTexParameteriv
 #define GL_ALT_FUNDEF_GetTexParameteriv
 extern void glGetTexParameteriv(GLenum,GLenum,GLint *);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_0
@@ -3329,12 +3365,14 @@ extern void glGetTexParameteriv(GLenum,GLenum,GLint *);
 #define GL_ALT_FUNDEF_Hint
 extern void glHint(GLenum,GLenum);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_IsEnabled
 #define GL_ALT_FUNDEF_IsEnabled
 extern GLboolean glIsEnabled(GLenum);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_1
@@ -3343,12 +3381,14 @@ extern GLboolean glIsEnabled(GLenum);
 #define GL_ALT_FUNDEF_IsTexture
 extern GLboolean glIsTexture(GLuint);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_LineWidth
 #define GL_ALT_FUNDEF_LineWidth
 extern void glLineWidth(GLfloat);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_0
@@ -3357,12 +3397,14 @@ extern void glLineWidth(GLfloat);
 #define GL_ALT_FUNDEF_LogicOp
 extern void glLogicOp(GLenum);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_PixelStoref
 #define GL_ALT_FUNDEF_PixelStoref
 extern void glPixelStoref(GLenum,GLfloat);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_0
@@ -3371,12 +3413,14 @@ extern void glPixelStoref(GLenum,GLfloat);
 #define GL_ALT_FUNDEF_PixelStorei
 extern void glPixelStorei(GLenum,GLint);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_PointSize
 #define GL_ALT_FUNDEF_PointSize
 extern void glPointSize(GLfloat);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_0
@@ -3385,12 +3429,14 @@ extern void glPointSize(GLfloat);
 #define GL_ALT_FUNDEF_PolygonMode
 extern void glPolygonMode(GLenum,GLenum);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_1
 
 #ifndef	GL_ALT_FUNDEF_PolygonOffset
 #define GL_ALT_FUNDEF_PolygonOffset
 extern void glPolygonOffset(GLfloat,GLfloat);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_0
@@ -3399,12 +3445,14 @@ extern void glPolygonOffset(GLfloat,GLfloat);
 #define GL_ALT_FUNDEF_ReadBuffer
 extern void glReadBuffer(GLenum);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_ReadPixels
 #define GL_ALT_FUNDEF_ReadPixels
 extern void glReadPixels(GLint,GLint,GLsizei,GLsizei,GLenum,GLenum,void *);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_0
@@ -3413,12 +3461,14 @@ extern void glReadPixels(GLint,GLint,GLsizei,GLsizei,GLenum,GLenum,void *);
 #define GL_ALT_FUNDEF_Scissor
 extern void glScissor(GLint,GLint,GLsizei,GLsizei);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_StencilFunc
 #define GL_ALT_FUNDEF_StencilFunc
 extern void glStencilFunc(GLenum,GLint,GLuint);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_0
@@ -3427,12 +3477,14 @@ extern void glStencilFunc(GLenum,GLint,GLuint);
 #define GL_ALT_FUNDEF_StencilMask
 extern void glStencilMask(GLuint);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_StencilOp
 #define GL_ALT_FUNDEF_StencilOp
 extern void glStencilOp(GLenum,GLenum,GLenum);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_0
@@ -3441,12 +3493,14 @@ extern void glStencilOp(GLenum,GLenum,GLenum);
 #define GL_ALT_FUNDEF_TexImage1D
 extern void glTexImage1D(GLenum,GLint,GLint,GLsizei,GLint,GLenum,GLenum,const void *);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_TexImage2D
 #define GL_ALT_FUNDEF_TexImage2D
 extern void glTexImage2D(GLenum,GLint,GLint,GLsizei,GLsizei,GLint,GLenum,GLenum,const void *);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_0
@@ -3455,12 +3509,14 @@ extern void glTexImage2D(GLenum,GLint,GLint,GLsizei,GLsizei,GLint,GLenum,GLenum,
 #define GL_ALT_FUNDEF_TexParameterf
 extern void glTexParameterf(GLenum,GLenum,GLfloat);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_TexParameterfv
 #define GL_ALT_FUNDEF_TexParameterfv
 extern void glTexParameterfv(GLenum,GLenum,const GLfloat *);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_0
@@ -3469,12 +3525,14 @@ extern void glTexParameterfv(GLenum,GLenum,const GLfloat *);
 #define GL_ALT_FUNDEF_TexParameteri
 extern void glTexParameteri(GLenum,GLenum,GLint);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_TexParameteriv
 #define GL_ALT_FUNDEF_TexParameteriv
 extern void glTexParameteriv(GLenum,GLenum,const GLint *);
+#endif
 #endif
 
 #ifndef GL_VERSION_1_1
@@ -3483,6 +3541,7 @@ extern void glTexParameteriv(GLenum,GLenum,const GLint *);
 #define GL_ALT_FUNDEF_TexSubImage1D
 extern void glTexSubImage1D(GLenum,GLint,GLint,GLsizei,GLenum,GLenum,const void *);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_1
 
@@ -3490,12 +3549,14 @@ extern void glTexSubImage1D(GLenum,GLint,GLint,GLsizei,GLenum,GLenum,const void 
 #define GL_ALT_FUNDEF_TexSubImage2D
 extern void glTexSubImage2D(GLenum,GLint,GLint,GLint,GLsizei,GLsizei,GLenum,GLenum,const void *);
 #endif
+#endif
 
 #ifndef GL_VERSION_1_0
 
 #ifndef	GL_ALT_FUNDEF_Viewport
 #define GL_ALT_FUNDEF_Viewport
 extern void glViewport(GLint,GLint,GLsizei,GLsizei);
+#endif
 #endif
 
 #ifndef GL_VERSION_4_1
