@@ -114,7 +114,11 @@ static inline %(rettype)s gl%(signature)s(%(argstring)s)
 		return fundef
 		
 	def print_static_link_declaration(self,featurename):
-		ptrdeclarationtemplate='extern %(rettype)s gl%(signature)s(%(justtypes)s);\n'
+		ptrdeclarationtemplate='''
+#ifndef	GL_ALT_FUNDEF_%(signature)s
+#define GL_ALT_FUNDEF_%(signature)s
+extern %(rettype)s gl%(signature)s(%(justtypes)s);
+'''
 		return ptrdeclarationtemplate % {"rettype": self.return_type,"signature":self.name[2:],"justtypes":self.argtypes()}
 		
 	
