@@ -59,7 +59,7 @@ static inline void checkUniform()
 }
 ///////////////////////////////////////////////////
 //GETTERS
-#ifdef GL_HPP_FUNDEF_GetFloatv
+#ifdef GL_ALT_FUNDEF_GetFloatv
 template<>
 inline	GLfloat Get<GLfloat>(GLenum e)
 {
@@ -70,7 +70,7 @@ inline	GLfloat Get<GLfloat>(GLenum e)
 }
 #endif
 
-#ifdef GL_HPP_FUNDEF_GetDoublev
+#ifdef GL_ALT_FUNDEF_GetDoublev
 template<>
 inline GLdouble Get<GLdouble>(GLenum e)
 {
@@ -81,7 +81,7 @@ inline GLdouble Get<GLdouble>(GLenum e)
 }
 #endif
 
-#ifdef GL_HPP_FUNDEF_GetBooleanv
+#ifdef GL_ALT_FUNDEF_GetBooleanv
 template<>
 inline	GLboolean Get<GLboolean>(GLenum e)
 {
@@ -92,7 +92,7 @@ inline	GLboolean Get<GLboolean>(GLenum e)
 }
 #endif
 
-#ifdef GL_HPP_FUNDEF_GetIntegerv
+#ifdef GL_ALT_FUNDEF_GetIntegerv
 template<>
 inline	GLint Get<GLint>(GLenum e)
 {
@@ -103,7 +103,7 @@ inline	GLint Get<GLint>(GLenum e)
 }
 #endif
 
-#ifdef GL_HPP_FUNDEF_GetInteger64v
+#ifdef GL_ALT_FUNDEF_GetInteger64v
 template<>
 inline	GLint64 Get<GLint64>(GLenum e)
 {
@@ -114,7 +114,7 @@ inline	GLint64 Get<GLint64>(GLenum e)
 }
 #endif
 
-#ifdef GL_HPP_FUNDEF_GetString
+#ifdef GL_ALT_FUNDEF_GetString
 template<>
 inline std::string Get<std::string>(GLenum e)
 {
@@ -124,7 +124,7 @@ inline std::string Get<std::string>(GLenum e)
 }
 #endif
 
-#ifdef GL_HPP_FUNDEF_GetBooleani_v
+#ifdef GL_ALT_FUNDEF_GetBooleani_v
 template<>
 inline GLboolean Get<GLboolean>(GLenum e,GLsizei i)
 {
@@ -136,7 +136,7 @@ inline GLboolean Get<GLboolean>(GLenum e,GLsizei i)
 }
 #endif
 
-#ifdef GL_HPP_FUNDEF_GetIntegeri_v
+#ifdef GL_ALT_FUNDEF_GetIntegeri_v
 template<>
 inline GLint Get<GLint>(GLenum e,GLsizei i)
 {
@@ -148,7 +148,7 @@ inline GLint Get<GLint>(GLenum e,GLsizei i)
 }
 #endif
 
-#ifdef GL_HPP_FUNDEF_GetInteger64i_v
+#ifdef GL_ALT_FUNDEF_GetInteger64i_v
 template<>
 inline GLint64 Get<GLint64>(GLenum e,GLsizei i)
 {
@@ -160,7 +160,7 @@ inline GLint64 Get<GLint64>(GLenum e,GLsizei i)
 }
 #endif
 
-#ifdef GL_HPP_FUNDEF_GetStringi
+#ifdef GL_ALT_FUNDEF_GetStringi
 template<>
 inline std::string Get<std::string>(GLenum e,GLsizei i)
 {
@@ -181,7 +181,7 @@ inline Exception::Exception(GLenum cde,const std::string& wh):
 
 ///////////////////////////////////////////////////////
 //Shader Objects
-#ifdef	GL_HPP_FUNDEF_CreateShader
+#ifdef	GL_ALT_FUNDEF_CreateShader
 namespace _impl
 {
 	inline void genShader(GLenum t,GLsizei,GLuint* out)
@@ -213,7 +213,7 @@ inline GLint Shader::Get(GLenum variable) const
 }
     
     
-#if defined(GL_HPP_FUNDEF_ShaderSource)
+#if defined(GL_ALT_FUNDEF_ShaderSource)
 inline void Shader::Source(const std::string& src)
 {
 	GLint len=static_cast<GLint>(src.size());
@@ -238,7 +238,7 @@ inline void Shader::SourceFile(const std::string& filename)
 #endif
 
     
-#if defined(GL_HPP_FUNDEF_CompileShader)
+#if defined(GL_ALT_FUNDEF_CompileShader)
 inline std::string Shader::Compile()
 {
 	glCompileShader(object);
@@ -263,7 +263,7 @@ inline std::string Shader::Compile()
 ///////////////////////////////////////////////////////
 //Program Objects
 //direct functions
-#ifndef	GL_HPP_FUNDEF_CreateProgram
+#ifndef	GL_ALT_FUNDEF_CreateProgram
     
 #ifndef GL_HPP_DIRECT_STATE
 //This DSA solution is justifiable because an in-cache if statement with crazy branch prediction
@@ -357,87 +357,87 @@ inline void Program::UniformMatrix<type,rows,cols>(const std::string& n,const ty
 												\
 																					
 
-#if defined (GL_HPP_FUNDEF_Uniform1fv) || defined (GL_HPP_FUNDEF_ProgramUniform1fv)
+#if defined (GL_ALT_FUNDEF_Uniform1fv) || defined (GL_ALT_FUNDEF_ProgramUniform1fv)
 GL_HPP_PROGRAM_UNIFORM_DEFINITION(GLfloat,1,Uniform1fv);
 #endif
 
-#if defined (GL_HPP_FUNDEF_Uniform2fv) || defined (GL_HPP_FUNDEF_ProgramUniform2fv)
+#if defined (GL_ALT_FUNDEF_Uniform2fv) || defined (GL_ALT_FUNDEF_ProgramUniform2fv)
 GL_HPP_PROGRAM_UNIFORM_DEFINITION(GLfloat,2,Uniform2fv);
 #endif
 
-#if defined (GL_HPP_FUNDEF_Uniform3fv) || defined (GL_HPP_FUNDEF_ProgramUniform3fv)
+#if defined (GL_ALT_FUNDEF_Uniform3fv) || defined (GL_ALT_FUNDEF_ProgramUniform3fv)
 GL_HPP_PROGRAM_UNIFORM_DEFINITION(GLfloat,3,Uniform3fv);
 #endif
     
-#if defined (GL_HPP_FUNDEF_Uniform4fv) || defined (GL_HPP_FUNDEF_ProgramUniform4fv)
+#if defined (GL_ALT_FUNDEF_Uniform4fv) || defined (GL_ALT_FUNDEF_ProgramUniform4fv)
 GL_HPP_PROGRAM_UNIFORM_DEFINITION(GLfloat,4,Uniform4fv);
 #endif
     
-#if defined (GL_HPP_FUNDEF_Uniform1iv) || defined (GL_HPP_FUNDEF_ProgramUniform1iv)
+#if defined (GL_ALT_FUNDEF_Uniform1iv) || defined (GL_ALT_FUNDEF_ProgramUniform1iv)
 GL_HPP_PROGRAM_UNIFORM_DEFINITION(GLint,1,Uniform1iv);
 #endif
     
-#if defined (GL_HPP_FUNDEF_Uniform2iv) || defined (GL_HPP_FUNDEF_ProgramUniform2iv)
+#if defined (GL_ALT_FUNDEF_Uniform2iv) || defined (GL_ALT_FUNDEF_ProgramUniform2iv)
 GL_HPP_PROGRAM_UNIFORM_DEFINITION(GLint,2,Uniform2iv);
 #endif
     
-#if defined (GL_HPP_FUNDEF_Uniform3iv)  || defined (GL_HPP_FUNDEF_ProgramUniform3iv)
+#if defined (GL_ALT_FUNDEF_Uniform3iv)  || defined (GL_ALT_FUNDEF_ProgramUniform3iv)
 GL_HPP_PROGRAM_UNIFORM_DEFINITION(GLint,3,Uniform3iv);
 #endif
     
-#if defined (GL_HPP_FUNDEF_Uniform4iv) || defined (GL_HPP_FUNDEF_ProgramUniform4iv)
+#if defined (GL_ALT_FUNDEF_Uniform4iv) || defined (GL_ALT_FUNDEF_ProgramUniform4iv)
 GL_HPP_PROGRAM_UNIFORM_DEFINITION(GLint,4,Uniform4iv);
 #endif
     
-#if defined (GL_HPP_FUNDEF_Uniform1uiv) || defined (GL_HPP_FUNDEF_ProgramUniform1uiv)
+#if defined (GL_ALT_FUNDEF_Uniform1uiv) || defined (GL_ALT_FUNDEF_ProgramUniform1uiv)
 GL_HPP_PROGRAM_UNIFORM_DEFINITION(GLuint,1,Uniform1uiv);
 #endif
     
-#if defined (GL_HPP_FUNDEF_Uniform2uiv) || defined (GL_HPP_FUNDEF_ProgramUniform2uiv)
+#if defined (GL_ALT_FUNDEF_Uniform2uiv) || defined (GL_ALT_FUNDEF_ProgramUniform2uiv)
 GL_HPP_PROGRAM_UNIFORM_DEFINITION(GLuint,2,Uniform2uiv);
 #endif
 
-#if defined (GL_HPP_FUNDEF_Uniform3uiv) || defined (GL_HPP_FUNDEF_ProgramUniform3uiv)
+#if defined (GL_ALT_FUNDEF_Uniform3uiv) || defined (GL_ALT_FUNDEF_ProgramUniform3uiv)
 GL_HPP_PROGRAM_UNIFORM_DEFINITION(GLuint,3,Uniform3uiv);
 #endif
     
-#if defined (GL_HPP_FUNDEF_Uniform4uiv) ||  defined (GL_HPP_FUNDEF_ProgramUniform4uiv)
+#if defined (GL_ALT_FUNDEF_Uniform4uiv) ||  defined (GL_ALT_FUNDEF_ProgramUniform4uiv)
 GL_HPP_PROGRAM_UNIFORM_DEFINITION(GLuint,4,Uniform4uiv);
 #endif
     
-#if defined (GL_HPP_FUNDEF_UniformMatrix2fv) || defined (GL_HPP_FUNDEF_ProgramUniformMatrix2fv)
+#if defined (GL_ALT_FUNDEF_UniformMatrix2fv) || defined (GL_ALT_FUNDEF_ProgramUniformMatrix2fv)
 GL_HPP_PROGRAM_UNIFORM_MATRIX_DEFINITION(GLfloat,2,2,UniformMatrix2fv);
 #endif
 
-#if defined (GL_HPP_FUNDEF_UniformMatrix3fv) || defined(GL_HPP_FUNDEF_ProgramUniformMatrix3fv)
+#if defined (GL_ALT_FUNDEF_UniformMatrix3fv) || defined(GL_ALT_FUNDEF_ProgramUniformMatrix3fv)
 GL_HPP_PROGRAM_UNIFORM_MATRIX_DEFINITION(GLfloat,3,3,UniformMatrix3fv);
 #endif
     
-#if defined (GL_HPP_FUNDEF_UniformMatrix4fv) || defined (GL_HPP_FUNDEF_ProgramUniformMatrix4fv)
+#if defined (GL_ALT_FUNDEF_UniformMatrix4fv) || defined (GL_ALT_FUNDEF_ProgramUniformMatrix4fv)
 GL_HPP_PROGRAM_UNIFORM_MATRIX_DEFINITION(GLfloat,4,4,UniformMatrix4fv);
 #endif
     
-#if defined (GL_HPP_FUNDEF_UniformMatrix2x3fv) || defined (GL_HPP_FUNDEF_ProgramUniformMatrix2x3fv)
+#if defined (GL_ALT_FUNDEF_UniformMatrix2x3fv) || defined (GL_ALT_FUNDEF_ProgramUniformMatrix2x3fv)
 GL_HPP_PROGRAM_UNIFORM_MATRIX_DEFINITION(GLfloat,2,3,UniformMatrix2x3fv);
 #endif
     
-#if defined (GL_HPP_FUNDEF_UniformMatrix3x2fv) || defined (GL_HPP_FUNDEF_ProgramUniformMatrix3x2fv)
+#if defined (GL_ALT_FUNDEF_UniformMatrix3x2fv) || defined (GL_ALT_FUNDEF_ProgramUniformMatrix3x2fv)
 GL_HPP_PROGRAM_UNIFORM_MATRIX_DEFINITION(GLfloat,3,2,UniformMatrix3x2fv);
 #endif
     
-#if defined (GL_HPP_FUNDEF_UniformMatrix2x4fv) || defined (GL_HPP_FUNDEF_ProgramUniformMatrix2x4fv)
+#if defined (GL_ALT_FUNDEF_UniformMatrix2x4fv) || defined (GL_ALT_FUNDEF_ProgramUniformMatrix2x4fv)
     GL_HPP_PROGRAM_UNIFORM_MATRIX_DEFINITION(GLfloat,2,4,UniformMatrix2x4fv);
 #endif
     
-#if defined (GL_HPP_FUNDEF_UniformMatrix4x2fv) || defined (GL_HPP_FUNDEF_ProgramUniformMatrix4x2fv)
+#if defined (GL_ALT_FUNDEF_UniformMatrix4x2fv) || defined (GL_ALT_FUNDEF_ProgramUniformMatrix4x2fv)
 GL_HPP_PROGRAM_UNIFORM_MATRIX_DEFINITION(GLfloat,4,2,UniformMatrix4x2fv);
 #endif
     
-#if defined (GL_HPP_FUNDEF_UniformMatrix3x4fv) || defined (GL_HPP_FUNDEF_ProgramUniformMatrix3x4fv)
+#if defined (GL_ALT_FUNDEF_UniformMatrix3x4fv) || defined (GL_ALT_FUNDEF_ProgramUniformMatrix3x4fv)
 GL_HPP_PROGRAM_UNIFORM_MATRIX_DEFINITION(GLfloat,3,4,UniformMatrix3x4fv);
 #endif
     
-#if defined (GL_HPP_FUNDEF_UniformMatrix4x3fv) || defined (GL_HPP_FUNDEF_ProgramUniformMatrix4x3fv)
+#if defined (GL_ALT_FUNDEF_UniformMatrix4x3fv) || defined (GL_ALT_FUNDEF_ProgramUniformMatrix4x3fv)
 GL_HPP_PROGRAM_UNIFORM_MATRIX_DEFINITION(GLfloat,4,3,UniformMatrix4x3fv);
 #endif
     
@@ -495,7 +495,7 @@ inline Program::Program(GLuint obj):
 	_impl::GLObject<Program>(obj,_impl::delProgram)
 {}
 
-#if defined (GL_HPP_FUNDEF_GetProgramiv)
+#if defined (GL_ALT_FUNDEF_GetProgramiv)
 inline GLint Program::Get(GLenum variable) const
 {			
 	GLint p;
@@ -507,7 +507,7 @@ inline GLint Program::Get(GLenum variable) const
 }
 #endif
 	
-#if defined (GL_HPP_FUNDEF_AttachShader)
+#if defined (GL_ALT_FUNDEF_AttachShader)
 inline void Program::Attach(const Shader& s)
 {
 	glAttachShader(object,s.name);
@@ -515,7 +515,7 @@ inline void Program::Attach(const Shader& s)
 }
 #endif
 
-#if defined (GL_HPP_FUNDEF_DetachShader)
+#if defined (GL_ALT_FUNDEF_DetachShader)
 inline void Program::Detach(const Shader& s)
 {
 	glDetachShader(object,s.name);
@@ -523,7 +523,7 @@ inline void Program::Detach(const Shader& s)
 }
 #endif
 	
-#if defined (GL_HPP_FUNDEF_BindAttribLocation)
+#if defined (GL_ALT_FUNDEF_BindAttribLocation)
 inline void Program::BindAttribLocation(GLuint index,const std::string& name)
 {
 	glBindAttribLocation(object,index,name.c_str());
@@ -532,7 +532,7 @@ inline void Program::BindAttribLocation(GLuint index,const std::string& name)
 }
 #endif
 	
-#if defined (GL_HPP_FUNDEF_ValidateProgram) && defined (GL_HPP_FUNDEF_GetProgramInfoLog) && defined (GL_HPP_FUNDEF_GetProgramiv)
+#if defined (GL_ALT_FUNDEF_ValidateProgram) && defined (GL_ALT_FUNDEF_GetProgramInfoLog) && defined (GL_ALT_FUNDEF_GetProgramiv)
 inline std::pair<bool,std::string> Program::Validate() const
 {
 	glValidateProgram(object);
@@ -549,7 +549,7 @@ inline std::pair<bool,std::string> Program::Validate() const
 }
 #endif
 	
-#if defined (GL_HPP_FUNDEF_GetAttribLocation)
+#if defined (GL_ALT_FUNDEF_GetAttribLocation)
 inline GLint Program::GetAttribLocation(const std::string& n) const
 {
 	GLint r=glGetAttribLocation(object,n.c_str());
@@ -558,14 +558,14 @@ inline GLint Program::GetAttribLocation(const std::string& n) const
 }
 #endif
 	
-#if defined (GL_HPP_FUNDEF_GetUniformLocation)
+#if defined (GL_ALT_FUNDEF_GetUniformLocation)
 inline GLint Program::GetUniformLocation(const std::string& n) const
 {
 	return glGetUniformLocation(object,n.c_str());
 }
 #endif
 	
-#ifdef GL_HPP_FUNDEF_LinkProgram
+#ifdef GL_ALT_FUNDEF_LinkProgram
 inline std::string Program::Link()
 {
 	glLinkProgram(object);
@@ -583,7 +583,7 @@ inline std::string Program::Link()
 }
 #endif
 
-#ifdef GL_HPP_FUNDEF_UseProgram
+#ifdef GL_ALT_FUNDEF_UseProgram
 inline void Program::Use() const
 {
 	glUseProgram(object);
@@ -602,12 +602,12 @@ inline GLint Program::GetFragDataLocation(const std::string& name)
 	return glGetFragDataLocation(object,name.c_str());
 }
 
-#endif //GL_HPP_FUNDEF_CreateProgram
+#endif //GL_ALT_FUNDEF_CreateProgram
 
 
 //////////////////////////////////////////////////////////////////////////////////////
 //Buffer
-#ifdef GL_HPP_FUNDEF_GenBuffers
+#ifdef GL_ALT_FUNDEF_GenBuffers
 inline void Buffer::Bind(GLenum bt) const 
 {
 	glBindBuffer(bt,object);
@@ -972,9 +972,9 @@ inline void Buffer::CopySubData(const Buffer& read,GLintptr readoffset,GLintptr 
 
 ///////////////////////////////////////////////////////////////////
 //VERTEX ARRAY DATA
-#ifdef GL_HPP_FUNDEF_GenVertexArrays
+#ifdef GL_ALT_FUNDEF_GenVertexArrays
     
-#if defined(GL_HPP_FUNDEF_BindVertexArray)
+#if defined(GL_ALT_FUNDEF_BindVertexArray)
 inline void VertexArray::Bind() const 
 {
 	if(gl::Get<GLint>(GL_VERTEX_ARRAY_BINDING) != object)
@@ -983,7 +983,7 @@ inline void VertexArray::Bind() const
 }
 #endif
     
-#if defined(GL_HPP_FUNDEF_EnableVertexArrayAttribEXT) || defined(GL_HPP_FUNDEF_EnableVertexAttribArray)
+#if defined(GL_ALT_FUNDEF_EnableVertexArrayAttribEXT) || defined(GL_ALT_FUNDEF_EnableVertexAttribArray)
 inline void VertexArray::EnableAttrib(GLuint index)
 {
 	if(direct_state_access_supported)
@@ -1008,7 +1008,7 @@ inline void VertexArray::EnableAttrib(GLuint index)
 }
 #endif
     
-#if defined(GL_HPP_FUNDEF_DisableVertexArrayAttribEXT) || defined(GL_HPP_FUNDEF_DisableVertexAttribArray)
+#if defined(GL_ALT_FUNDEF_DisableVertexArrayAttribEXT) || defined(GL_ALT_FUNDEF_DisableVertexAttribArray)
 inline void VertexArray::DisableAttrib(GLuint index)
 {
 	if(direct_state_access_supported)
@@ -1159,7 +1159,7 @@ inline void VertexArray::AttribI(GLuint index,GLint size,GLenum type,GLsizei str
 	EnableAttrib(index);
 }
 
-#if defined(GL_HPP_FUNDEF_BindVertexArray) && defined(GL_HPP_FUNDEF_BindBuffer)
+#if defined(GL_ALT_FUNDEF_BindVertexArray) && defined(GL_ALT_FUNDEF_BindBuffer)
 inline void VertexArray::Elements(const Buffer& b)
 {
 	GLint bbinding=Get<GLint>(GL_ELEMENT_ARRAY_BUFFER_BINDING);
@@ -1187,8 +1187,8 @@ inline void VertexArray::Elements(const Buffer& b)
 
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////// Query objects
-#ifdef GL_HPP_FUNDEF_GenQueries
-#if defined(GL_HPP_FUNDEF_BeginConditionalRender)
+#ifdef GL_ALT_FUNDEF_GenQueries
+#if defined(GL_ALT_FUNDEF_BeginConditionalRender)
 inline void Query::BeginConditionalRender(GLenum mode)
 {
 	glBeginConditionalRender(object,mode);
@@ -1197,7 +1197,7 @@ inline void Query::BeginConditionalRender(GLenum mode)
 	_impl::_checkError(GL_INVALID_OPERATION,"Cannot begin conditional rendering while conditional rendering is already active OR Id is the name of a query object with a target other than GL_SAMPLES_PASSED or GL_ANY_SAMPLES_PASSED or Id is the name of a query currently in progress.");
 }
 #endif
-#if defined(GL_HPP_FUNDEF_EndConditionalRender)
+#if defined(GL_ALT_FUNDEF_EndConditionalRender)
 inline void Query::EndConditionalRender()
 {
 	glEndConditionalRender();
@@ -1205,7 +1205,7 @@ inline void Query::EndConditionalRender()
 }
 #endif
     
-#if defined(GL_HPP_FUNDEF_BeginQuery)
+#if defined(GL_ALT_FUNDEF_BeginQuery)
 inline void Query::Begin(GLenum target)
 {
 	glBeginQuery(target,object);
@@ -1217,7 +1217,7 @@ inline void Query::Begin(GLenum target)
 }
 #endif
     
-#if defined(GL_HPP_FUNDEF_EndQuery)
+#if defined(GL_ALT_FUNDEF_EndQuery)
 inline void Query::End(GLenum target)
 {
 	glEndQuery(target);
@@ -1229,7 +1229,7 @@ inline void Query::End(GLenum target)
 }
 #endif
 
-#if defined(GL_HPP_FUNDEF_BeginQueryIndexed)
+#if defined(GL_ALT_FUNDEF_BeginQueryIndexed)
 inline void Query::BeginIndexed(GLenum target,GLuint index)
 {
 	glBeginQueryIndexed(target,index,object);
@@ -1241,7 +1241,7 @@ inline void Query::BeginIndexed(GLenum target,GLuint index)
 }
 #endif
     
-#if defined(GL_HPP_FUNDEF_EndQueryIndexed)
+#if defined(GL_ALT_FUNDEF_EndQueryIndexed)
 inline void Query::EndIndexed(GLenum target,GLuint index)
 {
 	glEndQueryIndexed(target,index);
@@ -1254,7 +1254,7 @@ inline void Query::EndIndexed(GLenum target,GLuint index)
 #endif
 
     
-#if defined(GL_HPP_FUNDEF_GetQueryObjectiv)
+#if defined(GL_ALT_FUNDEF_GetQueryObjectiv)
 template<>
 inline GLint Query::Get<GLint>(GLenum pname) const
 {
@@ -1266,7 +1266,7 @@ inline GLint Query::Get<GLint>(GLenum pname) const
 }
 #endif
 
-#if defined(GL_HPP_FUNDEF_GetQueryObjectuiv)
+#if defined(GL_ALT_FUNDEF_GetQueryObjectuiv)
 template<>
 inline GLuint Query::Get<GLuint>(GLenum pname) const
 {
@@ -1278,7 +1278,7 @@ inline GLuint Query::Get<GLuint>(GLenum pname) const
 }
 #endif
  
-#if defined(GL_HPP_FUNDEF_GetQueryObjecti64v)
+#if defined(GL_ALT_FUNDEF_GetQueryObjecti64v)
 template<>
 inline GLint64 Query::Get<GLint64>(GLenum pname) const
 {
@@ -1290,7 +1290,7 @@ inline GLint64 Query::Get<GLint64>(GLenum pname) const
 }
 #endif
  
-#if defined(GL_HPP_FUNDEF_GetQueryObjectui64v)
+#if defined(GL_ALT_FUNDEF_GetQueryObjectui64v)
 template<>
 inline GLuint64 Query::Get<GLuint64>(GLenum pname) const
 {
@@ -1323,9 +1323,9 @@ inline ContextInfo::ContextInfo():
 	}
 
 
-#ifdef GL_HPP_FUNDEF_GenTextures
+#ifdef GL_ALT_FUNDEF_GenTextures
 
-#if defined(GL_HPP_FUNDEF_GetIntegerv)
+#if defined(GL_ALT_FUNDEF_GetIntegerv)
 inline GLint Texture::tbinding_query(GLenum target)
 {
 	static const GLenum mapping[]={
@@ -1362,8 +1362,32 @@ inline GLint Texture::tbinding_query(GLenum target)
 }
 #endif
 
+#ifdef GL_ALT_FUNDEF_GenTextures
+template<class Callable2,typename... Types>
+inline void Texture::texture_function_ndsaf(Callable2 ndsafunc,GLenum target,Types... params)
+{
+    if(target != m_target)
+    {
+        m_target=target;
+        m_lastbinding=(GLenum)tbinding_query(target);
+    }
+    else
+    {
+        GLenum t_binding=m_lastbinding;
+        if(t_binding!=object)
+        {
+            glBindTexture(target,object);
+        }
+        ndsafunc(target,params...);
+        if(t_binding!=object)
+        {
+            glBindTexture(target,t_binding);
+        }
+    }
+}
+    
 template<class Callable1,class Callable2,typename... Types>
-inline void Texture::texture_function_dsa(Callable1 dsafunc,Callable2 ndsafunc,GLenum target,Types... params)
+inline void Texture::texture_function_dsaf(Callable1 dsafunc,Callable2 ndsafunc,GLenum target,Types... params)
 {
 	if(target != m_target)
 	{
@@ -1389,8 +1413,9 @@ inline void Texture::texture_function_dsa(Callable1 dsafunc,Callable2 ndsafunc,G
 	}
 		
 }
+#endif
 
-#if defined(GL_HPP_FUNDEF_GetTextureParameterivEXT) || defined(GL_HPP_FUNDEF_GetTexParameteriv)
+#if defined(GL_ALT_FUNDEF_GetTextureParameterivEXT) || defined(GL_ALT_FUNDEF_GetTexParameteriv)
 template<>
 inline GLint Texture::GetParameter<GLint>(GLenum targ,GLenum pname)
 {
@@ -1410,7 +1435,7 @@ inline GLint Texture::GetParameter<GLint>(GLenum pname)
 #endif
     
 
-#if defined(GL_HPP_FUNDEF_GetTextureParameterfvEXT) || defined(GL_HPP_FUNDEF_GetTexParameterfv)
+#if defined(GL_ALT_FUNDEF_GetTextureParameterfvEXT) || defined(GL_ALT_FUNDEF_GetTexParameterfv)
 template<>
 inline GLfloat Texture::GetParameter<GLfloat>(GLenum targ,GLenum pname)
 {
@@ -1428,7 +1453,7 @@ inline GLfloat Texture::GetParameter<GLfloat>(GLenum pname)
 #endif
     
     
-#if defined(GL_HPP_FUNDEF_GetTextureParameterIivEXT) || defined(GL_HPP_FUNDEF_GetTexParameterIiv)
+#if defined(GL_ALT_FUNDEF_GetTextureParameterIivEXT) || defined(GL_ALT_FUNDEF_GetTexParameterIiv)
 template<>
 inline GLint Texture::GetParameterI<GLint>(GLenum targ,GLenum pname)
 {
@@ -1445,7 +1470,7 @@ inline GLint Texture::GetParameterI<GLint>(GLenum pname)
 }
 #endif
     
-#if defined(GL_HPP_FUNDEF_GetTextureParameterIuivEXT) || defined(GL_HPP_FUNDEF_GetTexParameterIuiv)
+#if defined(GL_ALT_FUNDEF_GetTextureParameterIuivEXT) || defined(GL_ALT_FUNDEF_GetTexParameterIuiv)
 template<>
 inline GLuint Texture::GetParameterI<GLuint>(GLenum targ,GLenum pname)
 {
@@ -1462,7 +1487,7 @@ inline GLuint Texture::GetParameterI<GLuint>(GLenum pname)
 }
 #endif
 
-#if defined(GL_HPP_FUNDEF_GetTextureLevelParameterivEXT) || defined(GL_HPP_FUNDEF_GetTexLevelParameteriv)
+#if defined(GL_ALT_FUNDEF_GetTextureLevelParameterivEXT) || defined(GL_ALT_FUNDEF_GetTexLevelParameteriv)
 template<>
 inline GLint Texture::GetLevelParameter(GLenum targ,int lod, GLenum value)
 {
@@ -1479,7 +1504,7 @@ inline GLint Texture::GetLevelParameter(int lod, GLenum value)
 }
 #endif
     
-#if defined(GL_HPP_FUNDEF_GetTextureLevelParameterfvEXT) || defined(GL_HPP_FUNDEF_GetTexLevelParameterfv)
+#if defined(GL_ALT_FUNDEF_GetTextureLevelParameterfvEXT) || defined(GL_ALT_FUNDEF_GetTexLevelParameterfv)
 template<>
 inline GLfloat Texture::GetLevelParameter(GLenum targ,int lod, GLenum value)
 {
@@ -1495,12 +1520,11 @@ inline GLfloat Texture::GetLevelParameter(int lod, GLenum value)
 	return out[0];
 }
 #endif
-    
-#endif
-    
-    
+
+
+#ifdef GL_ALT_FUNDEF_GenFramebuffers
 template<class Callable1,class Callable2,typename... Types>
-inline void Framebuffer::framebuffer_function_dsa(Callable1 dsafunc,Callable2 ndsafunc,Types... params)
+inline void Framebuffer::framebuffer_function_dsaf(Callable1 dsafunc,Callable2 ndsafunc,Types... params)
 {
 	if(direct_state_access_supported)
 	{
@@ -1520,9 +1544,44 @@ inline void Framebuffer::framebuffer_function_dsa(Callable1 dsafunc,Callable2 nd
 		}
 	}
 }
+    
+template<class Callable2,typename... Types>
+inline void Framebuffer::framebuffer_function_ndsaf(Callable2 ndsafunc,Types... params)
+{
+    GLenum t_binding = GL_FRAMEBUFFER_BINDING;
+    
+    switch(m_target)
+    {
+#ifdef GL_DRAW_FRAMEBUFFER
+        case GL_DRAW_FRAMEBUFFER:
+            t_binding = GL_DRAW_FRAMEBUFFER_BINDING;
+            break;
+#endif
+#ifdef GL_READ_FRAMEBUFFER
+        case GL_READ_FRAMEBUFFER:
+            t_binding = GL_READ_FRAMEBUFFER_BINDING;
+            break;
+#endif
+        case GL_FRAMEBUFFER:
+        default: ///\todo what is api convention for the invalid input?
+            t_binding = GL_FRAMEBUFFER_BINDING;
+            break;
+            
+    }
+    if(t_binding!=object)
+    {
+        glBindFramebuffer(m_target,object);
+    }
+    ndsafunc(GL_FRAMEBUFFER,params...);
+    if(t_binding!=object)
+    {
+        glBindFramebuffer(m_target,t_binding);
+    }
+}
+#endif
 
 
-#ifdef	GL_HPP_FUNDEF_GenRenderbuffers
+#ifdef	GL_ALT_FUNDEF_GenRenderbuffers
 template<class Callable1,class Callable2,typename... Types>
 inline void Renderbuffer::renderbuffer_function_dsa(Callable1 dsafunc,Callable2 ndsafunc,Types... params)
 {
@@ -1546,6 +1605,23 @@ inline void Renderbuffer::renderbuffer_function_dsa(Callable1 dsafunc,Callable2 
 		
 }
 
+template<class Callable2,typename... Types>
+inline void Renderbuffer::renderbuffer_function_ndsaf(Callable2 ndsafunc,Types... params)
+{
+        
+    GLenum t_binding=gl::Get<GLint>(GL_RENDERBUFFER_BINDING);
+    if(t_binding!=object)
+    {
+        glBindRenderbuffer(GL_RENDERBUFFER,object);
+    }
+    ndsafunc(GL_FRAMEBUFFER,params...);
+    if(t_binding!=object)
+    {
+        glBindRenderbuffer(GL_RENDERBUFFER,t_binding);
+    }
+}
+    
+    
 #endif
     
 //////////////////////////////////////////////////////

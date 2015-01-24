@@ -247,35 +247,35 @@ private:
 };*/
 
     
-#ifdef GL_HPP_FUNDEF_CreateShader
+#ifdef GL_ALT_FUNDEF_CreateShader
 class Shader: public _impl::GLObject<Shader>
 {
 public:
 	Shader(GLenum t);
     GLint Get(GLenum variable) const;
 	
-    #if defined(GL_HPP_FUNDEF_ShaderSource)
+    #if defined(GL_ALT_FUNDEF_ShaderSource)
     void Source(const std::string& src);
 	void Source(std::istream& in);
 	void SourceFile(const std::string& filename);
     #endif
     
-    #if defined(GL_HPP_FUNDEF_CompileShader)
+    #if defined(GL_ALT_FUNDEF_CompileShader)
 	std::string Compile();
     #endif
     
-    #if defined(GL_HPP_FUNDEF_ReleaseShaderCompiler)
+    #if defined(GL_ALT_FUNDEF_ReleaseShaderCompiler)
 	static void ReleaseCompiler(); ///\todo no implementation found
     #endif
 
-    #if defined(GL_HPP_FUNDEF_ShaderBinary)
+    #if defined(GL_ALT_FUNDEF_ShaderBinary)
 	void Binary(GLenum binaryformat,const void* bindata,GLsizei bindatalen)
 	{
 		glShaderBinary(1,&name,binaryformat,bindata,bindatalen);
 	}
     #endif
 
-    #if defined(GL_HPP_FUNDEF_GetShaderInfoLog)
+    #if defined(GL_ALT_FUNDEF_GetShaderInfoLog)
 	std::string GetInfoLog() const
 	{
 		GLint sz=Get(GL_INFO_LOG_LENGTH);
@@ -288,7 +288,7 @@ public:
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_GetShaderSource)
+    #if defined(GL_ALT_FUNDEF_GetShaderSource)
 	std::string GetSource() const
 	{
 		GLint sz=Get(GL_SHADER_SOURCE_LENGTH);
@@ -306,29 +306,29 @@ private:
 };
 #endif
 
-#ifdef GL_HPP_FUNDEF_CreateProgram
+#ifdef GL_ALT_FUNDEF_CreateProgram
 class Program: public _impl::GLObject<Program>
 {
 public:
 	Program();
     
-    #if defined (GL_HPP_FUNDEF_GetProgramiv)
+    #if defined (GL_ALT_FUNDEF_GetProgramiv)
 	GLint Get(GLenum variable) const;
     #endif
    
-    #if defined (GL_HPP_FUNDEF_AttachShader)
+    #if defined (GL_ALT_FUNDEF_AttachShader)
 	void Attach(const Shader& s);
     #endif
     
-    #if defined (GL_HPP_FUNDEF_DetachShader)
+    #if defined (GL_ALT_FUNDEF_DetachShader)
 	void Detach(const Shader& s);
     #endif
 	
-    #if defined (GL_HPP_FUNDEF_BindAttribLocation)
+    #if defined (GL_ALT_FUNDEF_BindAttribLocation)
 	void BindAttribLocation(GLuint index,const std::string& name);
     #endif
 
-    #if defined (GL_HPP_FUNDEF_ValidateProgram) && defined (GL_HPP_FUNDEF_GetProgramInfoLog) && defined (GL_HPP_FUNDEF_GetProgramiv)
+    #if defined (GL_ALT_FUNDEF_ValidateProgram) && defined (GL_ALT_FUNDEF_GetProgramInfoLog) && defined (GL_ALT_FUNDEF_GetProgramiv)
 	std::pair<bool,std::string> Validate() const;
     #endif
     
@@ -345,11 +345,11 @@ public:
 	ActiveInfo GetActiveUniform(GLuint index) const;
 	ActiveInfo GetActiveUniform(const std::string& name) const;
 	
-    #if defined (GL_HPP_FUNDEF_GetAttribLocation)
+    #if defined (GL_ALT_FUNDEF_GetAttribLocation)
 	GLint GetAttribLocation(const std::string& n) const;
     #endif
     
-    #if defined (GL_HPP_FUNDEF_GetUniformLocation)
+    #if defined (GL_ALT_FUNDEF_GetUniformLocation)
 	GLint GetUniformLocation(const std::string& n) const;
     #endif
 
@@ -543,11 +543,11 @@ SHADER_STORAGE}_BARRIER_BIT
 	template<class T,GLuint rows,GLuint cols>
 	void UniformMatrix(const std::string& n, const T*, bool transposed = false, GLsizei count = 1);
 	
-    #ifdef GL_HPP_FUNDEF_LinkProgram
+    #ifdef GL_ALT_FUNDEF_LinkProgram
 	std::string Link();
     #endif
 	
-    #ifdef GL_HPP_FUNDEF_UseProgram
+    #ifdef GL_ALT_FUNDEF_UseProgram
 	void Use() const;
     #endif
 	
@@ -558,12 +558,12 @@ protected:
 #endif
 
     
-#ifdef GL_HPP_FUNDEF_GenBuffers
+#ifdef GL_ALT_FUNDEF_GenBuffers
 class Buffer: public _impl::GLObject<Buffer>
 {
 public:
     
-    #if defined(GL_HPP_FUNDEF_BindBuffer)
+    #if defined(GL_ALT_FUNDEF_BindBuffer)
  	void Bind(GLenum bt) const;
     #endif
 
@@ -620,20 +620,20 @@ protected:
     
     
 
-#ifdef GL_HPP_FUNDEF_GenVertexArrays ///\todo make this available with an emulated path where vbo's are available
+#ifdef GL_ALT_FUNDEF_GenVertexArrays ///\todo make this available with an emulated path where vbo's are available
 class VertexArray: public _impl::GLObject<VertexArray>
 {
 public:
     
-    #if defined(GL_HPP_FUNDEF_BindVertexArray)
+    #if defined(GL_ALT_FUNDEF_BindVertexArray)
 	void Bind() const;
     #endif
 
-    #if defined(GL_HPP_FUNDEF_EnableVertexArrayAttribEXT) || defined(GL_HPP_FUNDEF_EnableVertexAttribArray)
+    #if defined(GL_ALT_FUNDEF_EnableVertexArrayAttribEXT) || defined(GL_ALT_FUNDEF_EnableVertexAttribArray)
 	void EnableAttrib(GLuint index);
     #endif
     
-    #if defined(GL_HPP_FUNDEF_DisableVertexArrayAttribEXT) || defined(GL_HPP_FUNDEF_DisableVertexAttribArray)
+    #if defined(GL_ALT_FUNDEF_DisableVertexArrayAttribEXT) || defined(GL_ALT_FUNDEF_DisableVertexAttribArray)
 	void DisableAttrib(GLuint index);
     #endif
     
@@ -649,7 +649,7 @@ public:
 	void Attrib(GLuint index,GLint size,GLenum type,bool normalized,GLsizei stride,const Buffer& b,GLsizeiptr offset);
 	void AttribI(GLuint index,GLint size,GLenum type,GLsizei stride,const Buffer& b,GLsizeiptr offset);
 
-    #if defined(GL_HPP_FUNDEF_BindVertexArray) && defined(GL_HPP_FUNDEF_BindBuffer)
+    #if defined(GL_ALT_FUNDEF_BindVertexArray) && defined(GL_ALT_FUNDEF_BindBuffer)
 	void Elements(const GLvoid * pointer);///\todo no implementation
 	void Elements(const Buffer&b);
     #endif
@@ -665,31 +665,31 @@ protected:
 };
 #endif
 
-#ifdef GL_HPP_FUNDEF_GenQueries
+#ifdef GL_ALT_FUNDEF_GenQueries
 class Query: public _impl::GLObject<Query>
 {
 public:
-    #if defined(GL_HPP_FUNDEF_BeginConditionalRender)
+    #if defined(GL_ALT_FUNDEF_BeginConditionalRender)
 	void BeginConditionalRender(GLenum mode);
     #endif
     
-    #if defined(GL_HPP_FUNDEF_EndConditionalRender)
+    #if defined(GL_ALT_FUNDEF_EndConditionalRender)
     void EndConditionalRender();
     #endif
 
-    #if defined(GL_HPP_FUNDEF_BeginQuery)
+    #if defined(GL_ALT_FUNDEF_BeginQuery)
 	void Begin(GLenum target);
     #endif
 	
-    #if defined(GL_HPP_FUNDEF_EndQuery)
+    #if defined(GL_ALT_FUNDEF_EndQuery)
     void End(GLenum target);
     #endif
 	
-    #if defined(GL_HPP_FUNDEF_BeginQueryIndexed)
+    #if defined(GL_ALT_FUNDEF_BeginQueryIndexed)
 	void BeginIndexed(GLenum target,GLuint index);
     #endif
     
-    #if defined(GL_HPP_FUNDEF_EndQueryIndexed)
+    #if defined(GL_ALT_FUNDEF_EndQueryIndexed)
     void EndIndexed(GLenum target,GLuint index);
     #endif
     
@@ -700,12 +700,14 @@ public:
 		_impl::GLObject<Query>("GLQuery",glGenQueries,glDeleteQueries)
 	{}
 	
+    #ifdef GL_TIMESTAMP
 	void Counter()
 	{
 		glQueryCounter(object,GL_TIMESTAMP);
 		_impl::_checkError(GL_INVALID_OPERATION,"Query object is already in use within a glBeginQuery / glEndQuery block.");
 		_impl::_checkError(GL_INVALID_VALUE,"Query object is not the name of a query object returned from a previous call to glGenQueries.");
 	}
+    #endif
 	
 protected:
 	explicit Query(GLuint o):
@@ -736,20 +738,31 @@ public:
 };
 
     
-#ifdef GL_HPP_FUNDEF_GenTextures
+#ifdef GL_ALT_FUNDEF_GenTextures
 class Texture:public _impl::GLObject<Texture>
 {
 private:
+    
+    #ifdef GL_EXT_direct_state_access
+        #define texture_function_dsa(dsafunc,...) texture_function_dsaf(dsafunc, __VA_ARGS__)
+    #else
+        #define texture_function_dsa(dsafunc,ndsafunc,...) texture_function_ndsaf(ndsafunc,__VA_ARGS__)
+    #endif
+    
 	void TexImageErrorCheck()
 	{
 		//TODO: texture error handling"
 	}
-    #if defined(GL_HPP_FUNDEF_GetIntegerv)
+    #if defined(GL_ALT_FUNDEF_GetIntegerv)
 	GLint tbinding_query(GLenum targ);
     #endif
     
-	template<typename Callable1,typename Callable2, typename... Types>
-	void texture_function_dsa(Callable1,Callable2,GLenum targ,Types... params);
+    template<typename Callable1,typename Callable2, typename... Types>
+    void texture_function_dsaf(Callable1,Callable2,GLenum targ,Types... params);
+    
+    template<typename Callable2, typename... Types>
+    void texture_function_ndsaf(Callable2,GLenum targ,Types... params);
+    
 	GLenum m_target,m_lastbinding;
 public:
 	const GLenum& target;
@@ -760,7 +773,7 @@ public:
 		target(m_target)
 	{}
     
-    #if defined(GL_HPP_FUNDEF_BindTexture)
+    #if defined(GL_ALT_FUNDEF_BindTexture)
     void Bind(GLenum targ)
 	{
 		glBindTexture(targ,object);
@@ -775,7 +788,7 @@ public:
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_TexImage1D) || defined(GL_HPP_FUNDEF_TextureImage1DEXT)
+    #if defined(GL_ALT_FUNDEF_TexImage1D) || defined(GL_ALT_FUNDEF_TextureImage1DEXT)
 	void Image1D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		texture_function_dsa(glTextureImage1DEXT,glTexImage1D,targ,level,internalformat,width,border,format,type,data);
@@ -787,7 +800,7 @@ public:
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_TexImage2D) || defined(GL_HPP_FUNDEF_TextureImage2DEXT)
+    #if defined(GL_ALT_FUNDEF_TexImage2D) || defined(GL_ALT_FUNDEF_TextureImage2DEXT)
 	void Image2D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLsizei height,GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		texture_function_dsa(glTextureImage2DEXT, glTexImage2D, targ, level, internalformat, width, height, border, format, type, data);
@@ -798,7 +811,7 @@ public:
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_TexImage3D) || defined(GL_HPP_FUNDEF_TextureImage3DEXT)
+    #if defined(GL_ALT_FUNDEF_TexImage3D) || defined(GL_ALT_FUNDEF_TextureImage3DEXT)
 	void Image3D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLsizei height, GLsizei depth,GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		texture_function_dsa(glTextureImage3DEXT,glTexImage3D,targ,level,internalformat,width,height,depth,border,format,type,data);
@@ -809,7 +822,7 @@ public:
 	}
     #endif
 	
-    #if defined(GL_HPP_FUNDEF_CopyTexImage1D) || defined(GL_HPP_FUNDEF_CopyTextureImage1DEXT)
+    #if defined(GL_ALT_FUNDEF_CopyTexImage1D) || defined(GL_ALT_FUNDEF_CopyTextureImage1DEXT)
 	void CopyImage1D(GLenum targ,GLint level, GLenum internalformat, GLint x,GLint y, GLsizei width, GLint border)
 	{
 		texture_function_dsa(glCopyTextureImage1DEXT,glCopyTexImage1D,targ,level,internalformat,x,y,width,border);
@@ -821,7 +834,7 @@ public:
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_CopyTexImage2D) || defined(GL_HPP_FUNDEF_CopyTextureImage2DEXT)
+    #if defined(GL_ALT_FUNDEF_CopyTexImage2D) || defined(GL_ALT_FUNDEF_CopyTextureImage2DEXT)
 
 	void CopyImage2D(GLenum targ,GLint level, GLenum internalformat, GLint x,GLint y, GLsizei width, GLsizei height,GLint border)
 	{
@@ -833,7 +846,7 @@ public:
 	}
     #endif
 	
-    #if defined(GL_HPP_FUNDEF_TexSubImage1D) || defined(GL_HPP_FUNDEF_TextureSubImage1DEXT)
+    #if defined(GL_ALT_FUNDEF_TexSubImage1D) || defined(GL_ALT_FUNDEF_TextureSubImage1DEXT)
 	void SubImage1D(GLenum targ, GLint level, GLint xoffset, GLsizei width, GLenum format,
 GLenum type, const GLvoid *data)
 	{
@@ -846,7 +859,7 @@ GLenum type, const GLvoid *data)
 	}
     #endif
 
-    #if defined(GL_HPP_FUNDEF_TexSubImage2D) || defined(GL_HPP_FUNDEF_TextureSubImage2DEXT)
+    #if defined(GL_ALT_FUNDEF_TexSubImage2D) || defined(GL_ALT_FUNDEF_TextureSubImage2DEXT)
 	void SubImage2D(GLenum targ, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height,GLenum format,
 GLenum type, const GLvoid *data)
 	{
@@ -859,7 +872,7 @@ GLenum type, const GLvoid *data)
 	}
   #endif
 
-    #if defined(GL_HPP_FUNDEF_TexSubImage3D) || defined(GL_HPP_FUNDEF_TextureSubImage3DEXT)
+    #if defined(GL_ALT_FUNDEF_TexSubImage3D) || defined(GL_ALT_FUNDEF_TextureSubImage3DEXT)
 	void SubImage3D(GLenum targ, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format,
 GLenum type, const GLvoid *data)
 	{
@@ -873,7 +886,7 @@ GLenum type, const GLvoid *data)
     #endif
 	
     
-    #if defined(GL_HPP_FUNDEF_CopyTexSubImage1D) || defined(GL_HPP_FUNDEF_CopyTextureSubImage1DEXT)
+    #if defined(GL_ALT_FUNDEF_CopyTexSubImage1D) || defined(GL_ALT_FUNDEF_CopyTextureSubImage1DEXT)
 	void CopySubImage1D(GLenum targ,GLint level, GLint xoffset, GLint x, GLint y, GLsizei width)
 	{
 		texture_function_dsa(glCopyTextureSubImage1DEXT,glCopyTexSubImage1D,targ,level,xoffset,x,y,width);
@@ -884,7 +897,7 @@ GLenum type, const GLvoid *data)
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_CopyTexSubImage1D) || defined(GL_HPP_FUNDEF_CopyTextureSubImage1DEXT)
+    #if defined(GL_ALT_FUNDEF_CopyTexSubImage1D) || defined(GL_ALT_FUNDEF_CopyTextureSubImage1DEXT)
 	void CopySubImage2D(GLenum targ,GLint level, GLint xoffset, GLint yoffset,GLint x, GLint y, GLsizei width, GLsizei height)
 	{
 		texture_function_dsa(glCopyTextureSubImage2DEXT,glCopyTexSubImage2D,targ,level,xoffset,yoffset,x,y,width,height);
@@ -895,7 +908,7 @@ GLenum type, const GLvoid *data)
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_CopyTexSubImage3D) || defined(GL_HPP_FUNDEF_CopyTextureSubImage3DEXT)
+    #if defined(GL_ALT_FUNDEF_CopyTexSubImage3D) || defined(GL_ALT_FUNDEF_CopyTextureSubImage3DEXT)
 	void CopySubImage3D(GLenum targ,GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height)
 	{
 		texture_function_dsa(glCopyTextureSubImage3DEXT,glCopyTexSubImage3D,targ,level,xoffset,yoffset,zoffset,x,y,width,height);
@@ -906,7 +919,7 @@ GLenum type, const GLvoid *data)
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_CompressedTexImage1D) || defined(GL_HPP_FUNDEF_CompressedTextureImage1DEXT)
+    #if defined(GL_ALT_FUNDEF_CompressedTexImage1D) || defined(GL_ALT_FUNDEF_CompressedTextureImage1DEXT)
 	void CompressedImage1D(GLenum targ,GLint level,GLenum internalformat,GLsizei width, GLint border, GLsizei imagesize,const void* data)
 	{
 		texture_function_dsa(glCompressedTextureImage1DEXT, glCompressedTexImage1D, targ, level, internalformat, width, border, imagesize, data);
@@ -917,7 +930,7 @@ GLenum type, const GLvoid *data)
 	}
     #endif
     
-     #if defined(GL_HPP_FUNDEF_CompressedTexImage2D) || defined(GL_HPP_FUNDEF_CompressedTextureImage2DEXT)
+     #if defined(GL_ALT_FUNDEF_CompressedTexImage2D) || defined(GL_ALT_FUNDEF_CompressedTextureImage2DEXT)
 	void CompressedImage2D(GLenum targ,GLint level, GLenum internalformat, 
 GLsizei width, GLsizei height, GLint border, 
 GLsizei imagesize, const void *data)
@@ -932,7 +945,7 @@ GLsizei imagesize, const void *data)
 	}
     #endif
     
-     #if defined(GL_HPP_FUNDEF_CompressedTexImage3D) || defined(GL_HPP_FUNDEF_CompressedTextureImage3DEXT)
+     #if defined(GL_ALT_FUNDEF_CompressedTexImage3D) || defined(GL_ALT_FUNDEF_CompressedTextureImage3DEXT)
 	void CompressedImage3D(GLenum targ,GLint level, GLenum internalformat, 
 GLsizei width, GLsizei height, GLsizei depth, GLint border, 
 GLsizei imagesize, const void *data)
@@ -947,7 +960,7 @@ GLsizei imagesize, const void *data)
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_CompressedTexSubImage1D) || defined(GL_HPP_FUNDEF_CompressedTextureSubImage1DEXT)
+    #if defined(GL_ALT_FUNDEF_CompressedTexSubImage1D) || defined(GL_ALT_FUNDEF_CompressedTextureSubImage1DEXT)
 	void CompressedSubImage1D(GLenum targ, GLint level, GLint xoffset,GLsizei width, GLenum format, GLsizei imagesize, const void *data)
 	{
 		texture_function_dsa(glCompressedTextureSubImage1DEXT,glCompressedTexSubImage1D,targ,level,xoffset,width,format,imagesize,data);
@@ -958,7 +971,7 @@ GLsizei imagesize, const void *data)
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_CompressedTexSubImage2D) || defined(GL_HPP_FUNDEF_CompressedTextureSubImage2DEXT)
+    #if defined(GL_ALT_FUNDEF_CompressedTexSubImage2D) || defined(GL_ALT_FUNDEF_CompressedTextureSubImage2DEXT)
     void CompressedSubImage2D(GLenum targ, GLint level, GLint xoffset,GLint yoffset,GLsizei width,GLsizei height, GLenum format, GLsizei imagesize, const void *data)
 	{
 		texture_function_dsa(glCompressedTextureSubImage2DEXT,glCompressedTexSubImage2D,targ,level,xoffset,yoffset,width,height,format,imagesize,data);
@@ -969,7 +982,7 @@ GLsizei imagesize, const void *data)
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_CompressedTexSubImage3D) || defined(GL_HPP_FUNDEF_CompressedTextureSubImage3DEXT)
+    #if defined(GL_ALT_FUNDEF_CompressedTexSubImage3D) || defined(GL_ALT_FUNDEF_CompressedTextureSubImage3DEXT)
 	void CompressedSubImage3D(GLenum targ, GLint level, GLint xoffset,GLint yoffset,GLint zoffset,GLsizei width,GLsizei height, GLsizei depth, GLenum format, GLsizei imagesize, const void *data)
 	{
 		texture_function_dsa(glCompressedTextureSubImage3DEXT,glCompressedTexSubImage3D,targ,level,xoffset,yoffset,zoffset,width,height,depth,format,imagesize,data);
@@ -995,7 +1008,7 @@ boolean fixedsamplelocations);
 
 	*/
     
-    #if defined(GL_HPP_FUNDEF_TexBuffer) || defined(GL_HPP_FUNDEF_TextureBufferEXT)
+    #if defined(GL_ALT_FUNDEF_TexBuffer) || defined(GL_ALT_FUNDEF_TextureBufferEXT)
 	void Buffer(GLenum targ,GLenum internalformat, GLuint buffer)
 	{
 		texture_function_dsa(glTextureBufferEXT,glTexBuffer,targ,internalformat,buffer);
@@ -1014,7 +1027,7 @@ boolean fixedsamplelocations);
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_TexBufferRange) || defined(GL_HPP_FUNDEF_TextureBufferRangeEXT)
+    #if defined(GL_ALT_FUNDEF_TexBufferRange) || defined(GL_ALT_FUNDEF_TextureBufferRangeEXT)
 	void BufferRange(GLenum targ,GLenum internalformat,GLuint buffer,GLintptr offset,GLsizeiptr size)
 	{
 		texture_function_dsa(glTextureBufferRangeEXT,glTexBufferRange,targ,internalformat,buffer,offset,size);
@@ -1033,7 +1046,7 @@ boolean fixedsamplelocations);
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_TexParameteri) || defined(GL_HPP_FUNDEF_TextureParameteriEXT)
+    #if defined(GL_ALT_FUNDEF_TexParameteri) || defined(GL_ALT_FUNDEF_TextureParameteriEXT)
 	void Parameter(GLenum targ,GLenum pname,GLint i)
 	{
 		texture_function_dsa(&glTextureParameteriEXT,&glTexParameteri,targ,pname,i);
@@ -1044,7 +1057,7 @@ boolean fixedsamplelocations);
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_TexParameterf) || defined(GL_HPP_FUNDEF_TextureParameterfEXT)
+    #if defined(GL_ALT_FUNDEF_TexParameterf) || defined(GL_ALT_FUNDEF_TextureParameterfEXT)
 	void Parameter(GLenum targ,GLenum pname,GLfloat f)
 	{
 		texture_function_dsa(&glTextureParameterfEXT,&glTexParameterf,targ,pname,f);
@@ -1056,7 +1069,7 @@ boolean fixedsamplelocations);
     #endif
     
     
-    #if defined(GL_HPP_FUNDEF_TexParameteriv) || defined(GL_HPP_FUNDEF_TextureParameterivEXT)
+    #if defined(GL_ALT_FUNDEF_TexParameteriv) || defined(GL_ALT_FUNDEF_TextureParameterivEXT)
 	void Parameter(GLenum targ,GLenum pname,const GLint* params)
 	{
 		texture_function_dsa(&glTextureParameterivEXT,&glTexParameteriv,targ,pname,params);
@@ -1067,7 +1080,7 @@ boolean fixedsamplelocations);
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_TexParameterfv) || defined(GL_HPP_FUNDEF_TextureParameterfvEXT)
+    #if defined(GL_ALT_FUNDEF_TexParameterfv) || defined(GL_ALT_FUNDEF_TextureParameterfvEXT)
 	void Parameter(GLenum targ,GLenum pname,const GLfloat* params)
 	{
 		texture_function_dsa(&glTextureParameterfvEXT,&glTexParameterfv,targ,pname,params);
@@ -1078,7 +1091,7 @@ boolean fixedsamplelocations);
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_TexParameterIiv) || defined(GL_HPP_FUNDEF_TextureParameterIivEXT)
+    #if defined(GL_ALT_FUNDEF_TexParameterIiv) || defined(GL_ALT_FUNDEF_TextureParameterIivEXT)
 	void ParameterI(GLenum targ,GLenum pname,const GLint* params)
 	{
 		texture_function_dsa(&glTextureParameterIivEXT,&glTexParameterIiv,targ,pname,params);
@@ -1089,7 +1102,7 @@ boolean fixedsamplelocations);
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_TexParameterIuiv) || defined(GL_HPP_FUNDEF_TextureParameterIuivEXT)
+    #if defined(GL_ALT_FUNDEF_TexParameterIuiv) || defined(GL_ALT_FUNDEF_TextureParameterIuivEXT)
 	void ParameterI(GLenum targ,GLenum pname,const GLuint* params)
 	{
 		texture_function_dsa(&glTextureParameterIuivEXT,&glTexParameterIuiv,targ,pname,params);
@@ -1118,7 +1131,7 @@ boolean fixedsamplelocations);
 	template<typename Type>
 	Type GetLevelParameter(GLint lod, GLenum value);
 	
-    #if defined(GL_HPP_FUNDEF_GetTexImage) || defined(GL_HPP_FUNDEF_GetTextureImageEXT)
+    #if defined(GL_ALT_FUNDEF_GetTexImage) || defined(GL_ALT_FUNDEF_GetTextureImageEXT)
 	void GetImage(GLenum tex, GLint lod, GLenum format, GLenum type, GLvoid *img)
 	{
 		texture_function_dsa(&glGetTextureImageEXT,&glGetTexImage,tex,lod,format,type,img);
@@ -1129,7 +1142,7 @@ boolean fixedsamplelocations);
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_GetCompressedTexImage) || defined(GL_HPP_FUNDEF_GetCompressedTextureImage)
+    #if defined(GL_ALT_FUNDEF_GetCompressedTexImage) || defined(GL_ALT_FUNDEF_GetCompressedTextureImage)
 	void GetCompressedImage(GLenum targ,GLint lod, GLvoid *img)
 	{
 		texture_function_dsa(&glGetCompressedTextureImage,&glGetCompressedTexImage,targ,lod,img);
@@ -1140,7 +1153,7 @@ boolean fixedsamplelocations);
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_GenerateMipmap) || defined(GL_HPP_FUNDEF_GenerateTextureMipmapEXT)
+    #if defined(GL_ALT_FUNDEF_GenerateMipmap) || defined(GL_ALT_FUNDEF_GenerateTextureMipmapEXT)
 	void GenerateMipmap(GLenum targ)
 	{
 		texture_function_dsa(&glGenerateTextureMipmapEXT,&glGenerateMipmap,targ);
@@ -1151,7 +1164,7 @@ boolean fixedsamplelocations);
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_TextureView)
+    #if defined(GL_ALT_FUNDEF_TextureView)
     void View(GLenum targ,GLuint origtexture,GLenum internalformat,GLuint minlevel,GLuint numlevels,GLuint minlayer,GLuint numlayers)
 	{
 		glTextureView(object,targ,origtexture,internalformat,minlevel,numlevels,minlayer,numlayers);
@@ -1171,7 +1184,7 @@ boolean fixedsamplelocations);
 	}
     #endif
 	
-    #if defined(GL_HPP_FUNDEF_TexStorage1D) || defined(GL_HPP_FUNDEF_TextureStorage1DEXT)
+    #if defined(GL_ALT_FUNDEF_TexStorage1D) || defined(GL_ALT_FUNDEF_TextureStorage1DEXT)
 	void Storage1D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width)
 	{
 		texture_function_dsa(&glTextureStorage1DEXT,&glTexStorage1D,targ,levels,internalformat,width);
@@ -1182,7 +1195,7 @@ boolean fixedsamplelocations);
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_TexStorage2D) || defined(GL_HPP_FUNDEF_TextureStorage2DEXT)
+    #if defined(GL_ALT_FUNDEF_TexStorage2D) || defined(GL_ALT_FUNDEF_TextureStorage2DEXT)
 	void Storage2D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height)
 	{
 		texture_function_dsa(&glTextureStorage2DEXT,&glTexStorage2D,targ,levels,internalformat,width,height);
@@ -1193,7 +1206,7 @@ boolean fixedsamplelocations);
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_TexStorage3D) || defined(GL_HPP_FUNDEF_TextureStorage3DEXT)
+    #if defined(GL_ALT_FUNDEF_TexStorage3D) || defined(GL_ALT_FUNDEF_TextureStorage3DEXT)
 	void Storage3D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height,GLsizei depth)
 	{
 		texture_function_dsa(&glTextureStorage3DEXT,&glTexStorage3D,targ,levels,internalformat,width,height,depth);
@@ -1228,21 +1241,21 @@ target: {PROXY_}TEXTURE_2D_MULTISAMPLE_ARRAY
 
 Invalidating Texture Image Data [8.20]
 */
-    #if defined(GL_HPP_FUNDEF_InvalidateTexSubImage)
+    #if defined(GL_ALT_FUNDEF_InvalidateTexSubImage)
 	void InvalidateSubImage(GLint level,GLint xoffset,GLint yoffset,GLint zoffset,GLsizei width,GLsizei height, GLsizei depth)
 	{
 		glInvalidateTexSubImage(object,level,xoffset,yoffset,zoffset,width,height,depth);
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_InvalidateTexImage)
+    #if defined(GL_ALT_FUNDEF_InvalidateTexImage)
     void InvalidateImage(GLint level)
 	{
 		glInvalidateTexImage(object,level);
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_BindImageTexture)
+    #if defined(GL_ALT_FUNDEF_BindImageTexture)
     void BindImage(GLuint index,GLint level, GLboolean layered, GLint layer, GLenum access, GLenum format)
 	{
 		glBindImageTexture(index,object,level,layered,layer,access,format);
@@ -1261,7 +1274,7 @@ protected:
 #endif
     
 
-#ifdef GL_HPP_FUNDEF_GenSamplers
+#ifdef GL_ALT_FUNDEF_GenSamplers
 class Sampler:public _impl::GLObject<Sampler>
 {
 public:
@@ -1269,7 +1282,7 @@ public:
 		_impl::GLObject<Sampler>("GLSampler",glGenSamplers,glDeleteSamplers)
 	{}
 	
-    #if defined(GL_HPP_FUNDEF_BindSampler)
+    #if defined(GL_ALT_FUNDEF_BindSampler)
 	void Bind(GLuint unit)
 	{
 		glBindSampler(unit,object);
@@ -1278,7 +1291,7 @@ public:
 	}
     #endif
 	
-    #if defined(GL_HPP_FUNDEF_SamplerParameteri)
+    #if defined(GL_ALT_FUNDEF_SamplerParameteri)
 	void Parameter(GLenum pname,GLint param)
 	{
 		glSamplerParameteri(object,pname,param);
@@ -1287,7 +1300,7 @@ public:
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_SamplerParameterf)
+    #if defined(GL_ALT_FUNDEF_SamplerParameterf)
 	void Parameter(GLenum pname,GLfloat param)
 	{
 		glSamplerParameterf(object,pname,param);
@@ -1296,7 +1309,7 @@ public:
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_SamplerParameteriv)
+    #if defined(GL_ALT_FUNDEF_SamplerParameteriv)
 	void Parameter(GLenum pname,const GLint* param)
 	{
 		glSamplerParameteriv(object,pname,param);
@@ -1305,7 +1318,7 @@ public:
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_SamplerParameterfv)
+    #if defined(GL_ALT_FUNDEF_SamplerParameterfv)
 	void Parameter(GLenum pname,const GLfloat* param)
 	{
 		glSamplerParameterfv(object,pname,param);
@@ -1314,7 +1327,7 @@ public:
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_SamplerParameterIiv)
+    #if defined(GL_ALT_FUNDEF_SamplerParameterIiv)
     void ParameterIiv(GLenum pname,const GLint* param)
 	{
 		glSamplerParameterIiv(object,pname,param);
@@ -1323,7 +1336,7 @@ public:
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_SamplerParameterIui)
+    #if defined(GL_ALT_FUNDEF_SamplerParameterIui)
 	void ParameterIui(GLenum pname,const GLuint* param)
 	{
 		glSamplerParameterIuiv(object,pname,param);
@@ -1344,7 +1357,7 @@ protected:
 	{}
 };
 
-#if defined(GL_HPP_FUNDEF_GetSamplerParameteriv)
+#if defined(GL_ALT_FUNDEF_GetSamplerParameteriv)
 template<>
 inline GLint Sampler::GetParameter<GLint>(GLenum pname)
 {
@@ -1356,7 +1369,7 @@ inline GLint Sampler::GetParameter<GLint>(GLenum pname)
 }
 #endif
     
-#if defined(GL_HPP_FUNDEF_GetSamplerParameterfv)
+#if defined(GL_ALT_FUNDEF_GetSamplerParameterfv)
 template<>
 inline GLfloat Sampler::GetParameter<GLfloat>(GLenum pname)
 {
@@ -1369,7 +1382,7 @@ inline GLfloat Sampler::GetParameter<GLfloat>(GLenum pname)
 #endif
     
 
-#if defined(GL_HPP_FUNDEF_GetSamplerParameterIiv)
+#if defined(GL_ALT_FUNDEF_GetSamplerParameterIiv)
 template<>
 inline GLint Sampler::GetParameterI<GLint>(GLenum pname)
 {
@@ -1381,7 +1394,7 @@ inline GLint Sampler::GetParameterI<GLint>(GLenum pname)
 }
 #endif
 
-#if defined(GL_HPP_FUNDEF_GetSamplerParameterIuiv)
+#if defined(GL_ALT_FUNDEF_GetSamplerParameterIuiv)
 template<>
 inline GLuint Sampler::GetParameterI<GLuint>(GLenum pname)
 {
@@ -1395,16 +1408,27 @@ inline GLuint Sampler::GetParameterI<GLuint>(GLenum pname)
     
 #endif // sampler
 
-#ifdef	GL_HPP_FUNDEF_GenRenderbuffers
+#ifdef	GL_ALT_FUNDEF_GenRenderbuffers
 class Renderbuffer;
 #endif
 
-#ifdef GL_HPP_FUNDEF_GenFramebuffers
+#ifdef GL_ALT_FUNDEF_GenFramebuffers
 class Framebuffer: public _impl::GLObject<Framebuffer>
 {
+
+    #ifdef GL_EXT_direct_state_access
+        #define framebuffer_function_dsa(dsafunc,ndsafunc,...) framebuffer_function_dsaf(dsafunc, ndsafunc,__VA_ARGS__)
+    #else
+        #define framebuffer_function_dsa(dsafunc,ndsafunc,...) framebuffer_function_ndsaf(ndsafunc,__VA_ARGS__)
+    #endif
+    
 private:
-	template<typename Callable1,typename Callable2, typename... Types>
-	void framebuffer_function_dsa(Callable1,Callable2,Types... params);
+    template<typename Callable1,typename Callable2, typename... Types>
+    void framebuffer_function_dsaf(Callable1,Callable2,Types... params);
+    
+    template<typename Callable2, typename... Types>
+    void framebuffer_function_ndsaf(Callable2,Types... params);
+
 	GLenum m_target;
 public:
 	Framebuffer():
@@ -1412,7 +1436,7 @@ public:
 		m_target(GL_DRAW_FRAMEBUFFER)
 	{}
 	
-    #if defined(GL_HPP_FUNDEF_BindFramebuffer)
+    #if defined(GL_ALT_FUNDEF_BindFramebuffer)
 	void Bind(GLenum target)
 	{
 		m_target=target;
@@ -1420,14 +1444,14 @@ public:
 	}
     #endif
 	
-    #if defined(GL_HPP_FUNDEF_NamedFramebufferParameteri)
+    #if defined(GL_ALT_FUNDEF_NamedFramebufferParameteri)
     static void Parameter(GLenum target,GLenum pname, GLint param)
 	{
 		glFramebufferParameteri(target,pname,param);
 	}
     #endif
 	
-    #if defined(GL_HPP_FUNDEF_GetFramebufferParameterivEXT) || defined(GL_HPP_FUNDEF_GetFramebufferParameteriv)
+    #if defined(GL_ALT_FUNDEF_GetFramebufferParameterivEXT) || defined(GL_ALT_FUNDEF_GetFramebufferParameteriv)
 	GLint GetParameter(GLenum pname)
 	{
 		GLint params;
@@ -1436,7 +1460,7 @@ public:
 	}
     #endif
 	
-    #if defined(GL_HPP_FUNDEF_GetNamedFramebufferAttachmentParameterivEXT) || defined(GL_HPP_FUNDEF_GetFramebufferAttachmentParameterivEXT)
+    #if defined(GL_ALT_FUNDEF_GetNamedFramebufferAttachmentParameterivEXT) || defined(GL_ALT_FUNDEF_GetFramebufferAttachmentParameterivEXT)
 	GLint GetAttachmentParameteriv(GLenum attachment,GLenum pname)
 	{
 		GLint params;
@@ -1445,7 +1469,7 @@ public:
 	}
     #endif
 	
-    #if defined(GL_HPP_FUNDEF_NamedFramebufferTextureEXT) || defined(GL_HPP_FUNDEF_FramebufferTexture)
+    #if defined(GL_ALT_FUNDEF_NamedFramebufferTextureEXT) || defined(GL_ALT_FUNDEF_FramebufferTexture)
 	void Texture(GLenum attachment, GLuint texture, GLint level)
 	{
 		framebuffer_function_dsa(&glNamedFramebufferTextureEXT,&glFramebufferTexture,attachment,texture,level);
@@ -1456,12 +1480,12 @@ public:
 	}
     #endif
 
-    #if defined(GL_HPP_FUNDEF_NamedFramebufferRenderbuffer) || defined(GL_HPP_FUNDEF_NamedFramebufferRenderbufferEXT)
+    #if defined(GL_ALT_FUNDEF_NamedFramebufferRenderbuffer) || defined(GL_ALT_FUNDEF_NamedFramebufferRenderbufferEXT)
 	void Renderbuffer(GLenum attachment, GLuint renderbuffer, GLint level);
 	void Renderbuffer(GLenum attachment,const gl::Renderbuffer& rb, GLint level);
     #endif
 
-    #if defined(GL_HPP_FUNDEF_FramebufferTexture1D) || defined(GL_HPP_FUNDEF_NamedFramebufferTexture1DEXT)
+    #if defined(GL_ALT_FUNDEF_FramebufferTexture1D) || defined(GL_ALT_FUNDEF_NamedFramebufferTexture1DEXT)
 	void Texture1D(GLenum attachment, GLenum textarget, GLuint texture, GLint level)
 	{
 		framebuffer_function_dsa(&glNamedFramebufferTexture1DEXT, &glFramebufferTexture1D, attachment, textarget, texture, level);
@@ -1472,7 +1496,7 @@ public:
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_FramebufferTexture2D) || defined(GL_HPP_FUNDEF_NamedFramebufferTexture2DEXT)
+    #if defined(GL_ALT_FUNDEF_FramebufferTexture2D) || defined(GL_ALT_FUNDEF_NamedFramebufferTexture2DEXT)
 	void Texture2D(GLenum attachment, GLenum textarget, GLuint texture, GLint level)
 	{
 		framebuffer_function_dsa(&glNamedFramebufferTexture2DEXT, &glFramebufferTexture2D, attachment, textarget, texture, level);
@@ -1483,7 +1507,7 @@ public:
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_FramebufferTexture3D) || defined(GL_HPP_FUNDEF_NamedFramebufferTexture3DEXT)
+    #if defined(GL_ALT_FUNDEF_FramebufferTexture3D) || defined(GL_ALT_FUNDEF_NamedFramebufferTexture3DEXT)
 	void Texture3D(GLenum attachment, GLenum textarget, GLuint texture, GLint level,GLint layer)
 	{
 		framebuffer_function_dsa(&glNamedFramebufferTexture3DEXT, &glFramebufferTexture3D, attachment, textarget, texture, level, layer);
@@ -1494,7 +1518,7 @@ public:
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_CheckNamedFramebufferStatusEXT) || defined(GL_HPP_FUNDEF_CheckFramebufferStatus)
+    #if defined(GL_ALT_FUNDEF_CheckNamedFramebufferStatusEXT) || defined(GL_ALT_FUNDEF_CheckFramebufferStatus)
 	void CheckStatus(GLenum target)
 	{
 		framebuffer_function_dsa(&glCheckNamedFramebufferStatusEXT,[](GLenum t,GLenum){ return glCheckFramebufferStatus(t); },target);
@@ -1509,39 +1533,50 @@ protected:
 #endif
     
     
-#ifdef	GL_HPP_FUNDEF_GenRenderbuffers
+#ifdef	GL_ALT_FUNDEF_GenRenderbuffers
 class Renderbuffer: public _impl::GLObject<Renderbuffer>
 {
 private:
+    
+    #ifdef GL_EXT_direct_state_access
+        #define renderbuffer_function_dsa(callable1, callable2, ...) renderbuffer_function_dsaf(callable1,callable2,__VA_ARGS__)
+    #else
+        #define renderbuffer_function_dsa(callable1, callable2, ...) renderbuffer_function_ndsaf(callable2,__VA_ARGS__)
+    #endif
+    
 	template<typename Callable1,typename Callable2, typename... Types>
-	void renderbuffer_function_dsa(Callable1,Callable2,Types... params);
+	void renderbuffer_function_dsaf(Callable1,Callable2,Types... params);
+    
+    template<typename Callable2, typename... Types>
+    void renderbuffer_function_ndsaf(Callable2,Types... params);
+    
 public:
 	Renderbuffer():
 		_impl::GLObject<Renderbuffer>("GLRenderbuffer",glGenRenderbuffers,glDeleteRenderbuffers)
 	{}
 	
-    #ifdef GL_HPP_FUNDEF_BindRenderbuffer
+    #ifdef GL_ALT_FUNDEF_BindRenderbuffer
 	void Bind()
 	{
 		glBindRenderbuffer(GL_RENDERBUFFER,object);
 	}
     #endif
 	
-    #if defined(GL_HPP_FUNDEF_NamedRenderbufferStorageMultisampleEXT) || defined(GL_HPP_FUNDEF_RenderbufferStorageMultisampleEXT)
+    #if defined(GL_ALT_FUNDEF_NamedRenderbufferStorageMultisampleEXT) || defined(GL_ALT_FUNDEF_RenderbufferStorageMultisampleEXT)
 	void StorageMultisample(GLsizei samples,GLenum internalformat, GLsizei width, GLsizei height)
 	{
 		renderbuffer_function_dsa(&glNamedRenderbufferStorageMultisampleEXT,&glRenderbufferStorageMultisample,samples,internalformat,width,height);
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_NamedRenderbufferStorageEXT) || defined(GL_HPP_FUNDEF_RenderbufferStorage)
+    #if defined(GL_ALT_FUNDEF_NamedRenderbufferStorageEXT) || defined(GL_ALT_FUNDEF_RenderbufferStorage)
 	void Storage(GLenum internalformat,GLsizei width,GLsizei height)
 	{
 		renderbuffer_function_dsa(&glNamedRenderbufferStorageEXT,&glRenderbufferStorage,internalformat,width,height);
 	}
     #endif
     
-    #if defined(GL_HPP_FUNDEF_GetRenderbufferParameteriv) || defined(GL_HPP_FUNDEF_GetRenderbufferParameterivEXT)
+    #if defined(GL_ALT_FUNDEF_GetRenderbufferParameteriv) || defined(GL_ALT_FUNDEF_GetRenderbufferParameterivEXT)
 	GLint GetRenderbufferParameteriv(GLenum pname)
 	{
 		int params;
@@ -1556,7 +1591,7 @@ protected:
 	{}
 };
     
-#if defined(GL_HPP_FUNDEF_NamedFramebufferRenderbuffer) || defined(GL_HPP_FUNDEF_NamedFramebufferRenderbufferEXT)
+#if defined(GL_ALT_FUNDEF_NamedFramebufferRenderbuffer) || defined(GL_ALT_FUNDEF_NamedFramebufferRenderbufferEXT)
 void Framebuffer::Renderbuffer(GLenum attachment, GLuint renderbuffer, GLint level)
 {
 	framebuffer_function_dsa(&glNamedFramebufferRenderbuffer,&glFramebufferRenderbufferEXT,attachment,GL_RENDERBUFFER,renderbuffer);
