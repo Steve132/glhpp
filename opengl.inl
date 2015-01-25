@@ -118,7 +118,7 @@ inline	GLint64 Get<GLint64>(GLenum e)
 template<>
 inline std::string Get<std::string>(GLenum e)
 {
-    const char* bv=reinterpret_cast<const char*>(gl::GetString(e));
+    const char* bv=reinterpret_cast<const char*>(glGetString(e));
 	_impl::_checkError(GL_INVALID_ENUM,"Invalid variable read with glGet");
 	return bv;
 }
@@ -628,6 +628,8 @@ inline void Buffer::BindBase(GLenum target,GLuint index) const
 	_impl::_checkError(GL_INVALID_VALUE,"Is generated if index is greater than or equal to the number of target-specific indexed binding points. OR size is less than or equal to zero or it doesn't have a data store");
 }
 
+    
+#if defined(GL_ALT_FUNDEF_FlushMappedNamedBufferRangeEXT) || defined(GL_ALT_FUNDEF_FlushMappedBufferRange)
 inline void Buffer::FlushMappedRange(GLintptr offset,GLsizeiptr sz) const
 {
 	if(direct_state_access_supported)
@@ -652,6 +654,8 @@ inline void Buffer::FlushMappedRange(GLintptr offset,GLsizeiptr sz) const
 		}
 	}
 }
+#endif
+
 inline void Buffer::GetSubData(GLintptr offset,GLsizeiptr size,void* output_buffer) const
 {
 	if(direct_state_access_supported)
