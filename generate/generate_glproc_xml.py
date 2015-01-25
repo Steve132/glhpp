@@ -118,6 +118,7 @@ static inline %(rettype)s gl%(signature)s(%(argstring)s)
 #ifndef	GL_ALT_FUNDEF_%(signature)s
 #define GL_ALT_FUNDEF_%(signature)s
 extern %(rettype)s gl%(signature)s(%(justtypes)s);
+#endif
 '''
 		return ptrdeclarationtemplate % {"rettype": self.return_type,"signature":self.name[2:],"justtypes":self.argtypes()}
 		

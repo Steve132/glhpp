@@ -1834,1231 +1834,1477 @@ CGUARDBEGIN
 #ifndef	GL_ALT_FUNDEF_ActiveTexture
 #define GL_ALT_FUNDEF_ActiveTexture
 extern void glActiveTexture(GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_AttachShader
 #define GL_ALT_FUNDEF_AttachShader
 extern void glAttachShader(GLuint,GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_BeginQuery
 #define GL_ALT_FUNDEF_BeginQuery
 extern void glBeginQuery(GLenum,GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_BeginTransformFeedback
 #define GL_ALT_FUNDEF_BeginTransformFeedback
 extern void glBeginTransformFeedback(GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_BindAttribLocation
 #define GL_ALT_FUNDEF_BindAttribLocation
 extern void glBindAttribLocation(GLuint,GLuint,const GLchar *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_BindBuffer
 #define GL_ALT_FUNDEF_BindBuffer
 extern void glBindBuffer(GLenum,GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_BindBufferBase
 #define GL_ALT_FUNDEF_BindBufferBase
 extern void glBindBufferBase(GLenum,GLuint,GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_BindBufferRange
 #define GL_ALT_FUNDEF_BindBufferRange
 extern void glBindBufferRange(GLenum,GLuint,GLuint,GLintptr,GLsizeiptr);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_BindFramebuffer
 #define GL_ALT_FUNDEF_BindFramebuffer
 extern void glBindFramebuffer(GLenum,GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_BindRenderbuffer
 #define GL_ALT_FUNDEF_BindRenderbuffer
 extern void glBindRenderbuffer(GLenum,GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_BindSampler
 #define GL_ALT_FUNDEF_BindSampler
 extern void glBindSampler(GLuint,GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_BindTexture
 #define GL_ALT_FUNDEF_BindTexture
 extern void glBindTexture(GLenum,GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_BindTransformFeedback
 #define GL_ALT_FUNDEF_BindTransformFeedback
 extern void glBindTransformFeedback(GLenum,GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_BindVertexArray
 #define GL_ALT_FUNDEF_BindVertexArray
 extern void glBindVertexArray(GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_BlendColor
 #define GL_ALT_FUNDEF_BlendColor
 extern void glBlendColor(GLfloat,GLfloat,GLfloat,GLfloat);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_BlendEquation
 #define GL_ALT_FUNDEF_BlendEquation
 extern void glBlendEquation(GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_BlendEquationSeparate
 #define GL_ALT_FUNDEF_BlendEquationSeparate
 extern void glBlendEquationSeparate(GLenum,GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_BlendFunc
 #define GL_ALT_FUNDEF_BlendFunc
 extern void glBlendFunc(GLenum,GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_BlendFuncSeparate
 #define GL_ALT_FUNDEF_BlendFuncSeparate
 extern void glBlendFuncSeparate(GLenum,GLenum,GLenum,GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_BlitFramebuffer
 #define GL_ALT_FUNDEF_BlitFramebuffer
 extern void glBlitFramebuffer(GLint,GLint,GLint,GLint,GLint,GLint,GLint,GLint,GLbitfield,GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_BufferData
 #define GL_ALT_FUNDEF_BufferData
 extern void glBufferData(GLenum,GLsizeiptr,const void *,GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_BufferSubData
 #define GL_ALT_FUNDEF_BufferSubData
 extern void glBufferSubData(GLenum,GLintptr,GLsizeiptr,const void *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_CheckFramebufferStatus
 #define GL_ALT_FUNDEF_CheckFramebufferStatus
 extern GLenum glCheckFramebufferStatus(GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Clear
 #define GL_ALT_FUNDEF_Clear
 extern void glClear(GLbitfield);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_ClearBufferfi
 #define GL_ALT_FUNDEF_ClearBufferfi
 extern void glClearBufferfi(GLenum,GLint,GLfloat,GLint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_ClearBufferfv
 #define GL_ALT_FUNDEF_ClearBufferfv
 extern void glClearBufferfv(GLenum,GLint,const GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_ClearBufferiv
 #define GL_ALT_FUNDEF_ClearBufferiv
 extern void glClearBufferiv(GLenum,GLint,const GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_ClearBufferuiv
 #define GL_ALT_FUNDEF_ClearBufferuiv
 extern void glClearBufferuiv(GLenum,GLint,const GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_ClearColor
 #define GL_ALT_FUNDEF_ClearColor
 extern void glClearColor(GLfloat,GLfloat,GLfloat,GLfloat);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_ClearDepthf
 #define GL_ALT_FUNDEF_ClearDepthf
 extern void glClearDepthf(GLfloat);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_ClearStencil
 #define GL_ALT_FUNDEF_ClearStencil
 extern void glClearStencil(GLint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_ClientWaitSync
 #define GL_ALT_FUNDEF_ClientWaitSync
 extern GLenum glClientWaitSync(GLsync,GLbitfield,GLuint64);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_ColorMask
 #define GL_ALT_FUNDEF_ColorMask
 extern void glColorMask(GLboolean,GLboolean,GLboolean,GLboolean);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_CompileShader
 #define GL_ALT_FUNDEF_CompileShader
 extern void glCompileShader(GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_CompressedTexImage2D
 #define GL_ALT_FUNDEF_CompressedTexImage2D
 extern void glCompressedTexImage2D(GLenum,GLint,GLenum,GLsizei,GLsizei,GLint,GLsizei,const void *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_CompressedTexImage3D
 #define GL_ALT_FUNDEF_CompressedTexImage3D
 extern void glCompressedTexImage3D(GLenum,GLint,GLenum,GLsizei,GLsizei,GLsizei,GLint,GLsizei,const void *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_CompressedTexSubImage2D
 #define GL_ALT_FUNDEF_CompressedTexSubImage2D
 extern void glCompressedTexSubImage2D(GLenum,GLint,GLint,GLint,GLsizei,GLsizei,GLenum,GLsizei,const void *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_CompressedTexSubImage3D
 #define GL_ALT_FUNDEF_CompressedTexSubImage3D
 extern void glCompressedTexSubImage3D(GLenum,GLint,GLint,GLint,GLint,GLsizei,GLsizei,GLsizei,GLenum,GLsizei,const void *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_CopyBufferSubData
 #define GL_ALT_FUNDEF_CopyBufferSubData
 extern void glCopyBufferSubData(GLenum,GLenum,GLintptr,GLintptr,GLsizeiptr);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_CopyTexImage2D
 #define GL_ALT_FUNDEF_CopyTexImage2D
 extern void glCopyTexImage2D(GLenum,GLint,GLenum,GLint,GLint,GLsizei,GLsizei,GLint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_CopyTexSubImage2D
 #define GL_ALT_FUNDEF_CopyTexSubImage2D
 extern void glCopyTexSubImage2D(GLenum,GLint,GLint,GLint,GLint,GLint,GLsizei,GLsizei);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_CopyTexSubImage3D
 #define GL_ALT_FUNDEF_CopyTexSubImage3D
 extern void glCopyTexSubImage3D(GLenum,GLint,GLint,GLint,GLint,GLint,GLint,GLsizei,GLsizei);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_CreateProgram
 #define GL_ALT_FUNDEF_CreateProgram
 extern GLuint glCreateProgram();
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_CreateShader
 #define GL_ALT_FUNDEF_CreateShader
 extern GLuint glCreateShader(GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_CullFace
 #define GL_ALT_FUNDEF_CullFace
 extern void glCullFace(GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_DeleteBuffers
 #define GL_ALT_FUNDEF_DeleteBuffers
 extern void glDeleteBuffers(GLsizei,const GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_DeleteFramebuffers
 #define GL_ALT_FUNDEF_DeleteFramebuffers
 extern void glDeleteFramebuffers(GLsizei,const GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_DeleteProgram
 #define GL_ALT_FUNDEF_DeleteProgram
 extern void glDeleteProgram(GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_DeleteQueries
 #define GL_ALT_FUNDEF_DeleteQueries
 extern void glDeleteQueries(GLsizei,const GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_DeleteRenderbuffers
 #define GL_ALT_FUNDEF_DeleteRenderbuffers
 extern void glDeleteRenderbuffers(GLsizei,const GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_DeleteSamplers
 #define GL_ALT_FUNDEF_DeleteSamplers
 extern void glDeleteSamplers(GLsizei,const GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_DeleteShader
 #define GL_ALT_FUNDEF_DeleteShader
 extern void glDeleteShader(GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_DeleteSync
 #define GL_ALT_FUNDEF_DeleteSync
 extern void glDeleteSync(GLsync);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_DeleteTextures
 #define GL_ALT_FUNDEF_DeleteTextures
 extern void glDeleteTextures(GLsizei,const GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_DeleteTransformFeedbacks
 #define GL_ALT_FUNDEF_DeleteTransformFeedbacks
 extern void glDeleteTransformFeedbacks(GLsizei,const GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_DeleteVertexArrays
 #define GL_ALT_FUNDEF_DeleteVertexArrays
 extern void glDeleteVertexArrays(GLsizei,const GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_DepthFunc
 #define GL_ALT_FUNDEF_DepthFunc
 extern void glDepthFunc(GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_DepthMask
 #define GL_ALT_FUNDEF_DepthMask
 extern void glDepthMask(GLboolean);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_DepthRangef
 #define GL_ALT_FUNDEF_DepthRangef
 extern void glDepthRangef(GLfloat,GLfloat);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_DetachShader
 #define GL_ALT_FUNDEF_DetachShader
 extern void glDetachShader(GLuint,GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Disable
 #define GL_ALT_FUNDEF_Disable
 extern void glDisable(GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_DisableVertexAttribArray
 #define GL_ALT_FUNDEF_DisableVertexAttribArray
 extern void glDisableVertexAttribArray(GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_DrawArrays
 #define GL_ALT_FUNDEF_DrawArrays
 extern void glDrawArrays(GLenum,GLint,GLsizei);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_DrawArraysInstanced
 #define GL_ALT_FUNDEF_DrawArraysInstanced
 extern void glDrawArraysInstanced(GLenum,GLint,GLsizei,GLsizei);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_DrawBuffers
 #define GL_ALT_FUNDEF_DrawBuffers
 extern void glDrawBuffers(GLsizei,const GLenum *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_DrawElements
 #define GL_ALT_FUNDEF_DrawElements
 extern void glDrawElements(GLenum,GLsizei,GLenum,const void *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_DrawElementsInstanced
 #define GL_ALT_FUNDEF_DrawElementsInstanced
 extern void glDrawElementsInstanced(GLenum,GLsizei,GLenum,const void *,GLsizei);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_DrawRangeElements
 #define GL_ALT_FUNDEF_DrawRangeElements
 extern void glDrawRangeElements(GLenum,GLuint,GLuint,GLsizei,GLenum,const void *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Enable
 #define GL_ALT_FUNDEF_Enable
 extern void glEnable(GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_EnableVertexAttribArray
 #define GL_ALT_FUNDEF_EnableVertexAttribArray
 extern void glEnableVertexAttribArray(GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_EndQuery
 #define GL_ALT_FUNDEF_EndQuery
 extern void glEndQuery(GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_EndTransformFeedback
 #define GL_ALT_FUNDEF_EndTransformFeedback
 extern void glEndTransformFeedback();
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_FenceSync
 #define GL_ALT_FUNDEF_FenceSync
 extern GLsync glFenceSync(GLenum,GLbitfield);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Finish
 #define GL_ALT_FUNDEF_Finish
 extern void glFinish();
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Flush
 #define GL_ALT_FUNDEF_Flush
 extern void glFlush();
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_FlushMappedBufferRange
 #define GL_ALT_FUNDEF_FlushMappedBufferRange
 extern void glFlushMappedBufferRange(GLenum,GLintptr,GLsizeiptr);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_FramebufferRenderbuffer
 #define GL_ALT_FUNDEF_FramebufferRenderbuffer
 extern void glFramebufferRenderbuffer(GLenum,GLenum,GLenum,GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_FramebufferTexture2D
 #define GL_ALT_FUNDEF_FramebufferTexture2D
 extern void glFramebufferTexture2D(GLenum,GLenum,GLenum,GLuint,GLint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_FramebufferTextureLayer
 #define GL_ALT_FUNDEF_FramebufferTextureLayer
 extern void glFramebufferTextureLayer(GLenum,GLenum,GLuint,GLint,GLint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_FrontFace
 #define GL_ALT_FUNDEF_FrontFace
 extern void glFrontFace(GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GenBuffers
 #define GL_ALT_FUNDEF_GenBuffers
 extern void glGenBuffers(GLsizei,GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GenFramebuffers
 #define GL_ALT_FUNDEF_GenFramebuffers
 extern void glGenFramebuffers(GLsizei,GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GenQueries
 #define GL_ALT_FUNDEF_GenQueries
 extern void glGenQueries(GLsizei,GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GenRenderbuffers
 #define GL_ALT_FUNDEF_GenRenderbuffers
 extern void glGenRenderbuffers(GLsizei,GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GenSamplers
 #define GL_ALT_FUNDEF_GenSamplers
 extern void glGenSamplers(GLsizei,GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GenTextures
 #define GL_ALT_FUNDEF_GenTextures
 extern void glGenTextures(GLsizei,GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GenTransformFeedbacks
 #define GL_ALT_FUNDEF_GenTransformFeedbacks
 extern void glGenTransformFeedbacks(GLsizei,GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GenVertexArrays
 #define GL_ALT_FUNDEF_GenVertexArrays
 extern void glGenVertexArrays(GLsizei,GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GenerateMipmap
 #define GL_ALT_FUNDEF_GenerateMipmap
 extern void glGenerateMipmap(GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetActiveAttrib
 #define GL_ALT_FUNDEF_GetActiveAttrib
 extern void glGetActiveAttrib(GLuint,GLuint,GLsizei,GLsizei *,GLint *,GLenum *,GLchar *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetActiveUniform
 #define GL_ALT_FUNDEF_GetActiveUniform
 extern void glGetActiveUniform(GLuint,GLuint,GLsizei,GLsizei *,GLint *,GLenum *,GLchar *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetActiveUniformBlockName
 #define GL_ALT_FUNDEF_GetActiveUniformBlockName
 extern void glGetActiveUniformBlockName(GLuint,GLuint,GLsizei,GLsizei *,GLchar *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetActiveUniformBlockiv
 #define GL_ALT_FUNDEF_GetActiveUniformBlockiv
 extern void glGetActiveUniformBlockiv(GLuint,GLuint,GLenum,GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetActiveUniformsiv
 #define GL_ALT_FUNDEF_GetActiveUniformsiv
 extern void glGetActiveUniformsiv(GLuint,GLsizei,const GLuint *,GLenum,GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetAttachedShaders
 #define GL_ALT_FUNDEF_GetAttachedShaders
 extern void glGetAttachedShaders(GLuint,GLsizei,GLsizei *,GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetAttribLocation
 #define GL_ALT_FUNDEF_GetAttribLocation
 extern GLint glGetAttribLocation(GLuint,const GLchar *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetBooleanv
 #define GL_ALT_FUNDEF_GetBooleanv
 extern void glGetBooleanv(GLenum,GLboolean *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetBufferParameteri64v
 #define GL_ALT_FUNDEF_GetBufferParameteri64v
 extern void glGetBufferParameteri64v(GLenum,GLenum,GLint64 *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetBufferParameteriv
 #define GL_ALT_FUNDEF_GetBufferParameteriv
 extern void glGetBufferParameteriv(GLenum,GLenum,GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetBufferPointerv
 #define GL_ALT_FUNDEF_GetBufferPointerv
 extern void glGetBufferPointerv(GLenum,GLenum,void **);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetError
 #define GL_ALT_FUNDEF_GetError
 extern GLenum glGetError();
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetFloatv
 #define GL_ALT_FUNDEF_GetFloatv
 extern void glGetFloatv(GLenum,GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetFragDataLocation
 #define GL_ALT_FUNDEF_GetFragDataLocation
 extern GLint glGetFragDataLocation(GLuint,const GLchar *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetFramebufferAttachmentParameteriv
 #define GL_ALT_FUNDEF_GetFramebufferAttachmentParameteriv
 extern void glGetFramebufferAttachmentParameteriv(GLenum,GLenum,GLenum,GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetInteger64i_v
 #define GL_ALT_FUNDEF_GetInteger64i_v
 extern void glGetInteger64i_v(GLenum,GLuint,GLint64 *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetInteger64v
 #define GL_ALT_FUNDEF_GetInteger64v
 extern void glGetInteger64v(GLenum,GLint64 *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetIntegeri_v
 #define GL_ALT_FUNDEF_GetIntegeri_v
 extern void glGetIntegeri_v(GLenum,GLuint,GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetIntegerv
 #define GL_ALT_FUNDEF_GetIntegerv
 extern void glGetIntegerv(GLenum,GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetInternalformativ
 #define GL_ALT_FUNDEF_GetInternalformativ
 extern void glGetInternalformativ(GLenum,GLenum,GLenum,GLsizei,GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetProgramBinary
 #define GL_ALT_FUNDEF_GetProgramBinary
 extern void glGetProgramBinary(GLuint,GLsizei,GLsizei *,GLenum *,void *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetProgramInfoLog
 #define GL_ALT_FUNDEF_GetProgramInfoLog
 extern void glGetProgramInfoLog(GLuint,GLsizei,GLsizei *,GLchar *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetProgramiv
 #define GL_ALT_FUNDEF_GetProgramiv
 extern void glGetProgramiv(GLuint,GLenum,GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetQueryObjectuiv
 #define GL_ALT_FUNDEF_GetQueryObjectuiv
 extern void glGetQueryObjectuiv(GLuint,GLenum,GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetQueryiv
 #define GL_ALT_FUNDEF_GetQueryiv
 extern void glGetQueryiv(GLenum,GLenum,GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetRenderbufferParameteriv
 #define GL_ALT_FUNDEF_GetRenderbufferParameteriv
 extern void glGetRenderbufferParameteriv(GLenum,GLenum,GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetSamplerParameterfv
 #define GL_ALT_FUNDEF_GetSamplerParameterfv
 extern void glGetSamplerParameterfv(GLuint,GLenum,GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetSamplerParameteriv
 #define GL_ALT_FUNDEF_GetSamplerParameteriv
 extern void glGetSamplerParameteriv(GLuint,GLenum,GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetShaderInfoLog
 #define GL_ALT_FUNDEF_GetShaderInfoLog
 extern void glGetShaderInfoLog(GLuint,GLsizei,GLsizei *,GLchar *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetShaderPrecisionFormat
 #define GL_ALT_FUNDEF_GetShaderPrecisionFormat
 extern void glGetShaderPrecisionFormat(GLenum,GLenum,GLint *,GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetShaderSource
 #define GL_ALT_FUNDEF_GetShaderSource
 extern void glGetShaderSource(GLuint,GLsizei,GLsizei *,GLchar *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetShaderiv
 #define GL_ALT_FUNDEF_GetShaderiv
 extern void glGetShaderiv(GLuint,GLenum,GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetString
 #define GL_ALT_FUNDEF_GetString
 extern const GLubyte * glGetString(GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetStringi
 #define GL_ALT_FUNDEF_GetStringi
 extern const GLubyte * glGetStringi(GLenum,GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetSynciv
 #define GL_ALT_FUNDEF_GetSynciv
 extern void glGetSynciv(GLsync,GLenum,GLsizei,GLsizei *,GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetTexParameterfv
 #define GL_ALT_FUNDEF_GetTexParameterfv
 extern void glGetTexParameterfv(GLenum,GLenum,GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetTexParameteriv
 #define GL_ALT_FUNDEF_GetTexParameteriv
 extern void glGetTexParameteriv(GLenum,GLenum,GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetTransformFeedbackVarying
 #define GL_ALT_FUNDEF_GetTransformFeedbackVarying
 extern void glGetTransformFeedbackVarying(GLuint,GLuint,GLsizei,GLsizei *,GLsizei *,GLenum *,GLchar *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetUniformBlockIndex
 #define GL_ALT_FUNDEF_GetUniformBlockIndex
 extern GLuint glGetUniformBlockIndex(GLuint,const GLchar *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetUniformIndices
 #define GL_ALT_FUNDEF_GetUniformIndices
 extern void glGetUniformIndices(GLuint,GLsizei,const GLchar *const*,GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetUniformLocation
 #define GL_ALT_FUNDEF_GetUniformLocation
 extern GLint glGetUniformLocation(GLuint,const GLchar *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetUniformfv
 #define GL_ALT_FUNDEF_GetUniformfv
 extern void glGetUniformfv(GLuint,GLint,GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetUniformiv
 #define GL_ALT_FUNDEF_GetUniformiv
 extern void glGetUniformiv(GLuint,GLint,GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetUniformuiv
 #define GL_ALT_FUNDEF_GetUniformuiv
 extern void glGetUniformuiv(GLuint,GLint,GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetVertexAttribIiv
 #define GL_ALT_FUNDEF_GetVertexAttribIiv
 extern void glGetVertexAttribIiv(GLuint,GLenum,GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetVertexAttribIuiv
 #define GL_ALT_FUNDEF_GetVertexAttribIuiv
 extern void glGetVertexAttribIuiv(GLuint,GLenum,GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetVertexAttribPointerv
 #define GL_ALT_FUNDEF_GetVertexAttribPointerv
 extern void glGetVertexAttribPointerv(GLuint,GLenum,void **);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetVertexAttribfv
 #define GL_ALT_FUNDEF_GetVertexAttribfv
 extern void glGetVertexAttribfv(GLuint,GLenum,GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_GetVertexAttribiv
 #define GL_ALT_FUNDEF_GetVertexAttribiv
 extern void glGetVertexAttribiv(GLuint,GLenum,GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Hint
 #define GL_ALT_FUNDEF_Hint
 extern void glHint(GLenum,GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_InvalidateFramebuffer
 #define GL_ALT_FUNDEF_InvalidateFramebuffer
 extern void glInvalidateFramebuffer(GLenum,GLsizei,const GLenum *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_InvalidateSubFramebuffer
 #define GL_ALT_FUNDEF_InvalidateSubFramebuffer
 extern void glInvalidateSubFramebuffer(GLenum,GLsizei,const GLenum *,GLint,GLint,GLsizei,GLsizei);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_IsBuffer
 #define GL_ALT_FUNDEF_IsBuffer
 extern GLboolean glIsBuffer(GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_IsEnabled
 #define GL_ALT_FUNDEF_IsEnabled
 extern GLboolean glIsEnabled(GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_IsFramebuffer
 #define GL_ALT_FUNDEF_IsFramebuffer
 extern GLboolean glIsFramebuffer(GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_IsProgram
 #define GL_ALT_FUNDEF_IsProgram
 extern GLboolean glIsProgram(GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_IsQuery
 #define GL_ALT_FUNDEF_IsQuery
 extern GLboolean glIsQuery(GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_IsRenderbuffer
 #define GL_ALT_FUNDEF_IsRenderbuffer
 extern GLboolean glIsRenderbuffer(GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_IsSampler
 #define GL_ALT_FUNDEF_IsSampler
 extern GLboolean glIsSampler(GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_IsShader
 #define GL_ALT_FUNDEF_IsShader
 extern GLboolean glIsShader(GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_IsSync
 #define GL_ALT_FUNDEF_IsSync
 extern GLboolean glIsSync(GLsync);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_IsTexture
 #define GL_ALT_FUNDEF_IsTexture
 extern GLboolean glIsTexture(GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_IsTransformFeedback
 #define GL_ALT_FUNDEF_IsTransformFeedback
 extern GLboolean glIsTransformFeedback(GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_IsVertexArray
 #define GL_ALT_FUNDEF_IsVertexArray
 extern GLboolean glIsVertexArray(GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_LineWidth
 #define GL_ALT_FUNDEF_LineWidth
 extern void glLineWidth(GLfloat);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_LinkProgram
 #define GL_ALT_FUNDEF_LinkProgram
 extern void glLinkProgram(GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_MapBufferRange
 #define GL_ALT_FUNDEF_MapBufferRange
 extern void * glMapBufferRange(GLenum,GLintptr,GLsizeiptr,GLbitfield);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_PauseTransformFeedback
 #define GL_ALT_FUNDEF_PauseTransformFeedback
 extern void glPauseTransformFeedback();
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_PixelStorei
 #define GL_ALT_FUNDEF_PixelStorei
 extern void glPixelStorei(GLenum,GLint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_PolygonOffset
 #define GL_ALT_FUNDEF_PolygonOffset
 extern void glPolygonOffset(GLfloat,GLfloat);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_ProgramBinary
 #define GL_ALT_FUNDEF_ProgramBinary
 extern void glProgramBinary(GLuint,GLenum,const void *,GLsizei);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_ProgramParameteri
 #define GL_ALT_FUNDEF_ProgramParameteri
 extern void glProgramParameteri(GLuint,GLenum,GLint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_ReadBuffer
 #define GL_ALT_FUNDEF_ReadBuffer
 extern void glReadBuffer(GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_ReadPixels
 #define GL_ALT_FUNDEF_ReadPixels
 extern void glReadPixels(GLint,GLint,GLsizei,GLsizei,GLenum,GLenum,void *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_ReleaseShaderCompiler
 #define GL_ALT_FUNDEF_ReleaseShaderCompiler
 extern void glReleaseShaderCompiler();
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_RenderbufferStorage
 #define GL_ALT_FUNDEF_RenderbufferStorage
 extern void glRenderbufferStorage(GLenum,GLenum,GLsizei,GLsizei);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_RenderbufferStorageMultisample
 #define GL_ALT_FUNDEF_RenderbufferStorageMultisample
 extern void glRenderbufferStorageMultisample(GLenum,GLsizei,GLenum,GLsizei,GLsizei);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_ResumeTransformFeedback
 #define GL_ALT_FUNDEF_ResumeTransformFeedback
 extern void glResumeTransformFeedback();
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_SampleCoverage
 #define GL_ALT_FUNDEF_SampleCoverage
 extern void glSampleCoverage(GLfloat,GLboolean);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_SamplerParameterf
 #define GL_ALT_FUNDEF_SamplerParameterf
 extern void glSamplerParameterf(GLuint,GLenum,GLfloat);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_SamplerParameterfv
 #define GL_ALT_FUNDEF_SamplerParameterfv
 extern void glSamplerParameterfv(GLuint,GLenum,const GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_SamplerParameteri
 #define GL_ALT_FUNDEF_SamplerParameteri
 extern void glSamplerParameteri(GLuint,GLenum,GLint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_SamplerParameteriv
 #define GL_ALT_FUNDEF_SamplerParameteriv
 extern void glSamplerParameteriv(GLuint,GLenum,const GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Scissor
 #define GL_ALT_FUNDEF_Scissor
 extern void glScissor(GLint,GLint,GLsizei,GLsizei);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_ShaderBinary
 #define GL_ALT_FUNDEF_ShaderBinary
 extern void glShaderBinary(GLsizei,const GLuint *,GLenum,const void *,GLsizei);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_ShaderSource
 #define GL_ALT_FUNDEF_ShaderSource
 extern void glShaderSource(GLuint,GLsizei,const GLchar *const*,const GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_StencilFunc
 #define GL_ALT_FUNDEF_StencilFunc
 extern void glStencilFunc(GLenum,GLint,GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_StencilFuncSeparate
 #define GL_ALT_FUNDEF_StencilFuncSeparate
 extern void glStencilFuncSeparate(GLenum,GLenum,GLint,GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_StencilMask
 #define GL_ALT_FUNDEF_StencilMask
 extern void glStencilMask(GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_StencilMaskSeparate
 #define GL_ALT_FUNDEF_StencilMaskSeparate
 extern void glStencilMaskSeparate(GLenum,GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_StencilOp
 #define GL_ALT_FUNDEF_StencilOp
 extern void glStencilOp(GLenum,GLenum,GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_StencilOpSeparate
 #define GL_ALT_FUNDEF_StencilOpSeparate
 extern void glStencilOpSeparate(GLenum,GLenum,GLenum,GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_TexImage2D
 #define GL_ALT_FUNDEF_TexImage2D
 extern void glTexImage2D(GLenum,GLint,GLint,GLsizei,GLsizei,GLint,GLenum,GLenum,const void *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_TexImage3D
 #define GL_ALT_FUNDEF_TexImage3D
 extern void glTexImage3D(GLenum,GLint,GLint,GLsizei,GLsizei,GLsizei,GLint,GLenum,GLenum,const void *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_TexParameterf
 #define GL_ALT_FUNDEF_TexParameterf
 extern void glTexParameterf(GLenum,GLenum,GLfloat);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_TexParameterfv
 #define GL_ALT_FUNDEF_TexParameterfv
 extern void glTexParameterfv(GLenum,GLenum,const GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_TexParameteri
 #define GL_ALT_FUNDEF_TexParameteri
 extern void glTexParameteri(GLenum,GLenum,GLint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_TexParameteriv
 #define GL_ALT_FUNDEF_TexParameteriv
 extern void glTexParameteriv(GLenum,GLenum,const GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_TexStorage2D
 #define GL_ALT_FUNDEF_TexStorage2D
 extern void glTexStorage2D(GLenum,GLsizei,GLenum,GLsizei,GLsizei);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_TexStorage3D
 #define GL_ALT_FUNDEF_TexStorage3D
 extern void glTexStorage3D(GLenum,GLsizei,GLenum,GLsizei,GLsizei,GLsizei);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_TexSubImage2D
 #define GL_ALT_FUNDEF_TexSubImage2D
 extern void glTexSubImage2D(GLenum,GLint,GLint,GLint,GLsizei,GLsizei,GLenum,GLenum,const void *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_TexSubImage3D
 #define GL_ALT_FUNDEF_TexSubImage3D
 extern void glTexSubImage3D(GLenum,GLint,GLint,GLint,GLint,GLsizei,GLsizei,GLsizei,GLenum,GLenum,const void *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_TransformFeedbackVaryings
 #define GL_ALT_FUNDEF_TransformFeedbackVaryings
 extern void glTransformFeedbackVaryings(GLuint,GLsizei,const GLchar *const*,GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform1f
 #define GL_ALT_FUNDEF_Uniform1f
 extern void glUniform1f(GLint,GLfloat);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform1fv
 #define GL_ALT_FUNDEF_Uniform1fv
 extern void glUniform1fv(GLint,GLsizei,const GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform1i
 #define GL_ALT_FUNDEF_Uniform1i
 extern void glUniform1i(GLint,GLint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform1iv
 #define GL_ALT_FUNDEF_Uniform1iv
 extern void glUniform1iv(GLint,GLsizei,const GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform1ui
 #define GL_ALT_FUNDEF_Uniform1ui
 extern void glUniform1ui(GLint,GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform1uiv
 #define GL_ALT_FUNDEF_Uniform1uiv
 extern void glUniform1uiv(GLint,GLsizei,const GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform2f
 #define GL_ALT_FUNDEF_Uniform2f
 extern void glUniform2f(GLint,GLfloat,GLfloat);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform2fv
 #define GL_ALT_FUNDEF_Uniform2fv
 extern void glUniform2fv(GLint,GLsizei,const GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform2i
 #define GL_ALT_FUNDEF_Uniform2i
 extern void glUniform2i(GLint,GLint,GLint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform2iv
 #define GL_ALT_FUNDEF_Uniform2iv
 extern void glUniform2iv(GLint,GLsizei,const GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform2ui
 #define GL_ALT_FUNDEF_Uniform2ui
 extern void glUniform2ui(GLint,GLuint,GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform2uiv
 #define GL_ALT_FUNDEF_Uniform2uiv
 extern void glUniform2uiv(GLint,GLsizei,const GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform3f
 #define GL_ALT_FUNDEF_Uniform3f
 extern void glUniform3f(GLint,GLfloat,GLfloat,GLfloat);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform3fv
 #define GL_ALT_FUNDEF_Uniform3fv
 extern void glUniform3fv(GLint,GLsizei,const GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform3i
 #define GL_ALT_FUNDEF_Uniform3i
 extern void glUniform3i(GLint,GLint,GLint,GLint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform3iv
 #define GL_ALT_FUNDEF_Uniform3iv
 extern void glUniform3iv(GLint,GLsizei,const GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform3ui
 #define GL_ALT_FUNDEF_Uniform3ui
 extern void glUniform3ui(GLint,GLuint,GLuint,GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform3uiv
 #define GL_ALT_FUNDEF_Uniform3uiv
 extern void glUniform3uiv(GLint,GLsizei,const GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform4f
 #define GL_ALT_FUNDEF_Uniform4f
 extern void glUniform4f(GLint,GLfloat,GLfloat,GLfloat,GLfloat);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform4fv
 #define GL_ALT_FUNDEF_Uniform4fv
 extern void glUniform4fv(GLint,GLsizei,const GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform4i
 #define GL_ALT_FUNDEF_Uniform4i
 extern void glUniform4i(GLint,GLint,GLint,GLint,GLint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform4iv
 #define GL_ALT_FUNDEF_Uniform4iv
 extern void glUniform4iv(GLint,GLsizei,const GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform4ui
 #define GL_ALT_FUNDEF_Uniform4ui
 extern void glUniform4ui(GLint,GLuint,GLuint,GLuint,GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Uniform4uiv
 #define GL_ALT_FUNDEF_Uniform4uiv
 extern void glUniform4uiv(GLint,GLsizei,const GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_UniformBlockBinding
 #define GL_ALT_FUNDEF_UniformBlockBinding
 extern void glUniformBlockBinding(GLuint,GLuint,GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_UniformMatrix2fv
 #define GL_ALT_FUNDEF_UniformMatrix2fv
 extern void glUniformMatrix2fv(GLint,GLsizei,GLboolean,const GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_UniformMatrix2x3fv
 #define GL_ALT_FUNDEF_UniformMatrix2x3fv
 extern void glUniformMatrix2x3fv(GLint,GLsizei,GLboolean,const GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_UniformMatrix2x4fv
 #define GL_ALT_FUNDEF_UniformMatrix2x4fv
 extern void glUniformMatrix2x4fv(GLint,GLsizei,GLboolean,const GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_UniformMatrix3fv
 #define GL_ALT_FUNDEF_UniformMatrix3fv
 extern void glUniformMatrix3fv(GLint,GLsizei,GLboolean,const GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_UniformMatrix3x2fv
 #define GL_ALT_FUNDEF_UniformMatrix3x2fv
 extern void glUniformMatrix3x2fv(GLint,GLsizei,GLboolean,const GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_UniformMatrix3x4fv
 #define GL_ALT_FUNDEF_UniformMatrix3x4fv
 extern void glUniformMatrix3x4fv(GLint,GLsizei,GLboolean,const GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_UniformMatrix4fv
 #define GL_ALT_FUNDEF_UniformMatrix4fv
 extern void glUniformMatrix4fv(GLint,GLsizei,GLboolean,const GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_UniformMatrix4x2fv
 #define GL_ALT_FUNDEF_UniformMatrix4x2fv
 extern void glUniformMatrix4x2fv(GLint,GLsizei,GLboolean,const GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_UniformMatrix4x3fv
 #define GL_ALT_FUNDEF_UniformMatrix4x3fv
 extern void glUniformMatrix4x3fv(GLint,GLsizei,GLboolean,const GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_UnmapBuffer
 #define GL_ALT_FUNDEF_UnmapBuffer
 extern GLboolean glUnmapBuffer(GLenum);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_UseProgram
 #define GL_ALT_FUNDEF_UseProgram
 extern void glUseProgram(GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_ValidateProgram
 #define GL_ALT_FUNDEF_ValidateProgram
 extern void glValidateProgram(GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_VertexAttrib1f
 #define GL_ALT_FUNDEF_VertexAttrib1f
 extern void glVertexAttrib1f(GLuint,GLfloat);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_VertexAttrib1fv
 #define GL_ALT_FUNDEF_VertexAttrib1fv
 extern void glVertexAttrib1fv(GLuint,const GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_VertexAttrib2f
 #define GL_ALT_FUNDEF_VertexAttrib2f
 extern void glVertexAttrib2f(GLuint,GLfloat,GLfloat);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_VertexAttrib2fv
 #define GL_ALT_FUNDEF_VertexAttrib2fv
 extern void glVertexAttrib2fv(GLuint,const GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_VertexAttrib3f
 #define GL_ALT_FUNDEF_VertexAttrib3f
 extern void glVertexAttrib3f(GLuint,GLfloat,GLfloat,GLfloat);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_VertexAttrib3fv
 #define GL_ALT_FUNDEF_VertexAttrib3fv
 extern void glVertexAttrib3fv(GLuint,const GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_VertexAttrib4f
 #define GL_ALT_FUNDEF_VertexAttrib4f
 extern void glVertexAttrib4f(GLuint,GLfloat,GLfloat,GLfloat,GLfloat);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_VertexAttrib4fv
 #define GL_ALT_FUNDEF_VertexAttrib4fv
 extern void glVertexAttrib4fv(GLuint,const GLfloat *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_VertexAttribDivisor
 #define GL_ALT_FUNDEF_VertexAttribDivisor
 extern void glVertexAttribDivisor(GLuint,GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_VertexAttribI4i
 #define GL_ALT_FUNDEF_VertexAttribI4i
 extern void glVertexAttribI4i(GLuint,GLint,GLint,GLint,GLint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_VertexAttribI4iv
 #define GL_ALT_FUNDEF_VertexAttribI4iv
 extern void glVertexAttribI4iv(GLuint,const GLint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_VertexAttribI4ui
 #define GL_ALT_FUNDEF_VertexAttribI4ui
 extern void glVertexAttribI4ui(GLuint,GLuint,GLuint,GLuint,GLuint);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_VertexAttribI4uiv
 #define GL_ALT_FUNDEF_VertexAttribI4uiv
 extern void glVertexAttribI4uiv(GLuint,const GLuint *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_VertexAttribIPointer
 #define GL_ALT_FUNDEF_VertexAttribIPointer
 extern void glVertexAttribIPointer(GLuint,GLint,GLenum,GLsizei,const void *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_VertexAttribPointer
 #define GL_ALT_FUNDEF_VertexAttribPointer
 extern void glVertexAttribPointer(GLuint,GLint,GLenum,GLboolean,GLsizei,const void *);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_Viewport
 #define GL_ALT_FUNDEF_Viewport
 extern void glViewport(GLint,GLint,GLsizei,GLsizei);
+#endif
 
 
 #ifndef	GL_ALT_FUNDEF_WaitSync
 #define GL_ALT_FUNDEF_WaitSync
 extern void glWaitSync(GLsync,GLbitfield,GLuint64);
+#endif
 CGUARDEND
 
 #endif
