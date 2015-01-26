@@ -190,9 +190,9 @@ struct _dl_prim_xpa:
 };
 
 #elif defined(__APPLE__)
-
+#include <dlfcn.h>
 typedef void* (*_dl_gpa_func)(const char*);
-struct _dl_prim_xpa:
+struct _dl_prim_xpa
 {
 	void* get(const char*)
 	{
@@ -531,6 +531,7 @@ inline void* glaltGetProcAddress(const char* funcname)
 	else
 	{
 		glaltError("Error, %s was not found in this context %s\n",funcname,"");
+        return NULL;
 	}
 }
 
@@ -550,6 +551,8 @@ inline void* glaltGetProcAddressExtension(const char* frequest,const char* extex
 	{	
 		glaltError("Error, %s was not found in this context because %s is not supported\n",frequest,extext);
 	}
+    
+    return NULL;
 }
 inline void* glaltGetProcAddressVersion(const char* frequest,unsigned int vmaj,unsigned int vmin)
 {
@@ -570,6 +573,8 @@ inline void* glaltGetProcAddressVersion(const char* frequest,unsigned int vmaj,u
 	{
 		glaltError("Error, %s was not found in this context because GL version %s is not supported by this context\n",frequest,vstring);
 	}
+    
+    return NULL;
 }
 
 
