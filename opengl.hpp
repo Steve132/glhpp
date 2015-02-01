@@ -25,6 +25,7 @@
 #endif*/
 
 #define GL_HPP_CUSTOM 0x0001
+
 namespace gl
 {
 	
@@ -38,25 +39,26 @@ inline bool check_extension(const std::string& ext)
 	return glaltCheckExtension(ext.c_str());
 }
 #endif
-	
-	
-	
+    
+    
 namespace _impl
 {
 void _handleError(GLenum errcode,const std::string& what);
 void _checkError(GLenum errcode,const std::string& what);
 
-template<GLenum ac=GL_READ_WRITE>
+template<GLenum ac=0>
 struct BufferMapType
-{
-	typedef void* ptrtype;
-};
-
-template<>
-struct BufferMapType<GL_READ_ONLY>
 {
 	typedef const void* ptrtype;
 };
+
+#ifdef GL_MAP_WRITE_BIT
+template<>
+struct BufferMapType<GL_MAP_WRITE_BIT>
+{
+	typedef void* ptrtype;
+};
+#endif
 
 template<class Base>
 class DefaultZeroType: public Base
@@ -567,46 +569,85 @@ public:
  	void Bind(GLenum bt) const;
     #endif
 
+    #if defined GL_ALT_FUNDEF_BindBufferRange
 	void BindRange(GLenum target, GLuint index,GLintptr offset, GLsizeiptr size) const;
-	void BindBase(GLenum target,GLuint index) const;
-
+    #endif
+    
+    #ifdef GL_ALT_FUNDEF_BindBufferBase
+    void BindBase(GLenum target,GLuint index) const;
+    #endif
+    
+    #if defined(GL_ALT_FUNDEF_FlushMappedNamedBufferRangeEXT) || defined(GL_ALT_FUNDEF_FlushMappedBufferRange)
 	void FlushMappedRange(GLintptr offset,GLsizeiptr sz) const;
-	void GetSubData(GLintptr offset,GLsizeiptr size,void* output_buffer) const;
-	void* GetMappedPointer() const;
-
+    #endif
+	
+    #if defined(GL_ALT_FUNDEF_GetNamedBufferSubDataEXT) || defined(GL_ALT_FUNDEF_GetBufferSubData)
+    void GetSubData(GLintptr offset,GLsizeiptr size,void* output_buffer) const;
+    #endif
+    
+    #if defined(GL_ALT_FUNDEF_GetNamedBufferPointervEXT) || defined(GL_ALT_FUNDEF_GetBufferPointerv)
+    void* GetMappedPointer() const;
+    #endif
+    
+    #if defined(GL_ALT_FUNDEF_GetNamedBufferParameterivEXT) || defined(GL_ALT_FUNDEF_GetBufferParameteriv)
 	GLint Get(GLenum value) const;
+    #endif
 
-	void Data(GLsizeiptr sz,const GLvoid* data,GLenum usage);
-
-	template<class T>
+    #if defined(GL_ALT_FUNDEF_NamedBufferDataEXT) || defined(GL_ALT_FUNDEF_BindBuffer)
+    void Data(GLsizeiptr sz,const GLvoid* data,GLenum usage);
+    
+    template<class T>
 	void Data(const T* b,const T* e,GLenum usage);
+    #endif
 
+    #if defined(GL_ALT_FUNDEF_NamedBufferSubDataEXT) || defined(GL_ALT_FUNDEF_BufferSubData)
 	void SubData(GLintptr offset,GLsizeiptr size,const GLvoid* data);
-	
+    #endif
+    
+    #ifdef GL_ALT_FUNDEF_ClearBufferData
 	void ClearData(GLenum internalformat,GLenum format,GLenum type,const void* data);
-	void ClearSubData(GLenum internalformat,GLintptr offset,GLsizeiptr size,GLenum format,GLenum type,const void* data);
+    #endif
+    
+    #ifdef GL_ALT_FUNDEF_ClearBufferSubData
+    void ClearSubData(GLenum internalformat,GLintptr offset,GLsizeiptr size,GLenum format,GLenum type,const void* data);
+    #endif
 	
-	void InvalidateData();
+	#ifdef GL_ALT_FUNDEF_InvalidateBufferData
+    void InvalidateData();
+    #endif
+    
+    #ifdef GL_ALT_FUNDEF_InvalidateBufferSubData
 	void InvalidateSubData(GLintptr offset,GLsizeiptr length);
-
+    #endif
+    
 	template<class T>
 	void SubData(GLintptr offset,const T* b,const T* e);
 
+    
+    #if defined(GL_ALT_FUNDEF_MapBuffer) || defined(GL_ALT_FUNDEF_MapNamedBufferEXT)
 	void* Map(GLenum access);
-	
+    
 	template<GLenum ac>
 	typename _impl::BufferMapType<ac>::ptrtype Map();
 
+    #endif
+    
+    #if defined(GL_ALT_FUNDEF_UnmapNamedBufferEXT) || defined(GL_ALT_FUNDEF_UnmapBuffer)
 	bool Unmap();
+    #endif
 
+    #if defined(GL_ALT_FUNDEF_MapBufferRange) || defined(GL_ALT_FUNDEF_MapNamedBufferRangeEXT)
 	void* MapRange(GLintptr offset,GLsizeiptr length,GLbitfield access);
 
-	template<GLbitfield ac>
-	typename _impl::BufferMapType<(ac & GL_MAP_READ_BIT ? ( ac & GL_MAP_WRITE_BIT ? GL_READ_WRITE : GL_READ_ONLY) : GL_WRITE_ONLY)>::ptrtype
+    template<GLbitfield ac>
+	typename _impl::BufferMapType<ac & GL_MAP_WRITE_BIT>::ptrtype
 	MapRange(GLintptr offset,GLsizeiptr length);
-
+    #endif
+    
+    #if defined(GL_ALT_FUNDEF_NamedCopyBufferSubDataEXT) || defined(GL_ALT_FUNDEF_CopyBufferSubData)
 	void CopySubData(const Buffer& read,GLintptr readoffset,GLintptr writeoffset,GLsizeiptr sz);
-	
+    #endif
+    
 	Buffer():
 		_impl::GLObject<Buffer>("GLBuffer",glGenBuffers,glDeleteBuffers)
 	{}
@@ -637,18 +678,20 @@ public:
 	void DisableAttrib(GLuint index);
     #endif
     
+    #if defined(GL_ALT_FUNDEF_VertexArrayVertexAttribOffsetEXT) || defined(GL_ALT_FUNDEF_VertexAttribPointer)
 	void AttribPointer(GLuint index,GLint size,GLenum type,bool normalized,GLsizei stride,const GLvoid * pointer);
-	void AttribIPointer(GLuint index,GLint size,GLenum type,GLsizei stride,const GLvoid * pointer);
-
-	void AttribPointer(GLuint index,GLint size,GLenum type,bool normalized,GLsizei stride,const Buffer& b,GLsizeiptr offset);
-	void AttribIPointer(GLuint index,GLint size,GLenum type,GLsizei stride,const Buffer& b,GLsizeiptr offset);
-
-	void Attrib(GLuint index,GLint size,GLenum type,bool normalized,GLsizei stride,const GLvoid * pointer);
-	void AttribI(GLuint index,GLint size,GLenum type,GLsizei stride,const GLvoid * pointer);
-
+    void AttribPointer(GLuint index,GLint size,GLenum type,bool normalized,GLsizei stride,const Buffer& b,GLsizeiptr offset);
+    void Attrib(GLuint index,GLint size,GLenum type,bool normalized,GLsizei stride,const GLvoid * pointer);
 	void Attrib(GLuint index,GLint size,GLenum type,bool normalized,GLsizei stride,const Buffer& b,GLsizeiptr offset);
+    #endif
+    
+    #if defined(GL_ALT_FUNDEF_VertexArrayVertexAttribIOffsetEXT) || defined(GL_ALT_FUNDEF_VertexAttribIPointer)
+	void AttribIPointer(GLuint index,GLint size,GLenum type,GLsizei stride,const GLvoid * pointer);
+	void AttribIPointer(GLuint index,GLint size,GLenum type,GLsizei stride,const Buffer& b,GLsizeiptr offset);
+	void AttribI(GLuint index,GLint size,GLenum type,GLsizei stride,const GLvoid * pointer);
 	void AttribI(GLuint index,GLint size,GLenum type,GLsizei stride,const Buffer& b,GLsizeiptr offset);
-
+    #endif
+    
     #if defined(GL_ALT_FUNDEF_BindVertexArray) && defined(GL_ALT_FUNDEF_BindBuffer)
 	void Elements(const GLvoid * pointer);///\todo no implementation
 	void Elements(const Buffer&b);
@@ -1441,7 +1484,7 @@ private:
 public:
 	Framebuffer():
 		_impl::GLObject<Framebuffer>("GLFramebuffer",glGenFramebuffers,glDeleteFramebuffers),
-		m_target(GL_DRAW_FRAMEBUFFER)
+		m_target(GL_FRAMEBUFFER)
 	{}
 	
     #if defined(GL_ALT_FUNDEF_BindFramebuffer)
@@ -1599,6 +1642,8 @@ protected:
 	{}
 };
     
+#endif
+    
 #if defined(GL_ALT_FUNDEF_NamedFramebufferRenderbuffer) || defined(GL_ALT_FUNDEF_NamedFramebufferRenderbufferEXT)
 void Framebuffer::Renderbuffer(GLenum attachment, GLuint renderbuffer, GLint level)
 {
@@ -1612,7 +1657,7 @@ void Framebuffer::Renderbuffer(GLenum attachment,const gl::Renderbuffer& rb, GLi
 #endif
 
 }
-#endif
+
 
 #include "opengl.inl"
 
