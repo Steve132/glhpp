@@ -18,8 +18,6 @@
 //GL_HPP_DIRECT_STATE_ACCESS //if defined, assumes you have the DIRECT_STATE_ACCESS extension (this should be runtime, but whatever...)
 //Note, semantics of gl3.hpp are equivalent to GL_HPP_DIRECT_STATE_ACCESS
 
-//This file supports OpenGL 3.1 or higher (3.0 is not supported because of the lack of GL_COPY_READ_BUFFER)
-
 /*#ifndef GL_HPP_COMMON_HPP
 #error "This file needs to have an opengl API selected from glhpp and included before this file.  Such as #include<glhpp/gl3.1.hpp>"
 #endif*/
@@ -532,11 +530,23 @@ SHADER_STORAGE}_BARRIER_BIT
 	void Uniform(const std::string& n,const GLint& v1,const GLint& v2);
 	void Uniform(const std::string& n,const GLint& v1,const GLint& v2,const GLint& v3);
 	void Uniform(const std::string& n,const GLint& v1,const GLint& v2,const GLint& v3,const GLint& v4);
-	void Uniform(const std::string& n,const GLuint& v1);
-	void Uniform(const std::string& n,const GLuint& v1,const GLuint& v2);
-	void Uniform(const std::string& n,const GLuint& v1,const GLuint& v2,const GLuint& v3);
-	void Uniform(const std::string& n,const GLuint& v1,const GLuint& v2,const GLuint& v3,const GLuint& v4);
 	
+    #if defined(GL_ALT_FUNDEF_Uniform1ui)
+    void Uniform(const std::string& n,const GLuint& v1);
+    #endif
+    
+    #if defined(GL_ALT_FUNDEF_Uniform2ui)
+    void Uniform(const std::string& n,const GLuint& v1,const GLuint& v2);
+    #endif
+    
+    #if defined(GL_ALT_FUNDEF_Uniform3ui)
+    void Uniform(const std::string& n,const GLuint& v1,const GLuint& v2,const GLuint& v3);
+    #endif
+    
+    #if defined(GL_ALT_FUNDEF_Uniform4ui)
+    void Uniform(const std::string& n,const GLuint& v1,const GLuint& v2,const GLuint& v3,const GLuint& v4);
+    #endif
+    
 	//matrix and array uniforms
 	//should only exist in their specializations
 	template<class T,GLuint sz>
@@ -678,18 +688,35 @@ public:
 	void DisableAttrib(GLuint index);
     #endif
     
+    
     #if defined(GL_ALT_FUNDEF_VertexArrayVertexAttribOffsetEXT) || defined(GL_ALT_FUNDEF_VertexAttribPointer)
 	void AttribPointer(GLuint index,GLint size,GLenum type,bool normalized,GLsizei stride,const GLvoid * pointer);
+    
+    #if defined(GL_ALT_FUNDEF_GenBuffers)
     void AttribPointer(GLuint index,GLint size,GLenum type,bool normalized,GLsizei stride,const Buffer& b,GLsizeiptr offset);
+    #endif
+    
     void Attrib(GLuint index,GLint size,GLenum type,bool normalized,GLsizei stride,const GLvoid * pointer);
-	void Attrib(GLuint index,GLint size,GLenum type,bool normalized,GLsizei stride,const Buffer& b,GLsizeiptr offset);
+    
+    #if defined(GL_ALT_FUNDEF_GenBuffers)
+    void Attrib(GLuint index,GLint size,GLenum type,bool normalized,GLsizei stride,const Buffer& b,GLsizeiptr offset);
+    #endif
+
     #endif
     
     #if defined(GL_ALT_FUNDEF_VertexArrayVertexAttribIOffsetEXT) || defined(GL_ALT_FUNDEF_VertexAttribIPointer)
 	void AttribIPointer(GLuint index,GLint size,GLenum type,GLsizei stride,const GLvoid * pointer);
-	void AttribIPointer(GLuint index,GLint size,GLenum type,GLsizei stride,const Buffer& b,GLsizeiptr offset);
+	
+    #if defined(GL_ALT_FUNDEF_GenBuffers)
+    void AttribIPointer(GLuint index,GLint size,GLenum type,GLsizei stride,const Buffer& b,GLsizeiptr offset);
+    #endif
+    
 	void AttribI(GLuint index,GLint size,GLenum type,GLsizei stride,const GLvoid * pointer);
-	void AttribI(GLuint index,GLint size,GLenum type,GLsizei stride,const Buffer& b,GLsizeiptr offset);
+	
+    #if defined(GL_ALT_FUNDEF_GenBuffers)
+    void AttribI(GLuint index,GLint size,GLenum type,GLsizei stride,const Buffer& b,GLsizeiptr offset);
+    #endif
+
     #endif
     
     #if defined(GL_ALT_FUNDEF_BindVertexArray) && defined(GL_ALT_FUNDEF_BindBuffer)
@@ -831,7 +858,9 @@ public:
 	}
     #endif
 
+    #if defined(GL_ALT_FUNDEF_BindMultiTextureEXT) && defined(GL_ALT_FUNDEF_ActiveTexture)
     void BindMulti(GLuint unit, GLenum targ = 0);
+    #endif
 
     #if defined(GL_ALT_FUNDEF_TexImage1D) || defined(GL_ALT_FUNDEF_TextureImage1DEXT)
     void Image1D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum type, const GLvoid *data)
@@ -860,16 +889,25 @@ public:
 	}
     #endif
     
-    #if defined(GL_ALT_FUNDEF_TexImage3D) || defined(GL_ALT_FUNDEF_TextureImage3DEXT)
+    #if defined(GL_ALT_FUNDEF_TexImage3D) || defined(GL_ALT_FUNDEF_TextureImage3DEXT) || defined(GL_ALT_FUNDEF_TexImage3DEXT)
+    
+    #if defined(GL_ALT_FUNDEF_TexImage3D)
+    #define TexImage3DFunc glTexImage3D
+    #elif defined(GL_ALT_FUNDEF_TexImage3DEXT)
+    #define TexImage3DFunc glTexImage3DEXT
+    #else
+    #error no declaration of glTexImage3D found
+    #endif
+    
 	void Image3D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLsizei height, GLsizei depth,GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		m_target = targ;
-		texture_function_dsa(glTextureImage3DEXT,glTexImage3D,targ,level,internalformat,width,height,depth,border,format,type,data);
+		texture_function_dsa(glTextureImage3DEXT,TexImage3DFunc,targ,level,internalformat,width,height,depth,border,format,type,data);
 	}
 	void Image3D(GLint level,GLint internalformat, GLsizei width, GLsizei height, GLsizei depth,GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		m_target = GL_TEXTURE_3D;
-		texture_function_dsa(glTextureImage3DEXT,glTexImage3D,m_target,level,internalformat,width,height,depth,border,format,type,data);
+		texture_function_dsa(glTextureImage3DEXT,TexImage3DFunc,m_target,level,internalformat,width,height,depth,border,format,type,data);
 	}
     #endif
 	
@@ -923,16 +961,25 @@ GLenum type, const GLvoid *data)
 	}
   #endif
 
-    #if defined(GL_ALT_FUNDEF_TexSubImage3D) || defined(GL_ALT_FUNDEF_TextureSubImage3DEXT)
+    #if defined(GL_ALT_FUNDEF_TexSubImage3D) || defined(GL_ALT_FUNDEF_TextureSubImage3DEXT) || defined(GL_ALT_FUNDEF_TexSubImage3DEXT)
+    
+    #if defined(GL_ALT_FUNDEF_TexSubImage3D)
+    #define TexSubImage3DFunc glTexSubImage3D
+    #elif defined(GL_ALT_FUNDEF_TexSubImage3DEXT)
+    #define TexSubImage3DFunc glTexSubImage3DEXT
+    #else
+    #error no declaration of glTexSubImage3D found
+    #endif
+    
 	void SubImage3D(GLenum targ, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format,
 GLenum type, const GLvoid *data)
 	{
-		texture_function_dsa(glTextureSubImage3DEXT,glTexSubImage3D,targ,level,xoffset,yoffset,zoffset,width,height,depth,format,type,data);
+		texture_function_dsa(glTextureSubImage3DEXT,TexSubImage3DFunc,targ,level,xoffset,yoffset,zoffset,width,height,depth,format,type,data);
 	}
 	void SubImage3D(GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, 
 GLenum type, const GLvoid *data)
 	{
-		texture_function_dsa(glTextureSubImage3DEXT,glTexSubImage3D,m_target,level,xoffset,yoffset,zoffset,width,height,depth,format,type,data);
+		texture_function_dsa(glTextureSubImage3DEXT,TexSubImage3DFunc,m_target,level,xoffset,yoffset,zoffset,width,height,depth,format,type,data);
 	}
     #endif
 	
@@ -959,88 +1006,156 @@ GLenum type, const GLvoid *data)
 	}
     #endif
     
-    #if defined(GL_ALT_FUNDEF_CopyTexSubImage3D) || defined(GL_ALT_FUNDEF_CopyTextureSubImage3DEXT)
+    #if defined(GL_ALT_FUNDEF_CopyTexSubImage3D) || defined(GL_ALT_FUNDEF_CopyTextureSubImage3DEXT) || defined(GL_ALT_FUNDEF_CopyTexSubImage3DEXT)
+    
+    #if defined(GL_ALT_FUNDEF_CopyTexSubImage3D)
+    #define CopyTexSubImage3DFunc glCopyTexSubImage3D
+    #elif defined(GL_ALT_FUNDEF_CopyTexSubImage3DEXT)
+    #define CopyTexSubImage3DFunc glCopyTexSubImage3DEXT
+    #else
+    #error no declaration of CopyTexSubImage3D found
+    #endif
+    
+    
 	void CopySubImage3D(GLenum targ,GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height)
 	{
-		texture_function_dsa(glCopyTextureSubImage3DEXT,glCopyTexSubImage3D,targ,level,xoffset,yoffset,zoffset,x,y,width,height);
+		texture_function_dsa(glCopyTextureSubImage3DEXT,CopyTexSubImage3DFunc,targ,level,xoffset,yoffset,zoffset,x,y,width,height);
 	}
 	void CopySubImage3D(GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height)
 	{
-		texture_function_dsa(glCopyTextureSubImage3DEXT,glCopyTexSubImage3D,m_target,level,xoffset,yoffset,zoffset,x,y,width,height);
+		texture_function_dsa(glCopyTextureSubImage3DEXT,CopyTexSubImage3DFunc,m_target,level,xoffset,yoffset,zoffset,x,y,width,height);
 	}
     #endif
     
-    #if defined(GL_ALT_FUNDEF_CompressedTexImage1D) || defined(GL_ALT_FUNDEF_CompressedTextureImage1DEXT)
+    #if defined(GL_ALT_FUNDEF_CompressedTexImage1D) || defined(GL_ALT_FUNDEF_CompressedTextureImage1DEXT) || defined(GL_ALT_FUNDEF_CompressedTexImage1DARB)
+    
+    #if defined(GL_ALT_FUNDEF_CompressedTexImage1D)
+        #define CompressedTexImage1DFunc glCompressedTexImage1D
+    #elif defined(GL_ALT_FUNDEF_CompressedTexImage1DARB)
+        #define CompressedTexImage1DFunc glCompressedTexImage1DARB
+    #else
+        #error no declaration of CompressedTexImage1D found
+    #endif
+    
 	void CompressedImage1D(GLenum targ,GLint level,GLenum internalformat,GLsizei width, GLint border, GLsizei imagesize,const void* data)
 	{
-		texture_function_dsa(glCompressedTextureImage1DEXT, glCompressedTexImage1D, targ, level, internalformat, width, border, imagesize, data);
+		texture_function_dsa(glCompressedTextureImage1DEXT, CompressedTexImage1DFunc, targ, level, internalformat, width, border, imagesize, data);
 	}
 	void CompressedImage1D(GLint level,GLenum internalformat,GLsizei width, GLint border, GLsizei imagesize,const void* data)
 	{
-		texture_function_dsa(glCompressedTextureImage1DEXT, glCompressedTexImage1D, m_target, level, internalformat, width, border, imagesize, data);
+		texture_function_dsa(glCompressedTextureImage1DEXT, CompressedTexImage1DFunc, m_target, level, internalformat, width, border, imagesize, data);
 	}
     #endif
     
-     #if defined(GL_ALT_FUNDEF_CompressedTexImage2D) || defined(GL_ALT_FUNDEF_CompressedTextureImage2DEXT)
-	void CompressedImage2D(GLenum targ,GLint level, GLenum internalformat, 
+    #if defined(GL_ALT_FUNDEF_CompressedTexImage2D) || defined(GL_ALT_FUNDEF_CompressedTextureImage2DEXT) || defined(GL_ALT_FUNDEF_CompressedTexImage2DARB)
+
+    #if defined(GL_ALT_FUNDEF_CompressedTexImage2D)
+    #define CompressedTexImage2DFunc glCompressedTexImage2D
+    #elif defined(GL_ALT_FUNDEF_CompressedTexImage2DARB)
+    #define CompressedTexImage2DFunc glCompressedTexImage2DARB
+    #else
+    #error no declaration of CompressedTexImage2D found
+    #endif
+    
+	void CompressedImage2D(GLenum targ,GLint level, GLenum internalformat,
 GLsizei width, GLsizei height, GLint border, 
 GLsizei imagesize, const void *data)
 	{
-		texture_function_dsa(glCompressedTextureImage2DEXT, glCompressedTexImage2D, targ, level, internalformat, width, height, border, imagesize, data);
+		texture_function_dsa(glCompressedTextureImage2DEXT, CompressedTexImage2DFunc, targ, level, internalformat, width, height, border, imagesize, data);
 	}
 	void CompressedImage2D(GLint level, GLenum internalformat, 
 GLsizei width, GLsizei height, GLint border, 
 GLsizei imagesize, const void *data)
 	{
-		texture_function_dsa(glCompressedTextureImage2DEXT, glCompressedTexImage2D, m_target, level, internalformat, width, height, border, imagesize, data);
+		texture_function_dsa(glCompressedTextureImage2DEXT, CompressedTexImage2DFunc, m_target, level, internalformat, width, height, border, imagesize, data);
 	}
     #endif
     
-     #if defined(GL_ALT_FUNDEF_CompressedTexImage3D) || defined(GL_ALT_FUNDEF_CompressedTextureImage3DEXT)
-	void CompressedImage3D(GLenum targ,GLint level, GLenum internalformat, 
+    #if defined(GL_ALT_FUNDEF_CompressedTexImage3D) || defined(GL_ALT_FUNDEF_CompressedTextureImage3DEXT) || defined(GL_ALT_FUNDEF_CompressedTexImage3DARB)
+    
+    
+    #if defined(GL_ALT_FUNDEF_CompressedTexImage3D)
+    #define CompressedTexImage3DFunc glCompressedTexImage3D
+    #elif defined(GL_ALT_FUNDEF_CompressedTexImage3DARB)
+    #define CompressedTexImage3DFunc glCompressedTexImage3DARB
+    #else
+    #error no declaration of CompressedTexImage3D found
+    #endif
+    
+	void CompressedImage3D(GLenum targ,GLint level, GLenum internalformat,
 GLsizei width, GLsizei height, GLsizei depth, GLint border, 
 GLsizei imagesize, const void *data)
 	{
-		texture_function_dsa(glCompressedTextureImage3DEXT, glCompressedTexImage3D, targ, level, internalformat, width, height, depth, border, imagesize, data);
+		texture_function_dsa(glCompressedTextureImage3DEXT, CompressedTexImage3DFunc, targ, level, internalformat, width, height, depth, border, imagesize, data);
 	}
 	void CompressedImage3D(GLint level, GLenum internalformat, 
 GLsizei width, GLsizei height, GLsizei depth, GLint border, 
 GLsizei imagesize, const void *data)
 	{
-		texture_function_dsa(glCompressedTextureImage3DEXT, glCompressedTexImage3D, m_target, level, internalformat, width, height, depth, border, imagesize, data);
+		texture_function_dsa(glCompressedTextureImage3DEXT, CompressedTexImage3DFunc, m_target, level, internalformat, width, height, depth, border, imagesize, data);
 	}
     #endif
     
-    #if defined(GL_ALT_FUNDEF_CompressedTexSubImage1D) || defined(GL_ALT_FUNDEF_CompressedTextureSubImage1DEXT)
+    #if defined(GL_ALT_FUNDEF_CompressedTexSubImage1D) || defined(GL_ALT_FUNDEF_CompressedTextureSubImage1DEXT) ||defined(GL_ALT_FUNDEF_CompressedTexSubImage1DARB)
+    
+    
+    #if defined(GL_ALT_FUNDEF_CompressedTexSubImage1D)
+    #define CompressedTexSubImage1DFunc glCompressedTexSubImage1D
+    #elif defined(GL_ALT_FUNDEF_CompressedTexSubImage1DARB)
+    #define CompressedTexSubImage1DFunc glCompressedTexSubImage1DARB
+    #else
+    #error no declaration of CompressedTexSubImage1D found
+    #endif
+    
+    
 	void CompressedSubImage1D(GLenum targ, GLint level, GLint xoffset,GLsizei width, GLenum format, GLsizei imagesize, const void *data)
 	{
-		texture_function_dsa(glCompressedTextureSubImage1DEXT,glCompressedTexSubImage1D,targ,level,xoffset,width,format,imagesize,data);
+		texture_function_dsa(glCompressedTextureSubImage1DEXT,CompressedTexSubImage1DFunc,targ,level,xoffset,width,format,imagesize,data);
 	}
 	void CompressedSubImage1D(GLint level, GLint xoffset,GLsizei width, GLenum format, GLsizei imagesize, const void *data)
 	{
-		texture_function_dsa(glCompressedTextureSubImage1DEXT,glCompressedTexSubImage1D,m_target,level,xoffset,width,format,imagesize,data);
+		texture_function_dsa(glCompressedTextureSubImage1DEXT,CompressedTexSubImage1DFunc,m_target,level,xoffset,width,format,imagesize,data);
 	}
     #endif
     
-    #if defined(GL_ALT_FUNDEF_CompressedTexSubImage2D) || defined(GL_ALT_FUNDEF_CompressedTextureSubImage2DEXT)
+    #if defined(GL_ALT_FUNDEF_CompressedTexSubImage2D) || defined(GL_ALT_FUNDEF_CompressedTextureSubImage2DEXT) || defined(GL_ALT_FUNDEF_CompressedTexSubImage2DARB)
+    
+    
+    #if defined(GL_ALT_FUNDEF_CompressedTexSubImage2D)
+    #define CompressedTexSubImage2DFunc glCompressedTexSubImage2D
+    #elif defined(GL_ALT_FUNDEF_CompressedTexSubImage2DARB)
+    #define CompressedTexSubImage2DFunc glCompressedTexSubImage2DARB
+    #else
+    #error no declaration of CompressedTexSubImage2D found
+    #endif
+    
     void CompressedSubImage2D(GLenum targ, GLint level, GLint xoffset,GLint yoffset,GLsizei width,GLsizei height, GLenum format, GLsizei imagesize, const void *data)
 	{
-		texture_function_dsa(glCompressedTextureSubImage2DEXT,glCompressedTexSubImage2D,targ,level,xoffset,yoffset,width,height,format,imagesize,data);
+		texture_function_dsa(glCompressedTextureSubImage2DEXT,CompressedTexSubImage2DFunc,targ,level,xoffset,yoffset,width,height,format,imagesize,data);
 	}
 	void CompressedSubImage2D(GLint level, GLint xoffset,GLint yoffset,GLsizei width,GLsizei height, GLenum format, GLsizei imagesize, const void *data)
 	{
-		texture_function_dsa(glCompressedTextureSubImage2DEXT,glCompressedTexSubImage2D,m_target,level,xoffset,yoffset,width,height,format,imagesize,data);
+		texture_function_dsa(glCompressedTextureSubImage2DEXT,CompressedTexSubImage2DFunc,m_target,level,xoffset,yoffset,width,height,format,imagesize,data);
 	}
     #endif
     
-    #if defined(GL_ALT_FUNDEF_CompressedTexSubImage3D) || defined(GL_ALT_FUNDEF_CompressedTextureSubImage3DEXT)
+    #if defined(GL_ALT_FUNDEF_CompressedTexSubImage3D) || defined(GL_ALT_FUNDEF_CompressedTextureSubImage3DEXT) || defined(GL_ALT_FUNDEF_CompressedTexSubImage3DARB)
+    
+    #if defined(GL_ALT_FUNDEF_CompressedTexSubImage3D)
+    #define CompressedTexSubImage3DFunc glCompressedTexSubImage3D
+    #elif defined(GL_ALT_FUNDEF_CompressedTexSubImage3DARB)
+    #define CompressedTexSubImage3DFunc glCompressedTexSubImage3DARB
+    #else
+    #error no declaration of CompressedTexSubImage3D found
+    #endif
+    
 	void CompressedSubImage3D(GLenum targ, GLint level, GLint xoffset,GLint yoffset,GLint zoffset,GLsizei width,GLsizei height, GLsizei depth, GLenum format, GLsizei imagesize, const void *data)
 	{
-		texture_function_dsa(glCompressedTextureSubImage3DEXT,glCompressedTexSubImage3D,targ,level,xoffset,yoffset,zoffset,width,height,depth,format,imagesize,data);
+		texture_function_dsa(glCompressedTextureSubImage3DEXT,CompressedTexSubImage3DFunc,targ,level,xoffset,yoffset,zoffset,width,height,depth,format,imagesize,data);
 	}
 	void CompressedSubImage3D(GLint level, GLint xoffset,GLint yoffset,GLint zoffset,GLsizei width,GLsizei height, GLsizei depth,GLenum format, GLsizei imagesize, const void *data)
 	{
-		texture_function_dsa(glCompressedTextureSubImage3DEXT,glCompressedTexSubImage3D,m_target,level,xoffset,yoffset,zoffset,width,height,depth,format,imagesize,data);
+		texture_function_dsa(glCompressedTextureSubImage3DEXT,CompressedTexSubImage3DFunc,m_target,level,xoffset,yoffset,zoffset,width,height,depth,format,imagesize,data);
 	}
     #endif
     
@@ -1059,23 +1174,39 @@ boolean fixedsamplelocations);
 
 	*/
     
-    #if defined(GL_ALT_FUNDEF_TexBuffer) || defined(GL_ALT_FUNDEF_TextureBufferEXT)
+    #if defined(GL_ALT_FUNDEF_TexBuffer) || defined(GL_ALT_FUNDEF_TextureBufferEXT) || defined(GL_ALT_FUNDEF_TexBufferEXT)
+    
+    #if defined(GL_ALT_FUNDEF_TexBuffer)
+    #define GL_ALT_TexBufferFunc glTexBuffer
+    #elif defined(GL_ALT_FUNDEF_TexBufferEXT)
+    #define GL_ALT_TexBufferFunc glTexBufferEXT
+    #else
+    #error No declaration of glTexBuffer found ///\todo overload the dsa funcs to allow dsa only mode
+    #endif
+    
 	void Buffer(GLenum targ,GLenum internalformat, GLuint buffer)
-	{
-		texture_function_dsa(glTextureBufferEXT,glTexBuffer,targ,internalformat,buffer);
+    {
+		texture_function_dsa(glTextureBufferEXT,GL_ALT_TexBufferFunc,targ,internalformat,buffer);
 	}
-	void Buffer(GLenum targ,GLenum internalformat,const gl::Buffer& buf)
+    
+    #if defined(GL_ALT_FUNDEF_GenBuffers)
+    void Buffer(GLenum targ,GLenum internalformat,const gl::Buffer& buf)
 	{
 		this->Buffer(targ,internalformat,buf.name);
 	}
+    #endif
+    
 	void Buffer(GLenum internalformat, GLuint buffer)
 	{
-		texture_function_dsa(glTextureBufferEXT,glTexBuffer,m_target,internalformat,buffer);
+		texture_function_dsa(glTextureBufferEXT,GL_ALT_TexBufferFunc,m_target,internalformat,buffer);
 	}
+    
+    #if defined(GL_ALT_FUNDEF_GenBuffers)
 	void Buffer(GLenum internalformat,const gl::Buffer& buf)
 	{
 		this->Buffer(m_target,internalformat,buf.name);
 	}
+    #endif
     #endif
     
     #if defined(GL_ALT_FUNDEF_TexBufferRange) || defined(GL_ALT_FUNDEF_TextureBufferRangeEXT)
@@ -1083,18 +1214,26 @@ boolean fixedsamplelocations);
 	{
 		texture_function_dsa(glTextureBufferRangeEXT,glTexBufferRange,targ,internalformat,buffer,offset,size);
 	}
-	void BufferRange(GLenum targ,GLenum internalformat,const gl::Buffer& buf,GLintptr offset,GLsizeiptr size)
+	
+    #if defined(GL_ALT_FUNDEF_GenBuffers)
+    void BufferRange(GLenum targ,GLenum internalformat,const gl::Buffer& buf,GLintptr offset,GLsizeiptr size)
 	{
 		BufferRange(targ,internalformat,buf.name,offset,size);
 	}
+    #endif
+    
 	void BufferRange(GLenum internalformat,GLuint buffer,GLintptr offset,GLsizeiptr size)
 	{
 		texture_function_dsa(glTextureBufferRangeEXT,glTexBufferRange,m_target,internalformat,buffer,offset,size);
 	}
-	void BufferRange(GLenum internalformat,const gl::Buffer& buf,GLintptr offset,GLsizeiptr size)
+	
+    #if defined(GL_ALT_FUNDEF_GenBuffers)
+    void BufferRange(GLenum internalformat,const gl::Buffer& buf,GLintptr offset,GLsizeiptr size)
 	{
 		BufferRange(m_target,internalformat,buf.name,offset,size);
 	}
+    #endif
+    
     #endif
     
     #if defined(GL_ALT_FUNDEF_TexParameteri) || defined(GL_ALT_FUNDEF_TextureParameteriEXT)
@@ -1142,25 +1281,46 @@ boolean fixedsamplelocations);
 	}
     #endif
     
-    #if defined(GL_ALT_FUNDEF_TexParameterIiv) || defined(GL_ALT_FUNDEF_TextureParameterIivEXT)
+    #if defined(GL_ALT_FUNDEF_TexParameterIiv) || defined(GL_ALT_FUNDEF_TextureParameterIivEXT) || defined(GL_ALT_FUNDEF_TexParameterIivEXT)
+    
+    #if defined(GL_ALT_FUNDEF_TexParameterIiv)
+    #define GL_ALT_TexParameterIivFunc glTexParameterIiv
+    #else
+    #if defined(GL_ALT_FUNDEF_TexParameterIivEXT)
+    #define GL_ALT_TexParameterIivFunc glTexParameterIivEXT
+    #else
+    #error no declaration found for TexParameterIiv
+    #endif
+    #endif
 	void ParameterI(GLenum targ,GLenum pname,const GLint* params)
 	{
-		texture_function_dsa(&glTextureParameterIivEXT,&glTexParameterIiv,targ,pname,params);
+		texture_function_dsa(&glTextureParameterIivEXT,&GL_ALT_TexParameterIivFunc,targ,pname,params);
 	}
 	void ParameterI(GLenum pname,const GLint* params)
 	{
-		texture_function_dsa(&glTextureParameterIivEXT,&glTexParameterIiv,m_target,pname,params);
+		texture_function_dsa(&glTextureParameterIivEXT,&GL_ALT_TexParameterIivFunc,m_target,pname,params);
 	}
     #endif
     
-    #if defined(GL_ALT_FUNDEF_TexParameterIuiv) || defined(GL_ALT_FUNDEF_TextureParameterIuivEXT)
+    #if defined(GL_ALT_FUNDEF_TexParameterIuiv) || defined(GL_ALT_FUNDEF_TextureParameterIuivEXT)|| defined(GL_ALT_FUNDEF_TexParameterIuivEXT)
+    
+    #if defined(GL_ALT_FUNDEF_TexParameterIuiv)
+    #define GL_ALT_TexParameterIiuvFunc glTexParameterIuiv
+    #else
+    #if defined(GL_ALT_FUNDEF_TexParameterIuivEXT)
+    #define GL_ALT_TexParameterIiuvFunc glTexParameterIuivEXT
+    #else
+    #error no declaration found for TexParameterIuiv
+    #endif
+    #endif
+    
 	void ParameterI(GLenum targ,GLenum pname,const GLuint* params)
 	{
-		texture_function_dsa(&glTextureParameterIuivEXT,&glTexParameterIuiv,targ,pname,params);
+		texture_function_dsa(&glTextureParameterIuivEXT,&GL_ALT_TexParameterIiuvFunc,targ,pname,params);
 	}
 	void ParameterI(GLenum pname,const GLuint* params)
 	{
-		texture_function_dsa(&glTextureParameterIuivEXT,&glTexParameterIuiv,m_target,pname,params);
+		texture_function_dsa(&glTextureParameterIuivEXT,&GL_ALT_TexParameterIiuvFunc,m_target,pname,params);
 	}
     #endif
 	
@@ -1193,14 +1353,23 @@ boolean fixedsamplelocations);
 	}
     #endif
     
-    #if defined(GL_ALT_FUNDEF_GetCompressedTexImage) || defined(GL_ALT_FUNDEF_GetCompressedTextureImage)
+    #if defined(GL_ALT_FUNDEF_GetCompressedTexImage) || defined(GL_ALT_FUNDEF_GetCompressedTextureImage)  || defined(GL_ALT_FUNDEF_GetCompressedTexImageARB)
+    
+    #if defined(GL_ALT_FUNDEF_GetCompressedTexImage)
+    #define GetCompressedTexImageFunc glGetCompressedTexImage
+    #elif defined(GL_ALT_FUNDEF_GetCompressedTexImageARB)
+    #define GetCompressedTexImageFunc glGetCompressedTexImageARB
+    #else
+    #error no declaration of GetCompressedTexImage found
+    #endif
+    
 	void GetCompressedImage(GLenum targ,GLint lod, GLvoid *img)
 	{
-		texture_function_dsa(&glGetCompressedTextureImage,&glGetCompressedTexImage,targ,lod,img);
+		texture_function_dsa(&glGetCompressedTextureImage,&GetCompressedTexImageFunc,targ,lod,img);
 	}
 	void GetCompressedImage(GLint lod, GLvoid *img)
 	{
-		texture_function_dsa(&glGetCompressedTextureImage,&glGetCompressedTexImage,m_target,lod,img);
+		texture_function_dsa(&glGetCompressedTextureImage,&GetCompressedTexImageFunc,m_target,lod,img);
 	}
     #endif
     
@@ -1235,36 +1404,66 @@ boolean fixedsamplelocations);
 	}
     #endif
 	
-    #if defined(GL_ALT_FUNDEF_TexStorage1D) || defined(GL_ALT_FUNDEF_TextureStorage1DEXT)
+    #if defined(GL_ALT_FUNDEF_TexStorage1D) || defined(GL_ALT_FUNDEF_TextureStorage1DEXT) || defined(GL_ALT_FUNDEF_TexStorage1DEXT)
+    
+    #if defined(GL_ALT_FUNDEF_TexStorage1D)
+    #define GL_ALT_TexStorage1DFunc glTexStorage1D
+    #elif defined(GL_ALT_FUNDEF_TexStorage1DEXT)
+    #define GL_ALT_TexStorage1DFunc glTexStorage1DEXT
+    #else
+    #error No declaration of glTexStorage1D found ///\todo overload the dsa funcs to allow dsa only mode
+    #endif
+    
+    
 	void Storage1D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width)
 	{
-		texture_function_dsa(&glTextureStorage1DEXT,&glTexStorage1D,targ,levels,internalformat,width);
+		texture_function_dsa(&glTextureStorage1DEXT,&GL_ALT_TexStorage1DFunc,targ,levels,internalformat,width);
 	}
 	void Storage1D(GLsizei levels, GLenum internalformat, GLsizei width)
 	{
-		texture_function_dsa(&glTextureStorage1DEXT,&glTexStorage1D,m_target,levels,internalformat,width);
+		texture_function_dsa(&glTextureStorage1DEXT,&GL_ALT_TexStorage1DFunc,m_target,levels,internalformat,width);
 	}
     #endif
     
-    #if defined(GL_ALT_FUNDEF_TexStorage2D) || defined(GL_ALT_FUNDEF_TextureStorage2DEXT)
+    #if defined(GL_ALT_FUNDEF_TexStorage2D) || defined(GL_ALT_FUNDEF_TextureStorage2DEXT) || defined(GL_ALT_FUNDEF_TexStorage2DEXT)
+    
+    
+    
+    #if defined(GL_ALT_FUNDEF_TexStorage2D)
+    #define GL_ALT_TexStorage2DFunc glTexStorage2D
+    #elif defined(GL_ALT_FUNDEF_TexStorage2DEXT)
+    #define GL_ALT_TexStorage2DFunc glTexStorage2DEXT
+    #else
+    #error No declaration of glTexStorage2D found ///\todo overload the dsa funcs to allow dsa only mode
+    #endif
+    
 	void Storage2D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height)
 	{
-		texture_function_dsa(&glTextureStorage2DEXT,&glTexStorage2D,targ,levels,internalformat,width,height);
+		texture_function_dsa(&glTextureStorage2DEXT,&GL_ALT_TexStorage2DFunc,targ,levels,internalformat,width,height);
 	}
 	void Storage2D(GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height)
 	{
-		texture_function_dsa(&glTextureStorage2DEXT,&glTexStorage2D,m_target,levels,internalformat,width,height);
+		texture_function_dsa(&glTextureStorage2DEXT,&GL_ALT_TexStorage2DFunc,m_target,levels,internalformat,width,height);
 	}
     #endif
     
-    #if defined(GL_ALT_FUNDEF_TexStorage3D) || defined(GL_ALT_FUNDEF_TextureStorage3DEXT)
+    #if defined(GL_ALT_FUNDEF_TexStorage3D) || defined(GL_ALT_FUNDEF_TextureStorage3DEXT) || defined(GL_ALT_FUNDEF_TexStorage3D)
+    
+    #if defined(GL_ALT_FUNDEF_TexStorage3D)
+    #define GL_ALT_TexStorage3DFunc glTexStorage3D
+    #elif defined(GL_ALT_FUNDEF_TexStorage3DEXT)
+    #define GL_ALT_TexStorage3DFunc glTexStorage3DEXT
+    #else
+    #error No declaration of glTexStorage3D found ///\todo overload the dsa funcs to allow dsa only mode
+    #endif
+    
 	void Storage3D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height,GLsizei depth)
 	{
-		texture_function_dsa(&glTextureStorage3DEXT,&glTexStorage3D,targ,levels,internalformat,width,height,depth);
+		texture_function_dsa(&glTextureStorage3DEXT,&GL_ALT_TexStorage3DFunc,targ,levels,internalformat,width,height,depth);
 	}
 	void Storage3D(GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height,GLsizei depth)
 	{
-		texture_function_dsa(&glTextureStorage3DEXT,&glTexStorage3D,m_target,levels,internalformat,width,height,depth);
+		texture_function_dsa(&glTextureStorage3DEXT,&GL_ALT_TexStorage3DFunc,m_target,levels,internalformat,width,height,depth);
 	}
     #endif
 	/*Can't be dsaed
@@ -1520,14 +1719,26 @@ public:
 	}
     #endif
 	
-    #if defined(GL_ALT_FUNDEF_NamedFramebufferTextureEXT) || defined(GL_ALT_FUNDEF_FramebufferTexture)
+    #if (defined(GL_ALT_FUNDEF_NamedFramebufferTextureEXT) || defined(GL_ALT_FUNDEF_FramebufferTexture) || defined(GL_ALT_FUNDEF_FramebufferTextureEXT)) && defined(GL_ALT_FUNDEF_GenTextures)
+    
+    #if defined(GL_ALT_FUNDEF_FramebufferTexture)
+    #define FramebufferTextureFunc glFramebufferTexture
+    #elif defined(GL_ALT_FUNDEF_FramebufferTextureEXT)
+    #define FramebufferTextureFunc glFramebufferTextureEXT
+    #else
+    #error No declaration of glFramebufferTextureFunc found ///\todo overload the dsa funcs to allow dsa only mode
+    #endif
+    
 	void Texture(GLenum attachment, GLuint texture, GLint level)
 	{
-		framebuffer_function_dsa(&glNamedFramebufferTextureEXT,&glFramebufferTexture,attachment,texture,level);
+        
+        
+		framebuffer_function_dsa(&glNamedFramebufferTextureEXT,&FramebufferTextureFunc,attachment,texture,level);
 	}
+    
 	void Texture(GLenum attachment,const gl::Texture& tex, GLint level)
 	{
-		framebuffer_function_dsa(&glNamedFramebufferTextureEXT,&glFramebufferTexture,attachment,tex.name,level);
+		framebuffer_function_dsa(&glNamedFramebufferTextureEXT,&FramebufferTextureFunc,attachment,tex.name,level);
 	}
     #endif
 
@@ -1536,7 +1747,7 @@ public:
 	void Renderbuffer(GLenum attachment,const gl::Renderbuffer& rb, GLint level);
     #endif
 
-    #if defined(GL_ALT_FUNDEF_FramebufferTexture1D) || defined(GL_ALT_FUNDEF_NamedFramebufferTexture1DEXT)
+    #if (defined(GL_ALT_FUNDEF_FramebufferTexture1D) || defined(GL_ALT_FUNDEF_NamedFramebufferTexture1DEXT)) && defined(GL_ALT_FUNDEF_GenTextures)
 	void Texture1D(GLenum attachment, GLenum textarget, GLuint texture, GLint level)
 	{
 		framebuffer_function_dsa(&glNamedFramebufferTexture1DEXT, &glFramebufferTexture1D, attachment, textarget, texture, level);
@@ -1547,7 +1758,7 @@ public:
 	}
     #endif
     
-    #if defined(GL_ALT_FUNDEF_FramebufferTexture2D) || defined(GL_ALT_FUNDEF_NamedFramebufferTexture2DEXT)
+    #if (defined(GL_ALT_FUNDEF_FramebufferTexture2D) || defined(GL_ALT_FUNDEF_NamedFramebufferTexture2DEXT)) && defined(GL_ALT_FUNDEF_GenTextures)
 	void Texture2D(GLenum attachment, GLenum textarget, GLuint texture, GLint level)
 	{
 		framebuffer_function_dsa(&glNamedFramebufferTexture2DEXT, &glFramebufferTexture2D, attachment, textarget, texture, level);
@@ -1558,7 +1769,7 @@ public:
 	}
     #endif
     
-    #if defined(GL_ALT_FUNDEF_FramebufferTexture3D) || defined(GL_ALT_FUNDEF_NamedFramebufferTexture3DEXT)
+    #if (defined(GL_ALT_FUNDEF_FramebufferTexture3D) || defined(GL_ALT_FUNDEF_NamedFramebufferTexture3DEXT))&& defined(GL_ALT_FUNDEF_GenTextures)
 	void Texture3D(GLenum attachment, GLenum textarget, GLuint texture, GLint level,GLint layer)
 	{
 		framebuffer_function_dsa(&glNamedFramebufferTexture3DEXT, &glFramebufferTexture3D, attachment, textarget, texture, level, layer);
@@ -1613,10 +1824,20 @@ public:
 	}
     #endif
 	
-    #if defined(GL_ALT_FUNDEF_NamedRenderbufferStorageMultisampleEXT) || defined(GL_ALT_FUNDEF_RenderbufferStorageMultisampleEXT)
+    #if defined(GL_ALT_FUNDEF_NamedRenderbufferStorageMultisampleEXT) || defined(GL_ALT_FUNDEF_RenderbufferStorageMultisampleEXT) || defined (GL_ALT_FUNDEF_RenderbufferStorageMultisample)
+    
+    
+    #if defined(GL_ALT_FUNDEF_RenderbufferStorageMultisample)
+    #define GL_ALT_RenderbufferStorageMultisampleFunc glRenderbufferStorageMultisample
+    #elif defined(GL_ALT_FUNDEF_RenderbufferStorageMultisampleEXT)
+    #define GL_ALT_RenderbufferStorageMultisampleFunc glRenderbufferStorageMultisampleEXT
+    #else
+    #error No declaration of RenderbufferStorageMultisample found ///\todo overload the dsa funcs to allow dsa only mode
+    #endif
+    
 	void StorageMultisample(GLsizei samples,GLenum internalformat, GLsizei width, GLsizei height)
 	{
-		renderbuffer_function_dsa(&glNamedRenderbufferStorageMultisampleEXT,&glRenderbufferStorageMultisample,samples,internalformat,width,height);
+		renderbuffer_function_dsa(&glNamedRenderbufferStorageMultisampleEXT,&GL_ALT_RenderbufferStorageMultisampleFunc,samples,internalformat,width,height);
 	}
     #endif
     
@@ -1647,12 +1868,12 @@ protected:
 #if defined(GL_ALT_FUNDEF_NamedFramebufferRenderbuffer) || defined(GL_ALT_FUNDEF_NamedFramebufferRenderbufferEXT)
 void Framebuffer::Renderbuffer(GLenum attachment, GLuint renderbuffer, GLint level)
 {
-	framebuffer_function_dsa(&glNamedFramebufferRenderbuffer,&glFramebufferRenderbufferEXT,attachment,GL_RENDERBUFFER,renderbuffer);
+	framebuffer_function_dsa(&glNamedFramebufferRenderbuffer,&glFramebufferRenderbuffer,attachment,GL_RENDERBUFFER,renderbuffer);
 }
 
 void Framebuffer::Renderbuffer(GLenum attachment,const gl::Renderbuffer& rb, GLint level)
 {
-	framebuffer_function_dsa(&glNamedFramebufferRenderbuffer,&glFramebufferRenderbufferEXT,attachment,GL_RENDERBUFFER,rb.name);
+	framebuffer_function_dsa(&glNamedFramebufferRenderbuffer,&glFramebufferRenderbuffer,attachment,GL_RENDERBUFFER,rb.name);
 }
 #endif
 
