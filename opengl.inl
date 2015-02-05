@@ -57,6 +57,8 @@ static inline void checkUniform()
 
 }
 }
+    
+    
 ///////////////////////////////////////////////////
 //GETTERS
 #ifdef GL_ALT_FUNDEF_GetFloatv
@@ -263,12 +265,14 @@ inline std::string Shader::Compile()
 ///////////////////////////////////////////////////////
 //Program Objects
 //direct functions
-#ifndef	GL_ALT_FUNDEF_CreateProgram
+#ifdef GL_ALT_FUNDEF_CreateProgram
     
-#ifndef GL_HPP_DIRECT_STATE
 //This DSA solution is justifiable because an in-cache if statement with crazy branch prediction
 //will always be faster than an out of cache PIMPL paradigm for this.
 //also uses a variadic macro to get function args
+#define FNAME_PASSTHROUGH_MACRO(passthrough) passthrough
+
+#if defined(GL_EXT_direct_state_access)
 #define GL_HPP_UNIFORM_WRAPPER(fn,...)											\
 {																			\
 	if(direct_state_access_supported)												\
@@ -280,63 +284,121 @@ inline std::string Shader::Compile()
 		GLint curr_prog=gl::Get<GLint>(GL_CURRENT_PROGRAM);						\
 		glUseProgram(object);													\
 		_impl::_checkError(GL_INVALID_OPERATION,"Uniformed program could not be made part of current state, or transform feedback mode is enabled");\
-		gl##fn(Program::GetUniformLocation(n),__VA_ARGS__);																		\
+		FNAME_PASSTHROUGH_MACRO(gl##fn)(Program::GetUniformLocation(n),__VA_ARGS__);																		\
 		_impl::checkUniform();													\
 		glUseProgram(curr_prog);												\
 		_impl::_checkError(GL_INVALID_OPERATION,"Uniformed program could not be made part of current state, or transform feedback mode is enabled");\
 	}																			\
 }																			\
-																			\
+																		\
 
+#endif
+//#else
+#if !defined(GL_EXT_direct_state_access)
+    
+#define GL_HPP_UNIFORM_WRAPPER(fn,...)											\
+    {																			\
+        																		\
+        {																			\
+            GLint curr_prog=gl::Get<GLint>(GL_CURRENT_PROGRAM);						\
+            glUseProgram(object);													\
+            _impl::_checkError(GL_INVALID_OPERATION,"Uniformed program could not be made part of current state, or transform feedback mode is enabled");\
+            gl##fn(Program::GetUniformLocation(n),__VA_ARGS__);																		\
+            _impl::checkUniform();													\
+            glUseProgram(curr_prog);												\
+            _impl::_checkError(GL_INVALID_OPERATION,"Uniformed program could not be made part of current state, or transform feedback mode is enabled");\
+        }																			\
+    }																			\
+    \
+    
+#endif
+    
+#if defined(GL_ALT_FUNDEF_ProgramUniform1fEXT) || defined(GL_ALT_FUNDEF_Uniform1f)
 inline void Program::Uniform(const std::string& n,const GLfloat& v1)
-{
+{   
 	GL_HPP_UNIFORM_WRAPPER(Uniform1f,v1);
 }
+#endif
+    
+#if defined (GL_ALT_FUNDEF_Uniform2f) || defined(GL_ALT_FUNDEF_ProgramUniform2fEXT)
 inline void Program::Uniform(const std::string& n,const GLfloat& v1,const GLfloat& v2)
 {
 	GL_HPP_UNIFORM_WRAPPER(Uniform2f,v1,v2);
 }
+#endif
+    
+#if defined(GL_ALT_FUNDEF_Uniform3f) || defined(GL_ALT_FUNDEF_ProgramUniform3fEXT)
 inline void Program::Uniform(const std::string& n,const GLfloat& v1,const GLfloat& v2,const GLfloat& v3)
 {
 	GL_HPP_UNIFORM_WRAPPER(Uniform3f,v1,v2,v3);
 }
+#endif
+    
+#if defined(GL_ALT_FUNDEF_Uniform4f) || defined(GL_ALT_FUNDEF_ProgramUniform4fEXT)
 inline void Program::Uniform(const std::string& n,const GLfloat& v1,const GLfloat& v2,const GLfloat& v3,const GLfloat& v4)
 {
 	GL_HPP_UNIFORM_WRAPPER(Uniform4f,v1,v2,v3,v4);
 }
+#endif
+    
+#if defined(GL_ALT_FUNDEF_ProgramUniform1iEXT) || defined(GL_ALT_FUNDEF_Uniform1i)
 inline void Program::Uniform(const std::string& n,const GLint& v1)
 {
 	GL_HPP_UNIFORM_WRAPPER(Uniform1i,v1);
 }
+#endif
+    
+#if defined(GL_ALT_FUNDEF_Uniform2i) || defined(GL_ALT_FUNDEF_ProgramUniform2iEXT)
 inline void Program::Uniform(const std::string& n,const GLint& v1,const GLint& v2)
 {
 	GL_HPP_UNIFORM_WRAPPER(Uniform2i,v1,v2);
 }
+#endif
+    
+#if defined(GL_ALT_FUNDEF_Uniform3i) || defined(GL_ALT_FUNDEF_ProgramUniform3iEXT)
 inline void Program::Uniform(const std::string& n,const GLint& v1,const GLint& v2,const GLint& v3)
 {
 	GL_HPP_UNIFORM_WRAPPER(Uniform3i,v1,v2,v3);
 }
+#endif
+    
+#if defined(GL_ALT_FUNDEF_Uniform4i) || defined(GL_ALT_FUNDEF_ProgramUniform4iEXT)
 inline void Program::Uniform(const std::string& n,const GLint& v1,const GLint& v2,const GLint& v3,const GLint& v4)
 {
 	GL_HPP_UNIFORM_WRAPPER(Uniform4i,v1,v2,v3,v4);
 }
+#endif
 
+    
+///\todo changing the following preprocessor ifdefs because of ES 2: the programUniform stuff should be ignored in ES 3 but is defined as part of the extension spec; there is no available glUniformXui on ES 2
+    
+#if defined(GL_ALT_FUNDEF_Uniform1ui)
 inline void Program::Uniform(const std::string& n,const GLuint& v1)
 {
 	GL_HPP_UNIFORM_WRAPPER(Uniform1ui,v1);
 }
+#endif
+    
+#if defined(GL_ALT_FUNDEF_Uniform2ui)
 inline void Program::Uniform(const std::string& n,const GLuint& v1,const GLuint& v2)
 {
 	GL_HPP_UNIFORM_WRAPPER(Uniform2ui,v1,v2);
 }
+#endif
+    
+#if defined(GL_ALT_FUNDEF_Uniform3ui)
 inline void Program::Uniform(const std::string& n,const GLuint& v1,const GLuint& v2,const GLuint& v3)
 {
 	GL_HPP_UNIFORM_WRAPPER(Uniform3ui,v1,v2,v3);
 }
+#endif
+    
+#if defined(GL_ALT_FUNDEF_Uniform4ui) 
 inline void Program::Uniform(const std::string& n,const GLuint& v1,const GLuint& v2,const GLuint& v3,const GLuint& v4)
 {
 	GL_HPP_UNIFORM_WRAPPER(Uniform4ui,v1,v2,v3,v4);
 }
+#endif
 
 //matrix and array uniforms
 
@@ -389,20 +451,63 @@ GL_HPP_PROGRAM_UNIFORM_DEFINITION(GLint,3,Uniform3iv);
 GL_HPP_PROGRAM_UNIFORM_DEFINITION(GLint,4,Uniform4iv);
 #endif
     
-#if defined (GL_ALT_FUNDEF_Uniform1uiv) || defined (GL_ALT_FUNDEF_ProgramUniform1uiv)
-GL_HPP_PROGRAM_UNIFORM_DEFINITION(GLuint,1,Uniform1uiv);
+#if defined (GL_ALT_FUNDEF_Uniform1uiv) || defined (GL_ALT_FUNDEF_ProgramUniform1uiv) || defined(GL_ALT_FUNDEF_Uniform1uivEXT)
+    
+#if !defined(GL_ALT_FUNDEF_Uniform1uiv)
+    #if defined(GL_ALT_FUNDEF_Uniform1uivEXT)
+    #define FNAME_PASSTHROUGH_MACRO(passthrough) passthrough##EXT
+    #else
+        #error no declaration of Uniform1uiv found
+    #endif
+#else
+    #define FNAME_PASSTHROUGH_MACRO(passthrough) passthrough
 #endif
     
+GL_HPP_PROGRAM_UNIFORM_DEFINITION(GLuint,1u,Uniform1uiv);
+#define FNAME_PASSTHROUGH_MACRO(passthrough) passthrough
+#endif
+    
+    
 #if defined (GL_ALT_FUNDEF_Uniform2uiv) || defined (GL_ALT_FUNDEF_ProgramUniform2uiv)
-GL_HPP_PROGRAM_UNIFORM_DEFINITION(GLuint,2,Uniform2uiv);
+#if !defined(GL_ALT_FUNDEF_Uniform2uiv)
+#if defined(GL_ALT_FUNDEF_Uniform2uivEXT)
+#define FNAME_PASSTHROUGH_MACRO(passthrough) passthrough##EXT
+#else
+#error no declaration of Uniform1uiv found
+#endif
+#else
+#define FNAME_PASSTHROUGH_MACRO(passthrough) passthrough
+#endif
+GL_HPP_PROGRAM_UNIFORM_DEFINITION(GLuint,2u,Uniform2uiv);
+#define FNAME_PASSTHROUGH_MACRO(passthrough) passthrough
 #endif
 
 #if defined (GL_ALT_FUNDEF_Uniform3uiv) || defined (GL_ALT_FUNDEF_ProgramUniform3uiv)
-GL_HPP_PROGRAM_UNIFORM_DEFINITION(GLuint,3,Uniform3uiv);
+#if !defined(GL_ALT_FUNDEF_Uniform3uiv)
+#if defined(GL_ALT_FUNDEF_Uniform3uivEXT)
+#define FNAME_PASSTHROUGH_MACRO(passthrough) passthrough##EXT
+#else
+#error no declaration of Uniform1uiv found
+#endif
+#else
+#define FNAME_PASSTHROUGH_MACRO(passthrough) passthrough
+#endif
+GL_HPP_PROGRAM_UNIFORM_DEFINITION(GLuint,3u,Uniform3uiv);
+#define FNAME_PASSTHROUGH_MACRO(passthrough) passthrough
 #endif
     
 #if defined (GL_ALT_FUNDEF_Uniform4uiv) ||  defined (GL_ALT_FUNDEF_ProgramUniform4uiv)
-GL_HPP_PROGRAM_UNIFORM_DEFINITION(GLuint,4,Uniform4uiv);
+#if !defined(GL_ALT_FUNDEF_Uniform4uiv)
+#if defined(GL_ALT_FUNDEF_Uniform4uivEXT)
+#define FNAME_PASSTHROUGH_MACRO(passthrough) passthrough##EXT
+#else
+#error no declaration of Uniform1uiv found
+#endif
+#else
+#define FNAME_PASSTHROUGH_MACRO(passthrough) passthrough
+#endif
+GL_HPP_PROGRAM_UNIFORM_DEFINITION(GLuint,4u,Uniform4uiv);
+#define FNAME_PASSTHROUGH_MACRO(passthrough) passthrough
 #endif
     
 #if defined (GL_ALT_FUNDEF_UniformMatrix2fv) || defined (GL_ALT_FUNDEF_ProgramUniformMatrix2fv)
@@ -417,33 +522,31 @@ GL_HPP_PROGRAM_UNIFORM_MATRIX_DEFINITION(GLfloat,3,3,UniformMatrix3fv);
 GL_HPP_PROGRAM_UNIFORM_MATRIX_DEFINITION(GLfloat,4,4,UniformMatrix4fv);
 #endif
     
-#if defined (GL_ALT_FUNDEF_UniformMatrix2x3fv) || defined (GL_ALT_FUNDEF_ProgramUniformMatrix2x3fv)
+///\todo the DSA version will not be available here if the regular version is not; no ARB or EXT in GL 2, so 2.1 fails to compile.  this goes for next 5 definitions
+#if defined (GL_ALT_FUNDEF_UniformMatrix2x3fv)
 GL_HPP_PROGRAM_UNIFORM_MATRIX_DEFINITION(GLfloat,2,3,UniformMatrix2x3fv);
 #endif
     
-#if defined (GL_ALT_FUNDEF_UniformMatrix3x2fv) || defined (GL_ALT_FUNDEF_ProgramUniformMatrix3x2fv)
+#if defined (GL_ALT_FUNDEF_UniformMatrix3x2fv)
 GL_HPP_PROGRAM_UNIFORM_MATRIX_DEFINITION(GLfloat,3,2,UniformMatrix3x2fv);
 #endif
     
-#if defined (GL_ALT_FUNDEF_UniformMatrix2x4fv) || defined (GL_ALT_FUNDEF_ProgramUniformMatrix2x4fv)
+#if defined (GL_ALT_FUNDEF_UniformMatrix2x4fv)
     GL_HPP_PROGRAM_UNIFORM_MATRIX_DEFINITION(GLfloat,2,4,UniformMatrix2x4fv);
 #endif
     
-#if defined (GL_ALT_FUNDEF_UniformMatrix4x2fv) || defined (GL_ALT_FUNDEF_ProgramUniformMatrix4x2fv)
-GL_HPP_PROGRAM_UNIFORM_MATRIX_DEFINITION(GLfloat,4,2,UniformMatrix4x2fv);
+#if defined (GL_ALT_FUNDEF_UniformMatrix4x2fv)
+    GL_HPP_PROGRAM_UNIFORM_MATRIX_DEFINITION(GLfloat,4,2,UniformMatrix4x2fv);
 #endif
     
-#if defined (GL_ALT_FUNDEF_UniformMatrix3x4fv) || defined (GL_ALT_FUNDEF_ProgramUniformMatrix3x4fv)
-GL_HPP_PROGRAM_UNIFORM_MATRIX_DEFINITION(GLfloat,3,4,UniformMatrix3x4fv);
+#if defined (GL_ALT_FUNDEF_UniformMatrix3x4fv)
+    GL_HPP_PROGRAM_UNIFORM_MATRIX_DEFINITION(GLfloat,3,4,UniformMatrix3x4fv);
 #endif
     
-#if defined (GL_ALT_FUNDEF_UniformMatrix4x3fv) || defined (GL_ALT_FUNDEF_ProgramUniformMatrix4x3fv)
-GL_HPP_PROGRAM_UNIFORM_MATRIX_DEFINITION(GLfloat,4,3,UniformMatrix4x3fv);
+#if defined (GL_ALT_FUNDEF_UniformMatrix4x3fv) 
+    GL_HPP_PROGRAM_UNIFORM_MATRIX_DEFINITION(GLfloat,4,3,UniformMatrix4x3fv);
 #endif
     
-#else
-
-#endif
 
 inline Program::ActiveInfo Program::GetActiveAttrib(GLuint index) const
 {
@@ -591,19 +694,24 @@ inline void Program::Use() const
 }
 #endif
 
+    
+#ifdef  GL_ALT_FUNDEF_BindFragDataLocation
 inline void Program::BindFragDataLocation(GLuint colorNumber,const std::string& name)
 {
 	glBindFragDataLocation(object,colorNumber,name.c_str());
 	_impl::_checkError(GL_INVALID_VALUE,"Binding Fragment Output Location failed: colorNumber is greater than or equal to GL_MAX_DRAW_BUFFERS");
 	_impl::_checkError(GL_INVALID_OPERATION,"Binding Fragment Output Location failed: name starts with the reserved gl_ prefix");
 }
+#endif
+    
+#ifdef GL_ALT_FUNDEF_GetFragDataLocation
 inline GLint Program::GetFragDataLocation(const std::string& name)
 {
 	return glGetFragDataLocation(object,name.c_str());
 }
+#endif
 
 #endif //GL_ALT_FUNDEF_CreateProgram
-
 
 //////////////////////////////////////////////////////////////////////////////////////
 //Buffer
@@ -614,12 +722,16 @@ inline void Buffer::Bind(GLenum bt) const
 	_impl::_checkError(GL_INVALID_ENUM,"Cannot Bind Buffer: Buffer target is not one of the allowable values.");
 }
 
+#ifdef GL_ALT_FUNDEF_BindBufferRange
 inline void Buffer::BindRange(GLenum target, GLuint index,GLintptr offset, GLsizeiptr size) const
 {
 	glBindBufferRange(target,index,object,offset,size);
 	_impl::_checkError(GL_INVALID_ENUM,"Target is not GL_TRANSFORM_FEEDBACK_BUFFER or GL_UNIFORM_BUFFER.");
 	_impl::_checkError(GL_INVALID_VALUE,"Is generated if index is greater than or equal to the number of target-specific indexed binding points. OR size is less than or equal to zero, or if offset + size is greater than the value of GL_BUFFER_SIZE.");
 }
+#endif
+
+#ifdef GL_ALT_FUNDEF_BindBufferBase
 inline void Buffer::BindBase(GLenum target,GLuint index) const
 {
 	glBindBufferBase(target,index,object);
@@ -627,11 +739,12 @@ inline void Buffer::BindBase(GLenum target,GLuint index) const
 	_impl::_checkError(GL_INVALID_ENUM,"Target is not GL_TRANSFORM_FEEDBACK_BUFFER or GL_UNIFORM_BUFFER.");
 	_impl::_checkError(GL_INVALID_VALUE,"Is generated if index is greater than or equal to the number of target-specific indexed binding points. OR size is less than or equal to zero or it doesn't have a data store");
 }
-
+#endif
     
 #if defined(GL_ALT_FUNDEF_FlushMappedNamedBufferRangeEXT) || defined(GL_ALT_FUNDEF_FlushMappedBufferRange)
 inline void Buffer::FlushMappedRange(GLintptr offset,GLsizeiptr sz) const
 {
+    #ifdef GL_EXT_direct_state_access
 	if(direct_state_access_supported)
 	{
 		glFlushMappedNamedBufferRangeEXT(object,offset,sz);
@@ -639,25 +752,37 @@ inline void Buffer::FlushMappedRange(GLintptr offset,GLsizeiptr sz) const
 		_impl::_checkError(GL_INVALID_OPERATION,"Zero Buffer is bound to target, or the buffer bound to target is not mapped, or is mapped without the GL_MAP_FLUSH_EXPLICIT flag.");
 	}
 	else
+    #endif
 	{
-		GLint ppb_binding=gl::Get<GLint>(GL_PIXEL_PACK_BUFFER_BINDING);
+        
+        #if defined(GL_PIXEL_PACK_BUFFER)
+        const GLenum targetBinding = GL_PIXEL_PACK_BUFFER_BINDING;
+        const GLenum bufferTarget = GL_PIXEL_PACK_BUFFER;
+        #else
+        const GLenum targetBinding = GL_ARRAY_BUFFER_BINDING;
+        const GLenum bufferTarget = GL_ARRAY_BUFFER;
+        #endif
+        
+		GLint ppb_binding=gl::Get<GLint>(targetBinding);
 		if(ppb_binding!=object)
 		{
-			glBindBuffer(GL_PIXEL_PACK_BUFFER,object);
+			glBindBuffer(bufferTarget,object);
 		}
-		glFlushMappedBufferRange(GL_PIXEL_PACK_BUFFER,offset,sz);
+		glFlushMappedBufferRange(bufferTarget,offset,sz);
 		_impl::_checkError(GL_INVALID_VALUE,"Offset or length is negative, or offset + length exceeds the size of the mapping.");
 		_impl::_checkError(GL_INVALID_OPERATION,"Zero Buffer is bound to target, or the buffer bound to target is not mapped, or is mapped without the GL_MAP_FLUSH_EXPLICIT flag.");
 		if(ppb_binding!=object)
 		{
-			glBindBuffer(GL_PIXEL_PACK_BUFFER,ppb_binding);
+			glBindBuffer(bufferTarget,ppb_binding);
 		}
 	}
 }
 #endif
 
+#if defined(GL_ALT_FUNDEF_GetNamedBufferSubDataEXT) || defined(GL_ALT_FUNDEF_GetBufferSubData)
 inline void Buffer::GetSubData(GLintptr offset,GLsizeiptr size,void* output_buffer) const
 {
+    #ifdef GL_EXT_direct_state_access
 	if(direct_state_access_supported)
 	{
 		glGetNamedBufferSubDataEXT(object,offset,size,output_buffer);
@@ -667,25 +792,39 @@ inline void Buffer::GetSubData(GLintptr offset,GLsizeiptr size,void* output_buff
 
 	}
 	else
-	{
-		GLint ppb_binding=gl::Get<GLint>(GL_PIXEL_PACK_BUFFER_BINDING);
+    #endif
+    {
+        
+        #if defined(GL_PIXEL_PACK_BUFFER)
+        const GLenum targetBinding = GL_PIXEL_PACK_BUFFER_BINDING;
+        const GLenum bufferTarget = GL_PIXEL_PACK_BUFFER;
+        #else
+        const GLenum targetBinding = GL_ARRAY_BUFFER_BINDING;
+        const GLenum bufferTarget = GL_ARRAY_BUFFER;
+        #endif
+        
+		GLint ppb_binding=gl::Get<GLint>(targetBinding);
 		if(ppb_binding!=object)
 		{
-			glBindBuffer(GL_PIXEL_PACK_BUFFER,object);
+			glBindBuffer(bufferTarget,object);
 		}
-		glGetBufferSubData(GL_PIXEL_PACK_BUFFER,offset,size,output_buffer);
+		glGetBufferSubData(bufferTarget,offset,size,output_buffer);
 		_impl::_checkError(GL_INVALID_ENUM,"Target is not GL_ARRAY_BUFFER, GL_ELEMENT_ARRAY_BUFFER, GL_PIXEL_PACK_BUFFER, or GL_PIXEL_UNPACK_BUFFER.");
 		_impl::_checkError(GL_INVALID_VALUE,"Offset or size is negative, or if together they define a region of memory that extends beyond the buffer object's allocated data store.");
 		_impl::_checkError(GL_INVALID_OPERATION,"The reserved buffer object name 0 is bound to target. OR The buffer object being queried is already mapped.");
 		if(ppb_binding!=object)
 		{
-			glBindBuffer(GL_PIXEL_PACK_BUFFER,ppb_binding);
+			glBindBuffer(bufferTarget,ppb_binding);
 		}
 	}
 }
+#endif
+    
+#if defined(GL_ALT_FUNDEF_GetNamedBufferPointervEXT) || defined(GL_ALT_FUNDEF_GetBufferPointerv)
 inline void* Buffer::GetMappedPointer() const
 {
 	void* p;
+    #ifdef GL_EXT_direct_state_access
 	if(direct_state_access_supported)
 	{
 		glGetNamedBufferPointervEXT(object, GL_BUFFER_MAP_POINTER,&p);
@@ -693,26 +832,39 @@ inline void* Buffer::GetMappedPointer() const
 		_impl::_checkError(GL_INVALID_OPERATION,"The reserved buffer object name 0 is bound to target.");
 	}
 	else
-	{
-		GLint ppb_binding=gl::Get<GLint>(GL_PIXEL_PACK_BUFFER_BINDING);
+    #endif
+    {
+        
+        #if defined(GL_PIXEL_PACK_BUFFER)
+        const GLenum targetBinding = GL_PIXEL_PACK_BUFFER_BINDING;
+        const GLenum bufferTarget = GL_PIXEL_PACK_BUFFER;
+        #else
+        const GLenum targetBinding = GL_ARRAY_BUFFER_BINDING;
+        const GLenum bufferTarget = GL_ARRAY_BUFFER;
+        #endif
+        
+		GLint ppb_binding=gl::Get<GLint>(targetBinding);
 		if(ppb_binding!=object)
 		{
-			glBindBuffer(GL_PIXEL_PACK_BUFFER,object);
+			glBindBuffer(bufferTarget,object);
 		}
-		glGetBufferPointerv(GL_PIXEL_PACK_BUFFER, GL_BUFFER_MAP_POINTER,&p);
+		glGetBufferPointerv(bufferTarget, GL_BUFFER_MAP_POINTER,&p);
 		_impl::_checkError(GL_INVALID_ENUM,"Target or pname is not an accepted value.");
 		_impl::_checkError(GL_INVALID_OPERATION,"The reserved buffer object name 0 is bound to target.");
 		if(ppb_binding!=object)
 		{
-			glBindBuffer(GL_PIXEL_PACK_BUFFER,ppb_binding);
+			glBindBuffer(bufferTarget,ppb_binding);
 		}
 	}
 	return p;
 }
-
+#endif
+    
+#if defined(GL_ALT_FUNDEF_GetNamedBufferParameterivEXT) || defined(GL_ALT_FUNDEF_GetBufferParameteriv)
 inline GLint Buffer::Get(GLenum value) const
 {
 	GLint p;
+    #ifdef GL_EXT_direct_state_access
 	if(direct_state_access_supported)
 	{
 		glGetNamedBufferParameterivEXT(object,value,&p);
@@ -720,25 +872,39 @@ inline GLint Buffer::Get(GLenum value) const
 		_impl::_checkError(GL_INVALID_OPERATION,"Reserved buffer object name 0 is bound to target.");
 	}
 	else
+    #endif
 	{
-		GLint ppb_binding=gl::Get<GLint>(GL_PIXEL_PACK_BUFFER_BINDING);
+        
+        #if defined(GL_PIXEL_PACK_BUFFER)
+        const GLenum targetBinding = GL_PIXEL_PACK_BUFFER_BINDING;
+        const GLenum bufferTarget = GL_PIXEL_PACK_BUFFER;
+        #else
+        const GLenum targetBinding = GL_ARRAY_BUFFER_BINDING;
+        const GLenum bufferTarget = GL_ARRAY_BUFFER;
+        #endif
+        
+		GLint ppb_binding=gl::Get<GLint>(targetBinding);
 		if(ppb_binding!=object)
 		{
-			glBindBuffer(GL_PIXEL_PACK_BUFFER,object);
+			glBindBuffer(bufferTarget,object);
 		}
-		glGetBufferParameteriv(GL_PIXEL_PACK_BUFFER,value,&p);
+		glGetBufferParameteriv(bufferTarget,value,&p);
 		_impl::_checkError(GL_INVALID_ENUM,"target or value is not an accepted value");
 		_impl::_checkError(GL_INVALID_OPERATION,"Reserved buffer object name 0 is bound to target.");
 		if(ppb_binding!=object)
 		{
-			glBindBuffer(GL_PIXEL_PACK_BUFFER,ppb_binding);
+			glBindBuffer(bufferTarget,ppb_binding);
 		}
 	}
 	return p;
 }
+#endif
 
+    
+#if defined(GL_ALT_FUNDEF_NamedBufferDataEXT) || defined(GL_ALT_FUNDEF_BindBuffer)
 inline void Buffer::Data(GLsizeiptr sz,const GLvoid* data,GLenum usage)
 {
+    #ifdef GL_EXT_direct_state_access
 	if(direct_state_access_supported)
 	{
 		glNamedBufferDataEXT(object,sz,data,usage);
@@ -748,23 +914,34 @@ inline void Buffer::Data(GLsizeiptr sz,const GLvoid* data,GLenum usage)
 		_impl::_checkError(GL_OUT_OF_MEMORY,"The GL is unable to create a data store with the specified size.");
 	}
 	else
+    #endif
 	{
-		GLint ppb_binding=gl::Get<GLint>(GL_PIXEL_PACK_BUFFER_BINDING);
+        
+        #if defined(GL_PIXEL_PACK_BUFFER)
+        const GLenum targetBinding = GL_PIXEL_PACK_BUFFER_BINDING;
+        const GLenum bufferTarget = GL_PIXEL_PACK_BUFFER;
+        #else
+        const GLenum targetBinding = GL_ARRAY_BUFFER_BINDING;
+        const GLenum bufferTarget = GL_ARRAY_BUFFER;
+        #endif
+        
+		GLint ppb_binding=gl::Get<GLint>(targetBinding);
 		if(ppb_binding!=object)
 		{
-			glBindBuffer(GL_PIXEL_PACK_BUFFER,object);
+			glBindBuffer(bufferTarget,object);
 		}
-		glBufferData(GL_PIXEL_PACK_BUFFER,sz,data,usage);
+		glBufferData(bufferTarget,sz,data,usage);
 		_impl::_checkError(GL_INVALID_ENUM,"target is not one of the accepted buffer targets OR usage is not GL_STREAM_DRAW, GL_STREAM_READ, GL_STREAM_COPY, GL_STATIC_DRAW, GL_STATIC_READ, GL_STATIC_COPY, GL_DYNAMIC_DRAW, GL_DYNAMIC_READ, or GL_DYNAMIC_COPY.");
 		_impl::_checkError(GL_INVALID_VALUE,"size is negative.");
 		_impl::_checkError(GL_INVALID_OPERATION,"Cannot bind the reserved buffer name 0 to anything.");
 		_impl::_checkError(GL_OUT_OF_MEMORY,"The GL is unable to create a data store with the specified size.");
 		if(ppb_binding!=object)
 		{
-			glBindBuffer(GL_PIXEL_PACK_BUFFER,ppb_binding);
+			glBindBuffer(bufferTarget,ppb_binding);
 		}
 	}
 }
+
 
 template<class T>
 inline void Buffer::Data(const T* b,const T* e,GLenum usage)
@@ -772,9 +949,13 @@ inline void Buffer::Data(const T* b,const T* e,GLenum usage)
 	GLsizeiptr sz=(e-b);
 	Data(sz*sizeof(T),reinterpret_cast<const GLvoid*>(b),usage);
 }
-
+    
+#endif
+    
+#if defined(GL_ALT_FUNDEF_NamedBufferSubDataEXT) || defined(GL_ALT_FUNDEF_BufferSubData)
 inline void Buffer::SubData(GLintptr offset,GLsizeiptr size,const GLvoid* data)
 {
+    #ifdef GL_EXT_direct_state_access
 	if(direct_state_access_supported)
 	{
 		glNamedBufferSubDataEXT(object,offset,size,data);
@@ -782,47 +963,87 @@ inline void Buffer::SubData(GLintptr offset,GLsizeiptr size,const GLvoid* data)
 		_impl::_checkError(GL_INVALID_OPERATION,"The buffer object being updated is currently mapped, or the reserved buffer object name 0 is bound to target.");
 	}
 	else
+    #endif
 	{
-		GLint ppb_binding=gl::Get<GLint>(GL_PIXEL_PACK_BUFFER_BINDING);
+        
+        #if defined(GL_PIXEL_PACK_BUFFER)
+        const GLenum targetBinding = GL_PIXEL_PACK_BUFFER_BINDING;
+        const GLenum bufferTarget = GL_PIXEL_PACK_BUFFER;
+        #else
+        const GLenum targetBinding = GL_ARRAY_BUFFER_BINDING;
+        const GLenum bufferTarget = GL_ARRAY_BUFFER;
+        #endif
+        
+		GLint ppb_binding=gl::Get<GLint>(targetBinding);
 		if(ppb_binding!=object)
 		{
-			glBindBuffer(GL_PIXEL_PACK_BUFFER,object);
+			glBindBuffer(bufferTarget,object);
 		}
-		glBufferSubData(GL_PIXEL_PACK_BUFFER,offset,size,data);
+		glBufferSubData(bufferTarget,offset,size,data);
 		_impl::_checkError(GL_INVALID_VALUE,"Offset or size is negative, or together they define a region of memory that extends beyond the buffer object's allocated data store.");
 		_impl::_checkError(GL_INVALID_OPERATION,"The buffer object being updated is currently mapped, or the reserved buffer object name 0 is bound to target.");
 		if(ppb_binding!=object)
 		{
-			glBindBuffer(GL_PIXEL_PACK_BUFFER,ppb_binding);
+			glBindBuffer(bufferTarget,ppb_binding);
 		}
 	}
 }
-
+    
+template<class T>
+inline void Buffer::SubData(GLintptr offset,const T* b,const T* e)
+{
+    GLsizeiptr sz=(e-b);
+    SubData(offset*sizeof(T),sz*sizeof(T),reinterpret_cast<const GLvoid*>(b));
+}
+#endif
+    
+#ifdef GL_ALT_FUNDEF_ClearBufferData
 inline void Buffer::ClearData(GLenum internalformat,GLenum format,GLenum type,const void* data)
 {
-	GLint ppb_binding=gl::Get<GLint>(GL_PIXEL_PACK_BUFFER_BINDING);
+    
+    #if defined(GL_PIXEL_PACK_BUFFER)
+    const GLenum targetBinding = GL_PIXEL_PACK_BUFFER_BINDING;
+    const GLenum bufferTarget = GL_PIXEL_PACK_BUFFER;
+    #else
+    const GLenum targetBinding = GL_ARRAY_BUFFER_BINDING;
+    const GLenum bufferTarget = GL_ARRAY_BUFFER;
+    #endif
+    
+	GLint ppb_binding=gl::Get<GLint>(targetBinding);
 	if(ppb_binding!=object)
 	{
-		glBindBuffer(GL_PIXEL_PACK_BUFFER,object);
+		glBindBuffer(bufferTarget,object);
 	}
-	glClearBufferData(GL_PIXEL_PACK_BUFFER_BINDING,internalformat,format,type,data);
+	glClearBufferData(targetBinding,internalformat,format,type,data);
 			
 	_impl::_checkError(GL_INVALID_ENUM,"internalformat is not a sized internal format.");
 	_impl::_checkError(GL_INVALID_OPERATION,"Part of the buffer's data stor,e is mapped with glMapBufferRange or glMapBuffer.");
 	
 	if(ppb_binding!=object)
 	{
-		glBindBuffer(GL_PIXEL_PACK_BUFFER,ppb_binding);
+		glBindBuffer(bufferTarget,ppb_binding);
 	}
 }
+#endif
+
+#ifdef GL_ALT_FUNDEF_ClearBufferSubData
 inline void Buffer::ClearSubData(GLenum internalformat,GLintptr offset,GLsizeiptr size,GLenum format,GLenum type,const void* data)
 {
-	GLint ppb_binding=gl::Get<GLint>(GL_PIXEL_PACK_BUFFER_BINDING);
+    
+#if defined(GL_PIXEL_PACK_BUFFER)
+    const GLenum targetBinding = GL_PIXEL_PACK_BUFFER_BINDING;
+    const GLenum bufferTarget = GL_PIXEL_PACK_BUFFER;
+#else
+    const GLenum targetBinding = GL_ARRAY_BUFFER_BINDING;
+    const GLenum bufferTarget = GL_ARRAY_BUFFER;
+#endif
+    
+	GLint ppb_binding=gl::Get<GLint>(targetBinding);
 	if(ppb_binding!=object)
 	{
-		glBindBuffer(GL_PIXEL_PACK_BUFFER,object);
+		glBindBuffer(bufferTarget,object);
 	}
-	glClearBufferSubData(GL_PIXEL_PACK_BUFFER_BINDING,internalformat,offset,size,format,type,data);
+	glClearBufferSubData(targetBinding,internalformat,offset,size,format,type,data);
 	
 	_impl::_checkError(GL_INVALID_ENUM,"Target not one of the generic buffer binding targets, or internalformat is not a sized internal format.");
 	_impl::_checkError(GL_INVALID_VALUE,"No buffer is bound to GL_PIXEL_PACK_BUFFER_BINDING. OR offset or range are not multiples of the number of basic machine units per-element for the internal format specified by internalformat. OR  offset or size is less than zero, or if offset + size is greater than the value of GL_BUFFER_SIZE for the buffer bound to target.");
@@ -830,53 +1051,66 @@ inline void Buffer::ClearSubData(GLenum internalformat,GLintptr offset,GLsizeipt
 	
 	if(ppb_binding!=object)
 	{
-		glBindBuffer(GL_PIXEL_PACK_BUFFER,ppb_binding);
+		glBindBuffer(bufferTarget,ppb_binding);
 	}
 }
+#endif
 
+#ifdef GL_ALT_FUNDEF_InvalidateBufferData
 inline void Buffer::InvalidateData()
 {
 	glInvalidateBufferData(object);
 	_impl::_checkError(GL_INVALID_OPERATION,"Part of the buffer is currently mapped.");
 }
+#endif
+    
+#ifdef GL_ALT_FUNDEF_InvalidateBufferSubData
 inline void Buffer::InvalidateSubData(GLintptr offset,GLsizeiptr length)
 {
 	glInvalidateBufferSubData(object,offset,length);
 	_impl::_checkError(GL_INVALID_VALUE,"offset or length is negative, or if offset + length is greater than the value of GL_BUFFER_SIZE for buffer.");
 	_impl::_checkError(GL_INVALID_OPERATION,"Part of buffer is currently mapped.");
 }
+#endif
 
-template<class T>
-inline void Buffer::SubData(GLintptr offset,const T* b,const T* e)
-{
-	GLsizeiptr sz=(e-b);
-	SubData(offset*sizeof(T),sz*sizeof(T),reinterpret_cast<const GLvoid*>(b));
-}
 
+
+#if defined(GL_ALT_FUNDEF_MapBuffer) || defined(GL_ALT_FUNDEF_MapNamedBufferEXT)
 inline void* Buffer::Map(GLenum access)
 {
+    
+#if defined(GL_PIXEL_PACK_BUFFER)
+    const GLenum targetBinding = GL_PIXEL_PACK_BUFFER_BINDING;
+    const GLenum bufferTarget = GL_PIXEL_PACK_BUFFER;
+#else
+    const GLenum targetBinding = GL_ARRAY_BUFFER_BINDING;
+    const GLenum bufferTarget = GL_ARRAY_BUFFER;
+#endif
+    
 	void *p;
+    #ifdef GL_EXT_direct_state_access
 	if(direct_state_access_supported)
 	{
-		p=glMapNamedBufferEXT(GL_PIXEL_PACK_BUFFER_BINDING,access);
+		p=glMapNamedBufferEXT(targetBinding,access);
 		_impl::_checkError(GL_INVALID_ENUM,"Access flag is incorrect is not GL_READ_ONLY, GL_WRITE_ONLY, or GL_READ_WRITE.");
 		_impl::_checkError(GL_OUT_OF_MEMORY,"The GL is unable to map the buffer object's data store. This may occur for a variety of system-specific reasons, such as the absence of sufficient remaining virtual memory.");
 		_impl::_checkError(GL_INVALID_OPERATION,"Cannot remap a buffer object whose data store is already mapped.");
 	}
 	else
+    #endif
 	{
-		GLint ppb_binding=gl::Get<GLint>(GL_PIXEL_PACK_BUFFER_BINDING);
+		GLint ppb_binding=gl::Get<GLint>(targetBinding);
 		if(ppb_binding!=object)
 		{
-			glBindBuffer(GL_PIXEL_PACK_BUFFER,object);
+			glBindBuffer(bufferTarget,object);
 		}
-		p=glMapBuffer(GL_PIXEL_PACK_BUFFER_BINDING,access);
+		p=glMapBuffer(bufferTarget,access);
 		_impl::_checkError(GL_INVALID_ENUM,"Access flag is incorrect is not GL_READ_ONLY, GL_WRITE_ONLY, or GL_READ_WRITE.");
 		_impl::_checkError(GL_OUT_OF_MEMORY,"The GL is unable to map the buffer object's data store. This may occur for a variety of system-specific reasons, such as the absence of sufficient remaining virtual memory.");
 		_impl::_checkError(GL_INVALID_OPERATION,"Cannot remap a buffer object whose data store is already mapped.");
 		if(ppb_binding!=object)
 		{
-			glBindBuffer(GL_PIXEL_PACK_BUFFER,ppb_binding);
+			glBindBuffer(bufferTarget,ppb_binding);
 		}
 	}
 	return p;
@@ -887,36 +1121,63 @@ inline typename _impl::BufferMapType<ac>::ptrtype Buffer::Map()
 {
 	return reinterpret_cast<typename _impl::BufferMapType<ac>::ptrtype>(Map(ac));
 }
+    
+#endif
 
+    
+#if defined(GL_ALT_FUNDEF_UnmapNamedBufferEXT) || defined(GL_ALT_FUNDEF_UnmapBuffer)
 inline bool Buffer::Unmap()
 {
 	bool p;
+    #ifdef GL_EXT_direct_state_access
 	if(direct_state_access_supported)
 	{
 		p=glUnmapNamedBufferEXT(object) == GL_TRUE;
 		_impl::_checkError(GL_INVALID_OPERATION,"Cannot unmap a buffer object whose data store is not mapped.");
 	}
 	else
-	{
-		GLint ppb_binding=gl::Get<GLint>(GL_PIXEL_PACK_BUFFER_BINDING);
+    #endif
+    {
+        
+        #if defined(GL_PIXEL_PACK_BUFFER)
+        const GLenum targetBinding = GL_PIXEL_PACK_BUFFER_BINDING;
+        const GLenum bufferTarget = GL_PIXEL_PACK_BUFFER;
+        #else
+        const GLenum targetBinding = GL_ARRAY_BUFFER_BINDING;
+        const GLenum bufferTarget = GL_ARRAY_BUFFER;
+        #endif
+        
+		GLint ppb_binding=gl::Get<GLint>(targetBinding);
 		if(ppb_binding!=object)
 		{
-			glBindBuffer(GL_PIXEL_PACK_BUFFER,object);
+			glBindBuffer(bufferTarget,object);
 		}
 
-		p=glUnmapBuffer(GL_PIXEL_PACK_BUFFER) == GL_TRUE;
+		p=glUnmapBuffer(bufferTarget) == GL_TRUE;
 		_impl::_checkError(GL_INVALID_OPERATION,"Cannot unmap a buffer object whose data store is not mapped.");
 		if(ppb_binding!=object)
 		{
-			glBindBuffer(GL_PIXEL_PACK_BUFFER,ppb_binding);
+			glBindBuffer(bufferTarget,ppb_binding);
 		}
 	}
 	return p;
 }
+#endif
 
+#if defined(GL_ALT_FUNDEF_MapBufferRange) || defined(GL_ALT_FUNDEF_MapNamedBufferRangeEXT)
 inline void* Buffer::MapRange(GLintptr offset,GLsizeiptr length,GLbitfield access)
 {
+    
+#if defined(GL_PIXEL_PACK_BUFFER)
+    const GLenum targetBinding = GL_PIXEL_PACK_BUFFER_BINDING;
+    const GLenum bufferTarget = GL_PIXEL_PACK_BUFFER;
+#else
+    const GLenum targetBinding = GL_ARRAY_BUFFER_BINDING;
+    const GLenum bufferTarget = GL_ARRAY_BUFFER;
+#endif
+    
 	void *p;
+    #ifdef GL_EXT_direct_state_access
 	if(direct_state_access_supported)
 	{
 		p=glMapNamedBufferRangeEXT(object,offset,length,access);
@@ -925,35 +1186,41 @@ inline void* Buffer::MapRange(GLintptr offset,GLsizeiptr length,GLbitfield acces
 		_impl::_checkError(GL_INVALID_OPERATION,"Cannot remap a buffer object whose data store is already mapped.");
 	}
 	else
+    #endif
 	{
-		GLint ppb_binding=gl::Get<GLint>(GL_PIXEL_PACK_BUFFER_BINDING);
+		GLint ppb_binding=gl::Get<GLint>(targetBinding);
 		if(ppb_binding!=object)
 		{
-			glBindBuffer(GL_PIXEL_PACK_BUFFER,object);
+			glBindBuffer(bufferTarget,object);
 		}
-		p=glMapBufferRange(GL_PIXEL_PACK_BUFFER_BINDING,offset,length,access);
+		p=glMapBufferRange(targetBinding,offset,length,access);
 		_impl::_checkError(GL_INVALID_ENUM,"Access flag is incorrect is not GL_READ_ONLY, GL_WRITE_ONLY, or GL_READ_WRITE.");
 		_impl::_checkError(GL_OUT_OF_MEMORY,"The GL is unable to map the buffer object's data store. This may occur for a variety of system-specific reasons, such as the absence of sufficient remaining virtual memory.");
 		_impl::_checkError(GL_INVALID_OPERATION,"Cannot remap a buffer object whose data store is already mapped.");
 		if(ppb_binding!=object)
 		{
-			glBindBuffer(GL_PIXEL_PACK_BUFFER,ppb_binding);
+			glBindBuffer(bufferTarget,ppb_binding);
 		}
 	}
 	return p;
 }
 
+
 template<GLbitfield ac>
-inline typename _impl::BufferMapType<(ac & GL_MAP_READ_BIT ? ( ac & GL_MAP_WRITE_BIT ? GL_READ_WRITE : GL_READ_ONLY) : GL_WRITE_ONLY)>::ptrtype
+    inline typename _impl::BufferMapType<ac & GL_MAP_WRITE_BIT>::ptrtype
 Buffer::MapRange(GLintptr offset,GLsizeiptr length)
 {
-	return reinterpret_cast<typename _impl::BufferMapType<(ac & GL_MAP_READ_BIT ? ( ac & GL_MAP_WRITE_BIT ? GL_READ_WRITE : GL_READ_ONLY) : GL_WRITE_ONLY)>::ptrtype>(
+	return reinterpret_cast<typename _impl::BufferMapType<ac & GL_MAP_WRITE_BIT>::ptrtype>(
 		MapRange(offset,length,ac)
 		);
 }
-
+    
+#endif
+    
+#if defined(GL_ALT_FUNDEF_NamedCopyBufferSubDataEXT) || defined(GL_ALT_FUNDEF_CopyBufferSubData)
 inline void Buffer::CopySubData(const Buffer& read,GLintptr readoffset,GLintptr writeoffset,GLsizeiptr sz)
 {
+    #ifdef GL_EXT_direct_state_access
 	if(direct_state_access_supported)
 	{
 		glNamedCopyBufferSubDataEXT(read.object,object,readoffset,writeoffset,sz);
@@ -961,6 +1228,7 @@ inline void Buffer::CopySubData(const Buffer& read,GLintptr readoffset,GLintptr 
 		_impl::_checkError(GL_INVALID_OPERATION," is generated if zero is bound to readtarget or writetarget. or the buffer object bound to either readtarget or writetarget is mapped.");
 	}
 	else
+    #endif
 	{
 		glBindBuffer(GL_COPY_READ_BUFFER,read.object);
 		_impl::_checkError(GL_INVALID_ENUM,"Cannot Bind Read Buffer: Buffer target is not one of the allowable values.");
@@ -973,6 +1241,8 @@ inline void Buffer::CopySubData(const Buffer& read,GLintptr readoffset,GLintptr 
 	}
 }
 #endif
+    
+#endif //end buffer definitions
 
 ///////////////////////////////////////////////////////////////////
 //VERTEX ARRAY DATA
@@ -990,20 +1260,29 @@ inline void VertexArray::Bind() const
 #if defined(GL_ALT_FUNDEF_EnableVertexArrayAttribEXT) || defined(GL_ALT_FUNDEF_EnableVertexAttribArray)
 inline void VertexArray::EnableAttrib(GLuint index)
 {
+    #ifdef GL_EXT_direct_state_access
 	if(direct_state_access_supported)
 	{
 		glEnableVertexArrayAttribEXT(object,index);
 		_impl::_checkError(GL_INVALID_VALUE,"Index is greater than or equal to GL_MAX_VERTEX_ATTRIBS.");
 	}
 	else
+    #endif
 	{
-		GLint pbinding=Get<GLint>(GL_VERTEX_ARRAY_BINDING);
+        GLint pbinding=Get<GLint>(GL_VERTEX_ARRAY_BINDING);
 		if(pbinding!=object)
 		{
 			glBindVertexArray(object);
 		}
+        
+        #if defined(GL_ALT_FUNDEF_EnableVertexAttribArray)
 		glEnableVertexAttribArray(index);
-		_impl::_checkError(GL_INVALID_VALUE,"Index is greater than or equal to GL_MAX_VERTEX_ATTRIBS.");
+        #elif defined(GL_ALT_FUNDEF_EnableVertexAttribArrayARB)
+        glEnableVertexAttribArrayARB(index);
+        #else
+        #error no declaration of glEnableVertexAttribArray found
+        #endif
+        _impl::_checkError(GL_INVALID_VALUE,"Index is greater than or equal to GL_MAX_VERTEX_ATTRIBS.");
 		if(pbinding!=object)
 		{
 			glBindVertexArray(pbinding);
@@ -1015,19 +1294,29 @@ inline void VertexArray::EnableAttrib(GLuint index)
 #if defined(GL_ALT_FUNDEF_DisableVertexArrayAttribEXT) || defined(GL_ALT_FUNDEF_DisableVertexAttribArray)
 inline void VertexArray::DisableAttrib(GLuint index)
 {
+    #ifdef GL_EXT_direct_state_access
 	if(direct_state_access_supported)
 	{
 		glDisableVertexArrayAttribEXT(object,index);
 		_impl::_checkError(GL_INVALID_VALUE,"Index is greater than or equal to GL_MAX_VERTEX_ATTRIBS.");
-	}
-	else
+    }
+    else
+    #endif
 	{
 		GLint pbinding=Get<GLint>(GL_VERTEX_ARRAY_BINDING);
 		if(pbinding!=object)
 		{
 			glBindVertexArray(object);
 		}
+        
+        #if defined(GL_ALT_FUNDEF_DisableVertexAttribArray)
 		glDisableVertexAttribArray(index);
+        #elif defined(GL_ALT_FUNDEF_DisableVertexAttribArrayARB)
+        glDisableVertexAttribArrayARB(index);
+        #else
+        #error no declaration of glDisableVertexAttribArray found
+        #endif
+        
 		_impl::_checkError(GL_INVALID_VALUE,"Index is greater than or equal to GL_MAX_VERTEX_ATTRIBS.");
 		if(pbinding!=object)
 		{
@@ -1037,11 +1326,13 @@ inline void VertexArray::DisableAttrib(GLuint index)
 }
 #endif
     
+#if defined(GL_ALT_FUNDEF_VertexArrayVertexAttribOffsetEXT) || defined(GL_ALT_FUNDEF_VertexAttribPointer)
 inline void VertexArray::AttribPointer(GLuint index,GLint size,GLenum type,bool normalized,GLsizei stride,const GLvoid * pointer)
 {
 	//direct state access does not seem to be supported with a 0 buffer binding.  No, it DOES..it DOES support it, its just weird.  
 	//This is like, offset blah blah blah.
 
+    #ifdef GL_EXT_direct_state_access
 	if(direct_state_access_supported)
 	{
 		glVertexArrayVertexAttribOffsetEXT(object,0,index,size,type,normalized ? GL_TRUE : GL_FALSE,stride,reinterpret_cast<GLintptr>(pointer));
@@ -1051,40 +1342,23 @@ inline void VertexArray::AttribPointer(GLuint index,GLint size,GLenum type,bool 
 	
 	}
 	else
+    #endif
 	{
 		GLint pbinding=Get<GLint>(GL_VERTEX_ARRAY_BINDING);
 		if(pbinding!=object)
 		{
 			glBindVertexArray(object);
 		}
+        
+        #if defined(GL_ALT_FUNDEF_VertexAttribPointer)
 		glVertexAttribPointer(index,size,type,normalized ? GL_TRUE : GL_FALSE,stride,pointer);
-		_impl::_checkError(GL_INVALID_VALUE,"Attribute index is greater than or equal to GL_MAX_VERTEX_ATTRIBS. OR Size is not 1, 2, 3, 4 or (for glVertexAttribPointer), GL_BGRA. OR Stride is negative.");
-		_impl::_checkError(GL_INVALID_ENUM,"Type is not an accepted value.");
-		_impl::_checkError(GL_INVALID_OPERATION,"Size is GL_BGRA and type is not GL_INT_2_10_10_10_REV or GL_UNSIGNED_INT_2_10_10_10_REV. OR type is GL_INT_2_10_10_10_REV or GL_UNSIGNED_INT_2_10_10_10_REV and size is not 4 or GL_BGRA. OR size is GL_BGRA and noramlized is GL_FALSE. OR zero is bound to the GL_ARRAY_BUFFER buffer object binding point and the pointer argument is not NULL.");
-		if(pbinding!=object)
-		{
-			glBindVertexArray(pbinding);
-		}
-	}
-}
-inline void VertexArray::AttribIPointer(GLuint index,GLint size,GLenum type,GLsizei stride,const GLvoid * pointer)
-{
-	if(direct_state_access_supported)
-	{
-		glVertexArrayVertexAttribIOffsetEXT(object,0,index,size,type,stride,reinterpret_cast<GLintptr>(pointer));
-		_impl::_checkError(GL_INVALID_VALUE,"Attribute index is greater than or equal to GL_MAX_VERTEX_ATTRIBS. OR Size is not 1, 2, 3, 4 or (for glVertexAttribPointer), GL_BGRA. OR Stride is negative.");
-		_impl::_checkError(GL_INVALID_ENUM,"Type is not an accepted value.");
-		_impl::_checkError(GL_INVALID_OPERATION,"Size is GL_BGRA and type is not GL_INT_2_10_10_10_REV or GL_UNSIGNED_INT_2_10_10_10_REV. OR type is GL_INT_2_10_10_10_REV or GL_UNSIGNED_INT_2_10_10_10_REV and size is not 4 or GL_BGRA. OR size is GL_BGRA and noramlized is GL_FALSE. OR zero is bound to the GL_ARRAY_BUFFER buffer object binding point and the pointer argument is not NULL.");
-	}
-	else
-	{
-		GLint pbinding=Get<GLint>(GL_VERTEX_ARRAY_BINDING);
-		if(pbinding!=object)
-		{
-			glBindVertexArray(object);
-		}
-		glVertexAttribIPointer(index,size,type,stride,pointer);
-		_impl::_checkError(GL_INVALID_VALUE,"Attribute index is greater than or equal to GL_MAX_VERTEX_ATTRIBS. OR Size is not 1, 2, 3, 4 or (for glVertexAttribPointer), GL_BGRA. OR Stride is negative.");
+        #elif defined(GL_ALT_FUNDEF_VertexAttribPointerARB)
+        glVertexAttribPointerARB(index,size,type,normalized ? GL_TRUE : GL_FALSE,stride,pointer);
+        #else 
+        #error no declaration of glVertexAttribPointer found
+        #endif
+        
+        _impl::_checkError(GL_INVALID_VALUE,"Attribute index is greater than or equal to GL_MAX_VERTEX_ATTRIBS. OR Size is not 1, 2, 3, 4 or (for glVertexAttribPointer), GL_BGRA. OR Stride is negative.");
 		_impl::_checkError(GL_INVALID_ENUM,"Type is not an accepted value.");
 		_impl::_checkError(GL_INVALID_OPERATION,"Size is GL_BGRA and type is not GL_INT_2_10_10_10_REV or GL_UNSIGNED_INT_2_10_10_10_REV. OR type is GL_INT_2_10_10_10_REV or GL_UNSIGNED_INT_2_10_10_10_REV and size is not 4 or GL_BGRA. OR size is GL_BGRA and noramlized is GL_FALSE. OR zero is bound to the GL_ARRAY_BUFFER buffer object binding point and the pointer argument is not NULL.");
 		if(pbinding!=object)
@@ -1094,31 +1368,95 @@ inline void VertexArray::AttribIPointer(GLuint index,GLint size,GLenum type,GLsi
 	}
 }
 
+#if defined(GL_ALT_FUNDEF_GenBuffers)
+#if defined(GL_ALT_FUNDEF_VertexArrayVertexAttribOffsetEXT) || defined(GL_ALT_FUNDEF_VertexAttribPointer)
 inline void VertexArray::AttribPointer(GLuint index,GLint size,GLenum type,bool normalized,GLsizei stride,const Buffer& b,GLsizeiptr offset)
 {
+    #ifdef GL_EXT_direct_state_access
+    if(direct_state_access_supported)
+    {
+        glVertexArrayVertexAttribOffsetEXT(object,b.name,index,size,type,normalized ? GL_TRUE : GL_FALSE,stride,offset);
+        _impl::_checkError(GL_INVALID_VALUE,"Attribute index is greater than or equal to GL_MAX_VERTEX_ATTRIBS. OR Size is not 1, 2, 3, 4 or (for glVertexAttribPointer), GL_BGRA. OR Stride is negative.");
+        _impl::_checkError(GL_INVALID_ENUM,"Type is not an accepted value.");
+        _impl::_checkError(GL_INVALID_OPERATION,"Size is GL_BGRA and type is not GL_INT_2_10_10_10_REV or GL_UNSIGNED_INT_2_10_10_10_REV. OR type is GL_INT_2_10_10_10_REV or GL_UNSIGNED_INT_2_10_10_10_REV and size is not 4 or GL_BGRA. OR size is GL_BGRA and noramlized is GL_FALSE. OR zero is bound to the GL_ARRAY_BUFFER buffer object binding point and the pointer argument is not NULL.");
+    }
+    else
+    #endif
+    {
+        GLint bbinding=Get<GLint>(GL_ARRAY_BUFFER_BINDING);
+        if(bbinding != b.name)
+        {
+            b.Bind(GL_ARRAY_BUFFER);
+        }
+        AttribPointer(index,size,type,normalized,stride,reinterpret_cast<const void*>(offset));
+        if(bbinding != b.name)
+        {
+            glBindBuffer(GL_ARRAY_BUFFER,bbinding);
+        }
+    }
+}
+#endif
+#endif
+    
+inline void VertexArray::Attrib(GLuint index,GLint size,GLenum type,bool normalized,GLsizei stride,const GLvoid * pointer)
+{
+    AttribPointer(index,size,type,normalized,stride,pointer);
+    EnableAttrib(index);
+}
+    
+#if defined(GL_ALT_FUNDEF_GenBuffers)
+inline void VertexArray::Attrib(GLuint index,GLint size,GLenum type,bool normalized,GLsizei stride,const Buffer& b,GLsizeiptr offset)
+{
+    AttribPointer(index,size,type,normalized,stride,b,offset);        EnableAttrib(index);
+}
+#endif
+    
+#endif
+    
+#if defined(GL_ALT_FUNDEF_VertexArrayVertexAttribIOffsetEXT) || defined(GL_ALT_FUNDEF_VertexAttribIPointer) || defined(GL_ALT_FUNDEF_VertexAttribIPointerEXT)
+inline void VertexArray::AttribIPointer(GLuint index,GLint size,GLenum type,GLsizei stride,const GLvoid * pointer)
+{
+    #ifdef GL_EXT_direct_state_access
 	if(direct_state_access_supported)
 	{
-		glVertexArrayVertexAttribOffsetEXT(object,b.name,index,size,type,normalized ? GL_TRUE : GL_FALSE,stride,offset);
+		glVertexArrayVertexAttribIOffsetEXT(object,0,index,size,type,stride,reinterpret_cast<GLintptr>(pointer));
 		_impl::_checkError(GL_INVALID_VALUE,"Attribute index is greater than or equal to GL_MAX_VERTEX_ATTRIBS. OR Size is not 1, 2, 3, 4 or (for glVertexAttribPointer), GL_BGRA. OR Stride is negative.");
 		_impl::_checkError(GL_INVALID_ENUM,"Type is not an accepted value.");
 		_impl::_checkError(GL_INVALID_OPERATION,"Size is GL_BGRA and type is not GL_INT_2_10_10_10_REV or GL_UNSIGNED_INT_2_10_10_10_REV. OR type is GL_INT_2_10_10_10_REV or GL_UNSIGNED_INT_2_10_10_10_REV and size is not 4 or GL_BGRA. OR size is GL_BGRA and noramlized is GL_FALSE. OR zero is bound to the GL_ARRAY_BUFFER buffer object binding point and the pointer argument is not NULL.");
 	}
 	else
+    #endif
 	{
-		GLint bbinding=Get<GLint>(GL_ARRAY_BUFFER_BINDING);
-		if(bbinding != b.name)
+		GLint pbinding=Get<GLint>(GL_VERTEX_ARRAY_BINDING);
+		if(pbinding!=object)
 		{
-			b.Bind(GL_ARRAY_BUFFER);
+			glBindVertexArray(object);
 		}
-		AttribPointer(index,size,type,normalized,stride,reinterpret_cast<const void*>(offset));
-		if(bbinding != b.name)
+		
+        #if defined(GL_ALT_FUNDEF_VertexAttribIPointer)
+        glVertexAttribIPointer(index,size,type,stride,pointer);
+        #elif defined(GL_ALT_FUNDEF_VertexAttribIPointerEXT)
+        glVertexAttribIPointerEXT(index,size,type,stride,pointer);
+        #else
+        #error no declaration for VertexAttribIPointer found
+        #endif
+
+        
+        _impl::_checkError(GL_INVALID_VALUE,"Attribute index is greater than or equal to GL_MAX_VERTEX_ATTRIBS. OR Size is not 1, 2, 3, 4 or (for glVertexAttribPointer), GL_BGRA. OR Stride is negative.");
+		_impl::_checkError(GL_INVALID_ENUM,"Type is not an accepted value.");
+		_impl::_checkError(GL_INVALID_OPERATION,"Size is GL_BGRA and type is not GL_INT_2_10_10_10_REV or GL_UNSIGNED_INT_2_10_10_10_REV. OR type is GL_INT_2_10_10_10_REV or GL_UNSIGNED_INT_2_10_10_10_REV and size is not 4 or GL_BGRA. OR size is GL_BGRA and noramlized is GL_FALSE. OR zero is bound to the GL_ARRAY_BUFFER buffer object binding point and the pointer argument is not NULL.");
+		if(pbinding!=object)
 		{
-			glBindBuffer(GL_ARRAY_BUFFER,bbinding);
+			glBindVertexArray(pbinding);
 		}
 	}
 }
+
+
+#if defined(GL_ALT_FUNDEF_GenBuffers)
 inline void VertexArray::AttribIPointer(GLuint index,GLint size,GLenum type,GLsizei stride,const Buffer& b,GLsizeiptr offset)
 {
+    #ifdef GL_EXT_direct_state_access
 	if(direct_state_access_supported)
 	{
 		glVertexArrayVertexAttribIOffsetEXT(object,b.name,index,size,type,stride,offset);
@@ -1127,6 +1465,7 @@ inline void VertexArray::AttribIPointer(GLuint index,GLint size,GLenum type,GLsi
 		_impl::_checkError(GL_INVALID_OPERATION,"Size is GL_BGRA and type is not GL_INT_2_10_10_10_REV or GL_UNSIGNED_INT_2_10_10_10_REV. OR type is GL_INT_2_10_10_10_REV or GL_UNSIGNED_INT_2_10_10_10_REV and size is not 4 or GL_BGRA. OR size is GL_BGRA and noramlized is GL_FALSE. OR zero is bound to the GL_ARRAY_BUFFER buffer object binding point and the pointer argument is not NULL.");
 	}
 	else
+    #endif
 	{
 		GLint bbinding=Get<GLint>(GL_ARRAY_BUFFER_BINDING);
 		if(bbinding != b.name)
@@ -1140,28 +1479,23 @@ inline void VertexArray::AttribIPointer(GLuint index,GLint size,GLenum type,GLsi
 		}
 	}
 }
-
-
-inline void VertexArray::Attrib(GLuint index,GLint size,GLenum type,bool normalized,GLsizei stride,const GLvoid * pointer)
-{
-	AttribPointer(index,size,type,normalized,stride,pointer);
-	EnableAttrib(index);
-}
+#endif
+    
 inline void VertexArray::AttribI(GLuint index,GLint size,GLenum type,GLsizei stride,const GLvoid * pointer)
 {
 	AttribIPointer(index,size,type,stride,pointer);
 	EnableAttrib(index);
 }
-inline void VertexArray::Attrib(GLuint index,GLint size,GLenum type,bool normalized,GLsizei stride,const Buffer& b,GLsizeiptr offset)
-{
-	AttribPointer(index,size,type,normalized,stride,b,offset);
-	EnableAttrib(index);
-}
+
+    
+#if defined(GL_ALT_FUNDEF_GenBuffers)
 inline void VertexArray::AttribI(GLuint index,GLint size,GLenum type,GLsizei stride,const Buffer& b,GLsizeiptr offset)
 {
 	AttribIPointer(index,size,type,stride,b,offset);
 	EnableAttrib(index);
 }
+#endif
+#endif
 
 #if defined(GL_ALT_FUNDEF_BindVertexArray) && defined(GL_ALT_FUNDEF_BindBuffer)
 inline void VertexArray::Elements(const Buffer& b)
@@ -1309,60 +1643,111 @@ inline GLuint64 Query::Get<GLuint64>(GLenum pname) const
 #endif
     
     
-
-
+ 
 inline ContextInfo::ContextInfo():
 		vendor(Get<std::string>(GL_VENDOR)),
 		renderer(Get<std::string>(GL_RENDERER)),
-		version(Get<std::string>(GL_VERSION)),
-		glsl_version(Get<std::string>(GL_SHADING_LANGUAGE_VERSION)),
-		gl_extensions(Get<GLint>(GL_NUM_EXTENSIONS)),
-		versionmajor(Get<GLint>(GL_MAJOR_VERSION)),
+		version(Get<std::string>(GL_VERSION))
+		
+        #if defined(GL_SHADING_LANGUAGE_VERSION)
+        ,glsl_version(Get<std::string>(GL_SHADING_LANGUAGE_VERSION))
+        #else
+        ,glsl_version("")
+        #endif
+    
+        #if defined(GL_NUM_EXTENSIONS)
+        ,gl_extensions(Get<GLint>(GL_NUM_EXTENSIONS))
+        #endif
+        #if defined(GL_MAJOR_VERSION) && defined(GL_MINOR_VERSION)
+        ,versionmajor(Get<GLint>(GL_MAJOR_VERSION)),
 		versionminor(Get<GLint>(GL_MINOR_VERSION))
+        #endif
 	{
+        //chris
 		for(auto vi=gl_extensions.begin();vi!=gl_extensions.end();++vi)
 		{
-			*vi=Get<std::string>(GL_EXTENSIONS,static_cast<GLsizei>(vi-gl_extensions.begin()));
+            *vi=Get<std::string>(GL_EXTENSIONS,static_cast<GLsizei>(vi-gl_extensions.begin()));
 		}
 	}
 
 
 #ifdef GL_ALT_FUNDEF_GenTextures
 
+
+    
 #if defined(GL_ALT_FUNDEF_GetIntegerv)
 inline GLint Texture::tbinding_query(GLenum target)
 {
-	static const GLenum mapping[]={
-			GL_TEXTURE_1D, GL_TEXTURE_BINDING_1D,
-			GL_TEXTURE_2D, GL_TEXTURE_BINDING_2D,
-			GL_PROXY_TEXTURE_2D, GL_TEXTURE_BINDING_2D,
-			GL_TEXTURE_1D_ARRAY, GL_TEXTURE_BINDING_1D_ARRAY,
-			GL_PROXY_TEXTURE_1D_ARRAY,GL_TEXTURE_BINDING_1D_ARRAY, 
-			GL_TEXTURE_RECTANGLE, GL_TEXTURE_BINDING_RECTANGLE,
-			GL_PROXY_TEXTURE_RECTANGLE, GL_TEXTURE_BINDING_RECTANGLE,
-			GL_TEXTURE_CUBE_MAP_POSITIVE_X,GL_TEXTURE_BINDING_CUBE_MAP, 
-			GL_TEXTURE_CUBE_MAP_NEGATIVE_X,GL_TEXTURE_BINDING_CUBE_MAP, 
-			GL_TEXTURE_CUBE_MAP_POSITIVE_Y,GL_TEXTURE_BINDING_CUBE_MAP,
-			GL_TEXTURE_CUBE_MAP_NEGATIVE_Y,GL_TEXTURE_BINDING_CUBE_MAP,
-			GL_TEXTURE_CUBE_MAP_POSITIVE_Z,GL_TEXTURE_BINDING_CUBE_MAP,
-			GL_TEXTURE_CUBE_MAP_NEGATIVE_Z,GL_TEXTURE_BINDING_CUBE_MAP,
-			GL_PROXY_TEXTURE_CUBE_MAP,GL_TEXTURE_BINDING_CUBE_MAP,
-			GL_TEXTURE_3D, GL_TEXTURE_BINDING_3D,
-			GL_PROXY_TEXTURE_3D, GL_TEXTURE_BINDING_3D,
-			GL_TEXTURE_2D_ARRAY, GL_TEXTURE_BINDING_2D_ARRAY,
-			GL_PROXY_TEXTURE_2D_ARRAY,GL_TEXTURE_BINDING_2D_ARRAY, 
-		};
-	GLenum bquery=GL_TEXTURE_BINDING_1D;
-	for(int i=0;i<sizeof(mapping)/2;i++)
-	{
-		if(target==mapping[2*i])
-		{
-			bquery=mapping[2*i+1];
-			break;
-		}
-	}
-	GLint t_binding=gl::Get<GLint>(bquery);
-	return t_binding;
+    static const GLenum mapping[]={
+    
+    #if defined(GL_TEXTURE_1D) && defined(GL_TEXTURE_BINDING_1D)
+        GL_TEXTURE_1D, GL_TEXTURE_BINDING_1D,
+    #endif
+    #if defined(GL_TEXTURE_2D) && defined(GL_TEXTURE_BINDING_2D)
+        GL_TEXTURE_2D, GL_TEXTURE_BINDING_2D,
+    #endif
+    #if defined(GL_PROXY_TEXTURE_2D) && defined(GL_TEXTURE_BINDING_2D)
+        GL_PROXY_TEXTURE_2D, GL_TEXTURE_BINDING_2D,
+    #endif
+    #if defined(GL_TEXTURE_1D_ARRAY) && defined(GL_TEXTURE_BINDING_1D_ARRAY)
+        GL_TEXTURE_1D_ARRAY, GL_TEXTURE_BINDING_1D_ARRAY,
+    #endif
+    #if defined(GL_PROXY_TEXTURE_1D_ARRAY) && defined(GL_TEXTURE_BINDING_1D_ARRAY)
+        GL_PROXY_TEXTURE_1D_ARRAY,GL_TEXTURE_BINDING_1D_ARRAY,
+    #endif
+    #if defined(GL_TEXTURE_RECTANGLE) && defined(GL_TEXTURE_BINDING_RECTANGLE)
+        GL_TEXTURE_RECTANGLE, GL_TEXTURE_BINDING_RECTANGLE,
+    #endif
+    #if defined(GL_PROXY_TEXTURE_RECTANGLE) && defined(GL_TEXTURE_BINDING_RECTANGLE)
+        GL_PROXY_TEXTURE_RECTANGLE, GL_TEXTURE_BINDING_RECTANGLE,
+    #endif
+    #if defined(GL_TEXTURE_CUBE_MAP_POSITIVE_X) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+        GL_TEXTURE_CUBE_MAP_POSITIVE_X,GL_TEXTURE_BINDING_CUBE_MAP,
+    #endif
+    #if defined(GL_TEXTURE_CUBE_MAP_NEGATIVE_X) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+        GL_TEXTURE_CUBE_MAP_NEGATIVE_X,GL_TEXTURE_BINDING_CUBE_MAP,
+    #endif
+    #if defined(GL_TEXTURE_CUBE_MAP_POSITIVE_Y) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+        GL_TEXTURE_CUBE_MAP_POSITIVE_Y,GL_TEXTURE_BINDING_CUBE_MAP,
+    #endif
+    #if defined(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+        GL_TEXTURE_CUBE_MAP_NEGATIVE_Y,GL_TEXTURE_BINDING_CUBE_MAP,
+    #endif
+    #if defined(GL_TEXTURE_CUBE_MAP_POSITIVE_Z) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+        GL_TEXTURE_CUBE_MAP_POSITIVE_Z,GL_TEXTURE_BINDING_CUBE_MAP,
+    #endif
+    #if defined(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+        GL_TEXTURE_CUBE_MAP_NEGATIVE_Z,GL_TEXTURE_BINDING_CUBE_MAP,
+    #endif
+    #if defined(GL_PROXY_TEXTURE_CUBE_MAP) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+        GL_PROXY_TEXTURE_CUBE_MAP,GL_TEXTURE_BINDING_CUBE_MAP,
+    #endif
+    #if defined(GL_TEXTURE_3D) && defined(GL_TEXTURE_BINDING_3D)
+        GL_TEXTURE_3D, GL_TEXTURE_BINDING_3D,
+    #endif
+    #if defined(GL_PROXY_TEXTURE_3D) && defined(GL_TEXTURE_BINDING_3D)
+        GL_PROXY_TEXTURE_3D, GL_TEXTURE_BINDING_3D,
+    #endif
+    #if defined(GL_TEXTURE_2D_ARRAY) && defined(GL_TEXTURE_BINDING_2D_ARRAY)
+        GL_TEXTURE_2D_ARRAY, GL_TEXTURE_BINDING_2D_ARRAY,
+    #endif
+    #if defined(GL_PROXY_TEXTURE_2D_ARRAY) && defined(GL_TEXTURE_BINDING_2D_ARRAY)
+        GL_PROXY_TEXTURE_2D_ARRAY,GL_TEXTURE_BINDING_2D_ARRAY,
+    #endif
+    };
+    
+    const std::size_t elementsInArray = sizeof(mapping) / sizeof(GLenum);
+    GLenum bquery=GL_TEXTURE_BINDING_2D;
+    for(int i=0; i< elementsInArray>>1; i++)
+    {
+        if(target==mapping[2*i])
+        {
+            bquery=mapping[2*i+1];
+            break;
+        }
+    }
+    GLint t_binding=gl::Get<GLint>(bquery);
+    return t_binding;
 }
 #endif
 
@@ -1419,22 +1804,29 @@ inline void Texture::texture_function_dsaf(Callable1 dsafunc,Callable2 ndsafunc,
 }
 #endif
 
+#if defined(GL_ALT_FUNDEF_BindMultiTextureEXT) && defined(GL_ALT_FUNDEF_ActiveTexture)
 inline void Texture::BindMulti(GLuint unit,GLenum targ)
 {
 	GLenum tu = targ ? targ : m_target;
-	if (direct_state_access_supported)
+	
+    #ifdef GL_EXT_direct_state_access
+    if (direct_state_access_supported)
 	{
 		glBindMultiTextureEXT(unit, tu, object);
 	}
 	else
-	{
+    #endif
+    {
 		int at = gl::Get<int>(GL_ACTIVE_TEXTURE);
 		glActiveTexture(GL_TEXTURE0 + unit);
 		Bind(tu);
 		glActiveTexture(at);
 	}
 }
+#endif
 
+
+#if defined(GL_ALT_FUNDEF_GenTextures)
 #if defined(GL_ALT_FUNDEF_GetTextureParameterivEXT) || defined(GL_ALT_FUNDEF_GetTexParameteriv)
 template<>
 inline GLint Texture::GetParameter<GLint>(GLenum targ,GLenum pname)
@@ -1471,38 +1863,56 @@ inline GLfloat Texture::GetParameter<GLfloat>(GLenum pname)
 	return out[0];
 }
 #endif
+
+
+#if defined(GL_ALT_FUNDEF_GetTextureParameterIivEXT) || defined(GL_ALT_FUNDEF_GetTexParameterIiv) || defined(GL_ALT_FUNDEF_GetTexParameterIivEXT)
     
-    
-#if defined(GL_ALT_FUNDEF_GetTextureParameterIivEXT) || defined(GL_ALT_FUNDEF_GetTexParameterIiv)
+#if defined(GL_ALT_FUNDEF_GetTexParameterIiv)
+#define GL_ALT_TexParameterIivFunc glGetTexParameterIiv
+#elif defined(GL_ALT_FUNDEF_GetTexParameterIivEXT)
+#define GL_ALT_TexParameterIivFunc glGetTexParameterIivEXT
+#else
+#error No declaration of texParameterIiv found ///\todo overload the dsa funcs to allow dsa only mode
+#endif
+
 template<>
 inline GLint Texture::GetParameterI<GLint>(GLenum targ,GLenum pname)
 {
 	GLint out[4];
-	texture_function_dsa(&glGetTextureParameterIivEXT,&glGetTexParameterIiv,targ,pname,out);
+	texture_function_dsa(&glGetTextureParameterIivEXT,&GL_ALT_TexParameterIivFunc,targ,pname,out);
 	return out[0];
 }
 template<>
 inline GLint Texture::GetParameterI<GLint>(GLenum pname)
 {
 	GLint out[4];
-	texture_function_dsa(&glGetTextureParameterIivEXT,&glGetTexParameterIiv,m_target,pname,out);
+	texture_function_dsa(&glGetTextureParameterIivEXT,&GL_ALT_TexParameterIivFunc,m_target,pname,out);
 	return out[0];
 }
 #endif
     
-#if defined(GL_ALT_FUNDEF_GetTextureParameterIuivEXT) || defined(GL_ALT_FUNDEF_GetTexParameterIuiv)
+#if defined(GL_ALT_FUNDEF_GetTextureParameterIuivEXT) || defined(GL_ALT_FUNDEF_GetTexParameterIuiv) || defined(GL_ALT_FUNDEF_GetTexParameterIuivEXT)
+    
+#if defined(GL_ALT_FUNDEF_GetTexParameterIuiv)
+#define GL_ALT_GetTexParameterIuivFUNC glGetTexParameterIuiv
+#elif defined(GL_ALT_FUNDEF_GetTexParameterIuivEXT)
+#define GL_ALT_GetTexParameterIuivFUNC glGetTexParameterIuivEXT
+#else
+#error No declaration of texParameterIuiv found ///\todo overload the dsa funcs to allow dsa only mode
+#endif
+    
 template<>
 inline GLuint Texture::GetParameterI<GLuint>(GLenum targ,GLenum pname)
 {
 	GLuint out[4];
-	texture_function_dsa(&glGetTextureParameterIuivEXT,&glGetTexParameterIuiv,targ,pname,out);
+	texture_function_dsa(&glGetTextureParameterIuivEXT,&GL_ALT_GetTexParameterIuivFUNC,targ,pname,out);
 	return out[0];
 }
 template<>
 inline GLuint Texture::GetParameterI<GLuint>(GLenum pname)
 {
 	GLuint out[4];
-	texture_function_dsa(&glGetTextureParameterIuivEXT,&glGetTexParameterIuiv,m_target,pname,out);
+	texture_function_dsa(&glGetTextureParameterIuivEXT,&GL_ALT_GetTexParameterIuivFUNC,m_target,pname,out);
 	return out[0];
 }
 #endif
@@ -1542,6 +1952,8 @@ inline GLfloat Texture::GetLevelParameter(int lod, GLenum value)
 #endif
 
 
+#endif //defined(GL_ALT_FUNDEF_GenTextures)
+    
 #ifdef GL_ALT_FUNDEF_GenFramebuffers
 template<class Callable1,class Callable2,typename... Types>
 inline void Framebuffer::framebuffer_function_dsaf(Callable1 dsafunc,Callable2 ndsafunc,Types... params)
@@ -1552,7 +1964,12 @@ inline void Framebuffer::framebuffer_function_dsaf(Callable1 dsafunc,Callable2 n
 	}
 	else
 	{
-		GLenum t_binding=gl::Get<GLint>(m_target==GL_DRAW_FRAMEBUFFER ? GL_DRAW_FRAMEBUFFER_BINDING : GL_READ_FRAMEBUFFER_BINDING);
+        #if !defined(GL_DRAW_FRAMEBUFFER) || !defined(GL_READ_FRAMEBUFFER)
+            GLenum t_binding = GL_FRAMEBUFFER_BINDING;
+        #else
+            GLenum t_binding=gl::Get<GLint>(m_target==GL_DRAW_FRAMEBUFFER ? GL_DRAW_FRAMEBUFFER_BINDING : GL_READ_FRAMEBUFFER_BINDING);
+        #endif
+        
 		if(t_binding!=object)
 		{
 			glBindFramebuffer(m_target,object);
@@ -1603,7 +2020,7 @@ inline void Framebuffer::framebuffer_function_ndsaf(Callable2 ndsafunc,Types... 
 
 #ifdef	GL_ALT_FUNDEF_GenRenderbuffers
 template<class Callable1,class Callable2,typename... Types>
-inline void Renderbuffer::renderbuffer_function_dsa(Callable1 dsafunc,Callable2 ndsafunc,Types... params)
+inline void Renderbuffer::renderbuffer_function_dsaf(Callable1 dsafunc,Callable2 ndsafunc,Types... params)
 {
 	if(direct_state_access_supported)
 	{
