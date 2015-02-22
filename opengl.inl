@@ -581,11 +581,11 @@ inline Program::ActiveInfo Program::GetActiveUniform(const std::string& name) co
 
 namespace _impl
 {
-	void genProgram(GLsizei n,GLuint* obj)
+	inline void genProgram(GLsizei n,GLuint* obj)
 	{
 		*obj=glCreateProgram();
 	}
-	void delProgram(GLsizei n,const GLuint* obj)
+	inline void delProgram(GLsizei n,const GLuint* obj)
 	{
 		glDeleteProgram(*obj);
 	}

@@ -1866,12 +1866,12 @@ protected:
 #endif
     
 #if defined(GL_ALT_FUNDEF_NamedFramebufferRenderbuffer) || defined(GL_ALT_FUNDEF_NamedFramebufferRenderbufferEXT)
-void Framebuffer::Renderbuffer(GLenum attachment, GLuint renderbuffer, GLint level)
+inline void Framebuffer::Renderbuffer(GLenum attachment, GLuint renderbuffer, GLint level)
 {
 	framebuffer_function_dsa(&glNamedFramebufferRenderbuffer,&glFramebufferRenderbuffer,attachment,GL_RENDERBUFFER,renderbuffer);
 }
 
-void Framebuffer::Renderbuffer(GLenum attachment,const gl::Renderbuffer& rb, GLint level)
+inline void Framebuffer::Renderbuffer(GLenum attachment,const gl::Renderbuffer& rb, GLint level)
 {
 	framebuffer_function_dsa(&glNamedFramebufferRenderbuffer,&glFramebufferRenderbuffer,attachment,GL_RENDERBUFFER,rb.name);
 }
