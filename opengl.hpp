@@ -155,9 +155,12 @@ public:
 	
 	~GLObject()
 	{
-		delete_func(1,&object);
+		if(object!=0)
+		{
+			delete_func(1,&object);
+		}
 	}
-	
+	//non copyable.  Only movable. 
 	GLObject(const GLObject&)=delete;
 	GLObject()=delete;
 	GLObject& operator=(const GLObject&)=delete;
@@ -167,14 +170,16 @@ public:
 		delete_func(std::move(o.delete_func)),
 		object(std::move(o.object)),
 		direct_state_access_supported(std::move(o.direct_state_access_supported))
-
-	{}
+	{
+		o.object=0;
+	}
 	
 	GLObject& operator=(GLObject&& other)
 	{
 		if(this !=&other && object !=other.object)
 		{
 			delete_func(1,&object);
+			other.object=0;
 		}
 		delete_func=std::move(other.delete_func);
 		object=std::move(other.object);
