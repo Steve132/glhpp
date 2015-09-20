@@ -918,17 +918,13 @@ inline void Buffer::Data(GLsizeiptr sz,const GLvoid* data,GLenum usage)
 	{
         
         #if defined(GL_PIXEL_PACK_BUFFER)
-       // const GLenum targetBinding = GL_PIXEL_PACK_BUFFER_BINDING;
-       // const GLenum bufferTarget = GL_PIXEL_PACK_BUFFER;
+		const GLenum targetBinding = GL_PIXEL_PACK_BUFFER_BINDING;
+		const GLenum bufferTarget = GL_PIXEL_PACK_BUFFER;
         #else
         const GLenum targetBinding = GL_ARRAY_BUFFER_BINDING;
         const GLenum bufferTarget = GL_ARRAY_BUFFER;
         #endif
 		
-		///\todo hack.
-		const GLenum targetBinding = GL_ARRAY_BUFFER_BINDING;
-		const GLenum bufferTarget = GL_ARRAY_BUFFER;
-        
 		GLint ppb_binding=gl::Get<GLint>(targetBinding);
 		if(ppb_binding!=object)
 		{
