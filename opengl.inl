@@ -918,12 +918,16 @@ inline void Buffer::Data(GLsizeiptr sz,const GLvoid* data,GLenum usage)
 	{
         
         #if defined(GL_PIXEL_PACK_BUFFER)
-        const GLenum targetBinding = GL_PIXEL_PACK_BUFFER_BINDING;
-        const GLenum bufferTarget = GL_PIXEL_PACK_BUFFER;
+       // const GLenum targetBinding = GL_PIXEL_PACK_BUFFER_BINDING;
+       // const GLenum bufferTarget = GL_PIXEL_PACK_BUFFER;
         #else
         const GLenum targetBinding = GL_ARRAY_BUFFER_BINDING;
         const GLenum bufferTarget = GL_ARRAY_BUFFER;
         #endif
+		
+		///\todo hack.
+		const GLenum targetBinding = GL_ARRAY_BUFFER_BINDING;
+		const GLenum bufferTarget = GL_ARRAY_BUFFER;
         
 		GLint ppb_binding=gl::Get<GLint>(targetBinding);
 		if(ppb_binding!=object)
@@ -1701,6 +1705,9 @@ inline GLint Texture::tbinding_query(GLenum target)
     #if defined(GL_PROXY_TEXTURE_RECTANGLE) && defined(GL_TEXTURE_BINDING_RECTANGLE)
         GL_PROXY_TEXTURE_RECTANGLE, GL_TEXTURE_BINDING_RECTANGLE,
     #endif
+	#if defined(GL_TEXTURE_CUBE_MAP) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+		GL_TEXTURE_CUBE_MAP, GL_TEXTURE_BINDING_CUBE_MAP,
+	#endif
     #if defined(GL_TEXTURE_CUBE_MAP_POSITIVE_X) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
         GL_TEXTURE_CUBE_MAP_POSITIVE_X,GL_TEXTURE_BINDING_CUBE_MAP,
     #endif
@@ -1738,15 +1745,18 @@ inline GLint Texture::tbinding_query(GLenum target)
     
     const std::size_t elementsInArray = sizeof(mapping) / sizeof(GLenum);
     GLenum bquery=GL_TEXTURE_BINDING_2D;
-    for(int i=0; i< elementsInArray>>1; i++)
-    {
-        if(target==mapping[2*i])
-        {
-            bquery=mapping[2*i+1];
-            break;
-        }
-    }
+    
+	for (int i = 0; i< elementsInArray; i+=2)
+	{
+		if (target == mapping[i])
+		{
+			bquery = mapping[i + 1];
+			break;
+		}
+	}
+
     GLint t_binding=gl::Get<GLint>(bquery);
+
     return t_binding;
 }
 #endif
@@ -1780,8 +1790,7 @@ inline void Texture::texture_function_dsaf(Callable1 dsafunc,Callable2 ndsafunc,
 {
 	if(target != m_target)
 	{
-		m_target=target;
-		m_lastbinding=(GLenum)tbinding_query(target);
+		m_lastbinding=(GLenum)tbinding_query(m_target);
 	}
 	if(direct_state_access_supported)
 	{
@@ -1792,12 +1801,12 @@ inline void Texture::texture_function_dsaf(Callable1 dsafunc,Callable2 ndsafunc,
 		GLenum t_binding=m_lastbinding;
 		if(t_binding!=object)
 		{
-			glBindTexture(target,object);
+			glBindTexture(m_target,object);
 		}
 		ndsafunc(target,params...);
 		if(t_binding!=object)
 		{
-			glBindTexture(target,t_binding);
+			glBindTexture(m_target,t_binding);
 		}
 	}
 		

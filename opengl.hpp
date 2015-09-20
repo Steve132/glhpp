@@ -179,10 +179,10 @@ public:
 		if(this !=&other && object !=other.object)
 		{
 			delete_func(1,&object);
-			other.object=0;
 		}
 		delete_func=std::move(other.delete_func);
 		object=std::move(other.object);
+		other.object = 0;
 		return *this;
 	}
 	
@@ -866,9 +866,17 @@ public:
 	const GLenum& target;
 
     #ifdef _MSC_VER
-    Texture(Texture&& texture) : _impl::GLObject<Texture>(std::move(texture)), target(texture.target){}
+    Texture(Texture&& texture) : _impl::GLObject<Texture>(std::move(texture)), target(m_target){}
+	Texture& operator=(Texture&& texture)
+	{
+		m_target = std::move(texture.m_target);
+		m_lastbinding = std::move(texture.m_lastbinding);
+
+		_impl::GLObject<Texture>::operator=((Texture&&)texture);
+		return *this;
+	}
     #endif
-    
+
     Texture():
 		_impl::GLObject<Texture>("GLTexture",glGenTextures,glDeleteTextures),
 		m_target(GL_TEXTURE_2D),
@@ -1450,6 +1458,7 @@ boolean fixedsamplelocations);
     
 	void Storage1D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width)
 	{
+		m_target = targ;
 		texture_function_dsa(&glTextureStorage1DEXT,&GL_ALT_TexStorage1DFunc,targ,levels,internalformat,width);
 	}
 	void Storage1D(GLsizei levels, GLenum internalformat, GLsizei width)
@@ -1472,6 +1481,7 @@ boolean fixedsamplelocations);
     
 	void Storage2D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height)
 	{
+		m_target = targ;
 		texture_function_dsa(&glTextureStorage2DEXT,&GL_ALT_TexStorage2DFunc,targ,levels,internalformat,width,height);
 	}
 	void Storage2D(GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height)
@@ -1492,6 +1502,7 @@ boolean fixedsamplelocations);
     
 	void Storage3D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height,GLsizei depth)
 	{
+		m_target = targ;
 		texture_function_dsa(&glTextureStorage3DEXT,&GL_ALT_TexStorage3DFunc,targ,levels,internalformat,width,height,depth);
 	}
 	void Storage3D(GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height,GLsizei depth)
