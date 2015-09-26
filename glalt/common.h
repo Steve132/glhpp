@@ -287,8 +287,14 @@ static inline void* _glalt_prim_GetProcAddress(const char* name)
 	return dxpa.get(name);
 }
 
-#else
+#elif __ANDROID_API__
+#include <EGL/egl.h>
 
+static inline void* _glalt_prim_GetProcAddress(const char* name)
+{
+    return (void*)eglGetProcAddress((char const*)name);
+}
+#else
 #include<GL/glx.h>
 CGUARDBEGIN
 //void *glXGetProcAddressARB(const GLubyte *procName);
