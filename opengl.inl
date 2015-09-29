@@ -1873,6 +1873,7 @@ inline GLfloat Texture::GetParameter<GLfloat>(GLenum pname)
 #if defined(GL_ALT_FUNDEF_GetTextureParameterIivEXT) || defined(GL_ALT_FUNDEF_GetTexParameterIiv) || defined(GL_ALT_FUNDEF_GetTexParameterIivEXT)
     
 #if defined(GL_ALT_FUNDEF_GetTexParameterIiv)
+#undef GL_ALT_TexParameterIivFunc
 #define GL_ALT_TexParameterIivFunc glGetTexParameterIiv
 #elif defined(GL_ALT_FUNDEF_GetTexParameterIivEXT)
 #define GL_ALT_TexParameterIivFunc glGetTexParameterIivEXT

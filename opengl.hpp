@@ -30,11 +30,11 @@ namespace gl
 #ifdef GL_ALT_API_NAME
 inline bool check_version(unsigned int a,unsigned int b)
 {
-	return glaltCheckVersion(a,b);
+	return glaltCheckVersion(a,b) != 0;
 }
 inline bool check_extension(const std::string& ext)
 {
-	return glaltCheckExtension(ext.c_str());
+	return glaltCheckExtension(ext.c_str()) != 0;
 }
 #endif
     
