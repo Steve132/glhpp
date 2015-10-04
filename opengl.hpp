@@ -179,11 +179,11 @@ public:
 		if(this !=&other && object !=other.object)
 		{
 			delete_func(1,&object);
+            object = std::move(other.object);
 			other.object = 0;
 		}
 		delete_func=std::move(other.delete_func);
-		object=std::move(other.object);
-
+		
 		return *this;
 	}
 	
@@ -867,8 +867,16 @@ public:
 	const GLenum& target;
 
     #ifdef _MSC_VER
-    Texture(Texture&& texture) : _impl::GLObject<Texture>(std::move(texture)), target(texture.target){}
+    Texture(Texture&& texture) : _impl::GLObject<Texture>(std::move(texture)), m_target(texture.m_target), m_lastbinding(texture.m_lastbinding),target(m_target){}
     #endif
+
+    Texture& operator=(Texture&& texture)
+    {
+        _impl::GLObject<Texture>::operator=(std::move(texture));
+        m_target = texture.target;
+        m_lastbinding = texture.m_lastbinding;
+        return *this;
+    }
 
     Texture():
 		_impl::GLObject<Texture>("GLTexture",glGenTextures,glDeleteTextures),
