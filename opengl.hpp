@@ -258,9 +258,7 @@ class Shader: public _impl::GLObject<Shader>
 {
 public:
     
-    #ifdef _MSC_VER
     Shader(Shader&& shader) : _impl::GLObject<Shader>(std::move(shader)){}
-    #endif
     
 	Shader(GLenum t);
     GLint Get(GLenum variable) const;
@@ -322,9 +320,7 @@ class Program: public _impl::GLObject<Program>
 {
 public:
     
-    #ifdef _MSC_VER
     Program(Program&& program) : _impl::GLObject<Program>(std::move(program)){}
-    #endif
     
 	Program();
     
@@ -591,9 +587,7 @@ class Buffer: public _impl::GLObject<Buffer>
 {
 public:
     
-    #ifdef _MSC_VER
     Buffer(Buffer&& buffer) : _impl::GLObject<Buffer>(std::move(buffer)){}
-    #endif
     
     #if defined(GL_ALT_FUNDEF_BindBuffer)
  	void Bind(GLenum bt) const;
@@ -696,9 +690,7 @@ class VertexArray: public _impl::GLObject<VertexArray>
 {
 public:
     
-    #ifdef _MSC_VER
     VertexArray(VertexArray&& vertexArray) : _impl::GLObject<VertexArray>(std::move(vertexArray)){}
-    #endif
     
     #if defined(GL_ALT_FUNDEF_BindVertexArray)
 	void Bind() const;
@@ -764,10 +756,8 @@ class Query: public _impl::GLObject<Query>
 {
 public:
     
-    #ifdef _MSC_VER
     Query(Query&& query) : _impl::GLObject<Query>(std::move(query)){}
-    #endif
-    
+
     #if defined(GL_ALT_FUNDEF_BeginConditionalRender)
 	void BeginConditionalRender(GLenum mode);
     #endif
@@ -866,9 +856,7 @@ private:
 public:
 	const GLenum& target;
 
-    #ifdef _MSC_VER
     Texture(Texture&& texture) : _impl::GLObject<Texture>(std::move(texture)), m_target(texture.m_target), m_lastbinding(texture.m_lastbinding),target(m_target){}
-    #endif
 
     Texture& operator=(Texture&& texture)
     {
@@ -1574,9 +1562,7 @@ class Sampler:public _impl::GLObject<Sampler>
 {
 public:
     
-    #ifdef _MSC_VER
     Sampler(Sampler&& sampler) : _impl::GLObject<Sampler>(std::move(sampler)){}
-    #endif
 
 	Sampler():
 		_impl::GLObject<Sampler>("GLSampler",glGenSamplers,glDeleteSamplers)
@@ -1732,9 +1718,7 @@ private:
 	GLenum m_target;
 public:
     
-    #ifdef _MSC_VER
     Framebuffer(Framebuffer&& framebuffer) : _impl::GLObject<Framebuffer>(std::move(framebuffer)){}
-    #endif
     
 	Framebuffer():
 		_impl::GLObject<Framebuffer>("GLFramebuffer",glGenFramebuffers,glDeleteFramebuffers),
@@ -1869,9 +1853,7 @@ private:
     
 public:
     
-    #ifdef _MSC_VER
     Renderbuffer(Renderbuffer&& renderbuffer) : _impl::GLObject<Renderbuffer>(std::move(renderbuffer)){}
-    #endif
     
 	Renderbuffer():
 		_impl::GLObject<Renderbuffer>("GLRenderbuffer",glGenRenderbuffers,glDeleteRenderbuffers)
