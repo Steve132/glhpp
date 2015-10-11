@@ -10,7 +10,7 @@ inline void _handleError(GLenum errcode,const std::string& what)
 }
     
 #ifdef GL_HPP_ERROR_CHECKING
-static inline void _checkError(GLenum errcode,const std::string& what)
+/*static */inline void _checkError(GLenum errcode,const std::string& what)
 {
 	static const unsigned int NUM_ERRORS=6;
 	static const GLenum errenums[NUM_ERRORS]={GL_INVALID_ENUM,GL_INVALID_VALUE,GL_INVALID_OPERATION,GL_INVALID_FRAMEBUFFER_OPERATION,GL_OUT_OF_MEMORY,GL_HPP_CUSTOM};
@@ -100,7 +100,7 @@ inline	GLint Get<GLint>(GLenum e)
 {
 	GLint v;
 	glGetIntegerv(e,&v);
-	_impl::_checkError(GL_INVALID_ENUM,"Invalid variable read with glGet");
+	_impl::_checkError(GL_INVALID_ENUM,"Invalid variable read with glGetIntegerv");
 	return v;
 }
 #endif
@@ -280,7 +280,7 @@ inline std::string Shader::Compile()
 		glProgram##fn##EXT(object,Program::GetUniformLocation(n),__VA_ARGS__);											\
 	}																			\
 	else																		\
-	{																			\
+	{															\
 		GLint curr_prog=gl::Get<GLint>(GL_CURRENT_PROGRAM);						\
 		glUseProgram(object);													\
 		_impl::_checkError(GL_INVALID_OPERATION,"Uniformed program could not be made part of current state, or transform feedback mode is enabled");\
@@ -1765,35 +1765,35 @@ inline GLint Texture::tbinding_query(GLenum target)
 }
 #endif
 
+///\todo this is a bitch and a half to maintain two separate paths.  maybe just template on whether DSA supported?
 #ifdef GL_ALT_FUNDEF_GenTextures
 template<class Callable2,typename... Types>
 inline void Texture::texture_function_ndsaf(Callable2 ndsafunc,GLenum target,Types... params)
 {
     if(target != m_target)
     {
-        ///\todo doesn't this go away? ??????
-        m_target=target;
-        m_lastbinding=(GLenum)tbinding_query(target);
-    }
-    else
+        m_lastbinding=(GLenum)tbinding_query_enum(m_target);
+    } ///\todo make sure none of the other ndsaf's have an else clause here
+
+    /// this was seeming to cache the previously used texture.  This is impossible?  And seems to contradict
+    /// the initialization.  But you can cache the query enum.  This makes sense
+    GLint t_binding = gl::Get<GLint>(m_lastbinding);
+    
+    if(t_binding!=object)
     {
-        GLenum t_binding=m_lastbinding;
-        if(t_binding!=object)
-        {
-            glBindTexture(target,object);
-        }
-        ndsafunc(target,params...);
-        if(t_binding!=object)
-        {
-            glBindTexture(target,t_binding);
-        }
+        glBindTexture(m_target,object); /// m_target instead of target, because of eg, cube face targets for subimage.  need to bind as what texture was created as, but pass different target to function
+    }
+    ndsafunc(target,params...);
+    if(t_binding!=object)
+    {
+        glBindTexture(m_target,t_binding);
     }
 }
     
 template<class Callable1,class Callable2,typename... Types>
 inline void Texture::texture_function_dsaf(Callable1 dsafunc,Callable2 ndsafunc,GLenum target,Types... params)
 {
-    if(target != m_target)
+    if(target != m_target) ///\todo doesn't this go below?.   Also, this is objectively wrong isn't it in the sense that it pairs m_target with a potentially different query val.
     {
         m_lastbinding=(GLenum)tbinding_query_enum(m_target);
 	}
