@@ -1676,80 +1676,88 @@ inline ContextInfo::ContextInfo():
 
     
 #if defined(GL_ALT_FUNDEF_GetIntegerv)
+
+inline GLenum Texture::tbinding_query_enum(GLenum target)
+{
+    static const GLenum mapping[] = {
+
+#if defined(GL_TEXTURE_1D) && defined(GL_TEXTURE_BINDING_1D)
+        GL_TEXTURE_1D, GL_TEXTURE_BINDING_1D,
+#endif
+#if defined(GL_TEXTURE_2D) && defined(GL_TEXTURE_BINDING_2D)
+        GL_TEXTURE_2D, GL_TEXTURE_BINDING_2D,
+#endif
+#if defined(GL_PROXY_TEXTURE_2D) && defined(GL_TEXTURE_BINDING_2D)
+        GL_PROXY_TEXTURE_2D, GL_TEXTURE_BINDING_2D,
+#endif
+#if defined(GL_TEXTURE_1D_ARRAY) && defined(GL_TEXTURE_BINDING_1D_ARRAY)
+        GL_TEXTURE_1D_ARRAY, GL_TEXTURE_BINDING_1D_ARRAY,
+#endif
+#if defined(GL_PROXY_TEXTURE_1D_ARRAY) && defined(GL_TEXTURE_BINDING_1D_ARRAY)
+        GL_PROXY_TEXTURE_1D_ARRAY, GL_TEXTURE_BINDING_1D_ARRAY,
+#endif
+#if defined(GL_TEXTURE_RECTANGLE) && defined(GL_TEXTURE_BINDING_RECTANGLE)
+        GL_TEXTURE_RECTANGLE, GL_TEXTURE_BINDING_RECTANGLE,
+#endif
+#if defined(GL_PROXY_TEXTURE_RECTANGLE) && defined(GL_TEXTURE_BINDING_RECTANGLE)
+        GL_PROXY_TEXTURE_RECTANGLE, GL_TEXTURE_BINDING_RECTANGLE,
+#endif
+#if defined(GL_TEXTURE_CUBE_MAP) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+        GL_TEXTURE_CUBE_MAP, GL_TEXTURE_BINDING_CUBE_MAP,
+#endif
+#if defined(GL_TEXTURE_CUBE_MAP_POSITIVE_X) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+        GL_TEXTURE_CUBE_MAP_POSITIVE_X, GL_TEXTURE_BINDING_CUBE_MAP,
+#endif
+#if defined(GL_TEXTURE_CUBE_MAP_NEGATIVE_X) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+        GL_TEXTURE_CUBE_MAP_NEGATIVE_X, GL_TEXTURE_BINDING_CUBE_MAP,
+#endif
+#if defined(GL_TEXTURE_CUBE_MAP_POSITIVE_Y) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+        GL_TEXTURE_CUBE_MAP_POSITIVE_Y, GL_TEXTURE_BINDING_CUBE_MAP,
+#endif
+#if defined(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+        GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, GL_TEXTURE_BINDING_CUBE_MAP,
+#endif
+#if defined(GL_TEXTURE_CUBE_MAP_POSITIVE_Z) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+        GL_TEXTURE_CUBE_MAP_POSITIVE_Z, GL_TEXTURE_BINDING_CUBE_MAP,
+#endif
+#if defined(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+        GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, GL_TEXTURE_BINDING_CUBE_MAP,
+#endif
+#if defined(GL_PROXY_TEXTURE_CUBE_MAP) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+        GL_PROXY_TEXTURE_CUBE_MAP, GL_TEXTURE_BINDING_CUBE_MAP,
+#endif
+#if defined(GL_TEXTURE_3D) && defined(GL_TEXTURE_BINDING_3D)
+        GL_TEXTURE_3D, GL_TEXTURE_BINDING_3D,
+#endif
+#if defined(GL_PROXY_TEXTURE_3D) && defined(GL_TEXTURE_BINDING_3D)
+        GL_PROXY_TEXTURE_3D, GL_TEXTURE_BINDING_3D,
+#endif
+#if defined(GL_TEXTURE_2D_ARRAY) && defined(GL_TEXTURE_BINDING_2D_ARRAY)
+        GL_TEXTURE_2D_ARRAY, GL_TEXTURE_BINDING_2D_ARRAY,
+#endif
+#if defined(GL_PROXY_TEXTURE_2D_ARRAY) && defined(GL_TEXTURE_BINDING_2D_ARRAY)
+        GL_PROXY_TEXTURE_2D_ARRAY, GL_TEXTURE_BINDING_2D_ARRAY,
+#endif
+    };
+
+    const std::size_t elementsInArray = sizeof(mapping) / sizeof(GLenum);
+    GLenum bquery = GL_TEXTURE_BINDING_2D;
+
+    for (int i = 0; i< elementsInArray; i += 2)
+    {
+        if (target == mapping[i])
+        {
+            bquery = mapping[i + 1];
+            break;
+        }
+    }
+
+    return bquery;
+}
+
 inline GLint Texture::tbinding_query(GLenum target)
 {
-    static const GLenum mapping[]={
-    
-    #if defined(GL_TEXTURE_1D) && defined(GL_TEXTURE_BINDING_1D)
-        GL_TEXTURE_1D, GL_TEXTURE_BINDING_1D,
-    #endif
-    #if defined(GL_TEXTURE_2D) && defined(GL_TEXTURE_BINDING_2D)
-        GL_TEXTURE_2D, GL_TEXTURE_BINDING_2D,
-    #endif
-    #if defined(GL_PROXY_TEXTURE_2D) && defined(GL_TEXTURE_BINDING_2D)
-        GL_PROXY_TEXTURE_2D, GL_TEXTURE_BINDING_2D,
-    #endif
-    #if defined(GL_TEXTURE_1D_ARRAY) && defined(GL_TEXTURE_BINDING_1D_ARRAY)
-        GL_TEXTURE_1D_ARRAY, GL_TEXTURE_BINDING_1D_ARRAY,
-    #endif
-    #if defined(GL_PROXY_TEXTURE_1D_ARRAY) && defined(GL_TEXTURE_BINDING_1D_ARRAY)
-        GL_PROXY_TEXTURE_1D_ARRAY,GL_TEXTURE_BINDING_1D_ARRAY,
-    #endif
-    #if defined(GL_TEXTURE_RECTANGLE) && defined(GL_TEXTURE_BINDING_RECTANGLE)
-        GL_TEXTURE_RECTANGLE, GL_TEXTURE_BINDING_RECTANGLE,
-    #endif
-    #if defined(GL_PROXY_TEXTURE_RECTANGLE) && defined(GL_TEXTURE_BINDING_RECTANGLE)
-        GL_PROXY_TEXTURE_RECTANGLE, GL_TEXTURE_BINDING_RECTANGLE,
-    #endif
-	#if defined(GL_TEXTURE_CUBE_MAP) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
-		GL_TEXTURE_CUBE_MAP, GL_TEXTURE_BINDING_CUBE_MAP,
-	#endif
-    #if defined(GL_TEXTURE_CUBE_MAP_POSITIVE_X) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
-        GL_TEXTURE_CUBE_MAP_POSITIVE_X,GL_TEXTURE_BINDING_CUBE_MAP,
-    #endif
-    #if defined(GL_TEXTURE_CUBE_MAP_NEGATIVE_X) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
-        GL_TEXTURE_CUBE_MAP_NEGATIVE_X,GL_TEXTURE_BINDING_CUBE_MAP,
-    #endif
-    #if defined(GL_TEXTURE_CUBE_MAP_POSITIVE_Y) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
-        GL_TEXTURE_CUBE_MAP_POSITIVE_Y,GL_TEXTURE_BINDING_CUBE_MAP,
-    #endif
-    #if defined(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
-        GL_TEXTURE_CUBE_MAP_NEGATIVE_Y,GL_TEXTURE_BINDING_CUBE_MAP,
-    #endif
-    #if defined(GL_TEXTURE_CUBE_MAP_POSITIVE_Z) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
-        GL_TEXTURE_CUBE_MAP_POSITIVE_Z,GL_TEXTURE_BINDING_CUBE_MAP,
-    #endif
-    #if defined(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
-        GL_TEXTURE_CUBE_MAP_NEGATIVE_Z,GL_TEXTURE_BINDING_CUBE_MAP,
-    #endif
-    #if defined(GL_PROXY_TEXTURE_CUBE_MAP) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
-        GL_PROXY_TEXTURE_CUBE_MAP,GL_TEXTURE_BINDING_CUBE_MAP,
-    #endif
-    #if defined(GL_TEXTURE_3D) && defined(GL_TEXTURE_BINDING_3D)
-        GL_TEXTURE_3D, GL_TEXTURE_BINDING_3D,
-    #endif
-    #if defined(GL_PROXY_TEXTURE_3D) && defined(GL_TEXTURE_BINDING_3D)
-        GL_PROXY_TEXTURE_3D, GL_TEXTURE_BINDING_3D,
-    #endif
-    #if defined(GL_TEXTURE_2D_ARRAY) && defined(GL_TEXTURE_BINDING_2D_ARRAY)
-        GL_TEXTURE_2D_ARRAY, GL_TEXTURE_BINDING_2D_ARRAY,
-    #endif
-    #if defined(GL_PROXY_TEXTURE_2D_ARRAY) && defined(GL_TEXTURE_BINDING_2D_ARRAY)
-        GL_PROXY_TEXTURE_2D_ARRAY,GL_TEXTURE_BINDING_2D_ARRAY,
-    #endif
-    };
-    
-    const std::size_t elementsInArray = sizeof(mapping) / sizeof(GLenum);
-    GLenum bquery=GL_TEXTURE_BINDING_2D;
-    
-	for (int i = 0; i< elementsInArray; i+=2)
-	{
-		if (target == mapping[i])
-		{
-			bquery = mapping[i + 1];
-			break;
-		}
-	}
+    GLenum bquery = tbinding_query_enum(target);
 
     GLint t_binding=gl::Get<GLint>(bquery);
 
@@ -1763,6 +1771,7 @@ inline void Texture::texture_function_ndsaf(Callable2 ndsafunc,GLenum target,Typ
 {
     if(target != m_target)
     {
+        ///\todo doesn't this go away? ??????
         m_target=target;
         m_lastbinding=(GLenum)tbinding_query(target);
     }
@@ -1784,9 +1793,9 @@ inline void Texture::texture_function_ndsaf(Callable2 ndsafunc,GLenum target,Typ
 template<class Callable1,class Callable2,typename... Types>
 inline void Texture::texture_function_dsaf(Callable1 dsafunc,Callable2 ndsafunc,GLenum target,Types... params)
 {
-	if(target != m_target)
-	{
-		m_lastbinding=(GLenum)tbinding_query(m_target);
+    if(target != m_target)
+    {
+        m_lastbinding=(GLenum)tbinding_query_enum(m_target);
 	}
 	if(direct_state_access_supported)
 	{
@@ -1794,11 +1803,15 @@ inline void Texture::texture_function_dsaf(Callable1 dsafunc,Callable2 ndsafunc,
 	}
 	else
 	{
-		GLenum t_binding=m_lastbinding;
+        /// this was seeming to cache the previously used texture.  This is impossible?  And seems to contradict
+        /// the initialization.  But you can cache the query enum.  This makes sense
+        GLint t_binding = gl::Get<GLint>(m_lastbinding);
+
 		if(t_binding!=object)
 		{
 			glBindTexture(m_target,object);
 		}
+        
 		ndsafunc(target,params...);
 		if(t_binding!=object)
 		{

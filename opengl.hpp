@@ -844,6 +844,7 @@ private:
 	}
     #if defined(GL_ALT_FUNDEF_GetIntegerv)
 	GLint tbinding_query(GLenum targ);
+    GLenum tbinding_query_enum(GLenum target);
     #endif
     
     template<typename Callable1,typename Callable2, typename... Types>
@@ -872,7 +873,7 @@ public:
 		m_lastbinding(GL_TEXTURE_BINDING_2D),
 		target(m_target)
 	{}
-    
+
     #if defined(GL_ALT_FUNDEF_BindTexture)
     void Bind(GLenum targ)
 	{
@@ -896,12 +897,14 @@ public:
     void Image1D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		m_target = targ;
+        m_lastbinding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(glTextureImage1DEXT,glTexImage1D,targ,level,internalformat,width,border,format,type,data);
 	}
     
 	void Image1D(GLint level,GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		m_target = GL_TEXTURE_1D;
+        m_lastbinding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(glTextureImage1DEXT, glTexImage1D, m_target, level, internalformat, width, border, format, type, data);
 	}
     #endif
@@ -910,11 +913,13 @@ public:
 	void Image2D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLsizei height,GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		m_target = targ;
+        m_lastbinding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(glTextureImage2DEXT, glTexImage2D, targ, level, internalformat, width, height, border, format, type, data);
 	}
 	void Image2D(GLint level, GLint internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		m_target = GL_TEXTURE_2D;
+        m_lastbinding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(glTextureImage2DEXT, glTexImage2D, m_target, level, internalformat, width, height, border, format, type, data);
 	}
     #endif
@@ -932,11 +937,13 @@ public:
 	void Image3D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLsizei height, GLsizei depth,GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		m_target = targ;
+        m_lastbinding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(glTextureImage3DEXT,TexImage3DFunc,targ,level,internalformat,width,height,depth,border,format,type,data);
 	}
 	void Image3D(GLint level,GLint internalformat, GLsizei width, GLsizei height, GLsizei depth,GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		m_target = GL_TEXTURE_3D;
+        m_lastbinding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(glTextureImage3DEXT,TexImage3DFunc,m_target,level,internalformat,width,height,depth,border,format,type,data);
 	}
     #endif
@@ -1448,6 +1455,7 @@ boolean fixedsamplelocations);
 	void Storage1D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width)
 	{
 		m_target = targ;
+        m_lastbinding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(&glTextureStorage1DEXT,&GL_ALT_TexStorage1DFunc,targ,levels,internalformat,width);
 	}
 	void Storage1D(GLsizei levels, GLenum internalformat, GLsizei width)
@@ -1471,6 +1479,7 @@ boolean fixedsamplelocations);
 	void Storage2D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height)
 	{
 		m_target = targ;
+        m_lastbinding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(&glTextureStorage2DEXT,&GL_ALT_TexStorage2DFunc,targ,levels,internalformat,width,height);
 	}
 	void Storage2D(GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height)
@@ -1492,6 +1501,7 @@ boolean fixedsamplelocations);
 	void Storage3D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height,GLsizei depth)
 	{
 		m_target = targ;
+        m_lastbinding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(&glTextureStorage3DEXT,&GL_ALT_TexStorage3DFunc,targ,levels,internalformat,width,height,depth);
 	}
 	void Storage3D(GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height,GLsizei depth)
