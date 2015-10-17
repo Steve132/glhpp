@@ -330,11 +330,20 @@ typedef struct _glalt_extension_set_t
 	const char** extensionstringbeginnings;
 	size_t num_extensions;
 	#ifdef __cplusplus
-	~_glalt_extension_set_t()
+	
+
+    
+   /* ~_glalt_extension_set_t()
 	{
-		free(extensionstringmemory);
-		free(extensionstringbeginnings);
-	}
+        if (extensionstringmemory)
+        {
+            free(extensionstringmemory);
+        }
+        if (extensionstringbeginnings)
+        {
+            free(extensionstringbeginnings);
+        }
+	}*/
 	#endif
 } glalt_extension_set;
 
@@ -399,6 +408,25 @@ static inline int _glalt_extelemcmp(const void* a,const void* b)
 		return cmpval;
 	}
 }
+
+static inline int _glalt_extelemcmp2(const void* a, const void* b)
+{
+    const char* astr = *(const char**)a;
+    const char* bstr = *(const char**)b;
+
+    int alen = strlen(astr);
+    int blen = (*(bstr++)) - 1;
+    int cmpval = memcmp(astr, bstr, alen > blen ? blen : alen);
+    if (cmpval == 0)
+    {
+        return memcmp(&alen, &blen, 1);
+    }
+    else
+    {
+        return cmpval;
+    }
+}
+
 static inline glalt_version_info _get_version()
 {
 	const char* vs=(const char*)glGetString(GLALT_GL_VERSION);
@@ -491,7 +519,7 @@ inline int _es_contains(const char* namecheck)
 #else
 	static const glalt_extension_set* es=NULL;if(!es) {es=glaltGetExtensions();};
 #endif
-	return bsearch(&namecheck,es->extensionstringbeginnings,es->num_extensions,sizeof(const char*),_glalt_extelemcmp)!=NULL;
+	return bsearch(&namecheck,es->extensionstringbeginnings,es->num_extensions,sizeof(const char*),_glalt_extelemcmp2)!=NULL;
 }
 
 inline int glaltCheckExtension(const char* extname)
