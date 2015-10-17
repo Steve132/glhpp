@@ -329,22 +329,6 @@ typedef struct _glalt_extension_set_t
 	char* extensionstringmemory;
 	const char** extensionstringbeginnings;
 	size_t num_extensions;
-	#ifdef __cplusplus
-	
-
-    
-   /* ~_glalt_extension_set_t()
-	{
-        if (extensionstringmemory)
-        {
-            free(extensionstringmemory);
-        }
-        if (extensionstringbeginnings)
-        {
-            free(extensionstringbeginnings);
-        }
-	}*/
-	#endif
 } glalt_extension_set;
 
 int glaltCheckExtension(const char* extname);
