@@ -485,13 +485,13 @@ inline glalt_extension_set _get_extensions()
 	}
 	else
 	{
+        extlist.num_extensions = 0;
 		const char* extother=(const char*)glGetString(GLALT_GL_EXTENSIONS);
 		size_t extslen=strlen(extother);
 		char* pch;
 		extlist.extensionstringmemory=(char*)malloc(extslen+1); //empty at the beginning
 		memcpy(extlist.extensionstringmemory+1,extother,extslen);
-		extlist.extensionstringmemory[extslen+1]=' ';//last whitespace at the end
-
+		
 		for(pch=extlist.extensionstringmemory;pch!=NULL;pch=strchr(pch+1,' '))
 		{
 			size_t sz=strcspn(pch+1," ")+1;
