@@ -326,25 +326,8 @@ typedef struct _glalt_version_info_t
 
 typedef struct _glalt_extension_set_t
 {
-	char* extensionstringmemory;
 	const char** extensionstringbeginnings;
 	size_t num_extensions;
-	#ifdef __cplusplus
-	
-
-    
-   /* ~_glalt_extension_set_t()
-	{
-        if (extensionstringmemory)
-        {
-            free(extensionstringmemory);
-        }
-        if (extensionstringbeginnings)
-        {
-            free(extensionstringbeginnings);
-        }
-	}*/
-	#endif
 } glalt_extension_set;
 
 int glaltCheckExtension(const char* extname);
@@ -396,34 +379,28 @@ static inline int _glalt_extelemcmp(const void* a,const void* b)
 	const char* astr=*(const char**)a;
 	const char* bstr=*(const char**)b;
 	
-	int alen=*(astr++);
-	int blen=*(bstr++);
-	int cmpval=memcmp(astr,bstr,alen > blen ? blen : alen);
-	if(cmpval==0)
-	{
-		return memcmp(&alen,&blen,1);
-	}
-	else
-	{
-		return cmpval;
-	}
+    return strcmp(astr, bstr);
 }
 
-static inline int _glalt_extelemcmp2(const void* a, const void* b)
+
+static inline int _glalt_extelemcmp_space_delim(const void* a, const void* b)
 {
     const char* astr = *(const char**)a;
     const char* bstr = *(const char**)b;
 
-    int alen = strlen(astr);
-    int blen = (*(bstr++)) - 1;
-    int cmpval = memcmp(astr, bstr, alen > blen ? blen : alen);
-    if (cmpval == 0)
+    size_t alen = strcspn(astr, " ");
+    size_t blen = strcspn(bstr, " ");
+
+    if (alen != blen)
     {
-        return memcmp(&alen, &blen, 1);
+        size_t min = alen < blen ? alen : blen;
+        int rval = (int)(astr[min]) - (int)(bstr[min]);
+
+        return rval;
     }
     else
     {
-        return cmpval;
+        return strncmp(astr, bstr, alen);
     }
 }
 
@@ -441,16 +418,15 @@ typedef const GLubyte* (*PFNGLGETSTRINGIPROC_PRIV)(GLenum name, GLuint index);
 inline glalt_extension_set _get_extensions()
 {
 	glalt_extension_set extlist;
+    
+    ///\todo what about GL ES ? What type of queries does ES do ? 
 	GLint isversion=glaltCheckVersion(3,0);
 	GLint i;
 
 	if(isversion)
 	{
 		GLint extmax;
-		char* extstring;
-		char* extstringhead;
-		size_t bufsize=0;
-		size_t bufbackingsize=0;
+		
 #ifdef __cplusplus
 		static PFNGLGETSTRINGIPROC_PRIV gsi=(PFNGLGETSTRINGIPROC_PRIV)_glalt_prim_GetProcAddress("glGetStringi");
 #else
@@ -458,58 +434,55 @@ inline glalt_extension_set _get_extensions()
 		if(!gsi){ gsi=(PFNGLGETSTRINGIPROC_PRIV)_glalt_prim_GetProcAddress("glGetStringi");}
 #endif
 
-		glGetIntegerv(GLALT_GL_NUM_EXTENSIONS,&extmax);
-		static const size_t AVG_EXTNAME_BYTES=12;
-		bufbackingsize=AVG_EXTNAME_BYTES*extmax; //estimate size to minimize reallocs to approximately 3
-		extstring=(char*)malloc(bufbackingsize);
-		extstringhead=extstring;
+        glGetIntegerv(GLALT_GL_NUM_EXTENSIONS,&extmax);
 
-		for(i=0;i<extmax;i++)
-		{
-			const char* curstringname=(const char*)gsi(GLALT_GL_EXTENSIONS,i);
-			size_t csnl=strlen(curstringname)+1;
-			if(extstringhead+csnl >= extstring+bufbackingsize)
-			{
-				bufbackingsize<<=1;
-				size_t offset=extstringhead-extstring;
-				extstring=(char*)realloc(extstring,bufbackingsize);
-				extstringhead=extstring+offset;
-			}
-			strncpy(extstringhead+1,curstringname,csnl);
-			extstringhead[0]=(char)(csnl);//the length of the string to the next marker
-			extstringhead+=csnl;
-		}
-		extlist.num_extensions=extmax;
-		extlist.extensionstringmemory=extstring;
-		memset(extstringhead,0,extstring+bufbackingsize - extstringhead);
+        extlist.num_extensions=extmax;
+
+        //for modern GL path, we can just populate our head pointers to each individual static extension string
+
+        const char** extindices = (const char**)malloc(extlist.num_extensions*sizeof(const char*));
+
+        for (i = 0; i<extlist.num_extensions; i++)
+        {
+            extindices[i] = (const char*)gsi(GLALT_GL_EXTENSIONS, i);
+        }
+
+        extlist.extensionstringbeginnings = extindices;
+
+        //binary sort the extindices for searching later
+        qsort(extlist.extensionstringbeginnings, extlist.num_extensions, sizeof(const char*), _glalt_extelemcmp);
 	}
 	else
 	{
+        const char* extother = (const char*)glGetString(GLALT_GL_EXTENSIONS);
         extlist.num_extensions = 0;
-		const char* extother=(const char*)glGetString(GLALT_GL_EXTENSIONS);
-		size_t extslen=strlen(extother);
-		char* pch;
-		extlist.extensionstringmemory=(char*)malloc(extslen+1); //empty at the beginning
-		memcpy(extlist.extensionstringmemory+1,extother,extslen);
-		
-		for(pch=extlist.extensionstringmemory;pch!=NULL;pch=strchr(pch+1,' '))
-		{
-			size_t sz=strcspn(pch+1," ")+1;
-			*pch=(char)sz;
-			extlist.num_extensions++;
-		}
+
+        const char* pch;
+        for (pch = extother; pch != NULL; pch = strchr(pch, ' '))
+        {
+            pch++;
+            extlist.num_extensions++;
+        }
+
+        const char** extindices = (const char**)malloc(extlist.num_extensions*sizeof(const char*));
+        const char** exthead = extindices;
+
+        int ctr = 0;
+        for (pch = extother; pch != (const char*)1; pch = strchr(pch, ' ')+1)
+        {
+            *(exthead)++ = pch;
+            ctr++;
+        }
+
+
+
+        extlist.extensionstringbeginnings = extindices;
+
+        //binary sort the extindices for searching later
+        qsort(extlist.extensionstringbeginnings, extlist.num_extensions, sizeof(const char*), _glalt_extelemcmp_space_delim);
+
 	}
-	const char** extindices=(const char**)malloc(extlist.num_extensions*sizeof(const char*));
-	const char** extindiceshead=extindices;
-	char* pch=extlist.extensionstringmemory;
-	for(i=0;i<extlist.num_extensions;i++)
-	{
-		*(extindiceshead++)=pch;
-		pch+=*pch;//the first element of the array is the size offset
-	}
-	//binary sort the extindices for searching later
-	qsort(extindices,extlist.num_extensions,sizeof(const char*),_glalt_extelemcmp);
-	extlist.extensionstringbeginnings=extindices;
+
 	return extlist;
 }
 inline int _es_contains(const char* namecheck)
@@ -519,7 +492,7 @@ inline int _es_contains(const char* namecheck)
 #else
 	static const glalt_extension_set* es=NULL;if(!es) {es=glaltGetExtensions();};
 #endif
-	return bsearch(&namecheck,es->extensionstringbeginnings,es->num_extensions,sizeof(const char*),_glalt_extelemcmp2)!=NULL;
+	return bsearch(&namecheck,es->extensionstringbeginnings,es->num_extensions,sizeof(const char*),_glalt_extelemcmp_space_delim)!=NULL;
 }
 
 inline int glaltCheckExtension(const char* extname)
