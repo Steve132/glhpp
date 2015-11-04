@@ -2020,16 +2020,7 @@ inline void Renderbuffer::renderbuffer_function_dsaf(Callable1 dsafunc,Callable2
 	}
 	else
 	{
-		GLenum t_binding=gl::Get<GLint>(GL_RENDERBUFFER_BINDING);
-		if(t_binding!=object)
-		{
-			glBindRenderbuffer(GL_RENDERBUFFER,object);
-		}
-		ndsafunc(GL_FRAMEBUFFER,params...);
-		if(t_binding!=object)
-		{
-			glBindRenderbuffer(GL_RENDERBUFFER,t_binding);
-		}
+        renderbuffer_function_ndsaf(ndsafunc, params...);
 	}
 		
 }
