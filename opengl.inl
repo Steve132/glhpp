@@ -1983,21 +1983,7 @@ inline void Framebuffer::framebuffer_function_dsaf(Callable1 dsafunc,Callable2 n
 	}
 	else
 	{
-        #if !defined(GL_DRAW_FRAMEBUFFER) || !defined(GL_READ_FRAMEBUFFER)
-            GLenum t_binding = GL_FRAMEBUFFER_BINDING;
-        #else
-            GLenum t_binding=gl::Get<GLint>(m_target==GL_DRAW_FRAMEBUFFER ? GL_DRAW_FRAMEBUFFER_BINDING : GL_READ_FRAMEBUFFER_BINDING);
-        #endif
-        
-		if(t_binding!=object)
-		{
-			glBindFramebuffer(m_target,object);
-		}
-		ndsafunc(GL_FRAMEBUFFER,params...);
-		if(t_binding!=object)
-		{
-			glBindFramebuffer(m_target,t_binding);
-		}
+        framebuffer_function_ndsaf(ndsafunc, params...);
 	}
 }
     
@@ -2005,7 +1991,7 @@ template<class Callable2,typename... Types>
 inline void Framebuffer::framebuffer_function_ndsaf(Callable2 ndsafunc,Types... params)
 {
     GLenum t_binding = GL_FRAMEBUFFER_BINDING;
-    
+
     switch(m_target)
     {
 #ifdef GL_DRAW_FRAMEBUFFER
@@ -2024,14 +2010,19 @@ inline void Framebuffer::framebuffer_function_ndsaf(Callable2 ndsafunc,Types... 
             break;
             
     }
-    if(t_binding!=object)
+
+    GLint prevBinding = gl::Get<GLint>(t_binding);
+
+    if(prevBinding != object)
     {
         glBindFramebuffer(m_target,object);
     }
+
     ndsafunc(GL_FRAMEBUFFER,params...);
+
     if(t_binding!=object)
     {
-        glBindFramebuffer(m_target,t_binding);
+        glBindFramebuffer(m_target,prevBinding);
     }
 }
 #endif
