@@ -1765,16 +1765,16 @@ inline GLint Texture::tbinding_query(GLenum target)
 }
 #endif
 
-///\todo this is a bitch and a half to maintain two separate paths.  maybe just template on whether DSA supported?
 #ifdef GL_ALT_FUNDEF_GenTextures
+    
 template<class Callable2,typename... Types>
 inline void Texture::texture_function_ndsaf(Callable2 ndsafunc,GLenum target,Types... params)
 {
     if(target != m_target)
     {
         m_lastbinding=(GLenum)tbinding_query_enum(m_target);
-    } ///\todo make sure none of the other ndsaf's have an else clause here
-
+    }
+    
     /// this was seeming to cache the previously used texture.  This is impossible?  And seems to contradict
     /// the initialization.  But you can cache the query enum.  This makes sense
     GLint t_binding = gl::Get<GLint>(m_lastbinding);
@@ -1793,32 +1793,14 @@ inline void Texture::texture_function_ndsaf(Callable2 ndsafunc,GLenum target,Typ
 template<class Callable1,class Callable2,typename... Types>
 inline void Texture::texture_function_dsaf(Callable1 dsafunc,Callable2 ndsafunc,GLenum target,Types... params)
 {
-    if(target != m_target) ///\todo doesn't this go below?.   Also, this is objectively wrong isn't it in the sense that it pairs m_target with a potentially different query val.
-    {
-        m_lastbinding=(GLenum)tbinding_query_enum(m_target);
-	}
 	if(direct_state_access_supported)
 	{
 		dsafunc(object,target,params...);
 	}
 	else
 	{
-        /// this was seeming to cache the previously used texture.  This is impossible?  And seems to contradict
-        /// the initialization.  But you can cache the query enum.  This makes sense
-        GLint t_binding = gl::Get<GLint>(m_lastbinding);
-
-		if(t_binding!=object)
-		{
-			glBindTexture(m_target,object);
-		}
-        
-		ndsafunc(target,params...);
-		if(t_binding!=object)
-		{
-			glBindTexture(m_target,t_binding);
-		}
-	}
-		
+        texture_function_ndsaf(ndsafunc, target, params...);
+    }
 }
 #endif
 
