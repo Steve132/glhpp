@@ -1770,14 +1770,7 @@ inline GLint Texture::tbinding_query(GLenum target)
 template<class Callable2,typename... Types>
 inline void Texture::texture_function_ndsaf(Callable2 ndsafunc,GLenum target,Types... params)
 {
-    if(target != m_target)
-    {
-        m_lastbinding=(GLenum)tbinding_query_enum(m_target);
-    }
-    
-    /// this was seeming to cache the previously used texture.  This is impossible?  And seems to contradict
-    /// the initialization.  But you can cache the query enum.  This makes sense
-    GLint t_binding = gl::Get<GLint>(m_lastbinding);
+    GLint t_binding = gl::Get<GLint>(m_target_binding);
     
     if(t_binding!=object)
     {

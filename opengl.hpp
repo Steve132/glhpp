@@ -853,24 +853,24 @@ private:
     template<typename Callable2, typename... Types>
     void texture_function_ndsaf(Callable2,GLenum targ,Types... params);
     
-	GLenum m_target,m_lastbinding;
+	GLenum m_target,m_target_binding;
 public:
 	const GLenum& target;
 
-    Texture(Texture&& texture) : _impl::GLObject<Texture>(std::move(texture)), m_target(texture.m_target), m_lastbinding(texture.m_lastbinding),target(m_target){}
+    Texture(Texture&& texture) : _impl::GLObject<Texture>(std::move(texture)), m_target(texture.m_target), m_target_binding(texture.m_target_binding),target(m_target){}
 
     Texture& operator=(Texture&& texture)
     {
         _impl::GLObject<Texture>::operator=(std::move(texture));
         m_target = texture.target;
-        m_lastbinding = texture.m_lastbinding;
+        m_target_binding = texture.m_target_binding;
         return *this;
     }
 
     Texture():
 		_impl::GLObject<Texture>("GLTexture",glGenTextures,glDeleteTextures),
 		m_target(GL_TEXTURE_2D),
-		m_lastbinding(GL_TEXTURE_BINDING_2D),
+		m_target_binding(GL_TEXTURE_BINDING_2D),
 		target(m_target)
 	{}
 
@@ -897,14 +897,14 @@ public:
     void Image1D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		m_target = targ;
-        m_lastbinding = (GLenum)tbinding_query_enum(m_target);
+        m_target_binding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(glTextureImage1DEXT,glTexImage1D,targ,level,internalformat,width,border,format,type,data);
 	}
     
 	void Image1D(GLint level,GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		m_target = GL_TEXTURE_1D;
-        m_lastbinding = (GLenum)tbinding_query_enum(m_target);
+        m_target_binding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(glTextureImage1DEXT, glTexImage1D, m_target, level, internalformat, width, border, format, type, data);
 	}
     #endif
@@ -913,13 +913,13 @@ public:
 	void Image2D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLsizei height,GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		m_target = targ;
-        m_lastbinding = (GLenum)tbinding_query_enum(m_target);
+        m_target_binding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(glTextureImage2DEXT, glTexImage2D, targ, level, internalformat, width, height, border, format, type, data);
 	}
 	void Image2D(GLint level, GLint internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		m_target = GL_TEXTURE_2D;
-        m_lastbinding = (GLenum)tbinding_query_enum(m_target);
+        m_target_binding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(glTextureImage2DEXT, glTexImage2D, m_target, level, internalformat, width, height, border, format, type, data);
 	}
     #endif
@@ -937,13 +937,13 @@ public:
 	void Image3D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLsizei height, GLsizei depth,GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		m_target = targ;
-        m_lastbinding = (GLenum)tbinding_query_enum(m_target);
+        m_target_binding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(glTextureImage3DEXT,TexImage3DFunc,targ,level,internalformat,width,height,depth,border,format,type,data);
 	}
 	void Image3D(GLint level,GLint internalformat, GLsizei width, GLsizei height, GLsizei depth,GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		m_target = GL_TEXTURE_3D;
-        m_lastbinding = (GLenum)tbinding_query_enum(m_target);
+        m_target_binding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(glTextureImage3DEXT,TexImage3DFunc,m_target,level,internalformat,width,height,depth,border,format,type,data);
 	}
     #endif
@@ -1455,7 +1455,7 @@ boolean fixedsamplelocations);
 	void Storage1D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width)
 	{
 		m_target = targ;
-        m_lastbinding = (GLenum)tbinding_query_enum(m_target);
+        m_target_binding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(&glTextureStorage1DEXT,&GL_ALT_TexStorage1DFunc,targ,levels,internalformat,width);
 	}
 	void Storage1D(GLsizei levels, GLenum internalformat, GLsizei width)
@@ -1479,7 +1479,7 @@ boolean fixedsamplelocations);
 	void Storage2D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height)
 	{
 		m_target = targ;
-        m_lastbinding = (GLenum)tbinding_query_enum(m_target);
+        m_target_binding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(&glTextureStorage2DEXT,&GL_ALT_TexStorage2DFunc,targ,levels,internalformat,width,height);
 	}
 	void Storage2D(GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height)
@@ -1501,7 +1501,7 @@ boolean fixedsamplelocations);
 	void Storage3D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height,GLsizei depth)
 	{
 		m_target = targ;
-        m_lastbinding = (GLenum)tbinding_query_enum(m_target);
+        m_target_binding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(&glTextureStorage3DEXT,&GL_ALT_TexStorage3DFunc,targ,levels,internalformat,width,height,depth);
 	}
 	void Storage3D(GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height,GLsizei depth)
@@ -1559,7 +1559,7 @@ protected:
 	explicit Texture(GLuint o):
 		_impl::GLObject<Texture>(o,glDeleteTextures),
 		m_target(GL_TEXTURE_2D),
-		m_lastbinding(GL_TEXTURE_BINDING_2D),
+		m_target_binding(GL_TEXTURE_BINDING_2D),
 		target(m_target)
 	{}
 };
