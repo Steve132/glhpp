@@ -1781,7 +1781,6 @@ public:
 	void Texture(GLenum attachment, GLuint texture, GLint level)
 	{
         
-        
 		framebuffer_function_dsa(&glNamedFramebufferTextureEXT,&FramebufferTextureFunc,attachment,texture,level);
 	}
     
@@ -1791,9 +1790,9 @@ public:
 	}
     #endif
 
-    #if defined(GL_ALT_FUNDEF_NamedFramebufferRenderbuffer) || defined(GL_ALT_FUNDEF_NamedFramebufferRenderbufferEXT)
-	void Renderbuffer(GLenum attachment, GLuint renderbuffer, GLint level);
-	void Renderbuffer(GLenum attachment,const gl::Renderbuffer& rb, GLint level);
+    #if defined(GL_ALT_FUNDEF_NamedFramebufferRenderbuffer) || defined(GL_ALT_FUNDEF_NamedFramebufferRenderbufferEXT) || defined(GL_ALT_FUNDEF_FramebufferRenderbuffer)
+	void Renderbuffer(GLenum attachment, GLuint renderbuffer);
+	void Renderbuffer(GLenum attachment,const gl::Renderbuffer& rb);
     #endif
 
     #if (defined(GL_ALT_FUNDEF_FramebufferTexture1D) || defined(GL_ALT_FUNDEF_NamedFramebufferTexture1DEXT)) && defined(GL_ALT_FUNDEF_GenTextures)
@@ -1917,13 +1916,13 @@ protected:
     
 #endif
     
-#if defined(GL_ALT_FUNDEF_NamedFramebufferRenderbuffer) || defined(GL_ALT_FUNDEF_NamedFramebufferRenderbufferEXT)
-inline void Framebuffer::Renderbuffer(GLenum attachment, GLuint renderbuffer, GLint level)
+#if defined(GL_ALT_FUNDEF_NamedFramebufferRenderbuffer) || defined(GL_ALT_FUNDEF_NamedFramebufferRenderbufferEXT) || defined(GL_ALT_FUNDEF_FramebufferRenderbuffer)
+inline void Framebuffer::Renderbuffer(GLenum attachment, GLuint renderbuffer)
 {
 	framebuffer_function_dsa(&glNamedFramebufferRenderbuffer,&glFramebufferRenderbuffer,attachment,GL_RENDERBUFFER,renderbuffer);
 }
 
-inline void Framebuffer::Renderbuffer(GLenum attachment,const gl::Renderbuffer& rb, GLint level)
+inline void Framebuffer::Renderbuffer(GLenum attachment,const gl::Renderbuffer& rb)
 {
 	framebuffer_function_dsa(&glNamedFramebufferRenderbuffer,&glFramebufferRenderbuffer,attachment,GL_RENDERBUFFER,rb.name);
 }

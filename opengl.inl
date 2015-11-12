@@ -2027,7 +2027,7 @@ inline void Renderbuffer::renderbuffer_function_ndsaf(Callable2 ndsafunc,Types..
     {
         glBindRenderbuffer(GL_RENDERBUFFER,object);
     }
-    ndsafunc(GL_FRAMEBUFFER,params...);
+    ndsafunc(GL_RENDERBUFFER,params...);
     if(t_binding!=object)
     {
         glBindRenderbuffer(GL_RENDERBUFFER,t_binding);
