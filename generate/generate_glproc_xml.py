@@ -34,7 +34,7 @@ class CommandSpec(object):
 	def arglist(self):
 		return ','.join([ "%s %s" % (p.typ,p.name) for p in self.params])
 
-	def print_definition_function(self,featurename,function_included=False,cmode=True):
+	def print_definition_function(self,featurename,function_included=False,api='',cmode=True):
 		
 		if(self.return_type=='void'):
 			rv=''
@@ -81,6 +81,7 @@ static inline %(rettype)s gl%(signature)s(%(argstring)s)
 #endif
 """
 			stdfuntemplate=""
+		
 
 
 
@@ -91,7 +92,8 @@ static inline %(rettype)s gl%(signature)s(%(argstring)s)
 		ext=featurename
 		eorv="Extension"
 		if(featurename[-11:-4]=='VERSION'):
-			ext=featurename[-3]+','+featurename[-1]
+			print(featurename)
+			ext=api.name[-3]+','+api.name[-1]
 			eorv="Version"
 
 		argdict={"rettype": self.return_type,"signature":self.name[2:],"argstring":self.arglist(),"usignature":self.name.upper(),"extension":ext,"justargs":self.argnames(),"rv":rv,"justtypes":self.argtypes(),"asignature":self.name[2:],"extorversion":eorv}
@@ -277,8 +279,7 @@ class SpecificationsXML(object):
 		for k,v in senums:
 			fileobj.write(constdefin % {'k':k,'v':v,'TENUM':('GLenum' if len(v) <=10 else 'GLuint64')})
 
-	def gl_first_api_wrapwrite(self,cmdstr,current,featurename,co,fileobj):
-		api=self.get_first_gl_api(featurename,co)
+	def gl_first_api_wrapwrite(self,cmdstr,api,fileobj):
 		if(api and cmdstr is not ''):
 			fileobj.write("#ifndef %s" % (api.name))
 			fileobj.write(cmdstr)
@@ -291,8 +292,9 @@ class SpecificationsXML(object):
 			fileobj.write('extern "C" {\n')
 		for co in sorted(cmdlist):
 			if(self.static_function_check(featurename,co)):
+				api=self.get_first_gl_api(featurename,co)
 				defstring='\n'+self.commands[co].print_static_link_declaration(featurename)
-				self.gl_first_api_wrapwrite(defstring,'',featurename,co,fileobj)
+				self.gl_first_api_wrapwrite(defstring,api,fileobj)
 			
 		if(not self.cmode):
 			fileobj.write('}\n')
@@ -305,8 +307,9 @@ class SpecificationsXML(object):
 		if(not self.cmode):
 			fileobj.write("namespace gl{\n")
 		for co in sorted(cmdlist):
-			defstring=self.commands[co].print_definition_function(featurename,self.static_function_check(featurename,co),self.cmode)
-			self.gl_first_api_wrapwrite(defstring,'',featurename,co,fileobj)
+			api=self.get_first_gl_api(featurename,co)
+			defstring=self.commands[co].print_definition_function(featurename,self.static_function_check(featurename,co),api,self.cmode)
+			self.gl_first_api_wrapwrite(defstring,api,fileobj)
 		if(not self.cmode):
 			fileobj.write("}\n")
 
