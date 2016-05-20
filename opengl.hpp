@@ -178,8 +178,9 @@ public:
 	{
 		if(this !=&other && object !=other.object)
 		{
-			delete_func(1,&object);
+		///	delete_func(1,&object);
             object = std::move(other.object);
+            direct_state_access_supported = other.direct_state_access_supported;
 			other.object = 0;
 		}
 		delete_func=std::move(other.delete_func);
@@ -321,6 +322,12 @@ class Program: public _impl::GLObject<Program>
 public:
     
     Program(Program&& program) : _impl::GLObject<Program>(std::move(program)){}
+    
+    Program& operator=(Program&& program)
+    {
+        _impl::GLObject<Program>::operator=(std::move(program));
+        return *this;
+    }
     
 	Program();
     
