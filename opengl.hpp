@@ -30,11 +30,11 @@ namespace gl
 #ifdef GL_ALT_API_NAME
 inline bool check_version(unsigned int a,unsigned int b)
 {
-	return glaltCheckVersion(a,b);
+	return glaltCheckVersion(a,b) != 0;
 }
 inline bool check_extension(const std::string& ext)
 {
-	return glaltCheckExtension(ext.c_str());
+	return glaltCheckExtension(ext.c_str()) != 0;
 }
 #endif
     
@@ -178,11 +178,13 @@ public:
 	{
 		if(this !=&other && object !=other.object)
 		{
-			delete_func(1,&object);
-			other.object=0;
+		///	delete_func(1,&object);
+            object = std::move(other.object);
+            direct_state_access_supported = other.direct_state_access_supported;
+			other.object = 0;
 		}
 		delete_func=std::move(other.delete_func);
-		object=std::move(other.object);
+		
 		return *this;
 	}
 	
@@ -257,9 +259,7 @@ class Shader: public _impl::GLObject<Shader>
 {
 public:
     
-    #ifdef _MSC_VER
     Shader(Shader&& shader) : _impl::GLObject<Shader>(std::move(shader)){}
-    #endif
     
 	Shader(GLenum t);
     GLint Get(GLenum variable) const;
@@ -321,9 +321,13 @@ class Program: public _impl::GLObject<Program>
 {
 public:
     
-    #ifdef _MSC_VER
     Program(Program&& program) : _impl::GLObject<Program>(std::move(program)){}
-    #endif
+    
+    Program& operator=(Program&& program)
+    {
+        _impl::GLObject<Program>::operator=(std::move(program));
+        return *this;
+    }
     
 	Program();
     
@@ -590,9 +594,7 @@ class Buffer: public _impl::GLObject<Buffer>
 {
 public:
     
-    #ifdef _MSC_VER
     Buffer(Buffer&& buffer) : _impl::GLObject<Buffer>(std::move(buffer)){}
-    #endif
     
     #if defined(GL_ALT_FUNDEF_BindBuffer)
  	void Bind(GLenum bt) const;
@@ -695,9 +697,7 @@ class VertexArray: public _impl::GLObject<VertexArray>
 {
 public:
     
-    #ifdef _MSC_VER
     VertexArray(VertexArray&& vertexArray) : _impl::GLObject<VertexArray>(std::move(vertexArray)){}
-    #endif
     
     #if defined(GL_ALT_FUNDEF_BindVertexArray)
 	void Bind() const;
@@ -763,10 +763,8 @@ class Query: public _impl::GLObject<Query>
 {
 public:
     
-    #ifdef _MSC_VER
     Query(Query&& query) : _impl::GLObject<Query>(std::move(query)){}
-    #endif
-    
+
     #if defined(GL_ALT_FUNDEF_BeginConditionalRender)
 	void BeginConditionalRender(GLenum mode);
     #endif
@@ -853,6 +851,7 @@ private:
 	}
     #if defined(GL_ALT_FUNDEF_GetIntegerv)
 	GLint tbinding_query(GLenum targ);
+    GLenum tbinding_query_enum(GLenum target);
     #endif
     
     template<typename Callable1,typename Callable2, typename... Types>
@@ -861,21 +860,27 @@ private:
     template<typename Callable2, typename... Types>
     void texture_function_ndsaf(Callable2,GLenum targ,Types... params);
     
-	GLenum m_target,m_lastbinding;
+	GLenum m_target,m_target_binding;
 public:
 	const GLenum& target;
 
-    #ifdef _MSC_VER
-    Texture(Texture&& texture) : _impl::GLObject<Texture>(std::move(texture)), target(texture.target){}
-    #endif
-    
+    Texture(Texture&& texture) : _impl::GLObject<Texture>(std::move(texture)), m_target(texture.m_target), m_target_binding(texture.m_target_binding),target(m_target){}
+
+    Texture& operator=(Texture&& texture)
+    {
+        _impl::GLObject<Texture>::operator=(std::move(texture));
+        m_target = texture.target;
+        m_target_binding = texture.m_target_binding;
+        return *this;
+    }
+
     Texture():
 		_impl::GLObject<Texture>("GLTexture",glGenTextures,glDeleteTextures),
 		m_target(GL_TEXTURE_2D),
-		m_lastbinding(GL_TEXTURE_BINDING_2D),
+		m_target_binding(GL_TEXTURE_BINDING_2D),
 		target(m_target)
 	{}
-    
+
     #if defined(GL_ALT_FUNDEF_BindTexture)
     void Bind(GLenum targ)
 	{
@@ -899,12 +904,14 @@ public:
     void Image1D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		m_target = targ;
+        m_target_binding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(glTextureImage1DEXT,glTexImage1D,targ,level,internalformat,width,border,format,type,data);
 	}
     
 	void Image1D(GLint level,GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		m_target = GL_TEXTURE_1D;
+        m_target_binding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(glTextureImage1DEXT, glTexImage1D, m_target, level, internalformat, width, border, format, type, data);
 	}
     #endif
@@ -913,11 +920,13 @@ public:
 	void Image2D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLsizei height,GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		m_target = targ;
+        m_target_binding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(glTextureImage2DEXT, glTexImage2D, targ, level, internalformat, width, height, border, format, type, data);
 	}
 	void Image2D(GLint level, GLint internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		m_target = GL_TEXTURE_2D;
+        m_target_binding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(glTextureImage2DEXT, glTexImage2D, m_target, level, internalformat, width, height, border, format, type, data);
 	}
     #endif
@@ -935,11 +944,13 @@ public:
 	void Image3D(GLenum targ,GLint level,GLint internalformat, GLsizei width, GLsizei height, GLsizei depth,GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		m_target = targ;
+        m_target_binding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(glTextureImage3DEXT,TexImage3DFunc,targ,level,internalformat,width,height,depth,border,format,type,data);
 	}
 	void Image3D(GLint level,GLint internalformat, GLsizei width, GLsizei height, GLsizei depth,GLint border, GLenum format, GLenum type, const GLvoid *data)
 	{
 		m_target = GL_TEXTURE_3D;
+        m_target_binding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(glTextureImage3DEXT,TexImage3DFunc,m_target,level,internalformat,width,height,depth,border,format,type,data);
 	}
     #endif
@@ -1450,6 +1461,8 @@ boolean fixedsamplelocations);
     
 	void Storage1D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width)
 	{
+		m_target = targ;
+        m_target_binding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(&glTextureStorage1DEXT,&GL_ALT_TexStorage1DFunc,targ,levels,internalformat,width);
 	}
 	void Storage1D(GLsizei levels, GLenum internalformat, GLsizei width)
@@ -1472,6 +1485,8 @@ boolean fixedsamplelocations);
     
 	void Storage2D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height)
 	{
+		m_target = targ;
+        m_target_binding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(&glTextureStorage2DEXT,&GL_ALT_TexStorage2DFunc,targ,levels,internalformat,width,height);
 	}
 	void Storage2D(GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height)
@@ -1492,6 +1507,8 @@ boolean fixedsamplelocations);
     
 	void Storage3D(GLenum targ, GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height,GLsizei depth)
 	{
+		m_target = targ;
+        m_target_binding = (GLenum)tbinding_query_enum(m_target);
 		texture_function_dsa(&glTextureStorage3DEXT,&GL_ALT_TexStorage3DFunc,targ,levels,internalformat,width,height,depth);
 	}
 	void Storage3D(GLsizei levels, GLenum internalformat, GLsizei width,GLsizei height,GLsizei depth)
@@ -1549,7 +1566,7 @@ protected:
 	explicit Texture(GLuint o):
 		_impl::GLObject<Texture>(o,glDeleteTextures),
 		m_target(GL_TEXTURE_2D),
-		m_lastbinding(GL_TEXTURE_BINDING_2D),
+		m_target_binding(GL_TEXTURE_BINDING_2D),
 		target(m_target)
 	{}
 };
@@ -1562,9 +1579,7 @@ class Sampler:public _impl::GLObject<Sampler>
 {
 public:
     
-    #ifdef _MSC_VER
     Sampler(Sampler&& sampler) : _impl::GLObject<Sampler>(std::move(sampler)){}
-    #endif
 
 	Sampler():
 		_impl::GLObject<Sampler>("GLSampler",glGenSamplers,glDeleteSamplers)
@@ -1720,9 +1735,7 @@ private:
 	GLenum m_target;
 public:
     
-    #ifdef _MSC_VER
     Framebuffer(Framebuffer&& framebuffer) : _impl::GLObject<Framebuffer>(std::move(framebuffer)){}
-    #endif
     
 	Framebuffer():
 		_impl::GLObject<Framebuffer>("GLFramebuffer",glGenFramebuffers,glDeleteFramebuffers),
@@ -1775,7 +1788,6 @@ public:
 	void Texture(GLenum attachment, GLuint texture, GLint level)
 	{
         
-        
 		framebuffer_function_dsa(&glNamedFramebufferTextureEXT,&FramebufferTextureFunc,attachment,texture,level);
 	}
     
@@ -1785,9 +1797,9 @@ public:
 	}
     #endif
 
-    #if defined(GL_ALT_FUNDEF_NamedFramebufferRenderbuffer) || defined(GL_ALT_FUNDEF_NamedFramebufferRenderbufferEXT)
-	void Renderbuffer(GLenum attachment, GLuint renderbuffer, GLint level);
-	void Renderbuffer(GLenum attachment,const gl::Renderbuffer& rb, GLint level);
+    #if defined(GL_ALT_FUNDEF_NamedFramebufferRenderbuffer) || defined(GL_ALT_FUNDEF_NamedFramebufferRenderbufferEXT) || defined(GL_ALT_FUNDEF_FramebufferRenderbuffer)
+	void Renderbuffer(GLenum attachment, GLuint renderbuffer);
+	void Renderbuffer(GLenum attachment,const gl::Renderbuffer& rb);
     #endif
 
     #if (defined(GL_ALT_FUNDEF_FramebufferTexture1D) || defined(GL_ALT_FUNDEF_NamedFramebufferTexture1DEXT)) && defined(GL_ALT_FUNDEF_GenTextures)
@@ -1857,9 +1869,7 @@ private:
     
 public:
     
-    #ifdef _MSC_VER
     Renderbuffer(Renderbuffer&& renderbuffer) : _impl::GLObject<Renderbuffer>(std::move(renderbuffer)){}
-    #endif
     
 	Renderbuffer():
 		_impl::GLObject<Renderbuffer>("GLRenderbuffer",glGenRenderbuffers,glDeleteRenderbuffers)
@@ -1913,13 +1923,13 @@ protected:
     
 #endif
     
-#if defined(GL_ALT_FUNDEF_NamedFramebufferRenderbuffer) || defined(GL_ALT_FUNDEF_NamedFramebufferRenderbufferEXT)
-inline void Framebuffer::Renderbuffer(GLenum attachment, GLuint renderbuffer, GLint level)
+#if defined(GL_ALT_FUNDEF_NamedFramebufferRenderbuffer) || defined(GL_ALT_FUNDEF_NamedFramebufferRenderbufferEXT) || defined(GL_ALT_FUNDEF_FramebufferRenderbuffer)
+inline void Framebuffer::Renderbuffer(GLenum attachment, GLuint renderbuffer)
 {
 	framebuffer_function_dsa(&glNamedFramebufferRenderbuffer,&glFramebufferRenderbuffer,attachment,GL_RENDERBUFFER,renderbuffer);
 }
 
-inline void Framebuffer::Renderbuffer(GLenum attachment,const gl::Renderbuffer& rb, GLint level)
+inline void Framebuffer::Renderbuffer(GLenum attachment,const gl::Renderbuffer& rb)
 {
 	framebuffer_function_dsa(&glNamedFramebufferRenderbuffer,&glFramebufferRenderbuffer,attachment,GL_RENDERBUFFER,rb.name);
 }

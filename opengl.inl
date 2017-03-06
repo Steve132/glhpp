@@ -10,7 +10,7 @@ inline void _handleError(GLenum errcode,const std::string& what)
 }
     
 #ifdef GL_HPP_ERROR_CHECKING
-static inline void _checkError(GLenum errcode,const std::string& what)
+/*static */inline void _checkError(GLenum errcode,const std::string& what)
 {
 	static const unsigned int NUM_ERRORS=6;
 	static const GLenum errenums[NUM_ERRORS]={GL_INVALID_ENUM,GL_INVALID_VALUE,GL_INVALID_OPERATION,GL_INVALID_FRAMEBUFFER_OPERATION,GL_OUT_OF_MEMORY,GL_HPP_CUSTOM};
@@ -100,7 +100,7 @@ inline	GLint Get<GLint>(GLenum e)
 {
 	GLint v;
 	glGetIntegerv(e,&v);
-	_impl::_checkError(GL_INVALID_ENUM,"Invalid variable read with glGet");
+	_impl::_checkError(GL_INVALID_ENUM,"Invalid variable read with glGetIntegerv");
 	return v;
 }
 #endif
@@ -280,7 +280,7 @@ inline std::string Shader::Compile()
 		glProgram##fn##EXT(object,Program::GetUniformLocation(n),__VA_ARGS__);											\
 	}																			\
 	else																		\
-	{																			\
+	{															\
 		GLint curr_prog=gl::Get<GLint>(GL_CURRENT_PROGRAM);						\
 		glUseProgram(object);													\
 		_impl::_checkError(GL_INVALID_OPERATION,"Uniformed program could not be made part of current state, or transform feedback mode is enabled");\
@@ -918,13 +918,13 @@ inline void Buffer::Data(GLsizeiptr sz,const GLvoid* data,GLenum usage)
 	{
         
         #if defined(GL_PIXEL_PACK_BUFFER)
-        const GLenum targetBinding = GL_PIXEL_PACK_BUFFER_BINDING;
-        const GLenum bufferTarget = GL_PIXEL_PACK_BUFFER;
+		const GLenum targetBinding = GL_PIXEL_PACK_BUFFER_BINDING;
+		const GLenum bufferTarget = GL_PIXEL_PACK_BUFFER;
         #else
         const GLenum targetBinding = GL_ARRAY_BUFFER_BINDING;
         const GLenum bufferTarget = GL_ARRAY_BUFFER;
         #endif
-        
+		
 		GLint ppb_binding=gl::Get<GLint>(targetBinding);
 		if(ppb_binding!=object)
 		{
@@ -1676,131 +1676,124 @@ inline ContextInfo::ContextInfo():
 
     
 #if defined(GL_ALT_FUNDEF_GetIntegerv)
-inline GLint Texture::tbinding_query(GLenum target)
+
+inline GLenum Texture::tbinding_query_enum(GLenum target)
 {
-    static const GLenum mapping[]={
-    
-    #if defined(GL_TEXTURE_1D) && defined(GL_TEXTURE_BINDING_1D)
+    static const GLenum mapping[] = {
+
+#if defined(GL_TEXTURE_1D) && defined(GL_TEXTURE_BINDING_1D)
         GL_TEXTURE_1D, GL_TEXTURE_BINDING_1D,
-    #endif
-    #if defined(GL_TEXTURE_2D) && defined(GL_TEXTURE_BINDING_2D)
+#endif
+#if defined(GL_TEXTURE_2D) && defined(GL_TEXTURE_BINDING_2D)
         GL_TEXTURE_2D, GL_TEXTURE_BINDING_2D,
-    #endif
-    #if defined(GL_PROXY_TEXTURE_2D) && defined(GL_TEXTURE_BINDING_2D)
+#endif
+#if defined(GL_PROXY_TEXTURE_2D) && defined(GL_TEXTURE_BINDING_2D)
         GL_PROXY_TEXTURE_2D, GL_TEXTURE_BINDING_2D,
-    #endif
-    #if defined(GL_TEXTURE_1D_ARRAY) && defined(GL_TEXTURE_BINDING_1D_ARRAY)
+#endif
+#if defined(GL_TEXTURE_1D_ARRAY) && defined(GL_TEXTURE_BINDING_1D_ARRAY)
         GL_TEXTURE_1D_ARRAY, GL_TEXTURE_BINDING_1D_ARRAY,
-    #endif
-    #if defined(GL_PROXY_TEXTURE_1D_ARRAY) && defined(GL_TEXTURE_BINDING_1D_ARRAY)
-        GL_PROXY_TEXTURE_1D_ARRAY,GL_TEXTURE_BINDING_1D_ARRAY,
-    #endif
-    #if defined(GL_TEXTURE_RECTANGLE) && defined(GL_TEXTURE_BINDING_RECTANGLE)
+#endif
+#if defined(GL_PROXY_TEXTURE_1D_ARRAY) && defined(GL_TEXTURE_BINDING_1D_ARRAY)
+        GL_PROXY_TEXTURE_1D_ARRAY, GL_TEXTURE_BINDING_1D_ARRAY,
+#endif
+#if defined(GL_TEXTURE_RECTANGLE) && defined(GL_TEXTURE_BINDING_RECTANGLE)
         GL_TEXTURE_RECTANGLE, GL_TEXTURE_BINDING_RECTANGLE,
-    #endif
-    #if defined(GL_PROXY_TEXTURE_RECTANGLE) && defined(GL_TEXTURE_BINDING_RECTANGLE)
+#endif
+#if defined(GL_PROXY_TEXTURE_RECTANGLE) && defined(GL_TEXTURE_BINDING_RECTANGLE)
         GL_PROXY_TEXTURE_RECTANGLE, GL_TEXTURE_BINDING_RECTANGLE,
-    #endif
-    #if defined(GL_TEXTURE_CUBE_MAP_POSITIVE_X) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
-        GL_TEXTURE_CUBE_MAP_POSITIVE_X,GL_TEXTURE_BINDING_CUBE_MAP,
-    #endif
-    #if defined(GL_TEXTURE_CUBE_MAP_NEGATIVE_X) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
-        GL_TEXTURE_CUBE_MAP_NEGATIVE_X,GL_TEXTURE_BINDING_CUBE_MAP,
-    #endif
-    #if defined(GL_TEXTURE_CUBE_MAP_POSITIVE_Y) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
-        GL_TEXTURE_CUBE_MAP_POSITIVE_Y,GL_TEXTURE_BINDING_CUBE_MAP,
-    #endif
-    #if defined(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
-        GL_TEXTURE_CUBE_MAP_NEGATIVE_Y,GL_TEXTURE_BINDING_CUBE_MAP,
-    #endif
-    #if defined(GL_TEXTURE_CUBE_MAP_POSITIVE_Z) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
-        GL_TEXTURE_CUBE_MAP_POSITIVE_Z,GL_TEXTURE_BINDING_CUBE_MAP,
-    #endif
-    #if defined(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
-        GL_TEXTURE_CUBE_MAP_NEGATIVE_Z,GL_TEXTURE_BINDING_CUBE_MAP,
-    #endif
-    #if defined(GL_PROXY_TEXTURE_CUBE_MAP) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
-        GL_PROXY_TEXTURE_CUBE_MAP,GL_TEXTURE_BINDING_CUBE_MAP,
-    #endif
-    #if defined(GL_TEXTURE_3D) && defined(GL_TEXTURE_BINDING_3D)
+#endif
+#if defined(GL_TEXTURE_CUBE_MAP) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+        GL_TEXTURE_CUBE_MAP, GL_TEXTURE_BINDING_CUBE_MAP,
+#endif
+#if defined(GL_TEXTURE_CUBE_MAP_POSITIVE_X) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+        GL_TEXTURE_CUBE_MAP_POSITIVE_X, GL_TEXTURE_BINDING_CUBE_MAP,
+#endif
+#if defined(GL_TEXTURE_CUBE_MAP_NEGATIVE_X) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+        GL_TEXTURE_CUBE_MAP_NEGATIVE_X, GL_TEXTURE_BINDING_CUBE_MAP,
+#endif
+#if defined(GL_TEXTURE_CUBE_MAP_POSITIVE_Y) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+        GL_TEXTURE_CUBE_MAP_POSITIVE_Y, GL_TEXTURE_BINDING_CUBE_MAP,
+#endif
+#if defined(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+        GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, GL_TEXTURE_BINDING_CUBE_MAP,
+#endif
+#if defined(GL_TEXTURE_CUBE_MAP_POSITIVE_Z) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+        GL_TEXTURE_CUBE_MAP_POSITIVE_Z, GL_TEXTURE_BINDING_CUBE_MAP,
+#endif
+#if defined(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+        GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, GL_TEXTURE_BINDING_CUBE_MAP,
+#endif
+#if defined(GL_PROXY_TEXTURE_CUBE_MAP) && defined(GL_TEXTURE_BINDING_CUBE_MAP)
+        GL_PROXY_TEXTURE_CUBE_MAP, GL_TEXTURE_BINDING_CUBE_MAP,
+#endif
+#if defined(GL_TEXTURE_3D) && defined(GL_TEXTURE_BINDING_3D)
         GL_TEXTURE_3D, GL_TEXTURE_BINDING_3D,
-    #endif
-    #if defined(GL_PROXY_TEXTURE_3D) && defined(GL_TEXTURE_BINDING_3D)
+#endif
+#if defined(GL_PROXY_TEXTURE_3D) && defined(GL_TEXTURE_BINDING_3D)
         GL_PROXY_TEXTURE_3D, GL_TEXTURE_BINDING_3D,
-    #endif
-    #if defined(GL_TEXTURE_2D_ARRAY) && defined(GL_TEXTURE_BINDING_2D_ARRAY)
+#endif
+#if defined(GL_TEXTURE_2D_ARRAY) && defined(GL_TEXTURE_BINDING_2D_ARRAY)
         GL_TEXTURE_2D_ARRAY, GL_TEXTURE_BINDING_2D_ARRAY,
-    #endif
-    #if defined(GL_PROXY_TEXTURE_2D_ARRAY) && defined(GL_TEXTURE_BINDING_2D_ARRAY)
-        GL_PROXY_TEXTURE_2D_ARRAY,GL_TEXTURE_BINDING_2D_ARRAY,
-    #endif
+#endif
+#if defined(GL_PROXY_TEXTURE_2D_ARRAY) && defined(GL_TEXTURE_BINDING_2D_ARRAY)
+        GL_PROXY_TEXTURE_2D_ARRAY, GL_TEXTURE_BINDING_2D_ARRAY,
+#endif
     };
-    
+
     const std::size_t elementsInArray = sizeof(mapping) / sizeof(GLenum);
-    GLenum bquery=GL_TEXTURE_BINDING_2D;
-    for(int i=0; i< elementsInArray>>1; i++)
+    GLenum bquery = GL_TEXTURE_BINDING_2D;
+
+    for (int i = 0; i< elementsInArray; i += 2)
     {
-        if(target==mapping[2*i])
+        if (target == mapping[i])
         {
-            bquery=mapping[2*i+1];
+            bquery = mapping[i + 1];
             break;
         }
     }
+
+    return bquery;
+}
+
+inline GLint Texture::tbinding_query(GLenum target)
+{
+    GLenum bquery = tbinding_query_enum(target);
+
     GLint t_binding=gl::Get<GLint>(bquery);
+
     return t_binding;
 }
 #endif
 
 #ifdef GL_ALT_FUNDEF_GenTextures
+    
 template<class Callable2,typename... Types>
 inline void Texture::texture_function_ndsaf(Callable2 ndsafunc,GLenum target,Types... params)
 {
-    if(target != m_target)
+    GLint t_binding = gl::Get<GLint>(m_target_binding);
+    
+    if(t_binding!=object)
     {
-        m_target=target;
-        m_lastbinding=(GLenum)tbinding_query(target);
+        glBindTexture(m_target,object); /// m_target instead of target, because of eg, cube face targets for subimage.  need to bind as what texture was created as, but pass different target to function
     }
-    else
+    ndsafunc(target,params...);
+    if(t_binding!=object)
     {
-        GLenum t_binding=m_lastbinding;
-        if(t_binding!=object)
-        {
-            glBindTexture(target,object);
-        }
-        ndsafunc(target,params...);
-        if(t_binding!=object)
-        {
-            glBindTexture(target,t_binding);
-        }
+        glBindTexture(m_target,t_binding);
     }
 }
     
 template<class Callable1,class Callable2,typename... Types>
 inline void Texture::texture_function_dsaf(Callable1 dsafunc,Callable2 ndsafunc,GLenum target,Types... params)
 {
-	if(target != m_target)
-	{
-		m_target=target;
-		m_lastbinding=(GLenum)tbinding_query(target);
-	}
 	if(direct_state_access_supported)
 	{
 		dsafunc(object,target,params...);
 	}
 	else
 	{
-		GLenum t_binding=m_lastbinding;
-		if(t_binding!=object)
-		{
-			glBindTexture(target,object);
-		}
-		ndsafunc(target,params...);
-		if(t_binding!=object)
-		{
-			glBindTexture(target,t_binding);
-		}
-	}
-		
+        texture_function_ndsaf(ndsafunc, target, params...);
+    }
 }
 #endif
 
@@ -1868,6 +1861,7 @@ inline GLfloat Texture::GetParameter<GLfloat>(GLenum pname)
 #if defined(GL_ALT_FUNDEF_GetTextureParameterIivEXT) || defined(GL_ALT_FUNDEF_GetTexParameterIiv) || defined(GL_ALT_FUNDEF_GetTexParameterIivEXT)
     
 #if defined(GL_ALT_FUNDEF_GetTexParameterIiv)
+#undef GL_ALT_TexParameterIivFunc
 #define GL_ALT_TexParameterIivFunc glGetTexParameterIiv
 #elif defined(GL_ALT_FUNDEF_GetTexParameterIivEXT)
 #define GL_ALT_TexParameterIivFunc glGetTexParameterIivEXT
@@ -1964,21 +1958,7 @@ inline void Framebuffer::framebuffer_function_dsaf(Callable1 dsafunc,Callable2 n
 	}
 	else
 	{
-        #if !defined(GL_DRAW_FRAMEBUFFER) || !defined(GL_READ_FRAMEBUFFER)
-            GLenum t_binding = GL_FRAMEBUFFER_BINDING;
-        #else
-            GLenum t_binding=gl::Get<GLint>(m_target==GL_DRAW_FRAMEBUFFER ? GL_DRAW_FRAMEBUFFER_BINDING : GL_READ_FRAMEBUFFER_BINDING);
-        #endif
-        
-		if(t_binding!=object)
-		{
-			glBindFramebuffer(m_target,object);
-		}
-		ndsafunc(GL_FRAMEBUFFER,params...);
-		if(t_binding!=object)
-		{
-			glBindFramebuffer(m_target,t_binding);
-		}
+        framebuffer_function_ndsaf(ndsafunc, params...);
 	}
 }
     
@@ -1986,7 +1966,7 @@ template<class Callable2,typename... Types>
 inline void Framebuffer::framebuffer_function_ndsaf(Callable2 ndsafunc,Types... params)
 {
     GLenum t_binding = GL_FRAMEBUFFER_BINDING;
-    
+
     switch(m_target)
     {
 #ifdef GL_DRAW_FRAMEBUFFER
@@ -2005,14 +1985,19 @@ inline void Framebuffer::framebuffer_function_ndsaf(Callable2 ndsafunc,Types... 
             break;
             
     }
-    if(t_binding!=object)
+
+    GLint prevBinding = gl::Get<GLint>(t_binding);
+
+    if(prevBinding != object)
     {
         glBindFramebuffer(m_target,object);
     }
+
     ndsafunc(GL_FRAMEBUFFER,params...);
+
     if(t_binding!=object)
     {
-        glBindFramebuffer(m_target,t_binding);
+        glBindFramebuffer(m_target,prevBinding);
     }
 }
 #endif
@@ -2028,16 +2013,7 @@ inline void Renderbuffer::renderbuffer_function_dsaf(Callable1 dsafunc,Callable2
 	}
 	else
 	{
-		GLenum t_binding=gl::Get<GLint>(GL_RENDERBUFFER_BINDING);
-		if(t_binding!=object)
-		{
-			glBindRenderbuffer(GL_RENDERBUFFER,object);
-		}
-		ndsafunc(GL_FRAMEBUFFER,params...);
-		if(t_binding!=object)
-		{
-			glBindRenderbuffer(GL_RENDERBUFFER,t_binding);
-		}
+        renderbuffer_function_ndsaf(ndsafunc, params...);
 	}
 		
 }
@@ -2051,7 +2027,7 @@ inline void Renderbuffer::renderbuffer_function_ndsaf(Callable2 ndsafunc,Types..
     {
         glBindRenderbuffer(GL_RENDERBUFFER,object);
     }
-    ndsafunc(GL_FRAMEBUFFER,params...);
+    ndsafunc(GL_RENDERBUFFER,params...);
     if(t_binding!=object)
     {
         glBindRenderbuffer(GL_RENDERBUFFER,t_binding);
