@@ -1,14 +1,3 @@
-#if defined(GL_ALT_FUNDEF_NamedFramebufferRenderbuffer) || defined(GL_ALT_FUNDEF_NamedFramebufferRenderbufferEXT) || defined(GL_ALT_FUNDEF_FramebufferRenderbuffer)
-inline void Framebuffer::Renderbuffer(GLenum attachment, GLuint renderbuffer)
-{
-	framebuffer_function_dsa(&glNamedFramebufferRenderbuffer,&glFramebufferRenderbuffer,attachment,GL_RENDERBUFFER,renderbuffer);
-}
-
-inline void Framebuffer::Renderbuffer(GLenum attachment,const gl::Renderbuffer& rb)
-{
-	framebuffer_function_dsa(&glNamedFramebufferRenderbuffer,&glFramebufferRenderbuffer,attachment,GL_RENDERBUFFER,rb.name);
-}
-#endif
 
 
 
