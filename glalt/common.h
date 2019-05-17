@@ -381,17 +381,33 @@ static inline int _glalt_extelemcmp(const void* a,const void* b)
 	const char* astr=*(const char**)a;
 	const char* bstr=*(const char**)b;
 	
-	int alen=*(astr++);
-	int blen=*(bstr++);
+	int alen=*(astr++) - 1;
+	int blen=*(bstr++) - 1;
+	// one off in length?
+	
 	int cmpval=memcmp(astr,bstr,alen > blen ? blen : alen);
 	if(cmpval==0)
 	{
-		return memcmp(&alen,&blen,1);
+		return (alen - blen);
 	}
-	else
+	return cmpval;
+}
+
+static inline int _glalt_extelemcmp2(const void* a,const void* b)
+{
+	const char* astr=*(const char**)a;
+	const char* bstr=*(const char**)b;
+	
+	int alen= strlen(astr) ;
+	int blen=*(bstr++) - 1;
+	// one off in length?
+	
+	int cmpval=memcmp(astr,bstr,alen > blen ? blen : alen);
+	if(cmpval==0)
 	{
-		return cmpval;
+		return (alen - blen);
 	}
+	return cmpval;
 }
 static inline glalt_version_info _get_version()
 {

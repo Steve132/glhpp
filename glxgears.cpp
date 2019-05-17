@@ -38,6 +38,7 @@
 #include <X11/keysym.h>
 #include "glalt/gl2.1.h"
 #include <GL/glx.h>
+#include<iostream>
 
 
 #define BENCHMARK
@@ -272,6 +273,8 @@ static void test()
 {
 	const glalt_extension_set* glexts=glaltGetExtensions();
 	printf("The number of detected extensions is %ld\n",glexts->num_extensions);
+	
+	std::cout << "FAIL: " << glaltCheckExtension("GL_EXT_direct_state_access") << std::endl;
 	glDeleteProgram(glCreateProgram());
 }
 
