@@ -287,8 +287,14 @@ static inline void* _glalt_prim_GetProcAddress(const char* name)
 	return dxpa.get(name);
 }
 
-#else
+#elif __ANDROID_API__
+#include <EGL/egl.h>
 
+static inline void* _glalt_prim_GetProcAddress(const char* name)
+{
+    return (void*)eglGetProcAddress((char const*)name);
+}
+#else
 #include<GL/glx.h>
 CGUARDBEGIN
 //void *glXGetProcAddressARB(const GLubyte *procName);
@@ -323,13 +329,6 @@ typedef struct _glalt_extension_set_t
 	char* extensionstringmemory;
 	const char** extensionstringbeginnings;
 	size_t num_extensions;
-	#ifdef __cplusplus
-	~_glalt_extension_set_t()
-	{
-		free(extensionstringmemory);
-		free(extensionstringbeginnings);
-	}
-	#endif
 } glalt_extension_set;
 
 int glaltCheckExtension(const char* extname);
@@ -376,7 +375,7 @@ inline void glaltSetError(_glalt_error_callback_func cbfnew,void* ud)
 	_glaltErrorCallbackBackend(ud,NULL,NULL,NULL,cbfnew);
 }
 
-static inline int _glalt_extelemcmp(const void* a,const void* b)
+static inline int _glalt_extelemcmp_sort(const void* a,const void* b)
 {
 	const char* astr=*(const char**)a;
 	const char* bstr=*(const char**)b;
@@ -409,6 +408,25 @@ static inline int _glalt_extelemcmp2(const void* a,const void* b)
 	}
 	return cmpval;
 }
+
+static inline int _glalt_extelemcmp_search(const void* a, const void* b)
+{
+    const char* astr = *(const char**)a;
+    const char* bstr = *(const char**)b;
+
+    int alen = strlen(astr);
+    int blen = (*(bstr++));
+    int cmpval = memcmp(astr, bstr, alen > blen ? blen : alen);
+    if (cmpval == 0)
+    {
+        return memcmp(&alen, &blen, 1);
+    }
+    else
+    {
+        return cmpval;
+    }
+}
+
 static inline glalt_version_info _get_version()
 {
 	const char* vs=(const char*)glGetString(GLALT_GL_VERSION);
@@ -458,7 +476,7 @@ inline glalt_extension_set _get_extensions()
 				extstringhead=extstring+offset;
 			}
 			strncpy(extstringhead+1,curstringname,csnl);
-			extstringhead[0]=(char)(csnl);//the length of the string to the next marker
+			extstringhead[0]=(char)(csnl-1);//the length of the string to the next marker
 			extstringhead+=csnl;
 		}
 		extlist.num_extensions=extmax;
@@ -467,13 +485,13 @@ inline glalt_extension_set _get_extensions()
 	}
 	else
 	{
+        extlist.num_extensions = 0;
 		const char* extother=(const char*)glGetString(GLALT_GL_EXTENSIONS);
 		size_t extslen=strlen(extother);
 		char* pch;
 		extlist.extensionstringmemory=(char*)malloc(extslen+1); //empty at the beginning
 		memcpy(extlist.extensionstringmemory+1,extother,extslen);
-		extlist.extensionstringmemory[extslen+1]=' ';//last whitespace at the end
-
+		
 		for(pch=extlist.extensionstringmemory;pch!=NULL;pch=strchr(pch+1,' '))
 		{
 			size_t sz=strcspn(pch+1," ")+1;
@@ -490,7 +508,7 @@ inline glalt_extension_set _get_extensions()
 		pch+=*pch;//the first element of the array is the size offset
 	}
 	//binary sort the extindices for searching later
-	qsort(extindices,extlist.num_extensions,sizeof(const char*),_glalt_extelemcmp);
+	qsort(extindices,extlist.num_extensions,sizeof(const char*),_glalt_extelemcmp_sort);
 	extlist.extensionstringbeginnings=extindices;
 	return extlist;
 }
@@ -501,7 +519,7 @@ inline int _es_contains(const char* namecheck)
 #else
 	static const glalt_extension_set* es=NULL;if(!es) {es=glaltGetExtensions();};
 #endif
-	return bsearch(&namecheck,es->extensionstringbeginnings,es->num_extensions,sizeof(const char*),_glalt_extelemcmp)!=NULL;
+	return bsearch(&namecheck,es->extensionstringbeginnings,es->num_extensions,sizeof(const char*),_glalt_extelemcmp_search)!=NULL;
 }
 
 inline int glaltCheckExtension(const char* extname)
