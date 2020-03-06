@@ -628,7 +628,7 @@ public:
     void Data(GLsizeiptr sz,const GLvoid* data,GLenum usage);
     
     template<class T>
-	void Data(const T* b,const T* e,GLenum usage);
+    void Data(const T* b,const T* e,GLenum usage™);
     #endif
 
     #if defined(GL_ALT_FUNDEF_NamedBufferSubDataEXT) || defined(GL_ALT_FUNDEF_BufferSubData)
