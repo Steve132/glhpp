@@ -6,6 +6,7 @@
 #include "Sync.hpp"
 #include "Query.hpp"
 #include "Buffer.hpp"
+#include "Shader.hpp"
 
 namespace gl
 {

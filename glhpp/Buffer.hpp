@@ -1,6 +1,7 @@
 #ifndef GLHPP_BUFFER_HPP
 #define GLHPP_BUFFER_HPP
 
+#include "Object.hpp"
 #include "Formats.hpp"
 
 namespace gl
@@ -88,7 +89,7 @@ public:
 	}
 	void GetPointer(GLenum pname,const void** params) const
 	{
-		glGetNamedBufferPointerv(id,pname,params);
+		glGetNamedBufferPointerv(id,pname,const_cast<void**>(params));
 	}
 	void CopySubData(Buffer& target,GLintptr readOffset,GLintptr writeOffset,GLsizeiptr size) const
 	{
@@ -132,7 +133,7 @@ public:
 	}
 	const void* GetPointer(GLenum pname=GL_BUFFER_MAP_POINTER) const
 	{
-		const void* out=GetPointer(pname,&out);return out;
+		const void* out=GetPointer(pname);return out;
 	}
 	template<class T>
 	T GetPointer(GLenum pname=GL_BUFFER_MAP_POINTER) const
