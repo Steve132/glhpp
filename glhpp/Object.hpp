@@ -45,7 +45,11 @@ public:
 	{
 		return is_func(name());
 	}
+
+#ifndef GLHPP_STRICT_API
 	operator bool() const { return Is(); }
+#endif
+
 private:
 	void cleanup()
 	{

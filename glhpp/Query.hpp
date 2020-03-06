@@ -101,6 +101,10 @@ public:
 		impl::GetObjectImpl<IntType>::run(id,pname,&out);
 		return out;
 	}
+	void Counter(GLenum ts=GL_TIMESTAMP) const
+	{
+		glQueryCounter(id,ts);
+	}
 };
 	
 }

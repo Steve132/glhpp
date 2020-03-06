@@ -5,7 +5,7 @@
 
 namespace gl
 {
-
+//You can't make a sync without Fence() so this isnt' an object.	
 class Sync: public gl::impl::Resource<GLsync>
 {
 protected:
@@ -16,12 +16,10 @@ protected:
 		is_func=glIsSync;
 	}
 public:
-	//You can't make a sync so this isnt' an object.
 	static Sync Fence(GLenum condition=GL_SYNC_GPU_COMMANDS_COMPLETE,GLbitfield flags=0)
 	{
 		return Sync(glFenceSync(condition,flags));
 	}
-	
 	GLenum ClientWait(GLbitfield flags=0, GLuint64 timeout_ns=GL_TIMEOUT_IGNORED) const
 	{
 		return glClientWaitSync(name(),flags,timeout_ns);
