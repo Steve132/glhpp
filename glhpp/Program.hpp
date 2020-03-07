@@ -6,6 +6,8 @@
 #include <vector>
 #include <algorithm>
 
+#include "Uniforms.hpp"
+
 namespace gl
 {
 	class Program: public impl::DefaultableObject<Program>
@@ -165,6 +167,14 @@ namespace gl
 		{
 			return glGetUniformLocation(id,name);
 		}
+		
+		UniformsVectorTemplates(GLuint,ui)
+		UniformsVectorTemplates(GLint,i)
+		UniformsVectorTemplates(GLdouble,d)
+		UniformsVectorTemplates(GLfloat,f)
+		UniformsMatrixTemplates(double,d)
+		UniformsMatrixTemplates(float,f)
+		
 	};
 	
 	Program Shader::CreateProgram(GLenum type,GLsizei count, const char * const * strings)
