@@ -22,8 +22,18 @@ __NL__	void UniformMatrix##r(GLuint l,GLuint count,GLboolean transpose,const X* 
 #define UniformsMNTemplate(r,c,X,xl) \
 __NL__	void UniformMatrix##r##x##c(GLuint l,GLuint count,GLboolean transpose,const X* v) { glProgramUniformMatrix##r##x##c##xl##v(id,l,count,transpose,v); }\
 
+#define UniformsGetTemplate(X,xl) \
+__NL__	void GetUniform(GLint l,X* out) const { glGetUniform##xl##v(id,location,out);}\
+__NL__	voit GetnUniform(GLint l,GLsizei bufSize,X* out) const { glGetUniform##xl##v(id,location,bufSize,out); }\
+
 
 #ifndef GLHPP_STRICT_API
+
+#define UniformsGetTemplate_EXT(X,xl) \
+__NL__	void GetUniform(const char* nm,X* out) const { GetUniform(GetUniformLocation(nm),out);}\
+__NL__	void GetnUniform(const char* nm,GLsizei bufSize,X* out) const { GetUniform(GetUniformLocation(nm),bufSize,out); }\
+__NL__  template<unsigned int N> std::array<X,N> GetUniform(GLuint location) const { std::array<X,N> out;GetUniform(location,&out[0]);return out;}\
+__NL__  template<unsigned int N> std::array<X,N> GetUniform(const char* nm) const { std::array<X,N> out;GetUniform(nm,&out[0]);return out;}\
 
 #define UniformsVTemplate_EXT(r,X,x) \
 __NL__	void Uniform(GLuint l,Comma##r(X v)) { Uniform##r(l,Comma##r(v)); } \

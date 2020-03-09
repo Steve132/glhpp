@@ -119,10 +119,18 @@ namespace gl
 			return pf;
 		}
 #endif
-	static Program CreateProgram(GLenum type,GLsizei count, const char * const * strings);
+		static Program CreateProgram(GLenum type,GLsizei count, const char * const * strings);
 #ifndef GLHPP_STRICT_API
-	static Program CreateProgram(GLenum type,const std::string& text);
+		static Program CreateProgram(GLenum type,const std::string& text);
 #endif
+		static void MemoryBarrier(GLbitfield bf)
+		{
+			glMemoryBarrier(bf);
+		}
+		static void MemoryBarrierByRegion(GLbitfield bf)
+		{
+			glMemoryBarrierByRegion(bf);
+		}
 	};
 }
 

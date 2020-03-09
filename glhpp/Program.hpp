@@ -107,6 +107,11 @@ namespace gl
 		GLint GetResource(GLenum programInterface,GLuint index,GLenum prop) const
 		{
 			if(prop==GL_ACTIVE_VARIABLES) throw Exception(GLHPP_CUSTOM_EXCEPTION,"Cannot use this GLHPP version of GetResource to query a multi-valued program resource.  Try GetResource_Multi");
+		
+			GLint out;
+			GLsizei lenout;
+			GetResource(programInterface,index,1,&prop,1,&lenout,&out);
+			return out;
 		}
 		std::vector<GLint> GetResource_Multi(GLenum programInterface,GLuint index,GLenum prop) const
 		{
@@ -130,9 +135,9 @@ namespace gl
 		{
 			glGetProgramResourceLocation(id,programInterface,name);
 		}
-		GLuint GetResourceLocationIndex(GLenum programInterface,const char *name) const
+		GLuint GetResourceLocationIndex(GLenum programInterface,const char *nm) const
 		{
-			glGetProgramResourceLocationIndex(id,programInterface,name);
+			glGetProgramResourceLocationIndex(id,programInterface,nm);
 		}
 		void GetBinary(GLsizei bufSize,GLsizei *length,GLenum *binaryFormat,GLvoid *binary) const
 		{
@@ -163,18 +168,231 @@ namespace gl
 			Binary(bp.binaryFormat,bp.binary.data(),bp.binary.size());
 		}
 #endif
-		GLint GetUniformLocation(const char* name) const
+		GLint GetUniformLocation(const char* nm) const
 		{
-			return glGetUniformLocation(id,name);
+			return glGetUniformLocation(id,nm);
 		}
+		void GetActiveUniformName(GLuint index,GLsizei bufSize,GLsizei* length,char *uniformName) const
+		{
+			glGetActiveUniformName(id,index,bufSize,length,uniformName);
+		}
+		void GetUniformIndices(GLsizei uniformCount,const GLchar * const * uniformNames,GLuint *uniformIndices) const
+		{
+			glGetUniformIndices(id,uniformCount,uniformNames,uniformIndices);
+		}
+		void GetActiveUniform(GLuint index,GLsizei bufSize,GLsizei *length,GLint *size,GLenum *type,GLchar *name) const
+		{
+			glGetActiveUniform(id,index,bufSize,length,size,type,name);
+		}
+		void GetActiveUniforms(GLsizei uniformCount,const GLuint* uniformIndices,GLenum pname,GLint* params) const
+		{
+			glGetActiveUniformsiv(id,uniformCount,uniformIndices,pname,params);
+		}
+		
+#ifndef GLHPP_STRICT_API
+		std::string GetActiveUniformName(GLuint index) const
+		{
+			GLsizei len;
+			GetActiveUniformName(index,0,&len,nullptr);
+			std::string out(len+1,'\0');
+			GetActiveUniformName(index,out.size(),&len,const_cast<char*>(out.data()));
+			return out;
+		}
+		std::vector<GLuint> GetUniformIndices(const std::string* uniformNameB,const std::string* uniformNameE) const
+		{
+			size_t n=(uniformNameE-uniformNameB);
+			std::vector<const GLchar*> namesPtrs(n);
+			std::vector<GLuint> out(n);
+			for(size_t i=0;i < n;i++) namesPtrs[i]=uniformNameB[i].c_str();
+			GetUniformIndices(n,namesPtrs.data(),out.data());
+			return out;
+		}
+		struct UniformInfo
+		{
+			GLsizei length;
+			GLint size;
+			GLenum type;
+			std::string name;
+		};
+		UniformInfo GetActiveUniform(GLuint index) const
+		{
+			UniformInfo info;
+			GetActiveUniform(index,0,&info.length,&info.size,&info.type,nullptr);
+			info.name.resize(info.length+1,'\0');
+			GetActiveUniform(index,info.name.size(),&info.length,&info.size,&info.type,const_cast<char*>(info.name.data()));
+			return info;
+		}
+		std::vector<GLint> GetActiveUniforms(const GLuint* indicesB,const GLuint* indicesE,GLenum pname) const
+		{
+			size_t N=indicesE-indicesB;
+			std::vector<GLint> out(N);
+			GetActiveUniforms(N,indicesB,pname,out.data());
+			return out;
+		}
+#endif
+		GLuint GetUniformBlockIndex(const char* uniformBlockName) const
+		{
+			return glGetUniformBlockIndex(id,uniformBlockName);
+		}
+		void GetActiveUniformBlockName(GLuint uniformBlockIndex,GLsizei bufSize, GLsizei* length,char* uniformBlockName) const
+		{
+			glGetActiveUniformBlockName(id,uniformBlockIndex,bufSize,length,uniformBlockName);
+		}
+		void GetActiveUniformBlock(GLuint uniformBlockIndex,GLenum pname,GLint* params) const
+		{
+			glGetActiveUniformBlockiv(id,uniformBlockIndex,pname,params);
+		}
+		void GetActiveAtomicCounterBuffer(GLuint bufferIndex,GLenum pname,GLint* params) const
+		{
+			glGetActiveAtomicCounterBufferiv(id,bufferIndex,pname,params);
+		}
+#ifndef GLHPP_STRICT_API
+		std::string GetActiveUniformBlockName(GLuint uniformBlockIndex) const
+		{
+			std::string out;
+			GLsizei len;
+			GetActiveUniformBlockName(uniformBlockIndex,0,&len,nullptr);
+			out.resize(len+1,'\0');
+			GetActiveUniformBlockName(uniformBlockIndex,out.size(),&len,const_cast<char*>(out.data()));
+		}
+		GLint GetActiveUniformBlock(GLuint uniformBlockIndex,GLenum pname) const
+		{
+			if(pname==GL_UNIFORM_BLOCK_ACTIVE_UNIFORM_INDICES) 
+				throw Exception(GLHPP_CUSTOM_EXCEPTION,"Cannot use this GLHPP version of GetActiveUniformBlock to query GL_UNIFORM_BLOCK_ACTIVE_UNIFORM_INDICES. See GetActiveUniformBlock_Multi");
+			GLint out;
+			GetActiveUniformBlock(uniformBlockIndex,pname,&out);
+			return out;
+		}
+		std::vector<GLint> GetActiveUniformBlock_Multi(GLuint uniformBlockIndex,GLenum pname) const
+		{
+			if(pname!=GL_UNIFORM_BLOCK_ACTIVE_UNIFORM_INDICES) return {GetActiveUniformBlock(uniformBlockIndex,pname)};
+			GLint len=GetActiveUniformBlock(uniformBlockIndex,GL_UNIFORM_BLOCK_ACTIVE_UNIFORMS);
+			std::vector<GLint> out(len);
+			GetActiveUniformBlock(uniformBlockIndex,pname,out.data());
+			return out;
+		}
+		GLint GetActiveAtomicCounterBuffer(GLuint bufferIndex,GLenum pname) const
+		{
+			if(pname==GL_ATOMIC_COUNTER_BUFFER_ACTIVE_ATOMIC_COUNTER_INDICES) 
+				throw Exception(GLHPP_CUSTOM_EXCEPTION,"Cannot use this GLHPP version of GetActiveAtomicCounterBuffer to query GL_ATOMIC_COUNTER_BUFFER_ACTIVE_ATOMIC_COUNTER_INDICES. See GetActiveAtomicCounterBuffer_Multi");
+			GLint out;
+			GetActiveAtomicCounterBuffer(bufferIndex,pname,&out);
+			return out;
+		}
+		std::vector<GLint> GetActiveAtomicCounterBuffer_Multi(GLuint bufferIndex,GLenum pname) const
+		{
+			if(pname!=GL_ATOMIC_COUNTER_BUFFER_ACTIVE_ATOMIC_COUNTER_INDICES) return {GetActiveAtomicCounterBuffer(bufferIndex,pname)};
+			GLint len=GetActiveAtomicCounterBuffer(bufferIndex,GL_ATOMIC_COUNTER_BUFFER_ACTIVE_ATOMIC_COUNTERS);
+			std::vector<GLint> out(len);
+			GetActiveAtomicCounterBuffer(bufferIndex,pname,out.data());
+			return out;
+		}
+#endif
+			
+		//Todo: object oriented bindings for the above.  Like program.ActiveAtomicCounterBuffer(0).Get(pname);
 		
 		UniformsVectorTemplates(GLuint,ui)
 		UniformsVectorTemplates(GLint,i)
 		UniformsVectorTemplates(GLdouble,d)
 		UniformsVectorTemplates(GLfloat,f)
-		UniformsMatrixTemplates(double,d)
-		UniformsMatrixTemplates(float,f)
+		UniformsMatrixTemplates(GLdouble,d)
+		UniformsMatrixTemplates(GLfloat,f)
 		
+		void UniformBlockBinding(GLuint uniformBlockIndex,GLuint uniformBlockBinding)
+		{
+			glUniformBlockBinding(id,uniformBlockIndex,uniformBlockBinding);
+		}
+		void ShaderStorageBlockBinding(GLuint storageBlockIndex,GLuint storageBlockBinding)
+		{
+			glShaderStorageBlockBinding(id,storageBlockIndex,storageBlockBinding);
+		}
+			
+		GLint GetSubroutineUniformLocation(GLenum shaderType,const char* nm) const
+		{
+			glGetSubroutineUniformLocation(id,shaderType,nm);
+		}
+		GLuint GetSubroutineIndex(GLenum shaderType,const char* nm) const
+		{
+			glGetSubroutineIndex(id,shaderType,nm);
+		}
+		void GetActiveSubroutineName(GLenum shaderType,GLuint index,GLsizei bufSize,GLsizei* length,char* nm) const
+		{
+			glGetActiveSubroutineName(id,shaderType,index,bufSize,length,nm);
+		}
+		void GetActiveSubroutineUniformName(GLenum shaderType,GLuint index,GLsizei bufSize,GLsizei *length, char* nm) const
+		{
+			glGetActiveSubroutineUniformName(id,shaderType,index,bufSize,length,nm);
+		}
+		void GetActiveSubroutineUniform(GLenum shaderType,GLuint index,GLenum pname,int* values) const
+		{
+			glGetActiveSubroutineUniformiv(id,shaderType,index,pname,values);
+		}
+		static void UniformSubroutines(GLenum shaderType,GLsizei count,const GLuint* indices)
+		{
+			glUniformSubroutinesuiv(shaderType,count,indices);
+		}
+		static void GetUniformSubroutine(GLenum shaderType,int location,GLuint* params)
+		{
+			glGetUniformSubroutineuiv(shaderType,location,params);
+		}
+		#ifndef GLHPP_STRICT_API
+		std::string GetActiveSubroutineName(GLenum shaderType,GLuint index) const
+		{
+			GLsizei len;
+			GetActiveSubroutineName(shaderType,index,0,&len,nullptr);
+			std::string out(len+1,'\0');
+			GetActiveSubroutineName(shaderType,index,len,&len,const_cast<char*>(out.data()));
+			return out;
+		}
+		std::string GetActiveSubroutineUniformName(GLenum shaderType,GLuint index) const
+		{
+			GLsizei len;
+			GetActiveSubroutineUniformName(shaderType,index,0,&len,nullptr);
+			std::string out(len+1,'\0');
+			GetActiveSubroutineUniformName(shaderType,index,len,&len,const_cast<char*>(out.data()));
+			return out;
+		}
+		GLint GetActiveSubroutineUniform(GLenum shaderType,GLuint index,GLenum pname) const
+		{
+			if(pname==GL_COMPATIBLE_SUBROUTINES) 
+				throw Exception(GLHPP_CUSTOM_EXCEPTION,"Cannot use this GLHPP version of GetActiveSubroutineUniform to query GL_COMPATIBLE_SUBROUTINES. See GetActiveSubroutineUniform_Multi");
+			GLint out;
+			GetActiveSubroutineUniform(shaderType,index,pname,&out);
+			return out;
+		}
+		std::vector<GLint> GetActiveSubroutineUniform_Multi(GLenum shaderType,GLuint index,GLenum pname) const
+		{
+			if(pname!=GL_COMPATIBLE_SUBROUTINES) return {GetActiveSubroutineUniform(shaderType,index,pname)};
+			GLint len=GetActiveSubroutineUniform(shaderType,index,GL_NUM_COMPATIBLE_SUBROUTINES);
+			std::vector<GLint> out(len);
+			GetActiveSubroutineUniform(shaderType,index,pname,out.data());
+			return out;
+		}
+		//TODO uniform subroutine helpers
+		#endif
+		
+		
+		void GetAttachedShaders(GLsizei maxCount,GLsizei *count,GLuint *shaders) const
+		{
+			glGetAttachedShaders(id,maxCount,count,shaders);
+		}
+		void GetStage(GLenum shaderType,GLenum pname,GLint* values) const
+		{
+			glGetProgramStageiv(id,shaderType,pname,values);
+		}
+#ifndef GLHPP_STRICT_API
+		std::vector<GLuint> GetAttachedShaders() const
+		{
+			GLsizei len=this->Get(GL_ATTACHED_SHADERS);
+			std::vector<GLuint> out(len);
+			GetAttachedShaders(len,NULL,out.data());
+			return out;
+		}
+		GLint GetStage(GLenum shaderType,GLenum pname) const
+		{
+			GLint out;GetStage(shaderType,pname,&out);return out;
+		}
+#endif
 	};
 	
 	Program Shader::CreateProgram(GLenum type,GLsizei count, const char * const * strings)
