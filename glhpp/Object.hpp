@@ -22,6 +22,7 @@ protected:
 	IDType id;
 	DeleterFuncPtr deleter_func;
 	IsFuncPtr is_func;
+
 public:
 	Resource& operator=(Resource<IDType>&& other)
 	{

@@ -11,6 +11,8 @@
 #include "Shader.hpp"
 #include "Program.hpp"
 #include "ProgramPipeline.hpp"
+#include "Texture.hpp"
+#include "Sampler.hpp"
 
 namespace gl
 {

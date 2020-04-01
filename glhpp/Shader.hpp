@@ -123,15 +123,15 @@ namespace gl
 #ifndef GLHPP_STRICT_API
 		static Program CreateProgram(GLenum type,const std::string& text);
 #endif
-		static void MemoryBarrier(GLbitfield bf)
-		{
-			glMemoryBarrier(bf);
-		}
-		static void MemoryBarrierByRegion(GLbitfield bf)
-		{
-			glMemoryBarrierByRegion(bf);
-		}
 	};
+	inline void MemoryBarrier(GLbitfield bf)
+	{
+		glMemoryBarrier(bf);
+	}
+	inline void MemoryBarrierByRegion(GLbitfield bf)
+	{
+		glMemoryBarrierByRegion(bf);
+	}
 }
 
 
