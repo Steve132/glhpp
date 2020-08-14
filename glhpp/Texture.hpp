@@ -185,10 +185,10 @@ namespace gl
 			CompressedSubImage1D(level,offset[0],size[0],format,len,data);
 		}
 		void CompressedSubImage(GLint level,const std::array<GLint,3>& offset,
-								const glhpp::ClientCompressedImage& climg)
+								const glhpp::ClientCompressedImage& clim)
 		{
-			auto shape=climg.shape();
-			switch(climg.dims())
+			auto shape=clim.shape();
+			switch(clim.dims())
 			{
 				case 1:
 				{
@@ -518,7 +518,7 @@ namespace gl
 								const std::array<GLint,3>& offset,
 								const std::array<GLsizei,3>& shape)
 		{
-			InvalidateSubImage(id,level,offset[0],offset[1],offset[2],shape[0],shape[1],shape[2]);
+			InvalidateSubImage(level,offset[0],offset[1],offset[2],shape[0],shape[1],shape[2]);
 		}
 		template<class T,unsigned int D> 
 		void ClearSubImage(GLint level,const std::array<GLint,3>& offset,const std::array<GLsizei,3>& shape,
@@ -530,8 +530,8 @@ namespace gl
 		template<class T,unsigned int D> 
 		void ClearImage(GLint level,const std::array<T,D>& value={})
 		{
-			ClearImage(level,impl:ClientToChannelsFormat<D>::value,
-					   impl:ClientToGLType<T>::value,
+			ClearImage(level,impl::ClientToChannelsFormat<D>::value,
+					   impl::ClientToGLType<T>::value,
 			  &value[0]);
 		}				   
 #endif
