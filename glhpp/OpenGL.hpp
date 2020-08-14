@@ -15,7 +15,7 @@
 #include "Sampler.hpp"
 #include "Framebuffer.hpp"
 #include "Renderbuffer.hpp"
-#include "VertexAttrib.hpp"
+//#include "VertexAttrib.hpp"
 
 namespace gl
 {
