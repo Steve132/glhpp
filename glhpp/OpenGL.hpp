@@ -18,6 +18,7 @@
 //#include "VertexAttrib.hpp"
 #include "VertexArray.hpp"
 #include "Draw.hpp"
+#include "TransformFeedback.hpp"
 
 namespace gl
 {
