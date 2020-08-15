@@ -46,6 +46,18 @@ namespace gl
 		{
 			glProgramParameteri(id,pname,value);
 		}
+		void BindAttribLocation(GLuint index, const GLchar* name) const
+		{
+			glBindAttribLocation(id, index, name);
+		}
+		void GetActiveAttrib(GLuint index, GLsizei bufSize, GLsizei* length, GLint* size, GLenum* type, GLchar* name) const
+		{
+			glGetActiveAttrib(id, index, bufSize, length, size, type, name);
+		}
+		GLint GetAttribLocation(const char* name) const
+		{
+			return glGetAttribLocation(id, name);
+		}
 		void Get(GLenum pname,GLint *params) const
 		{
 			glGetProgramiv(id,pname,params);
@@ -67,6 +79,27 @@ namespace gl
 		GLint Get(GLenum pname) const
 		{
 			GLint out;this->Get(pname,&out);return out;
+		}
+		struct ActiveAttribResult
+		{
+			GLint size;
+			GLenum type;
+			std::string name;
+		};
+		ActiveAttribResult GetActiveAttrib(GLuint index) const
+		{
+			GLsizei bufsize=this->Get(GL_ACTIVE_ATTRIBUTE_MAX_LENGTH);
+			std::string out(bufsize+1,'\0');
+			ActiveAttribResult res;
+			GLsizei lenout;
+			res.name = out;
+			GetActiveAttrib(index, bufsize, &lenout, &res.size, &res.type, const_cast<char*>(res.name.data()));
+			res.name.resize(lenout);
+			return res;
+		}
+		GLint GetAttribLocation(const std::string& name) const
+		{
+			return GetAttribLocation(name.c_str());
 		}
 #endif
 		
@@ -391,6 +424,22 @@ namespace gl
 		GLint GetStage(GLenum shaderType,GLenum pname) const
 		{
 			GLint out;GetStage(shaderType,pname,&out);return out;
+		}
+#endif
+		void TransformFeedbackVaryings(GLsizei count, const GLchar* const* varyings, GLenum bufferMode)
+		{
+			glTransformFeedbackVaryings(id, count, varyings, bufferMode);
+		}
+#ifndef GLHPP_STRICT_API
+		void TransformFeedbackVaryings(const std::vector<std::string>& varyings, GLenum bufferMode)
+		{
+			GLsizei count = static_cast<GLsizei>(varyings.size());
+			std::vector<const char*> varyingsVec(varyings.size());
+			for(std::size_t i = 0; i < varyings.size(); i++)
+			{
+				varyingsVec[i] = varyings[i].c_str();
+			}
+			TransformFeedbackVaryings(count, varyingsVec.data(), bufferMode);
 		}
 #endif
 	};

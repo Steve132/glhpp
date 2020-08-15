@@ -61,6 +61,10 @@ public:
 	{
 		BeginIndexed(target,index);
 	}
+	void BeginConditionalRender(GLenum mode) const
+	{
+		glBeginConditionalRender(id, mode); 
+	}
 	
 	void End(GLenum s) const //only for compatibility with the API.  
 	{
@@ -78,6 +82,11 @@ public:
 	{
 		EndIndexed(target,index);
 	}
+	void EndConditionalRender() const
+	{
+		glEndConditionalRender(); 
+	}
+	
 	GLint Get(GLenum s,GLuint pname) const
 	{
 		GLint out;glGetQueryiv(s,pname,&out);return out;

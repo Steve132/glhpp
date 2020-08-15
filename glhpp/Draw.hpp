@@ -1,107 +1,104 @@
 #ifndef GLHPP_DRAW_HPP
 #define GLHPP_DRAW_HPP
 
-#include "Object.hpp"
-#include "Formats.hpp"
-
 namespace gl
 {
-	void DrawArrays(GLenum mode, GLint first, GLsizei count)
+	inline void DrawArrays(GLenum mode, GLint first, GLsizei count)
 	{
 		glDrawArrays(mode, first, count);
 	}
 	
-	void DrawArrays(GLenum mode, GLint first, GLsizei count, GLsizei instanceCount, GLuint baseInstance)
+	inline void DrawArraysInstanced(GLenum mode, GLint first, GLsizei count, GLsizei instanceCount, GLuint baseInstance)
 	{
-		glDrawArraysInstanceBaseInstance(GLenum mode, GLint first, GLsizei count, instanceCount, baseInstance);
+		glDrawArraysInstancedBaseInstance(mode, first, count, instanceCount, baseInstance);
 	}
 	
-	void DrawArrays(GLenum mode, GLint first, GLsizei count, GLsizei instanceCount)
+	inline void DrawArraysInstanced(GLenum mode, GLint first, GLsizei count, GLsizei instanceCount)
 	{
-		glDrawArraysInstanced(GLenum mode, GLint first, GLsizei count, instanceCount);
+		glDrawArraysInstanced(mode, first, count, instanceCount);
 	}
 	
-	void DrawArrays(GLenum mode, const void* indirect)
+	inline void DrawArrays(GLenum mode, const void* indirect)
 	{
-		glDrawArraysIndirect(GLenum mode, indirect);
+		glDrawArraysIndirect(mode, indirect);
 	}
 	
-	void MultiDrawArrays(GLenum mode, const GLint* first, const GLsizei* count, GLsizei drawcount)
+	inline void MultiDrawArrays(GLenum mode, const GLint* first, const GLsizei* count, GLsizei drawcount)
 	{
 		glMultiDrawArrays(mode, first, count, drawcount);
 	}
 	
-	void MultiDrawArrays(GLenum mode, const void* indirect, GLsizei drawcount, GLsizei stride)
+	inline void MultiDrawArrays(GLenum mode, const void* indirect, GLsizei drawcount, GLsizei stride)
 	{
 		glMultiDrawArraysIndirect(mode, indirect, drawcount, stride);
 	}
 	
-	void MultiDrawArrays(GLenum mode, const void* indirect, GLsizei drawcount, GLintptr maxdrawcount, GLsizei stride)
+	inline void MultiDrawArrays(GLenum mode, const void* indirect, GLsizei drawcount, GLintptr maxdrawcount, GLsizei stride)
 	{
 		glMultiDrawArraysIndirectCount(mode, indirect, drawcount, maxdrawcount, stride);
 	}
 	
-	void DrawElements(GLenum mode, GLsizei count, GLenum type, const void* indices)
+	inline void DrawElements(GLenum mode, GLsizei count, GLenum type, const void* indices)
 	{
 		glDrawElements(mode, count, type, indices);
 	}
 	
-	void DrawElements(GLenum mode, GLsizei count, GLenum type, const void* indices, GLsizei instanceCount, GLuint baseInstance)
+	inline void DrawElementsInstanced(GLenum mode, GLsizei count, GLenum type, const void* indices, GLsizei instanceCount, GLuint baseInstance)
 	{
 		glDrawElementsInstancedBaseInstance(mode, count, type, indices, instanceCount, baseInstance);
 	}
 	
-	void DrawElements(GLenum mode, GLsizei count, GLenum type, const void* indices, GLsizei instanceCount)
+	inline void DrawElementsInstanced(GLenum mode, GLsizei count, GLenum type, const void* indices, GLsizei instanceCount)
 	{
 		glDrawElementsInstanced(mode, count, type, indices, instanceCount);
 	}
 	
-	void DrawElements(GLenum mode, GLenum type, const void* indirect)
+	inline void DrawElements(GLenum mode, GLenum type, const void* indirect)
 	{
 		glDrawElementsIndirect(mode, type, indirect);
 	}
 	
-	void DrawElements(GLenum mode, GLsizei count, GLenum type, const void* indices, GLint baseVertex)
-	{
-		glDrawElementsBaseVertex(mode, count, type, indices, baseVertex);
-	}
-	
-	void DrawElements(GLenum mode, GLsizei count, GLenum type, const void* indices, GLsizei instanceCount, GLint baseVertex)
+	inline void DrawElementsInstanced(GLenum mode, GLsizei count, GLenum type, const void* indices, GLsizei instanceCount, GLint baseVertex)
 	{
 		glDrawElementsInstancedBaseVertex(mode, count, type, indices, instanceCount, baseVertex);
 	}
 	
-	void DrawElements(GLenum mode, GLsizei count, GLenum type, const void* indices, GLsizei instanceCount, GLint baseVertex, GLuint baseInstance)
+	inline void DrawElements(GLenum mode, GLsizei count, GLenum type, const void* indices, GLint baseVertex)
 	{
-		glDrawElementsInstancedBaseVertexInstance(mode, count, type, indices, instanceCount, baseVertex, baseInstance);
+		glDrawElementsBaseVertex(mode, count, type, indices, baseVertex);
 	}
 	
-	void MultiDrawElements(GLenum mode, const GLsizei* count, GLenum type, const void* const* indices, GLsizei drawcount)
+	inline void DrawElementsInstanced(GLenum mode, GLsizei count, GLenum type, const void* indices, GLsizei instanceCount, GLint baseVertex, GLuint baseInstance)
+	{
+		glDrawElementsInstancedBaseVertexBaseInstance(mode, count, type, indices, instanceCount, baseVertex, baseInstance);
+	}
+	
+	inline void MultiDrawElements(GLenum mode, const GLsizei* count, GLenum type, const void* const* indices, GLsizei drawcount)
 	{
 		glMultiDrawElements(mode, count, type, indices, drawcount);
 	}
 	
-	void MultiDrawElements(GLenum mode, const GLsizei* count, GLenum type, const void* indirect, GLsizei drawcount, GLsizei stride)
+	inline void MultiDrawElements(GLenum mode, const GLsizei* count, GLenum type, const void* indirect, GLsizei drawcount, GLsizei stride)
 	{
 		glMultiDrawElementsIndirect(mode, type, indirect, drawcount, stride);
 	}
 	
-	void MultiDrawElements(GLenum mode, const GLsizei* count, GLenum type, const void* indirect, GLsizei drawcount, GLsizei maxdrawcount, GLsizei stride)
+	inline void MultiDrawElements(GLenum mode, const GLsizei* count, GLenum type, const void* indirect, GLsizei drawcount, GLsizei maxdrawcount, GLsizei stride)
 	{
 		glMultiDrawElementsIndirectCount(mode, type, indirect, drawcount, maxdrawcount, stride);
 	}
 	
-	void MultiDrawElements(GLenum mode, const GLsizei* count, GLenum type, const void* const* indices, GLsizei drawcount, const GLint* baseVertex)
+	inline void MultiDrawElements(GLenum mode, const GLsizei* count, GLenum type, const void* const* indices, GLsizei drawcount, const GLint* baseVertex)
 	{
 		glMultiDrawElementsBaseVertex(mode, count, type, indices, drawcount, baseVertex);
 	}
 	
-	void DrawRangeElements(GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, const void* indices)
+	inline void DrawRangeElements(GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, const void* indices)
 	{
 		glDrawRangeElements(mode, start, end, count, type, indices);
 	}
 	
-	void DrawRangeElements(GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, const void* indices, GLint baseVertex)
+	inline void DrawRangeElements(GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, const void* indices, GLint baseVertex)
 	{
 		glDrawRangeElementsBaseVertex(mode, start, end, count, type, indices, baseVertex);
 	}
