@@ -46,6 +46,10 @@ namespace gl
 		{
 			glProgramParameteri(id,pname,value);
 		}
+		void Validate() const
+		{
+			glValidateProgram(id);
+		}
 		void BindAttribLocation(GLuint index, const GLchar* name) const
 		{
 			glBindAttribLocation(id, index, name);

@@ -25,6 +25,10 @@ namespace gl
 		{
 			glBindProgramPipeline(id);
 		}
+		void Validate() const
+		{
+			glValidateProgramPipeline(id);
+		}
 		void UseProgramStages(GLbitfield stages,const Program& prog)
 		{
 			glUseProgramStages(id,stages,prog.name());
