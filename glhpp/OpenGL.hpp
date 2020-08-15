@@ -17,6 +17,7 @@
 #include "Renderbuffer.hpp"
 //#include "VertexAttrib.hpp"
 #include "VertexArray.hpp"
+#include "Draw.hpp"
 
 namespace gl
 {
