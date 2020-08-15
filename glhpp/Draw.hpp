@@ -1,5 +1,5 @@
-#ifndef GLHPP_VERTEXARRAY_HPP
-#define GLHPP_VERTEXARRAY_HPP
+#ifndef GLHPP_DRAW_HPP
+#define GLHPP_DRAW_HPP
 
 #include "Object.hpp"
 #include "Formats.hpp"
