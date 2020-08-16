@@ -1,6 +1,8 @@
 #ifndef GLHPP_MISCELLANEOUS_HPP
 #define GLHPP_MISCELLANEOUS_HPP
 
+#include "Buffer.hpp"
+
 namespace gl
 {
 	// Flatshading
@@ -153,6 +155,117 @@ namespace gl
 		glPolygonOffset(factor, units);
 	}
 
+	// Scissor Test (first is index of viewport)
+	inline void ScissorArrayv(GLuint first, GLsizei count, const GLint* v)
+	{
+		glScissorArrayv(first, count, v);
+	}
+	
+	inline void ScissorIndexed(GLuint index, GLint left, GLint bottom, GLsizei width, GLsizei height)
+	{
+		glScissorIndexed(index, left, bottom, width, height);
+	}
+	
+	inline void ScissorIndexedv(GLuint index, GLint* v)
+	{
+		glScissorIndexedv(index, v);
+	}
+	
+	inline void Scissor(GLint left, GLint bottom, GLsizei width, GLsizei height)
+	{
+		glScissor(left, bottom, width, height);
+	}
+	
+	// Multisample Fragment Ops
+	inline void SampleCoverage(GLfloat value, GLboolean invert)
+	{
+		glSampleCoverage(value, invert);
+	}
+	
+	inline void SampleMaski(GLuint maskNumber, GLbitfield mask)
+	{
+		glSampleMaski(maskNumber, mask);
+	}
+	
+	// Stencil Test
+	// func: never, always, less, greater, equal, lequal, gequal, notequal
+	inline void StencilFunc(GLenum func, GLint ref, GLuint mask)
+	{
+		glStencilFunc(func, ref, mask);
+	}
+	
+	inline void StencilFuncSeparate(GLenum face, GLenum func, GLint ref, GLuint mask)
+	{
+		glStencilFuncSeparate(face, func, ref, mask);
+	}
+	
+	inline void StencilOpSeparate(GLenum face, GLenum sfail, GLenum dpfail, GLenum dppass)
+	{
+		glStencilOpSeparate(face, sfail, dpfail, dppass);
+	}
+	
+	inline void DepthFunc(GLenum func)
+	{
+		glDepthFunc(func);
+	}
+	
+	// Blending
+	inline void BlendEquation(GLenum mode)
+	{
+		glBlendEquation(mode);
+	}
+	
+	inline void BlendEquationSeparate(GLenum modeRGB, GLenum modeAlpha)
+	{
+		glBlendEquationSeparate(modeRGB, modeAlpha);
+	}
+	
+	inline void BlendEquation(GLuint buf, GLenum mode)
+	{
+		glBlendEquationi(buf, mode);
+	}
+	
+	inline void BlendEquationSeparatei(GLuint buf, GLenum modeRGB, GLenum modeAlpha)
+	{
+		glBlendEquationSeparatei(buf, modeRGB, modeAlpha);
+	}
+
+#ifndef GLHPP_STRICT_API
+	inline void BlendEquation(const Buffer& buf, GLenum mode)
+	{
+		BlendEquation(static_cast<GLuint>(buf.name()), mode);
+	}
+	
+	inline void BlendEquationSeparatei(const Buffer& buf, GLenum modeRGB, GLenum modeAlpha)
+	{
+		BlendEquationSeparatei(static_cast<GLuint>(buf.name()), modeRGB, modeAlpha);
+	}
+#endif
+	
+	inline void BlendFunc(GLenum src, GLenum dst)
+	{
+		glBlendFunc(src, dst);
+	}
+	
+	inline void BlendFuncSeparate(GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha)
+	{
+		glBlendFuncSeparate(srcRGB, dstRGB, srcAlpha, dstAlpha);
+	}
+	
+	inline void BlendColor(GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha)
+	{
+		glBlendColor(red, green, blue, alpha);
+	}
+	
+	inline void LogicOp(GLenum op)
+	{
+		glLogicOp(op);
+	}
+	
+	inline void Hint(GLenum target, GLenum hint)
+	{
+		glHint(target, hint);
+	}
 }
 
 #endif
