@@ -84,17 +84,17 @@ namespace gl
 		{
 			GLint out;this->Get(pname,&out);return out;
 		}
-		struct ActiveAttribResult
+		struct activeAttribResult
 		{
 			GLint size;
 			GLenum type;
 			std::string name;
 		};
-		ActiveAttribResult GetActiveAttrib(GLuint index) const
+		activeAttribResult GetActiveAttrib(GLuint index) const
 		{
 			GLsizei bufsize=this->Get(GL_ACTIVE_ATTRIBUTE_MAX_LENGTH);
 			std::string out(bufsize+1,'\0');
-			ActiveAttribResult res;
+			activeAttribResult res;
 			GLsizei lenout;
 			res.name = out;
 			GetActiveAttrib(index, bufsize, &lenout, &res.size, &res.type, const_cast<char*>(res.name.data()));
@@ -186,21 +186,21 @@ namespace gl
 		}
 		
 #ifndef GLHPP_STRICT_API
-		struct BinaryProgram
+		struct binaryProgram
 		{
 			GLenum binaryFormat;
 			std::vector<GLubyte> binary;
 		};
-		BinaryProgram GetBinary() const
+		binaryProgram GetBinary() const
 		{
 			GLsizei binlength=this->Get(GL_PROGRAM_BINARY_LENGTH);
-			BinaryProgram bp;
+			binaryProgram bp;
 			bp.binary.resize(binlength);
 			GLsizei lenout;
 			GetBinary(bp.binary.size(),&lenout,&bp.binaryFormat,bp.binary.data());
 			return bp;
 		}
-		void Binary(const BinaryProgram& bp)
+		void Binary(const binaryProgram& bp)
 		{
 			Binary(bp.binaryFormat,bp.binary.data(),bp.binary.size());
 		}
@@ -244,16 +244,16 @@ namespace gl
 			GetUniformIndices(n,namesPtrs.data(),out.data());
 			return out;
 		}
-		struct UniformInfo
+		struct uniformInfo
 		{
 			GLsizei length;
 			GLint size;
 			GLenum type;
 			std::string name;
 		};
-		UniformInfo GetActiveUniform(GLuint index) const
+		uniformInfo GetActiveUniform(GLuint index) const
 		{
-			UniformInfo info;
+			uniformInfo info;
 			GetActiveUniform(index,0,&info.length,&info.size,&info.type,nullptr);
 			info.name.resize(info.length+1,'\0');
 			GetActiveUniform(index,info.name.size(),&info.length,&info.size,&info.type,const_cast<char*>(info.name.data()));
@@ -446,6 +446,22 @@ namespace gl
 			TransformFeedbackVaryings(count, varyingsVec.data(), bufferMode);
 		}
 #endif
+		void BindFragDataLocationIndexed(GLuint colorNumber,GLuint index, const char *name)
+		{
+			glBindFragDataLocationIndexed(id,colorNumber,index,name);
+		}
+		void BindFragDataLocation(GLuint colorNumber, const char *name)
+		{
+			glBindFragDataLocation(id,colorNumber,name);
+		}
+		GLint GetFragDataLocation(const char *name) const
+		{
+			return glGetFragDataLocation(id,name);
+		}
+		GLint GetFragDataIndex(const char *name) const
+		{
+			return glGetFragDataIndex(id,name);
+		}
 	};
 	
 	Program Shader::CreateProgram(GLenum type,GLsizei count, const char * const * strings)

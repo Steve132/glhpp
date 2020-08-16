@@ -1,42 +1,9 @@
-#ifndef GLHPP_MISCELLANEOUS_HPP
-#define GLHPP_MISCELLANEOUS_HPP
-
-#include "Buffer.hpp"
+#ifndef GLHPP_RASTERIZATION_HPP
+#define GLHPP_RASTERIZATION_HPP
 
 namespace gl
 {
-	// Flatshading
-	inline void ProvokingVertex(GLenum provokeMode)
-	{
-		glProvokingVertex(provokeMode);
-	}
-
-	// Primitive Clipping
-	inline void Enable(GLenum cap)
-	{
-		glEnable(cap);
-	}
-
-	inline void Enable(GLenum cap, GLuint index)
-	{
-		glEnablei(cap, index);
-	}
-
-	inline void Disable(GLenum cap)
-	{
-		glDisable(cap);
-	}
-
-	inline void Disable(GLenum cap, GLuint index)
-	{
-		glDisablei(cap, index);
-	}
 	
-	inline void ClipControl(GLenum origin, GLenum depth)
-	{
-		glClipControl(origin, depth);
-	}
-
 	// Controlling Viewport
 	inline void DepthRangeArray(GLuint first, GLsizei count, const double* v)
 	{
@@ -57,30 +24,30 @@ namespace gl
 	{
 		glDepthRangef(n, f);
 	}
-
+	
 	inline void ViewportArray(GLuint first, GLsizei count, const GLfloat* v)
 	{
 		glViewportArrayv(first, count, v);
 	}
-
+	
 	inline void ViewportIndexed(GLuint index, GLfloat x, GLfloat y, GLfloat w, GLfloat h)
 	{
 		glViewportIndexedf(index, x, y, w, h);
 	}
-
+	
 	inline void ViewportIndexed(GLuint index, const GLfloat* v)
 	{
 		glViewportIndexedfv(index, v);
 	}
-
+	
 	inline void Viewport(GLint x, GLint y, GLsizei w, GLsizei h)
 	{
 		glViewport(x, y, w, h);
 	}
-#ifndef GLHPP_STRICT_API
+	#ifndef GLHPP_STRICT_API
 	struct viewport
 	{
-		GLfloat x,y,w,h;
+		GLfloat x,y,width,height;
 	};
 	inline void ViewportArray(GLuint first, const viewport* be,const viewport* ed)
 	{
@@ -89,91 +56,36 @@ namespace gl
 	
 	inline void ViewportIndexed(GLuint index,const viewport& vp)
 	{
-		ViewportIndexed(index, vp.x, vp.y, vp.w, vp.h);
+		ViewportIndexed(index, vp.x, vp.y, vp.width, vp.height);
 	}
 	
 	inline void Viewport(const viewport& vp)
 	{
-		Viewport(vp.x, vp.y, vp.w, vp.h);
+		Viewport(vp.x, vp.y, vp.width, vp.height);
 	}
-#endif
+	#endif
 	// Multisample (not sure if fits into Sampler)
 	inline void GetMultisample(GLenum pname, GLuint index, GLfloat* val)
 	{
 		glGetMultisamplefv(pname, index, val);
 	}
 	
-#ifndef GLHPP_STRICT_API
+	#ifndef GLHPP_STRICT_API
 	inline std::array<GLfloat,2> GetMultisample(GLuint index)
 	{
 		std::array<GLfloat,2> val;
 		GetMultisample(GL_SAMPLE_POSITION, index, &val[0]);
 		return val;
 	}
-#endif
-
+	#endif
+	
 	inline void MinSampleShading(GLfloat value)
 	{
 		glMinSampleShading(value);
 	}
 	
-	// Points
-	inline void PointSize(GLfloat size)
-	{
-		glPointSize(size);
-	}
-
-	inline void PointParameter(GLenum pname, GLint param)
-	{
-		glPointParameteri(pname, param);
-	}
-
-	inline void PointParameter(GLenum pname, GLfloat param)
-	{
-		glPointParameterf(pname, param);
-	}
-
-	inline void PointParameter(GLenum pname, GLint* params)
-	{
-		glPointParameteriv(pname, params);
-	}
 	
-	inline void PointParameter(GLenum pname, GLfloat* params)
-	{
-		glPointParameterfv(pname, params);
-	}
 	
-	inline void LineWidth(GLfloat width)
-	{
-		glLineWidth(width);
-	}
-	
-	// Polygons
-	inline void FrontFace(GLenum dir)
-	{
-		glFrontFace(dir);
-	}
-	
-	inline void CullFace(GLenum mode)
-	{
-		glCullFace(mode);
-	}
-	
-	inline void PolygonMode(GLenum face, GLenum mode)
-	{
-		glPolygonMode(face, mode);
-	}
-	
-	inline void PolygonOffsetClamp(GLfloat factor, GLfloat units, GLfloat clamp)
-	{
-		glPolygonOffsetClamp(factor, units, clamp);
-	}
-	
-	inline void PolygonOffset(GLfloat factor, GLfloat units)
-	{
-		glPolygonOffset(factor, units);
-	}
-
 	// Scissor Test (first is index of viewport)
 	inline void ScissorArray(GLuint first, GLsizei count, const GLint* v)
 	{
@@ -196,11 +108,12 @@ namespace gl
 	}
 	
 	
-#ifndef GLHPP_STRICT_API
-	struct scissorBox
+	#ifndef GLHPP_STRICT_API
+	struct box
 	{
 		GLint left,bottom,width,height;
 	};
+	using scissorBox=box;
 	inline void ScissorArray(GLuint first, const scissorBox* be,const scissorBox* ed)
 	{
 		ScissorArray(first, ed-be, reinterpret_cast<const GLint*>(be));
@@ -215,7 +128,7 @@ namespace gl
 	{
 		Scissor(box.left,box.bottom,box.width,box.height);
 	}
-#endif
+	#endif
 	
 	// Multisample Fragment Ops
 	inline void SampleCoverage(GLfloat value, GLboolean invert)
@@ -300,10 +213,42 @@ namespace gl
 		glLogicOp(op);
 	}
 	
-	inline void Hint(GLenum target, GLenum hint)
+	inline void ColorMask(GLboolean r,GLboolean g,GLboolean b,GLboolean a)
 	{
-		glHint(target, hint);
+		glColorMask(r,g,b,a);
 	}
-}
+	inline void ColorMask(GLuint draw_index,GLboolean r,GLboolean g,GLboolean b,GLboolean a)
+	{
+		glColorMaski(draw_index,r,g,b,a);
+	}
+	inline void DepthMask(GLboolean mask)
+	{
+		glDepthMask(mask);
+	}
+	inline void StencilMask(GLuint mask)
+	{
+		glStencilMask(mask);
+	}
+	inline void StencilMaskSeparate(GLenum face,GLuint mask)
+	{
+		glStencilMaskSeparate(face,mask);
+	}
+	
+	inline void Clear(GLbitfield buf)
+	{
+		glClear(buf);
+	}
+	inline void ClearColor(GLfloat r,GLfloat g,GLfloat b,GLfloat a)
+	{
+		glClearColor(r,g,b,a);
+	}
+	inline void ClearDepth(GLdouble d){
+		glClearDepth(d);
+	}
+	inline void ClearStencil(GLint s){
+		glClearStencil(s);
+	}
+	//Other generic clearbuffers are a part of Framebuffer.Default()
+};
 
 #endif

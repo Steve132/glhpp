@@ -4,6 +4,7 @@
 #include "Object.hpp"
 #include "Texture.hpp"
 #include "Renderbuffer.hpp"
+#include "Rasterization.hpp"
 
 namespace gl
 {
@@ -83,6 +84,69 @@ namespace gl
 		{
 			return glCheckNamedFramebufferStatus(id,target);
 		}
+		void DrawBuffer(GLenum buf) const
+		{
+			glNamedFramebufferDrawBuffer(id,buf);
+		}
+		void DrawBuffers(GLsizei n,const GLenum* bufs) const
+		{
+			glNamedFramebufferDrawBuffers(id,n,bufs);
+		}
+#ifndef GLHPP_STRICT_API
+		void DrawBuffers(const GLenum* be,const GLenum* ed) const
+		{
+			DrawBuffers(ed-be,be);
+		}
+		void DrawBuffers(std::initializer_list<GLenum> bufs) const
+		{
+			DrawBuffers(bufs.begin(),bufs.end());
+		}
+#endif
+		void ClearBuffer(GLenum buf,GLint drawindex,const GLint* v)
+		{
+			glClearNamedFramebufferiv(id,buf,drawindex,v);
+		}
+		void ClearBuffer(GLenum buf,GLint drawindex,const GLfloat* v)
+		{
+			glClearNamedFramebufferfv(id,buf,drawindex,v);
+		}
+		void ClearBuffer(GLenum buf,GLint drawindex,const GLuint* v)
+		{
+			glClearNamedFramebufferuiv(id,buf,drawindex,v);
+		}
+		void ClearBuffer(GLenum buf,GLint drawindex,GLfloat depth,GLfloat stencil)
+		{
+			glClearNamedFramebufferfi(id,buf,drawindex,depth,stencil);
+		}
+		
+		void InvalidateData(GLsizei numAttachments,const GLenum* attachments)
+		{
+			glInvalidateNamedFramebufferData(id,numAttachments,attachments);
+		}
+		void InvalidateSubData(GLsizei numAttachments,const GLenum* attachments,GLint x,GLint y,GLsizei width,GLsizei height)
+		{
+			glInvalidateNamedFramebufferSubData(id,numAttachments,attachments,x,y,width,height);
+		}
+
+#ifndef GLHPP_STRICT_API
+		void InvalidateData(const GLenum* be,const GLenum* ed)
+		{
+			InvalidateData(ed-be,be);
+		}
+		void InvalidateData(std::initializer_list<GLenum> att)
+		{
+			InvalidateData(att.begin(),att.end());
+		}
+		void InvalidateSubData(const GLenum* be,const GLenum* ed,GLint x,GLint y,GLsizei width,GLsizei height)
+		{
+			InvalidateSubData(ed-be,be,x,y,width,height);
+		}
+		void InvalidateSubData(std::initializer_list<GLenum> att,GLint x,GLint y,GLsizei width,GLsizei height)
+		{
+			InvalidateSubData(att.begin(),att.end(),x,y,width,height);
+		}
+#endif 
+		
 	};
 }
 

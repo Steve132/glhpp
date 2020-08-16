@@ -19,7 +19,11 @@
 #include "VertexArray.hpp"
 #include "Draw.hpp"
 #include "TransformFeedback.hpp"
-#include "Miscellaneous.hpp"
+#include "General.hpp"
+#include "Rasterization.hpp"
+#include "Primitives.hpp"
+#include "Compute.hpp"
+
 
 namespace gl
 {
