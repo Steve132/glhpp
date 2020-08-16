@@ -248,6 +248,10 @@ namespace gl
 	inline void ClearStencil(GLint s){
 		glClearStencil(s);
 	}
+	inline void ClampColor(GLenum target,GLenum clamp)
+	{
+		glClampColor(target,clamp);
+	}
 	//Other generic clearbuffers are a part of Framebuffer.Default()
 };
 

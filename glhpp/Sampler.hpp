@@ -8,7 +8,7 @@
 
 namespace gl
 {
-	class Sampler: public impl::Object
+	class Sampler: public gl::impl::DefaultableObject<Sampler,GL_SAMPLER>
 	{
 	public:
 		Sampler()

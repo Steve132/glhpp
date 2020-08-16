@@ -10,7 +10,7 @@
 
 namespace gl
 {
-	class Program: public impl::DefaultableObject<Program>
+	class Program: public impl::DefaultableObject<Program,GL_PROGRAM>
 	{
 	protected:
 		Program(impl::NullInitializerFlagType) {}

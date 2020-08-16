@@ -40,6 +40,38 @@ public:
 		return out;
 	}
 	
+	void Label(GLsizei length,const char* dat)
+	{
+		glObjectPtrLabel(name(),length,dat);
+	}
+	void GetLabel(GLsizei bufSize,GLsizei* lenout,char* out) const
+	{
+		glGetObjectPtrLabel(name(),bufSize,lenout,out);
+	}
+#ifndef GLHPP_STRICT_API
+	#if __cplusplus >= 201703L
+	void Label(const std::string_view& str)
+	{
+		Label(str.length(),str.data());
+	}
+	#else
+	void Label(const std::string& str)
+	{
+		Label(str.length(),str.c_str());
+	}
+	#endif
+	std::string GetLabel() const
+	{
+		GLint mxsize;
+		glGetIntegerv(GL_MAX_LABEL_LENGTH,&mxsize);
+		GLsizei bufsize=mxsize;
+		std::string out(bufsize+1,'\0');
+		GLsizei lenout;
+		GetLabel(bufsize,&lenout,const_cast<char*>(out.data()));
+		out.resize(lenout);
+		return out;
+	}
+#endif
 };
 	
 }

@@ -11,7 +11,7 @@
 
 namespace gl
 {
-	class Texture: public impl::DefaultableObject<Texture>
+	class Texture: public impl::DefaultableObject<Texture,GL_TEXTURE>
 	{
 	protected:
 		Texture(impl::NullInitializerFlagType) {}

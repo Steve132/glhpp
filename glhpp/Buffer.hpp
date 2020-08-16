@@ -6,7 +6,7 @@
 
 namespace gl
 {
-class Buffer: public gl::impl::Object
+class Buffer: public gl::impl::DefaultableObject<Buffer,GL_BUFFER>
 {
 public:
 	Buffer()

@@ -6,7 +6,7 @@
 
 namespace gl
 {
-	class Renderbuffer: public impl::DefaultableObject<Renderbuffer>
+	class Renderbuffer: public impl::DefaultableObject<Renderbuffer,GL_RENDERBUFFER>
 	{
 	protected:
 		Renderbuffer(impl::NullInitializerFlagType) {}

@@ -33,7 +33,7 @@ void GetObjectImpl<GLuint64>::run(GLuint id,GLuint pname,GLuint64* out)
 	glGetQueryObjectui64v(id,pname,out);
 }
 }
-class Query: public gl::impl::Object
+class Query: public gl::impl::EnumerableObject<GL_QUERY>
 {
 protected:
 	GLenum target;

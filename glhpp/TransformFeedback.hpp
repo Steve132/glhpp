@@ -6,7 +6,7 @@
 
 namespace gl
 {
-class TransformFeedback: public gl::impl::Object
+class TransformFeedback: public gl::impl::DefaultableObject<TransformFeedback,GL_TRANSFORM_FEEDBACK>
 {
 public:
 	TransformFeedback()

@@ -6,7 +6,7 @@
 namespace gl
 {
 	class Program;
-	class Shader: public gl::impl::Object
+	class Shader: public gl::impl::EnumerableObject<GL_SHADER>
 	{
 	protected:
 		static void deleteShader(GLsizei,const GLuint* id){ glDeleteShader(*id); }

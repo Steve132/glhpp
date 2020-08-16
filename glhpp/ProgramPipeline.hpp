@@ -6,7 +6,7 @@
 
 namespace gl
 {
-	class ProgramPipeline: public impl::DefaultableObject<ProgramPipeline>
+	class ProgramPipeline: public impl::DefaultableObject<ProgramPipeline,GL_PROGRAM_PIPELINE>
 	{
 	protected:
 		ProgramPipeline(impl::NullInitializerFlagType) {}

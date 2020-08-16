@@ -83,12 +83,55 @@ class Object: public Resource<GLuint>
 protected:
 	
 public:
+
 };
 
 struct NullInitializerFlagType {};
 
-template<class GLHPPTYPE>
-class DefaultableObject:public Object
+template<GLenum GLOBJECTENUM>
+class EnumerableObject: public Object
+{
+public:
+	
+	void Label(GLsizei length,const char* dat)
+	{
+		glObjectLabel(GLOBJECTENUM,name(),length,dat);
+	}
+	void GetLabel(GLsizei bufSize,const GLsizei* lenout,char* out) const
+	{
+		glGetObjectLabel(GLOBJECTENUM,name(),bufSize,lenout,out);
+	}
+#ifndef GLHPP_STRICT_API
+	#if __cplusplus >= 201703L
+	void Label(const std::string_view& str)
+	{
+		Label(str.length(),str.data());
+	}
+	#else
+	void Label(const std::string& str)
+	{
+		Label(str.length(),str.c_str());
+	}
+	#endif
+	std::string GetLabel() const
+	{
+		
+		GLsizei bufsize;
+		GLint mxsize;
+		glGetIntegerv(GL_MAX_LABEL_LENGTH,&mxsize);
+		bufsize=mxsize;
+		std::string out(bufsize+1,'\0');
+		GLsizei lenout;
+		GetLabel(bufsize,&lenout,const_cast<char*>(out.data()));
+		out.resize(lenout);
+		return out;
+	}
+#endif
+	
+};
+
+template<class GLHPPTYPE,GLenum GLOBJECTENUM>
+class DefaultableObject:public EnumerableObject<GLOBJECTENUM>
 {
 protected:
 	static GLHPPTYPE& Default(){

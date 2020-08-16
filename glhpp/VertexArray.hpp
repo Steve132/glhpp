@@ -7,7 +7,7 @@
 
 namespace gl
 {
-class VertexArray: public gl::impl::Object
+class VertexArray: public gl::impl::DefaultableObject<VertexArray,GL_VERTEX_ARRAY>
 {
 public:
 	VertexArray()
