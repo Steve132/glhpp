@@ -38,7 +38,7 @@ namespace gl
 	}
 
 	// Controlling Viewport
-	inline void DepthRangeArrayv(GLuint first, GLsizei count, const double* v)
+	inline void DepthRangeArray(GLuint first, GLsizei count, const double* v)
 	{
 		glDepthRangeArrayv(first, count, v);
 	}
@@ -57,18 +57,18 @@ namespace gl
 	{
 		glDepthRangef(n, f);
 	}
-	
-	inline void ViewportArrayv(GLuint first, GLsizei count, const GLfloat* v)
+
+	inline void ViewportArray(GLuint first, GLsizei count, const GLfloat* v)
 	{
 		glViewportArrayv(first, count, v);
 	}
 
-	inline void ViewportIndexedf(GLuint index, GLfloat x, GLfloat y, GLfloat w, GLfloat h)
+	inline void ViewportIndexed(GLuint index, GLfloat x, GLfloat y, GLfloat w, GLfloat h)
 	{
 		glViewportIndexedf(index, x, y, w, h);
 	}
 
-	inline void ViewportIndexedfv(GLuint index, const GLfloat* v)
+	inline void ViewportIndexed(GLuint index, const GLfloat* v)
 	{
 		glViewportIndexedfv(index, v);
 	}
@@ -77,7 +77,26 @@ namespace gl
 	{
 		glViewport(x, y, w, h);
 	}
-
+#ifndef GLHPP_STRICT_API
+	struct viewport
+	{
+		GLfloat x,y,w,h;
+	};
+	inline void ViewportArray(GLuint first, const viewport* be,const viewport* ed)
+	{
+		ViewportArray(first, ed-be,reinterpret_cast<const GLfloat*>(be));
+	}
+	
+	inline void ViewportIndexed(GLuint index,const viewport& vp)
+	{
+		ViewportIndexed(index, vp.x, vp.y, vp.w, vp.h);
+	}
+	
+	inline void Viewport(const viewport& vp)
+	{
+		Viewport(vp.x, vp.y, vp.w, vp.h);
+	}
+#endif
 	// Multisample (not sure if fits into Sampler)
 	inline void GetMultisample(GLenum pname, GLuint index, GLfloat* val)
 	{
@@ -85,10 +104,10 @@ namespace gl
 	}
 	
 #ifndef GLHPP_STRICT_API
-	inline std::vector<GLfloat> GetMultisample(GLuint index)
+	inline std::array<GLfloat,2> GetMultisample(GLuint index)
 	{
-		std::vector<GLfloat> val(2);
-		GetMultisample(GL_SAMPLE_POSITION, index, val.data());
+		std::array<GLfloat,2> val;
+		GetMultisample(GL_SAMPLE_POSITION, index, &val[0]);
 		return val;
 	}
 #endif
@@ -114,12 +133,12 @@ namespace gl
 		glPointParameterf(pname, param);
 	}
 
-	inline void PointParameterv(GLenum pname, GLint* params)
+	inline void PointParameter(GLenum pname, GLint* params)
 	{
 		glPointParameteriv(pname, params);
 	}
 	
-	inline void PointParameterv(GLenum pname, GLfloat* params)
+	inline void PointParameter(GLenum pname, GLfloat* params)
 	{
 		glPointParameterfv(pname, params);
 	}
@@ -156,7 +175,7 @@ namespace gl
 	}
 
 	// Scissor Test (first is index of viewport)
-	inline void ScissorArrayv(GLuint first, GLsizei count, const GLint* v)
+	inline void ScissorArray(GLuint first, GLsizei count, const GLint* v)
 	{
 		glScissorArrayv(first, count, v);
 	}
@@ -166,7 +185,7 @@ namespace gl
 		glScissorIndexed(index, left, bottom, width, height);
 	}
 	
-	inline void ScissorIndexedv(GLuint index, GLint* v)
+	inline void ScissorIndexed(GLuint index, const GLint* v)
 	{
 		glScissorIndexedv(index, v);
 	}
@@ -176,13 +195,35 @@ namespace gl
 		glScissor(left, bottom, width, height);
 	}
 	
+	
+#ifndef GLHPP_STRICT_API
+	struct scissorBox
+	{
+		GLint left,bottom,width,height;
+	};
+	inline void ScissorArray(GLuint first, const scissorBox* be,const scissorBox* ed)
+	{
+		ScissorArray(first, ed-be, reinterpret_cast<const GLint*>(be));
+	}
+	
+	inline void ScissorIndexed(GLuint index, const scissorBox& box)
+	{
+		ScissorIndexed(index, box.left, box.bottom,box.width,box.height);
+	}
+	
+	inline void Scissor(const scissorBox& box)
+	{
+		Scissor(box.left,box.bottom,box.width,box.height);
+	}
+#endif
+	
 	// Multisample Fragment Ops
 	inline void SampleCoverage(GLfloat value, GLboolean invert)
 	{
 		glSampleCoverage(value, invert);
 	}
 	
-	inline void SampleMaski(GLuint maskNumber, GLbitfield mask)
+	inline void SampleMask(GLuint maskNumber, GLbitfield mask)
 	{
 		glSampleMaski(maskNumber, mask);
 	}
@@ -220,27 +261,15 @@ namespace gl
 		glBlendEquationSeparate(modeRGB, modeAlpha);
 	}
 	
-	inline void BlendEquation(GLuint buf, GLenum mode)
+	inline void BlendEquation(GLuint draw_index, GLenum mode)
 	{
-		glBlendEquationi(buf, mode);
+		glBlendEquationi(draw_index, mode);
 	}
 	
-	inline void BlendEquationSeparatei(GLuint buf, GLenum modeRGB, GLenum modeAlpha)
+	inline void BlendEquationSeparate(GLuint draw_index, GLenum modeRGB, GLenum modeAlpha)
 	{
-		glBlendEquationSeparatei(buf, modeRGB, modeAlpha);
+		glBlendEquationSeparatei(draw_index, modeRGB, modeAlpha);
 	}
-
-#ifndef GLHPP_STRICT_API
-	inline void BlendEquation(const Buffer& buf, GLenum mode)
-	{
-		BlendEquation(static_cast<GLuint>(buf.name()), mode);
-	}
-	
-	inline void BlendEquationSeparatei(const Buffer& buf, GLenum modeRGB, GLenum modeAlpha)
-	{
-		BlendEquationSeparatei(static_cast<GLuint>(buf.name()), modeRGB, modeAlpha);
-	}
-#endif
 	
 	inline void BlendFunc(GLenum src, GLenum dst)
 	{
@@ -252,6 +281,15 @@ namespace gl
 		glBlendFuncSeparate(srcRGB, dstRGB, srcAlpha, dstAlpha);
 	}
 	
+	inline void BlendFunc(GLuint draw_index,GLenum src, GLenum dst)
+	{
+		glBlendFunci(draw_index,src, dst);
+	}
+	
+	inline void BlendFuncSeparate(GLuint draw_index,GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha)
+	{
+		glBlendFuncSeparatei(draw_index,srcRGB, dstRGB, srcAlpha, dstAlpha);
+	}
 	inline void BlendColor(GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha)
 	{
 		glBlendColor(red, green, blue, alpha);

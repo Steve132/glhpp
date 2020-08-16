@@ -56,7 +56,7 @@ public:
 		glDrawTransformFeedback(mode, id);
 	}
 	
-	void Draw(GLenum mode, GLsizei instanceCount) const
+	void DrawInstanced(GLenum mode, GLsizei instanceCount) const
 	{
 		glDrawTransformFeedbackInstanced(mode, id, instanceCount);
 	}
@@ -66,12 +66,21 @@ public:
 		glDrawTransformFeedbackStream(mode, id, stream);
 	}
 	
-	void DrawStream(GLenum mode, GLuint stream, GLsizei instanceCount) const
+	void DrawStreamInstanced(GLenum mode, GLuint stream, GLsizei instanceCount) const
 	{
 		glDrawTransformFeedbackStreamInstanced(mode, id, stream, instanceCount);
 	}
 	
 #ifndef GLHPP_STRICT_API
+	void Draw(GLenum mode, GLsizei instanceCount) const
+	{
+		DrawInstanced(mode, instanceCount);
+	}
+
+	void DrawStream(GLenum mode, GLuint stream, GLsizei instanceCount) const
+	{
+		DrawStreamInstanced(mode, stream, instanceCount);
+	}
 	void BufferRange(GLuint index, const Buffer& buf, GLintptr offset, GLsizei stride) const
 	{
 		BufferRange(index, static_cast<GLuint>(buf.name()), offset, stride);
