@@ -24,6 +24,7 @@
 #include "Primitives.hpp"
 #include "Compute.hpp"
 #include "ImageBase.hpp"
+#include "Get.hpp"
 
 
 namespace gl

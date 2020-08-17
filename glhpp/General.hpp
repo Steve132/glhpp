@@ -1,5 +1,5 @@
-#ifndef GLHPP_MISCELLANEOUS_HPP
-#define GLHPP_MISCELLANEOUS_HPP
+#ifndef GLHPP_GENERAL_HPP
+#define GLHPP_GENERAL_HPP
 
 namespace gl
 {
@@ -43,10 +43,6 @@ namespace gl
 	{
 		glFinish();
 	}
-
-	
-	
-	
 }
 
 #endif
