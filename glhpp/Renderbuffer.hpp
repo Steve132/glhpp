@@ -3,13 +3,16 @@
 
 #include "Object.hpp"
 
+#include "ImageBase.hpp"
 
 namespace gl
 {
-	class Renderbuffer: public impl::DefaultableObject<Renderbuffer,GL_RENDERBUFFER>
+	class Renderbuffer: public impl::DefaultableObject<Renderbuffer,GL_RENDERBUFFER>,public impl::ImageBase
 	{
 	protected:
 		Renderbuffer(impl::NullInitializerFlagType) {}
+		virtual GLenum target() const override { return GL_RENDERBUFFER; }
+		virtual GLuint image_name() const override { return id; }
 	public:
 		Renderbuffer(GLenum target)
 		{

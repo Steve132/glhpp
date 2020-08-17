@@ -23,6 +23,7 @@
 #include "Rasterization.hpp"
 #include "Primitives.hpp"
 #include "Compute.hpp"
+#include "ImageBase.hpp"
 
 
 namespace gl

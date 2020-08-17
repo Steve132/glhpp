@@ -91,7 +91,56 @@ public:
 		BufferBase(index, static_cast<GLuint>(buf.name()));
 	}
 #endif
+
+	void Get(GLenum pname,GLint* out) const
+	{
+		glGetTransformFeedbackiv(id,pname,out);
+	}
+	void Get(GLenum pname,GLint index,GLint* out) const
+	{
+		glGetTransformFeedbacki_v(id,pname,index,out);
+	}
+	void Get(GLenum pname,GLint index,GLint64* out) const
+	{
+		glGetTransformFeedbacki64_v(id,pname,index,out);
+	}
+#ifndef GLHPP_STRICT_API
+	GLint Get(GLenum pname) const
+	{
+		GLint out;
+		Get(pname,&out);
+		return out;
+	}
+	template<class T>
+	T Get(GLenum pname) const;
+	
+	template<class T>
+	T Get(GLenum pname,GLint index) const;
+#endif
 };
+
+
+#ifndef GLHPP_STRICT_API
+template<>
+inline GLint TransformFeedback::Get(GLenum pname) const { return Get(pname); }
+
+template<>
+inline GLint TransformFeedback::Get(GLenum pname,GLint index) const
+{
+	GLint out;
+	Get(pname,index,&out);
+	return out;
+}
+template<>
+inline GLint64 TransformFeedback::Get(GLenum pname,GLint index) const
+{
+	GLint64 out;
+	Get(pname,index,&out);
+	return out;
+}
+#endif
+
+
 }
 
 #endif

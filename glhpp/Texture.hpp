@@ -8,14 +8,17 @@
 #include <algorithm>
 #include "ClientImage.hpp"
 #include <limits>
+#include "ImageBase.hpp"
 
 namespace gl
 {
-	class Texture: public impl::DefaultableObject<Texture,GL_TEXTURE>
+	class Texture: public impl::DefaultableObject<Texture,GL_TEXTURE>, public impl::ImageBase
 	{
 	protected:
 		Texture(impl::NullInitializerFlagType) {}
 		GLenum m_target;
+		virtual GLenum target() const override { return m_target; }
+		virtual GLuint image_name() const override { return id; }
 	public:
 		Texture(GLenum target):m_target(target)
 		{

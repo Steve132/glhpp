@@ -71,7 +71,7 @@ protected:
 		deleter_func(NullDeleter),
 		is_func(NullIsFunction)
 	{}
-	~Resource()
+	virtual ~Resource()  //This is required in case anyone uses Object*.   This actually has the potential to make everything smaller anyway transitioning delete to use virtual
 	{
 		cleanup();
 	}
@@ -92,7 +92,6 @@ template<GLenum GLOBJECTENUM>
 class EnumerableObject: public Object
 {
 public:
-	
 	void Label(GLsizei length,const char* dat)
 	{
 		glObjectLabel(GLOBJECTENUM,name(),length,dat);
