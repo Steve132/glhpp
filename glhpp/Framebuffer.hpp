@@ -18,8 +18,8 @@ namespace gl
 			id=0;
 			glCreateFramebuffers(1,&id);
 			deleter_func=glDeleteFramebuffers;
-			is_func=glIsFramebuffer;
 		}
+		virtual GLboolean Is() const override { return glIsFramebuffer(id); }
 		
 		void Bind(GLenum target) const
 		{

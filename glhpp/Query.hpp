@@ -46,7 +46,10 @@ public:
 	{
 		glCreateQueries(target,1,&id);
 		deleter_func=glDeleteQueries;
-		is_func=glIsQuery;
+	}
+	virtual GLboolean Is() const override
+	{
+		return glIsQuery(name());
 	}
 	void Begin(GLenum s) const //only for compatibility with the API.  
 	{

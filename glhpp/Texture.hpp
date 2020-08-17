@@ -25,8 +25,9 @@ namespace gl
 			id=0;
 			glCreateTextures(target,1,&id);
 			deleter_func=glDeleteTextures;
-			is_func=glIsTexture;
 		}
+		virtual GLboolean Is() const override{ return glIsTexture(id); }
+		
 		static void Active(GLenum unit)
 		{
 			if(unit < GL_TEXTURE0) unit+=GL_TEXTURE0;

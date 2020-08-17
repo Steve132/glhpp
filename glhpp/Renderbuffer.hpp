@@ -19,8 +19,8 @@ namespace gl
 			id=0;
 			glCreateRenderbuffers(1,&id);
 			deleter_func=glDeleteRenderbuffers;
-			is_func=glIsRenderbuffer;
 		}
+		virtual GLboolean Is() const override { return glIsRenderbuffer(id); }
 		
 		void Bind(GLenum target) const
 		{

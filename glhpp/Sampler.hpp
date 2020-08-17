@@ -16,8 +16,9 @@ namespace gl
 			id=0;
 			glCreateSamplers(1,&id);
 			deleter_func=glDeleteSamplers;
-			is_func=glIsSampler;
 		}
+		virtual GLboolean Is() const override{ return glIsSampler(id); }
+		
 		void Bind(GLuint unit) const
 		{
 			glBindSampler(unit,id);

@@ -13,8 +13,8 @@ public:
 	{
 		glCreateBuffers(1,&id);
 		deleter_func=glDeleteBuffers;
-		is_func=glIsBuffer;
 	}
+	virtual GLboolean Is() const override{ return glIsBuffer(id); }
 	
 	void Bind(GLenum tgt) const
 	{

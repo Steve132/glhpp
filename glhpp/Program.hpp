@@ -18,7 +18,6 @@ namespace gl
 		{
 			id=initer;
 			deleter_func=deleteProgram;
-			is_func=glIsProgram;
 		}
 		
 		static void deleteProgram(GLsizei,const GLuint* id){ glDeleteProgram(*id); }
@@ -26,6 +25,8 @@ namespace gl
 	public:
 		Program():Program(glCreateProgram())
 		{}
+		virtual GLboolean Is() const override{ return glIsProgram(id); }
+		
 		void AttachShader(const Shader& shader)
 		{
 			glAttachShader(id,shader);

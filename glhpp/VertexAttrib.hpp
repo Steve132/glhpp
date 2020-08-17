@@ -82,4 +82,6 @@ namespace gl
 };
 
 
+//TODO: VertexAttribBinding GetVertexAttrib{d GetVertexAttribPointerv(uint
+
 #endif

@@ -10,12 +10,16 @@ class Sync: public gl::impl::Resource<GLsync>
 {
 protected:
 	static void deleteSync(GLsizei,const GLsync* incoming){ glDeleteSync(*const_cast<GLsync*>(incoming)); }
+	
 	Sync(GLsync incoming):gl::impl::Resource<GLsync>(incoming)
 	{
 		deleter_func=deleteSync;
-		is_func=glIsSync;
 	}
+	
 public:
+	virtual GLboolean Is() const override{
+		return glIsSync(name());
+	}
 	static Sync Fence(GLenum condition=GL_SYNC_GPU_COMMANDS_COMPLETE,GLbitfield flags=0)
 	{
 		return Sync(glFenceSync(condition,flags));

@@ -14,8 +14,8 @@ public:
 	{
 		glCreateVertexArrays(1,&id);
 		deleter_func=glDeleteVertexArrays;
-		is_func=glIsVertexArray;
 	}
+	virtual GLboolean Is() const override { return glIsVertexArray(id); }
 	
 	void Bind() const
 	{

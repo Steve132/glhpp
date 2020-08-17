@@ -14,9 +14,10 @@ namespace gl
 		{
 			id=initer;
 			deleter_func=glDeleteProgramPipelines;
-			is_func=glIsProgramPipeline;
 		}
 	public:
+		virtual GLboolean Is() const override{ return glIsProgramPipeline(id); }
+		
 		ProgramPipeline():ProgramPipeline(0)
 		{
 			glCreateProgramPipelines(1,&id);

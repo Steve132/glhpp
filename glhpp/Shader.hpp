@@ -15,8 +15,9 @@ namespace gl
 		{
 			id=glCreateShader(type);
 			deleter_func=deleteShader;
-			is_func=glIsShader;
 		}
+		virtual GLboolean Is() const override{ return glIsShader(id); }
+		
 		void Source(GLsizei count,const GLchar * const * text, const GLint* lengths)
 		{
 			glShaderSource(id,count,text,lengths);

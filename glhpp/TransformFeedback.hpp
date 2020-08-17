@@ -13,8 +13,8 @@ public:
 	{
 		glCreateTransformFeedbacks(1,&id);
 		deleter_func=glDeleteTransformFeedbacks;
-		is_func=glIsTransformFeedback;
 	}
+	virtual GLboolean Is() const override { return glIsTransformFeedback(id); }
 	
 	void Bind() const
 	{

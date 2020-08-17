@@ -69,6 +69,14 @@ namespace gl
 	{
 		glPolygonOffset(factor, units);
 	}
+	inline void PatchParameter(GLenum pname,GLint val)
+	{
+		glPatchParameteri(pname,val);
+	}
+	inline void PatchParameter(GLenum pname,const GLfloat* v)
+	{
+		glPatchParameterfv(pname,v);
+	}
 }
 
 #endif
