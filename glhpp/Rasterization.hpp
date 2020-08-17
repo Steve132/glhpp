@@ -1,6 +1,6 @@
 #ifndef GLHPP_RASTERIZATION_HPP
 #define GLHPP_RASTERIZATION_HPP
-
+#include "ClientImage.hpp"
 namespace gl
 {
 	
@@ -252,7 +252,35 @@ namespace gl
 	{
 		glClampColor(target,clamp);
 	}
+	
+	inline void PixelStore(GLenum pname,GLfloat f)
+	{
+		glPixelStoref(pname,f);
+	}
+	inline void PixelStore(GLenum pname,GLint i)
+	{
+		glPixelStorei(pname,i);
+	}
 	//Other generic clearbuffers are a part of Framebuffer.Default()
+	inline void ReadnPixels(GLint x,GLint y,GLsizei width,GLsizei height,GLenum format,GLenum type,GLsizei bufSize,GLvoid* data)
+	{
+		glReadnPixels(x,y,width,height,format,type,bufSize,data);
+	}
+	inline void ReadPixels(GLint x,GLint y,GLsizei width,GLsizei height,GLenum format,GLenum type,GLvoid* data)
+	{
+		glReadPixels(x,y,width,height,format,type,data);
+	}
+	
+#ifndef GLHPP_STRICT_API
+	inline void ReadPixels(GLint x,GLint y,glhpp::ClientImage& climg)
+	{
+		ReadPixels(x,y,climg.shape()[0],climg.shape()[1],climg.format(),climg.type(),climg.data());
+	}
+	inline void ReadnPixels(GLint x,GLint y,GLsizei bufSize,glhpp::ClientImage& climg)
+	{
+		glReadnPixels(x,y,climg.shape()[0],climg.shape()[1],climg.format(),climg.type(),bufSize,climg.data());
+	}
+#endif
 };
 
 #endif

@@ -48,14 +48,6 @@ namespace gl
 	
 	//TODO: easy mode here
 	};
-	inline void PixelStore(GLenum pname,GLint param)
-	{
-		glPixelStorei(pname,param);
-	}
-	inline void PixelStore(GLenum pname,GLfloat param)
-	{
-		glPixelStoref(pname,param);
-	}
 }
 
 
