@@ -464,13 +464,13 @@ namespace gl
 		}
 	};
 	
-	Program Shader::CreateProgram(GLenum type,GLsizei count, const char * const * strings)
+	inline Program Shader::CreateProgram(GLenum type,GLsizei count, const char * const * strings)
 	{
 		GLuint out=glCreateShaderProgramv(type,count,strings);
 		return Program(out);
 	}
 	#ifndef GLHPP_STRICT_API
-	Program Shader::CreateProgram(GLenum type,const std::string& text)
+	inline Program Shader::CreateProgram(GLenum type,const std::string& text)
 	{
 		const char* strs=text.c_str();
 		return CreateProgram(type,1,&strs);

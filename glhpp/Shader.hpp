@@ -106,13 +106,13 @@ namespace gl
 			glGetShaderPrecisionFormat(shadertype,precisiontype,range,precision);
 		}
 #ifndef GLHPP_STRICT_API
-		struct PrecisionFormat
+		struct precisionFormat
 		{
 			GLint minimum,maximum,precision;
 		};
-		static PrecisionFormat GetPrecisionFormat(GLenum shadertype,GLenum precisiontype)
+		static precisionFormat GetPrecisionFormat(GLenum shadertype,GLenum precisiontype)
 		{
-			PrecisionFormat pf;
+			precisionFormat pf;
 			GLint vals[3];
 			GetPrecisionFormat(shadertype,precisiontype,&vals[0],&vals[2]);
 			pf={vals[0],vals[1],vals[2]};

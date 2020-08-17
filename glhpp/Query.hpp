@@ -3,6 +3,9 @@
 
 #include "Object.hpp"
 
+
+//TODO: This needs a lot of work.  It needs to be refactored so that it uses overloads not specializations, also so that the undocumented GetQueryBufferObject functions are implemented,
+//and that the getters are correct for the API and there's a strict/non strict separation
 namespace gl
 {
 namespace impl
@@ -13,22 +16,22 @@ struct GetObjectImpl
 	static void run(GLuint id,GLenum pname,TypeVal* out);
 };
 template<>
-void GetObjectImpl<GLint>::run(GLuint id,GLuint pname,GLint* out)
+inline void GetObjectImpl<GLint>::run(GLuint id,GLuint pname,GLint* out)
 {
 	glGetQueryObjectiv(id,pname,out);
 }
 template<>
-void GetObjectImpl<GLuint>::run(GLuint id,GLuint pname,GLuint* out)
+inline void GetObjectImpl<GLuint>::run(GLuint id,GLuint pname,GLuint* out)
 {
 	glGetQueryObjectuiv(id,pname,out);
 }
 template<>
-void GetObjectImpl<GLint64>::run(GLuint id,GLuint pname,GLint64* out)
+inline void GetObjectImpl<GLint64>::run(GLuint id,GLuint pname,GLint64* out)
 {
 	glGetQueryObjecti64v(id,pname,out);
 }
 template<>
-void GetObjectImpl<GLuint64>::run(GLuint id,GLuint pname,GLuint64* out)
+inline void GetObjectImpl<GLuint64>::run(GLuint id,GLuint pname,GLuint64* out)
 {
 	glGetQueryObjectui64v(id,pname,out);
 }
@@ -49,23 +52,22 @@ public:
 	{
 		glBeginQuery(s,id);
 	}
-	void Begin() const
-	{
-		Begin(target);
-	}
 	void BeginIndexed(GLenum s,GLuint index) const
 	{
 		glBeginQueryIndexed(s,index,id);
-	}
-	void BeginIndexed(GLuint index) const
-	{
-		BeginIndexed(target,index);
 	}
 	void BeginConditionalRender(GLenum mode) const
 	{
 		glBeginConditionalRender(id, mode); 
 	}
-	
+	void Begin() const
+	{
+		Begin(target);
+	}
+	void BeginIndexed(GLuint index) const
+	{
+		BeginIndexed(target,index);
+	}
 	void End(GLenum s) const //only for compatibility with the API.  
 	{
 		glEndQuery(s);
@@ -87,9 +89,17 @@ public:
 		glEndConditionalRender(); 
 	}
 	
+	void Get(GLenum s,GLuint pname, GLint* v) const
+	{
+		glGetQueryiv(s,pname,v);
+	}
+	void Get(GLuint pname, GLint* v) const
+	{
+		glGetQueryiv(target,pname,v);
+	}
 	GLint Get(GLenum s,GLuint pname) const
 	{
-		GLint out;glGetQueryiv(s,pname,&out);return out;
+		GLint out;Get(s,pname,&out);return out;
 	}
 	GLint Get(GLuint pname) const
 	{

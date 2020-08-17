@@ -38,6 +38,18 @@ public:
 		glVertexArrayVertexBuffers(id, first, count, buffers, offsets, strides);
 	}
 	
+	#ifndef GLHPP_STRICT_API
+	void ElementBuffer(const Buffer& buf) const
+	{
+		ElementBuffer(static_cast<GLuint>(buf.name()));
+	}
+	
+	void VertexBuffer(GLuint bindingIndex, const Buffer& buf, GLintptr offset, GLsizei stride) const
+	{
+		VertexBuffer(bindingIndex, static_cast<GLuint>(buf.name()), offset, stride);
+	}
+	#endif
+	
 	void AttribBinding(GLuint attribIndex, GLuint bindingIndex) const
 	{
 		glVertexArrayAttribBinding(id, attribIndex, bindingIndex);
@@ -63,27 +75,20 @@ public:
 		glGetVertexArrayiv(id, pname, param);
 	}
 	
-	void GetIndex(GLuint index, GLenum pname, GLint* param) const
+	void GetIndexed(GLuint index, GLenum pname, GLint* param) const
 	{
 		glGetVertexArrayIndexediv(id, index, pname, param);
 	}
 	
-	void GetIndex(GLuint index, GLenum pname, GLint64* param) const
+	void GetIndexed(GLuint index, GLenum pname, GLint64* param) const
 	{
 		glGetVertexArrayIndexed64iv(id, index, pname, param);
 	}
 	
 #ifndef GLHPP_STRICT_API
-	void ElementBuffer(const Buffer& buf) const
-	{
-		ElementBuffer(static_cast<GLuint>(buf.name()));
-	}
-
-	void VertexBuffer(GLuint bindingIndex, const Buffer& buf, GLintptr offset, GLsizei stride) const
-	{
-		VertexBuffer(bindingIndex, static_cast<GLuint>(buf.name()), offset, stride);
-	}
+	
 #endif
+
 
 };
 }
