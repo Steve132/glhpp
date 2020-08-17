@@ -5,7 +5,14 @@
 
 namespace gl
 {
-
+	inline GLenum GetError()
+	{
+		return glGetError();
+	}
+	inline GLenum GetGraphicsResetStatus()
+	{
+		return glGetGraphicsResetStatus();
+	}
 	void DebugMessageCallback(GLDEBUGPROC proc,const void* userParam){
 		glDebugMessageCallback(proc,userParam);
 	}

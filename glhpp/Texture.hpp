@@ -542,6 +542,10 @@ namespace gl
 		{
 			glBindImageTexture(index,id,level,layered,layer,access,format);
 		}
+		static void Barrier()
+		{
+			glTextureBarrier();
+		}
 	};
 }
 

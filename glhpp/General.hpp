@@ -35,7 +35,18 @@ namespace gl
 	{
 		glHint(target, hint);
 	}
-	//TODO: Get Set
+	inline void Flush()
+	{
+		glFlush();
+	}
+	inline void Finish()
+	{
+		glFinish();
+	}
+
+	
+	
+	
 }
 
 #endif
