@@ -3,7 +3,6 @@
 
 #include "Object.hpp"
 
-
 #define VA1(X,t,t2) void VertexAttri##X(GLuint index,t2 v0){ glVertexAttri##X##1##t(index,v0); }
 
 #define VA2(X,t,t2) void VertexAttri##X(GLuint index,t2 v0,t2 v1){ glVertexAttri##X##2##t(index,v0,v1); }
