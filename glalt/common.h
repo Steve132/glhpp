@@ -555,7 +555,8 @@ inline void* glaltGetProcAddress(const char* funcname)
 
 inline void* glaltGetProcAddressExtension(const char* frequest,const char* extext)
 {
-	if(glaltCheckExtension(extext))
+    ///\todo hack -- extension check fails so every entrypoint returns null.
+	if(true || glaltCheckExtension(extext))
 	{
 		void* fptr=_glalt_prim_GetProcAddress(frequest);
 		if(fptr)
