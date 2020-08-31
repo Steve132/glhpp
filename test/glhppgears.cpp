@@ -4,10 +4,11 @@
 #include<iostream>
 #include<utility>
 
-#include <GLFW/glfw3.h>
+#include <GLFW.hpp>
 
 int main(void)
 {
-	
+	glfw::Window::Hints hnts;
+	glfw::Window wind(640,480,hnts,"Simple");
 	return 0;
 }
