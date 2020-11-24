@@ -3,7 +3,7 @@
 
 namespace gl
 {
-
+/*TODO: Arguably these shouldn't even exist because of AttribFormat
 //Standard ones: double32, float, short
 inline void VertexAttrib1(GLuint i,GLdouble v0) { glVertexAttrib1d(i,v0); }
 inline void VertexAttrib2(GLuint i,GLdouble v0,GLdouble v1) { glVertexAttrib2d(i,v0,v1); }
@@ -101,7 +101,6 @@ inline void VertexAttribP4(GLuint i,GLenum t,GLboolean n,const GLuint* v) { glVe
 /*
 GLAPI void APIENTRY glVertexAttribPointer (GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void *pointer);
 GLAPI void APIENTRY glVertexAttribLPointer (GLuint index, GLint size, GLenum type, GLsizei stride, const void *pointer);
-GLAPI void APIENTRY glVertexAttribDivisor (GLuint index, GLuint divisor);
 GLAPI void APIENTRY glVertexAttribIPointer (GLuint index, GLint size, GLenum type, GLsizei stride, const void *pointer);
 
 GLAPI void APIENTRY glGetVertexAttribLdv (GLuint index, GLenum pname, GLdouble *params);

@@ -86,8 +86,20 @@ public:
 	}
 	
 #ifndef GLHPP_STRICT_API
-	
+	//Todo: VAO objects
 #endif
+	void AttribIFormat(GLuint attribindex,GLint size,GLenum type,GLuint relativeoffset) 
+	{
+		glVertexArrayAttribIFormat(id,attribindex,size,type,relativeoffset);
+	}
+	void AttribIFormat(GLuint attribindex, GLint size, GLenum type, GLboolean normalized, GLuint relativeoffset)
+	{
+		glVertexArrayAttribFormat(id,attribindex,size,type,normalized,relativeoffset);
+	}
+	void AttribLFormat (GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset)
+	{
+		glVertexArrayAttribLFormat(id,attribindex,size,type,relativeoffset);
+	}
 
 
 };
