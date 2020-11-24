@@ -6,8 +6,6 @@
 #include <vector>
 #include <algorithm>
 
-#include "Uniforms.hpp"
-
 namespace gl
 {
 	class Program: public impl::DefaultableObject<Program,GL_PROGRAM>
@@ -171,11 +169,11 @@ namespace gl
 #endif
 		GLint GetResourceLocation(GLenum programInterface,const GLchar* name) const
 		{
-			glGetProgramResourceLocation(id,programInterface,name);
+			return glGetProgramResourceLocation(id,programInterface,name);
 		}
 		GLuint GetResourceLocationIndex(GLenum programInterface,const char *nm) const
 		{
-			glGetProgramResourceLocationIndex(id,programInterface,nm);
+			return glGetProgramResourceLocationIndex(id,programInterface,nm);
 		}
 		void GetBinary(GLsizei bufSize,GLsizei *length,GLenum *binaryFormat,GLvoid *binary) const
 		{
@@ -292,6 +290,7 @@ namespace gl
 			GetActiveUniformBlockName(uniformBlockIndex,0,&len,nullptr);
 			out.resize(len+1,'\0');
 			GetActiveUniformBlockName(uniformBlockIndex,out.size(),&len,const_cast<char*>(out.data()));
+			return out;
 		}
 		GLint GetActiveUniformBlock(GLuint uniformBlockIndex,GLenum pname) const
 		{
@@ -329,12 +328,7 @@ namespace gl
 			
 		//Todo: object oriented bindings for the above.  Like program.ActiveAtomicCounterBuffer(0).Get(pname);
 		
-		UniformsVectorTemplates(GLuint,ui)
-		UniformsVectorTemplates(GLint,i)
-		UniformsVectorTemplates(GLdouble,d)
-		UniformsVectorTemplates(GLfloat,f)
-		UniformsMatrixTemplates(GLdouble,d)
-		UniformsMatrixTemplates(GLfloat,f)
+#include "Uniforms.hpp"
 		
 		void UniformBlockBinding(GLuint uniformBlockIndex,GLuint uniformBlockBinding)
 		{
@@ -347,11 +341,11 @@ namespace gl
 			
 		GLint GetSubroutineUniformLocation(GLenum shaderType,const char* nm) const
 		{
-			glGetSubroutineUniformLocation(id,shaderType,nm);
+			return glGetSubroutineUniformLocation(id,shaderType,nm);
 		}
 		GLuint GetSubroutineIndex(GLenum shaderType,const char* nm) const
 		{
-			glGetSubroutineIndex(id,shaderType,nm);
+			return glGetSubroutineIndex(id,shaderType,nm);
 		}
 		void GetActiveSubroutineName(GLenum shaderType,GLuint index,GLsizei bufSize,GLsizei* length,char* nm) const
 		{

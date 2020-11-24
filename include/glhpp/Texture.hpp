@@ -446,6 +446,7 @@ namespace gl
 		{
 			Texture tx(target);
 			tx.View(target,id,internalformat,minlevel,numlevels,minlayer,numlayers);
+			return tx;
 		}
 #endif
 		void Storage1D(GLsizei levels,GLenum internalformat,GLsizei width)

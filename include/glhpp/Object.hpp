@@ -31,6 +31,7 @@ public:
 		id=other.id;
 		other.id=0;
 		other.deleter_func=NullDeleter;
+		return *this;
 	}
 	Resource(Resource<IDType>&& other):Resource()
 	{

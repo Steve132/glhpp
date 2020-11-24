@@ -53,11 +53,11 @@ public:
 	}
 	void* Map(GLenum access)
 	{
-		glMapNamedBuffer(id,access);
+		return glMapNamedBuffer(id,access);
 	}
 	void* MapRange(GLintptr offset,GLsizeiptr length,GLbitfield access)
 	{
-		glMapNamedBufferRange(id,offset,length,access);
+		return glMapNamedBufferRange(id,offset,length,access);
 	}
 	void FlushMappedRange(GLintptr offset, GLsizeiptr length)
 	{
@@ -65,7 +65,7 @@ public:
 	}
 	GLboolean Unmap()
 	{
-		glUnmapNamedBuffer(id);
+		return glUnmapNamedBuffer(id);
 	}
 	void InvalidateSubData(GLintptr offset,GLsizeiptr length)
 	{
