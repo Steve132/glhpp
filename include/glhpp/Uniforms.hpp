@@ -90,34 +90,36 @@ template<class LocType,class T> void Uniform(LocType loc,const T& v0,const T& v1
 template<class LocType,class T> void Uniform(LocType loc,const T& v0,const T& v1,const T& v2,const T& v3) { Uniform4(loc,v0,v1,v2,v3); }
 
 template<class LocType,class T,unsigned int N> struct UniformImpl;
-template<class LocType,class T> struct UniformImpl<LocType,T,1> { static void uniform(Program* p,LocType loc,GLsizei count,const T* value){ p->Uniform1(loc,count,value); } };
-template<class LocType,class T> struct UniformImpl<LocType,T,2> { static void uniform(Program* p,LocType loc,GLsizei count,const T* value){ p->Uniform2(loc,count,value); } };
-template<class LocType,class T> struct UniformImpl<LocType,T,3> { static void uniform(Program* p,LocType loc,GLsizei count,const T* value){ p->Uniform3(loc,count,value); } };
-template<class LocType,class T> struct UniformImpl<LocType,T,4> { static void uniform(Program* p,LocType loc,GLsizei count,const T* value){ p->Uniform4(loc,count,value); } };
+template<class LocType,class T> struct UniformImpl<LocType,T,1> { static void uniform(Program& p,LocType loc,GLsizei count,const T* value){ p.Uniform1(loc,count,value); } };
+template<class LocType,class T> struct UniformImpl<LocType,T,2> { static void uniform(Program& p,LocType loc,GLsizei count,const T* value){ p.Uniform2(loc,count,value); } };
+template<class LocType,class T> struct UniformImpl<LocType,T,3> { static void uniform(Program& p,LocType loc,GLsizei count,const T* value){ p.Uniform3(loc,count,value); } };
+template<class LocType,class T> struct UniformImpl<LocType,T,4> { static void uniform(Program& p,LocType loc,GLsizei count,const T* value){ p.Uniform4(loc,count,value); } };
 
 template<class LocType,class T,unsigned int N>
-void Uniform(LocType loc,GLsizei count,const T* value){ UniformImpl<LocType,T,N>::uniform(this,loc,count,value); }
+void Uniform(LocType loc,GLsizei count,const T* value){ UniformImpl<LocType,T,N>::uniform(*this,loc,count,value); }
+template<class LocType,class T,unsigned int N>
+void Uniform(LocType loc,const T* value){ UniformImpl<LocType,T,N>::uniform(*this,loc,1,value); }
 
 template<class LocType,class T,unsigned int N,unsigned int M> struct UniformMatrixImpl;
-template<class LocType,class T> struct UniformMatrixImpl<LocType,T,1,1> { static void uniform_matrix(Program* p,GLint l,GLsizei c, GLboolean , const GLdouble* v){ p->Uniform1(l,c,v); } };
-template<class LocType,class T> struct UniformMatrixImpl<LocType,T,1,2> { static void uniform_matrix(Program* p,GLint l,GLsizei c, GLboolean , const GLdouble* v){ p->Uniform2(l,c,v); } };
-template<class LocType,class T> struct UniformMatrixImpl<LocType,T,1,3> { static void uniform_matrix(Program* p,GLint l,GLsizei c, GLboolean , const GLdouble* v){ p->Uniform3(l,c,v); } };
-template<class LocType,class T> struct UniformMatrixImpl<LocType,T,1,4> { static void uniform_matrix(Program* p,GLint l,GLsizei c, GLboolean , const GLdouble* v){ p->Uniform4(l,c,v); } };
-template<class LocType,class T> struct UniformMatrixImpl<LocType,T,2,1> { static void uniform_matrix(Program* p,GLint l,GLsizei c, GLboolean , const GLdouble* v){ p->Uniform2(l,c,v); } };
-template<class LocType,class T> struct UniformMatrixImpl<LocType,T,3,1> { static void uniform_matrix(Program* p,GLint l,GLsizei c, GLboolean , const GLdouble* v){ p->Uniform3(l,c,v); } };
-template<class LocType,class T> struct UniformMatrixImpl<LocType,T,4,1> { static void uniform_matrix(Program* p,GLint l,GLsizei c, GLboolean , const GLdouble* v){ p->Uniform4(l,c,v); } };
-template<class LocType,class T> struct UniformMatrixImpl<LocType,T,2,2> { static void uniform_matrix(Program* p,GLint l,GLsizei c, GLboolean t, const GLdouble* v){ p->UniformMatrix2(l,c,t,v); } };
-template<class LocType,class T> struct UniformMatrixImpl<LocType,T,2,3> { static void uniform_matrix(Program* p,GLint l,GLsizei c, GLboolean t, const GLdouble* v){ p->UniformMatrix2x3(l,c,t,v); } };
-template<class LocType,class T> struct UniformMatrixImpl<LocType,T,2,4> { static void uniform_matrix(Program* p,GLint l,GLsizei c, GLboolean t, const GLdouble* v){ p->UniformMatrix2x4(l,c,t,v); } };
-template<class LocType,class T> struct UniformMatrixImpl<LocType,T,3,2> { static void uniform_matrix(Program* p,GLint l,GLsizei c, GLboolean t, const GLdouble* v){ p->UniformMatrix3x2(l,c,t,v); } };
-template<class LocType,class T> struct UniformMatrixImpl<LocType,T,3,3> { static void uniform_matrix(Program* p,GLint l,GLsizei c, GLboolean t, const GLdouble* v){ p->UniformMatrix3(l,c,t,v); } };
-template<class LocType,class T> struct UniformMatrixImpl<LocType,T,3,4> { static void uniform_matrix(Program* p,GLint l,GLsizei c, GLboolean t, const GLdouble* v){ p->UniformMatrix3x4(l,c,t,v); } };
-template<class LocType,class T> struct UniformMatrixImpl<LocType,T,4,2> { static void uniform_matrix(Program* p,GLint l,GLsizei c, GLboolean t, const GLdouble* v){ p->UniformMatrix4x2(l,c,t,v); } };
-template<class LocType,class T> struct UniformMatrixImpl<LocType,T,4,3> { static void uniform_matrix(Program* p,GLint l,GLsizei c, GLboolean t, const GLdouble* v){ p->UniformMatrix4x3(l,c,t,v); } };
-template<class LocType,class T> struct UniformMatrixImpl<LocType,T,4,4> { static void uniform_matrix(Program* p,GLint l,GLsizei c, GLboolean t, const GLdouble* v){ p->UniformMatrix4(l,c,t,v); } };
+template<class LocType,class T> struct UniformMatrixImpl<LocType,T,1,1> { static void uniform_matrix(Program& p,GLint l,GLsizei c, GLboolean , const GLdouble* v){ p.Uniform1(l,c,v); } };
+template<class LocType,class T> struct UniformMatrixImpl<LocType,T,1,2> { static void uniform_matrix(Program& p,GLint l,GLsizei c, GLboolean , const GLdouble* v){ p.Uniform2(l,c,v); } };
+template<class LocType,class T> struct UniformMatrixImpl<LocType,T,1,3> { static void uniform_matrix(Program& p,GLint l,GLsizei c, GLboolean , const GLdouble* v){ p.Uniform3(l,c,v); } };
+template<class LocType,class T> struct UniformMatrixImpl<LocType,T,1,4> { static void uniform_matrix(Program& p,GLint l,GLsizei c, GLboolean , const GLdouble* v){ p.Uniform4(l,c,v); } };
+template<class LocType,class T> struct UniformMatrixImpl<LocType,T,2,1> { static void uniform_matrix(Program& p,GLint l,GLsizei c, GLboolean , const GLdouble* v){ p.Uniform2(l,c,v); } };
+template<class LocType,class T> struct UniformMatrixImpl<LocType,T,3,1> { static void uniform_matrix(Program& p,GLint l,GLsizei c, GLboolean , const GLdouble* v){ p.Uniform3(l,c,v); } };
+template<class LocType,class T> struct UniformMatrixImpl<LocType,T,4,1> { static void uniform_matrix(Program& p,GLint l,GLsizei c, GLboolean , const GLdouble* v){ p.Uniform4(l,c,v); } };
+template<class LocType,class T> struct UniformMatrixImpl<LocType,T,2,2> { static void uniform_matrix(Program& p,GLint l,GLsizei c, GLboolean t, const GLdouble* v){ p.UniformMatrix2(l,c,t,v); } };
+template<class LocType,class T> struct UniformMatrixImpl<LocType,T,2,3> { static void uniform_matrix(Program& p,GLint l,GLsizei c, GLboolean t, const GLdouble* v){ p.UniformMatrix2x3(l,c,t,v); } };
+template<class LocType,class T> struct UniformMatrixImpl<LocType,T,2,4> { static void uniform_matrix(Program& p,GLint l,GLsizei c, GLboolean t, const GLdouble* v){ p.UniformMatrix2x4(l,c,t,v); } };
+template<class LocType,class T> struct UniformMatrixImpl<LocType,T,3,2> { static void uniform_matrix(Program& p,GLint l,GLsizei c, GLboolean t, const GLdouble* v){ p.UniformMatrix3x2(l,c,t,v); } };
+template<class LocType,class T> struct UniformMatrixImpl<LocType,T,3,3> { static void uniform_matrix(Program& p,GLint l,GLsizei c, GLboolean t, const GLdouble* v){ p.UniformMatrix3(l,c,t,v); } };
+template<class LocType,class T> struct UniformMatrixImpl<LocType,T,3,4> { static void uniform_matrix(Program& p,GLint l,GLsizei c, GLboolean t, const GLdouble* v){ p.UniformMatrix3x4(l,c,t,v); } };
+template<class LocType,class T> struct UniformMatrixImpl<LocType,T,4,2> { static void uniform_matrix(Program& p,GLint l,GLsizei c, GLboolean t, const GLdouble* v){ p.UniformMatrix4x2(l,c,t,v); } };
+template<class LocType,class T> struct UniformMatrixImpl<LocType,T,4,3> { static void uniform_matrix(Program& p,GLint l,GLsizei c, GLboolean t, const GLdouble* v){ p.UniformMatrix4x3(l,c,t,v); } };
+template<class LocType,class T> struct UniformMatrixImpl<LocType,T,4,4> { static void uniform_matrix(Program& p,GLint l,GLsizei c, GLboolean t, const GLdouble* v){ p.UniformMatrix4(l,c,t,v); } };
 
 template<class LocType,class T,unsigned int N,unsigned int M>
-void UniformMatrix(LocType loc,GLsizei count, GLboolean transpose, const T* value) { UniformMatrixImpl<LocType,T,N,M>::uniform_matrix(this,loc,count,transpose,value); }
+void UniformMatrix(LocType loc,GLsizei count, GLboolean transpose, const T* value) { UniformMatrixImpl<LocType,T,N,M>::uniform_matrix(*this,loc,count,transpose,value); }
 
 template<class LocType,class T,unsigned int N,unsigned int M>
 void UniformMatrix(LocType loc,GLsizei count, const T* value) { UniformMatrix(loc,count,GL_FALSE,value); }
@@ -139,6 +141,41 @@ std::array<std::array<T,M>,N> GetUniform(LocType loc) {
 			out2[i][j]=out1[j][i];
 		}
 		return out2; 
+}
+
+template<class T,unsigned int N>
+struct uniform_argv_t {
+	const T* data;
+};
+
+template<class LocType,class T,unsigned int N>
+inline void Uniform1(LocType loc,const uniform_argv_t<T,N>& arg)
+{
+	Uniform(loc,arg.data);
+}
+
+template<class T,unsigned int N,unsigned int M>
+struct uniform_matrix_argv_t {
+	const T* data;
+	bool column_major;
+};
+template<class LocType,class Arg>
+inline void Uniform1(LocType loc,const Arg& a)
+{
+	auto u=to_uniform(a);
+	Uniform(loc,u);
+}
+template<class LocType,class T,unsigned int N,unsigned int M>
+inline void UniformMatrix(LocType loc,const uniform_matrix_argv_t<T,N,M>& arg)
+{
+	UniformMatrix<M,N>(loc,1,arg.column_major ? GL_FALSE : GL_TRUE,arg.data);
+}
+
+template<class LocType,class Arg>
+inline void UniformMatrix(LocType loc,const Arg& a)
+{
+	auto u=to_uniform_matrix(a);
+	UniformMatrix(loc,u);
 }
 
 #endif // GLHPP_STRICT_API
