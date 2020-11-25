@@ -1,5 +1,7 @@
 #define GL_GLEXT_PROTOTYPES
-#include "legacy/glcorearb.h"
+#define NOMINMAX
+
+#include <glcorearb.h>
 #include "glhpp/OpenGL.hpp"
 #include<iostream>
 #include<utility>

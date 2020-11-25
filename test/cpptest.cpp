@@ -5,6 +5,7 @@
 //#define GLEW_NO_GLU
 //#include <GL/glew.h>
 #define GL_GLEXT_PROTOTYPES
+#define NOMINMAX
 #include "legacy/glcorearb.h"
 #include "glhpp/OpenGL.hpp"
 #include<iostream>
