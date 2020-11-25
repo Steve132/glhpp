@@ -7,11 +7,28 @@
 #include<utility>
 #include <GLFW.hpp>
 
-class Application: protected glfw::Window
+class ApplicationGL : public glfw::Window
+{
+protected:
+	static glfw::Window::Hints getHints()
+	{
+		glfw::Window::Hints hnts{
+			{GLFW_CONTEXT_VERSION_MAJOR,4},
+			{GLFW_CONTEXT_VERSION_MINOR,2},
+			{GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE},
+			{GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE}
+		};
+		return hnts;
+	}
+	
+	ApplicationGL(int w,int h,const std::string& s):glfw::Window(w,h,getHints(),s)
+	{}
+};
+
+class Application: protected ApplicationGL
 {
 public:
-	Application(const glfw::Window::Hints& h=glfw::Window::Hints()):
-		glfw::Window(640,480,h,"Simple")
+	Application():ApplicationGL(640,480,"Simple")
 	{}
 	void frame(){
 		glColorMask (GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
@@ -19,10 +36,10 @@ public:
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
 	void operator()(){
+		ApplicationGL::MakeContextCurrent();
 		while(glfw::Window::operator bool())
 		{
 			glfw::Events::Poll();
-			
 			frame();
 			SwapBuffers();
 		}
@@ -31,11 +48,7 @@ public:
 
 int main(void)
 {
-	glfw::Window::Hints hnts{
-		{GLFW_CONTEXT_VERSION_MAJOR,2},
-		{GLFW_CONTEXT_VERSION_MINOR,1}};
-
-	Application app(hnts);
+	Application app;
 	app();
 	return 0;
 }
