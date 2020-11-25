@@ -51,7 +51,7 @@ namespace gl
 	};
 	inline void ViewportArray(GLuint first, const viewport* be,const viewport* ed)
 	{
-		ViewportArray(first, ed-be,reinterpret_cast<const GLfloat*>(be));
+		ViewportArray(first, static_cast<GLsizei>(ed-be),reinterpret_cast<const GLfloat*>(be));
 	}
 	
 	inline void ViewportIndexed(GLuint index,const viewport& vp)
@@ -61,7 +61,7 @@ namespace gl
 	
 	inline void Viewport(const viewport& vp)
 	{
-		Viewport(vp.x, vp.y, vp.width, vp.height);
+		Viewport((GLint)vp.x, (GLint)vp.y, (GLsizei)vp.width,(GLsizei)vp.height);
 	}
 	#endif
 	// Multisample (not sure if fits into Sampler)
@@ -116,7 +116,7 @@ namespace gl
 	using scissorBox=box;
 	inline void ScissorArray(GLuint first, const scissorBox* be,const scissorBox* ed)
 	{
-		ScissorArray(first, ed-be, reinterpret_cast<const GLint*>(be));
+		ScissorArray(first, static_cast<GLsizei>(ed-be), reinterpret_cast<const GLint*>(be));
 	}
 	
 	inline void ScissorIndexed(GLuint index, const scissorBox& box)
@@ -274,11 +274,11 @@ namespace gl
 #ifndef GLHPP_STRICT_API
 	inline void ReadPixels(GLint x,GLint y,glhpp::ClientImage& climg)
 	{
-		ReadPixels(x,y,climg.shape()[0],climg.shape()[1],climg.format(),climg.type(),climg.data());
+		ReadPixels(x,y, (GLsizei)(climg.shape()[0]), (GLsizei)(climg.shape()[1]),climg.format(),climg.type(),climg.data());
 	}
 	inline void ReadnPixels(GLint x,GLint y,GLsizei bufSize,glhpp::ClientImage& climg)
 	{
-		glReadnPixels(x,y,climg.shape()[0],climg.shape()[1],climg.format(),climg.type(),bufSize,climg.data());
+		glReadnPixels(x,y, (GLsizei)(climg.shape()[0]), (GLsizei)(climg.shape()[1]),climg.format(),climg.type(),bufSize,climg.data());
 	}
 #endif
 };

@@ -30,7 +30,7 @@ namespace gl
 		}
 		void Source(const std::string& text)
 		{
-			Source(text.c_str(),text.size());
+			Source(text.c_str(), (GLsizei)text.size());
 		}
 		#if __cplusplus >= 201703UL
 		void Source(const std::string_view& text)

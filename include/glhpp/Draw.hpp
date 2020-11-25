@@ -39,7 +39,7 @@ namespace gl
 		glMultiDrawArraysIndirect(mode, indirect, drawcount, stride);
 	}
 	
-	inline void MultiDrawArraysIndirectCount(GLenum mode, const void* indirect, GLsizei drawcount, GLintptr maxdrawcount, GLsizei stride)
+	inline void MultiDrawArraysIndirectCount(GLenum mode, const void* indirect, GLintptr drawcount, GLintptr maxdrawcount, GLsizei stride)
 	{
 		glMultiDrawArraysIndirectCount(mode, indirect, drawcount, maxdrawcount, stride);
 	}

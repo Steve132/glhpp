@@ -103,17 +103,17 @@ namespace gl
 			{
 				case 1: 
 				{
-					SubImage1D(level,offset[0],shape[0],img.format(),img.type(),img.data()); 
+					SubImage1D(level,offset[0], (GLsizei)shape[0],img.format(),img.type(),img.data());
 					break;
 				}
 				case 2: 
 				{
-					SubImage2D(level,offset[0],offset[1],shape[0],shape[1],img.format(),img.type(),img.data()); 
+					SubImage2D(level,offset[0],offset[1], (GLsizei)shape[0], (GLsizei)shape[1],img.format(),img.type(),img.data());
 					break;
 				}
 				case 3: 
 				{
-					SubImage3D(level,offset[0],offset[1],offset[2],shape[0],shape[1],shape[2],img.format(),img.type(),img.data()); 
+					SubImage3D(level,offset[0],offset[1],offset[2], (GLsizei)shape[0], (GLsizei)shape[1], (GLsizei)shape[2],img.format(),img.type(),img.data());
 					break;
 				}
 				default:
@@ -165,13 +165,13 @@ namespace gl
 		}
 		void CompressedSubImage2D(GLint level,GLint xoffset, GLint yoffset,
 						GLsizei width,GLsizei height,
-						GLenum format,GLenum size,const void *data)
+						GLenum format,GLsizei size,const void *data)
 		{
 			glCompressedTextureSubImage2D(id,level,xoffset,yoffset,width,height,format,size,data);
 		}
 		void CompressedSubImage1D(GLint level,GLint xoffset,
 						GLsizei width,
-						GLenum format,GLenum size,const void *data)
+						GLenum format,GLsizei size,const void *data)
 		{
 			glCompressedTextureSubImage1D(id,level,xoffset,width,format,size,data);
 		}
@@ -196,19 +196,19 @@ namespace gl
 			{
 				case 1:
 				{
-					CompressedSubImage1D(level,offset[0],shape[0],clim.internalformat(),clim.size(),clim.data());
+					CompressedSubImage1D(level,offset[0],(GLsizei)shape[0],clim.internalformat(), (GLsizei)clim.size(),clim.data());
 					break;
 				}
 				case 2:
 				{
-					CompressedSubImage2D(level,offset[0],offset[1],shape[0],shape[1],
-										 clim.internalformat(),clim.size(),clim.data());
+					CompressedSubImage2D(level,offset[0],offset[1], (GLsizei)shape[0], (GLsizei)shape[1],
+										 clim.internalformat(), (GLsizei)clim.size(),clim.data());
 					break;
 				}
 				case 3:
 				{
-					CompressedSubImage3D(level,offset[0],offset[1],offset[2],shape[0],shape[1],shape[2],
-										 clim.internalformat(),clim.size(),clim.data());
+					CompressedSubImage3D(level,offset[0],offset[1],offset[2], (GLsizei)shape[0], (GLsizei)shape[1], (GLsizei)shape[2],
+										 clim.internalformat(), (GLsizei)clim.size(),clim.data());
 					break;
 				}
 				default:
@@ -359,7 +359,7 @@ namespace gl
 			
 			glhpp::ClientImage climg(format,type,texsize);
 			
-			GetImage(level,format,type,climg.size(),climg.data());
+			GetImage(level,format,type, (GLsizei)climg.size(),climg.data());
 			return climg;
 		}
 		glhpp::ClientImage GetSubImage(GLint level,const std::array<GLint,3>& offset,const std::array<GLsizei,3>& shape,GLenum format,GLenum type) const
@@ -375,9 +375,9 @@ namespace gl
 			
 			GetSubImage(level,
 				offset[0],offset[1],offset[2],
-				shape[0],shape[1],shape[2],
+				(GLsizei)shape[0], (GLsizei)shape[1], (GLsizei)shape[2],
 				format,type,
-				climg.size(),climg.data()
+				(GLsizei)climg.size(),climg.data()
 			);
 			return climg;
 		}
@@ -396,7 +396,7 @@ namespace gl
 			size_t compressed_sz=GetLevelParameter<GLint>(level,GL_TEXTURE_COMPRESSED_IMAGE_SIZE);
 			GLenum internalformat=GetLevelParameter<GLint>(level,GL_TEXTURE_INTERNAL_FORMAT);
 			glhpp::ClientCompressedImage climg(internalformat,compressed_sz,texsize);
-			GetCompressedImage(level,climg.size(),climg.data());
+			GetCompressedImage(level,(GLsizei)climg.size(),climg.data());
 			return climg;
 		}
 		glhpp::ClientCompressedImage GetCompressedSubImage(GLint level,const std::array<GLint,3>& offset,const std::array<GLsizei,3>& shape) const

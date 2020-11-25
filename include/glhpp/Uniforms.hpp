@@ -28,7 +28,7 @@ void Uniform4(GLint loc,GLsizei count, const GLdouble *value) { glProgramUniform
 
 void Uniform1(GLint loc,GLuint v0) { glProgramUniform1ui (id,loc,v0); }
 void Uniform1(GLint loc,GLsizei count, const GLuint *value) { glProgramUniform1uiv(id,loc,count,value); }
-void Uniform2(GLint loc,GLuint v0,GLfloat v1) { glProgramUniform2ui (id,loc,v0,v1); }
+void Uniform2(GLint loc,GLuint v0,GLuint v1) { glProgramUniform2ui (id,loc,v0,v1); }
 void Uniform2(GLint loc,GLsizei count, const GLuint *value) { glProgramUniform2uiv(id,loc,count,value); }
 void Uniform3(GLint loc,GLuint v0,GLuint v1,GLuint v2) { glProgramUniform3ui (id,loc,v0,v1,v2); }
 void Uniform3(GLint loc,GLsizei count, const GLuint *value) { glProgramUniform3uiv(id,loc,count,value); }

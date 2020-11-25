@@ -61,7 +61,7 @@ public:
 	#else
 	void Label(const std::string& str)
 	{
-		Label(str.length(),str.c_str());
+		Label((GLsizei)str.length(),str.c_str());
 	}
 	#endif
 	std::string GetLabel() const
