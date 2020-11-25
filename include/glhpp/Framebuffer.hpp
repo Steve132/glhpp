@@ -95,7 +95,7 @@ namespace gl
 #ifndef GLHPP_STRICT_API
 		void DrawBuffers(const GLenum* be,const GLenum* ed) const
 		{
-			DrawBuffers(ed-be,be);
+			DrawBuffers(static_cast<GLsizei>(ed-be),be);
 		}
 		void DrawBuffers(std::initializer_list<GLenum> bufs) const
 		{
@@ -114,7 +114,7 @@ namespace gl
 		{
 			glClearNamedFramebufferuiv(id,buf,drawindex,v);
 		}
-		void ClearBuffer(GLenum buf,GLint drawindex,GLfloat depth,GLfloat stencil)
+		void ClearBuffer(GLenum buf,GLint drawindex,GLfloat depth,GLint stencil)
 		{
 			glClearNamedFramebufferfi(id,buf,drawindex,depth,stencil);
 		}
@@ -131,7 +131,7 @@ namespace gl
 #ifndef GLHPP_STRICT_API
 		void InvalidateData(const GLenum* be,const GLenum* ed)
 		{
-			InvalidateData(ed-be,be);
+			InvalidateData(static_cast<GLsizei>(ed-be),be);
 		}
 		void InvalidateData(std::initializer_list<GLenum> att)
 		{
@@ -139,7 +139,7 @@ namespace gl
 		}
 		void InvalidateSubData(const GLenum* be,const GLenum* ed,GLint x,GLint y,GLsizei width,GLsizei height)
 		{
-			InvalidateSubData(ed-be,be,x,y,width,height);
+			InvalidateSubData(static_cast<GLsizei>(ed-be),be,x,y,width,height);
 		}
 		void InvalidateSubData(std::initializer_list<GLenum> att,GLint x,GLint y,GLsizei width,GLsizei height)
 		{

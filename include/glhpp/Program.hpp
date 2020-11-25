@@ -163,7 +163,7 @@ namespace gl
 			const GLenum* presult=std::find(pbegin,pend,GL_ACTIVE_VARIABLES);
 			if(presult != pend) throw Exception(GLHPP_CUSTOM_EXCEPTION,"Cannot use this GLHPP version of GetResource to query a multi-valued program resource. Try GetResource_Multi");
 			std::vector<GLint> out(pend-pbegin);
-			GetResource(programInterface,index,out.size(),pbegin,out.size(),nullptr,out.data());
+			GetResource(programInterface,index, (GLsizei)out.size(),pbegin, (GLsizei)out.size(),nullptr,out.data());
 			return out;
 		}
 #endif
@@ -196,12 +196,12 @@ namespace gl
 			binaryProgram bp;
 			bp.binary.resize(binlength);
 			GLsizei lenout;
-			GetBinary(bp.binary.size(),&lenout,&bp.binaryFormat,bp.binary.data());
+			GetBinary((GLsizei)bp.binary.size(),&lenout,&bp.binaryFormat,bp.binary.data());
 			return bp;
 		}
 		void Binary(const binaryProgram& bp)
 		{
-			Binary(bp.binaryFormat,bp.binary.data(),bp.binary.size());
+			Binary(bp.binaryFormat,bp.binary.data(), (GLsizei)bp.binary.size());
 		}
 #endif
 		GLint GetUniformLocation(const char* nm) const
@@ -231,7 +231,7 @@ namespace gl
 			GLsizei len;
 			GetActiveUniformName(index,0,&len,nullptr);
 			std::string out(len+1,'\0');
-			GetActiveUniformName(index,out.size(),&len,const_cast<char*>(out.data()));
+			GetActiveUniformName(index, (GLsizei)out.size(),&len,const_cast<char*>(out.data()));
 			return out;
 		}
 		std::vector<GLuint> GetUniformIndices(const std::string* uniformNameB,const std::string* uniformNameE) const
@@ -240,7 +240,7 @@ namespace gl
 			std::vector<const GLchar*> namesPtrs(n);
 			std::vector<GLuint> out(n);
 			for(size_t i=0;i < n;i++) namesPtrs[i]=uniformNameB[i].c_str();
-			GetUniformIndices(n,namesPtrs.data(),out.data());
+			GetUniformIndices((GLsizei)n,namesPtrs.data(),out.data());
 			return out;
 		}
 		struct uniformInfo
@@ -255,14 +255,14 @@ namespace gl
 			uniformInfo info;
 			GetActiveUniform(index,0,&info.length,&info.size,&info.type,nullptr);
 			info.name.resize(info.length+1,'\0');
-			GetActiveUniform(index,info.name.size(),&info.length,&info.size,&info.type,const_cast<char*>(info.name.data()));
+			GetActiveUniform(index, (GLsizei)info.name.size(),&info.length,&info.size,&info.type,const_cast<char*>(info.name.data()));
 			return info;
 		}
 		std::vector<GLint> GetActiveUniforms(const GLuint* indicesB,const GLuint* indicesE,GLenum pname) const
 		{
 			size_t N=indicesE-indicesB;
 			std::vector<GLint> out(N);
-			GetActiveUniforms(N,indicesB,pname,out.data());
+			GetActiveUniforms((GLsizei)N,indicesB,pname,out.data());
 			return out;
 		}
 #endif
@@ -289,7 +289,7 @@ namespace gl
 			GLsizei len;
 			GetActiveUniformBlockName(uniformBlockIndex,0,&len,nullptr);
 			out.resize(len+1,'\0');
-			GetActiveUniformBlockName(uniformBlockIndex,out.size(),&len,const_cast<char*>(out.data()));
+			GetActiveUniformBlockName(uniformBlockIndex, (GLsizei)out.size(),&len,const_cast<char*>(out.data()));
 			return out;
 		}
 		GLint GetActiveUniformBlock(GLuint uniformBlockIndex,GLenum pname) const
