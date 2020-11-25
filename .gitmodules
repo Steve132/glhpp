@@ -1,4 +1,4 @@
 [submodule "test/glfwpp"]
 	path = test/glfwpp
-	url = git@github.com:Steve132/glfwpp.git
+	url = ../glfwpp.git
 	branch = master
