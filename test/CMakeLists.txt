@@ -9,17 +9,28 @@ find_package(OpenGL)
 
 if(BUILD_TESTING)
 
-add_executable(glhppgears
-	glhppgears.cpp
+add_executable(glhpphello
+	glhpphello.cpp
 )
 
+target_link_libraries(glhpphello INTERFACE GLEW)
+target_compile_features(glhpphello PUBLIC cxx_std_11)
+target_include_directories(glhpphello PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../include/")
+target_include_directories(glhpphello PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../")
+target_include_directories(glhpphello PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/deps")
+target_link_libraries(glhpphello PRIVATE glfwpp)
+target_link_libraries(glhpphello PRIVATE OpenGL::GL)
 
-target_link_libraries(glhppgears INTERFACE GLEW)
-target_compile_features(glhppgears PUBLIC cxx_std_11)
-target_include_directories(glhppgears PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../include/")
-target_include_directories(glhppgears PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../")
-target_include_directories(glhppgears PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/deps")
-target_link_libraries(glhppgears PRIVATE glfwpp)
-target_link_libraries(glhppgears PRIVATE OpenGL::GL)
+add_executable(glhppbunny
+	glhppbunny.cpp
+	bunny.c
+)
+target_link_libraries(glhppbunny INTERFACE GLEW)
+target_compile_features(glhppbunny PUBLIC cxx_std_11)
+target_include_directories(glhppbunny PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../include/")
+target_include_directories(glhppbunny PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../")
+target_include_directories(glhppbunny PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/deps")
+target_link_libraries(glhppbunny PRIVATE glfwpp)
+target_link_libraries(glhppbunny PRIVATE OpenGL::GL)
 
 endif()
