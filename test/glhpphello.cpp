@@ -20,6 +20,8 @@ protected:
 		};
 		return hnts;
 	}
+
+
 	
 	ApplicationGL(int w,int h,const std::string& s):glfw::Window(w,h,getHints(),s)
 	{}
@@ -27,9 +29,44 @@ protected:
 
 class Application: protected ApplicationGL
 {
+protected:
+	gl::Buffer vbo;
+	gl::VertexArray vao;
+	gl::Program prog;
+	gl::Shader vs, fs;
 public:
-	Application():ApplicationGL(640,480,"Simple")
-	{}
+	Application():ApplicationGL(640,480,"Simple"),vs(GL_VERTEX_SHADER),fs(GL_FRAGMENT_SHADER)
+	{
+		
+		vs.Source(R"SHADER(
+			#version 430
+			in vec3 pos;
+			in vec3 norm;
+
+			out vec3 norm_out;
+			out vec3 pos_out;
+			void main()
+			{
+				gl_Position=vec4(pos,1.0);
+				norm_out=norm;
+				pos_out=pos;
+			}
+			)SHADER");
+		vs.Compile();
+		fs.Source(R"SHADER(
+			#version 430
+			in vec3 pos_out;
+			in vec3 norm_out;
+			layout(location = 0) out vec4 diffuseColor;
+			vec4 main()
+			{
+				diffuseColor=vec4(pos,1.0);
+				norm_out=norm;
+			}
+			)SHADER");
+		fs.Compile();
+	
+	}
 	void frame(){
 		glColorMask (GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
 		glClearColor(255.0f,0.0f,0.0f,255.0f);
