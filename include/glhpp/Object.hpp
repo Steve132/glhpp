@@ -51,7 +51,7 @@ public:
 	virtual GLboolean Is() const=0;
 	
 #ifndef GLHPP_STRICT_API
-	operator bool() const { return Is(); }
+	operator IDType() const { return id; }
 #endif
 
 protected:
