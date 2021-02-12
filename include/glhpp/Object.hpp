@@ -24,13 +24,19 @@ protected:
 public:
 	Resource& operator=(Resource<IDType>&& other)
 	{
-		if(id!=0) 
+		if (this != &other && id != other.id)
 		{
-			deleter_func(1,&id);
+			if (id != 0)
+			{
+				deleter_func(1, &id);
+			}
+
+			id = std::move(other.id);
+			other.id = 0;
 		}
-		id=other.id;
-		other.id=0;
-		other.deleter_func=NullDeleter;
+
+		deleter_func = std::move(other.deleter_func);
+
 		return *this;
 	}
 	Resource(Resource<IDType>&& other):Resource()
