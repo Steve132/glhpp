@@ -27,11 +27,11 @@ namespace gl
 		
 		void AttachShader(const Shader& shader)
 		{
-			glAttachShader(id,shader);
+			glAttachShader(id,shader.name());
 		}
 		void DetachShader(const Shader& shader)
 		{
-			glDetachShader(id,shader);
+			glDetachShader(id,shader.name());
 		}
 		void Link()
 		{
