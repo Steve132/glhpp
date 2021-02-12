@@ -345,7 +345,7 @@ namespace gl
 		{
 			glGetCompressedTextureSubImage(id,level,xoffset,yoffset,zoffset,width,height,depth,bufSize,pixels);
 		}
-#ifndef GLHHP_STRICT_API
+#ifndef GLHPP_STRICT_API
 		glhpp::ClientImage GetImage(GLint level,GLenum format,GLenum type) const
 		{
 			if(GetParameter<GLint>(GL_TEXTURE_COMPRESSED))
