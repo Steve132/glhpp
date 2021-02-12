@@ -26,7 +26,7 @@ public:
 	{
 		if (this != &other && id != other.id)
 		{
-			if (id != 0)
+			if (id != 0 && Is())
 			{
 				deleter_func(1, &id);
 			}
@@ -50,17 +50,13 @@ public:
 	
 	virtual GLboolean Is() const=0;
 	
-#ifndef GLHPP_STRICT_API
-	operator IDType() const { return id; }
-#endif
-
 protected:
 	Resource(const IDType& tname=IDType(0)):
 		id(tname)
 	{}
 	virtual ~Resource()  //This is required to be virtual in case anyone uses Object*
 	{
-		if(id!=0) 
+		if(id!=0 && Is()) 
 		{
 			deleter_func(1,&id);
 		}
