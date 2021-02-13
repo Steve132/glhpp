@@ -12,6 +12,14 @@ namespace impl
 		static GLenum value;
 	};
 	
+#ifndef GL_INT64_ARB
+	#define GL_INT64_ARB 0x140E
+#endif
+
+#ifndef GL_UNSIGNED_INT64_ARB
+	#define GL_UNSIGNED_INT64_ARB 0x140F
+#endif
+
 	template<> GLenum ClientToGLType<GLbyte>::value=GL_BYTE;
 	template<> GLenum ClientToGLType<GLubyte>::value=GL_UNSIGNED_BYTE;
 	template<> GLenum ClientToGLType<GLshort>::value=GL_SHORT;
