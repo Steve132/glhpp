@@ -54,7 +54,8 @@ protected:
 	{}
 	virtual ~Resource()  //This is required to be virtual in case anyone uses Object*
 	{
-		if(id!=0) 
+		//TODO: technically call Is() but we need to do a function<> dispatch to do that
+		if(id!=0/* && Is()*/) 
 		{
 			deleter_func(1,&id);
 		}
