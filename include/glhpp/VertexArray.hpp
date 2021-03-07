@@ -92,7 +92,7 @@ public:
 	{
 		glVertexArrayAttribIFormat(id,attribindex,size,type,relativeoffset);
 	}
-	void AttribIFormat(GLuint attribindex, GLint size, GLenum type, GLboolean normalized, GLuint relativeoffset)
+	void AttribFormat(GLuint attribindex, GLint size, GLenum type, GLboolean normalized, GLuint relativeoffset)
 	{
 		glVertexArrayAttribFormat(id,attribindex,size,type,normalized,relativeoffset);
 	}
