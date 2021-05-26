@@ -552,8 +552,7 @@ inline Program::ActiveInfo Program::GetActiveAttrib(GLuint index) const
 {
 	Program::ActiveInfo ai;
 	GLint sz=Program::Get(GL_ACTIVE_ATTRIBUTE_MAX_LENGTH);
-	ai.name.reserve(sz);
-	ai.name.insert(0,sz,0);
+	ai.name.resize(sz);
 	
 	glGetActiveAttrib(object,index,sz,&sz,&(ai.size),&(ai.type),&(ai.name[0]));
 	_impl::_checkError(GL_INVALID_VALUE,"Active Attribute Query: index is greater than or equal to the number of active attribute variables in program.");
@@ -567,8 +566,7 @@ inline Program::ActiveInfo Program::GetActiveUniform(GLuint index) const
 {
 	Program::ActiveInfo ai;
 	GLint sz=Program::Get(GL_ACTIVE_UNIFORM_MAX_LENGTH);
-	ai.name.reserve(sz);
-	ai.name.insert(0,sz,0);
+	ai.name.resize(sz);
 	
 	glGetActiveUniform(object,index,sz,&sz,&(ai.size),&(ai.type),&(ai.name[0]));
 	_impl::_checkError(GL_INVALID_VALUE,"Active Uniform Query: index is greater than or equal to the number of active attribute variables in program.");
