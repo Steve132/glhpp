@@ -87,9 +87,9 @@ public:
 	{
 		glGetNamedBufferParameteri64v(id,pname,data);
 	}
-	void GetPointer(GLenum pname,const void** params) const
+	void GetPointer(GLenum pname,void** params) const
 	{
-		glGetNamedBufferPointerv(id,pname,const_cast<void**>(params));
+		glGetNamedBufferPointerv(id,pname,params);
 	}
 	void CopySubData(Buffer& target,GLintptr readOffset,GLintptr writeOffset,GLsizeiptr size) const
 	{
@@ -131,14 +131,14 @@ public:
 	{
 		T out;GetParameter(pname,&out);return out;
 	}
-	const void* GetPointer(GLenum pname=GL_BUFFER_MAP_POINTER) const
+	void* GetPointer(GLenum pname=GL_BUFFER_MAP_POINTER) const
 	{
-		const void* out=GetPointer(pname);return out;
+		void* out; GetPointer(pname,&out); return out;
 	}
 	template<class T>
 	T GetPointer(GLenum pname=GL_BUFFER_MAP_POINTER) const
 	{
-		const void* out=GetPointer(pname);
+		void* out; GetPointer(pname,&out);
 		return static_cast<T>(out);
 	}
 #endif
