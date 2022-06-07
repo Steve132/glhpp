@@ -7,10 +7,7 @@ namespace impl
 {
 
 	template<class I>
-	struct ClientToGLType
-	{
-		static GLenum value;
-	};
+	struct ClientToGLType;
 	
 #ifndef GL_INT64_ARB
 	#define GL_INT64_ARB 0x140E
@@ -20,29 +17,34 @@ namespace impl
 	#define GL_UNSIGNED_INT64_ARB 0x140F
 #endif
 
-	template<> GLenum ClientToGLType<GLbyte>::value=GL_BYTE;
-	template<> GLenum ClientToGLType<GLubyte>::value=GL_UNSIGNED_BYTE;
-	template<> GLenum ClientToGLType<GLshort>::value=GL_SHORT;
-	template<> GLenum ClientToGLType<GLushort>::value=GL_UNSIGNED_SHORT;
-	template<> GLenum ClientToGLType<GLint>::value=GL_INT;
-	template<> GLenum ClientToGLType<GLuint>::value=GL_UNSIGNED_INT;
-	template<> GLenum ClientToGLType<GLint64>::value=GL_INT64_ARB;
-	template<> GLenum ClientToGLType<GLuint64>::value=GL_UNSIGNED_INT64_ARB;
-	//template<> GLenum ClientToGLType<GLhalf>::value=GL_HALF_FLOAT;
-	template<> GLenum ClientToGLType<GLfloat>::value=GL_FLOAT;
-	template<> GLenum ClientToGLType<GLdouble>::value=GL_DOUBLE;
+	template<> struct ClientToGLType<GLbyte> { static constexpr GLenum value=GL_BYTE; };
+	template<> struct ClientToGLType<GLubyte> { static constexpr GLenum value=GL_UNSIGNED_BYTE; };
+	template<> struct ClientToGLType<GLshort> { static constexpr GLenum value=GL_SHORT; };
+	template<> struct ClientToGLType<GLushort> { static constexpr GLenum value=GL_UNSIGNED_SHORT; };
+	template<> struct ClientToGLType<GLint> { static constexpr GLenum value=GL_INT; };
+	template<> struct ClientToGLType<GLuint> { static constexpr GLenum value=GL_UNSIGNED_INT; };
+	template<> struct ClientToGLType<GLfloat> { static constexpr GLenum value=GL_FLOAT; };
+	template<> struct ClientToGLType<GLdouble> { static constexpr GLenum value=GL_DOUBLE; };
+
+#ifdef GL_INT64_ARB
+	template<> struct ClientToGLType<GLint64> { static constexpr GLenum value=GL_INT64_ARB; };
+#endif
+#ifdef GL_UNSIGNED_INT64_ARB
+	template<> struct ClientToGLType<GLuint64> { static constexpr GLenum value=GL_UNSIGNED_INT64_ARB; };
+#endif
+#ifdef GL_HALF_FLOAT
+	//template<> struct ClientToGLType<GLhalf> { static constexpr GLenum value=GL_HALF_FLOAT; };
+#endif
 	
 	template<unsigned int l>
-	struct ClientToChannelsFormat
-	{
-		static GLenum value;
-	};
-	template<> GLenum ClientToChannelsFormat<1>::value=GL_RED;
-	template<> GLenum ClientToChannelsFormat<2>::value=GL_RG;
-	template<> GLenum ClientToChannelsFormat<3>::value=GL_RGB;
-	template<> GLenum ClientToChannelsFormat<4>::value=GL_RGBA;
+	struct ClientToChannelsFormat;
+
+	template<> struct ClientToChannelsFormat<1> { static constexpr GLenum value=GL_RED; };
+	template<> struct ClientToChannelsFormat<2> { static constexpr GLenum value=GL_RG; };
+	template<> struct ClientToChannelsFormat<3> { static constexpr GLenum value=GL_RGB; };
+	template<> struct ClientToChannelsFormat<4> { static constexpr GLenum value=GL_RGBA; };
 	
-	inline unsigned int FormatToChannels(GLenum format)
+	constexpr inline unsigned int FormatToChannels(GLenum format)
 	{
 		switch(format)
 		{
@@ -73,7 +75,7 @@ namespace impl
 		};
 		return 0; //TODO not recognized?
 	}
-	inline bool TypeIsBasic(GLenum type)
+	constexpr inline bool TypeIsBasic(GLenum type)
 	{
 		switch(type)
 		{
