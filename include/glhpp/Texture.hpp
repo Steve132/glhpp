@@ -20,7 +20,7 @@ namespace gl
 		virtual GLenum target() const override { return m_target; }
 		virtual GLuint image_name() const override { return id; }
 	public:
-		Texture(GLenum target):m_target(target)
+		Texture(GLenum target = GL_TEXTURE_2D):m_target(target)
 		{
 			id=0;
 			glCreateTextures(target,1,&id);
